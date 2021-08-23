@@ -2,14 +2,6 @@
  * Theme - LMS Admin
  */
 
-const BARCHART = {
-  axisBottom: () => {
-    return {
-      tickRotation: 90
-    }
-  }
-}
-
 const COLOUR = {
   dark: 'rgb(0, 55, 83)',
   light: 'rgb(236, 240, 243)',
@@ -39,7 +31,7 @@ const FOOTER = {
 
 const NAVBAR = {
   // Navbar
-  background: COLOUR.white,
+  background: COLOUR.light,
   colourActive: COLOUR.dark,
   height: 'auto',
 
@@ -47,22 +39,17 @@ const NAVBAR = {
   borderTopColor: COLOUR.primary,
 
   // Overlay
-  backgroundOverlay: COLOUR.dark,
+  backgroundOverlay: COLOUR.white,
 
   // Toggler
-  colourToggler: COLOUR.white,
+  colourToggler: COLOUR.dark,
 
   // Link
-  colourDefault: COLOUR.white,
-  colourDefaultDesktop: COLOUR.white,
+  colourDefault: COLOUR.dark,
+  colourDefaultDesktop: COLOUR.dark,
 
   // ListItem
-  backgroundHoverListItem: 'rgb(37, 51, 66)'
-}
-
-export const STEPPER = {
-  colour: COLOUR.primary,
-  colourCheckmark: COLOUR.white
+  backgroundHoverListItem: COLOUR.white
 }
 
 const TYPOGRAPHY = {
@@ -113,12 +100,10 @@ const TILE = {
 }
 
 export const Theme = {
-  BARCHART,
   COLOUR,
   COPYRIGHT,
   FOOTER,
   NAVBAR,
-  STEPPER,
   TYPOGRAPHY,
   TILE
 }
