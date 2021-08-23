@@ -2,7 +2,7 @@
  * Next Config
  */
 
- const withTM = require('next-transpile-modules')([
+const withTM = require('next-transpile-modules')([
   '@fullcalendar/common',
   '@fullcalendar/daygrid',
   '@fullcalendar/list',
@@ -11,6 +11,8 @@
   '@react-leaflet/core'
 ])
 
-const withPlugins = require('next-compose-plugins')
-
-module.exports = withPlugins([withTM])
+module.exports = withTM({
+  future: {
+    webpack5: false
+  }
+})
