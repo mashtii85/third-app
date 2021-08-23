@@ -17,7 +17,7 @@ const COLOUR = {
   white: 'rgb(255, 255, 255)',
   black: 'rgb(0, 0, 0)',
 
-  primary: 'rgb(0, 204, 188)',
+  primary: 'rgb(204, 31, 51)',
   secondary: 'rgb(6, 121, 216)',
   success: 'rgb(0, 180, 60)',
   info: 'rgb(249, 156, 35)',
@@ -39,8 +39,8 @@ const FOOTER = {
 
 const NAVBAR = {
   // Navbar
-  background: COLOUR.dark,
-  colourActive: COLOUR.white,
+  background: COLOUR.white,
+  colourActive: COLOUR.dark,
   height: 'auto',
 
   // Borders

@@ -5,11 +5,10 @@
 // UI
 import { Navbar } from '@drykiss/industry-ui'
 import { Default } from './data/default'
+import { Config } from '../config'
 
 export const Navigation = () => {
-  let links = Default
-  const logo = '/logo.svg'
+  const links = Default
 
-  // return <Navbar brand={logo} widgets={links} />
-  return <div></div>
+  return <Navbar brand={Config.Brand.logo} widgets={links} />
 }

@@ -1,3 +1,3 @@
-# lms.realworldacademies.com
+# Real World Academies LMS
 
 E-learning platform
