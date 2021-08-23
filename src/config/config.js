@@ -43,11 +43,26 @@ export const jwtConfig = {
   key: process.env.NEXT_PUBLIC_JWT_PUBLIC_KEY
 }
 
+// Internationalisation
+export const defaultLocale = 'en'
+export const locales = ['en']
+export const languageNames = {
+  en: 'English'
+}
+
+export const Translations = {
+  en: {}
+}
+
+
 export const Config = {
   apiConfig,
   Brand,
   generalConfig,
   Google,
   jwtConfig,
+  languageNames,
+  locales,
+  Translations,
   version
 }
