@@ -2,6 +2,9 @@
  * App
  */
 
+// Apollo
+import { useApollo } from '../services/apolloClient'
+
 // Fontawesome
 import '../config/icons'
 
@@ -18,12 +21,17 @@ import { Config } from '../config/config'
 import { Theme } from '../config/theme'
 
 const PageApp = (props: any) => {
+  const apolloClient = useApollo(props.pageProps, Config)
+
   return (
     <MyApp
+    apolloClient={apolloClient}
       config={{ ...Config, AccessPages, AccessRules }}
       Layout={Layout}
       offCanvas
+      pageProgressBar
       theme={Theme}
+      user
       {...props}
     />
   )
