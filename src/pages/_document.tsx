@@ -41,7 +41,12 @@ export default class MyDocument extends Document<DocumentProps> {
         <Head>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         </Head>
-        <body>
+        <body
+          style={{
+            backgroundColor: 'rgb(245,248,250)',
+            marginBottom: '140px'
+          }}
+        >
           <Main />
           <NextScript />
         </body>

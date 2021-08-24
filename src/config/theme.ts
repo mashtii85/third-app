@@ -52,6 +52,11 @@ const NAVBAR = {
   backgroundHoverListItem: COLOUR.white
 }
 
+export const STEPPER = {
+  colour: COLOUR.primary,
+  colourCheckmark: COLOUR.white
+}
+
 const TYPOGRAPHY = {
   font: 'Arial, sans-serif'
 }
@@ -104,6 +109,7 @@ export const Theme = {
   COPYRIGHT,
   FOOTER,
   NAVBAR,
+  STEPPER,
   TYPOGRAPHY,
   TILE
 }
