@@ -12,8 +12,8 @@ import { UserContext } from '@drykiss/industry-ui'
 import { User } from '../types/user'
 
 interface CurrentUser {
-  signIn: any,
-  signOut: any,
+  signIn: () => void,
+  signOut: () => void,
   user: User
 }
 
