@@ -1,5 +1,5 @@
 /**
- * Home
+ * Dashboard
  */
 
 // React
@@ -11,9 +11,9 @@ import type { NextPage } from 'next'
 
 // UI
 import { Dashboard, UserContext  } from '@drykiss/industry-ui'
-import { DashboardView } from '../components/dashboard/view'
+import { DashboardView } from '../../components/dashboard/view'
 
-const Home: NextPage = () => {
+const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)
 
   if (!user) {
@@ -26,4 +26,4 @@ const Home: NextPage = () => {
   }
 }
 
-export default Home
+export default PageDashboard
