@@ -29,7 +29,6 @@ const Layout = ({ children }) => {
         </Head>
 
         {children}
-
       </Bootstrap>
     </AppProvider>
   )
