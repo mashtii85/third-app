@@ -1,7 +1,11 @@
 /**
  * Navigation - Data - Default
  */
-export const Default = {
+
+// Types
+import { Navigation } from '../../../types/navigation'
+
+export const Default: Navigation = {
   right: [
     {
       id: 'navHome',
