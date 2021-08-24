@@ -13,7 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     // Check for hardcoded credentials
     if (req.body.email === 'demo@realworldacademies.com' && req.body.password === 'Lms1234!') {
       // Generate token
-      const user = { id: 1, type: 'user', email: 'demo@realworldacademies.com', nameFirst: 'Demo', nameLast: 'RWA' }
+      const user = { id: 1, type: 'user', email: 'demo@realworldacademies.com', nameFirst: 'Demo User', nameLast: 'RWA' }
       const token = jwt.sign({ user }, process.env.JWT_PRIVATE_KEY, {
         algorithm: 'RS512',
         expiresIn: '7d'
