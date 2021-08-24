@@ -1,9 +1,9 @@
 /**
  * Config
  */
-const Canonical = require('./canonical')
-
 export const version = '0.1.0'
+
+export const Canonical = 'https://lms.realworldacademies.com'
 
 export const apiConfig = {
   authURL: process.env.NEXT_PUBLIC_AUTH_URL,
@@ -21,11 +21,9 @@ export const Brand = {
   name: 'RWA'
 }
 
-export { Canonical }
-
 export const generalConfig = {
   isMobile: process.env.NEXT_PUBLIC_DEVICE === 'mobile',
-  paginationSize: 10
+  paginationSize: 20
 }
 
 export const GetAddress = {
