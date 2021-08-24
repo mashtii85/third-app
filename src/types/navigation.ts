@@ -3,13 +3,13 @@
  */
 
 export interface NavLink {
-  id: string,
-  name?: string,
-  to?: string,
+  id: string
+  name?: string
+  to?: string
   type?: any
 }
 
 export interface Navigation {
-  left?: NavLink[],
+  left?: NavLink[]
   right?: NavLink[]
 }
