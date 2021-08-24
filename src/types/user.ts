@@ -4,7 +4,7 @@
 
 export interface User {
   id: number,
-  type: string,
+  account_type: string,
   email: string,
   name_first: string,
   name_last: string

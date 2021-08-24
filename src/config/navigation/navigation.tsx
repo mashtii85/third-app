@@ -17,7 +17,7 @@ export const Navigation = () => {
   let links = Default
 
   if (user) {
-    switch (user.type) {
+    switch (user.account_type) {
       case 'admin':
         links = Admin
         break
