@@ -1,12 +1,12 @@
 /**
- * Components - Utils - Use App
+ * Utils - Use App
  */
 
 // React
 import { useContext } from 'react'
 
 // UI
-import { AppContext } from '../../services/app'
+import { AppContext } from '../services/app'
 
 export const useApp = () => {
   const app = useContext(AppContext)
