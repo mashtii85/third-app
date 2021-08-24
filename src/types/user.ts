@@ -6,6 +6,6 @@ export interface User {
   id: number,
   type: string,
   email: string,
-  nameFirst: string,
-  nameLast: string
+  name_first: string,
+  name_last: string
 }

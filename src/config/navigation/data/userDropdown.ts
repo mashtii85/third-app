@@ -28,7 +28,7 @@ export const UserDropdown = (user: User) => {
   }
   return {
     id: 'navUserDropdown',
-    name: user.nameFirst,
+    name: user.name_first,
     position: 'right',
     type: {
       as: 'dropdown',
