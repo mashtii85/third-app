@@ -72,7 +72,7 @@ export const CourseView = () => {
             <Details2 open title='Progress'>
               <Progress size="lg">
                 <ProgressBar animated context="primary" now={12} striped>
-                  12%
+                  {`${course?.progress || 0}%`}
                 </ProgressBar>
               </Progress>
             </Details2>
