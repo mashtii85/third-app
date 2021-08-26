@@ -8,4 +8,8 @@ export interface User {
   email: string
   name_first: string
   name_last: string
+  phone: string
+  status:string
+  created_at: string
+  updated_at: string
 }
