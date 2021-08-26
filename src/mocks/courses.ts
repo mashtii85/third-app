@@ -13,7 +13,7 @@ export const Courses: Course[] = [
     title: 'Main Player Safeguarding',
     description: 'Implement best practice to keep children safe and ensure involvement in football is fun for all or part of people',
     author: 'UAE FA',
-    progress:'12',
+    progress: '12',
     media: [
       {
         id: 1,
@@ -143,7 +143,7 @@ export const Courses: Course[] = [
     title: 'Player DRYKISS',
     description: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.',
     author: 'EUA DA',
-    process:'47%',
+    process: '47%',
     media: [
       {
         id: 1,
@@ -309,6 +309,98 @@ export const Courses: Course[] = [
           }
         ]
       }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Playmaker',
+    description: 'Playmaker by UAE FA is a new entry-level football course for volunteers in the grassroots game open to anyone aged 14 or over. Its completely free, all online and requires no previous football experience or qualifications to join.',
+    author: 'UAE FA',
+    progress: '66',
+    media: [
+      {
+        id: 1,
+        type: 'image',
+        category: 'cover',
+        filename: '/courses/playmarker.jpg'
+      }
+    ],
+    modules: [
+      {
+        id: 1,
+        title: 'HOW ITS STRUCTURED',
+        description: '',
+        lessons: [
+          {
+            id: 1,
+            type: 'text',
+            title: 'Introduction',
+            description: '',
+            content: `The online modules of BT Playmaker cover five core areas, taking around four-and-a-half hours to complete overall.
+            But there’s no time limit on completing all five - you can do them at your own pace and around your schedule`
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: 'GET STARTED',
+        description: '',
+        lessons: [
+          {
+            id: 3,
+            type: 'text',
+            title: 'Who is this for?',
+            description: '',
+            content: `
+            • This module introduces you to the course, what a BT Playmaker is, and its importance in making football happen for all;
+            • To start, you’ll be invited to take a pre-course questionnaire to gauge your football knowledge;
+            • Don’t worry, you’re not required to be a football expert - it just helps create a starting point for your progress through the rest of the course`
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: 'CONNECT WITH YOUR PLAYERS',
+        description: '',
+        lessons: [
+          {
+            id: 7,
+            type: 'text',
+            title: 'First',
+            description: '',
+            content: 'A big part of making fun, safe and inclusive football happen is being able to engage with your players'
+          },
+          {
+            id: 8,
+            type: 'text',
+            title: 'Second',
+            description: '',
+            content: 'That can be easier said than done! So this module will show you some useful communication and motivation techniques you can use to connect with your players.'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: 'CREATE FUN SESSIONS',
+        description: '',
+        lessons: [
+          {
+            id: 9,
+            type: 'text',
+            title: 'Pre-session planning',
+            description: '',
+            content: 'In your role as a BT Playmaker, you may be required to do some pre-session planning'
+          },
+          {
+            id: 10,
+            type: 'text',
+            title: 'Weekly planning',
+            description: '',
+            content: 'This module has you covered. It will show you a range of tools you can plug straight into your weekly planning'
+          }
+        ]
+      }
+
     ]
   }
 ]
