@@ -316,7 +316,7 @@ export const Courses: Course[] = [
     title: 'Playmaker',
     description: 'Playmaker by UAE FA is a new entry-level football course for volunteers in the grassroots game open to anyone aged 14 or over. Its completely free, all online and requires no previous football experience or qualifications to join.',
     author: 'UAE FA',
-    progress: '66',
+    progress: '100',
     media: [
       {
         id: 1,

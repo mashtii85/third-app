@@ -8,11 +8,12 @@ import { Card, Column, Row } from '@drykiss/industry-ui'
 // Mocks
 import { Courses } from '../../mocks/courses'
 
-export const CourseList = () => {
+export const CourseList = ({ isCompleted }) => {
+  var filtredCourses = isCompleted ? Courses.filter(item => { return item.progress == '100' }) : Courses;
   return (
     <Row>
       {
-        Courses.map(c => <Column key={c.id} md={3}>
+        filtredCourses.map(c => <Column key={c.id} md={3}>
           <Card
             alt={c.title}
             body={c.description}
