@@ -6,6 +6,7 @@ import { Module } from './module'
 import { Medium } from './medium'
 
 export interface Course {
+  progress: number
   id: number
   title: string
   description?: string
