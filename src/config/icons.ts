@@ -1,6 +1,7 @@
 /**
  * Font awesome
  */
+
 import {
   faArrowDown,
   faArrowsAlt,

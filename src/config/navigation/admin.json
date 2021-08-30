@@ -1,0 +1,17 @@
+{
+  "home": "/",
+  "account": {
+    "signIn": "/account/sign-in"
+  },
+  "dashboard": {
+    "root": "/dashboard",
+    "courses": {
+      "root": "/dashboard/courses",
+      "manage": "/dashboard/courses/manage",
+      "view_by_id": "/dashboard/courses/view?id="
+    },
+    "admin": {
+      "view": "/dashboard/admin/view"
+    }
+  }
+}

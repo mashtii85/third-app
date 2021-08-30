@@ -5,17 +5,19 @@
 // Types
 import { Navigation } from '../../../types/navigation'
 
+import path from '../admin.json'
+
 export const Default: Navigation = {
   right: [
     {
       id: 'navHome',
       name: 'Home',
-      to: '/'
+      to: path.home
     },
     {
       id: 'navSignIn',
       name: 'Log in',
-      to: '/account/sign-in'
+      to: path.account.signIn
     }
   ]
 }

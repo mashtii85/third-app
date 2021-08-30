@@ -8,7 +8,7 @@
 import { useMemo } from 'react'
 
 // Apollo
-import { ApolloClient, ApolloLink, from, HttpLink, InMemoryCache, split } from '@apollo/client'
+import { ApolloClient, ApolloLink, DocumentNode, from, HttpLink, InMemoryCache, split } from '@apollo/client'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 
@@ -19,7 +19,7 @@ import fetch from 'node-fetch'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
-let apolloClient
+let apolloClient: any
 
 const getToken = () => {
   const token = localStorage.getItem('bearerToken')
@@ -28,14 +28,15 @@ const getToken = () => {
 
 const httpLink = new HttpLink({
   fetch: fetch,
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+
 })
 
-let wsLink = httpLink
+let wsLink: any = httpLink
 
 if (process.browser) {
   wsLink = new WebSocketLink({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL_WS,
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL_WS!,
     options: {
       reconnect: true,
       lazy: true,
@@ -44,10 +45,10 @@ if (process.browser) {
 
         return token
           ? {
-              headers: {
-                Authorization: token
-              }
+            headers: {
+              Authorization: token
             }
+          }
           : null
       }
     }
@@ -55,7 +56,7 @@ if (process.browser) {
 }
 
 const link = split(
-  ({ query }) => {
+  ({ query }: { query: DocumentNode }) => {
     const { kind, operation } = getMainDefinition(query)
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
@@ -76,7 +77,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-function createApolloClient(Config) {
+function createApolloClient(Config: any) {
   return new ApolloClient({
     cache: new InMemoryCache(),
     defaultOptions: {
@@ -96,7 +97,7 @@ function createApolloClient(Config) {
   })
 }
 
-export function initializeApollo(initialState = null, Config) {
+export function initializeApollo(initialState: any = null, Config: any) {
   const _apolloClient = apolloClient || createApolloClient(Config)
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
@@ -125,7 +126,7 @@ export function initializeApollo(initialState = null, Config) {
   return _apolloClient
 }
 
-export function addApolloState(client, pageProps) {
+export function addApolloState(client: any, pageProps: any) {
   if (pageProps && pageProps.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract()
   }
@@ -137,7 +138,7 @@ export function resetWsConnection() {
   wsLink.subscriptionClient.close(false, false)
 }
 
-export function useApollo(pageProps, Config) {
+export function useApollo(pageProps: any, Config: any) {
   const state = pageProps[APOLLO_STATE_PROP_NAME]
   const store = useMemo(() => initializeApollo(state, Config), [state])
   return store

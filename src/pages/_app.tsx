@@ -25,7 +25,7 @@ const PageApp = (props: any) => {
 
   return (
     <MyApp
-    apolloClient={apolloClient}
+      apolloClient={apolloClient}
       config={{ ...Config, AccessPages, AccessRules }}
       Layout={Layout}
       offCanvas

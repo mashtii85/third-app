@@ -2,28 +2,27 @@
  * Components - Charts - Course - Helper
  */
 
- export const chartData = (data) => {
-   const result = { data:[], status:{}}
-   let inProgress = 0;
-   let todo = 0;
-   let done = 0;
-   let total = data.length;
+import { IChartModel, IPieChart } from '../../types/piechart'
 
-   data.forEach(item => {
-     if(item.status === 'inprogress')
-      inProgress++;
-     else if(item.status === 'done')
-      done++;
-     else
-      todo++;
-   });
+export const chartData = (data: IPieChart[]) => {
+  const result: IChartModel = { data: [], status: {} }
+  let started: number = 0
+  let pending: number = 0
+  let completed: number = 0
+  const total = data.length
 
-   result.data = [
-      {id: 1, label: 'inprogress', value: inProgress},
-      {id: 2, label: 'todo', value: todo}
-    ];
+  data.forEach((item) => {
+    if (item.status === 'started') started++
+    else if (item.status === 'completed') completed++
+    else pending++
+  })
 
-   result.status = {inProgress, todo, done, total}
+  result.data = [
+    { id: 1, label: 'started', value: started },
+    { id: 2, label: 'pending', value: pending }
+  ]
 
-   return result
- }
+  result.status = { started, pending, completed, total }
+
+  return result
+}

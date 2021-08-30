@@ -1,0 +1,10 @@
+{
+  "dashboard":{
+    "root":"/dashboard",
+    "courses":{
+      "started":"/dashboard/courses?show=started",
+      "completed":"/dashboard/courses?show=completed",
+      "all":"/dashboard/courses?show=all"
+    }
+  }
+}

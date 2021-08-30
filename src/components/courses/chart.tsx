@@ -1,52 +1,58 @@
 /**
  * Components - Chart  - Course - PieChart
  */
- import styled from 'styled-components'
 
- // UI
+// React
+import { FC } from 'react'
+
+// Styles
+import styled from 'styled-components'
+
+// UI
 import { PieChart } from '@drykiss/industry-ui'
 // helper
-import { chartData } from './helpers';
+import { chartData } from './helpers'
+import { IPieChart } from '../../types/piechart'
 
-
-const arg ={
+const arg = {
   colorScheme: 'nivo',
   cornerRadius: 1,
-  enableSlicesLabels:false,
+  enableSlicesLabels: false,
   enableRadialLabels: false,
-  innerRadius: 0.8,
+  innerRadius: 0.8
 }
 
-export const CourseLessonPieChart = ({ pieData }) => {
-  const { data = [], status = {} } = chartData(pieData);
+interface CourseLessonPieChartProps {
+  pieData: IPieChart[]
+}
 
+export const CourseLessonPieChart: FC<CourseLessonPieChartProps> = ({ pieData }) => {
+  const { data = [], status = {} } = chartData(pieData)
   return (
-  <StyledHeader>
-    <StyledPieChart>
-      <PieChart
-        data={data}
-        {...arg}
-      />
-    </StyledPieChart>
-    <StyledChartInner>
-     <p>{`${status.inProgress} / ${status.total}`}</p>
-     <p>Lessons</p>
-    </StyledChartInner>
-    <StyledChartStatus>
-      <div>
-        <p>{status.todo}</p>
-        <p>TO DO</p>
-      </div>
-      <div>
-        <p>{status.inProgress}</p>
-        <p>In Progress</p>
-      </div>
-      <div>
-        <p>{status.done}</p>
-        <p>Done</p>
-      </div>
-    </StyledChartStatus>
-  </StyledHeader>)
+    <StyledHeader>
+      <StyledPieChart>
+        <PieChart data={data} {...arg} />
+      </StyledPieChart>
+      <StyledChartInner>
+        <p>{`${status.started} / ${status.total}`}</p>
+        <p>Lessons</p>
+      </StyledChartInner>
+      <StyledChartStatus>
+        <div>
+          <p>{status.pending}</p>
+          <p>TO DO</p>
+        </div>
+        <div>
+          <p>{status.started}</p>
+          <p>In Progress</p>
+        </div>
+        <div>
+          <p>{status.completed}</p>
+          <p>Done</p>
+        </div>
+      </StyledChartStatus>
+    </StyledHeader>
+  )
 }
 
 const StyledHeader = styled.div`
@@ -75,9 +81,9 @@ const StyledChartInner = styled.div`
     }
     &:nth-child(2) {
       font-size: 12px;
-      color:#9b9b9b;
+      color: #9b9b9b;
       position: relative;
-      top: -8px
+      top: -8px;
     }
   }
 `
@@ -105,14 +111,14 @@ const StyledChartStatus = styled.div`
 
     p {
       text-align: center;
-      padding:0px;
-      margin:0px;
+      padding: 0px;
+      margin: 0px;
       &:nth-child(1) {
-        color:#000000;
+        color: #000000;
         font-weight: bold;
       }
       &:nth-child(2) {
-        color:#9e9e9e;
+        color: #9e9e9e;
       }
     }
   }

@@ -1,7 +1,13 @@
 /**
  * Components - ProfileHeader
  */
+
+// React
+import { FC } from 'react'
+
+// Styles
 import styled from 'styled-components'
+
 // UI
 import {
   Avatar,
@@ -12,7 +18,10 @@ import {
   Row,
 } from '@drykiss/industry-ui';
 
-const HeadingContent = ({ entity }) => {
+// Types
+import { HeaderProps } from './types'
+
+const HeadingContent: FC<HeaderProps> = ({ entity }) => {
   return (
     <>
       <StyledIcon context="primary" icon="building" />
@@ -21,23 +30,23 @@ const HeadingContent = ({ entity }) => {
   )
 }
 
-export const ProfileHeader = ({ entity}) => {
+export const ProfileHeader: FC<HeaderProps> = ({ entity }) => {
   return (
-  <StyledHeader>
-    <Container>
-      <Row>
-        <Column md={3}>
-          <Avatar
-            content={entity.name}
-            context="primary"
-          />
-        </Column>
-        <Column md={9}>
-           <StyledHeading content={<HeadingContent entity={entity} />} noMargin />
-        </Column>
-      </Row>
-    </Container>
-  </StyledHeader>)
+    <StyledHeader>
+      <Container>
+        <Row>
+          <Column md={3}>
+            <Avatar
+              content={entity.name}
+              context="primary"
+            />
+          </Column>
+          <Column md={9}>
+            <StyledHeading content={<HeadingContent entity={entity} />} noMargin />
+          </Column>
+        </Row>
+      </Container>
+    </StyledHeader>)
 }
 
 const StyledHeader = styled.div`

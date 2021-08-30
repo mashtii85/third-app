@@ -3,7 +3,7 @@
  */
 
 // Next
-import{ useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 // UI
 import {
@@ -12,7 +12,7 @@ import {
   DetailsText,
   formatDateStandard,
   Row
-} from'@drykiss/industry-ui';
+} from '@drykiss/industry-ui';
 import { ProfileHeader } from '../profileHeader/profileHeader'
 
 // Mocks
@@ -24,14 +24,14 @@ import { User } from '../../types/user';
 const UserDetails = () => {
   const { query } = useRouter();
 
-  if(!query?.id) {
-    return null;
+  if (!query?.id) {
+    return <></>;
   }
 
-  const user: User = Users.find(c => c.id === parseInt(query.id as any));
+  const user: User = Users.find(c => c.id === parseInt(query.id as any))!;
 
-  if(!user) {
-    return null;
+  if (!user) {
+    return <></>;
   }
 
   return (
@@ -39,8 +39,8 @@ const UserDetails = () => {
       <Column md={6}>
         <ProfileHeader
           entity={{ name: `${user.name_first} ${user.name_last}` }}
-          prefix="/dashboard/users/"
         />
+
         <Details open summary="Details">
           <DetailsText content="Account Type" text={user.account_type} />
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />

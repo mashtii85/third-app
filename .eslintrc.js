@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   extends: ['standard', 'standard-react', 'prettier', 'prettier/react', 'prettier-standard'],
   env: {
     browser: true,
@@ -8,7 +8,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: '17.0.1'
+      version: 'detect'
     }
   },
   globals: {
@@ -65,3 +65,4 @@ module.exports = {
     'react/no-did-update-set-state': 0
   }
 }
+

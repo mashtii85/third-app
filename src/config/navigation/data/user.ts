@@ -2,12 +2,14 @@
  * Navigation - Data - User
  */
 
+import path from '../user.json'
+
  export const User: any = {
   right: [
     {
       id: 'navHomeMenu',
       name: 'Home',
-      to: '/dashboard'
+      to: path.dashboard
     },
     {
       id: 'navCoursesMenu',
@@ -18,17 +20,17 @@
           {
             id: 'navCoursesActive',
             name: 'Active Courses',
-            to: '/dashboard/courses?show=started'
+            to: path.dashboard.courses.started
           },
           {
             id: 'navCoursesCompleted',
             name: 'Completed Courses',
-            to: '/dashboard/courses?show=completed'
+            to: path.dashboard.courses.completed
           },
           {
             id: 'navCoursesAll',
             name: 'All Courses',
-            to: '/dashboard/courses?show=all'
+            to: path.dashboard.courses.all
           }
         ]
       }

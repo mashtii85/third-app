@@ -13,12 +13,7 @@ const PageSignIn: NextPage = () => {
     <Page>
       <Row>
         <Column md={6} offset={{ md: 3 }}>
-          <Login
-            blockSubmitButton
-            forgotPassword={false}
-            pathSignUp={false}
-            showPassword
-          />
+          <Login blockSubmitButton forgotPassword={false} pathSignUp={false} showPassword />
         </Column>
       </Row>
     </Page>

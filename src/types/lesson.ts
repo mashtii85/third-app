@@ -2,14 +2,19 @@
  * Types - Lesson
  */
 
+export enum LESSON_TYPE {
+  text,
+  video,
+  quiz,
+  assignment
+}
+
 export interface Lesson {
-  //Related to https://app.clickup.com/t/yy9eeu
-  //status: 'pending' | 'started' | 'completed';
   id: number
-  type: 'text' | 'video' | 'quizz' | 'assignment'
+  type: LESSON_TYPE
   title: string
-  status?: 'inprogress' | 'done' | 'todo'
   description?: string
   content: any
   ordering?: number
+  status: 'pending' | 'started' | 'completed'
 }

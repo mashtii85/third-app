@@ -3,7 +3,7 @@
  */
 
 // React
-import { node } from 'prop-types'
+import { FC } from 'react'
 
 // Next
 import Head from 'next/head'
@@ -17,7 +17,11 @@ import { AppProvider } from '../services/app'
 // Config
 import { Navigation } from '../config/navigation/navigation'
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: JSX.Element | JSX.Element[]
+}
+
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <AppProvider>
       <Bootstrap fixed Navigation={Navigation}>
@@ -34,8 +38,5 @@ const Layout = ({ children }) => {
   )
 }
 
-Layout.propTypes = {
-  children: node.isRequired
-}
 
 export default Layout

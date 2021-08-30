@@ -5,12 +5,15 @@
 // Types
 import { Navigation } from '../../../types/navigation'
 
+import path from '../admin.json'
+
 export const Admin: Navigation = {
+
   right: [
     {
       id: 'navHomeMenu',
       name: 'Home',
-      to: '/dashboard'
+      to: path.dashboard.root
     },
     {
       id: 'navCoursesMenu',
@@ -21,12 +24,12 @@ export const Admin: Navigation = {
           {
             id: 'navCourses',
             name: 'List',
-            to: '/dashboard/courses'
+            to: path.dashboard.courses.root
           },
           {
             id: 'navCoursesCreate',
             name: 'Create',
-            to: '/dashboard/courses/manage'
+            to: path.dashboard.courses.manage
           }
         ]
       }
@@ -34,7 +37,7 @@ export const Admin: Navigation = {
     {
       id: 'account',
       name: 'Account',
-      to: '/dashboard/admin/view'
+      to: path.dashboard.admin.view
     },
     {
       id: 'navUserDropdown'
