@@ -2,6 +2,7 @@
  * Types - User
  */
 
+/* eslint-disable camelcase */
 export interface User {
   id: number
   account_type: string
