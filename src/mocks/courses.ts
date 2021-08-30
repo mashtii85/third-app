@@ -32,7 +32,7 @@ export const Courses: Course[] = [
             id: 1,
             type: 'text',
             title: 'Introduction',
-            status: 'completed',
+            status: 'pending',
             description: '',
             content: 'As the global governing body for football, FIFA is committed to supporting its members to implement best practice to keep children safe and ensure involvement in football is fun for all. While FIFA does not control the day-to-day operations of our members, or their affiliated organisations and clubs who are independently organised, this toolkit sets minimum requirements for all members on child safeguarding.'
           },
@@ -40,7 +40,7 @@ export const Courses: Course[] = [
             id: 2,
             type: 'text',
             title: 'Overview',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: `This course will underpin our work and that of our 211 MAs and the six confederations.
             It provides a framework to help members consider how they can prevent any risk of harm to children in football and respond appropriately, as called for in the FIFA Forward 2.0 Regulations, article 8, paragraph 1t.
@@ -71,6 +71,7 @@ export const Courses: Course[] = [
             type: 'text',
             status: 'completed',
             title: 'The five principles',
+            status: 'completed',
             description: '',
             content: `In line with the terms and spirit of the UNCRC, safeguarding children in football is based around the following five principles that apply to all stakeholders :
             1. We will act in the best interests of children.2 Ensuring that children are safeguarded is part of a commitment to enhancing their enjoyment of and performance in football.
@@ -109,7 +110,7 @@ export const Courses: Course[] = [
             id: 7,
             type: 'text',
             title: 'Communication',
-            status: 'completed',
+            status: 'started',
             description: '',
             content: ''
           },
@@ -117,7 +118,7 @@ export const Courses: Course[] = [
             id: 8,
             type: 'text',
             title: 'Education',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: ''
           }
@@ -180,7 +181,7 @@ export const Courses: Course[] = [
             id: 2,
             type: 'text',
             title: 'Overview',
-            status: 'completed',
+            status: 'pending',
             description: '',
             content: `This course will underpin our work and that of our 211 MAs and the six confederations.
             It provides a framework to help members consider how they can prevent any risk of harm to children in football and respond appropriately, as called for in the FIFA Forward 2.0 Regulations, article 8, paragraph 1t.
@@ -216,13 +217,6 @@ export const Courses: Course[] = [
             • to self-assess and inform the development of their safeguarding policies, plans and programmes, including for human resource and training needs;
             • to assist coordinators and technical staff with risk assessments and the development of safeguarding plans and programmes;
             • to support practitioners, such as coaches, trainers, medical personnel, staff and volunteers, who provide services, training and programmes to children to apply good practice for effective action.`
-          },
-          {
-            id: 7,
-            type: 'text',
-            title: 'Second part of Story',
-            status: 'completed',
-            content: ''
           },
           {
             id: 4,
@@ -275,7 +269,7 @@ export const Courses: Course[] = [
             id: 8,
             type: 'text',
             title: 'Education',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: ''
           },
@@ -283,7 +277,7 @@ export const Courses: Course[] = [
             id: 4,
             type: 'text',
             title: 'Other Mission',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: ''
           }
@@ -298,7 +292,7 @@ export const Courses: Course[] = [
             id: 1,
             type: 'text',
             title: 'Monitoring',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: ''
           },
@@ -313,7 +307,7 @@ export const Courses: Course[] = [
         ]
       },
       {
-        id: 4,
+        id: 5,
         title: 'Special Case Study',
         description: '',
         lessons: [
@@ -329,7 +323,7 @@ export const Courses: Course[] = [
             id: 10,
             type: 'text',
             title: 'Story Creating',
-            status: 'started',
+            status: 'pending',
             description: '',
             content: ''
           }
@@ -361,7 +355,7 @@ export const Courses: Course[] = [
             id: 1,
             type: 'text',
             title: 'Introduction',
-            status: 'started',
+            status: 'completed',
             description: '',
             content: `The online modules of BT Playmaker cover five core areas, taking around four-and-a-half hours to complete overall.
             But there’s no time limit on completing all five - you can do them at your own pace and around your schedule`
@@ -395,7 +389,7 @@ export const Courses: Course[] = [
             id: 7,
             type: 'text',
             title: 'First',
-            status: 'started',
+            status: 'completed',
             description: '',
             content: 'A big part of making fun, safe and inclusive football happen is being able to engage with your players'
           },
@@ -403,7 +397,7 @@ export const Courses: Course[] = [
             id: 8,
             type: 'text',
             title: 'Second',
-            status: 'started',
+            status: 'completed',
             description: '',
             content: 'That can be easier said than done! So this module will show you some useful communication and motivation techniques you can use to connect with your players.'
           }
@@ -418,7 +412,7 @@ export const Courses: Course[] = [
             id: 9,
             type: 'text',
             title: 'Pre-session planning',
-            status: 'started',
+            status: 'completed',
             description: '',
             content: 'In your role as a BT Playmaker, you may be required to do some pre-session planning'
           },
@@ -426,7 +420,7 @@ export const Courses: Course[] = [
             id: 10,
             type: 'text',
             title: 'Weekly planning',
-            status: 'started',
+            status: 'completed',
             description: '',
             content: 'This module has you covered. It will show you a range of tools you can plug straight into your weekly planning'
           }

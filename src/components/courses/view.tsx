@@ -3,7 +3,7 @@
  */
 
 // React
-import {useState} from 'react'
+import { useState } from 'react'
 
 // Next
 import { useRouter } from 'next/router'
@@ -28,9 +28,6 @@ import { Module } from '../../types/module'
 
 // Mocks
 import { Courses } from '../../mocks/courses'
-
-
-
 
 export const CourseView = () => {
   const { query } = useRouter()
@@ -59,6 +56,10 @@ export const CourseView = () => {
     return data;
   }
 
+  // if (!course) {
+  //   return null
+  // }
+
   const [showCompleteButton, setShowCompleteButton] = useState(false);
   const courseDescription = course?.description;
 
@@ -81,7 +82,17 @@ export const CourseView = () => {
         id: lesson.id,
         label: lesson.title,
         date: lesson.id === 1 ? '23 Aug 2021 11:45' : null,
-        status: lesson.status
+        status: lesson.status,
+        actions: [
+          {
+            id: actionId,
+            active: lessonStatus,
+            content: 'Start lesson',
+            context: 'secondary',
+            handleClick: () => startLesson(lesson.content),
+            type: 'button'
+          }
+        ]
       })
     })
 
@@ -93,7 +104,7 @@ export const CourseView = () => {
     setShowCompleteButton(true);
   }
 
-  const simulatingDatabaseChanges = (status: 'pending'|'started'|'completed') => {
+  const simulatingDatabaseChanges = (status: 'pending' | 'started' | 'completed') => {
     let currentLesson = course?.modules?.find(module => module.id == selectedModuleId)?.lessons?.find(lesson => lesson.id == selectedLessonId)!;
     currentLesson.status = status;
   }

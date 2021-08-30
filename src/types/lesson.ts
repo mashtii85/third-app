@@ -3,7 +3,8 @@
  */
 
 export interface Lesson {
-  status: 'pending' | 'started' | 'completed';
+  //Related to https://app.clickup.com/t/yy9eeu
+  //status: 'pending' | 'started' | 'completed';
   id: number
   type: 'text' | 'video' | 'quizz' | 'assignment'
   title: string
