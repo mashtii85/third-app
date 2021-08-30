@@ -15,7 +15,8 @@ module.exports = {
     before: true,
     cy: true,
     Cypress: true,
-    localStorage: true
+    localStorage: true,
+    JSX: true
   },
   plugins: ['react', 'react-hooks'],
   parserOptions: {

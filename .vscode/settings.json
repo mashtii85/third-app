@@ -6,7 +6,7 @@
     "source.organizeImports": false
   },
   "eslint.validate": [
-    "javascript","typescript"
+    "javascript", "typescript", "typescriptreact"
   ],
   // Editor
   "editor.formatOnSave": true,
