@@ -52,7 +52,6 @@ export const Translations = {
   en: {}
 }
 
-
 export const Config = {
   apiConfig,
   Brand,

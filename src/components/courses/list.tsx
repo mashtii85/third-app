@@ -17,11 +17,11 @@ import { CourseListProps } from './types'
 import path from '../../config/navigation/admin.json'
 
 export const CourseList: FC<CourseListProps> = ({ isCompleted }) => {
-  const filtredCourses = isCompleted ? Courses.filter(item => item.progress == 100) : Courses
+  const filtredCourses = isCompleted ? Courses.filter((item) => item.progress === 100) : Courses
   return (
     <Row>
-      {
-        filtredCourses.map(c => <Column key={c.id} md={3}>
+      {filtredCourses.map((c) => (
+        <Column key={c.id} md={3}>
           <Card
             alt={c.title}
             body={c.description}
@@ -30,8 +30,8 @@ export const CourseList: FC<CourseListProps> = ({ isCompleted }) => {
             title={c.title}
             to={`${path.dashboard.courses.view_by_id}${c.id}`}
           />
-        </Column>)
-      }
+        </Column>
+      ))}
     </Row>
   )
 }

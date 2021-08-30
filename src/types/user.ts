@@ -9,7 +9,7 @@ export interface User {
   name_first: string
   name_last: string
   phone: string
-  status:string
+  status: string
   created_at: string
   updated_at: string
 }

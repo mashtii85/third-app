@@ -15,7 +15,7 @@ import { Users } from '../../../mocks/users'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const user = Users.find(u => u.email === req.body.email)
+    const user = Users.find((u) => u.email === req.body.email)
 
     if (!user || req.body.password !== 'Lms1234!') {
       return res.status(401).json({ error: 'Email or password not correct' })

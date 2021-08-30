@@ -3,43 +3,35 @@
  */
 
 // Next
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
 // UI
-import {
-  Column,
-  Details,
-  DetailsText,
-  formatDateStandard,
-  Row
-} from '@drykiss/industry-ui';
+import { Column, Details, DetailsText, formatDateStandard, Row } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
 
 // Mocks
 import { Users } from '../../mocks/users'
 
 // Types
-import { User } from '../../types/user';
+import { User } from '../../types/user'
 
 const UserDetails = () => {
-  const { query } = useRouter();
+  const { query } = useRouter()
 
   if (!query?.id) {
-    return <></>;
+    return <></>
   }
 
-  const user: User = Users.find(c => c.id === parseInt(query.id as any))!;
+  const user: User = Users.find((c) => c.id === parseInt(query.id as any))!
 
   if (!user) {
-    return <></>;
+    return <></>
   }
 
   return (
     <Row>
       <Column md={6}>
-        <ProfileHeader
-          entity={{ name: `${user.name_first} ${user.name_last}` }}
-        />
+        <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
 
         <Details open summary="Details">
           <DetailsText content="Account Type" text={user.account_type} />
@@ -51,10 +43,9 @@ const UserDetails = () => {
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
         </Details>
       </Column>
-      <Column md={6}>
-        Not Implemented
-      </Column>
-    </Row>)
+      <Column md={6}>Not Implemented</Column>
+    </Row>
+  )
 }
 
-export default UserDetails;
+export default UserDetails

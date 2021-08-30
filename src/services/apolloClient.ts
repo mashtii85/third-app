@@ -8,7 +8,15 @@
 import { useMemo } from 'react'
 
 // Apollo
-import { ApolloClient, ApolloLink, DocumentNode, from, HttpLink, InMemoryCache, split } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloLink,
+  DocumentNode,
+  from,
+  HttpLink,
+  InMemoryCache,
+  split
+} from '@apollo/client'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 
@@ -28,8 +36,7 @@ const getToken = () => {
 
 const httpLink = new HttpLink({
   fetch: fetch,
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
-
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL
 })
 
 let wsLink: any = httpLink
@@ -45,10 +52,10 @@ if (process.browser) {
 
         return token
           ? {
-            headers: {
-              Authorization: token
+              headers: {
+                Authorization: token
+              }
             }
-          }
           : null
       }
     }

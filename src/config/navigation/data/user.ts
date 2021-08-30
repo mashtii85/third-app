@@ -4,7 +4,7 @@
 
 import path from '../user.json'
 
- export const User: any = {
+export const User: any = {
   right: [
     {
       id: 'navHomeMenu',

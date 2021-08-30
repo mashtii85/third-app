@@ -8,7 +8,6 @@ import { Navigation } from '../../../types/navigation'
 import path from '../admin.json'
 
 export const Admin: Navigation = {
-
   right: [
     {
       id: 'navHomeMenu',

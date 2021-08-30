@@ -3,7 +3,14 @@
  */
 
 // Next
-import Document, { Head, Html, Main, NextScript, DocumentProps, DocumentContext } from 'next/document'
+import Document, {
+  Head,
+  Html,
+  Main,
+  NextScript,
+  DocumentProps,
+  DocumentContext
+} from 'next/document'
 
 // Style
 import { ServerStyleSheet } from 'styled-components'

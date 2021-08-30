@@ -9,14 +9,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 
 // UI
-import {
-  Avatar,
-  Column,
-  Container,
-  Heading,
-  Icon,
-  Row,
-} from '@drykiss/industry-ui';
+import { Avatar, Column, Container, Heading, Icon, Row } from '@drykiss/industry-ui'
 
 // Types
 import { HeaderProps } from './types'
@@ -36,17 +29,15 @@ export const ProfileHeader: FC<HeaderProps> = ({ entity }) => {
       <Container>
         <Row>
           <Column md={3}>
-            <Avatar
-              content={entity.name}
-              context="primary"
-            />
+            <Avatar content={entity.name} context="primary" />
           </Column>
           <Column md={9}>
             <StyledHeading content={<HeadingContent entity={entity} />} noMargin />
           </Column>
         </Row>
       </Container>
-    </StyledHeader>)
+    </StyledHeader>
+  )
 }
 
 const StyledHeader = styled.div`

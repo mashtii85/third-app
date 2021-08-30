@@ -10,7 +10,7 @@ import Router from 'next/router'
 import type { NextPage } from 'next'
 
 // UI
-import { Dashboard, UserContext  } from '@drykiss/industry-ui'
+import { Dashboard, UserContext } from '@drykiss/industry-ui'
 import { DashboardView } from '../../components/dashboard/view'
 
 const PageDashboard: NextPage = () => {
@@ -20,9 +20,7 @@ const PageDashboard: NextPage = () => {
     Router.push('/account/sign-in')
     return null
   } else {
-    return (
-      <Dashboard View={<DashboardView />} />
-    )
+    return <Dashboard View={<DashboardView />} />
   }
 }
 

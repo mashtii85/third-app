@@ -2,7 +2,7 @@
  * Types - Medium
  */
 
- export interface Medium {
+export interface Medium {
   id: number
   type: string
   category?: string
