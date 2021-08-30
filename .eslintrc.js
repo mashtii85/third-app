@@ -43,6 +43,7 @@ module.exports = {
       {
         // Ignore SVGs d=
         ignorePattern: 'd="([\\s\\S]*?)"|data:image|-----BEGIN PUBLIC KEY-----',
+        ignoreTemplateLiterals: true,
         code: 100,
         tabWidth: 2
       }
@@ -65,4 +66,3 @@ module.exports = {
     'react/no-did-update-set-state': 0
   }
 }
-
