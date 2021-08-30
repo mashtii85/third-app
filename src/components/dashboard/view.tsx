@@ -9,7 +9,7 @@ import { CourseList } from '../courses/list'
 export const DashboardView = () => {
   return (
     <Details2 open title="Courses in progress">
-      <CourseList />
+      <CourseList{...{ isCompleted: false }} />
     </Details2>
   )
 }

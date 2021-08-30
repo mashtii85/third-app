@@ -9,7 +9,7 @@ import { Card, Column, Row } from '@drykiss/industry-ui'
 import { Courses } from '../../mocks/courses'
 
 export const CourseList = ({ isCompleted }) => {
-  var filtredCourses = isCompleted ? Courses.filter(item => { return item.progress == '100' }) : Courses;
+  var filtredCourses = isCompleted ? Courses.filter(item => { return item.progress == 100 }) : Courses;
   return (
     <Row>
       {
