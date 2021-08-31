@@ -10,9 +10,12 @@ import styled from 'styled-components'
 
 // UI
 import { PieChart } from '@drykiss/industry-ui'
-// helper
+
+// Helpers
 import { chartData } from './helpers'
-import { IPieChart } from '../../types/piechart'
+
+// Types
+import { IPieChart } from '../../types/piechart.d'
 
 const arg = {
   colorScheme: 'nivo',

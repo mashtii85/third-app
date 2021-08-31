@@ -2,7 +2,7 @@
  * Types - Module
  */
 
-import { Lesson } from './lesson'
+import { Lesson } from './lesson.d'
 
 export interface Module {
   id: number

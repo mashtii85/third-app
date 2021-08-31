@@ -2,8 +2,8 @@
  * Types - Course
  */
 
-import { Module } from './module'
-import { Medium } from './medium'
+import { Module } from './module.d'
+import { Medium } from './medium.d'
 
 export interface Course {
   progress?: number

@@ -2,7 +2,7 @@
  * Components - Charts - Course - Helper
  */
 
-import { IChartModel, IPieChart } from '../../types/piechart'
+import { IChartModel, IPieChart } from '../../types/piechart.d'
 
 export const chartData = (data: IPieChart[]) => {
   const result: IChartModel = { data: [], status: {} }

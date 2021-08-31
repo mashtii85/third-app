@@ -5,7 +5,7 @@
  */
 
 // Type
-import { Course } from '../types/course'
+import { Course } from '../types/course.d'
 import { LESSON_TYPE } from '../types/lesson.d'
 
 export const Courses: Course[] = [

@@ -23,10 +23,10 @@ import {
 import { CourseLessonPieChart } from './chart'
 
 // Types
-import { Module } from '../../types/module'
-import { IStepper } from '../../types/stepper'
-import { IPieChart } from '../../types/piechart'
-import { Lesson } from '../../types/lesson'
+import { Module } from '../../types/module.d'
+import { IStepper } from '../../types/stepper.d'
+import { IPieChart } from '../../types/piechart.d'
+import { Lesson } from '../../types/lesson.d'
 
 // Mocks
 import { Courses } from '../../mocks/courses'

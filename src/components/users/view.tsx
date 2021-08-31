@@ -13,7 +13,7 @@ import { ProfileHeader } from '../profileHeader/profileHeader'
 import { Users } from '../../mocks/users'
 
 // Types
-import { User } from '../../types/user'
+import { User } from '../../types/user.d'
 
 const UserDetails = () => {
   const { query } = useRouter()

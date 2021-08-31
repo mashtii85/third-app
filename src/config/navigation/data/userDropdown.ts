@@ -3,7 +3,7 @@
  */
 
 // Types
-import { User } from '../../../types/user'
+import { User } from '../../../types/user.d'
 
 export const UserDropdown = (user: User) => {
   const prepareNavItems = () => {

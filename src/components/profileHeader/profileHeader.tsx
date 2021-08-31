@@ -12,7 +12,7 @@ import styled from 'styled-components'
 import { Avatar, Column, Container, Heading, Icon, Row } from '@drykiss/industry-ui'
 
 // Types
-import { HeaderProps } from './types'
+import { HeaderProps } from './types.d'
 
 const HeadingContent: FC<HeaderProps> = ({ entity }) => {
   return (

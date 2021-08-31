@@ -12,7 +12,7 @@ import { Card, Column, Row } from '@drykiss/industry-ui'
 import { Courses } from '../../mocks/courses'
 
 // Types
-import { CourseListProps } from './types'
+import { CourseListProps } from './types.d'
 
 import path from '../../config/navigation/admin.json'
 
