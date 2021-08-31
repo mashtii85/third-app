@@ -9,7 +9,7 @@ export const User: any = {
     {
       id: 'navHomeMenu',
       name: 'Home',
-      to: path.dashboard
+      to: path.dashboard.root
     },
     {
       id: 'navCoursesMenu',
