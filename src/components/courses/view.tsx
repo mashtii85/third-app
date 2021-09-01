@@ -27,13 +27,14 @@ import { CourseProgressChart } from './chart'
 import { Module } from '../../types/module.d'
 import { StepperModel } from '../../types/stepper.d'
 import { LessonDataModel } from '../../types/pieChart.d'
-import { Lesson, LessonStatus } from '../../types/lesson.d'
+import { Lesson, LessonStatus, LessonType } from '../../types/lesson.d'
 
 // Mocks
 import { Courses } from '../../mocks/courses'
 
 export const CourseView = () => {
   const { query } = useRouter()
+  const [lesson, setLesson] = useState<null | Lesson>(null)
   const [showCompleteButton, setShowCompleteButton] = useState(false)
 
   if (!query?.id) {
@@ -45,8 +46,6 @@ export const CourseView = () => {
   if (!course) {
     return <></>
   }
-
-  const courseDescription = course?.description
 
   let hasActive = false
   let selectedModuleId = 0
@@ -94,7 +93,7 @@ export const CourseView = () => {
               active: lessonStatus,
               content: 'Start lesson',
               context: 'secondary',
-              handleClick: () => startLesson(lesson.content),
+              handleClick: () => startLesson(lesson),
               type: 'button'
             }
           ]
@@ -104,8 +103,8 @@ export const CourseView = () => {
     return data
   }
 
-  const startLesson = (lessonContent: string) => {
-    course.description = lessonContent
+  const startLesson = (lesson: Lesson) => {
+    setLesson(lesson)
     setShowCompleteButton(true)
   }
 
@@ -118,7 +117,6 @@ export const CourseView = () => {
 
   const completeLesson = () => {
     simulatingDatabaseChanges(LessonStatus.completed)
-    course.description = courseDescription
     setShowCompleteButton(false)
   }
 
@@ -137,28 +135,36 @@ export const CourseView = () => {
       </Column>
 
       <Column md={8}>
-        <Heading tag="h2" content="Course overview" />
+        <Heading tag="h2" content={lesson ? lesson.title : 'Course overview'} />
 
         <Space />
 
         <Row>
           <Column md={8}>
-            <Details2 open title="Details">
-              {course?.media?.length && (
-                <Image alt={course?.title} src={course?.media[0]?.filename} />
-              )}
-              <DetailsText content="Author" text={course?.author ?? ''} />
-              <DetailsText content="Description" text={course?.description ?? ''} />
-              <Space />
-              {showCompleteButton && (
-                <Button
-                  context="secondary"
-                  content="Complete"
-                  data-cy="complete"
-                  onClick={completeLesson}
-                />
-              )}
-            </Details2>
+            {lesson ? (
+              <Details2 open title="Lesson">
+                <>
+                  {lesson.type === LessonType.video && <div>VIDEO PLAYER COMPONENT</div>}
+                  {lesson.content && <p>{lesson.content}</p>}
+                  {showCompleteButton && (
+                    <Button
+                      context="secondary"
+                      content="Complete"
+                      data-cy="complete"
+                      onClick={completeLesson}
+                    />
+                  )}
+                </>
+              </Details2>
+            ) : (
+              <Details2 open title="Details">
+                {course?.media?.length && (
+                  <Image alt={course?.title} src={course?.media[0]?.filename} />
+                )}
+                <DetailsText content="Author" text={course?.author ?? ''} />
+                <DetailsText content="Description" text={course?.description ?? ''} />
+              </Details2>
+            )}
           </Column>
 
           <Column md={4}>
