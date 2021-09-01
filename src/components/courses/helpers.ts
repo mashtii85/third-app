@@ -2,18 +2,19 @@
  * Components - Charts - Course - Helper
  */
 
-import { IChartModel, IPieChart } from '../../types/piechart.d'
+import { LessonStatus } from '../../types/lesson.d'
+import { ProgressChartModel, LessonDataModel } from '../../types/pieChart.d'
 
-export const chartData = (data: IPieChart[]) => {
-  const result: IChartModel = { data: [], status: {} }
+export const chartData = (data: LessonDataModel[]) => {
+  const result: ProgressChartModel = { data: [], status: {} }
   let started: number = 0
   let pending: number = 0
   let completed: number = 0
   const total = data.length
 
   data.forEach((item) => {
-    if (item.status === 'started') started++
-    else if (item.status === 'completed') completed++
+    if (item.status === LessonStatus.started) started++
+    else if (item.status === LessonStatus.completed) completed++
     else pending++
   })
 

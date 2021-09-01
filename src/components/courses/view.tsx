@@ -20,13 +20,14 @@ import {
   Space,
   Stepper
 } from '@drykiss/industry-ui'
-import { CourseLessonPieChart } from './chart'
+
+import { CourseProgressChart } from './chart'
 
 // Types
 import { Module } from '../../types/module.d'
-import { IStepper } from '../../types/stepper.d'
-import { IPieChart } from '../../types/piechart.d'
-import { Lesson } from '../../types/lesson.d'
+import { StepperModel } from '../../types/stepper.d'
+import { LessonDataModel } from '../../types/pieChart.d'
+import { Lesson, LessonStatus } from '../../types/lesson.d'
 
 // Mocks
 import { Courses } from '../../mocks/courses'
@@ -52,7 +53,7 @@ export const CourseView = () => {
   let selectedLessonId = 0
 
   const lessonSummary = () => {
-    const data: IPieChart[] = []
+    const data: LessonDataModel[] = []
     const modules = course.modules || []
 
     modules.forEach((module) => {
@@ -69,14 +70,14 @@ export const CourseView = () => {
   }
 
   const prepareLessons = (m: Module) => {
-    const data: IStepper[] = []
+    const data: StepperModel[] = []
 
     let actionId = 0
     let lessonStatus = false
     m?.lessons?.length &&
       m.lessons.forEach((lesson: Lesson) => {
         actionId++
-        if (!hasActive && lesson.status !== 'completed') {
+        if (!hasActive && lesson.status !== LessonStatus.completed) {
           hasActive = true
           lessonStatus = true
           selectedModuleId = m.id
@@ -85,7 +86,7 @@ export const CourseView = () => {
         data.push({
           id: lesson.id,
           label: lesson.title,
-          date: lesson.status === 'completed' ? '23 Aug 2021 11:45' : null,
+          date: lesson.status === LessonStatus.completed ? '23 Aug 2021 11:45' : null,
           status: lesson.status,
           actions: [
             {
@@ -108,7 +109,7 @@ export const CourseView = () => {
     setShowCompleteButton(true)
   }
 
-  const simulatingDatabaseChanges = (status: 'pending' | 'started' | 'completed') => {
+  const simulatingDatabaseChanges = (status: LessonStatus) => {
     const currentLesson = course?.modules
       ?.find((module) => module.id === selectedModuleId)
       ?.lessons?.find((lesson) => lesson.id === selectedLessonId)!
@@ -116,7 +117,7 @@ export const CourseView = () => {
   }
 
   const completeLesson = () => {
-    simulatingDatabaseChanges('completed')
+    simulatingDatabaseChanges(LessonStatus.completed)
     course.description = courseDescription
     setShowCompleteButton(false)
   }
@@ -162,7 +163,7 @@ export const CourseView = () => {
 
           <Column md={4}>
             <Details2 open title="Progress">
-              <CourseLessonPieChart pieData={lessonSummary()} />
+              <CourseProgressChart pieData={lessonSummary()} />
             </Details2>
           </Column>
         </Row>

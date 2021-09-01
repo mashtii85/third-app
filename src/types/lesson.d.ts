@@ -2,19 +2,25 @@
  * Types - Lesson
  */
 
-export enum LESSON_TYPE {
+export enum LessonType {
   text,
   video,
   quiz,
   assignment
 }
 
+export enum LessonStatus {
+  pending,
+  started,
+  completed
+}
+
 export interface Lesson {
   id: number
-  type: LESSON_TYPE
+  type: LessonType
   title: string
   description?: string
-  content: any
+  content: string
   ordering?: number
-  status: 'pending' | 'started' | 'completed'
+  status: LessonStatus
 }

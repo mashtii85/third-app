@@ -5,7 +5,7 @@
 // Apollo
 import { useApollo } from '../services/apolloClient'
 
-// Fontawesome
+// FontAwesome
 import '../config/icons'
 
 // UI

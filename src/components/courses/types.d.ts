@@ -2,6 +2,8 @@
  * Components - Courses - Types
  */
 
+import { Course } from '../../types/course'
+
 export interface CourseListProps {
-  isCompleted: boolean
+  courses: Course[]
 }

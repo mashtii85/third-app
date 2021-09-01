@@ -35,7 +35,7 @@ const getToken = () => {
 }
 
 const httpLink = new HttpLink({
-  fetch: fetch,
+  fetch,
   uri: process.env.NEXT_PUBLIC_GRAPHQL_URL
 })
 
@@ -49,14 +49,14 @@ if (process.browser) {
       lazy: true,
       connectionParams: () => {
         const token = getToken()
-
-        return token
-          ? {
-              headers: {
-                Authorization: token
-              }
+        if (token) {
+          return {
+            headers: {
+              Authorization: token
             }
-          : null
+          }
+        }
+        return null
       }
     }
   })
@@ -64,8 +64,8 @@ if (process.browser) {
 
 const link = split(
   ({ query }: { query: DocumentNode }) => {
-    const { kind, operation } = getMainDefinition(query)
-    return kind === 'OperationDefinition' && operation === 'subscription'
+    const definition = getMainDefinition(query)
+    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
   },
   wsLink,
   httpLink
