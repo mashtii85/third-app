@@ -2,12 +2,12 @@
  * Types - PieChart
  */
 
-import { LessonStatus } from './lesson'
+import { LESSON_STATUS } from './lesson'
 
 export interface LessonDataModel {
   id: number
   label: string
-  status: LessonStatus
+  status: LESSON_STATUS
 }
 
 export interface ProgressChartData {

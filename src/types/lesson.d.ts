@@ -2,25 +2,28 @@
  * Types - Lesson
  */
 
-export enum LessonType {
-  text,
-  video,
-  quiz,
-  assignment
+import { Medium } from './medium'
+
+export enum LESSON_TYPE {
+  Text = 'text',
+  Video = 'video',
+  Quiz = 'quiz',
+  Assignment = 'assignment'
 }
 
-export enum LessonStatus {
-  pending,
-  started,
-  completed
+export enum LESSON_STATUS {
+  Pending = 'pending',
+  Started = 'started',
+  Completed = 'completed'
 }
 
 export interface Lesson {
   id: number
-  type: LessonType
+  type: LESSON_TYPE
   title: string
   description?: string
   content: string
+  media?: Medium[]
   ordering?: number
-  status: LessonStatus
+  status: LESSON_STATUS
 }

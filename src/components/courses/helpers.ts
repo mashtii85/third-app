@@ -2,7 +2,7 @@
  * Components - Charts - Course - Helper
  */
 
-import { LessonStatus } from '../../types/lesson.d'
+import { LESSON_STATUS } from '../../types/lesson.d'
 import { ProgressChartModel, LessonDataModel } from '../../types/pieChart.d'
 
 export const chartData = (data: LessonDataModel[]) => {
@@ -13,8 +13,8 @@ export const chartData = (data: LessonDataModel[]) => {
   const total = data.length
 
   data.forEach((item) => {
-    if (item.status === LessonStatus.started) started++
-    else if (item.status === LessonStatus.completed) completed++
+    if (item.status === LESSON_STATUS.Started) started++
+    else if (item.status === LESSON_STATUS.Completed) completed++
     else pending++
   })
 
