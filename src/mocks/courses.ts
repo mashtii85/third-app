@@ -70,10 +70,19 @@ export const Courses: Course[] = [
           },
           {
             id: 4,
-            type: LessonType.text,
+            type: LessonType.video,
             title: 'The five principles',
             status: LessonStatus.pending,
             description: '',
+            media: [
+              {
+                id: 1,
+                type: 'video',
+                category: 'lesson',
+                filename:
+                  'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_640_3MG.mp4'
+              }
+            ],
             content: `In line with the terms and spirit of the UNCRC, safeguarding children in football is based around the following five principles that apply to all stakeholders :
             1. We will act in the best interests of children.2 Ensuring that children are safeguarded is part of a commitment to enhancing their enjoyment of and performance in football.
             2. Children’s rights, as set out in the UNCRC, will be respected and promoted throughout the game of football.
