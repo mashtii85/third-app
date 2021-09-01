@@ -9,7 +9,7 @@ import { FC } from 'react'
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
 // Types
-import { CourseListProps } from './types.d'
+import type { CourseListProps } from './types.d'
 
 import path from '../../config/navigation/admin.json'
 

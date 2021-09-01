@@ -5,6 +5,7 @@
  */
 
 // Type
+import { DashboardTileObjects } from '../components/dashboard/tiles/types'
 import { Course } from '../types/course.d'
 import { LESSON_STATUS, LESSON_TYPE } from '../types/lesson.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../types/medium.d'
@@ -441,3 +442,27 @@ export const Courses: Course[] = [
     ]
   }
 ]
+
+export const FilteredCourses = (): DashboardTileObjects => {
+  const active = Courses.filter((item) => item.progress! > 0 && item.progress! < 100).length
+
+  const pending = Courses.filter((item) => item.progress === 0).length
+  const completed = Courses.filter((item) => item.progress === 100).length
+  const all = Courses.length
+
+  const objects: DashboardTileObjects = {
+    openCourses: {
+      aggregate: { totalCount: active }
+    },
+    completedCourses: {
+      aggregate: { totalCount: completed }
+    },
+    pendingCourses: {
+      aggregate: { totalCount: pending }
+    },
+    allCourses: {
+      aggregate: { totalCount: all }
+    }
+  }
+  return objects
+}

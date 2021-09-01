@@ -15,7 +15,7 @@ import { PieChart } from '@drykiss/industry-ui'
 import { chartData } from './helpers'
 
 // Types
-import { LessonDataModel } from '../../types/pieChart'
+import { LessonDataModel } from '../../types/pieChart.d'
 
 const arg = {
   colorScheme: 'nivo',

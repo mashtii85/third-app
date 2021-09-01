@@ -7,7 +7,7 @@ import { Medium } from './medium'
 
 export interface Course {
   progress?: number
-  id: number
+  id?: number
   title: string
   description?: string
   author?: string

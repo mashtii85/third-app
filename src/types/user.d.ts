@@ -2,10 +2,15 @@
  * Types - User
  */
 
+export enum ACCOUNT_TYPE {
+  Admin = 'admin',
+  User = 'user'
+}
+
 /* eslint-disable camelcase */
 export interface User {
   id: number
-  account_type: string
+  account_type: ACCOUNT_TYPE
   email: string
   name_first: string
   name_last: string

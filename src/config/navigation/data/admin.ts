@@ -3,7 +3,7 @@
  */
 
 // Types
-import { Navigation } from '../../../types/navigation.d'
+import type { Navigation } from '../../../types/navigation.d'
 
 import path from '../admin.json'
 
