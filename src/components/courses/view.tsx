@@ -27,7 +27,7 @@ import { CourseProgressChart } from './chart'
 import { Module } from '../../types/module.d'
 import { StepperModel } from '../../types/stepper.d'
 import { LessonDataModel } from '../../types/pieChart.d'
-import { Lesson, LessonStatus, LessonType } from '../../types/lesson.d'
+import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
 
 // Mocks
 import { Courses } from '../../mocks/courses'
@@ -72,25 +72,25 @@ export const CourseView = () => {
     const data: StepperModel[] = []
 
     let actionId = 0
-    let lessonStatus = false
+    let LESSON_STATUS = false
     m?.lessons?.length &&
       m.lessons.forEach((lesson: Lesson) => {
         actionId++
-        if (!hasActive && lesson.status !== LessonStatus.completed) {
+        if (!hasActive && lesson.status !== LESSON_STATUS.Completed) {
           hasActive = true
-          lessonStatus = true
+          LESSON_STATUS = true
           selectedModuleId = m.id
           selectedLessonId = lesson.id
-        } else lessonStatus = false
+        } else LESSON_STATUS = false
         data.push({
           id: lesson.id,
           label: lesson.title,
-          date: lesson.status === LessonStatus.completed ? '23 Aug 2021 11:45' : null,
+          date: lesson.status === LESSON_STATUS.Completed ? '23 Aug 2021 11:45' : null,
           status: lesson.status,
           actions: [
             {
               id: actionId,
-              active: lessonStatus,
+              active: LESSON_STATUS,
               content: 'Start lesson',
               context: 'secondary',
               handleClick: () => startLesson(lesson),
@@ -108,7 +108,7 @@ export const CourseView = () => {
     setShowCompleteButton(true)
   }
 
-  const simulatingDatabaseChanges = (status: LessonStatus) => {
+  const simulatingDatabaseChanges = (status: LESSON_STATUS) => {
     const currentLesson = course?.modules
       ?.find((module) => module.id === selectedModuleId)
       ?.lessons?.find((lesson) => lesson.id === selectedLessonId)!
@@ -116,7 +116,7 @@ export const CourseView = () => {
   }
 
   const completeLesson = () => {
-    simulatingDatabaseChanges(LessonStatus.completed)
+    simulatingDatabaseChanges(LESSON_STATUS.Completed)
     setShowCompleteButton(false)
   }
 
@@ -144,7 +144,7 @@ export const CourseView = () => {
             {lesson ? (
               <Details2 open title="Lesson">
                 <>
-                  {lesson.type === LessonType.video && <div>VIDEO PLAYER COMPONENT</div>}
+                  {lesson.type === LESSON_TYPE.Video && <div>VIDEO PLAYER COMPONENT</div>}
                   {lesson.content && <p>{lesson.content}</p>}
                   {showCompleteButton && (
                     <Button

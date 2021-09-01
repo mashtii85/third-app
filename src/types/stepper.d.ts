@@ -3,7 +3,7 @@
  */
 
 import { ThemeContext } from '../config/types'
-import { LessonStatus } from './lesson'
+import { LESSON_STATUS } from './lesson'
 
 type StepperActionType = 'button'
 export interface StepperActionModel {
@@ -19,6 +19,6 @@ export interface StepperModel {
   id: number
   label: string
   date?: string | null
-  status: LessonStatus
+  status: LESSON_STATUS
   actions?: StepperActionModel[]
 }
