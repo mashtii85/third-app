@@ -31,6 +31,8 @@ import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
 
 // Mocks
 import { Courses } from '../../mocks/courses'
+import VideoPlayer from '../common/videoPlayer/videoPlayer'
+import { parseVideoSources } from './helpers'
 
 export const CourseView = () => {
   const { query } = useRouter()
@@ -72,16 +74,16 @@ export const CourseView = () => {
     const data: StepperModel[] = []
 
     let actionId = 0
-    let LESSON_STATUS = false
+    let isActive = false
     m?.lessons?.length &&
       m.lessons.forEach((lesson: Lesson) => {
         actionId++
         if (!hasActive && lesson.status !== LESSON_STATUS.Completed) {
           hasActive = true
-          LESSON_STATUS = true
+          isActive = true
           selectedModuleId = m.id
           selectedLessonId = lesson.id
-        } else LESSON_STATUS = false
+        } else isActive = false
         data.push({
           id: lesson.id,
           label: lesson.title,
@@ -90,7 +92,7 @@ export const CourseView = () => {
           actions: [
             {
               id: actionId,
-              active: LESSON_STATUS,
+              active: isActive,
               content: 'Start lesson',
               context: 'secondary',
               handleClick: () => startLesson(lesson),
@@ -144,7 +146,9 @@ export const CourseView = () => {
             {lesson ? (
               <Details2 open title="Lesson">
                 <>
-                  {lesson.type === LESSON_TYPE.Video && <div>VIDEO PLAYER COMPONENT</div>}
+                  {lesson.type === LESSON_TYPE.Video && (
+                    <VideoPlayer videoSources={parseVideoSources(lesson.media)} />
+                  )}
                   {lesson.content && <p>{lesson.content}</p>}
                   {showCompleteButton && (
                     <Button

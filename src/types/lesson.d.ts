@@ -17,9 +17,21 @@ export enum LESSON_STATUS {
   Completed = 'completed'
 }
 
-export interface Lesson {
+type VideoLesson = {
   id: number
-  type: LESSON_TYPE
+  type: LESSON_TYPE.Video
+  title: string
+  description?: string
+  content: string
+  media: Medium[]
+  ordering?: number
+  status: LESSON_STATUS
+}
+// separate these lessons when ever properties differ, like VideoLesson
+// VideoLesson is separated because it's media property is not optional
+type OtherLessons = {
+  id: number
+  type: LESSON_TYPE.Text | LESSON_TYPE.Quiz | LESSON_TYPE.Assignment
   title: string
   description?: string
   content: string
@@ -27,3 +39,5 @@ export interface Lesson {
   ordering?: number
   status: LESSON_STATUS
 }
+
+export type Lesson = VideoLesson | OtherLessons
