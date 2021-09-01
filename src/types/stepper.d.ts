@@ -2,19 +2,23 @@
  * Types - Lesson
  */
 
-export interface IStepperActions {
+import { ThemeContext } from '../config/types'
+import { LESSON_STATUS } from './lesson'
+
+type StepperActionType = 'button'
+export interface StepperActionModel {
   id: number
   active: boolean
   content: string
-  context: string
+  context: ThemeContext
   handleClick: () => void
-  type: string
+  type: StepperActionType
 }
 
-export interface IStepper {
+export interface StepperModel {
   id: number
   label: string
   date?: string | null
-  status: string
-  actions?: IStepperActions[]
+  status: LESSON_STATUS
+  actions?: StepperActionModel[]
 }

@@ -8,19 +8,15 @@ import { FC } from 'react'
 // UI
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
-// Mocks
-import { Courses } from '../../mocks/courses'
-
 // Types
-import { CourseListProps } from './types.d'
+import type { CourseListProps } from './types.d'
 
 import path from '../../config/navigation/admin.json'
 
-export const CourseList: FC<CourseListProps> = ({ isCompleted }) => {
-  const filtredCourses = isCompleted ? Courses.filter((item) => item.progress === 100) : Courses
+export const CourseList: FC<CourseListProps> = (props) => {
   return (
     <Row>
-      {filtredCourses.map((c) => (
+      {props.courses.map((c) => (
         <Column key={c.id} md={3}>
           <Card
             alt={c.title}

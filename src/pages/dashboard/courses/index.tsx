@@ -11,7 +11,9 @@ import type { NextPage } from 'next'
 
 // UI
 import { Dashboard, UserContext } from '@drykiss/industry-ui'
-import { DashboardView } from '../../../components/dashboard/courses/view'
+import { CourseList } from '../../../components/courses/list/list'
+import { CourseTable } from '../../../components/courses/list/table/table'
+import { Courses } from '../../../mocks/courses'
 
 const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)
@@ -20,7 +22,27 @@ const PageDashboard: NextPage = () => {
     Router.push('/account/sign-in')
     return null
   } else {
-    return <Dashboard View={<DashboardView />} />
+    let View
+    switch (user.account_type) {
+      case 'admin':
+        View = <Dashboard View={<CourseTable />} />
+        break
+
+      case 'user':
+        View = <Dashboard View={<CourseList courses={Courses} />} />
+        break
+
+      default:
+        View = <></>
+    }
+    return (
+      <Dashboard
+        pageHeading={{
+          heading: 'Courses'
+        }}
+        View={View}
+      />
+    )
   }
 }
 

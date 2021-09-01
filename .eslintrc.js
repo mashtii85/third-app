@@ -18,7 +18,7 @@ module.exports = {
     localStorage: true,
     JSX: true
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -27,6 +27,8 @@ module.exports = {
     }
   },
   rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
     'prettier/prettier': [
       1,
       { printWidth: 100, semi: false, singleQuote: true, trailingComma: 'none' }
@@ -39,6 +41,7 @@ module.exports = {
     //     schemaJson: require('./schema.json')
     //   }
     // ],
+
     'max-len': [
       'error',
       {

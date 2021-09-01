@@ -15,7 +15,7 @@ import { PieChart } from '@drykiss/industry-ui'
 import { chartData } from './helpers'
 
 // Types
-import { IPieChart } from '../../types/piechart.d'
+import { LessonDataModel } from '../../types/pieChart.d'
 
 const arg = {
   colorScheme: 'nivo',
@@ -25,11 +25,11 @@ const arg = {
   innerRadius: 0.8
 }
 
-interface CourseLessonPieChartProps {
-  pieData: IPieChart[]
+interface CourseProgressChartProps {
+  pieData: LessonDataModel[]
 }
 
-export const CourseLessonPieChart: FC<CourseLessonPieChartProps> = ({ pieData }) => {
+export const CourseProgressChart: FC<CourseProgressChartProps> = ({ pieData }) => {
   const { data = [], status = {} } = chartData(pieData)
   return (
     <StyledHeader>

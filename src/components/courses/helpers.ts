@@ -2,18 +2,20 @@
  * Components - Charts - Course - Helper
  */
 
-import { IChartModel, IPieChart } from '../../types/piechart.d'
+import { LESSON_STATUS } from '../../types/lesson.d'
+import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../types/medium.d'
+import { ProgressChartModel, LessonDataModel } from '../../types/pieChart.d'
 
-export const chartData = (data: IPieChart[]) => {
-  const result: IChartModel = { data: [], status: {} }
+export const chartData = (data: LessonDataModel[]) => {
+  const result: ProgressChartModel = { data: [], status: {} }
   let started: number = 0
   let pending: number = 0
   let completed: number = 0
   const total = data.length
 
   data.forEach((item) => {
-    if (item.status === 'started') started++
-    else if (item.status === 'completed') completed++
+    if (item.status === LESSON_STATUS.Started) started++
+    else if (item.status === LESSON_STATUS.Completed) completed++
     else pending++
   })
 
@@ -25,4 +27,9 @@ export const chartData = (data: IPieChart[]) => {
   result.status = { started, pending, completed, total }
 
   return result
+}
+export const parseVideoSources = (media: Medium[]) => {
+  return media
+    .filter((item) => item.type === MEDIUM_TYPE.Video && item.category === MEDIUM_CATEGORY.Lesson)
+    .map((item) => item.filename)
 }

@@ -2,20 +2,22 @@
  * Types - PieChart
  */
 
-export interface IPieChart {
+import { LESSON_STATUS } from './lesson'
+
+export interface LessonDataModel {
   id: number
   label: string
-  status: string
+  status: LESSON_STATUS
 }
 
-export interface IChartData {
+export interface ProgressChartData {
   id: number
   label: string
   value: number
 }
 
-export interface IChartModel {
-  data: IChartData[]
+export interface ProgressChartModel {
+  data: ProgressChartData[]
   status: {
     started?: number
     pending?: number
