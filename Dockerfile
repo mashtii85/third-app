@@ -14,7 +14,7 @@ RUN npm i --legacy-peer-deps
 COPY . .
 
 # Port
-EXPOSE 3000
+EXPOSE 3100
 
 # Run
 CMD ["npm", "run" ,"start"]
