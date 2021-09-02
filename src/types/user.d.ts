@@ -4,7 +4,8 @@
 
 export enum ACCOUNT_TYPE {
   Admin = 'admin',
-  User = 'user'
+  Client = 'client',
+  Account = 'account'
 }
 
 /* eslint-disable camelcase */

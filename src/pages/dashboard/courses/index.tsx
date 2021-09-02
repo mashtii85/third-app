@@ -24,11 +24,11 @@ const PageDashboard: NextPage = () => {
   } else {
     let View
     switch (user.account_type) {
-      case 'admin':
+      case 'client':
         View = <Dashboard View={<CourseTable />} />
         break
 
-      case 'user':
+      case 'account':
         View = <Dashboard View={<CourseList courses={Courses} />} />
         break
 

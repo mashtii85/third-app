@@ -26,7 +26,7 @@ import { FilteredCourses } from '../../../mocks/courses'
 const TileItem: FC<TileItemProps> = ({ title, to, user, value, colourConfig }) => (
   <Column
     md={4}
-    lg={user.account_type === ACCOUNT_TYPE.Admin ? 2 : 3}
+    lg={user.account_type === ACCOUNT_TYPE.Client ? 2 : 3}
     sm={6}
     style={{ marginBottom: '1.8em' }}
   >
