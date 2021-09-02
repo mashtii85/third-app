@@ -33,11 +33,12 @@ import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
 import { Courses } from '../../mocks/courses'
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
 import { parseVideoSources } from './helpers'
+import { Quiz } from '../common/quiz/quiz'
 
 export const CourseView = () => {
   const { query } = useRouter()
   const [lesson, setLesson] = useState<null | Lesson>(null)
-  const [showCompleteButton, setShowCompleteButton] = useState(false)
+  const [canCompleteLesson, setCanCompleteLesson] = useState(false)
 
   if (!query?.id) {
     return <></>
@@ -107,7 +108,8 @@ export const CourseView = () => {
 
   const startLesson = (lesson: Lesson) => {
     setLesson(lesson)
-    setShowCompleteButton(true)
+    if (lesson.type === LESSON_TYPE.Quiz) return
+    setCanCompleteLesson(true)
   }
 
   const simulatingDatabaseChanges = (status: LESSON_STATUS) => {
@@ -120,7 +122,11 @@ export const CourseView = () => {
 
   const completeLesson = () => {
     simulatingDatabaseChanges(LESSON_STATUS.Completed)
-    setShowCompleteButton(false)
+    setCanCompleteLesson(false)
+  }
+  const onQuizComplete = (score: number) => {
+    console.log(score)
+    setCanCompleteLesson(true)
   }
 
   return (
@@ -150,8 +156,11 @@ export const CourseView = () => {
                   {lesson.type === LESSON_TYPE.Video && (
                     <VideoPlayer videoSources={parseVideoSources(lesson.media)} />
                   )}
+                  {lesson.type === LESSON_TYPE.Quiz && (
+                    <Quiz questions={lesson.questions} onComplete={onQuizComplete} />
+                  )}
                   {lesson.content && <p>{lesson.content}</p>}
-                  {showCompleteButton && (
+                  {canCompleteLesson && (
                     <Button
                       context="secondary"
                       content="Complete"
