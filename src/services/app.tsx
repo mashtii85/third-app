@@ -3,24 +3,51 @@
  */
 
 // React
-import { createContext, FC } from 'react'
+import { createContext, FC, useEffect, useState } from 'react'
+
+// Apollo
+import { gql, useLazyQuery } from '@apollo/client'
 
 // UI
 import { LdsSpinner, PageLoading } from '@drykiss/industry-ui'
+
+// Types
+import { User } from '../types/user'
 
 export const AppContext = createContext({})
 
 interface AppProps {
   children: JSX.Element | JSX.Element[]
+  user: User
 }
 
-export const AppProvider: FC<AppProps> = ({ children }) => {
-  // Todo: Fetch settings from API
-  const settings = {}
+// Query
+const GET_APP_SETTINGS = gql`
+  query GetAppSettings {
+    settings: setting {
+      id
+      value
+    }
+  }
+`
 
-  return !settings ? (
+export const AppProvider: FC<AppProps> = ({ children, user }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Todo: Fetch settings from API
+  const [getSettings, { data }] = useLazyQuery(GET_APP_SETTINGS)
+
+  useEffect(() => {
+    getSettings()
+  }, [user?.id])
+
+  if (isLoading && data?.settings?.length > 0) {
+    setIsLoading(false)
+  }
+
+  return isLoading ? (
     <PageLoading indicator={<LdsSpinner />} />
   ) : (
-    <AppContext.Provider value={settings || {}}>{children}</AppContext.Provider>
+    <AppContext.Provider value={data || {}}>{children}</AppContext.Provider>
   )
 }
