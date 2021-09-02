@@ -2,9 +2,6 @@
  * Components - Chart  - Course - PieChart
  */
 
-// React
-import { FC } from 'react'
-
 // Styles
 import styled from 'styled-components'
 
@@ -29,7 +26,7 @@ interface CourseProgressChartProps {
   pieData: LessonDataModel[]
 }
 
-export const CourseProgressChart: FC<CourseProgressChartProps> = ({ pieData }) => {
+export const CourseProgressChart = ({ pieData }: CourseProgressChartProps) => {
   const { data = [], status = {} } = chartData(pieData)
   return (
     <StyledHeader>

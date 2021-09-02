@@ -22,6 +22,7 @@ const UserDetails = () => {
     return <></>
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const user: User = Users.find((c) => c.id === parseInt(query.id as any))!
 
   if (!user) {

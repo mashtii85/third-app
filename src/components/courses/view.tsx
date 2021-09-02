@@ -111,10 +111,11 @@ export const CourseView = () => {
   }
 
   const simulatingDatabaseChanges = (status: LESSON_STATUS) => {
-    const currentLesson = course?.modules
-      ?.find((module) => module.id === selectedModuleId)
-      ?.lessons?.find((lesson) => lesson.id === selectedLessonId)!
-    currentLesson.status = status
+    const currentLesson =
+      course?.modules
+        ?.find((module) => module.id === selectedModuleId)
+        ?.lessons?.find((lesson) => lesson.id === selectedLessonId) || null
+    if (currentLesson) currentLesson.status = status
   }
 
   const completeLesson = () => {

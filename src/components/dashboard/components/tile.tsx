@@ -2,9 +2,6 @@
  * Tile
  */
 
-// React
-import { FC } from 'react'
-
 // Style
 import styled from 'styled-components'
 
@@ -26,7 +23,7 @@ interface TileProps {
   to: string
 }
 
-const Tile: FC<TileProps> = ({
+const Tile = ({
   body,
   className,
   colourConfig,
@@ -37,7 +34,7 @@ const Tile: FC<TileProps> = ({
   description,
   rounded = false,
   size = 'sm'
-}) => {
+}: TileProps) => {
   let selectedColour = context
 
   if (colourConfig) {

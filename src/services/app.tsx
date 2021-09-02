@@ -3,7 +3,7 @@
  */
 
 // React
-import { createContext, FC } from 'react'
+import { createContext } from 'react'
 
 // UI
 import { LdsSpinner, PageLoading } from '@drykiss/industry-ui'
@@ -14,7 +14,7 @@ interface AppProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export const AppProvider: FC<AppProps> = ({ children }) => {
+export const AppProvider = ({ children }: AppProps) => {
   // Todo: Fetch settings from API
   const settings = {}
 
