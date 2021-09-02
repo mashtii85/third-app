@@ -29,10 +29,10 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 let apolloClient: any
 
-const getToken = () => {
-  const token = localStorage.getItem('bearerToken')
-  return token ? `Bearer ${token}` : ''
-}
+// const getToken = () => {
+//   const token = localStorage.getItem('bearerToken')
+//   return token ? `Bearer ${token}` : ''
+// }
 
 const httpLink = new HttpLink({
   fetch,
@@ -48,15 +48,22 @@ if (process.browser) {
       reconnect: true,
       lazy: true,
       connectionParams: () => {
-        const token = getToken()
-        if (token) {
-          return {
-            headers: {
-              Authorization: token
-            }
+        // Use full-access admin secret for now
+        return {
+          headers: {
+            'content-type': 'application/json',
+            'x-hasura-admin-secret': process.env.NEXT_PUBLIC_GRAPHQL_SECRET
           }
         }
-        return null
+        // const token = getToken()
+        // if (token) {
+        //   return {
+        //     headers: {
+        //       Authorization: token
+        //     }
+        //   }
+        // }
+        // return null
       }
     }
   })
@@ -72,14 +79,23 @@ const link = split(
 )
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-  const token = getToken()
-  token &&
-    operation.setContext(({ headers = {} }) => ({
-      headers: {
-        ...headers,
-        authorization: token
-      }
-    }))
+  // Use full-access admin secret for now
+  operation.setContext(({ headers = {} }) => ({
+    headers: {
+      ...headers,
+      'content-type': 'application/json',
+      'x-hasura-admin-secret': process.env.NEXT_PUBLIC_GRAPHQL_SECRET
+    }
+  }))
+
+  // const token = getToken()
+  // token &&
+  //   operation.setContext(({ headers = {} }) => ({
+  //     headers: {
+  //       ...headers,
+  //       authorization: token
+  //     }
+  //   }))
 
   return forward(operation)
 })
@@ -98,7 +114,7 @@ function createApolloClient(Config: any) {
       }
     },
     link: from([authMiddleware, link]),
-    name: `cleverly-${Config?.generalConfig?.isMobile ? 'mobile' : 'web'}`,
+    name: `rwa-${Config?.generalConfig?.isMobile ? 'mobile' : 'web'}`,
     ssrMode: typeof window === 'undefined',
     version: Config?.version || 'unknown'
   })
