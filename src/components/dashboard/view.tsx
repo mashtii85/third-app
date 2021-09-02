@@ -21,9 +21,9 @@ export const DashboardView = () => {
 
   const renderSwitch = (type: ACCOUNT_TYPE) => {
     switch (type) {
-      case ACCOUNT_TYPE.Admin:
+      case ACCOUNT_TYPE.Client:
         return <DashboardOverview user={user} />
-      case ACCOUNT_TYPE.User:
+      case ACCOUNT_TYPE.Account:
         return (
           <Details2 open title="Courses in progress">
             <CourseList courses={filteredCourses} />

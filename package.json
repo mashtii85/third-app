@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "start": "next",
+    "start": "next -p 3100",
     "test": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore",
     "test:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
     "cy:start": "cypress open -C ./cypress-dev.json",
@@ -22,6 +22,11 @@
     "src/**/*.{js,ts,tsx}": [
       "npm test"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@drykiss/industry-ui": "^1.14.13",
@@ -45,7 +50,7 @@
     "cypress": "^8.3.0",
     "cypress-dotenv": "^1.2.2",
     "dotenv": "^8.2.0",
-    "eslint": "7.25.0",
+    "eslint": "7.32.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-config-prettier-standard": "^4.0.0",
     "eslint-config-standard": "^16.0.2",

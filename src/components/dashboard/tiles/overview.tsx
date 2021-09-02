@@ -2,9 +2,6 @@
  * Components - Dashboard - Tiles - Overview
  */
 
-// React
-import { FC } from 'react'
-
 // Apollo
 // import { useApolloClient, useQuery } from '@apollo/client'
 // import { GET_DASHBOARD_TILES } from './query'
@@ -23,10 +20,10 @@ import { getAdminTiles } from './helper'
 // Mocks
 import { FilteredCourses } from '../../../mocks/courses'
 
-const TileItem: FC<TileItemProps> = ({ title, to, user, value, colourConfig }) => (
+const TileItem = ({ title, to, user, value, colourConfig }: TileItemProps) => (
   <Column
     md={4}
-    lg={user.account_type === ACCOUNT_TYPE.Admin ? 2 : 3}
+    lg={user.account_type === ACCOUNT_TYPE.Client ? 2 : 3}
     sm={6}
     style={{ marginBottom: '1.8em' }}
   >
@@ -36,7 +33,7 @@ const TileItem: FC<TileItemProps> = ({ title, to, user, value, colourConfig }) =
 
 let items: DashboardTile[] = []
 
-export const DashboardOverview: FC<DashboardOverviewProps> = ({ user }) => {
+export const DashboardOverview = ({ user }: DashboardOverviewProps) => {
   items = getAdminTiles(FilteredCourses())
 
   return (

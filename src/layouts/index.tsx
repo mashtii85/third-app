@@ -2,9 +2,6 @@
  * Layout
  */
 
-// React
-import { FC } from 'react'
-
 // Next
 import Head from 'next/head'
 
@@ -21,7 +18,7 @@ interface LayoutProps {
   children: JSX.Element | JSX.Element[]
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <AppProvider>
       <Bootstrap fixed Navigation={Navigation}>

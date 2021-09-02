@@ -2,8 +2,6 @@
  * Components - Courses - View
  */
 
-// React
-
 // UI
 import { Details2, Table, TableLink } from '@drykiss/industry-ui'
 

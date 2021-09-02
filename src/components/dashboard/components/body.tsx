@@ -2,23 +2,20 @@
  * Dashboard - Tile - Body
  */
 
-// React
-import { FC } from 'react'
-
 // Style
 import styled from 'styled-components'
 // UI
 import { Heading } from '@drykiss/industry-ui'
 
 interface TileBodyProps {
-  body: any
+  body: string
   className?: string
   description: string
   size: string
   title: string
 }
 
-const TileBody: FC<TileBodyProps> = ({ body, className, description, size, title }) => {
+const TileBody = ({ body, className, description, size, title }: TileBodyProps) => {
   return (
     <StyledBody className={className}>
       {title && (

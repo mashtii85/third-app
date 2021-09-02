@@ -3,7 +3,7 @@
  */
 
 // React
-import { FC, memo } from 'react'
+import { memo } from 'react'
 
 // Apollo
 // import { useApolloClient } from '@apollo/client'
@@ -57,7 +57,7 @@ const getQuery = ({ type }: GetQueryTypeInput): GetQueryTypeOutput => {
   }
 }
 
-export const Select: FC<SelectProps> = memo(
+export const Select = memo(
   ({
     control,
     defaultValue,
@@ -69,7 +69,7 @@ export const Select: FC<SelectProps> = memo(
     name,
     type,
     ...props
-  }) => {
+  }: SelectProps) => {
     // const client = useApolloClient()
 
     const getOptions = debounce(async (q: string, callback: () => void) => {
@@ -78,7 +78,7 @@ export const Select: FC<SelectProps> = memo(
         entityId,
         type
       })
-      console.log(query, variables)
+      console.log(query, variables, q, callback())
       // const queryIsNumber = /^\d+$/.test(q)
       // const { data: { items } = { items: [] } } = await client.query({
       //   query,

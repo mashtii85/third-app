@@ -2,9 +2,6 @@
  * Components - ProfileHeader
  */
 
-// React
-import { FC } from 'react'
-
 // Styles
 import styled from 'styled-components'
 
@@ -14,7 +11,7 @@ import { Avatar, Column, Container, Heading, Icon, Row } from '@drykiss/industry
 // Types
 import { HeaderProps } from './types.d'
 
-const HeadingContent: FC<HeaderProps> = ({ entity }) => {
+const HeadingContent = ({ entity }: HeaderProps) => {
   return (
     <>
       <StyledIcon context="primary" icon="building" />
@@ -23,7 +20,7 @@ const HeadingContent: FC<HeaderProps> = ({ entity }) => {
   )
 }
 
-export const ProfileHeader: FC<HeaderProps> = ({ entity }) => {
+export const ProfileHeader = ({ entity }: HeaderProps) => {
   return (
     <StyledHeader>
       <Container>

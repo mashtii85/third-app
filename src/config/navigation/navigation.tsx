@@ -18,10 +18,10 @@ export const Navigation = () => {
 
   if (user) {
     switch (user.account_type) {
-      case 'admin':
+      case 'client':
         links = Admin
         break
-      case 'user':
+      case 'account':
         links = User
         break
     }
