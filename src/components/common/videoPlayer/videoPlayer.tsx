@@ -1,9 +1,9 @@
-import { FC } from 'react'
 import styled from 'styled-components'
 import { VideoPlayerProps } from './type'
 
-const VideoPlayer: FC<VideoPlayerProps> = ({ videoSources }) => {
+const VideoPlayer = ({ videoSources }: VideoPlayerProps) => {
   const video = videoSources[0]
+
   if (!video) {
     throw new Error('video is not provided for video player')
   }

@@ -8,9 +8,9 @@ import { ProgressChartModel, LessonDataModel } from '../../types/pieChart.d'
 
 export const chartData = (data: LessonDataModel[]) => {
   const result: ProgressChartModel = { data: [], status: {} }
-  let started: number = 0
-  let pending: number = 0
-  let completed: number = 0
+  let started = 0
+  let pending = 0
+  let completed = 0
   const total = data.length
 
   data.forEach((item) => {
@@ -21,7 +21,8 @@ export const chartData = (data: LessonDataModel[]) => {
 
   result.data = [
     { id: 1, label: 'started', value: started },
-    { id: 2, label: 'pending', value: pending }
+    { id: 2, label: 'pending', value: pending },
+    { id: 3, label: 'completed', value: completed }
   ]
 
   result.status = { started, pending, completed, total }

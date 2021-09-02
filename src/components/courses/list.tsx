@@ -2,9 +2,6 @@
  * Components - Courses - List
  */
 
-// React
-import { FC } from 'react'
-
 // UI
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
@@ -13,7 +10,7 @@ import type { CourseListProps } from './types.d'
 
 import path from '../../config/navigation/admin.json'
 
-export const CourseList: FC<CourseListProps> = (props) => {
+export const CourseList = (props: CourseListProps) => {
   return (
     <Row>
       {props.courses.map((c) => (

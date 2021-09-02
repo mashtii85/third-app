@@ -3,7 +3,7 @@
  */
 
 // React
-import { createContext, FC, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 // Apollo
 import { gql, useLazyQuery } from '@apollo/client'
@@ -31,7 +31,7 @@ const GET_APP_SETTINGS = gql`
   }
 `
 
-export const AppProvider: FC<AppProps> = ({ children, user }) => {
+export const AppProvider = ({ children, user }: AppProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   // Todo: Fetch settings from API

@@ -2,9 +2,6 @@
  * Components - Chart  - Course - PieChart
  */
 
-// React
-import { FC } from 'react'
-
 // Styles
 import styled from 'styled-components'
 
@@ -29,17 +26,18 @@ interface CourseProgressChartProps {
   pieData: LessonDataModel[]
 }
 
-export const CourseProgressChart: FC<CourseProgressChartProps> = ({ pieData }) => {
+export const CourseProgressChart = ({ pieData }: CourseProgressChartProps) => {
   const { data = [], status = {} } = chartData(pieData)
+
   return (
     <StyledHeader>
       <StyledPieChart>
         <PieChart data={data} {...arg} />
+        <StyledChartInner>
+          <p>{`${status.completed} / ${status.total}`}</p>
+          <p>Lessons</p>
+        </StyledChartInner>
       </StyledPieChart>
-      <StyledChartInner>
-        <p>{`${status.started} / ${status.total}`}</p>
-        <p>Lessons</p>
-      </StyledChartInner>
       <StyledChartStatus>
         <div>
           <p>{status.pending}</p>
@@ -68,6 +66,7 @@ const StyledHeader = styled.div`
 const StyledPieChart = styled.div`
   height: 100px;
   width: 80px;
+  position: relative;
 `
 
 const StyledChartInner = styled.div`
@@ -76,7 +75,7 @@ const StyledChartInner = styled.div`
   position: absolute;
   top: 18px;
   text-align: center;
-  left: 157px;
+  left: 16px;
   line-height: 10px;
   p {
     &:nth-child(1) {
