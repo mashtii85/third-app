@@ -21,7 +21,8 @@ export const chartData = (data: LessonDataModel[]) => {
 
   result.data = [
     { id: 1, label: 'started', value: started },
-    { id: 2, label: 'pending', value: pending }
+    { id: 2, label: 'pending', value: pending },
+    { id: 3, label: 'completed', value: completed }
   ]
 
   result.status = { started, pending, completed, total }
