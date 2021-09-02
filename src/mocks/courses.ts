@@ -95,29 +95,12 @@ export const Courses: Course[] = [
           },
           {
             id: 5,
-            type: LESSON_TYPE.Quiz,
+            type: LESSON_TYPE.Text,
             title: 'Creating a safeguarding policy',
             status: LESSON_STATUS.Pending,
             description: '',
             content: `Every MA that engages directly or indirectly with children has a duty to do all it can to protect children from harm within football and to promote their well-being. A child safeguarding policy provides MAs with a formal approach to managing this duty of care. Safeguarding children is supported by having a good, clear and accessible policy in place so that both adults and children are clear on what is expected of them and others. This step refers to the development of an “organisational policy” within MAs, meaning a policy that should be in place for all aspects of the game, all year round.
-            `,
-            questions: [
-              {
-                question: 'what is the answer to life, universe and everything?(42 and forty two)',
-                answers: ['43', '42', 'forty two'],
-                correctAnswers: [1, 2]
-              },
-              {
-                question: 'what is your quest?(searching for the holy grail)',
-                answers: ['searching for the holy grail', 'what do you mean?', "i don't know!"],
-                correctAnswers: [0]
-              },
-              {
-                question: 'what is 2 + 2?(not pope)',
-                answers: ['goat', '4', 'pope'],
-                correctAnswers: [1]
-              }
-            ]
+            `
           },
           {
             id: 6,
