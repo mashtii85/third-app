@@ -5,6 +5,10 @@
 // React
 import { useState } from 'react'
 
+// Apollo
+import { useQuery } from '@apollo/client'
+import { GET_COURSE } from './query'
+
 // Next
 import { useRouter } from 'next/router'
 
@@ -29,8 +33,6 @@ import { StepperModel } from '../../types/stepper.d'
 import { LessonDataModel } from '../../types/pieChart.d'
 import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
 
-// Mocks
-import { Courses } from '../../mocks/courses'
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
 import { parseVideoSources } from './helpers'
 import { Quiz } from '../common/quiz/quiz'
@@ -40,11 +42,15 @@ export const CourseView = () => {
   const [lesson, setLesson] = useState<null | Lesson>(null)
   const [canCompleteLesson, setCanCompleteLesson] = useState(false)
 
+  const { data: { course = [] } = {} } = useQuery(GET_COURSE, {
+    variables: {
+      courseId: parseInt(query?.id as number)
+    }
+  })
+
   if (!query?.id) {
     return <></>
   }
-
-  const course = Courses.find((c) => c.id === parseInt(query.id as any))!
 
   if (!course) {
     return <></>
@@ -61,10 +67,13 @@ export const CourseView = () => {
     modules.forEach((module) => {
       const lessons = module.lessons || []
       lessons.forEach((lesson) => {
-        data.push({
-          id: lesson.id,
-          label: lesson.title,
-          status: lesson.status
+        const lessonProgresses = lesson.lesson_progresses || []
+        lessonProgresses.forEach((lessonProgress) => {
+          data.push({
+            id: lessonProgress.id,
+            label: lessonProgress.status,
+            status: lessonProgress.status
+          })
         })
       })
     })
