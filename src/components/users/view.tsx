@@ -23,6 +23,7 @@ import {
 } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
 import { UserAccountsTable } from '../modules/accountUsers/table'
+import { ACCOUNT_TYPE } from '../../types/user.d'
 
 const UserDetails = () => {
   const { query } = useRouter()
@@ -48,7 +49,10 @@ const UserDetails = () => {
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
 
         <Details open summary="Details">
-          <DetailsText content="Account Type" text={hasRole('admin') ? 'Admin' : ''} />
+          <DetailsText
+            content="Account Type"
+            text={hasRole(ACCOUNT_TYPE.Admin) ? ACCOUNT_TYPE.Admin : ACCOUNT_TYPE.Client}
+          />
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
           <DetailsText content="Email" text={user.email || ''} />
           <DetailsText content="Phone" text={user.phone || ''} />

@@ -9,13 +9,17 @@ export enum ACCOUNT_TYPE {
   Account = 'account'
 }
 
+export enum STATUS {
+  active = 'active',
+  inactive = 'inactive'
+}
 /* eslint-disable camelcase */
 export interface AccountUsers {
   account_id: number
   id: number
   is_contact: boolean
   is_owner: boolean
-  status: string
+  status: STATUS
   user_id: number
   account: Account
   // [key: string]: any
@@ -30,7 +34,7 @@ export interface User {
   name_first: string
   name_last: string
   phone: string
-  status: string
+  status: STATUS
   created_at: string
   updated_at: string
   account_users: AccountUsers[]
