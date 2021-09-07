@@ -12,7 +12,7 @@ import { PieChart } from '@drykiss/industry-ui'
 import { chartData } from './helpers'
 
 // Types
-import { LessonDataModel } from '../../types/pieChart.d'
+import { LessonProgress } from '../../types/lessonProgress'
 
 const arg = {
   colorScheme: 'nivo',
@@ -23,7 +23,7 @@ const arg = {
 }
 
 interface CourseProgressChartProps {
-  pieData: LessonDataModel[]
+  pieData: LessonProgress[]
 }
 
 export const CourseProgressChart = ({ pieData }: CourseProgressChartProps) => {

@@ -30,8 +30,8 @@ import { CourseProgressChart } from './chart'
 // Types
 import { Module } from '../../types/module.d'
 import { StepperModel } from '../../types/stepper.d'
-import { LessonDataModel } from '../../types/pieChart.d'
 import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
+import { LessonProgress } from '../../types/lessonProgress'
 
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
 import { parseVideoSources } from './helpers'
@@ -61,15 +61,15 @@ export const CourseView = () => {
   let selectedLessonId = 0
 
   const lessonSummary = () => {
-    const data: LessonDataModel[] = []
+    const progress: LessonProgress[] = []
     const modules = course.modules || []
 
-    modules.forEach((module) => {
-      const lessons = module.lessons || []
-      lessons.forEach((lesson) => {
-        const lessonProgresses = lesson.lesson_progresses || []
-        lessonProgresses.forEach((lessonProgress) => {
-          data.push({
+    modules.forEach((module: Module) => {
+      const lessons: Lesson[] = module.lessons || []
+      lessons.forEach((lesson: Lesson) => {
+        const lessonProgresses: LessonProgress[] = lesson?.lesson_progresses || []
+        lessonProgresses.forEach((lessonProgress: LessonProgress) => {
+          progress.push({
             id: lessonProgress.id,
             label: lessonProgress.status,
             status: lessonProgress.status
@@ -77,21 +77,21 @@ export const CourseView = () => {
         })
       })
     })
-    return data
+    return progress
   }
 
-  const prepareLessons = (m: Module) => {
+  const prepareLessons = (module: Module) => {
     const data: StepperModel[] = []
 
     let actionId = 0
     let isActive = false
-    m?.lessons?.length &&
-      m.lessons.forEach((lesson: Lesson) => {
+    module?.lessons?.length &&
+      module.lessons.forEach((lesson: Lesson) => {
         actionId++
         if (!hasActive && lesson.status !== LESSON_STATUS.Completed) {
           hasActive = true
           isActive = true
-          selectedModuleId = m.id
+          selectedModuleId = module.id
           selectedLessonId = lesson.id
         } else isActive = false
         data.push({
@@ -124,8 +124,8 @@ export const CourseView = () => {
   const simulatingDatabaseChanges = (status: LESSON_STATUS) => {
     const currentLesson =
       course?.modules
-        ?.find((module) => module.id === selectedModuleId)
-        ?.lessons?.find((lesson) => lesson.id === selectedLessonId) || null
+        ?.find((module: Module) => module.id === selectedModuleId)
+        ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId) || null
     if (currentLesson) currentLesson.status = status
   }
 
@@ -145,7 +145,7 @@ export const CourseView = () => {
 
         <Space />
         {course?.modules?.length &&
-          course.modules.map((m) => (
+          course.modules.map((m: Module) => (
             <Details2 key={m.id} open title={m.title}>
               <Stepper items={prepareLessons(m)} />
             </Details2>
