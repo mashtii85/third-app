@@ -2,6 +2,9 @@
  * Components - Users - View - Details
  */
 
+// React
+import { useContext } from 'react'
+
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_USER } from './query'
@@ -10,15 +13,20 @@ import { GET_USER } from './query'
 import { useRouter } from 'next/router'
 
 // UI
-import { Column, Details, DetailsText, formatDateStandard, Row } from '@drykiss/industry-ui'
+import {
+  AuthorizationContext,
+  Column,
+  Details,
+  DetailsText,
+  formatDateStandard,
+  Row
+} from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
 import { UserAccountsTable } from '../modules/accountUsers/table'
 
-// // Types
-// import type { User } from '../../types/user'
-
 const UserDetails = () => {
   const { query } = useRouter()
+  const { hasRole } = useContext(AuthorizationContext)
 
   const { data: { user = {} } = {} } = useQuery(GET_USER, {
     variables: {
@@ -40,11 +48,11 @@ const UserDetails = () => {
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
 
         <Details open summary="Details">
-          <DetailsText content="Account Type" text={user.account_type} />
+          <DetailsText content="Account Type" text={hasRole('admin') ? 'Admin' : ''} />
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
-          <DetailsText content="Email" text={user.email} />
-          <DetailsText content="Phone" text={user.phone} />
-          <DetailsText content="Status" text={user.status} />
+          <DetailsText content="Email" text={user.email || ''} />
+          <DetailsText content="Phone" text={user.phone || ''} />
+          <DetailsText content="Status" text={user.status || ''} />
           <DetailsText content="Date Added" text={formatDateStandard(user.created_at)} />
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
         </Details>
