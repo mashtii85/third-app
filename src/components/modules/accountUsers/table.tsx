@@ -16,7 +16,7 @@ import {
 } from '@drykiss/industry-ui'
 
 // Types
-import type { User, AccountUsers } from '../../../types/user'
+import type { AccountUsers, User } from '../../../types/user'
 
 interface UserAccountTableProps {
   user: User
