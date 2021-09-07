@@ -44,7 +44,7 @@ export const CourseView = () => {
 
   const { data: { course = [] } = {} } = useQuery(GET_COURSE, {
     variables: {
-      courseId: parseInt(query?.id as number)
+      courseId: parseInt(query?.id as string)
     }
   })
 

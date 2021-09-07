@@ -2,28 +2,33 @@
  * Components - Users - View - Details
  */
 
+// Apollo
+import { useQuery } from '@apollo/client'
+import { GET_USER } from './query'
+
 // Next
 import { useRouter } from 'next/router'
 
 // UI
 import { Column, Details, DetailsText, formatDateStandard, Row } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
+import { UserAccountsTable } from '../modules/accountUsers/table'
 
-// Mocks
-import { Users } from '../../mocks/users'
-
-// Types
-import type { User } from '../../types/user'
+// // Types
+// import type { User } from '../../types/user'
 
 const UserDetails = () => {
   const { query } = useRouter()
 
+  const { data: { user = {} } = {} } = useQuery(GET_USER, {
+    variables: {
+      userId: parseInt(query?.id as string)
+    }
+  })
+
   if (!query?.id) {
     return <></>
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const user: User = Users.find((c) => c.id === parseInt(query.id as any))!
 
   if (!user) {
     return <></>
@@ -44,7 +49,9 @@ const UserDetails = () => {
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
         </Details>
       </Column>
-      <Column md={6}>Not Implemented</Column>
+      <Column md={6}>
+        <UserAccountsTable user={user} />
+      </Column>
     </Row>
   )
 }
