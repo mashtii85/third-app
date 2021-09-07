@@ -3,7 +3,7 @@
  */
 
 import { Medium } from './medium'
-
+import { LessonProgress } from './lessonProgress'
 export enum LESSON_TYPE {
   Text = 'text',
   Video = 'video',
@@ -16,7 +16,7 @@ export enum LESSON_STATUS {
   Started = 'started',
   Completed = 'completed'
 }
-
+/* eslint-disable camelcase */
 type VideoLesson = {
   id: number
   type: LESSON_TYPE.Video
@@ -26,6 +26,7 @@ type VideoLesson = {
   media: Medium[]
   ordering?: number
   status: LESSON_STATUS
+  lesson_progresses: LessonProgress[]
 }
 
 export interface QuizQuestion {
@@ -44,6 +45,7 @@ type QuizLesson = {
   media?: Medium[]
   ordering?: number
   status: LESSON_STATUS
+  lesson_progresses: LessonProgress[]
 }
 
 // separate these lessons when ever properties differ, like VideoLesson
@@ -57,6 +59,7 @@ type OtherLessons = {
   media?: Medium[]
   ordering?: number
   status: LESSON_STATUS
+  lesson_progresses: LessonProgress[]
 }
 
 export type Lesson = VideoLesson | OtherLessons | QuizLesson
