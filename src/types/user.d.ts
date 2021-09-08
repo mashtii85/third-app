@@ -30,6 +30,7 @@ export interface User {
   id: number
   account_type?: ACCOUNT_TYPE
   email: string
+  name?: string
   name_first: string
   name_last: string
   custom_fields?: UserCustomFields
