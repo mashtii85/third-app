@@ -5,13 +5,18 @@
   },
   "dashboard": {
     "root": "/dashboard",
-    "courses": {
+    "coursesAccount": {
+      "started":"/dashboard/courses?show=started",
+      "completed":"/dashboard/courses?show=completed",
+      "all":"/dashboard/courses?show=all"
+    },
+    "coursesClient": {
       "root": "/dashboard/courses",
       "manage": "/dashboard/courses/manage",
       "view_by_id": "/dashboard/courses/view?id="
     },
-    "admin": {
-      "view": "/dashboard/admin/view"
+    "account": {
+      "view": "/dashboard/account/view"
     }
   }
 }

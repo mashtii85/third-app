@@ -5,19 +5,19 @@
 // Types
 import { Navigation } from '../../../types/navigation.d'
 
-import path from '../client.json'
+import pages from '../../pages.json'
 
 export const Default: Navigation = {
   right: [
     {
       id: 'navHome',
       name: 'Home',
-      to: path.home
+      to: pages.home
     },
     {
       id: 'navSignIn',
       name: 'Log in',
-      to: path.account.signIn
+      to: pages.account.signIn
     }
   ]
 }

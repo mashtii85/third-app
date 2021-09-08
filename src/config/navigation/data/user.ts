@@ -2,14 +2,14 @@
  * Navigation - Data - User
  */
 
-import path from '../account.json'
+import pages from '../../pages.json'
 
 export const User: any = {
   right: [
     {
       id: 'navHomeMenu',
       name: 'Home',
-      to: path.dashboard.root
+      to: pages.dashboard.root
     },
     {
       id: 'navCoursesMenu',
@@ -20,17 +20,17 @@ export const User: any = {
           {
             id: 'navCoursesActive',
             name: 'Active Courses',
-            to: path.dashboard.courses.started
+            to: pages.dashboard.coursesAccount.started
           },
           {
             id: 'navCoursesCompleted',
             name: 'Completed Courses',
-            to: path.dashboard.courses.completed
+            to: pages.dashboard.coursesAccount.completed
           },
           {
             id: 'navCoursesAll',
             name: 'All Courses',
-            to: path.dashboard.courses.all
+            to: pages.dashboard.coursesAccount.all
           }
         ]
       }

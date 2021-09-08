@@ -5,7 +5,7 @@
 // UI
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
-import path from '../../../config/navigation/client.json'
+import pages from '../../../config/pages.json'
 import { useEndrollments } from '../hooks'
 
 export const AccountCourseList = ({ accountId }: { accountId: number }) => {
@@ -28,7 +28,7 @@ export const AccountCourseList = ({ accountId }: { accountId: number }) => {
             bordered={true}
             image={course.media?.[0]?.filename ? `/${course.media[0].filename}` : null}
             title={course.title}
-            to={`${path.dashboard.courses.view_by_id}${course.id}`}
+            to={`${pages.dashboard.coursesClient.view_by_id}${course.id}`}
           />
         </Column>
       ))}
