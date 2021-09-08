@@ -30,8 +30,8 @@ import { CourseProgressChart } from './chart'
 // Types
 import { Module } from '../../types/module.d'
 import { StepperModel } from '../../types/stepper.d'
-import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
-import { LessonProgress } from '../../types/lessonProgress'
+import { Lesson, LESSON_TYPE } from '../../types/lesson.d'
+import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress'
 
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
 import { parseVideoSources } from './helpers'
@@ -87,8 +87,9 @@ export const CourseView = () => {
     let isActive = false
     module?.lessons?.length &&
       module.lessons.forEach((lesson: Lesson) => {
+        const progress = lesson.lesson_progresses[0]
         actionId++
-        if (!hasActive && lesson.status !== LESSON_STATUS.Completed) {
+        if (!hasActive && progress.status !== LESSON_PROGRESS_STATUS.Completed) {
           hasActive = true
           isActive = true
           selectedModuleId = module.id
@@ -97,8 +98,8 @@ export const CourseView = () => {
         data.push({
           id: lesson.id,
           label: lesson.title,
-          date: lesson.status === LESSON_STATUS.Completed ? '23 Aug 2021 11:45' : null,
-          status: lesson.status,
+          date: progress.status === LESSON_PROGRESS_STATUS.Completed ? '23 Aug 2021 11:45' : null,
+          status: progress.status,
           actions: [
             {
               id: actionId,
@@ -121,7 +122,7 @@ export const CourseView = () => {
     setCanCompleteLesson(true)
   }
 
-  const simulatingDatabaseChanges = (status: LESSON_STATUS) => {
+  const simulatingDatabaseChanges = (status: LESSON_PROGRESS_STATUS) => {
     const currentLesson =
       course?.modules
         ?.find((module: Module) => module.id === selectedModuleId)
@@ -130,7 +131,7 @@ export const CourseView = () => {
   }
 
   const completeLesson = () => {
-    simulatingDatabaseChanges(LESSON_STATUS.Completed)
+    simulatingDatabaseChanges(LESSON_PROGRESS_STATUS.Completed)
     setCanCompleteLesson(false)
   }
   const onQuizComplete = (score: number) => {
