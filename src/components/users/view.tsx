@@ -74,9 +74,9 @@ const UserDetails = () => {
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
         <Details button={'Edit'} handleClick={handleClick} open summary="Details">
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
-          <DetailsText content="Email" text={user.email || ''} />
-          <DetailsText content="Phone" text={user?.custom_fields?.phone || ''} />
-          <DetailsText content="Status" text={user.status || ''} />
+          <DetailsText content="Email" text={user.email} />
+          <DetailsText content="Phone" text={user?.custom_fields?.phone || '-'} />
+          <DetailsText content="Status" text={user.status} />
           <DetailsText content="Date Added" text={formatDateStandard(user.created_at)} />
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
         </Details>
