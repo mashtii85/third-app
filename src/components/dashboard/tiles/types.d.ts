@@ -3,7 +3,7 @@
  */
 
 // Types
-import type { User } from '../../../types/user.d'
+import type { ACCOUNT_TYPE } from '../../../types/user.d'
 
 export interface ColourConfig {
   [key: number]: string
@@ -13,7 +13,7 @@ export interface DashboardTile {
   title: string
   to: string
   colourConfig: ColourConfig
-  value: number
+  value: number | 'loading...'
 }
 
 export interface DashboardTileItem {
@@ -22,21 +22,17 @@ export interface DashboardTileItem {
   }
 }
 
-export interface DashboardTileObjects {
-  openCourses?: DashboardTileItem
-  completedCourses?: DashboardTileItem
-  pendingCourses?: DashboardTileItem
-  allCourses?: DashboardTileItem
+export interface ClientDashboardOverviewProps {
+  clientId: number
 }
-
-export interface DashboardOverviewProps {
-  user: User
+export interface AdminDashboardOverviewProps {
+  adminId: number
 }
 
 export interface TileItemProps {
   title: string
   to: string
-  user: User
-  value: number
+  accountType: ACCOUNT_TYPE
+  value: number | 'loading...'
   colourConfig: ColourConfig
 }

@@ -7,7 +7,7 @@ import { useContext } from 'react'
 
 // Apollo
 import { useMutation, useQuery } from '@apollo/client'
-import { GET_USER, UPDATE_USER } from './query'
+import { GET_USER, UPDATE_USER } from './queries'
 
 // Next
 import { useRouter } from 'next/router'

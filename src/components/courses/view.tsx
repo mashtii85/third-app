@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_COURSE } from './query'
+import { GET_COURSE } from './queries'
 
 // Next
 import { useRouter } from 'next/router'

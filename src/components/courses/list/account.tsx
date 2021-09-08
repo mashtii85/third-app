@@ -1,19 +1,26 @@
 /**
- * Components - Courses - List
+ * Components - Courses - List - AccountCourseList
  */
 
 // UI
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
-// Types
-import type { CourseListProps } from '../types.d'
+import path from '../../../config/navigation/client.json'
+import { useEndrollments } from '../hooks'
 
-import path from '../../../config/navigation/admin.json'
+export const AccountCourseList = ({ accountId }: { accountId: number }) => {
+  const { enrollments, error, loading } = useEndrollments({ userId: accountId })
 
-export const CourseList = ({ courses }: CourseListProps) => {
+  if (loading) {
+    console.log('loading')
+  }
+  if (error) {
+    console.log('error')
+  }
+
   return (
     <Row>
-      {courses.map((course) => (
+      {enrollments.map(({ course }) => (
         <Column key={course.id} md={3}>
           <Card
             alt={course.title}

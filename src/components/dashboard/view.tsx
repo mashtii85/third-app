@@ -7,29 +7,31 @@ import { useContext } from 'react'
 
 // UI
 import { Details2, UserContext } from '@drykiss/industry-ui'
-import { CourseList } from '../courses/list/list'
-import { DashboardOverview } from './tiles/overview'
+import { AdminDashboardOverview } from './tiles/overview/admin'
+import { ClientDashboardOverview } from './tiles/overview/client'
 
-import { Courses } from '../../mocks/courses'
 import { ACCOUNT_TYPE } from '../../types/user.d'
+import { AccountCourseList } from '../courses/list'
 
 export const DashboardView = () => {
   const { user } = useContext(UserContext)
 
-  const courses = [...Courses]
-  const filteredCourses = courses.filter((item) => item.progress !== 100)
-
   const renderSwitch = (type: ACCOUNT_TYPE) => {
     switch (type) {
       case ACCOUNT_TYPE.Client:
-        return <DashboardOverview user={user} />
+        return <ClientDashboardOverview clientId={user.id} />
       case ACCOUNT_TYPE.Account:
         return (
           <Details2 open title="Courses in progress">
-            <CourseList courses={filteredCourses} />
+            <AccountCourseList accountId={user.id} />
           </Details2>
         )
-
+      case ACCOUNT_TYPE.Admin:
+        return (
+          <Details2 open title="Courses in progress">
+            <AdminDashboardOverview adminId={user.id} />
+          </Details2>
+        )
       default:
         break
     }

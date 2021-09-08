@@ -2,21 +2,37 @@
  * Components - Courses - List - Table - Table
  */
 
-// React
-
 // UI
 import { Details2, Table } from '@drykiss/industry-ui'
+import { useTable } from '../../../hooks/useTable'
 
-// Mocks
-import { Courses } from '../../../../mocks/courses'
+// Helpers
+import { columns, rows, Toolbar } from './helpers'
 
-// Helper
-import { columns, rows, Toolbar } from './helper'
+// Hooks
+import { useCourses } from '../../hooks'
 
-export const CourseTable = () => {
+// Types
+import { CourseFilter } from '../../hooks/types'
+
+interface CourseTableProps {
+  clientId: number
+  filters: CourseFilter
+}
+
+const initialSort = {}
+
+export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
+  const { initialData, ref } = useTable({ filters, initialSort })
+
+  const { courseList, loading } = useCourses({
+    clientId,
+    filters: initialData
+  })
+
   return (
     <Details2 open title="Courses" toolbar={<Toolbar />}>
-      <Table columns={columns()} rows={rows(Courses)} />
+      <Table loading={loading} columns={columns()} rows={rows(courseList)} ref={ref} />
     </Details2>
   )
 }

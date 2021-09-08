@@ -2,7 +2,7 @@
  * Navigation - Data - User
  */
 
-import path from '../user.json'
+import path from '../account.json'
 
 export const User: any = {
   right: [

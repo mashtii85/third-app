@@ -5,7 +5,7 @@
 // Types
 import { Navigation } from '../../../types/navigation.d'
 
-import path from '../admin.json'
+import path from '../client.json'
 
 export const Default: Navigation = {
   right: [

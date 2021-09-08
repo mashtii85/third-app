@@ -6,9 +6,11 @@
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
+import { Button, OffCanvasContext } from '@drykiss/industry-ui'
 
+// Types
 import type { Course } from '../../../../types/course.d'
+import { CourseTableRowsType } from './types.d'
 
 import { CourseForm } from '../../form'
 
@@ -18,24 +20,24 @@ export const columns = () => [
     hidden: true
   },
   {
-    formatter: TableLink('/dashboard/properties/view', 'id', 'title'),
+    // formatter: TableLink('/dashboard/properties/view', 'id', 'title'),
     text: 'Title'
   },
   {
     text: 'Author'
   },
   {
-    text: 'Progress'
+    text: 'Enrolled Users'
   }
 ]
 
-export const rows = (courses: Course[]) => {
+export const rows = (courses: Course[]): CourseTableRowsType[] => {
   const list = courses.map((item) => {
     return {
       id: item.id,
       title: item.title,
-      author: item.author,
-      progress: item.progress
+      author: item.customFields.author,
+      enrolled: item.enrolled.aggregate.count
     }
   })
 

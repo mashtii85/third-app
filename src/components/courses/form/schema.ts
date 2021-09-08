@@ -10,7 +10,6 @@ export const courseSchema: SchemaOf<Course> = object().shape({
   title: string().required(),
   description: string(),
   author: string(),
-  progress: number(),
   id: number(),
   length: string(),
   media: array(),

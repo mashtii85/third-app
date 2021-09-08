@@ -113,3 +113,9 @@ export const Theme = {
   TYPOGRAPHY,
   TILE
 }
+
+export enum SIZE {
+  XS = 'xs',
+  LG = 'lg',
+  SM = 'sm'
+}
