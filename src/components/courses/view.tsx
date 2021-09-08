@@ -31,7 +31,7 @@ import { CourseProgressChart } from './chart'
 import { Module } from '../../types/module.d'
 import { StepperModel } from '../../types/stepper.d'
 import { Lesson, LESSON_TYPE } from '../../types/lesson.d'
-import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress'
+import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress.d'
 
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
 import { parseVideoSources } from './helpers'
@@ -89,7 +89,7 @@ export const CourseView = () => {
       module.lessons.forEach((lesson: Lesson) => {
         const progress = lesson.lesson_progresses[0]
         actionId++
-        if (!hasActive && progress.status !== LESSON_PROGRESS_STATUS.Completed) {
+        if (!hasActive && progress?.status !== LESSON_PROGRESS_STATUS.Completed) {
           hasActive = true
           isActive = true
           selectedModuleId = module.id
@@ -98,8 +98,8 @@ export const CourseView = () => {
         data.push({
           id: lesson.id,
           label: lesson.title,
-          date: progress.status === LESSON_PROGRESS_STATUS.Completed ? '23 Aug 2021 11:45' : null,
-          status: progress.status,
+          date: progress?.status === LESSON_PROGRESS_STATUS.Completed ? '23 Aug 2021 11:45' : null,
+          status: progress?.status,
           actions: [
             {
               id: actionId,
