@@ -17,7 +17,6 @@ import {
   SelectField
 } from '@drykiss/industry-ui'
 import { usersSchema as schema } from './schema'
-
 import { statusActive } from '../../constants/status'
 import { UserFormProps } from './types.d'
 
@@ -52,11 +51,19 @@ export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
               )}
             </FormLabel>
           </Column>
-          <Column md={12}>
+          <Column md={6}>
             <FormLabel label="Email">
               <FormField {...defaultOptions} name={'email'} type="email" />
               {errors.email && errors.email.type === 'duplicate' && (
                 <FormError message={errors.email.message} />
+              )}
+            </FormLabel>
+          </Column>
+          <Column md={6}>
+            <FormLabel label="Phone">
+              <FormField {...defaultOptions} name={'custom_fields.phone'} />
+              {errors?.custom_fields?.phone && errors?.custom_fields?.phone?.type === 'matches' && (
+                <FormError message={errors?.custom_fields?.phone?.message} />
               )}
             </FormLabel>
           </Column>
