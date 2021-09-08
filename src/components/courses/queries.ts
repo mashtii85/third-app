@@ -6,8 +6,12 @@
 import { gql } from '@apollo/client'
 
 export const GET_ENROLLMENTS = gql`
-  query GetEntrolledCourses($userId: Int!) {
-    enrollments: course_enrollment(where: { account_id: { _eq: $userId } }) {
+  query GetEntrollments($userId: Int!) {
+    enrollments: course_enrollment(where: { user_id: { _eq: $userId } }) {
+      id
+      status
+      created_at
+      updated_at
       course {
         id
         title
