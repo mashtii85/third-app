@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import VideoPlayer from '../components/common/videoPlayer/videoPlayer'
+import VideoPlayer from '../../components/common/videoPlayer/videoPlayer'
 
 const PlaygroundPage = () => {
   return (
