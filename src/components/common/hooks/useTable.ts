@@ -20,10 +20,10 @@ export const useTable = ({ filters, initialSort }: { filters: any; initialSort: 
   const sort = initialSort || defaultSort
   const orderBy = ref.current
     ? {
-      [ref.current?.sort.item || sort.item]: sort.inneritem
-        ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
-        : ref.current?.sort.order || sort.order
-    }
+        [ref.current?.sort.item || sort.item]: sort.inneritem
+          ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
+          : ref.current?.sort.order || sort.order
+      }
     : defaultSort
 
   const initialData = {
