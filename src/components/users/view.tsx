@@ -6,8 +6,8 @@
 import { useContext } from 'react'
 
 // Apollo
-import { useQuery } from '@apollo/client'
-import { GET_USER } from './query'
+import { useMutation, useQuery } from '@apollo/client'
+import { GET_USER, UPDATE_USER } from './query'
 
 // Next
 import { useRouter } from 'next/router'
@@ -19,22 +19,33 @@ import {
   Details,
   DetailsText,
   formatDateStandard,
+  OffCanvasContext,
   Row
 } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
+import { UserForm } from './form'
 import { UserAccountsTable } from '../modules/accountUsers/table'
-import { ACCOUNT_TYPE } from '../../types/user.d'
+import { ACCOUNT_TYPE, User } from '../../types/user.d'
+import { offCanvasType } from '../../types/offCanvas'
 
 const UserDetails = () => {
   const { query } = useRouter()
   const { hasRole } = useContext(AuthorizationContext)
 
-  const { data: { user = {} } = {} } = useQuery(GET_USER, {
+  const offCanvas: offCanvasType = useContext(OffCanvasContext)
+
+  const { data: { user = {} } = {}, refetch } = useQuery(GET_USER, {
     variables: {
       userId: parseInt(query?.id as string)
     }
   })
 
+  const [UpdateUser] = useMutation(UPDATE_USER, {
+    onCompleted: () => {
+      offCanvas.close()
+      refetch()
+    }
+  })
   if (!query?.id) {
     return <></>
   }
@@ -43,12 +54,28 @@ const UserDetails = () => {
     return <></>
   }
 
+  const onSubmit = (form: User): void => {
+    UpdateUser({
+      variables: {
+        userId: form.id,
+        changes: form
+      }
+    })
+  }
+
+  const handleClick = (): void => {
+    offCanvas.show({
+      content: <UserForm defaultValues={user} submit={onSubmit} />,
+      title: 'Edit user'
+    })
+  }
+
   return (
     <Row>
       <Column md={6}>
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
 
-        <Details open summary="Details">
+        <Details button={'Edit'} handleClick={handleClick} open summary="Details">
           <DetailsText
             content="Account Type"
             text={hasRole(ACCOUNT_TYPE.Admin) ? ACCOUNT_TYPE.Admin : ACCOUNT_TYPE.Client}

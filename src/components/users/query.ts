@@ -35,3 +35,11 @@ export const GET_USER = gql`
     }
   }
 `
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($userId: Int!, $changes: user_set_input) {
+    update_user_by_pk(pk_columns: { id: $userId }, _set: $changes) {
+      id
+    }
+  }
+`
