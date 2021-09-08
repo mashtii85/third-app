@@ -10,7 +10,7 @@ import { Details2, UserContext } from '@drykiss/industry-ui'
 import { AdminDashboardOverview } from './tiles/overview/admin'
 import { ClientDashboardOverview } from './tiles/overview/client'
 
-import { ACCOUNT_TYPE } from '../../types/user.d'
+import { ACCOUNT_TYPE } from '../../types/account.d'
 import { AccountCourseList } from '../courses/list'
 
 export const DashboardView = () => {

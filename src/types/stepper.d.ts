@@ -1,9 +1,9 @@
 /**
- * Types - Lesson
+ * Types - Stepper
  */
 
 import { ThemeContext } from '../config/types'
-import { LESSON_STATUS } from './lesson'
+import { LESSON_PROGRESS_STATUS } from './lessonProgress'
 
 type StepperActionType = 'button'
 export interface StepperActionModel {
@@ -19,6 +19,6 @@ export interface StepperModel {
   id: number
   label: string
   date?: string | null
-  status: LESSON_STATUS
+  status: LESSON_PROGRESS_STATUS
   actions?: StepperActionModel[]
 }

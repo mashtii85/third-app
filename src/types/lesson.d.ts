@@ -4,6 +4,7 @@
 
 import { Medium } from './medium'
 import { LessonProgress } from './lessonProgress'
+
 export enum LESSON_TYPE {
   Text = 'text',
   Video = 'video',
@@ -12,10 +13,10 @@ export enum LESSON_TYPE {
 }
 
 export enum LESSON_STATUS {
-  Pending = 'pending',
-  Started = 'started',
-  Completed = 'completed'
+  Active = 'active',
+  Inactive = 'inactive'
 }
+
 /* eslint-disable camelcase */
 type VideoLesson = {
   id: number

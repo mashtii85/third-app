@@ -7,14 +7,15 @@ import { Medium } from './medium'
 import { AggregateData } from './aggregateData.d'
 
 export interface CustomFields {
-  author: string
+  author?: string
 }
 
+/* eslint-disable camelcase */
 export interface Course {
   id?: number
   title: string
   description?: string
-  customFields: CustomFields
+  custom_fields?: CustomFields
   length?: string
   media?: Medium[]
   modules?: Module[]

@@ -1,5 +1,5 @@
 /**
- * Types - LooseObject
+ * Types - OrderBy
  */
 
 export interface OrderBy {

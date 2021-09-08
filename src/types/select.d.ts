@@ -1,5 +1,5 @@
 /**
- * Src - status
+ * Types - Select
  */
 
 export enum STATUS_ACTIVE {
