@@ -26,7 +26,7 @@ export const AccountCourseList = ({ accountId }: { accountId: number }) => {
             alt={course.title}
             body={course.description}
             bordered={true}
-            image={course.media?.[0]?.filename || null}
+            image={course.media?.[0]?.filename ? `/${course.media[0].filename}` : null}
             title={course.title}
             to={`${path.dashboard.courses.view_by_id}${course.id}`}
           />
