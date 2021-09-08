@@ -45,8 +45,8 @@ export const Filters = memo(
         if ('meta' in initialValues) {
           filters.meta = queryIsNumber
             ? {
-              invoiceNumber: Number(q)
-            }
+                invoiceNumber: Number(q)
+              }
             : null
         }
 
