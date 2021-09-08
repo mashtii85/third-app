@@ -1,11 +1,11 @@
 /**
- * Components - Buttons - AddButton
+ * Components - Common - Buttons - AddButton
  */
 
 // UI
 import { Button, ButtonToolbar, Divider } from '@drykiss/industry-ui'
-import { SIZE } from '../config/theme'
-import { LooseObject } from '../types/object'
+import { SIZE } from '../../../config/theme'
+import { LooseObject } from '../../../types/object'
 
 export const AddButton = ({
   children,

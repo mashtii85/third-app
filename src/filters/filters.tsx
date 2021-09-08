@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form'
 
 // UI
 import { Button, Column, Details, Form, FormLabel, Row, Search } from '@drykiss/industry-ui'
-import { AddButton } from '../buttons/addButton'
+import { AddButton } from '../components/common/buttons/addButton'
 
 export const Filters = memo(
   ({
@@ -45,8 +45,8 @@ export const Filters = memo(
         if ('meta' in initialValues) {
           filters.meta = queryIsNumber
             ? {
-                invoiceNumber: Number(q)
-              }
+              invoiceNumber: Number(q)
+            }
             : null
         }
 
