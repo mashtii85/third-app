@@ -7,7 +7,7 @@ import { useContext } from 'react'
 
 // UI
 import { Details2, UserContext } from '@drykiss/industry-ui'
-import { AdminDashboardOverview } from './tiles/overview/admin'
+// import { AdminDashboardOverview } from './tiles/overview/admin'
 import { ClientDashboardOverview } from './tiles/overview/client'
 
 import { ACCOUNT_TYPE } from '../../types/account.d'
@@ -27,11 +27,7 @@ export const DashboardView = () => {
           </Details2>
         )
       case ACCOUNT_TYPE.Admin:
-        return (
-          <Details2 open title="Courses in progress">
-            <AdminDashboardOverview adminId={user.id} />
-          </Details2>
-        )
+        return <div>TODO</div>
       default:
         break
     }
