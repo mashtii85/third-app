@@ -5,6 +5,12 @@
   },
   "dashboard": {
     "root": "/dashboard",
+    "account": {
+      "clients": "/dashboard/account/clients",
+      "settings": "/dashboard/account/settings",
+      "users": "/dashboard/account/users",
+      "view": "/dashboard/account/view"
+    },
     "coursesAccount": {
       "started":"/dashboard/courses?show=started",
       "completed":"/dashboard/courses?show=completed",
@@ -15,8 +21,6 @@
       "manage": "/dashboard/courses/manage",
       "view_by_id": "/dashboard/courses/view?id="
     },
-    "account": {
-      "view": "/dashboard/account/view"
-    }
+    "playground": "/dashboard/playground"
   }
 }

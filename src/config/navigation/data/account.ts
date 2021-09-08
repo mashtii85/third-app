@@ -1,10 +1,10 @@
 /**
- * Navigation - Data - User
+ * Navigation - Data - Account
  */
 
 import pages from '../../pages.json'
 
-export const User: any = {
+export const Account: any = {
   right: [
     {
       id: 'navHomeMenu',
