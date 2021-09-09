@@ -34,7 +34,7 @@ import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../types/lesson.d'
 import { LessonProgress } from '../../types/lessonProgress'
 
 import VideoPlayer from '../common/videoPlayer/videoPlayer'
-import { parseVideoSources } from './helpers'
+import { parseVideos } from './helpers'
 import { Quiz } from '../common/quiz/quiz'
 
 export const CourseView = () => {
@@ -163,7 +163,7 @@ export const CourseView = () => {
               <Details2 open title="Lesson">
                 <>
                   {lesson.type === LESSON_TYPE.Video && (
-                    <VideoPlayer videoSources={parseVideoSources(lesson.media)} />
+                    <VideoPlayer videos={parseVideos(lesson.media)} />
                   )}
                   {lesson.type === LESSON_TYPE.Quiz && (
                     <Quiz questions={lesson.questions} onComplete={onQuizComplete} />
