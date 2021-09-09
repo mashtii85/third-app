@@ -5,6 +5,9 @@
   },
   "dashboard": {
     "root": "/dashboard",
+    "categories": {
+      "view": "/dashboard/categories"
+    },
     "account": {
       "clients": "/dashboard/account/clients",
       "settings": "/dashboard/account/settings",
@@ -12,9 +15,9 @@
       "view": "/dashboard/account/view"
     },
     "coursesAccount": {
-      "started":"/dashboard/courses?show=started",
-      "completed":"/dashboard/courses?show=completed",
-      "all":"/dashboard/courses?show=all"
+      "started": "/dashboard/courses?show=started",
+      "completed": "/dashboard/courses?show=completed",
+      "all": "/dashboard/courses?show=all"
     },
     "coursesClient": {
       "root": "/dashboard/courses",
