@@ -9,6 +9,7 @@
     "javascript", "typescript", "typescriptreact"
   ],
   // Editor
+  "editor.bracketPairColorization.enabled": true,
   "editor.formatOnSave": true,
   "editor.rulers": [
     100
