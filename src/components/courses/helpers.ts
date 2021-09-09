@@ -5,6 +5,7 @@
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress.d'
 import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../types/medium.d'
 import { ProgressChartModel } from '../../types/pieChart.d'
+import { Video } from '../common/videoPlayer/type'
 
 export const chartData = (data: LessonProgress[]) => {
   const result: ProgressChartModel = { data: [], status: {} }
@@ -29,8 +30,12 @@ export const chartData = (data: LessonProgress[]) => {
 
   return result
 }
-export const parseVideoSources = (media: Medium[]) => {
+export const parseVideos = (media: Medium[]): Video[] => {
   return media
     .filter((item) => item.type === MEDIUM_TYPE.Video && item.category === MEDIUM_CATEGORY.Lesson)
-    .map((item) => item.filename)
+    .map((item) => ({
+      title: '',
+      desc: '',
+      src: item.filename
+    }))
 }
