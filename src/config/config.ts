@@ -1,6 +1,9 @@
 /**
  * Config
  */
+
+import { AWS } from './aws'
+
 export const version = '0.1.0'
 
 export const Canonical = 'https://lms.realworldacademies.com'
@@ -54,6 +57,7 @@ export const Translations = {
 
 export const Config = {
   apiConfig,
+  AWS,
   Brand,
   generalConfig,
   Google,
