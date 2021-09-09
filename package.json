@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "next -p 3100",
+    "start:build": "next start -p 3100",
     "test": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore",
     "test:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
     "cy:start": "cypress open -C ./cypress-dev.json",
