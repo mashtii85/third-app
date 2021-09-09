@@ -36,7 +36,7 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
     return {
       id: item.id,
       title: item.title,
-      author: item.customFields.author,
+      author: item.custom_fields?.author || '',
       enrolled: item.enrolled.aggregate.count
     }
   })
