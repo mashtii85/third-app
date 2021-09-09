@@ -9,6 +9,7 @@ import Head from 'next/head'
 import { Bootstrap } from '@drykiss/industry-ui'
 
 // Components
+import { useCurrentUser } from '../utils/useCurrentUser'
 import { AppProvider } from '../services/app'
 
 // Config
@@ -19,8 +20,10 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const { user } = useCurrentUser()
+
   return (
-    <AppProvider>
+    <AppProvider user={user}>
       <Bootstrap fixed Navigation={Navigation}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />

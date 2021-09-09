@@ -3,9 +3,10 @@
  */
 
 // UI
-import type { TileData, DashboardTile } from './types.d'
+import type { DashboardTile } from './types.d'
+import type { TileData } from './hooks/types.d'
 
-import path from '../../../config/navigation/client.json'
+import pages from '../../../config/pages.json'
 
 export const prepareClientTiles = (dashboardObjects?: TileData): DashboardTile[] => {
   const GREEN = 'success'
@@ -16,7 +17,7 @@ export const prepareClientTiles = (dashboardObjects?: TileData): DashboardTile[]
     {
       colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
       title: 'Active Courses',
-      to: path.dashboard.courses.root,
+      to: pages.dashboard.coursesClient.root,
       value: dashboardObjects?.activeCourses.aggregate.count ?? 'loading...'
     },
     {

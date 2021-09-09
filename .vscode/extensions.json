@@ -4,7 +4,6 @@
     "eriklynd.json-tools",
     "attilabuti.vscode-mjml",
     "jpoissonnier.vscode-styled-components",
-    "CoenraadS.bracket-pair-colorizer",
     "dbaeumer.vscode-eslint"
   ]
 }

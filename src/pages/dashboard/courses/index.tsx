@@ -13,7 +13,7 @@ import type { NextPage } from 'next'
 import { Dashboard, UserContext } from '@drykiss/industry-ui'
 import { AccountCourseList, ClientCourseList } from '../../../components/courses/list'
 
-import { ACCOUNT_TYPE } from '../../../types/user.d'
+import { ACCOUNT_TYPE } from '../../../types/account.d'
 
 const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)

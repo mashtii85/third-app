@@ -7,7 +7,7 @@ import { Column } from '@drykiss/industry-ui'
 
 // Types
 import type { TileItemProps } from '../types.d'
-import { ACCOUNT_TYPE } from '../../../../types/user.d'
+import { ACCOUNT_TYPE } from '../../../../types/account.d'
 
 import { StyledTile } from '../styles'
 

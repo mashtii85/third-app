@@ -4,7 +4,8 @@
  */
 
 // Types
-import { ACCOUNT_TYPE, User } from '../types/user.d'
+import { ACCOUNT_TYPE } from '../types/account.d'
+import { User, USER_STATUS } from '../types/user.d'
 
 export const Users: User[] = [
   {
@@ -13,8 +14,10 @@ export const Users: User[] = [
     email: 'admin@example.com',
     name_first: 'Admin',
     name_last: 'RWA',
-    phone: '+443 222 444',
-    status: 'active',
+    custom_fields: {
+      phone: '+443 222 444'
+    },
+    status: USER_STATUS.Active,
     created_at: '2021-09-02T08:00:08.064531+00:00',
     updated_at: '2021-09-02T08:04:46.281908+00:00'
   },
@@ -24,8 +27,10 @@ export const Users: User[] = [
     email: 'uaefa@example.com',
     name_first: 'UAE FA',
     name_last: 'Manager',
-    phone: '+413 322 444',
-    status: 'active',
+    custom_fields: {
+      phone: '+443 222 444'
+    },
+    status: USER_STATUS.Active,
     created_at: '2021-09-02T08:03:57.706908+00:00',
     updated_at: '2021-09-02T08:03:57.706908+00:00'
   },
@@ -35,8 +40,10 @@ export const Users: User[] = [
     email: 'drykiss@example.com',
     name_first: 'DryKISS',
     name_last: 'Manager',
-    phone: '+413 322 444',
-    status: 'inactive',
+    custom_fields: {
+      phone: '+443 333 555'
+    },
+    status: USER_STATUS.Inactive,
     created_at: '2021-09-02T09:50:11.486923+00:00',
     updated_at: '2021-09-02T09:50:11.486923+00:00'
   },
@@ -46,8 +53,10 @@ export const Users: User[] = [
     email: 'demo@example.com',
     name_first: 'Demo',
     name_last: 'User',
-    phone: '+423 242 424',
-    status: 'active',
+    custom_fields: {
+      phone: '+443 666 777'
+    },
+    status: USER_STATUS.Active,
     created_at: '2021-09-02T10:11:40.056412+00:00',
     updated_at: '2021-09-02T10:11:40.056412+00:00'
   }

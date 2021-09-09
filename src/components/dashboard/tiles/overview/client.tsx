@@ -7,7 +7,7 @@ import { Row, Space } from '@drykiss/industry-ui'
 
 // Types
 import type { ClientDashboardOverviewProps } from '../types.d'
-import { ACCOUNT_TYPE } from '../../../../types/user.d'
+import { ACCOUNT_TYPE } from '../../../../types/account.d'
 
 // Hooks
 import { useAggregate } from '../hooks/useTileData'

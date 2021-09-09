@@ -1,5 +1,5 @@
 /**
- * Navigation - Data - Admin
+ * Navigation - Data - Client
  */
 
 // Types
@@ -7,12 +7,31 @@ import type { Navigation } from '../../../types/navigation'
 
 import pages from '../../pages.json'
 
-export const Admin: Navigation = {
+export const Client: Navigation = {
   right: [
     {
       id: 'navHomeMenu',
       name: 'Home',
       to: pages.dashboard.root
+    },
+    {
+      id: 'navCoursesMenu',
+      name: 'Courses',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navCourses',
+            name: 'List',
+            to: pages.dashboard.coursesClient.root
+          },
+          {
+            id: 'navCoursesCreate',
+            name: 'Create',
+            to: pages.dashboard.coursesClient.manage
+          }
+        ]
+      }
     },
     {
       id: 'navAccount',
@@ -33,14 +52,9 @@ export const Admin: Navigation = {
             to: pages.dashboard.account.view
           },
           {
-            id: 'navClients',
-            name: 'Clients',
-            to: pages.dashboard.account.clients
-          },
-          {
-            id: 'navPlayground',
-            name: 'Playground',
-            to: pages.dashboard.playground
+            id: 'navUsers',
+            name: 'Users',
+            to: pages.dashboard.account.users
           }
         ]
       }

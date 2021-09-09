@@ -1,13 +1,13 @@
 /**
- * Components - Issues - List - Table
+ * Components - Common - Hooks - useTable
  */
 
 // React
 import { useRef } from 'react'
 
 // Config
-import { generalConfig } from '../../config/config'
-import { IsJsonString } from '../../utils/isJson'
+import { generalConfig } from '../../../config/config'
+import { IsJsonString } from '../../../utils/isJson'
 
 export const useTable = ({ filters, initialSort }: { filters: any; initialSort: any }) => {
   const ref = useRef<any>()

@@ -2,8 +2,7 @@
  * Components - Charts - Course - Helper
  */
 
-import { LESSON_STATUS } from '../../types/lesson.d'
-import { LessonProgress } from '../../types/lessonProgress'
+import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress.d'
 import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../types/medium.d'
 import { ProgressChartModel } from '../../types/pieChart.d'
 import { Video } from '../common/videoPlayer/type'
@@ -16,8 +15,8 @@ export const chartData = (data: LessonProgress[]) => {
   const total = data.length
 
   data.forEach((item) => {
-    if (item.status === LESSON_STATUS.Started) started++
-    else if (item.status === LESSON_STATUS.Completed) completed++
+    if (item.status === LESSON_PROGRESS_STATUS.Started) started++
+    else if (item.status === LESSON_PROGRESS_STATUS.Completed) completed++
     else pending++
   })
 
