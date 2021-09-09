@@ -36,22 +36,22 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
     return {
       id: item.id,
       title: item.title,
-      author: item.customFields.author,
-      enrolled: item.enrolled.aggregate.count
+      author: item.customFields?.author ?? '',
+      enrolled: item?.enrolled?.aggregate?.count ?? 0
     }
   })
 
   return list
 }
 
-export const Toolbar = () => {
+export const Toolbar = ({ filters }: { filters: any }) => {
   // we don't know it's type
   const offCanvas = useContext<any>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <CourseForm />,
+      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
       title: 'Add A Course'
     })

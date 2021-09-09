@@ -15,6 +15,7 @@ export const useCourses = ({ clientId, filters }: UserCoursesProps) => {
       where
     }
   })
+
   if (error) {
     return { loading: false, error, courseList: [] }
   }

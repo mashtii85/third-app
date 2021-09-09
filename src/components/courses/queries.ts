@@ -21,20 +21,21 @@ export const GET_ENROLLMENTS = gql`
 `
 
 export const GET_COURSES = gql`
-  query GetCourses($limit: Int = 20, $order_by: [course_order_by!] = {}, $where: course_bool_exp) {
+  query GetCourses($limit: Int = 100, $order_by: [course_order_by!] = {}, $where: course_bool_exp) {
     courses: course(where: $where, limit: $limit, order_by: $order_by) {
       id
       title
       description
-      customFields: custom_fields
-      enrolled: course_enrollments_aggregate {
-        aggregate {
-          count
-        }
-      }
     }
   }
 `
+
+// customFields: custom_fields
+// enrolled: course_enrollments_aggregate {
+//         aggregate {
+//     count
+//   }
+// }
 
 export const GET_COURSE = gql`
   query GetCourse($courseId: Int!) {
@@ -73,3 +74,32 @@ export const GET_COURSE = gql`
     }
   }
 `
+export const CREATE_COURSE = gql`
+  mutation CreateCourse(
+    $clientId: Int!
+    $accountId: Int!
+    $status: String!
+    $title: String!
+    $description: String!
+  ) {
+    insert_course_one(
+      object: {
+        client_id: $clientId
+        account_id: $accountId
+        status: $status
+        title: $title
+        description: $description
+      }
+    ) {
+      title
+      id
+      description
+    }
+  }
+`
+// customFields: custom_fields
+// enrolled: course_enrollments_aggregate {
+//         aggregate {
+//     count
+//   }
+// }

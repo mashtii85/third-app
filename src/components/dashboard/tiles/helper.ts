@@ -27,7 +27,7 @@ export const prepareClientTiles = (dashboardObjects?: TileData): DashboardTile[]
     },
     {
       colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
-      title: 'Enrolled Lessons',
+      title: 'Enrolled Courses',
       to: ``,
       value: dashboardObjects?.enrolledCourses?.aggregate.count ?? 'loading...'
     }

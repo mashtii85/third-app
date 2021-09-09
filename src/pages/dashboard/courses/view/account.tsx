@@ -7,7 +7,7 @@ import type { NextPage } from 'next'
 
 // UI
 import { Dashboard } from '@drykiss/industry-ui'
-import View from '../../../components/courses/view'
+import View from '../../../../components/courses/view'
 
 const PageDashboard: NextPage = () => {
   return (

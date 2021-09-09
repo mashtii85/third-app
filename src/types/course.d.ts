@@ -7,7 +7,7 @@ import { Medium } from './medium'
 import { AggregateData } from './aggregateData.d'
 
 export interface CustomFields {
-  author: string
+  author?: string
 }
 
 export interface Course {

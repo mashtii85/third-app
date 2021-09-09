@@ -3,15 +3,12 @@
  */
 
 // Yup
-import { array, number, object, string, SchemaOf } from 'yup'
-import { Course } from '../../../types/course'
+import { mixed, object, string, SchemaOf } from 'yup'
+import { STATUS_ACTIVE } from '../../../types/select.d'
+import { CourseFormType } from './types.d'
 
-export const courseSchema: SchemaOf<Course> = object().shape({
+export const courseSchema: SchemaOf<CourseFormType> = object().shape({
   title: string().required(),
-  description: string(),
-  author: string(),
-  id: number(),
-  length: string(),
-  media: array(),
-  modules: array()
+  description: string().required(),
+  status: mixed().oneOf(Object.values(STATUS_ACTIVE))
 })
