@@ -79,17 +79,12 @@ export const GET_COURSE = gql`
   }
 `
 
-export const CREATE_COURSE_FIELDS = gql`
-  fragment CreateCourseOne on insert_course_one {
+export const COURSE_FIELDS = gql`
+  fragment CourseFields on course {
     title
     id
     description
     customFields: custom_fields
-    enrolled: course_enrollments_aggregate {
-      aggregate {
-        count
-      }
-    }
   }
 `
 export const CREATE_COURSE = gql`
@@ -109,10 +104,7 @@ export const CREATE_COURSE = gql`
         description: $description
       }
     ) {
-      title
-      id
-      description
-      customFields: custom_fields
+      ...CourseFields
       enrolled: course_enrollments_aggregate {
         aggregate {
           count
@@ -120,6 +112,7 @@ export const CREATE_COURSE = gql`
       }
     }
   }
+  ${COURSE_FIELDS}
 `
 
 export const UPDATE_LESSON_STATUS = gql`
