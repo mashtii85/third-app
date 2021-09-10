@@ -12,6 +12,7 @@ export interface QuizState {
   quizFinished: boolean
   selectedAnswers: number[]
   questions: QuizQuestion[]
+  shortAnsweredText: string
   finalScore: number
 }
 type NextAction = { type: 'next' }
@@ -19,6 +20,8 @@ type FinishAction = { type: 'finish' }
 type ResetAction = { type: 'reset'; payload: QuizState }
 type SetOverAllScoreAction = { type: 'setOverAllScore'; payload: number }
 type SetAnswerAction = { type: 'setAnswerAction'; payload: number }
+type SetNewAnswerAction = { type: 'setNewAnswerAction'; payload: number }
+type SetShortTextAnswerAction = { type: 'setShortTextAnswerAction'; payload: string }
 
 export type QuizActionTypes =
   | NextAction
@@ -26,3 +29,5 @@ export type QuizActionTypes =
   | SetOverAllScoreAction
   | SetAnswerAction
   | FinishAction
+  | SetNewAnswerAction
+  | SetShortTextAnswerAction

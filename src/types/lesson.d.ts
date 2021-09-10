@@ -4,6 +4,7 @@
 
 import { Medium } from './medium'
 import { LessonProgress } from './lessonProgress'
+import { Video } from '../components/common/videoPlayer/type'
 
 export enum LESSON_TYPE {
   Text = 'text',
@@ -31,11 +32,31 @@ type VideoLesson = {
   lesson_progresses: LessonProgress[]
 }
 
-export interface QuizQuestion {
-  question: string
-  answers: string[]
+export enum QUESTION_TYPE {
+  SelectAnswer = 'selectAnswer',
+  ShortTextAnswer = 'shortTextAnswer'
+}
+
+type SelectAnswer = {
+  type: QUESTION_TYPE.SelectAnswer
+  questionText: string
+  questionImage?: string
+  questionVideos?: Video[]
+  answers: {
+    answerText?: string
+    answerImage?: string
+  }[]
   correctAnswers: number[]
 }
+type ShortTextAnswer = {
+  type: QUESTION_TYPE.ShortTextAnswer
+  questionText: string
+  questionImage?: string
+  questionVideos?: Video[]
+  acceptableAnswers: string[]
+}
+
+export type QuizQuestion = SelectAnswer | ShortTextAnswer
 
 type QuizLesson = {
   id: number

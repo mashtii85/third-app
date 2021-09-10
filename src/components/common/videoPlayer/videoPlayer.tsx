@@ -59,7 +59,7 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
   }
 }
 
-const VideoPlayer = ({ videos }: VideoPlayerProps) => {
+const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
   const playerRef = useRef<BaseReactPlayer<{}>>(null)
 
   const spentTime = useRef('0')
@@ -91,7 +91,9 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
     dispatch({ type: 'toggleIsPlaying' })
   }
   const handleEnded = () => {
-    console.log('video finished')
+    if (onVideoFinished) {
+      onVideoFinished(state.selectedVideoIndex)
+    }
   }
 
   const handleDuration = (e: number) => {
@@ -254,10 +256,10 @@ const Time = styled.span`
 const ProgressInput = styled.input<{ value: number; width: string }>`
   -webkit-appearance: none;
   align-self: center;
+  background: rgba(255, 255, 255, 0.6);
   background-image: linear-gradient(#b6da25, #b6da25);
   background-repeat: no-repeat;
   background-size: ${({ value }) => value * 100}% 100%;
-  background: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   height: 4px;
   width: ${({ width }) => width};
