@@ -27,3 +27,19 @@ export const ADD_TAXONOMY = gql`
     }
   }
 `
+
+export const UPDATE_TAXONOMY = gql`
+  mutation UpdateTaxonomy($taxonomyId: Int!, $changes: taxonomy_set_input) {
+    update_taxonomy_by_pk(pk_columns: { id: $taxonomyId }, _set: $changes) {
+      id
+    }
+  }
+`
+
+export const DELETE_TAXONOMY = gql`
+  mutation DeleteTaxonomy($taxonomyId: Int!) {
+    delete_taxonomy_by_pk(id: $taxonomyId) {
+      id
+    }
+  }
+`

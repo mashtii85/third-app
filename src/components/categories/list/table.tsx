@@ -2,43 +2,69 @@
  * Components - Taxonomy - List - Table
  */
 // React
-import { useContext } from 'react'
+import { useContext, MouseEvent } from 'react'
 // UI
-import { capitalize, Details, OffCanvasContext, Table } from '@drykiss/industry-ui'
+import { capitalize, Details, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
 import { TaxonomyForm } from '../form/form'
+import { TaxonomyDelete } from '../module/delete'
 // Next
 import { useRouter } from 'next/router'
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_TAXONOMIES } from '../query'
+import { GET_TAXONOMIES } from '../queries'
 // Types
 import { Column } from '../../../types/column'
 import { TableProps } from './types'
 import { offCanvasType } from '../../../types/offCanvas'
 import { Taxonomy } from '../../../types/taxonomy'
 
-// Table Column
-const columns: Column[] = [
-  {
-    text: 'Id'
-  },
-  {
-    text: 'Name'
-  },
-  {
-    text: 'Entity'
-  },
-
-  {
-    text: 'Status'
-  }
-]
-
 export const TaxonomyTable = ({ title }: TableProps) => {
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
   const defaultTab: string | string[] = query.tab || 'course-categories'
 
+  // Table Column
+  const columns: Column<Taxonomy>[] = [
+    {
+      text: 'Name'
+    },
+    {
+      text: 'Status'
+    },
+    {
+      hidden: false,
+      formatter: TableActions,
+      formatterData: [
+        {
+          context: 'secondary',
+          icon: ['fas', 'edit'],
+          onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleClick(e, row),
+          tooltip: 'Edit'
+        },
+        {
+          context: 'danger',
+          icon: ['fas', 'trash'],
+          onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
+          tooltip: 'Delete'
+        }
+      ],
+      text: 'Actions'
+    },
+    { hidden: true }
+  ]
+
+  const handleDelete = (row: Taxonomy) => {
+    offCanvas.show({
+      content: <TaxonomyDelete taxonomyId={row.id} onSuccess={handleDeleteSuccess} />,
+      title: 'Delete Taxonomy',
+      submit: false
+    })
+  }
+
+  const handleDeleteSuccess = () => {
+    offCanvas.close()
+    refetch()
+  }
   const {
     data: { taxonomy } = {
       taxonomy: []
@@ -56,32 +82,35 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     offCanvas.close()
   }
 
-  const handleClick = () => {
+  const handleClick = (e: MouseEvent<HTMLElement>, row: Taxonomy) => {
     // TODO:  need to find a way to provide entity_id and client_id
+
+    const defaultValues = row ? { ...row, status: row.status.toLowerCase() } : {}
+
     offCanvas.show({
       content: (
         <TaxonomyForm
           onSuccess={handleSuccess}
-          defaultValues={{ entity_id: 1, client_id: 1, type: defaultTab }}
+          defaultValues={{ entity_id: 1, client_id: 1, type: defaultTab, ...defaultValues }}
         />
       ),
-      title: 'Add Course Category'
+      title: `${row ? 'Edit' : 'Add'} Course Category`
     })
   }
 
   const rows = () =>
     taxonomy.map((item: Taxonomy) => {
       return {
-        id: item.id,
         name: item.name,
-        entity: item.entity,
-        status: capitalize(item.status)
+        status: capitalize(item.status),
+        actions: '',
+        id: item.id
       }
     })
 
   return (
     <Details button="Add New" open summary={title} handleClick={handleClick}>
-      <Table columns={columns} loading={loading} rows={rows()} />
+      <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
     </Details>
   )
 }

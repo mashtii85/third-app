@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { ADD_TAXONOMY } from '../query'
+import { ADD_TAXONOMY, UPDATE_TAXONOMY } from '../queries'
 
 // React Hook Form
 import { useForm } from 'react-hook-form'
@@ -28,14 +28,22 @@ export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) =>
     resolver: yupResolver(TaxonomySchema())
   })
 
+  const [updateTaxonomy] = useMutation(UPDATE_TAXONOMY, {
+    onCompleted: () => {
+      onSuccess()
+    }
+  })
+
   const [addTaxonomy] = useMutation(ADD_TAXONOMY, {
     onCompleted: () => {
       onSuccess()
     }
   })
 
-  const submit = async (form: Taxonomy) => {
-    await addTaxonomy({ variables: { objects: [form] } })
+  const submit = async ({ id, ...form }: Taxonomy) => {
+    return id
+      ? await updateTaxonomy({ variables: { taxonomyId: id, changes: form } })
+      : await addTaxonomy({ variables: { objects: [form] } })
   }
 
   const defaultOptions = {
@@ -58,6 +66,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) =>
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
+      <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
       <FormField {...defaultOptions} name="client_id" type="hidden" />
       <FormField {...defaultOptions} name="entity_id" type="hidden" />
