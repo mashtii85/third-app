@@ -1,92 +1,58 @@
 /**
- *  Components - Courses - Queries
+ *  Components - Courses - Queries - Queries
  */
 
 // Apollo
 import { gql } from '@apollo/client'
-
-export const GET_COURSES_FIELDS = gql`
-  fragment GetCoursesFields111 on course {
-    id
-    title
-    description
-    customFields: custom_fields
-    enrolled: course_enrollments_aggregate {
-      aggregate {
-        count
-      }
-    }
-  }
-`
+import { COURSE_FIELDS } from './fragments'
+import { COURSE_AGGREGATE_FIELDS } from '../../enrollments/queries/fragments'
 
 export const GET_COURSES = gql`
   query GetCourses($limit: Int = 100, $order_by: [course_order_by!] = {}, $where: course_bool_exp) {
     courses: course(where: $where, limit: $limit, order_by: $order_by) {
-      id
-      title
-      description
-      customFields: custom_fields
+      ...CourseFields
       enrolled: course_enrollments_aggregate {
-        aggregate {
-          count
-        }
+        ...EnrollmentsAggregateFields
       }
     }
   }
-`
-
-export const GET_COURSE_FIELDS = gql`
-  fragment GetCourseFields on course {
-    id
-    account_id
-    description
-    title
-    status
-    updated_at
-    created_at
-    modules {
-      id
-      description
-      created_at
-      ordering
-      status
-      title
-      updated_at
-      course_id
-      lessons {
-        id
-        description
-        created_at
-        content
-        title
-        type
-        status
-        ordering
-        module_id
-        lesson_progresses {
-          status
-        }
-      }
-    }
-  }
+  ${COURSE_FIELDS}
+  ${COURSE_AGGREGATE_FIELDS}
 `
 
 export const GET_COURSE = gql`
   query GetCourse($courseId: Int!) {
     course: course_by_pk(id: $courseId) {
-      ...GetCourseFields
+      ...COURSE_FIELDS
+      modules {
+        id
+        description
+        created_at
+        status
+        title
+        ordering
+        updated_at
+        course_id
+        lessons {
+          id
+          description
+          created_at
+          content
+          title
+          type
+          status
+          ordering
+          module_id
+          lesson_progresses {
+            status
+          }
+        }
+      }
     }
   }
+  ${COURSE_FIELDS}
 `
 
-export const COURSE_FIELDS = gql`
-  fragment CourseFields on course {
-    title
-    id
-    description
-    customFields: custom_fields
-  }
-`
 export const CREATE_COURSE = gql`
   mutation CreateCourse(
     $clientId: Int!
@@ -95,7 +61,7 @@ export const CREATE_COURSE = gql`
     $title: String!
     $description: String!
   ) {
-    insert_course_one(
+    course: insert_course_one(
       object: {
         client_id: $clientId
         account_id: $accountId
@@ -106,13 +72,12 @@ export const CREATE_COURSE = gql`
     ) {
       ...CourseFields
       enrolled: course_enrollments_aggregate {
-        aggregate {
-          count
-        }
+        ...EnrollmentsAggregateFields
       }
     }
   }
   ${COURSE_FIELDS}
+  ${COURSE_AGGREGATE_FIELDS}
 `
 
 export const UPDATE_LESSON_STATUS = gql`

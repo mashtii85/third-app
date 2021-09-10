@@ -15,6 +15,7 @@ import { CourseTableRowsType } from './types.d'
 import { CourseForm } from '../../form'
 
 import pages from '../../../../config/pages.json'
+import { LooseObject } from '../../../../types/object'
 
 export const columns = () => [
   {
@@ -46,21 +47,14 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
   return list
 }
 
-export const Toolbar = ({ filters }: { filters: any }) => {
+export const Toolbar = ({ filters }: { filters: LooseObject }) => {
   // we don't know it's type
   const offCanvas = useContext<any>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: (
-        <CourseForm
-          onSuccess={() => {
-            offCanvas.close()
-          }}
-          filters={filters}
-        />
-      ),
+      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
       title: 'Add A Course'
     })

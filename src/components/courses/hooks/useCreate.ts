@@ -4,27 +4,19 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { Course } from '../../../types/course'
 import { CREATE_COURSE, GET_COURSES } from '../queries'
+
 import { prepareArguments } from './helpers'
 
-export const useCreateCourse = (props: {
-  clientId: number
-  onCompleted: (data: any) => void
-  filters: any
-}) => {
-  const [createCourse, { loading }] = useMutation(CREATE_COURSE, {
-    onCompleted: (data) => {
-      props.onCompleted(data)
-      // onSubmit && onSubmit(data)
-    },
-    onError: (err) => {
-      console.log(err)
+// Types
+import { UseCreateCourseProps } from './types.d'
 
-      // error(err)
-    },
+export const useCreateCourse = (props: UseCreateCourseProps) => {
+  const [createCourse, { loading }] = useMutation(CREATE_COURSE, {
+    onCompleted: props.onCompleted,
+    onError: props.onError,
     update(cache, { data }) {
-      const courseFromResponse = data.insert_course_one
+      const courseFromResponse = data?.course
       const where = prepareArguments({ filters: props.filters, clientId: props.clientId })
 
       where.client_id = { _eq: props.clientId }
@@ -32,14 +24,14 @@ export const useCreateCourse = (props: {
         query: GET_COURSES,
         variables: { where }
       }) || { courses: [] }
-      console.log(courseFromResponse)
 
       cache.writeQuery({
         query: GET_COURSES,
-        variables: where,
+        variables: { where },
         data: { courses: [...courses, courseFromResponse] }
       })
     }
   })
+
   return { createCourse, loading }
 }

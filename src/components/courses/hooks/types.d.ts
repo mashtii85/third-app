@@ -54,3 +54,11 @@ export interface CourseData {
 export interface CourseVariables {
   courseId: number
 }
+
+// useCreateCourse
+export interface UseCreateCourseProps {
+  clientId: number
+  onCompleted: (data: { course: Course }) => void
+  onError: (data: ApolloError) => void
+  filters: LooseObject
+}

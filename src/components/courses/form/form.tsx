@@ -28,8 +28,15 @@ import { statusActive } from '../../../constants/status'
 import { CourseFormType } from './types.d'
 
 import { useCreateCourse } from '../hooks'
+import { LooseObject } from '../../../types/object'
 
-export const CourseForm = ({ onSuccess, filters }: { onSuccess: () => void; filters: any }) => {
+export const CourseForm = ({
+  onSuccess,
+  filters
+}: {
+  onSuccess: () => void
+  filters: LooseObject
+}) => {
   const { user } = useContext(UserContext)
   const defaultValues = {}
 
@@ -41,9 +48,9 @@ export const CourseForm = ({ onSuccess, filters }: { onSuccess: () => void; filt
   const { createCourse } = useCreateCourse({
     clientId: user.id,
     filters,
-    onCompleted: (data) => {
-      console.log(data)
-      onSuccess()
+    onCompleted: onSuccess,
+    onError: (error) => {
+      console.log(error)
     }
   })
 
