@@ -13,6 +13,7 @@ export interface VideoProgress {
 
 export interface VideoPlayerProps {
   videos: Video[]
+  onVideoFinished?: (videoIndex: number) => void
 }
 
 export interface PlayerState {

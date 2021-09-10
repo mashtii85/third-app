@@ -5,6 +5,9 @@
   },
   "dashboard": {
     "root": "/dashboard",
+    "categories": {
+      "view": "/dashboard/categories"
+    },
     "account": {
       "clients": "/dashboard/account/clients",
       "settings": "/dashboard/account/settings",

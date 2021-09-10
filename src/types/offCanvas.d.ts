@@ -7,6 +7,7 @@ import { ReactNode } from 'react'
 type CanvasContent = {
   content: ReactNode
   title: string
+  submit?: boolean
 }
 
 export interface offCanvasType {

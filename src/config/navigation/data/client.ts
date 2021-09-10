@@ -55,6 +55,11 @@ export const Client: Navigation = {
             id: 'navUsers',
             name: 'Users',
             to: pages.dashboard.account.users
+          },
+          {
+            id: 'navCategories',
+            name: 'Categories',
+            to: pages.dashboard.categories.view
           }
         ]
       }
