@@ -20,6 +20,7 @@ export enum LESSON_STATUS {
 /* eslint-disable camelcase */
 type VideoLesson = {
   id: number
+  client_id: number
   type: LESSON_TYPE.Video
   title: string
   description?: string
@@ -38,6 +39,7 @@ export interface QuizQuestion {
 
 type QuizLesson = {
   id: number
+  client_id: number
   type: LESSON_TYPE.Quiz
   questions: QuizQuestion[]
   title: string
@@ -53,6 +55,7 @@ type QuizLesson = {
 // VideoLesson is separated because it's media property is not optional
 type OtherLessons = {
   id: number
+  client_id: number
   type: LESSON_TYPE.Text | LESSON_TYPE.Assignment
   title: string
   description?: string

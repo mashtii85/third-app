@@ -38,6 +38,7 @@ export const GET_COURSE = gql`
           lesson_progresses {
             id
             status
+            updated_at
           }
         }
       }
@@ -73,20 +74,9 @@ export const GET_LESSON_PROGRESS_BY_LESSONID = gql`
   }
 `
 
-export const UPDATE_LESSON_PROGRESS_STATUS = gql`
-  mutation UpdateLessonProgressStatus($id: Int!, $status: String) {
-    update_lesson_progress_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
-      id
-    }
-  }
-`
-
 export const UPDATE_LESSON_PROGRESS_BY_PK = gql`
-  mutation UpdateLessonProgressStatus($id: Int!, $points: Int!, $status: String) {
-    update_lesson_progress_by_pk(
-      pk_columns: { id: $id }
-      _set: { points: $points, status: $status }
-    ) {
+  mutation UpdateLessonProgress($id: Int!, $changes: lesson_progress_set_input) {
+    update_lesson_progress_by_pk(pk_columns: { id: $id }, _set: $changes) {
       id
     }
   }
