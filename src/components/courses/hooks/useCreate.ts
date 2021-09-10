@@ -28,17 +28,16 @@ export const useCreateCourse = (props: {
       const where = prepareArguments({ filters: props.filters, clientId: props.clientId })
 
       where.client_id = { _eq: props.clientId }
-      const courses =
-        cache.readQuery<Course[]>({
-          query: GET_COURSES,
-          variables: { where }
-        }) || []
+      const { courses } = cache.readQuery({
+        query: GET_COURSES,
+        variables: { where }
+      }) || { courses: [] }
       console.log(courseFromResponse)
 
       cache.writeQuery({
         query: GET_COURSES,
         variables: where,
-        data: { course: [...courses, courseFromResponse] }
+        data: { courses: [...courses, courseFromResponse] }
       })
     }
   })
