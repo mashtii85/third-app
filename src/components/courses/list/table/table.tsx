@@ -31,7 +31,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   })
 
   return (
-    <Details2 open title="Courses" toolbar={<Toolbar />}>
+    <Details2 open title="Courses" toolbar={<Toolbar filters={initialData} />}>
       <Table loading={loading} columns={columns()} rows={rows(courseList)} ref={ref} />
     </Details2>
   )

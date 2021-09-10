@@ -2,24 +2,56 @@
  * Components - Courses - Form - Form
  */
 
+// React
+import { useContext } from 'react'
+
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // UI
-import { FormField, Form, FormLabel, TextareaField } from '@drykiss/industry-ui'
+import {
+  FormField,
+  Form,
+  FormLabel,
+  SelectField,
+  TextareaField,
+  UserContext
+} from '@drykiss/industry-ui'
 
 import { courseSchema as schema } from './schema'
 
-// Types
-import type { Course } from '../../../types/course.d'
+// Constants
+import { statusActive } from '../../../constants/status'
 
-export const CourseForm = () => {
+// Types
+import { CourseFormType } from './types.d'
+
+import { useCreateCourse } from '../hooks'
+import { LooseObject } from '../../../types/object'
+
+export const CourseForm = ({
+  onSuccess,
+  filters
+}: {
+  onSuccess: () => void
+  filters: LooseObject
+}) => {
+  const { user } = useContext(UserContext)
   const defaultValues = {}
 
-  const { control, errors, handleSubmit, register } = useForm({
+  const { control, errors, handleSubmit, register } = useForm<CourseFormType>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
+  })
+
+  const { createCourse } = useCreateCourse({
+    clientId: user.id,
+    filters,
+    onCompleted: onSuccess,
+    onError: (error) => {
+      console.log(error)
+    }
   })
 
   const defaultOptions = {
@@ -28,7 +60,11 @@ export const CourseForm = () => {
     register: register
   }
 
-  const onSubmit = (form: Course) => {
+  const onSubmit = async (form: CourseFormType) => {
+    await createCourse({
+      variables: { clientId: user.id, accountId: user.id, ...form }
+    })
+
     console.log(form)
   }
 
@@ -36,6 +72,9 @@ export const CourseForm = () => {
     <Form id="offCanvasForm" handleSubmit={handleSubmit(onSubmit)}>
       <FormLabel label="Title">
         <FormField {...defaultOptions} name="title" />
+      </FormLabel>
+      <FormLabel label="Status">
+        <SelectField {...defaultOptions} name="status" options={statusActive} />
       </FormLabel>
       <FormLabel label="Description">
         <TextareaField {...defaultOptions} name="description" rows={3} />

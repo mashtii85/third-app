@@ -6,10 +6,10 @@
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
 import pages from '../../../config/pages.json'
-import { useEndrollments } from '../hooks'
+import { useEnrollments } from '../../enrollments/hooks'
 
 export const AccountCourseList = ({ accountId }: { accountId: number }) => {
-  const { enrollments, error, loading } = useEndrollments({ userId: accountId })
+  const { enrollments, error, loading } = useEnrollments({ userId: accountId })
 
   if (loading) {
     console.log('loading')
@@ -28,7 +28,7 @@ export const AccountCourseList = ({ accountId }: { accountId: number }) => {
             bordered={true}
             image={course.media?.[0]?.filename ? `/${course.media[0].filename}` : null}
             title={course.title}
-            to={`${pages.dashboard.coursesClient.view_by_id}${course.id}`}
+            to={`${pages.dashboard.coursesAccount.view_by_id}${course.id}`}
           />
         </Column>
       ))}

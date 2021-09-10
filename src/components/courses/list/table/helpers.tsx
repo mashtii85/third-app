@@ -6,7 +6,7 @@
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, OffCanvasContext } from '@drykiss/industry-ui'
+import { Button, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import type { Course } from '../../../../types/course.d'
@@ -14,13 +14,16 @@ import { CourseTableRowsType } from './types.d'
 
 import { CourseForm } from '../../form'
 
+import pages from '../../../../config/pages.json'
+import { LooseObject } from '../../../../types/object'
+
 export const columns = () => [
   {
     text: 'id',
     hidden: true
   },
   {
-    // formatter: TableLink('/dashboard/properties/view', 'id', 'title'),
+    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
     text: 'Title'
   },
   {
@@ -37,21 +40,21 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
       id: item.id,
       title: item.title,
       author: item.custom_fields?.author || '',
-      enrolled: item.enrolled.aggregate.count
+      enrolled: item.enrolled?.aggregate?.count ?? 0
     }
   })
 
   return list
 }
 
-export const Toolbar = () => {
+export const Toolbar = ({ filters }: { filters: LooseObject }) => {
   // we don't know it's type
   const offCanvas = useContext<any>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <CourseForm />,
+      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
       title: 'Add A Course'
     })

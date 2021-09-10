@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 // Apollo
 import { useQuery, useMutation } from '@apollo/client'
 
-import { GET_COURSE, UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from './query'
+import { GET_COURSE, UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from '../queries'
 
 // Next
 import { useRouter } from 'next/router'
@@ -28,20 +28,20 @@ import {
   formatDateStandard
 } from '@drykiss/industry-ui'
 
-import { CourseProgressChart } from './chart'
+import { CourseProgressChart } from '../chart'
 
 // Types
-import { Module } from '../../types/module.d'
-import { StepperActionModel, StepperModel } from '../../types/stepper.d'
-import { Lesson, LESSON_TYPE } from '../../types/lesson.d'
-import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress.d'
+import { Module } from '../../../types/module'
+import { StepperActionModel, StepperModel } from '../../../types/stepper'
+import { Lesson, LESSON_TYPE } from '../../../types/lesson.d'
+import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../types/lessonProgress.d'
 
-import VideoPlayer from '../common/videoPlayer/videoPlayer'
-import { parseVideos } from './helpers'
-import { Quiz } from '../common/quiz/quiz'
-import { Course } from '../../types/course'
+import VideoPlayer from '../../common/videoPlayer/videoPlayer'
+import { parseVideos } from '../helpers'
+import { Quiz } from '../../common/quiz/quiz'
+import { Course } from '../../../types/course'
 
-export const CourseView = () => {
+export const AccountCourseView = () => {
   const { query } = useRouter()
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const [canCompleteLesson, setCanCompleteLesson] = useState<boolean>(false)
@@ -288,5 +288,3 @@ export const CourseView = () => {
     </Row>
   )
 }
-
-export default CourseView

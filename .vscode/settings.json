@@ -6,7 +6,9 @@
     "source.organizeImports": false
   },
   "eslint.validate": [
-    "javascript", "typescript", "typescriptreact"
+    "javascript",
+    "typescript",
+    "typescriptreact"
   ],
   // Editor
   "editor.bracketPairColorization.enabled": true,
@@ -29,18 +31,18 @@
   "scss.validate": false,
   "less.validate": false,
   "css.validate": false,
-
-   "editor.formatOnPaste": true,
-        "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "cSpell.words": [
-      "showvolumecontrol"
-    ]
+  "editor.formatOnPaste": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "cSpell.words": [
+    "drykiss",
+    "showvolumecontrol"
+  ]
 }

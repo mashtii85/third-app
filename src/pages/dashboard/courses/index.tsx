@@ -14,12 +14,13 @@ import { Dashboard, UserContext } from '@drykiss/industry-ui'
 import { AccountCourseList, ClientCourseList } from '../../../components/courses/list'
 
 import { ACCOUNT_TYPE } from '../../../types/account.d'
+import pages from '../../../config/pages.json'
 
 const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)
 
   if (!user) {
-    Router.push('/account/sign-in')
+    Router.push(pages.account.signIn)
     return null
   } else {
     let View
