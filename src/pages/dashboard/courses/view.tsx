@@ -22,34 +22,22 @@ const PageDashboard: NextPage = () => {
     Router.push(pages.account.signIn)
     return null
   } else {
-    let View
     switch (user.account_type) {
       case ACCOUNT_TYPE.Client:
-        View = <Dashboard View={<ClientCourseView />} />
-        break
+        return <Dashboard View={<ClientCourseView />} />
       case ACCOUNT_TYPE.Account:
-        View = View = (
+        return (
           <Dashboard
-            View={
-              <AccountCourseView
-              // accountId={user.id}
-              />
-            }
+            View={<AccountCourseView />}
+            pageHeading={{
+              heading: 'Course Details'
+            }}
           />
         )
-        break
 
       default:
-        View = <></>
+        return <Dashboard View={<></>} />
     }
-    return (
-      <Dashboard
-        pageHeading={{
-          heading: 'Courses'
-        }}
-        View={View}
-      />
-    )
   }
 }
 

@@ -12,6 +12,11 @@ import { CLIENT_TAB } from '../types.d'
 
 export const ClientCourseView = () => {
   const { query } = useRouter()
+
+  // todo: transfer this to courseTable route
+  if (!query.tab) {
+    query.tab = CLIENT_TAB.Details
+  }
   const courseId: number = +(query?.id || '0')
 
   return (
