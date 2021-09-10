@@ -12,7 +12,7 @@ import { PieChart } from '@drykiss/industry-ui'
 import { chartData } from './helpers'
 
 // Types
-import { LessonProgress } from '../../types/lessonProgress'
+import { LessonProgress } from '../../types/lessonProgress.d'
 
 const arg = {
   colorScheme: 'nivo',

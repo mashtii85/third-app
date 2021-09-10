@@ -13,6 +13,7 @@ export const GET_USER = gql`
       status
       name_first
       name_last
+      custom_fields
       is_verified
       created_at
       updated_at

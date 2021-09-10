@@ -1,0 +1,27 @@
+{
+  "home": "/",
+  "account": {
+    "signIn": "/account/sign-in"
+  },
+  "dashboard": {
+    "root": "/dashboard",
+    "account": {
+      "clients": "/dashboard/account/clients",
+      "settings": "/dashboard/account/settings",
+      "users": "/dashboard/account/users",
+      "view": "/dashboard/account/view"
+    },
+    "coursesAccount": {
+      "started": "/dashboard/courses?show=started",
+      "completed": "/dashboard/courses?show=completed",
+      "all": "/dashboard/courses?show=all",
+      "view_by_id": "/dashboard/courses/view?id="
+    },
+    "coursesClient": {
+      "root": "/dashboard/courses",
+      "manage": "/dashboard/courses/manage",
+      "view_by_id": "/dashboard/courses/view"
+    },
+    "playground": "/dashboard/playground"
+  }
+}

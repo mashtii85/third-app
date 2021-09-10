@@ -4,7 +4,7 @@
 
 // UI
 import { Details2, Table } from '@drykiss/industry-ui'
-import { useTable } from '../../../hooks/useTable'
+import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, rows, Toolbar } from './helpers'

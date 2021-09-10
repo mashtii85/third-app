@@ -3,40 +3,47 @@
  */
 
 // Types
-import type { Navigation } from '../../../types/navigation.d'
+import type { Navigation } from '../../../types/navigation'
 
-import path from '../client.json'
+import pages from '../../pages.json'
 
 export const Admin: Navigation = {
   right: [
     {
       id: 'navHomeMenu',
       name: 'Home',
-      to: path.dashboard.root
+      to: pages.dashboard.root
     },
     {
-      id: 'navCoursesMenu',
-      name: 'Courses',
+      id: 'navAccount',
+      icon: 'cog',
+      name: '',
+      prefix: 'fas',
       type: {
         as: 'dropdown',
         items: [
           {
-            id: 'navCourses',
-            name: 'List',
-            to: path.dashboard.courses.root
+            id: 'navSettings',
+            name: 'Settings',
+            to: pages.dashboard.account.settings
           },
           {
-            id: 'navCoursesCreate',
-            name: 'Create',
-            to: path.dashboard.courses.manage
+            id: 'navAccount',
+            name: 'Account',
+            to: pages.dashboard.account.view
+          },
+          {
+            id: 'navClients',
+            name: 'Clients',
+            to: pages.dashboard.account.clients
+          },
+          {
+            id: 'navPlayground',
+            name: 'Playground',
+            to: pages.dashboard.playground
           }
         ]
       }
-    },
-    {
-      id: 'account',
-      name: 'Account',
-      to: path.dashboard.admin.view
     },
     {
       id: 'navUserDropdown'

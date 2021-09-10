@@ -6,7 +6,8 @@
 import { Navbar } from '@drykiss/industry-ui'
 import { Default } from './data/default'
 import { Admin } from './data/admin'
-import { User } from './data/user'
+import { Client } from './data/client'
+import { Account } from './data/account'
 import { Config } from '../config'
 import { UserDropdown } from './data/userDropdown'
 import { useCurrentUser } from '../../utils/useCurrentUser'
@@ -18,11 +19,14 @@ export const Navigation = () => {
 
   if (user) {
     switch (user.account_type) {
-      case 'client':
+      case 'admin':
         links = Admin
         break
+      case 'client':
+        links = Client
+        break
       case 'account':
-        links = User
+        links = Account
         break
     }
   }

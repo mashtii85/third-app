@@ -1,3 +1,7 @@
+/**
+ * Types - OffCanvas
+ */
+
 import { ReactNode } from 'react'
 
 type CanvasContent = {

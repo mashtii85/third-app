@@ -1,41 +1,41 @@
 /**
  * Types - User
  */
-import { Account } from './Account'
+import { Account, ACCOUNT_TYPE } from './account'
 
-export enum ACCOUNT_TYPE {
-  Admin = 'admin',
-  Client = 'client',
-  Account = 'account'
+export enum USER_STATUS {
+  Active = 'active',
+  Inactive = 'inactive',
+  Banned = 'banned'
 }
 
-export enum STATUS {
-  active = 'active',
-  inactive = 'inactive'
-}
 /* eslint-disable camelcase */
 export interface AccountUsers {
   account_id: number
   id: number
   is_contact: boolean
   is_owner: boolean
-  status: STATUS
+  status: USER_STATUS
   user_id: number
   account: Account
-  // [key: string]: any
+}
+
+/* eslint-disable camelcase */
+export interface UserCustomFields {
+  phone?: string
 }
 
 /* eslint-disable camelcase */
 export interface User {
   id: number
-  name: string
-  account_type: ACCOUNT_TYPE
+  account_type?: ACCOUNT_TYPE
   email: string
+  name?: string
   name_first: string
   name_last: string
-  phone: string
-  status: STATUS
+  custom_fields?: UserCustomFields
+  status: USER_STATUS
   created_at: string
   updated_at: string
-  account_users: AccountUsers[]
+  account_users?: AccountUsers[]
 }

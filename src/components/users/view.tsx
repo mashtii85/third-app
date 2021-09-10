@@ -14,7 +14,6 @@ import { useRouter } from 'next/router'
 
 // UI
 import {
-  AuthorizationContext,
   Column,
   Details,
   DetailsText,
@@ -25,12 +24,11 @@ import {
 import { ProfileHeader } from '../profileHeader/profileHeader'
 import { UserForm } from './form'
 import { UserAccountsTable } from '../modules/accountUsers/table'
-import { ACCOUNT_TYPE, User } from '../../types/user.d'
+import { User } from '../../types/user.d'
 import { offCanvasType } from '../../types/offCanvas'
 
 const UserDetails = () => {
   const { query } = useRouter()
-  const { hasRole } = useContext(AuthorizationContext)
 
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
 
@@ -74,16 +72,11 @@ const UserDetails = () => {
     <Row>
       <Column md={6}>
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
-
         <Details button={'Edit'} handleClick={handleClick} open summary="Details">
-          <DetailsText
-            content="Account Type"
-            text={hasRole(ACCOUNT_TYPE.Admin) ? ACCOUNT_TYPE.Admin : ACCOUNT_TYPE.Client}
-          />
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
-          <DetailsText content="Email" text={user.email || ''} />
-          <DetailsText content="Phone" text={user.phone || ''} />
-          <DetailsText content="Status" text={user.status || ''} />
+          <DetailsText content="Email" text={user.email} />
+          <DetailsText content="Phone" text={user?.custom_fields?.phone || '-'} />
+          <DetailsText content="Status" text={user.status} />
           <DetailsText content="Date Added" text={formatDateStandard(user.created_at)} />
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
         </Details>

@@ -18,7 +18,7 @@ export interface CourseFilter {
   orderBy: OrderBy
 }
 
-export interface UserCoursesProps {
+export interface UseCoursesProps {
   clientId: number
   filters?: CourseFilter
 }
@@ -26,6 +26,7 @@ export interface UserCoursesProps {
 export interface CoursesData {
   courses: Course[]
 }
+
 export interface CoursesVariables {
   where: LooseObject
 }
@@ -42,4 +43,14 @@ export interface EnrolmentOutputData {
 
 export interface EnrolledVariables {
   userId: number
+}
+
+// useCourse
+
+export interface CourseData {
+  course: Course
+}
+
+export interface CourseVariables {
+  courseId: number
 }

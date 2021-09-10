@@ -6,7 +6,7 @@
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, OffCanvasContext } from '@drykiss/industry-ui'
+import { Button, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import type { Course } from '../../../../types/course.d'
@@ -14,13 +14,15 @@ import { CourseTableRowsType } from './types.d'
 
 import { CourseForm } from '../../form'
 
+import pages from '../../../../config/pages.json'
+
 export const columns = () => [
   {
     text: 'id',
     hidden: true
   },
   {
-    // formatter: TableLink('/dashboard/properties/view', 'id', 'title'),
+    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
     text: 'Title'
   },
   {
@@ -36,8 +38,8 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
     return {
       id: item.id,
       title: item.title,
-      author: item.customFields?.author ?? '',
-      enrolled: item?.enrolled?.aggregate?.count ?? 0
+      author: item.custom_fields?.author || '',
+      enrolled: item.enrolled?.aggregate?.count ?? 0
     }
   })
 
@@ -51,7 +53,14 @@ export const Toolbar = ({ filters }: { filters: any }) => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
+      content: (
+        <CourseForm
+          onSuccess={() => {
+            offCanvas.close()
+          }}
+          filters={filters}
+        />
+      ),
       submit: true,
       title: 'Add A Course'
     })

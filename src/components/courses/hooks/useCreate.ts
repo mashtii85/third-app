@@ -20,6 +20,7 @@ export const useCreateCourse = (props: {
     },
     onError: (err) => {
       console.log(err)
+
       // error(err)
     },
     update(cache, { data }) {
@@ -33,10 +34,11 @@ export const useCreateCourse = (props: {
           variables: { where }
         }) || []
       console.log(courseFromResponse)
+
       cache.writeQuery({
         query: GET_COURSES,
         variables: where,
-        data: { courses: [...courses, courseFromResponse], course: courseFromResponse }
+        data: { course: [...courses, courseFromResponse] }
       })
     }
   })

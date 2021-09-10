@@ -3,5 +3,5 @@
  */
 
 export { useCourses } from './useCourses'
-export { useEndrollments } from './useEnrollments'
+export { useCourse } from './useCourse'
 export { useCreateCourse } from './useCreate'
