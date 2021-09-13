@@ -7,3 +7,8 @@ export enum CLIENT_TAB {
   Lessons = 'Lessons',
   Enrollments = 'Enrollments'
 }
+
+export enum COURSE_PAGE_MODE {
+  View = 'View',
+  Progress = 'Progress'
+}

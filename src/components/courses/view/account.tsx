@@ -8,7 +8,8 @@ import { useState, useEffect } from 'react'
 // Apollo
 import { useQuery, useMutation } from '@apollo/client'
 
-import { GET_COURSE, UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from '../queries'
+import { GET_COURSE } from '../queries'
+import { UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from '../../lessons/queries'
 
 // Next
 import { useRouter } from 'next/router'
@@ -35,21 +36,31 @@ import { Module } from '../../../types/module'
 import { StepperActionModel, StepperModel } from '../../../types/stepper'
 import { Lesson, LESSON_TYPE } from '../../../types/lesson.d'
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../types/lessonProgress.d'
+import { COURSE_PAGE_MODE } from './types.d'
 
 import VideoPlayer from '../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../helpers'
 import { Quiz } from '../../common/quiz/quiz'
 import { Course } from '../../../types/course'
 
+// Helper
+import { getCurrentLesson, getCurrentLessonProgress, findNextLesson } from '../../lessons/helpers'
+
 export const AccountCourseView = () => {
+  let hasActive = false
+  const pageState = {
+    pageMode: COURSE_PAGE_MODE.Progress,
+    actionButtonCaption: 'Complete and continue',
+    canCompleteLesson: false,
+    showNextLesson: false,
+    completedLessonId: 0,
+    selectedModuleId: 0,
+    selectedLessonId: 0
+  }
+
   const { query } = useRouter()
   const [lesson, setLesson] = useState<Lesson | null>(null)
-  const [canCompleteLesson, setCanCompleteLesson] = useState<boolean>(false)
-  const [completedLessonId, setCompletedLessonId] = useState<number>(0)
-
-  let hasActive = false
-  let selectedLessonId = 0
-  let selectedModuleId = 0
+  const [stateHolder, setStateHolder] = useState(pageState)
 
   const { data: { course = [] } = {}, refetch } = useQuery<Course>(GET_COURSE, {
     skip: !query?.id,
@@ -72,14 +83,15 @@ export const AccountCourseView = () => {
 
   useEffect(() => {
     if (
-      !canCompleteLesson &&
-      completedLessonId !== 0 &&
-      selectedLessonId !== 0 &&
-      completedLessonId !== selectedLessonId
+      !stateHolder.canCompleteLesson &&
+      !stateHolder.showNextLesson &&
+      stateHolder.completedLessonId !== 0 &&
+      stateHolder.selectedLessonId !== 0 &&
+      stateHolder.completedLessonId !== stateHolder.selectedLessonId
     ) {
-      console.log('completedLessonId', completedLessonId, 'selectedLessonId', selectedLessonId)
-      // console.log()
-      startLesson(getCurrentLesson())
+      startLesson(
+        getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
+      )
     }
   })
 
@@ -98,16 +110,19 @@ export const AccountCourseView = () => {
     modules.forEach((module: Module) => {
       const lessons: Lesson[] = module.lessons || []
       lessons.forEach((lesson: Lesson) => {
-        const lessonProgresses: LessonProgress[] = lesson?.lesson_progresses || []
-        lessonProgresses.forEach((lessonProgress: LessonProgress) => {
-          progress.push({
-            id: lessonProgress.id,
-            label: lessonProgress.status,
-            status: lessonProgress.status
-          })
-        })
+        const lessonProgress: LessonProgress = lesson?.lesson_progresses[0]
+        if (lessonProgress) {
+          progress.push(lessonProgress)
+        } else {
+          const lessonProgressModel: LessonProgress = {
+            label: LESSON_PROGRESS_STATUS.Pending,
+            status: LESSON_PROGRESS_STATUS.Pending
+          }
+          progress.push(lessonProgressModel)
+        }
       })
     })
+    console.log(progress)
     return progress
   }
 
@@ -119,23 +134,25 @@ export const AccountCourseView = () => {
     module?.lessons?.length &&
       module.lessons.forEach((lesson: Lesson) => {
         const progress = lesson.lesson_progresses[0]
-        actionId++
         if (!hasActive && progress?.status !== LESSON_PROGRESS_STATUS.Completed) {
           hasActive = true
           isActive = true
-          selectedModuleId = module.id
-          selectedLessonId = lesson.id
+          if (stateHolder.pageMode === COURSE_PAGE_MODE.Progress) {
+            stateHolder.selectedModuleId = module.id
+            stateHolder.selectedLessonId = lesson.id
+          }
         } else isActive = false
 
+        actionId++
         const actionModel: StepperActionModel = {
           id: actionId,
           active:
-            (isActive && !canCompleteLesson) ||
+            (isActive && !stateHolder.canCompleteLesson) ||
             progress?.status === LESSON_PROGRESS_STATUS.Completed,
           context: 'secondary',
           type: 'button',
           content:
-            progress?.status === LESSON_PROGRESS_STATUS.Pending
+            progress?.status === undefined || progress?.status === LESSON_PROGRESS_STATUS.Pending
               ? 'Start lesson'
               : 'Continue lesson',
           handleClick: () => startLesson(lesson)
@@ -144,7 +161,6 @@ export const AccountCourseView = () => {
         if (progress?.status === LESSON_PROGRESS_STATUS.Completed) {
           actionModel.context = 'success'
           actionModel.content = 'View lesson'
-          actionModel.handleClick = () => viewLesson()
         }
 
         data.push({
@@ -153,7 +169,7 @@ export const AccountCourseView = () => {
           date:
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
-              : isActive && canCompleteLesson
+              : isActive && stateHolder.canCompleteLesson
                 ? 'In progress ...'
                 : null,
           status: progress?.status,
@@ -185,45 +201,86 @@ export const AccountCourseView = () => {
     return lesson
   }
 
-  const viewLesson = () => {
-    console.log('What should I do?')
+  const scrollTo = (elementId: string = '') => {
+    switch (elementId.toLowerCase()) {
+      case '':
+      case 'top':
+      default:
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+    }
   }
 
   const startLesson = (lesson: Lesson) => {
-    setLesson(prepareLessonForStarting(lesson))
-    if (lesson.type === LESSON_TYPE.Quiz) return
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-    setCanCompleteLesson(true)
-  }
+    const lessonProgress = lesson?.lesson_progresses[0]
+    if (lessonProgress) {
+      stateHolder.selectedModuleId = lessonProgress.lesson.module_id
+      stateHolder.selectedLessonId = lessonProgress.lesson.id
+    }
+    if (lessonProgress && lessonProgress.status === LESSON_PROGRESS_STATUS.Completed) {
+      stateHolder.pageMode = COURSE_PAGE_MODE.View
+      stateHolder.actionButtonCaption = 'Next lesson'
+      stateHolder.canCompleteLesson = false
+      stateHolder.showNextLesson = true
+      setLesson(lesson)
+    } else {
+      stateHolder.pageMode = COURSE_PAGE_MODE.Progress
+      if (lesson.type !== LESSON_TYPE.Quiz) {
+        stateHolder.actionButtonCaption = 'Complete and continue'
+        stateHolder.canCompleteLesson = true
+        stateHolder.showNextLesson = false
+      }
+      setLesson(prepareLessonForStarting(lesson))
+    }
 
-  const getCurrentLesson = () => {
-    const currentLesson =
-      course?.modules
-        ?.find((module: Module) => module.id === selectedModuleId)
-        ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId) || null
-    return currentLesson
-  }
-
-  const getCurrentLessonProgress = () => {
-    const currentLesson = getCurrentLesson()
-    return currentLesson.lesson_progresses[0]
+    scrollTo('top')
   }
 
   const completeLesson = () => {
-    const lessonProgresses = getCurrentLessonProgress()
-    const lessonProgressModel = { points: 1, status: LESSON_PROGRESS_STATUS.Completed }
-    updateLessonProgressByPk({
-      variables: { id: lessonProgresses.id, changes: lessonProgressModel }
-    })
-    setCanCompleteLesson(false)
-    setCompletedLessonId(selectedLessonId)
+    const lessonProgress = getCurrentLessonProgress(
+      course,
+      stateHolder.selectedModuleId,
+      stateHolder.selectedLessonId
+    )
+
+    if (lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed) {
+      stateHolder.pageMode = COURSE_PAGE_MODE.View
+      const nextLesson = findNextLesson(
+        course,
+        stateHolder.selectedModuleId,
+        stateHolder.selectedLessonId
+      )
+      if (nextLesson) {
+        stateHolder.selectedModuleId = nextLesson.selectedModuleId
+        stateHolder.selectedLessonId = nextLesson.selectedLessonId
+        startLesson(
+          getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
+        )
+      } else {
+        stateHolder.showNextLesson = false
+        stateHolder.canCompleteLesson = false
+        setStateHolder(stateHolder)
+      }
+    } else {
+      stateHolder.pageMode = COURSE_PAGE_MODE.Progress
+      stateHolder.canCompleteLesson = false
+      stateHolder.showNextLesson = false
+      stateHolder.completedLessonId = stateHolder.selectedLessonId
+
+      const lessonProgressModel = { points: 1, status: LESSON_PROGRESS_STATUS.Completed }
+      updateLessonProgressByPk({
+        variables: { id: lessonProgress?.id, changes: lessonProgressModel }
+      })
+    }
   }
 
   const onQuizComplete = () => {
-    setCanCompleteLesson(true)
+    stateHolder.actionButtonCaption = 'Complete and continue'
+    stateHolder.canCompleteLesson = true
+    stateHolder.showNextLesson = false
+    setStateHolder(stateHolder)
   }
 
   return (
@@ -257,10 +314,10 @@ export const AccountCourseView = () => {
                     <Quiz questions={lesson.questions} onComplete={onQuizComplete} />
                   )}
                   {lesson.content && <p>{lesson.content}</p>}
-                  {canCompleteLesson && (
+                  {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) && (
                     <Button
                       context="secondary"
-                      content="Complete and continue"
+                      content={stateHolder.actionButtonCaption}
                       data-cy="complete"
                       onClick={completeLesson}
                     />
@@ -270,7 +327,7 @@ export const AccountCourseView = () => {
             ) : (
               <Details2 open title="Details">
                 {course?.media?.length && (
-                  <Image alt={course?.title} src={course?.media[0]?.filename} />
+                  <Image alt={course?.title} src={`/${course.media[0].filename}`} />
                 )}
                 <DetailsText content="Author" text={course?.author ?? ''} />
                 <DetailsText content="Description" text={course?.description ?? ''} />

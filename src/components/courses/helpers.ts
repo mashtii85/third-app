@@ -26,7 +26,7 @@ export const chartData = (data: LessonProgress[]) => {
     { id: 3, label: 'completed', value: completed }
   ]
 
-  result.status = { started, pending: total - started, completed, total }
+  result.status = { started, pending: total - (started + completed), completed, total }
 
   return result
 }
