@@ -4,12 +4,12 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { ADD_TAXONOMY, UPDATE_TAXONOMY } from '../queries'
+import { UPDATE_TAXONOMY } from '../queries'
 
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import { useCreateTaxonomy } from '../hooks/useCreate'
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 
@@ -17,7 +17,7 @@ import { statusActive } from '../../../constants/status'
 import { TaxonomySchema } from './schema'
 
 // Types
-import { TaxonomyFormProps } from './type.d'
+import { TaxonomyFormProps } from './type'
 import { Taxonomy } from '../../../types/taxonomy'
 
 export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) => {
@@ -28,13 +28,13 @@ export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) =>
     resolver: yupResolver(TaxonomySchema())
   })
 
-  const [updateTaxonomy] = useMutation(UPDATE_TAXONOMY, {
-    onCompleted: () => {
-      onSuccess()
-    }
+  const { createTaxonomy } = useCreateTaxonomy({
+    category: 'course-categories',
+    onCompleted: onSuccess,
+    onError: console.log
   })
 
-  const [addTaxonomy] = useMutation(ADD_TAXONOMY, {
+  const [updateTaxonomy] = useMutation(UPDATE_TAXONOMY, {
     onCompleted: () => {
       onSuccess()
     }
@@ -43,7 +43,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) =>
   const submit = async ({ id, ...form }: Taxonomy) => {
     return id
       ? await updateTaxonomy({ variables: { taxonomyId: id, changes: form } })
-      : await addTaxonomy({ variables: { objects: [form] } })
+      : await createTaxonomy({ variables: { objects: [form] } })
   }
 
   const defaultOptions = {

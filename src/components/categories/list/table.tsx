@@ -61,16 +61,13 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     })
   }
 
-  const handleDeleteSuccess = () => {
-    offCanvas.close()
-    refetch()
-  }
+  const handleDeleteSuccess = () => offCanvas.close()
+
   const {
-    data: { taxonomy } = {
-      taxonomy: []
+    data: { taxonomies } = {
+      taxonomies: []
     },
-    loading,
-    refetch
+    loading
   } = useQuery(GET_TAXONOMIES, {
     variables: {
       category: defaultTab
@@ -78,7 +75,6 @@ export const TaxonomyTable = ({ title }: TableProps) => {
   })
 
   const handleSuccess = () => {
-    refetch()
     offCanvas.close()
   }
 
@@ -99,7 +95,7 @@ export const TaxonomyTable = ({ title }: TableProps) => {
   }
 
   const rows = () =>
-    taxonomy.map((item: Taxonomy) => {
+    taxonomies.map((item: Taxonomy) => {
       return {
         name: item.name,
         status: capitalize(item.status),
