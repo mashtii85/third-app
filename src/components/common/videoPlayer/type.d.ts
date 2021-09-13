@@ -29,6 +29,7 @@ export interface PlayerState {
   playbackRate: number
   showVolumeControl: boolean
   loop: boolean
+  fullScreen: boolean
   selectedVideoIndex: number
 }
 
@@ -56,13 +57,20 @@ type SetVideo = {
   type: 'setPlayingVideo'
   payload: number
 }
+
 type ToggleIsPlaying = {
   type: 'toggleIsPlaying'
 }
+
+type ToggleFullScreen = {
+  type: 'toggleFullScreen'
+}
+
 export type PlayerActionTypes =
   | SetVolume
   | SetProgress
   | ToggleIsPlaying
+  | ToggleFullScreen
   | SetDuration
   | SetShowVolumeControl
   | SetPlaybackSpeed

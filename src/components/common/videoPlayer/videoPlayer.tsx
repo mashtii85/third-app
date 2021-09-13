@@ -1,8 +1,8 @@
 import { ChangeEvent, useReducer, useRef } from 'react'
 import ReactPlayer from 'react-player'
 import BaseReactPlayer from 'react-player/base'
-
 import styled, { css } from 'styled-components'
+import fullScreen from '../../../utils/fullScreen'
 import { FavIcon } from './components/favIcon'
 import { FullScreen } from './components/fullScreen'
 import { Next } from './components/next'
@@ -37,6 +37,10 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
       newState.playing = !newState.playing
       return { ...newState }
     }
+    case 'toggleFullScreen': {
+      newState.fullScreen = !newState.fullScreen
+      return { ...newState }
+    }
     case 'setDuration': {
       newState.duration = action.payload
       return { ...newState }
@@ -62,6 +66,8 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
 const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
   const playerRef = useRef<BaseReactPlayer<{}>>(null)
 
+  const videoPlayerWrapperRef = useRef(null)
+
   const spentTime = useRef('0')
 
   const isSeeking = useRef(false)
@@ -79,6 +85,7 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
     playbackRate: 1.0,
     loop: false,
     showVolumeControl: false,
+    fullScreen: false,
     selectedVideoIndex: 0
   })
   const { src, title, desc } = videos[state.selectedVideoIndex]
@@ -147,6 +154,18 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
     }
   }
 
+  const handleFullScreenClick = () => {
+    if (state.fullScreen) {
+      fullScreen.fullscreenEnabled &&
+        fullScreen &&
+        fullScreen.exitFullscreen &&
+        fullScreen.exitFullscreen()
+    } else {
+      fullScreen.requestFullscreen(videoPlayerWrapperRef.current)
+    }
+    dispatch({ type: 'toggleFullScreen' })
+  }
+
   let time
   if (spentTime.current) {
     const pureSeconds = spentTime.current.split('.')[0]
@@ -158,7 +177,7 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper ref={videoPlayerWrapperRef}>
       <HeadOverlay>
         <InfoWrapper>
           <VideoTitle>{title}</VideoTitle>
@@ -239,7 +258,9 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
             </VolumeControlInputWrapper>
           </IconWrapper>
           <Setting selectedSpeed={state.playbackRate} onSpeedChange={handleSpeedChange} />
-          <FullScreen />
+          <IconWrapper onClick={handleFullScreenClick}>
+            <FullScreen />
+          </IconWrapper>
         </MainControlsWrapper>
       </BottomOverlay>
     </Wrapper>
