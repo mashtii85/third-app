@@ -41,7 +41,11 @@ const MyApp = (props: AppProps) => {
           <UserProvider>
             <AuthorizationProvider>
               <OffCanvasProvider>
-                <AppLayout Component={props.Component} Layout={Layout} pageProps={props.pageProps} />
+                <AppLayout
+                  Component={props.Component}
+                  Layout={Layout}
+                  pageProps={props.pageProps}
+                />
               </OffCanvasProvider>
             </AuthorizationProvider>
           </UserProvider>
