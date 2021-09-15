@@ -40,5 +40,5 @@ export const Navigation = () => {
     return link
   })
 
-  return <Navbar brand={Config.Brand.logo} widgets={links} />
+  return <Navbar contained={false} brand={Config.Brand.logo} widgets={links} />
 }
