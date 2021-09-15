@@ -32,7 +32,7 @@ export const CourseProgressChart = ({ pieData }: CourseProgressChartProps) => {
   return (
     <StyledHeader>
       <StyledPieChart>
-        {/* <PieChart data={data} {...arg} /> */}
+        <PieChart data={data} {...arg} />
         <StyledChartInner>
           <p>{`${status.completed} / ${status.total}`}</p>
           <p>Lessons</p>
