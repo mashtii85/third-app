@@ -5,11 +5,15 @@
 // React
 import { useState, useEffect } from 'react'
 
+// Styled components
+import { CompletionCertificate } from './completionCertificate'
+
 // Apollo
 import { useQuery, useMutation } from '@apollo/client'
 
 import { GET_COURSE } from '../queries'
 import { UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from '../../lessons/queries'
+import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../enrollments/queries/queries'
 
 // Next
 import { useRouter } from 'next/router'
@@ -37,6 +41,7 @@ import { StepperActionModel, StepperModel } from '../../../types/stepper'
 import { Lesson, LESSON_TYPE } from '../../../types/lesson.d'
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../types/lessonProgress.d'
 import { COURSE_PAGE_MODE } from './types.d'
+import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
 
 import VideoPlayer from '../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../helpers'
@@ -45,6 +50,9 @@ import { Course } from '../../../types/course'
 
 // Helper
 import { getCurrentLesson, getCurrentLessonProgress, findNextLesson } from '../../lessons/helpers'
+
+// User
+import { useCurrentUser } from '../../../utils/useCurrentUser'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -55,7 +63,13 @@ export const AccountCourseView = () => {
     showNextLesson: false,
     completedLessonId: 0,
     selectedModuleId: 0,
-    selectedLessonId: 0
+    selectedLessonId: 0,
+    certificateModel: {
+      username: '',
+      course: '',
+      dateCompleted: '',
+      certificateId: ''
+    }
   }
 
   const { query } = useRouter()
@@ -70,7 +84,11 @@ export const AccountCourseView = () => {
   })
 
   const [updateLessonProgressByPk] = useMutation(UPDATE_LESSON_PROGRESS_BY_PK, {
-    onCompleted: () => {
+    onCompleted: (data) => {
+      const progress = data.update_lesson_progress_by_pk
+      fillCertificateModel(
+        `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
+      )
       refetch()
     }
   })
@@ -80,6 +98,14 @@ export const AccountCourseView = () => {
       refetch()
     }
   })
+
+  const [updateCourseEnrollmentByPk] = useMutation(UPDATE_COURSE_ENROLLMENT_BY_PK, {
+    onCompleted: () => {
+      refetch()
+    }
+  })
+
+  const { user } = useCurrentUser()
 
   useEffect(() => {
     if (
@@ -122,7 +148,6 @@ export const AccountCourseView = () => {
         }
       })
     })
-    console.log(progress)
     return progress
   }
 
@@ -219,11 +244,13 @@ export const AccountCourseView = () => {
       stateHolder.selectedModuleId = lessonProgress.lesson.module_id
       stateHolder.selectedLessonId = lessonProgress.lesson.id
     }
+
     if (lessonProgress && lessonProgress.status === LESSON_PROGRESS_STATUS.Completed) {
       stateHolder.pageMode = COURSE_PAGE_MODE.View
       stateHolder.actionButtonCaption = 'Next lesson'
       stateHolder.canCompleteLesson = false
       stateHolder.showNextLesson = true
+
       setLesson(lesson)
     } else {
       stateHolder.pageMode = COURSE_PAGE_MODE.Progress
@@ -244,36 +271,72 @@ export const AccountCourseView = () => {
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
+    const nextLesson = findNextLesson(
+      course,
+      stateHolder.selectedModuleId,
+      stateHolder.selectedLessonId
+    )
+    if (!nextLesson) stateHolder.pageMode = COURSE_PAGE_MODE.Finished
 
-    if (lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed) {
+    if (
+      lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed &&
+      stateHolder.pageMode !== COURSE_PAGE_MODE.Finished
+    ) {
       stateHolder.pageMode = COURSE_PAGE_MODE.View
-      const nextLesson = findNextLesson(
-        course,
-        stateHolder.selectedModuleId,
-        stateHolder.selectedLessonId
+      stateHolder.selectedModuleId = nextLesson.selectedModuleId
+      stateHolder.selectedLessonId = nextLesson.selectedLessonId
+      startLesson(
+        getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
       )
-      if (nextLesson) {
-        stateHolder.selectedModuleId = nextLesson.selectedModuleId
-        stateHolder.selectedLessonId = nextLesson.selectedLessonId
-        startLesson(
-          getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
-        )
-      } else {
-        stateHolder.showNextLesson = false
-        stateHolder.canCompleteLesson = false
-        setStateHolder(stateHolder)
-      }
     } else {
-      stateHolder.pageMode = COURSE_PAGE_MODE.Progress
+      if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished)
+        stateHolder.pageMode = COURSE_PAGE_MODE.Progress
       stateHolder.canCompleteLesson = false
       stateHolder.showNextLesson = false
       stateHolder.completedLessonId = stateHolder.selectedLessonId
 
-      const lessonProgressModel = { points: 1, status: LESSON_PROGRESS_STATUS.Completed }
-      updateLessonProgressByPk({
-        variables: { id: lessonProgress?.id, changes: lessonProgressModel }
-      })
+      if (lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed) {
+        fillCertificateModel(
+          `${formatDateStandard(lessonProgress.updated_at)} ${formatTime(
+            lessonProgress.updated_at
+          )}`
+        )
+      } else {
+        const lessonProgressModel = { points: 1, status: LESSON_PROGRESS_STATUS.Completed }
+        updateLessonProgressByPk({
+          variables: { id: lessonProgress?.id, changes: lessonProgressModel }
+        })
+        if (stateHolder.pageMode === COURSE_PAGE_MODE.Finished) {
+          const courseEnrollmentModel = { status: COURSE_ENROLLMENT_STATUS.Completed }
+          updateCourseEnrollmentByPk({
+            variables: { id: course.course_enrollments[0].id, changes: courseEnrollmentModel }
+          })
+        }
+      }
     }
+  }
+
+  const fillCertificateModel = (completedAt: string) => {
+    if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished) return
+    loadPageState()
+    pageState.certificateModel = {
+      username: `${user.name_first} ${user.name_last}`,
+      course: course.title,
+      dateCompleted: completedAt,
+      certificateId: 'BVM QX4 CV6'
+    }
+    setStateHolder(pageState)
+  }
+
+  const loadPageState = () => {
+    pageState.actionButtonCaption = stateHolder.actionButtonCaption
+    pageState.canCompleteLesson = stateHolder.canCompleteLesson
+    pageState.certificateModel = stateHolder.certificateModel
+    pageState.completedLessonId = stateHolder.completedLessonId
+    pageState.pageMode = stateHolder.pageMode
+    pageState.selectedLessonId = stateHolder.selectedLessonId
+    pageState.selectedModuleId = stateHolder.selectedModuleId
+    pageState.showNextLesson = stateHolder.showNextLesson
   }
 
   const onQuizComplete = () => {
@@ -298,13 +361,25 @@ export const AccountCourseView = () => {
       </Column>
 
       <Column md={8}>
-        <Heading tag="h2" content={lesson ? lesson.title : 'Course overview'} />
-
+        {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
+          <Heading tag="h2" content="Completion Certificate" />
+        ) : (
+          <Heading tag="h2" content={lesson ? lesson.title : 'Course overview'} />
+        )}
         <Space />
 
         <Row>
           <Column md={8}>
-            {lesson ? (
+            {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
+              <Details2 open title="Congratulation, You have been promoted!">
+                <CompletionCertificate
+                  username={stateHolder.certificateModel.username}
+                  course={stateHolder.certificateModel.course}
+                  dateCompleted={stateHolder.certificateModel.dateCompleted}
+                  certificateId={stateHolder.certificateModel.certificateId}
+                />
+              </Details2>
+            ) : lesson ? (
               <Details2 open title="Lesson">
                 <>
                   {lesson.type === LESSON_TYPE.Video && lesson.media && (

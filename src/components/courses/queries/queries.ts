@@ -5,7 +5,7 @@
 // Apollo
 import { gql } from '@apollo/client'
 import { COURSE_FIELDS } from './fragments'
-import { COURSE_AGGREGATE_FIELDS } from '../../enrollments/queries/fragments'
+import { COURSE_AGGREGATE_FIELDS, ENROLLMENTS_FIELDS } from '../../enrollments/queries/fragments'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
 
 export const GET_COURSES = gql`
@@ -62,10 +62,14 @@ export const GET_COURSE = gql`
       media {
         ...MediaFields
       }
+      course_enrollments {
+        ...EnrollmentFields
+      }
     }
   }
   ${COURSE_FIELDS}
   ${MEDIA_FIELDS}
+  ${ENROLLMENTS_FIELDS}
 `
 
 export const CREATE_COURSE = gql`

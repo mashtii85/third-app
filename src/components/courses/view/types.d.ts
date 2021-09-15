@@ -10,5 +10,6 @@ export enum CLIENT_TAB {
 
 export enum COURSE_PAGE_MODE {
   View = 'View',
-  Progress = 'Progress'
+  Progress = 'Progress',
+  Finished = 'Finished'
 }

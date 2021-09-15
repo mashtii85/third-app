@@ -10,6 +10,7 @@ export const ENROLLMENTS_FIELDS = gql`
     id
     status
     created_at
+    updated_at
   }
 `
 export const COURSE_AGGREGATE_FIELDS = gql`

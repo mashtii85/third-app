@@ -17,6 +17,7 @@ export const UPDATE_LESSON_PROGRESS_BY_PK = gql`
   mutation UpdateLessonProgress($id: Int!, $changes: lesson_progress_set_input) {
     update_lesson_progress_by_pk(pk_columns: { id: $id }, _set: $changes) {
       id
+      updated_at
     }
   }
 `
