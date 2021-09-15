@@ -46,7 +46,7 @@ import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
 import VideoPlayer from '../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../helpers'
 import { Quiz } from '../../common/quiz/quiz'
-import { Course } from '../../../types/course'
+import { CourseData } from '../hooks/types'
 
 // Helper
 import { getCurrentLesson, getCurrentLessonProgress, findNextLesson } from '../../lessons/helpers'
@@ -76,7 +76,7 @@ export const AccountCourseView = () => {
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const [stateHolder, setStateHolder] = useState(pageState)
 
-  const { data: { course = [] } = {}, refetch } = useQuery<Course>(GET_COURSE, {
+  const { data: { course } = { course: {} }, refetch } = useQuery<CourseData>(GET_COURSE, {
     skip: !query?.id,
     variables: {
       courseId: parseInt(query?.id as string)
@@ -195,8 +195,8 @@ export const AccountCourseView = () => {
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
               : isActive && stateHolder.canCompleteLesson
-              ? 'In progress ...'
-              : null,
+                ? 'In progress ...'
+                : null,
           status: progress?.status,
           actions: [actionModel]
         })
