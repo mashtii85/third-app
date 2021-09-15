@@ -1,5 +1,5 @@
 /**
- * Src - Common - Tab
+ * Components - Common - Tab
  */
 
 import styled from 'styled-components'

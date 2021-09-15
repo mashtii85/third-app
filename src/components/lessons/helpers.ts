@@ -1,5 +1,5 @@
 /**
- * Components - Course - Lesson - Helper
+ * Components - Lessons - Helpers
  */
 
 import { Course } from '../../types/course'
