@@ -19,13 +19,13 @@ export const DashboardView = () => {
   const renderSwitch = (type: ACCOUNT_TYPE) => {
     switch (type) {
       case ACCOUNT_TYPE.Client:
-        return <ClientDashboardOverview clientId={user.id} />
+        return <ClientDashboardOverview clientId={user.client_id} />
 
       // todo: this is not right
       case ACCOUNT_TYPE.Account:
         return (
           <Details2 open title="Courses in progress">
-            <AccountCourseList accountId={user.id} />
+            <AccountCourseList accountId={user.account_id} />
           </Details2>
         )
       case ACCOUNT_TYPE.Admin:

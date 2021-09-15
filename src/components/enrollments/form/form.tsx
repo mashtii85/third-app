@@ -62,7 +62,7 @@ export const CourseForm = ({
 
   const onSubmit = async (form: EnrollmentFormType) => {
     await createEnrollment({
-      variables: { clientId: user.id, accountId: user.id, ...form }
+      variables: { clientId: user.client_id, accountId: user.account_id, ...form }
     })
 
     console.log(form)

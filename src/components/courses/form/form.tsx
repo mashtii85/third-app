@@ -46,7 +46,7 @@ export const CourseForm = ({
   })
 
   const { createCourse } = useCreateCourse({
-    clientId: user.id,
+    clientId: user.client_id,
     filters,
     onCompleted: onSuccess,
     onError: (error) => {
@@ -62,7 +62,7 @@ export const CourseForm = ({
 
   const onSubmit = async (form: CourseFormType) => {
     await createCourse({
-      variables: { clientId: user.id, accountId: user.id, ...form }
+      variables: { clientId: user.client_id, accountId: user.account_id, ...form }
     })
 
     console.log(form)

@@ -10,6 +10,8 @@ import { User, USER_STATUS } from '../types/user.d'
 export const Users: User[] = [
   {
     id: 1,
+    client_id: 1,
+    account_id: 1,
     account_type: ACCOUNT_TYPE.Admin,
     email: 'admin@example.com',
     name_first: 'Admin',
@@ -23,6 +25,8 @@ export const Users: User[] = [
   },
   {
     id: 2,
+    client_id: 2,
+    account_id: 2,
     account_type: ACCOUNT_TYPE.Client,
     email: 'uaefa@example.com',
     name_first: 'UAE FA',
@@ -36,6 +40,8 @@ export const Users: User[] = [
   },
   {
     id: 3,
+    client_id: 3,
+    account_id: 3,
     account_type: ACCOUNT_TYPE.Client,
     email: 'drykiss@example.com',
     name_first: 'DryKISS',
@@ -49,6 +55,8 @@ export const Users: User[] = [
   },
   {
     id: 4,
+    client_id: 2,
+    account_id: 4,
     account_type: ACCOUNT_TYPE.Account,
     email: 'demo@example.com',
     name_first: 'Demo',

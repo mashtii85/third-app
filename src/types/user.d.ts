@@ -25,6 +25,8 @@ export interface UserCustomFields {
 
 export interface User {
   id: number
+  client_id?: number
+  account_id?: number
   account_type?: ACCOUNT_TYPE
   email: string
   name?: string

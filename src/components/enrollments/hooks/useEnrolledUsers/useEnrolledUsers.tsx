@@ -32,7 +32,11 @@ export const useEnrolledUsers = ({
   filters?: EnrolledUsersFilters
 }): EnrolledUsersOutputData => {
   const { user } = useContext(UserContext)
-  const where: LooseObject | null = prepareVariables({ clientId: user.id, courseId, filters })
+  const where: LooseObject | null = prepareVariables({
+    clientId: user.client_id,
+    courseId,
+    filters
+  })
 
   const { data, error, loading } = useQuery<EnrolledUsersData, EnrolledUsersVariables>(
     GET_ENROLLED_USERS,

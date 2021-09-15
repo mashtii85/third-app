@@ -26,7 +26,7 @@ const PageDashboard: NextPage = () => {
     let View
     switch (user.account_type) {
       case ACCOUNT_TYPE.Client:
-        View = <Dashboard View={<ClientEnrollmentsList clientId={user.id} />} />
+        View = <Dashboard View={<ClientEnrollmentsList clientId={user.client_id} />} />
         break
       case ACCOUNT_TYPE.Account:
         View = View = <div>not implemented</div>
