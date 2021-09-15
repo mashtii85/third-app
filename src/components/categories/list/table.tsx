@@ -4,7 +4,7 @@
 // React
 import { useContext, MouseEvent } from 'react'
 // UI
-import { capitalize, Details, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
+import { capitalize, Details2, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
 import { TaxonomyForm } from '../form/form'
 import { TaxonomyDelete } from '../module/delete'
 // Next
@@ -105,8 +105,8 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     })
 
   return (
-    <Details button="Add New" open summary={title} handleClick={handleClick}>
+    <Details2 button="Add New" open summary={title} handleClick={handleClick}>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
-    </Details>
+    </Details2>
   )
 }

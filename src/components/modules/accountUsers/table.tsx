@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import {
   AuthorizationContext,
   capitalize,
-  Details,
+  Details2,
   Table,
   TableActions,
   TableLink
@@ -91,8 +91,8 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
       }))
 
   return (
-    <Details open summary="Accounts">
+    <Details2 open summary="Accounts">
       <Table columns={columns} rows={rows()} />
-    </Details>
+    </Details2>
   )
 }

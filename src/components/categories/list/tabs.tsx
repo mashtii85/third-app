@@ -13,12 +13,12 @@ import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../common/tab'
 
 import TaxonomyList from './list'
-
+import { TAXONOMY_TABS } from '../../../constants/tabs'
 const TaxonomyTabs = () => {
   const { query } = useRouter()
 
   const tab = useMemo(() => {
-    return query.tab || 'course-categories'
+    return query.tab || TAXONOMY_TABS.COURSE_CATEGORIES
   }, [query.tab])
 
   return (

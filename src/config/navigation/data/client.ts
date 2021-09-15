@@ -15,6 +15,25 @@ export const Client: Navigation = {
       to: pages.dashboard.root
     },
     {
+      id: 'navAccountMenu',
+      name: 'Accounts',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navAccounts',
+            name: 'List',
+            to: pages.dashboard.accounts.list
+          },
+          {
+            id: 'navAccountsCreate',
+            name: 'Create',
+            to: pages.dashboard.accounts.create
+          }
+        ]
+      }
+    },
+    {
       id: 'navCoursesMenu',
       name: 'Courses',
       type: {

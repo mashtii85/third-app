@@ -5,7 +5,7 @@
 // Apollo
 import { gql } from '@apollo/client'
 
-import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS } from '../accounts/queries'
+import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS } from '../accounts/queries/fragments'
 
 export const USER_FIELDS = gql`
   fragment UserFields on user {
