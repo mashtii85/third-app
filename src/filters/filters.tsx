@@ -9,7 +9,7 @@ import { memo } from 'react'
 import { useForm } from 'react-hook-form'
 
 // UI
-import { Button, Column, Details, Form, FormLabel, Row, Search } from '@drykiss/industry-ui'
+import { Button, Column, Details2, Form, FormLabel, Row, Search } from '@drykiss/industry-ui'
 import { AddButton } from '../components/common/buttons/addButton'
 
 export const Filters = memo(
@@ -59,7 +59,7 @@ export const Filters = memo(
 
     return (
       <Form handleSubmit={handleSubmit(handleSearch)}>
-        <Details summary="Filters">
+        <Details2 title="Filters">
           <Row>
             <Column sm={12} lg={12}>
               <FormLabel label="">
@@ -89,7 +89,7 @@ export const Filters = memo(
           <AddButton content="Search" context="secondary" handleClick={handleSearch} type="submit">
             <Button content="Reset filters" context="danger" onClick={resetFilters} size="sm" />
           </AddButton>
-        </Details>
+        </Details2>
       </Form>
     )
   },
