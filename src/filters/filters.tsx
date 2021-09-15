@@ -34,20 +34,13 @@ export const Filters = memo(
       const filters = data
 
       if (q !== lastQuery) {
-        filters.q = `%${q}%` || '%'
+        filters.q = `${q}%` || '%'
 
         // If search value is a number, set it as id for Job Id and Invoice Id search
         const queryIsNumber = /^\d+$/.test(q)
 
         if ('id' in initialValues) {
           filters.id = queryIsNumber ? Number(q) : null
-        }
-        if ('meta' in initialValues) {
-          filters.meta = queryIsNumber
-            ? {
-                invoiceNumber: Number(q)
-              }
-            : null
         }
 
         if (filters.id || filters.meta) {

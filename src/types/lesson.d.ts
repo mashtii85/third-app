@@ -18,7 +18,6 @@ export enum LESSON_STATUS {
   Inactive = 'inactive'
 }
 
-/* eslint-disable camelcase */
 type VideoLesson = {
   id: number
   client_id: number

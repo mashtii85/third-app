@@ -1,15 +1,15 @@
 /**
- * Components - Assets - List - Filter
+ * Components - Enrollments - List - Filter
  */
 
 // UI
 
-import { FormField, FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../constants/status'
+import { FormLabel, SelectField } from '@drykiss/industry-ui'
+import { statusActive } from '../../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
-import { LooseObject } from '../../../types/object'
+import { LooseObject } from '../../../../types/object'
 
-export const CourseFilters = ({
+export const EnrollmentsFilters = ({
   control,
   errors,
   register
@@ -27,9 +27,6 @@ export const CourseFilters = ({
 
   return (
     <>
-      <FormLabel label="Description">
-        <FormField {...defaultOptions} name="description" />
-      </FormLabel>
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
       </FormLabel>

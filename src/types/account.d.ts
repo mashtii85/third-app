@@ -8,7 +8,6 @@ export enum ACCOUNT_TYPE {
   Account = 'account'
 }
 
-/* eslint-disable camelcase */
 export interface Account {
   id: number
   name: string

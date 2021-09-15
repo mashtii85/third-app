@@ -3,7 +3,6 @@ export enum TAXONOMY_STATUS {
   Inactive = 'inactive'
 }
 
-/* eslint-disable camelcase */
 export interface Taxonomy {
   id: number
   name: string

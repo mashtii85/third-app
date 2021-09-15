@@ -9,7 +9,6 @@ export enum USER_STATUS {
   Banned = 'banned'
 }
 
-/* eslint-disable camelcase */
 export interface AccountUsers {
   account_id: number
   id: number
@@ -20,12 +19,10 @@ export interface AccountUsers {
   account: Account
 }
 
-/* eslint-disable camelcase */
 export interface UserCustomFields {
   phone?: string
 }
 
-/* eslint-disable camelcase */
 export interface User {
   id: number
   account_type?: ACCOUNT_TYPE

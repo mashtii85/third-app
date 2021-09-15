@@ -1,9 +1,16 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "extends": [
-    "standard", "standard-react", "prettier", "prettier-standard"
+    "standard",
+    "standard-react",
+    "prettier",
+    "prettier-standard"
   ],
   "env": {
     "browser": true,
@@ -30,12 +37,19 @@
     }
   },
   "rules": {
+    "camelcase": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
-
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
     "prettier/prettier": [
       1,
-      { "printWidth": 100, "semi": false, "singleQuote": true, "trailingComma": "none" }
+      {
+        "printWidth": 100,
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "none"
+      }
     ],
     // GraphQL rules
     // "graphql/template-strings": [
@@ -45,7 +59,6 @@
     //     schemaJson: require("./schema.json")
     //   }
     // ],
-
     "max-len": [
       "error",
       {
@@ -55,22 +68,17 @@
         "tabWidth": 2
       }
     ],
-
     // Next JS does not require react import
     "react/react-in-jsx-scope": "off",
-
     // Make sure imports are taken care off
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-
     // don"t force es6 functions to include space before parent
     "space-before-function-parent": 0,
     "react/prop-types": 0,
-
     // allow specifying true explicitly for boolean props
     "react/jsx-boolean-value": 0,
     "react-hooks/rules-of-hooks": "error",
     "react/no-did-update-set-state": 0
   }
-
 }

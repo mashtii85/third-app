@@ -170,8 +170,8 @@ export const AccountCourseView = () => {
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
               : isActive && stateHolder.canCompleteLesson
-                ? 'In progress ...'
-                : null,
+              ? 'In progress ...'
+              : null,
           status: progress?.status,
           actions: [actionModel]
         })

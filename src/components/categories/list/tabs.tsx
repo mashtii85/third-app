@@ -10,6 +10,8 @@ import { useRouter } from 'next/router'
 
 // UI
 import { Tabs } from '@drykiss/industry-ui'
+import { Tab } from '../../common/tab'
+
 import TaxonomyList from './list'
 
 const TaxonomyTabs = () => {
@@ -21,13 +23,13 @@ const TaxonomyTabs = () => {
 
   return (
     <Tabs key={tab}>
-      <div
+      <Tab
         active={tab === 'course-categories'}
         label="Course Categories"
-        activeTab="Course Categories"
+      // activeTab="Course Categories"
       >
         <TaxonomyList type="course-categories" title="Course Categories" />
-      </div>
+      </Tab>
     </Tabs>
   )
 }

@@ -34,6 +34,20 @@ export const Client: Navigation = {
       }
     },
     {
+      id: 'navEnrollmentsMenu',
+      name: 'Enrollments',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navEnrollments',
+            name: 'List',
+            to: pages.dashboard.enrollments.root
+          }
+        ]
+      }
+    },
+    {
       id: 'navAccount',
       icon: 'cog',
       name: '',

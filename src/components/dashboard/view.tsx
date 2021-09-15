@@ -20,6 +20,8 @@ export const DashboardView = () => {
     switch (type) {
       case ACCOUNT_TYPE.Client:
         return <ClientDashboardOverview clientId={user.id} />
+
+      // todo: this is not right
       case ACCOUNT_TYPE.Account:
         return (
           <Details2 open title="Courses in progress">

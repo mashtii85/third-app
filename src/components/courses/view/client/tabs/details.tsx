@@ -8,7 +8,7 @@ export const ClientDetails = ({ courseId }: { courseId: number }) => {
   const { course, loading, error } = useCourse(courseId)
   console.log(course)
   if (error) {
-    console.log(error.message)
+    console.error(error.message)
   }
   if (loading) {
     console.log('loading')

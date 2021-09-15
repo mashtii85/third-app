@@ -42,7 +42,11 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "cSpell.words": [
+    "deepmerge",
     "drykiss",
+    "hookform",
+    "ilike",
+    "realworldacademies",
     "showvolumecontrol"
   ]
 }

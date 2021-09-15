@@ -4,4 +4,4 @@
 
 export { ClientDetails } from './details'
 export { ClientLessons } from './lessons'
-export { ClientUserEnrollments } from './enrollments'
+export { EnrolledCourses } from './enrollments'

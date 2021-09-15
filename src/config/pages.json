@@ -25,6 +25,9 @@
       "manage": "/dashboard/courses/manage",
       "view_by_id": "/dashboard/courses/view"
     },
+    "enrollments": {
+      "root": "/dashboard/enrollments"
+    },
     "playground": "/dashboard/playground"
   }
 }

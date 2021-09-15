@@ -9,13 +9,13 @@ import pages from '../../../config/pages.json'
 import { useEnrollments } from '../../enrollments/hooks'
 
 export const AccountCourseList = ({ accountId }: { accountId: number }) => {
-  const { enrollments, error, loading } = useEnrollments({ userId: accountId })
+  const { enrollments, error, loading } = useEnrollments({ accountId })
 
   if (loading) {
     console.log('loading')
   }
   if (error) {
-    console.log('error')
+    console.error(error.message)
   }
 
   return (

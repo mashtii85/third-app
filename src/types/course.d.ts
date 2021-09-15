@@ -10,7 +10,6 @@ export interface CustomFields {
   author?: string
 }
 
-/* eslint-disable camelcase */
 export interface Course {
   id?: number
   title: string

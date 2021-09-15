@@ -1,25 +1,9 @@
 /**
- * Components - Courses - View - Client - Tabs - Enrollments
+ * Components - Courses - View - Client - Tabs - Details
  */
 
-import { useEnrolledUser } from '../../../../enrollments/hooks'
+import { EnrolledUsersList } from '../../../../enrollments/lists/enrolledUsers/enrolledUsers'
 
-export const ClientUserEnrollments = ({ courseId }: { courseId: number }) => {
-  const { enrollments, loading, error } = useEnrolledUser(courseId)
-  if (error) {
-    console.log(error.message)
-  }
-  if (loading) {
-    console.log('loading')
-  }
-
-  return (
-    <>
-      Enrollments
-      {enrollments.map((item) => {
-        return JSON.stringify(item)
-      })}
-      <p>data fetched already</p>
-    </>
-  )
+export const EnrolledCourses = ({ courseId }: { courseId: number }) => {
+  return <EnrolledUsersList courseId={courseId} />
 }
