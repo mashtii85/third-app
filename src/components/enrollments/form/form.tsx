@@ -50,7 +50,7 @@ export const CourseForm = ({
     filters,
     onCompleted: onSuccess,
     onError: (error) => {
-      console.log(error)
+      console.error(error)
     }
   })
 

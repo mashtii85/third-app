@@ -33,7 +33,7 @@ export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
 
   const { createAccount } = useCreateAccount({
     onCompleted: onSuccess,
-    onError: console.log
+    onError: console.error
   })
 
   const submit = async (form: Account) => {

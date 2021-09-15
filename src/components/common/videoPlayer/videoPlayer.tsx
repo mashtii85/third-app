@@ -203,11 +203,11 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
         playbackRate={state.playbackRate}
         loop={state.loop}
         url={src}
-        onReady={() => console.log('onReady')}
-        onStart={() => console.log('onStart')}
-        onSeek={(e) => console.log('onSeek', e)}
+        onReady={() => console.info('onReady')}
+        onStart={() => console.info('onStart')}
+        onSeek={(e) => console.info('onSeek', e)}
         onEnded={handleEnded}
-        onError={(e) => console.log('onError', e)}
+        onError={(e) => console.error('onError', e)}
         onProgress={handleProgress}
         onDuration={handleDuration}
       />

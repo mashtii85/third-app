@@ -14,7 +14,7 @@ export const TaxonomyDelete = ({ taxonomyId, onSuccess }: TaxonomyDeleteProps) =
     category: 'course-categories',
     taxonomyId: taxonomyId,
     onCompleted: onSuccess,
-    onError: console.log
+    onError: console.error
   })
 
   return (

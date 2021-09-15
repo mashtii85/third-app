@@ -24,7 +24,9 @@ export const AdminDashboardOverview = ({ adminId }: AdminDashboardOverviewProps)
     prepareTiles: prepareClientTiles
   })
 
-  console.log(error)
+  if (error) {
+    console.error(error)
+  }
 
   return (
     <>

@@ -31,7 +31,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) =>
   const { createTaxonomy } = useCreateTaxonomy({
     category: 'course-categories',
     onCompleted: onSuccess,
-    onError: console.log
+    onError: console.error
   })
 
   const [updateTaxonomy] = useMutation(UPDATE_TAXONOMY, {

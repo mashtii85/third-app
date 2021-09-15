@@ -14,6 +14,7 @@ export const AccountCourseList = ({ accountId }: { accountId: number }) => {
   if (loading) {
     console.log('loading')
   }
+
   if (error) {
     console.error(error.message)
   }
