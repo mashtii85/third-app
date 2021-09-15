@@ -15,8 +15,7 @@ const PlaygroundPage = () => {
               {
                 title: 'This is the video To Watch',
                 desc: 'please write "answer" in the input box',
-                src:
-                  'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_640_3MG.mp4'
+                src: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_640_3MG.mp4'
               }
             ],
             acceptableAnswers: ['answer']
