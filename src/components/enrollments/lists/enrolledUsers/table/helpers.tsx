@@ -21,7 +21,7 @@ export const columns = () => [
   },
   {
     // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
-    text: 'Title'
+    text: 'Course'
   },
   {
     text: 'User'
@@ -30,7 +30,7 @@ export const columns = () => [
     text: 'Author'
   },
   {
-    text: 'Competed Lessons'
+    text: 'Completed Lessons'
   },
   {
     text: 'Date',
