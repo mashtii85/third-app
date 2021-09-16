@@ -2,11 +2,11 @@
  * Components - Enrollments - Lists - EnrolledUsers - Table - Types.d
  */
 
-import { STATUS_ACTIVE } from '../../../../../types/select'
+import { STATUS_ACTIVE } from '../../../../types/select'
 
 export interface CourseTableRowsType {
   id: number
-  title: string
+  course: string
   author: string
   user: string
   completedLessons: number

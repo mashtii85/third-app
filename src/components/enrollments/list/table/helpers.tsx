@@ -1,18 +1,19 @@
 /**
- * Components - Enrollments - Lists - EnrolledUsers - Table - Helpers
+ * Components - Enrollments - List - Table - Helpers
  */
 
 // React
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, formatDateStandard, OffCanvasContext } from '@drykiss/industry-ui'
+import { Button, formatDateStandard, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import { CourseTableRowsType } from './types'
+import { Enrollment } from '../../hooks/useEnrollments/types'
+import { LooseObject } from '../../../../types/object'
 
-import { Enrolled } from '../../../hooks/useEnrolledUsers/types'
-import { LooseObject } from '../../../../../types/object'
+import pages from '../../../../config/pages.json'
 
 export const columns = () => [
   {
@@ -20,8 +21,8 @@ export const columns = () => [
     hidden: true
   },
   {
-    // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
-    text: 'Course'
+    text: 'Course',
+    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'course')
   },
   {
     text: 'User'
@@ -43,11 +44,11 @@ export const columns = () => [
   }
 ]
 
-export const rows = (courses: Enrolled[]): CourseTableRowsType[] => {
+export const rows = (courses: Enrollment[]): CourseTableRowsType[] => {
   const list: CourseTableRowsType[] = courses.map((item) => {
     return {
       id: item.id,
-      title: item.course.title,
+      course: item.course.title,
       user: `${item.user.name_first} ${item.user.name_last}`,
       author: item.course?.custom_fields?.author || '-',
       completedLessons: item.completed_lessons.aggregate.count,

@@ -14,7 +14,7 @@ import { Dashboard, UserContext } from '@drykiss/industry-ui'
 
 import { ACCOUNT_TYPE } from '../../../types/account.d'
 import pages from '../../../config/pages.json'
-import { ClientEnrollmentsList } from '../../../components/enrollments/lists/enrollments'
+import { Enrollments } from '../../../components/enrollments/list/enrollments'
 
 const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)
@@ -26,7 +26,7 @@ const PageDashboard: NextPage = () => {
     let View
     switch (user.account_type) {
       case ACCOUNT_TYPE.Client:
-        View = <Dashboard View={<ClientEnrollmentsList clientId={user.client_id} />} />
+        View = <Dashboard View={<Enrollments />} />
         break
       case ACCOUNT_TYPE.Account:
         View = View = <div>not implemented</div>

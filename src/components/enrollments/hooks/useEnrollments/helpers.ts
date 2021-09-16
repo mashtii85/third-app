@@ -1,45 +1,38 @@
 /**
- * Components - Enrollments - Hooks - Helpers
+ * Components - Enrollments - Hooks - UseEnrollments - Helpers
  */
 
+// Types
 import { LooseObject } from '../../../../types/object'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { EnrollmentsFilters } from './types.d'
+import { EnrollmentFilters } from './types'
 
 export const prepareVariables = ({
-  filters,
-  clientId,
-  accountId
+  filters
 }: {
-  filters?: EnrollmentsFilters
-  clientId?: number
-  accountId?: number
-}) => {
+  filters?: EnrollmentFilters
+}): LooseObject | null => {
+  if (!filters) {
+    return null
+  }
+
   const variables: LooseObject = {}
-
-  if (clientId) {
-    variables.client_id = { _eq: clientId }
-  } else if (accountId) {
-    variables.account_id = { _eq: accountId }
+  if (filters?.courseId) {
+    variables.course_id = { _eq: filters.courseId }
   }
-
+  if (filters?.clientId) {
+    variables.client_id = { _eq: filters.clientId }
+  }
+  if (filters?.accountId) {
+    variables.account_id = { _eq: filters.accountId }
+  }
+  if (filters?.status) {
+    variables.status = { _eq: filters.status }
+  }
+  if (filters?.userStatus) {
+    variables.user = { status: { _eq: filters.userStatus } }
+  }
   if (filters?.q) {
-    variables.course = {
-      title: {
-        _ilike: filters.q
-      },
-      status: { _eq: filters.status || STATUS_ACTIVE.Active }
-    }
-  } else {
-    variables.course = {
-      status: { _eq: filters?.status || STATUS_ACTIVE.Active }
-    }
+    variables.course = { title: { _ilike: filters.q } }
   }
-
-  return {
-    where: variables,
-    limit: filters?.limit,
-    offset: filters?.offset
-    // order_by: filters?.orderBy
-  }
+  return variables
 }

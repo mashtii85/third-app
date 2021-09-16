@@ -2,8 +2,8 @@
  * Components - Courses - View - Client - Tabs - Details
  */
 
-import { EnrolledUsersList } from '../../../../enrollments/lists/enrolledUsers/enrolledUsers'
+import { Enrollments } from '../../../../enrollments/list/enrollments'
 
 export const EnrolledCourses = ({ courseId }: { courseId: number }) => {
-  return <EnrolledUsersList courseId={courseId} />
+  return <Enrollments courseId={courseId} />
 }

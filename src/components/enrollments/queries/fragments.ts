@@ -13,8 +13,8 @@ export const ENROLLMENTS_FIELDS = gql`
     updated_at
   }
 `
-export const COURSE_AGGREGATE_FIELDS = gql`
-  fragment EnrollmentsAggregateFields on course_enrollments_aggregate {
+export const COURSE_ENROLLMENT_AGGREGATE_FIELDS = gql`
+  fragment EnrollmentsAggregateFields on course_enrollment_aggregate {
     aggregate {
       count
     }

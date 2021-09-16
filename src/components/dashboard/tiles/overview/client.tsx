@@ -24,7 +24,7 @@ export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewPro
     prepareTiles: prepareClientTiles
   })
 
-  console.log(error)
+  console.error(error)
 
   return (
     <>

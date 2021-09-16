@@ -14,8 +14,8 @@ export const ClientCourseView = () => {
   const { query } = useRouter()
 
   // todo: transfer this to courseTable route
-  const tabName: string = (query?.tab as string)?.toLowerCase() ?? CLIENT_TAB.Details
-  // }
+  const tabName: string = (query?.tab as string) ?? CLIENT_TAB.Details
+
   const courseId: number = +(query?.id || '0')
   return (
     <>

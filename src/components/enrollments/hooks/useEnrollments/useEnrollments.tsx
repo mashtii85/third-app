@@ -1,23 +1,25 @@
 /**
- * Components - Courses - List - Table - Hooks - useCourseQuery
+ * Components - Enrollments - Hooks - UseEnrolledUsers - UseEnrolledUsers
  */
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { LooseObject } from '../../../../types/object.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { GET_ENROLLMENTS } from '../../queries'
+
+// Helpers
 import { prepareVariables } from './helpers'
+
+// Types
+import { LooseObject } from '../../../../types/object'
 import {
-  EnrollmentsFilters,
-  EnrollmentsVariables,
-  EnrollmentsData,
-  EnrollmentsOutputData
-} from './types.d'
+  EnrollmentVariables,
+  EnrollmentData,
+  EnrollmentOutputData,
+  EnrollmentFilters
+} from './types'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export const useEnrollments = ({
-  accountId,
-  clientId,
   filters = {
     q: '',
     limit: 20,
@@ -26,22 +28,20 @@ export const useEnrollments = ({
     orderBy: {
       item: 'created_by',
       order: 'asc'
-    }
+    },
+    userStatus: STATUS_ACTIVE.Active
+
     // order_by: {}
   }
 }: {
-  accountId?: number
-  clientId?: number
-  filters?: EnrollmentsFilters
-}): EnrollmentsOutputData => {
-  const where: LooseObject = prepareVariables({ clientId, accountId, filters })
-
-  const { data, error, loading } = useQuery<EnrollmentsData, EnrollmentsVariables>(
-    GET_ENROLLMENTS,
-    {
-      variables: where
+  filters?: EnrollmentFilters
+}): EnrollmentOutputData => {
+  const where: LooseObject | null = prepareVariables({ filters })
+  const { data, error, loading } = useQuery<EnrollmentData, EnrollmentVariables>(GET_ENROLLMENTS, {
+    variables: {
+      where
     }
-  )
+  })
 
   if (error) {
     return { loading: false, error, enrollments: [] }

@@ -23,11 +23,6 @@
       "npm test"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@drykiss/industry-ui": "2.1.2",
     "@types/styled-components": "5.1.14",

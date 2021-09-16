@@ -1,15 +1,17 @@
 /**
- * Components - Enrollments - List - Filter
+ * Components - Enrollments - List - Filters
  */
 
 // UI
-
 import { FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
-import { LooseObject } from '../../../../types/object'
 
-export const EnrollmentsFilters = ({
+import { statusActive } from '../../../constants/status'
+
+// Types
+import { LooseObject } from '../../../types/object'
+
+export const EnrolledUsersFilters = ({
   control,
   errors,
   register

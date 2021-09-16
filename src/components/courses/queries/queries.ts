@@ -5,7 +5,10 @@
 // Apollo
 import { gql } from '@apollo/client'
 import { COURSE_FIELDS } from './fragments'
-import { COURSE_AGGREGATE_FIELDS, ENROLLMENTS_FIELDS } from '../../enrollments/queries/fragments'
+import {
+  COURSE_ENROLLMENT_AGGREGATE_FIELDS,
+  ENROLLMENTS_FIELDS
+} from '../../enrollments/queries/fragments'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
 
 export const GET_COURSES = gql`
@@ -18,7 +21,7 @@ export const GET_COURSES = gql`
     }
   }
   ${COURSE_FIELDS}
-  ${COURSE_AGGREGATE_FIELDS}
+  ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
 `
 
 export const GET_COURSE = gql`
@@ -98,5 +101,5 @@ export const CREATE_COURSE = gql`
     }
   }
   ${COURSE_FIELDS}
-  ${COURSE_AGGREGATE_FIELDS}
+  ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
 `
