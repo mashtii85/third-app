@@ -62,9 +62,7 @@ export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
           <Column md={6}>
             <FormLabel label="Phone">
               <FormField {...defaultOptions} name={'custom_fields.phone'} />
-              {errors?.custom_fields?.phone && errors?.custom_fields?.phone?.type === 'matches' && (
-                <FormError message={errors?.custom_fields?.phone?.message} />
-              )}
+              {errors.custom_fields && <FormError message={errors?.custom_fields.message} />}
             </FormLabel>
           </Column>
         </Row>

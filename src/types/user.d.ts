@@ -17,8 +17,8 @@ export interface AccountUsers {
   status: USER_STATUS
   user_id: number
   account: Account
+  account_user: Account
 }
-
 export interface UserCustomFields {
   phone?: string
 }

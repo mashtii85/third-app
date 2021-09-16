@@ -76,6 +76,7 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
         id: item.id,
         name: item.account.name,
         type: capitalize(item.account.type),
+        position: item?.account_user?.custom_fields?.position,
         status: capitalize(item.status),
         accountId: item.account.id,
         actions: '',
@@ -91,7 +92,7 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
       }))
 
   return (
-    <Details2 open summary="Accounts">
+    <Details2 open title="Accounts">
       <Table columns={columns} rows={rows()} />
     </Details2>
   )

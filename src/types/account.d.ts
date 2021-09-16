@@ -7,7 +7,9 @@ export enum ACCOUNT_TYPE {
   Client = 'client',
   Account = 'account'
 }
-
+export interface CustomField {
+  position: string
+}
 export interface Account {
   id: number
   name: string
@@ -15,4 +17,5 @@ export interface Account {
   type: string
   structure: string
   created_at: string
+  custom_fields: CustomField
 }
