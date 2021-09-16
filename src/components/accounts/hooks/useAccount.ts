@@ -15,7 +15,7 @@ export const useAccount = ({ accountId }: Variable) => {
   })
 
   if (error) {
-    return { loading: false, error }
+    return { loading: false, error, account: data?.account || {} }
   }
   return { loading, account: data?.account }
 }

@@ -38,9 +38,6 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
       text: 'Account'
     },
     {
-      text: 'Type'
-    },
-    {
       text: 'Position'
     },
     {
@@ -75,7 +72,6 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
       .map((item: AccountUsers) => ({
         id: item.id,
         name: item.account.name,
-        type: capitalize(item.account.type),
         position: item?.account_user?.custom_fields?.position,
         status: capitalize(item.status),
         accountId: item.account.id,

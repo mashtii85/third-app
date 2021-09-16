@@ -12,9 +12,8 @@ const AccountDetails = ({ accountId, title = '' }: AccountDetailsProps) => {
   const { account = {} } = useAccount({ accountId })
 
   return (
-    <Details2 open summary={title}>
+    <Details2 open title={title}>
       <DetailsText content="Name" text={account.name || ''} />
-      <DetailsText content="Email" text={account.email || ''} />
       <DetailsText content="Status" text={account.status || ''} />
       <DetailsText content="Structure" text={account.structure || ''} />
       <DetailsText content="Date Added" text={formatDateStandard(account.created_at) || ''} />

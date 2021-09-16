@@ -24,7 +24,7 @@ export const GET_ACCOUNT = gql`
   ${ACCOUNT_FIELDS}
 `
 export const CREATE_ACCOUNT = gql`
-  mutation CreateCustomer($objects: [account_insert_input!]!) {
+  mutation CreateAccount($objects: [account_insert_input!]!) {
     insert_account(objects: $objects) {
       returning {
         ...AccountFields
@@ -36,7 +36,7 @@ export const CREATE_ACCOUNT = gql`
 
 export const GET_ACCOUNT_USER = gql`
   query GetAccountUser($accountId: Int!) {
-    users: account_user(where: { account_id: { _eq: $accountId } }) {
+    users: account_user_by_pk(account_id: $accountId) {
       user {
         ...UserFields
       }

@@ -105,7 +105,7 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     })
 
   return (
-    <Details2 button="Add New" open summary={title} handleClick={handleClick}>
+    <Details2 button="Add New" open title={title} handleClick={handleClick}>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
     </Details2>
   )

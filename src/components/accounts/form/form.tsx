@@ -37,9 +37,18 @@ export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
   })
 
   const submit = async (form: Account) => {
-    await createAccount({ variables: { objects: [form] } })
+    const variables = {
+      objects: [
+        {
+          ...form,
+          account_clients: { data: { client_id: defaultValues.clientId, status: form.status } }
+        }
+      ]
+    }
+    await createAccount({
+      variables
+    })
   }
-
   const defaultOptions = {
     control,
     errors: errors,

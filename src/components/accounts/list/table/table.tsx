@@ -17,7 +17,7 @@ import { useAccounts } from '../../hooks/useAccounts'
 import { Column } from '../../../../types/column'
 import { TableProps, UserAccount } from './types'
 import { Account } from '../../../../types/account'
-
+import pages from '../../../../config/pages.json'
 export const AccountTable = ({ title }: TableProps) => {
   // Table Column
   const columns: Column<Account>[] = [
@@ -52,7 +52,7 @@ export const AccountTable = ({ title }: TableProps) => {
       return {
         accountId: account.id,
         name: account.name,
-        url: `/dashboard/accounts/view`,
+        url: pages.dashboard.accounts.view,
         type: account.type,
         created: formatDateStandard(account.created_at),
         status: capitalize(account.status)
@@ -60,7 +60,7 @@ export const AccountTable = ({ title }: TableProps) => {
     })
 
   return (
-    <Details2 open summary={title}>
+    <Details2 open title={title}>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
     </Details2>
   )

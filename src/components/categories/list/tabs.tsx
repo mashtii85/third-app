@@ -26,7 +26,7 @@ const TaxonomyTabs = () => {
       <Tab
         active={tab === 'course-categories'}
         label="Course Categories"
-        // activeTab="Course Categories"
+        activeTab="Course Categories"
       >
         <TaxonomyList type="course-categories" title="Course Categories" />
       </Tab>

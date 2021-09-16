@@ -10,7 +10,7 @@ import { Dashboard } from '@drykiss/industry-ui'
 import AccountList from '../../../components/accounts/list/account'
 
 const PageAccountsView: NextPage = () => {
-  return <Dashboard View={<AccountList />} />
+  return <Dashboard View={<AccountList title="Accounts" />} />
 }
 
 export default PageAccountsView

@@ -26,10 +26,10 @@ const AccountTabs = () => {
 
   return (
     <Tabs key={tab}>
-      <Tab active={tab === ACCOUNT_TABS.ACCOUNT} label="Account">
+      <Tab active={tab === ACCOUNT_TABS.ACCOUNT} label="Account" activeTab="Account">
         <AccountDetails accountId={accountId} title="Account Details" />
       </Tab>
-      <Tab active={tab === ACCOUNT_TABS.USERS} label="Users">
+      <Tab active={tab === ACCOUNT_TABS.USERS} label="Users" activeTab="Users">
         <UserAccounts type="accounts" title="Users" accountId={accountId} />
       </Tab>
     </Tabs>

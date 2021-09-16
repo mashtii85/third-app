@@ -15,7 +15,7 @@ export const useAccounts = ({ clientId }: Variable) => {
   })
 
   if (error) {
-    return { loading: false, error }
+    return { loading: false, error, accounts: data?.accounts || [] }
   }
 
   return { loading, accounts: data?.accounts }

@@ -45,7 +45,7 @@ export const UserAccounts = ({ title, accountId }: TableProps) => {
     })
 
   return (
-    <Details2 open summary={title}>
+    <Details2 open title={title}>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
     </Details2>
   )
