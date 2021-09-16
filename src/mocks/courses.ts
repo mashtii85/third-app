@@ -34,7 +34,7 @@ export const Courses = [
             id: 1,
             type: LESSON_TYPE.Text,
             title: 'Introduction',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `As the global governing body for football, FIFA is committed to supporting its members to implement best practice to keep children safe and ensure involvement in football is fun for all. While FIFA does not control the day-to-day operations of our members, or their affiliated organisations and clubs who are independently organised, this toolkit sets minimum requirements for all members on child safeguarding.`
           },
@@ -42,7 +42,7 @@ export const Courses = [
             id: 2,
             type: LESSON_TYPE.Text,
             title: 'Overview',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This course will underpin our work and that of our 211 MAs and the six confederations.
             It provides a framework to help members consider how they can prevent any risk of harm to children in football and respond appropriately, as called for in the FIFA Forward 2.0 Regulations, article 8, paragraph 1t.
@@ -60,7 +60,7 @@ export const Courses = [
             id: 3,
             type: LESSON_TYPE.Text,
             title: 'Who is this for?',
-            status: LESSON_STATUS.Started,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This is a resource for all stakeholders working to safeguard children in football. Specifically, it is intended for MAs:
             • to promote accountability and responsibility for keeping children safe from harm when involved in any football activity;
@@ -72,7 +72,7 @@ export const Courses = [
             id: 4,
             type: LESSON_TYPE.Video,
             title: 'The five principles',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             media: [
               {
@@ -95,7 +95,7 @@ export const Courses = [
             id: 5,
             type: LESSON_TYPE.Quiz,
             title: 'Creating a safeguarding policy',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `Every MA that engages directly or indirectly with children has a duty to do all it can to protect children from harm within football and to promote their well-being. A child safeguarding policy provides MAs with a formal approach to managing this duty of care. Safeguarding children is supported by having a good, clear and accessible policy in place so that both adults and children are clear on what is expected of them and others. This step refers to the development of an “organisational policy” within MAs, meaning a policy that should be in place for all aspects of the game, all year round.
             `,
@@ -121,7 +121,7 @@ export const Courses = [
             id: 6,
             type: LESSON_TYPE.Text,
             title: 'Developing procedures',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `It is essential to have or develop procedures in the following three areas, in order to implement your
             safeguarding policy.`
@@ -137,7 +137,7 @@ export const Courses = [
             id: 7,
             type: LESSON_TYPE.Text,
             title: 'Communication',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -145,7 +145,7 @@ export const Courses = [
             id: 8,
             type: LESSON_TYPE.Text,
             title: 'Education',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           }
@@ -160,7 +160,7 @@ export const Courses = [
             id: 9,
             type: LESSON_TYPE.Text,
             title: 'Monitoring',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -168,7 +168,7 @@ export const Courses = [
             id: 10,
             type: LESSON_TYPE.Text,
             title: 'Evaluating',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           }
@@ -200,7 +200,7 @@ export const Courses = [
             id: 1,
             type: LESSON_TYPE.Text,
             title: 'Introduction',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `As the global governing body for football Team, FIFA is committed to supporting its members to implement best practice to keep children safe and ensure involvement in football is fun for all. While FIFA does not control the day-to-day operations of our members, or their affiliated organisations and clubs who are independently organised, this toolkit sets minimum requirements for all members on child safeguarding.`
           },
@@ -208,7 +208,7 @@ export const Courses = [
             id: 2,
             type: LESSON_TYPE.Text,
             title: 'Overview',
-            status: LESSON_STATUS.Started,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This course will underpin our work and that of our 211 MAs and the six confederations.
             It provides a framework to help members consider how they can prevent any risk of harm to children in football and respond appropriately, as called for in the FIFA Forward 2.0 Regulations, article 8, paragraph 1t.
@@ -219,7 +219,7 @@ export const Courses = [
             id: 3,
             type: LESSON_TYPE.Text,
             title: 'Third Steps',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This course will underpin our work and that of our 211 MAs and the six confederations.
             It provides a framework to help members consider how they can prevent any risk of harm to children in football and respond appropriately, as called for in the FIFA Forward 2.0 Regulations, article 8, paragraph 1t.
@@ -237,7 +237,7 @@ export const Courses = [
             id: 4,
             type: LESSON_TYPE.Text,
             title: 'Who is this for?',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This is a resource for all stakeholders working to safeguard children in football. Specifically, it is intended for MAs:
             • to promote accountability and responsibility for keeping children safe from harm when involved in any football activity;
@@ -249,7 +249,7 @@ export const Courses = [
             id: 5,
             type: LESSON_TYPE.Text,
             title: 'The five principles',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `In line with the terms and spirit of the UNCRC, safeguarding children in football is based around the following five principles that apply to all stakeholders :
             1. We will act in the best interests of children.2 Ensuring that children are safeguarded is part of a commitment to enhancing their enjoyment of and performance in football.
@@ -263,7 +263,7 @@ export const Courses = [
             id: 6,
             type: LESSON_TYPE.Text,
             title: 'Creating a safeguarding policy',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `Every MA that engages directly or indirectly with children has a duty to do all it can to protect children from harm within football and to promote their well-being. A child safeguarding policy provides MAs with a formal approach to managing this duty of care. Safeguarding children is supported by having a good, clear and accessible policy in place so that both adults and children are clear on what is expected of them and others. This step refers to the development of an “organisational policy” within MAs, meaning a policy that should be in place for all aspects of the game, all year round.
             `
@@ -272,7 +272,7 @@ export const Courses = [
             id: 7,
             type: LESSON_TYPE.Text,
             title: 'Developing procedures',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `It is essential to have or develop procedures in the following three areas, in order to implement your
             safeguarding policy.`
@@ -288,7 +288,7 @@ export const Courses = [
             id: 8,
             type: LESSON_TYPE.Text,
             title: 'Communication',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -296,7 +296,7 @@ export const Courses = [
             id: 9,
             type: LESSON_TYPE.Text,
             title: 'Education',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -304,7 +304,7 @@ export const Courses = [
             id: 10,
             type: LESSON_TYPE.Text,
             title: 'Other Mission',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           }
@@ -319,7 +319,7 @@ export const Courses = [
             id: 11,
             type: LESSON_TYPE.Text,
             title: 'Monitoring',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -327,7 +327,7 @@ export const Courses = [
             id: 12,
             type: LESSON_TYPE.Text,
             title: 'Evaluating',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           }
@@ -342,7 +342,7 @@ export const Courses = [
             id: 13,
             type: LESSON_TYPE.Text,
             title: 'Founding',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           },
@@ -350,7 +350,7 @@ export const Courses = [
             id: 14,
             type: LESSON_TYPE.Text,
             title: 'Story Creating',
-            status: LESSON_STATUS.Pending,
+            status: LESSON_STATUS.Active,
             description: '',
             content: ''
           }
@@ -382,7 +382,7 @@ export const Courses = [
             id: 1,
             type: LESSON_TYPE.Text,
             title: 'Introduction',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `The online modules of BT Playmaker cover five core areas, taking around four-and-a-half hours to complete overall.
             But there’s no time limit on completing all five - you can do them at your own pace and around your schedule`
@@ -398,7 +398,7 @@ export const Courses = [
             id: 2,
             type: LESSON_TYPE.Text,
             title: 'Who is this for?',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `
             • This module introduces you to the course, what a BT Playmaker is, and its importance in making football happen for all;
@@ -416,7 +416,7 @@ export const Courses = [
             id: 3,
             type: LESSON_TYPE.Text,
             title: 'First',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `A big part of making fun, safe and inclusive football happen is being able to engage with your players`
           },
@@ -424,7 +424,7 @@ export const Courses = [
             id: 4,
             type: LESSON_TYPE.Text,
             title: 'Second',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `That can be easier said than done! So this module will show you some useful communication and motivation techniques you can use to connect with your players.`
           }
@@ -439,7 +439,7 @@ export const Courses = [
             id: 5,
             type: LESSON_TYPE.Text,
             title: 'Pre-session planning',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content:
               'In your role as a BT Playmaker, you may be required to do some pre-session planning'
@@ -448,7 +448,7 @@ export const Courses = [
             id: 6,
             type: LESSON_TYPE.Text,
             title: 'Weekly planning',
-            status: LESSON_STATUS.Completed,
+            status: LESSON_STATUS.Active,
             description: '',
             content: `This module has you covered. It will show you a range of tools you can plug straight into your weekly planning`
           }

@@ -47,6 +47,7 @@ import VideoPlayer from '../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../helpers'
 import { Quiz } from '../../common/quiz/quiz'
 import { CourseData } from '../hooks/types'
+import { Course } from '../../../types/course'
 
 // Helper
 import { getCurrentLesson, getCurrentLessonProgress, findNextLesson } from '../../lessons/helpers'
@@ -115,9 +116,12 @@ export const AccountCourseView = () => {
       stateHolder.selectedLessonId !== 0 &&
       stateHolder.completedLessonId !== stateHolder.selectedLessonId
     ) {
-      startLesson(
-        getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
+      const currentLesson = getCurrentLesson(
+        course as Course,
+        stateHolder.selectedModuleId,
+        stateHolder.selectedLessonId
       )
+      startLesson(currentLesson)
     }
   })
 
@@ -131,7 +135,7 @@ export const AccountCourseView = () => {
 
   const lessonSummary = () => {
     const progress: LessonProgress[] = []
-    const modules = course.modules || []
+    const modules = (course as Course).modules || []
 
     modules.forEach((module: Module) => {
       const lessons: Lesson[] = module.lessons || []
@@ -197,7 +201,7 @@ export const AccountCourseView = () => {
               : isActive && stateHolder.canCompleteLesson
                 ? 'In progress ...'
                 : null,
-          status: progress?.status,
+          status: progress.status,
           actions: [actionModel]
         })
       })
@@ -205,7 +209,7 @@ export const AccountCourseView = () => {
     return data
   }
 
-  const prepareLessonForStarting = (lesson: Lesson) => {
+  const prepareLessonForStarting = (lesson?: Lesson) => {
     const lessonProgress = lesson?.lesson_progresses[0] || {}
     if (lessonProgress.id) {
       const lessonProgressModel = { status: LESSON_PROGRESS_STATUS.Started }
@@ -214,9 +218,9 @@ export const AccountCourseView = () => {
       })
     } else {
       const argument = {
-        client_id: lesson.client_id,
-        enrollment_id: course.id,
-        lesson_id: lesson.id,
+        client_id: lesson?.client_id,
+        enrollment_id: (course as Course).id,
+        lesson_id: lesson?.id,
         status: LESSON_PROGRESS_STATUS.Started
       }
       addLessonProgress({
@@ -238,11 +242,11 @@ export const AccountCourseView = () => {
     }
   }
 
-  const startLesson = (lesson: Lesson) => {
+  const startLesson = (lesson?: Lesson) => {
     const lessonProgress = lesson?.lesson_progresses[0]
     if (lessonProgress) {
-      stateHolder.selectedModuleId = lessonProgress.lesson.module_id
-      stateHolder.selectedLessonId = lessonProgress.lesson.id
+      stateHolder.selectedModuleId = lessonProgress?.lesson?.module?.id ?? 0
+      stateHolder.selectedLessonId = lessonProgress?.lesson?.id ?? 0
     }
 
     if (lessonProgress && lessonProgress.status === LESSON_PROGRESS_STATUS.Completed) {
@@ -254,12 +258,12 @@ export const AccountCourseView = () => {
       setLesson(lesson)
     } else {
       stateHolder.pageMode = COURSE_PAGE_MODE.Progress
-      if (lesson.type !== LESSON_TYPE.Quiz) {
+      if (lesson?.type !== LESSON_TYPE.Quiz) {
         stateHolder.actionButtonCaption = 'Complete and continue'
         stateHolder.canCompleteLesson = true
         stateHolder.showNextLesson = false
       }
-      setLesson(prepareLessonForStarting(lesson))
+      setLesson(prepareLessonForStarting(lesson) ?? null)
     }
 
     scrollTo('top')
@@ -267,12 +271,12 @@ export const AccountCourseView = () => {
 
   const completeLesson = () => {
     const lessonProgress = getCurrentLessonProgress(
-      course,
+      course as Course,
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
     const nextLesson = findNextLesson(
-      course,
+      course as Course,
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
@@ -283,10 +287,14 @@ export const AccountCourseView = () => {
       stateHolder.pageMode !== COURSE_PAGE_MODE.Finished
     ) {
       stateHolder.pageMode = COURSE_PAGE_MODE.View
-      stateHolder.selectedModuleId = nextLesson.selectedModuleId
-      stateHolder.selectedLessonId = nextLesson.selectedLessonId
+      stateHolder.selectedModuleId = nextLesson?.selectedModuleId ?? 0
+      stateHolder.selectedLessonId = nextLesson?.selectedLessonId ?? 0
       startLesson(
-        getCurrentLesson(course, stateHolder.selectedModuleId, stateHolder.selectedLessonId)
+        getCurrentLesson(
+          course as Course,
+          stateHolder.selectedModuleId,
+          stateHolder.selectedLessonId
+        )
       )
     } else {
       if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished)
@@ -309,7 +317,10 @@ export const AccountCourseView = () => {
         if (stateHolder.pageMode === COURSE_PAGE_MODE.Finished) {
           const courseEnrollmentModel = { status: COURSE_ENROLLMENT_STATUS.Completed }
           updateCourseEnrollmentByPk({
-            variables: { id: course.course_enrollments[0].id, changes: courseEnrollmentModel }
+            variables: {
+              id: ((course as Course)?.course_enrollments ?? [])[0].id,
+              changes: courseEnrollmentModel
+            }
           })
         }
       }
@@ -321,7 +332,7 @@ export const AccountCourseView = () => {
     loadPageState()
     pageState.certificateModel = {
       username: `${user.name_first} ${user.name_last}`,
-      course: course.title,
+      course: (course as Course).title,
       dateCompleted: completedAt,
       certificateId: 'BVM QX4 CV6'
     }
@@ -349,11 +360,11 @@ export const AccountCourseView = () => {
   return (
     <Row>
       <Column md={4}>
-        <Heading tag="h2" content={course?.title} />
+        <Heading tag="h2" content={(course as Course)?.title} />
 
         <Space />
-        {course?.modules?.length &&
-          course.modules.map((m: Module) => (
+        {(course as Course)?.modules?.length &&
+          (course as Course)?.modules?.map((m: Module) => (
             <Details2 key={m.id} open title={m.title}>
               <Stepper items={prepareLessons(m)} />
             </Details2>
@@ -401,11 +412,14 @@ export const AccountCourseView = () => {
               </Details2>
             ) : (
               <Details2 open title="Details">
-                {course?.media?.length && (
-                  <Image alt={course?.title} src={`/${course.media[0].filename}`} />
+                {(course as Course)?.media?.length && (
+                  <Image
+                    alt={(course as Course)?.title}
+                    src={`/${((course as Course)?.media ?? [])[0].filename}`}
+                  />
                 )}
-                <DetailsText content="Author" text={course?.author ?? ''} />
-                <DetailsText content="Description" text={course?.description ?? ''} />
+                {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
+                <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
               </Details2>
             )}
           </Column>

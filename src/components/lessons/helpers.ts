@@ -11,10 +11,9 @@ const getCurrentLesson = (
   selectedModuleId?: number,
   selectedLessonId?: number
 ) => {
-  const currentLesson =
-    course?.modules
-      ?.find((module: Module) => module.id === selectedModuleId)
-      ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId) || null
+  const currentLesson = course?.modules
+    ?.find((module: Module) => module.id === selectedModuleId)
+    ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId)
   return currentLesson
 }
 
@@ -28,7 +27,7 @@ const getCurrentLessonProgress = (
 }
 
 const findNextLesson = (course?: Course, selectedModuleId?: number, selectedLessonId?: number) => {
-  const modules: Module[] = course?.modules
+  const modules: Module[] = course?.modules ?? []
   if (modules === undefined || modules.length <= 0) return null
 
   let readyForSelect = false

@@ -4,6 +4,7 @@
 
 import { Medium } from './medium'
 import { LessonProgress } from './lessonProgress'
+import { Module } from './module.d'
 import { Video } from '../components/common/videoPlayer/type'
 
 export enum LESSON_TYPE {
@@ -29,6 +30,7 @@ type VideoLesson = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module: Module
 }
 
 export enum QUESTION_TYPE {
@@ -69,6 +71,7 @@ type QuizLesson = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module: Module
 }
 
 // separate these lessons when ever properties differ, like VideoLesson
@@ -84,6 +87,7 @@ type OtherLessons = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module?: Module
 }
 
 export type Lesson = VideoLesson | OtherLessons | QuizLesson

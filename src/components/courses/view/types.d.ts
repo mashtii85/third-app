@@ -13,3 +13,10 @@ export enum COURSE_PAGE_MODE {
   Progress = 'Progress',
   Finished = 'Finished'
 }
+
+export interface CompletionCertificateStyledComponent {
+  username: string
+  course: string
+  dateCompleted: string
+  certificateId: string
+}

@@ -51,7 +51,9 @@ export const GET_COURSE = gql`
             updated_at
             lesson {
               id
-              module_id
+              module {
+                id
+              }
             }
           }
           media {
