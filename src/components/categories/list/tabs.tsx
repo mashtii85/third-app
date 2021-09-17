@@ -24,11 +24,18 @@ const TaxonomyTabs = () => {
   return (
     <Tabs key={tab}>
       <Tab
-        active={tab === 'course-categories'}
+        active={tab === TAXONOMY_TABS.COURSE_CATEGORIES}
         label="Course Categories"
         activeTab="Course Categories"
       >
-        <TaxonomyList type="course-categories" title="Course Categories" />
+        <TaxonomyList type={TAXONOMY_TABS.COURSE_CATEGORIES} title="Course Categories" />
+      </Tab>
+      <Tab
+        active={tab === TAXONOMY_TABS.ACCOUNT_CATEGORIES}
+        label="Account Categories"
+        activeTab="Account Categories"
+      >
+        <TaxonomyList type={TAXONOMY_TABS.ACCOUNT_CATEGORIES} title="Account Categories" />
       </Tab>
     </Tabs>
   )

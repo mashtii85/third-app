@@ -11,7 +11,7 @@ export interface UseCreateTaxonomyProps {
 // useDeleteTaxonomy
 export interface UseDeleteTaxonomyProps {
   taxonomyId?: number
-  category: string
+  category: string | string[]
   onCompleted: (data: { delete_taxonomy_by_pk }) => void
   onError: (data: ApolloError) => void
 }

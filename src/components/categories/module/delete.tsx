@@ -9,9 +9,9 @@ import { Text } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 // types
 import { TaxonomyDeleteProps } from './types'
-export const TaxonomyDelete = ({ taxonomyId, onSuccess }: TaxonomyDeleteProps) => {
+export const TaxonomyDelete = ({ taxonomyId, type, onSuccess }: TaxonomyDeleteProps) => {
   const { loading, deleteTaxonomy } = useDeleteTaxonomy({
-    category: 'course-categories',
+    category: type,
     taxonomyId: taxonomyId,
     onCompleted: onSuccess,
     onError: console.error

@@ -25,12 +25,35 @@ import { Column } from '../../../types/column'
 import { TableProps } from './types'
 import { offCanvasType } from '../../../types/offCanvas'
 import { Taxonomy } from '../../../types/taxonomy'
-
+import { TaxonomyChildTable } from '../childs/table'
 export const TaxonomyTable = ({ title }: TableProps) => {
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
   const defaultTab: string | string[] = query.tab || 'course-categories'
+  const formatterData = [
+    {
+      context: 'secondary',
+      icon: ['fas', 'edit'],
+      onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleClick(e, row),
+      tooltip: 'Edit'
+    },
+    {
+      context: 'danger',
+      icon: ['fas', 'trash'],
+      onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
+      tooltip: 'Delete'
+    }
+  ]
 
+  if (defaultTab === 'account-categories') {
+    formatterData.push({
+      context: 'info',
+      icon: ['fas', 'question'],
+      numberOverlay: 'childCount',
+      onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
+      tooltip: 'Custom Fields'
+    })
+  }
   // Table Column
   const columns: Column<Taxonomy>[] = [
     {
@@ -42,28 +65,25 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     {
       hidden: false,
       formatter: TableActions,
-      formatterData: [
-        {
-          context: 'secondary',
-          icon: ['fas', 'edit'],
-          onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleClick(e, row),
-          tooltip: 'Edit'
-        },
-        {
-          context: 'danger',
-          icon: ['fas', 'trash'],
-          onClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
-          tooltip: 'Delete'
-        }
-      ],
+      formatterData: formatterData,
       text: 'Actions'
     },
     { hidden: true }
   ]
 
+  const handleQuestionsClick = (row: any) => {
+    offCanvas.show({
+      content: <TaxonomyChildTable defaultValues={row} />,
+      submit: false,
+      title: 'Questions'
+    })
+  }
+
   const handleDelete = (row: Taxonomy) => {
     offCanvas.show({
-      content: <TaxonomyDelete taxonomyId={row.id} onSuccess={handleDeleteSuccess} />,
+      content: (
+        <TaxonomyDelete taxonomyId={row.id} type={defaultTab} onSuccess={handleDeleteSuccess} />
+      ),
       title: 'Delete Taxonomy',
       submit: false
     })
