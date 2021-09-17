@@ -3,9 +3,9 @@
  */
 
 export enum CLIENT_TAB {
-  Details = 'details',
+  Details = 'Details',
   Curriculum = 'Curriculum',
-  Enrollments = 'enrollments'
+  Enrollments = 'Enrollments'
 }
 
 export enum COURSE_PAGE_MODE {
