@@ -17,7 +17,7 @@ import { useAccounts } from '../../hooks/useAccounts'
 import { Column } from '../../../../types/column'
 import { TableProps, UserAccount } from './types'
 import { Account } from '../../../../types/account'
-import pages from '../../../../config/pages.json'
+import pages from '../../../../config/pages'
 export const AccountTable = ({ title }: TableProps) => {
   // Table Column
   const columns: Column<Account>[] = [

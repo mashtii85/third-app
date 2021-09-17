@@ -5,7 +5,7 @@
 // Types
 import type { Navigation } from '../../../types/navigation'
 
-import pages from '../../pages.json'
+import pages from '../../pages'
 
 export const Admin: Navigation = {
   right: [

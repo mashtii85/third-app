@@ -9,7 +9,7 @@ import { formatDateStandard, TableLink } from '@drykiss/industry-ui'
 import { CourseTableRowsType } from './types'
 import { Enrollment } from '../../hooks/useEnrollments/types'
 
-import pages from '../../../../config/pages.json'
+import pages from '../../../../config/pages'
 
 export const columns = () => [
   {

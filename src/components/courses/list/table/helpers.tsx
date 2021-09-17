@@ -14,7 +14,7 @@ import { CourseTableRowsType } from './types.d'
 
 import { CourseForm } from '../../form'
 
-import pages from '../../../../config/pages.json'
+import pages from '../../../../config/pages'
 import { LooseObject } from '../../../../types/object'
 
 export const columns = ({

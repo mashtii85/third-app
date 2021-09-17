@@ -6,7 +6,7 @@
 import type { DashboardTile } from './types.d'
 import type { TileData } from './hooks/types.d'
 
-import pages from '../../../config/pages.json'
+import pages from '../../../config/pages'
 
 export const prepareClientTiles = (dashboardObjects?: TileData): DashboardTile[] => {
   const GREEN = 'success'

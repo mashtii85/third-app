@@ -32,13 +32,16 @@
   "less.validate": false,
   "css.validate": false,
   "editor.formatOnPaste": true,
+  "typescript.tsc.autoDetect": "watch",
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescript]": {
+
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
+
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "cSpell.words": [

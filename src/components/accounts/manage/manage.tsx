@@ -8,7 +8,7 @@ import { useContext } from 'react'
 
 import { AccountForm } from '../form/form'
 import { Details2, UserContext } from '@drykiss/industry-ui'
-import pages from '../../../config/pages.json'
+import pages from '../../../config/pages'
 const CreateAccount = () => {
   const {
     user: { id: clientId = 0, status, account_type: accountType = '' }

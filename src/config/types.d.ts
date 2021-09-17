@@ -1,2 +1,2 @@
 import { Theme } from './theme'
-export type ThemeContext = ReturnType<Theme.COLOUR>
+export type ThemeContext = keyof typeof Theme.COLOUR

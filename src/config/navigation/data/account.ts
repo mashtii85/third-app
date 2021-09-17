@@ -2,7 +2,7 @@
  * Navigation - Data - Account
  */
 
-import pages from '../../pages.json'
+import pages from '../../pages'
 
 export const Account: any = {
   right: [

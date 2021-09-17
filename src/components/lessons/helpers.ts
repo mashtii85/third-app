@@ -6,36 +6,38 @@ import { Course } from '../../types/course'
 import { Lesson } from '../../types/lesson'
 import { LessonProgress } from '../../types/lessonProgress'
 import { Module } from '../../types/module'
-import { FindNextLesson } from './type'
 
 const getCurrentLesson = (
-  course?: Course,
-  selectedModuleId?: number,
-  selectedLessonId?: number
-): Lesson | undefined => {
-  const currentLesson = course?.modules
-    ?.find((module: Module) => module.id === selectedModuleId)
-    ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId)
+  course: Course,
+  selectedModuleId: number,
+  selectedLessonId: number
+): Lesson | null => {
+  const currentLesson =
+    course.modules
+      ?.find((module: Module) => module.id === selectedModuleId)
+      ?.lessons?.find((lesson: Lesson) => lesson.id === selectedLessonId) || null
   return currentLesson
 }
 
 const getCurrentLessonProgress = (
-  course?: Course,
-  selectedModuleId?: number,
-  selectedLessonId?: number
+  course: Course,
+  selectedModuleId: number,
+  selectedLessonId: number
 ): LessonProgress | undefined => {
   const currentLesson = getCurrentLesson(course, selectedModuleId, selectedLessonId)
   return currentLesson?.lesson_progresses[0]
 }
 
 const findNextLesson = (
-  course?: Course,
+  course: Course,
   selectedModuleId?: number,
   selectedLessonId?: number
-): FindNextLesson | null | undefined => {
-  const modules: Module[] = course?.modules ?? []
-  if (modules === undefined || modules.length <= 0) return null
-
+): {
+  selectedModuleId: number
+  selectedLessonId: number
+} | null => {
+  if (!course.modules || course.modules.length <= 0) return null
+  const modules = course.modules
   let readyForSelect = false
   for (const module of modules) {
     for (const lesson of module.lessons ?? []) {
@@ -49,6 +51,7 @@ const findNextLesson = (
       }
     }
   }
+  return null
 }
 
 export { getCurrentLesson, getCurrentLessonProgress, findNextLesson }

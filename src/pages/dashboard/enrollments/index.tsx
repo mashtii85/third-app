@@ -13,7 +13,7 @@ import type { NextPage } from 'next'
 import { Dashboard, UserContext } from '@drykiss/industry-ui'
 
 import { ACCOUNT_TYPE } from '../../../types/account.d'
-import pages from '../../../config/pages.json'
+import pages from '../../../config/pages'
 import { Enrollments } from '../../../components/enrollments/list/enrollments'
 
 const PageDashboard: NextPage = () => {

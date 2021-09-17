@@ -14,7 +14,7 @@ import { Dashboard, UserContext } from '@drykiss/industry-ui'
 import { AccountCourseList, ClientCourseList } from '../../../components/courses/list'
 
 import { ACCOUNT_TYPE } from '../../../types/account.d'
-import pages from '../../../config/pages.json'
+import pages from '../../../config/pages'
 
 const PageDashboard: NextPage = () => {
   const { user } = useContext(UserContext)

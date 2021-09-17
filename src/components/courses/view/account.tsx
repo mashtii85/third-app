@@ -45,7 +45,6 @@ import { Lesson, LESSON_TYPE } from '../../../types/lesson.d'
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../types/lessonProgress.d'
 import { COURSE_PAGE_MODE } from './types.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
-
 import VideoPlayer from '../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../helpers'
 import { Quiz } from '../../common/quiz/quiz'
@@ -57,6 +56,7 @@ import { getCurrentLesson, getCurrentLessonProgress, findNextLesson } from '../.
 
 // User
 import { useCurrentUser } from '../../../utils/useCurrentUser'
+import { scrollTo } from '../../../utils/scrollTo'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -80,7 +80,7 @@ export const AccountCourseView = () => {
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const [stateHolder, setStateHolder] = useState(pageState)
 
-  const { data: { course } = { course: {} }, refetch } = useQuery<CourseData>(GET_COURSE, {
+  const { data, refetch } = useQuery<CourseData>(GET_COURSE, {
     skip: !query?.id,
     variables: {
       courseId: parseInt(query?.id as string)
@@ -117,14 +117,17 @@ export const AccountCourseView = () => {
       !stateHolder.showNextLesson &&
       stateHolder.completedLessonId !== 0 &&
       stateHolder.selectedLessonId !== 0 &&
-      stateHolder.completedLessonId !== stateHolder.selectedLessonId
+      stateHolder.completedLessonId !== stateHolder.selectedLessonId &&
+      data?.course.title
     ) {
       const currentLesson = getCurrentLesson(
-        course as Course,
+        data.course,
         stateHolder.selectedModuleId,
         stateHolder.selectedLessonId
       )
-      startLesson(currentLesson)
+      if (currentLesson) {
+        startLesson(currentLesson)
+      }
     }
   })
 
@@ -132,10 +135,10 @@ export const AccountCourseView = () => {
     return <></>
   }
 
-  if (!course) {
+  if (!data?.course) {
     return <></>
   }
-
+  const { course } = data
   const lessonSummary = () => {
     const progress: LessonProgress[] = []
     const modules = (course as Course).modules || []
@@ -149,7 +152,9 @@ export const AccountCourseView = () => {
         } else {
           const lessonProgressModel: LessonProgress = {
             label: LESSON_PROGRESS_STATUS.Pending,
-            status: LESSON_PROGRESS_STATUS.Pending
+            status: LESSON_PROGRESS_STATUS.Pending,
+            id: 0,
+            updated_at: new Date()
           }
           progress.push(lessonProgressModel)
         }
@@ -202,8 +207,8 @@ export const AccountCourseView = () => {
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
               : isActive && stateHolder.canCompleteLesson
-              ? 'In progress ...'
-              : null,
+                ? 'In progress ...'
+                : null,
           status: progress.status,
           actions: [actionModel]
         })
@@ -213,8 +218,8 @@ export const AccountCourseView = () => {
   }
 
   const prepareLessonForStarting = (lesson?: Lesson) => {
-    const lessonProgress = lesson?.lesson_progresses[0] || {}
-    if (lessonProgress.id) {
+    const lessonProgress = lesson?.lesson_progresses[0] ?? null
+    if (lessonProgress) {
       const lessonProgressModel = { status: LESSON_PROGRESS_STATUS.Started }
       updateLessonProgressByPk({
         variables: { id: lessonProgress.id, changes: lessonProgressModel }
@@ -233,19 +238,7 @@ export const AccountCourseView = () => {
     return lesson
   }
 
-  const scrollTo = (elementId: string = '') => {
-    switch (elementId.toLowerCase()) {
-      case '':
-      case 'top':
-      default:
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        })
-    }
-  }
-
-  const startLesson = (lesson?: Lesson) => {
+  const startLesson = (lesson: Lesson) => {
     const lessonProgress = lesson?.lesson_progresses[0]
     if (lessonProgress) {
       stateHolder.selectedModuleId = lessonProgress?.lesson?.module?.id ?? 0
@@ -290,15 +283,18 @@ export const AccountCourseView = () => {
       stateHolder.pageMode !== COURSE_PAGE_MODE.Finished
     ) {
       stateHolder.pageMode = COURSE_PAGE_MODE.View
-      stateHolder.selectedModuleId = nextLesson?.selectedModuleId ?? 0
-      stateHolder.selectedLessonId = nextLesson?.selectedLessonId ?? 0
-      startLesson(
-        getCurrentLesson(
-          course as Course,
-          stateHolder.selectedModuleId,
-          stateHolder.selectedLessonId
-        )
+      if (nextLesson) {
+        stateHolder.selectedModuleId = nextLesson.selectedModuleId
+        stateHolder.selectedLessonId = nextLesson.selectedLessonId
+      }
+      const currentLesson = getCurrentLesson(
+        course,
+        stateHolder.selectedModuleId,
+        stateHolder.selectedLessonId
       )
+      if (currentLesson) {
+        startLesson(currentLesson)
+      }
     } else {
       if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished)
         stateHolder.pageMode = COURSE_PAGE_MODE.Progress
@@ -319,12 +315,11 @@ export const AccountCourseView = () => {
         })
         if (stateHolder.pageMode === COURSE_PAGE_MODE.Finished) {
           const courseEnrollmentModel = { status: COURSE_ENROLLMENT_STATUS.Completed }
-          updateCourseEnrollmentByPk({
-            variables: {
-              id: ((course as Course)?.course_enrollments ?? [])[0].id,
-              changes: courseEnrollmentModel
-            }
-          })
+          if (course?.course_enrollments) {
+            updateCourseEnrollmentByPk({
+              variables: { id: course?.course_enrollments[0]?.id, changes: courseEnrollmentModel }
+            })
+          }
         }
       }
     }

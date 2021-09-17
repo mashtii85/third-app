@@ -5,7 +5,7 @@
 // UI
 import { Card, Column, Row } from '@drykiss/industry-ui'
 
-import pages from '../../../config/pages.json'
+import pages from '../../../config/pages'
 import { useEnrollments } from '../../enrollments/hooks'
 
 export const AccountCourseList = ({ accountId }: { accountId: number }) => {

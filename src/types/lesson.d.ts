@@ -96,4 +96,4 @@ type OtherLessons = {
   updated_at: Date
 }
 
-export type Lesson = VideoLesson | OtherLessons | QuizLesson
+export type Lesson = VideoLesson | QuizLesson | OtherLessons

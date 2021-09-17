@@ -8,20 +8,21 @@ import { Image } from '@drykiss/industry-ui'
 import { CompletionCertificateStyledComponent } from './types.d'
 
 export const CompletionCertificate = (input: CompletionCertificateStyledComponent) => {
+  const { certificateId, course, dateCompleted, username } = input
   return (
     <StyledContainer>
       <div className="completionCertificate">
         <div className="info">
           <Image className="logo" alt="uae fa logo" src="/logo.png" />
           <p className="title">UAE FA</p>
-          <p className="username">{input.username}</p>
+          <p className="username">{username}</p>
           <p className="course">
             Is hereby awarded this certificate of achievement for the successful completion of
-            <strong> {input.course} </strong>course on<strong> {input.dateCompleted} </strong>
+            <strong> {course} </strong>course on<strong> {dateCompleted} </strong>
           </p>
         </div>
         <div className="footer">
-          <p className="certificate-id">{`Certificate ID: ${input.certificateId}`}</p>
+          <p className="certificate-id">{`Certificate ID: ${certificateId}`}</p>
         </div>
       </div>
     </StyledContainer>

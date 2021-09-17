@@ -29,6 +29,7 @@ bower_components
 # IDE
 *.sublime-*
 .history
+*.tsbuildinfo
 
 # Compiled source
 *.com
