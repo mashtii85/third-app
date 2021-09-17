@@ -4,7 +4,15 @@
 // React
 import { useContext, MouseEvent } from 'react'
 // UI
-import { capitalize, Details2, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
+import {
+  Button,
+  ButtonToolbar,
+  capitalize,
+  Details2,
+  OffCanvasContext,
+  Table,
+  TableActions
+} from '@drykiss/industry-ui'
 import { TaxonomyForm } from '../form/form'
 import { TaxonomyDelete } from '../module/delete'
 // Next
@@ -80,7 +88,7 @@ export const TaxonomyTable = ({ title }: TableProps) => {
 
   const handleClick = (e: MouseEvent<HTMLElement>, row: Taxonomy) => {
     // TODO:  need to find a way to provide entity_id and client_id
-
+    e.stopPropagation()
     const defaultValues = row ? { ...row, status: row.status.toLowerCase() } : {}
 
     offCanvas.show({
@@ -104,8 +112,18 @@ export const TaxonomyTable = ({ title }: TableProps) => {
       }
     })
 
+  const Toolbar = () => {
+    return (
+      <ButtonToolbar>
+        <Button context="secondary" onClick={handleClick}>
+          Add New
+        </Button>
+      </ButtonToolbar>
+    )
+  }
+
   return (
-    <Details2 button="Add New" open title={title} handleClick={handleClick}>
+    <Details2 open title={title} toolbar={<Toolbar />}>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
     </Details2>
   )

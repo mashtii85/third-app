@@ -82,7 +82,7 @@ const UserDetails = () => {
     <Row>
       <Column md={6}>
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
-        <Details2 handleClick={handleClick} open title="Details" toolbar={<Toolbar />}>
+        <Details2 open title="Details" toolbar={<Toolbar />}>
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
           <DetailsText content="Email" text={user.email} />
           <DetailsText content="Phone" text={user?.custom_fields?.phone || '-'} />
