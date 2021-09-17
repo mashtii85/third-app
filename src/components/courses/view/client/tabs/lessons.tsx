@@ -1,31 +1,48 @@
 /**
- * Components - Courses - View - Client - Tabs - Curriculum
+ * Components - Lessons - View - Client - Tabs - Details
  */
 
-// Apollo
-import { useQuery } from '@apollo/client'
-
-import { GET_COURSE } from '../../../queries'
-
-// Next
-import { useRouter } from 'next/router'
+// UI
+import { Details2, Space, Row, Column } from '@drykiss/industry-ui'
 
 // Types
-import { CourseData } from '../../../hooks/types'
-import { Course } from '../../../../../types/course'
+import { Module } from '../../../../../types/module'
 
-// Partial views
-import { LessonsListTable } from '../../../../lessons/lists/lessonsListTable'
+// Hooks
+import { useCourse } from '../../../hooks'
 
-export const ClientLessons = () => {
-  const { query } = useRouter()
+import { LessonTable } from '../../../../lessons/lists/table/table'
 
-  const { data: { course } = { course: {} } } = useQuery<CourseData>(GET_COURSE, {
-    skip: !query?.id,
-    variables: {
-      courseId: parseInt(query?.id as string)
-    }
-  })
+// Helpers
+import { Toolbar } from '../../../../lessons/lists/table/helpers'
 
-  return <LessonsListTable course={course as Course} />
+export const ClientLessons = ({ courseId }: { courseId: number }) => {
+  const { course, loading, error } = useCourse(courseId)
+  if (error) {
+    console.error(error.message)
+  }
+  if (loading) {
+    console.log('loading')
+  }
+  return (
+    <Row>
+      <Column md="5">
+        {course?.modules?.length &&
+          course?.modules?.map((module: Module) => (
+            <>
+              <Space />
+              <Details2
+                open
+                key={module.id}
+                title={module.title}
+                toolbar={<Toolbar courseId={courseId} moduleId={module?.id} />}
+              >
+                <LessonTable courseId={course.id} moduleId={module.id} />
+              </Details2>
+            </>
+          ))}
+      </Column>
+      <Column md="7"></Column>
+    </Row>
+  )
 }

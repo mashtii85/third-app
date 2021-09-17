@@ -1,4 +1,4 @@
-import { QuizQuestion } from '../../../types/lesson'
+import { QuizQuestion } from '../../../types/lesson.d'
 
 export interface QuizProps {
   questions: QuizQuestion[]
