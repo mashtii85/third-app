@@ -10,6 +10,7 @@ import {
   ENROLLMENTS_FIELDS
 } from '../../enrollments/queries/fragments'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
+import { LESSON_FIELDS } from '../../lessons/queries/fragments'
 
 export const GET_COURSES = gql`
   query GetCourses($limit: Int = 100, $order_by: [course_order_by!] = {}, $where: course_bool_exp) {
@@ -38,16 +39,7 @@ export const GET_COURSE = gql`
         updated_at
         course_id
         lessons {
-          id
-          description
-          created_at
-          content
-          title
-          type
-          status
-          ordering
-          module_id
-          client_id
+          ...LessonFields
           lesson_progresses {
             id
             status
@@ -73,6 +65,7 @@ export const GET_COURSE = gql`
     }
   }
   ${COURSE_FIELDS}
+  ${LESSON_FIELDS}
   ${MEDIA_FIELDS}
   ${ENROLLMENTS_FIELDS}
 `

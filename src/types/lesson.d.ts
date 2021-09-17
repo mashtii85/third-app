@@ -31,6 +31,8 @@ type VideoLesson = {
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
   module: Module
+  created_at: Date
+  updated_at: Date
 }
 
 export enum QUESTION_TYPE {
@@ -72,6 +74,8 @@ type QuizLesson = {
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
   module: Module
+  created_at: Date
+  updated_at: Date
 }
 
 // separate these lessons when ever properties differ, like VideoLesson
@@ -88,6 +92,8 @@ type OtherLessons = {
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
   module?: Module
+  created_at: Date
+  updated_at: Date
 }
 
 export type Lesson = VideoLesson | OtherLessons | QuizLesson

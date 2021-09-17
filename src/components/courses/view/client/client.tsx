@@ -23,7 +23,7 @@ export const ClientCourseView = () => {
         <Tab active={tabName === CLIENT_TAB.Details || !tabName} label={CLIENT_TAB.Details}>
           <ClientDetails courseId={courseId} />
         </Tab>
-        <Tab active={tabName === CLIENT_TAB.Lessons || !tabName} label={CLIENT_TAB.Lessons}>
+        <Tab active={tabName === CLIENT_TAB.Curriculum || !tabName} label={CLIENT_TAB.Curriculum}>
           <ClientLessons />
         </Tab>
         <Tab active={tabName === CLIENT_TAB.Enrollments || !tabName} label={CLIENT_TAB.Enrollments}>

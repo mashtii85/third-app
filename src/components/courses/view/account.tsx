@@ -12,7 +12,10 @@ import { CompletionCertificate } from './completionCertificate'
 import { useQuery, useMutation } from '@apollo/client'
 
 import { GET_COURSE } from '../queries'
-import { UPDATE_LESSON_PROGRESS_BY_PK, ADD_LESSON_PROGRESS_ONE } from '../../lessons/queries'
+import {
+  UPDATE_LESSON_PROGRESS_BY_PK,
+  ADD_LESSON_PROGRESS_ONE
+} from '../../lessons/queries/queries'
 import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../enrollments/queries/queries'
 
 // Next

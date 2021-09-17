@@ -4,7 +4,7 @@
 
 export enum CLIENT_TAB {
   Details = 'details',
-  Lessons = 'lessons',
+  Curriculum = 'Curriculum',
   Enrollments = 'enrollments'
 }
 
