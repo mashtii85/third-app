@@ -3,7 +3,15 @@
  */
 
 // UI
-import { Details2, Space, Table, formatTime, formatDateStandard } from '@drykiss/industry-ui'
+import {
+  Column,
+  Details2,
+  Row,
+  Space,
+  Table,
+  formatTime,
+  formatDateStandard
+} from '@drykiss/industry-ui'
 
 // Types
 import { Course } from '../../../types/course'
@@ -27,21 +35,23 @@ export const LessonsListTable = ({ course }: { course: Course }) => {
   }
 
   return (
-    <>
-      {course?.modules?.length &&
-        course?.modules?.map((module: Module) => (
-          <>
-            <Space />
-            <Details2 open key={module.id} title={module.title}>
-              <Table
-                key={`lesson-table-${module.id}`}
-                columns={columns}
-                rows={rows(module.lessons)}
-                striped={false}
-              />
-            </Details2>
-          </>
-        ))}
-    </>
+    <Row>
+      <Column md={6}>
+        {course?.modules?.length &&
+          course?.modules?.map((module: Module) => (
+            <>
+              <Space />
+              <Details2 open key={module.id} title={module.title}>
+                <Table
+                  key={`lesson-table-${module.id}`}
+                  columns={columns}
+                  rows={rows(module.lessons)}
+                  striped={false}
+                />
+              </Details2>
+            </>
+          ))}
+      </Column>
+    </Row>
   )
 }

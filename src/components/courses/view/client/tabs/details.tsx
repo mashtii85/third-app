@@ -21,7 +21,6 @@ export const ClientDetails = ({ courseId }: { courseId: number }) => {
   return (
     <>
       <Row>
-        <Column md="3.5"></Column>
         <Column md="5">
           <Heading tag="h2" content={(course as Course)?.title} />
           <Space />
