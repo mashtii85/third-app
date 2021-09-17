@@ -3,10 +3,10 @@
  */
 
 // React
-import { MouseEvent, useContext } from 'react'
+import { ChangeEvent, MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
+import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import type { Course } from '../../../../types/course.d'
@@ -17,22 +17,56 @@ import { CourseForm } from '../../form'
 import pages from '../../../../config/pages.json'
 import { LooseObject } from '../../../../types/object'
 
-export const columns = () => [
-  {
-    text: 'id',
-    hidden: true
-  },
-  {
-    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
-    text: 'Title'
-  },
-  {
-    text: 'Author'
-  },
-  {
-    text: 'Enrolled Users'
-  }
-]
+export const columns = ({
+  handleDelete,
+  handleEdit
+}: {
+  handleDelete: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
+  handleEdit: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
+}) => {
+  return [
+    {
+      text: 'id',
+      hidden: true
+    },
+    {
+      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
+      text: 'Title'
+    },
+    {
+      text: 'Author'
+    },
+    {
+      text: 'Enrolled Users'
+    },
+    {
+      hidden: 'true',
+      text: 'Status'
+    },
+    {
+      hidden: true,
+      text: 'Description'
+    },
+    {
+      formatter: TableActions,
+      formatterData: [
+        {
+          context: 'secondary',
+          icon: ['fas', 'edit'],
+          onClick: handleEdit,
+          tooltip: 'Edit'
+        },
+        {
+          context: 'danger',
+          icon: ['fas', 'trash'],
+          onClick: handleDelete,
+          tooltip: 'Delete'
+        }
+      ],
+      text: 'Actions'
+    }
+  ]
+}
 
 export const rows = (courses: Course[]): CourseTableRowsType[] => {
   const list = courses.map((item) => {
@@ -40,7 +74,10 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
       id: item.id,
       title: item.title,
       author: item.custom_fields?.author || '',
-      enrolled: item.enrolled?.aggregate?.count ?? 0
+      enrolled: item.enrolled?.aggregate?.count ?? 0,
+      status: item.status,
+      description: item.description,
+      actions: ''
     }
   })
 

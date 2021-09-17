@@ -53,35 +53,35 @@ const vendor =
   []
 
 const fullScreen = {
-  requestFullscreen: (element) => element[vendor[key.requestFullscreen]](),
-  requestFullscreenFunction: (element) => element[vendor[key.requestFullscreen]],
-  get exitFullscreen() {
+  requestFullscreen: (element): any => element[vendor[key.requestFullscreen]](),
+  requestFullscreenFunction: (element): any => element[vendor[key.requestFullscreen]],
+  get exitFullscreen(): any {
     if (document.fullscreenElement !== null) {
       return document[vendor[key.exitFullscreen]].bind(document)
     }
   },
-  get fullscreenPseudoClass() {
+  get fullscreenPseudoClass(): any {
     return `:${vendor[key.fullscreen]}`
   },
-  addEventListener: (type, handler, options) =>
+  addEventListener: (type, handler, options): any =>
     document.addEventListener(vendor[key[type]], handler, options),
-  removeEventListener: (type, handler, options) =>
+  removeEventListener: (type, handler, options): any =>
     document.removeEventListener(vendor[key[type]], handler, options),
-  get fullscreenEnabled() {
+  get fullscreenEnabled(): any {
     return Boolean(document[vendor[key.fullscreenEnabled]])
   },
-  set fullscreenEnabled(val) {},
-  get fullscreenElement() {
+  set fullscreenEnabled(val) { },
+  get fullscreenElement(): any {
     return document[vendor[key.fullscreenElement]]
   },
-  set fullscreenElement(val) {},
-  get onfullscreenchange() {
+  set fullscreenElement(val) { },
+  get onfullscreenchange(): any {
     return document[`on${vendor[key.fullscreenchange]}`.toLowerCase()]
   },
   set onfullscreenchange(handler) {
     return (document[`on${vendor[key.fullscreenchange]}`.toLowerCase()] = handler)
   },
-  get onfullscreenerror() {
+  get onfullscreenerror(): any {
     return document[`on${vendor[key.fullscreenerror]}`.toLowerCase()]
   },
   set onfullscreenerror(handler) {

@@ -17,7 +17,7 @@ interface CurrentUser {
   user: User
 }
 
-export const useCurrentUser = () => {
+export const useCurrentUser = (): CurrentUser => {
   const currentUser: CurrentUser = useContext(UserContext)
 
   if (!currentUser) {

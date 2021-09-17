@@ -8,22 +8,23 @@ import { useRef } from 'react'
 // Config
 import { generalConfig } from '../../../config/config'
 import { IsJsonString } from '../../../utils/isJson'
+import { OrderBy } from '../../../types/orderBy'
+import { UseTableProps, UseTableOutput } from './types.d'
 
-export const useTable = ({ filters, initialSort }: { filters: any; initialSort: any }) => {
+export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTableOutput => {
   const ref = useRef<any>()
 
-  const defaultSort = {
-    item: 'createdAt',
-    order: 'desc'
+  const defaultSort: OrderBy = {
+    created_at: 'desc'
   }
 
   const sort = initialSort || defaultSort
   const orderBy = ref.current
     ? {
-        [ref.current?.sort.item || sort.item]: sort.inneritem
-          ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
-          : ref.current?.sort.order || sort.order
-      }
+      [ref.current?.sort.item || sort.item]: sort.inneritem
+        ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
+        : ref.current?.sort.order || sort.order
+    }
     : defaultSort
 
   const initialData = {

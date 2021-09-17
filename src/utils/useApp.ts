@@ -8,7 +8,7 @@ import { useContext } from 'react'
 // UI
 import { AppContext } from '../services/app'
 
-export const useApp = () => {
+export const useApp = (): any => {
   const app = useContext(AppContext)
 
   if (!app) {

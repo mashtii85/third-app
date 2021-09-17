@@ -7,17 +7,13 @@ import { nullFreeObject } from '../../../utils/nullFreeObject'
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
 import { LooseObject } from '../../../types/object.d'
+import { PrepareCourseArgumentProps } from './types'
 
-export const prepareArguments = ({
+export const prepareCoursesArguments = ({
   filters,
   clientId
-}: {
-  filters?: LooseObject
-  clientId: number
-}) => {
-  // if (!filters) return { whereClause: '', variables: {} }
+}: PrepareCourseArgumentProps): LooseObject => {
   nullFreeObject(filters)
-
   const whereClause: LooseObject = {}
   whereClause.client_id = { _eq: clientId }
 
@@ -35,5 +31,10 @@ export const prepareArguments = ({
     whereClause.description = { _ilike: filters.description }
   }
 
-  return whereClause
+  const otherClause = {
+    limit: filters?.limit,
+    order_by: filters?.orderBy ? filters.orderBy : {}
+  }
+
+  return { ...otherClause, where: whereClause }
 }

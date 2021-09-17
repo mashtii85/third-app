@@ -458,7 +458,7 @@ export const Courses = [
   }
 ]
 
-export const FilteredCourses = () => {
+export const FilteredCourses = (): any => {
   const active = Courses.filter((item) => item.progress! > 0 && item.progress! < 100).length
 
   const pending = Courses.filter((item) => item.progress === 0).length

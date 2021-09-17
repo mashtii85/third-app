@@ -2,16 +2,12 @@
  * Components - Enrollments - List - Table - Helpers
  */
 
-// React
-import { MouseEvent, useContext } from 'react'
-
 // UI
-import { Button, formatDateStandard, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
+import { formatDateStandard, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import { CourseTableRowsType } from './types'
 import { Enrollment } from '../../hooks/useEnrollments/types'
-import { LooseObject } from '../../../../types/object'
 
 import pages from '../../../../config/pages.json'
 
@@ -58,21 +54,4 @@ export const rows = (courses: Enrollment[]): CourseTableRowsType[] => {
   })
 
   return list
-}
-
-export const Toolbar = ({ filters }: { filters: LooseObject }) => {
-  console.log(filters)
-  // we don't know it's type
-  const offCanvas = useContext<any>(OffCanvasContext)
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    e.stopPropagation()
-    offCanvas.show({
-      content: <div>form</div>,
-      submit: true,
-      title: 'Add An Enrollment'
-    })
-  }
-
-  return <Button context="white" onClick={handleClick} size="sm" content="Create An Enrollment" />
 }

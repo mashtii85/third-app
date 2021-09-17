@@ -13,7 +13,7 @@ import jwt from 'jsonwebtoken'
 // Mocks
 import { Users } from '../../../mocks/users'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: NextApiRequest, res: NextApiResponse): void {
   if (req.method === 'POST') {
     const user = Users.find((u) => u.email === req.body.email)
 

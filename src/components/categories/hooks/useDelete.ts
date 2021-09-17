@@ -5,9 +5,12 @@
 // Apollo
 import { useMutation } from '@apollo/client'
 import { DELETE_TAXONOMY, GET_TAXONOMIES } from '../queries'
-import { UseDeleteTaxonomyProps } from './types'
-import { Taxonomy } from '../../../types/taxonomy'
-export const useDeleteTaxonomy = (props: UseDeleteTaxonomyProps) => {
+
+// Types
+import { UseDeleteTaxonomyOutput, UseDeleteTaxonomyProps } from './types.d'
+import { Taxonomy } from '../../../types/taxonomy.d'
+
+export const useDeleteTaxonomy = (props: UseDeleteTaxonomyProps): UseDeleteTaxonomyOutput => {
   const [deleteTaxonomy, { loading }] = useMutation(DELETE_TAXONOMY, {
     variables: { taxonomyId: props.taxonomyId },
     onCompleted: props.onCompleted,

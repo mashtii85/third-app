@@ -96,3 +96,29 @@ export const CREATE_COURSE = gql`
   ${COURSE_FIELDS}
   ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
 `
+
+export const UPDATE_COURSE = gql`
+  mutation updateCourse($courseId: Int!, $set: course_set_input = {}) {
+    course: update_course_by_pk(pk_columns: { id: $courseId }, _set: $set) {
+      ...CourseFields
+      enrolled: course_enrollments_aggregate {
+        ...EnrollmentsAggregateFields
+      }
+    }
+  }
+  ${COURSE_FIELDS}
+  ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
+`
+
+export const DELETE_COURSE = gql`
+  mutation deleteCourse($courseId: Int!) {
+    course: delete_course_by_pk(id: $courseId) {
+      ...CourseFields
+      enrolled: course_enrollments_aggregate {
+        ...EnrollmentsAggregateFields
+      }
+    }
+  }
+  ${COURSE_FIELDS}
+  ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
+`

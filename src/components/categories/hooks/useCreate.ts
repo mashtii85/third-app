@@ -5,9 +5,12 @@
 // Apollo
 import { useMutation } from '@apollo/client'
 import { CREATE_TAXONOMY, GET_TAXONOMIES } from '../queries'
-import { UseCreateTaxonomyProps } from './types'
-export const useCreateTaxonomy = (props: UseCreateTaxonomyProps) => {
-  const [createTaxonomy, { loading }] = useMutation(CREATE_TAXONOMY, {
+
+// Types
+import { UseCreateTaxonomyOutput, UseCreateTaxonomyProps } from './types'
+
+export const useCreateTaxonomy = (props: UseCreateTaxonomyProps): UseCreateTaxonomyOutput => {
+  const [createTaxonomy, { error, loading }] = useMutation(CREATE_TAXONOMY, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
@@ -29,5 +32,5 @@ export const useCreateTaxonomy = (props: UseCreateTaxonomyProps) => {
     }
   })
 
-  return { createTaxonomy, loading }
+  return { createTaxonomy, error, loading }
 }

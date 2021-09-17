@@ -3,19 +3,16 @@
  */
 
 // Types
-import { OrderBy } from '../../../types/orderBy.d'
 import { STATUS_ACTIVE } from '../../../types/select.d'
 import { Course } from '../../../types/course'
 import { ApolloError } from '@apollo/client'
 import { LooseObject } from '../../../types/object'
+import { Filter } from '../../../types/Filter'
+import { UseHookOutput } from '../../../types/hook.d'
 
-export interface CourseFilter {
+export interface CourseFilter extends Filter {
   status: STATUS_ACTIVE
   description: string
-  title?: string
-  limit: number
-  offset: number
-  orderBy: OrderBy
 }
 
 export interface UseCoursesProps {
@@ -60,5 +57,14 @@ export interface UseCreateCourseProps {
   clientId: number
   onCompleted: (data: { course: Course }) => void
   onError: (data: ApolloError) => void
-  filters: LooseObject
+  filters: CourseFilter
+}
+
+export interface UseCreateCourseOutput extends UseHookOutput {
+  createCourse: any
+}
+
+export interface PrepareCourseArgumentProps {
+  filters?: CourseFilter
+  clientId: number
 }

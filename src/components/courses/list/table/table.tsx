@@ -2,8 +2,11 @@
  * Components - Courses - List - Table - Table
  */
 
+// React
+import { ChangeEvent, useContext } from 'react'
+
 // UI
-import { Details2, Table } from '@drykiss/industry-ui'
+import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
@@ -14,6 +17,9 @@ import { useCourses } from '../../hooks'
 
 // Types
 import { CourseFilter } from '../../hooks/types'
+import { CourseTableRowsType } from './types'
+
+import { CourseForm, DeleteCourse } from '../../form'
 
 interface CourseTableProps {
   clientId: number
@@ -23,16 +29,60 @@ interface CourseTableProps {
 const initialSort = {}
 
 export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
-  const { initialData, ref } = useTable({ filters, initialSort })
+  const { initialData, ref } = useTable<CourseFilter>({ filters, initialSort })
 
   const { courseList, loading } = useCourses({
     clientId,
     filters: initialData
   })
 
+  const offCanvas = useContext<any>(OffCanvasContext)
+  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+    console.log(e, row)
+
+    offCanvas.show({
+      content: (
+        <DeleteCourse
+          id={row.id!}
+          title={row.title}
+          onSuccess={offCanvas.close}
+          filters={initialData}
+          clientId={clientId}
+        />
+      ),
+      submit: false,
+      title: 'Delete Course'
+    })
+  }
+
+  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+    console.log(e, row)
+    offCanvas.show({
+      content: (
+        <CourseForm
+          onSuccess={offCanvas.close}
+          filters={filters}
+          defaultValues={{
+            id: row.id,
+            title: row.title,
+            status: row.status,
+            description: row.description
+          }}
+        />
+      ),
+      submit: true,
+      title: 'Edit Course'
+    })
+  }
+
   return (
     <Details2 open title="Courses" toolbar={<Toolbar filters={initialData} />}>
-      <Table loading={loading} columns={columns()} rows={rows(courseList)} ref={ref} />
+      <Table
+        loading={loading}
+        columns={columns({ handleDelete, handleEdit })}
+        rows={rows(courseList)}
+        ref={ref}
+      />
     </Details2>
   )
 }

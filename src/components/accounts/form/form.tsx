@@ -5,7 +5,7 @@
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { AccountSchema } from './schema'
+import { AccountSchema as schema } from './schema'
 // UI
 import {
   Form,
@@ -28,7 +28,7 @@ export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
     defaultValues: {
       ...defaultValues
     },
-    resolver: yupResolver(AccountSchema())
+    resolver: yupResolver(schema)
   })
 
   const { createAccount } = useCreateAccount({

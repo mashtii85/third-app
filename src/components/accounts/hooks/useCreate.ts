@@ -5,9 +5,12 @@
 // Apollo
 import { useMutation } from '@apollo/client'
 import { CREATE_ACCOUNT, GET_ACCOUNTS } from '../queries/queries'
-import { UseCreateAccountProps } from './types'
-export const useCreateAccount = (props: UseCreateAccountProps) => {
-  const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT, {
+
+// Types
+import { UseCreateAccountOutput, UseCreateAccountProps } from './types.d'
+
+export const useCreateAccount = (props: UseCreateAccountProps): UseCreateAccountOutput => {
+  const [createAccount, { error, loading }] = useMutation(CREATE_ACCOUNT, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
@@ -30,5 +33,5 @@ export const useCreateAccount = (props: UseCreateAccountProps) => {
     }
   })
 
-  return { createAccount, loading }
+  return { createAccount, error, loading }
 }

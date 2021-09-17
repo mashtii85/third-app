@@ -13,7 +13,8 @@
     "cy:run": "cypress run -C ./cypress-local.json",
     "clean-cache": "rimraf -rf ./node_modules/.cache",
     "build": "rimraf -rf ./.next && next build",
-    "export": "next export -s"
+    "export": "next export -s",
+    "prepare": "husky install"
   },
   "engines": {
     "node": "^14"
@@ -22,6 +23,11 @@
     "src/**/*.{js,ts,tsx}": [
       "npm test"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@drykiss/industry-ui": "2.1.2",

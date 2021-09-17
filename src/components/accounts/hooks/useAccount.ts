@@ -5,9 +5,11 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_ACCOUNT } from '../queries/queries'
-import { AccountData, Variable } from './types'
 
-export const useAccount = ({ accountId }: Variable) => {
+// Types
+import { AccountData, UseAccountOutput, UseAccountsVariable } from './types.d'
+
+export const useAccount = ({ accountId }: UseAccountsVariable): UseAccountOutput => {
   const { data, error, loading } = useQuery<AccountData, any>(GET_ACCOUNT, {
     variables: {
       accountId
@@ -15,7 +17,7 @@ export const useAccount = ({ accountId }: Variable) => {
   })
 
   if (error) {
-    return { loading: false, error, account: data?.account || {} }
+    return { loading: false, error }
   }
   return { loading, account: data?.account }
 }

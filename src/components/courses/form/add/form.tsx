@@ -1,5 +1,5 @@
 /**
- * Components - Courses - Form - Form
+ * Components - Courses - Form - Add - Form
  */
 
 // React
@@ -22,26 +22,29 @@ import {
 import { courseSchema as schema } from './schema'
 
 // Constants
-import { statusActive } from '../../../constants/status'
+import { statusActive } from '../../../../constants/status'
 
 // Types
 import { CourseFormType } from './types.d'
 
-import { useCreateCourse } from '../hooks'
-import { LooseObject } from '../../../types/object'
+// Hooks
+import { useCreateCourse, useUpdateCourse } from '../../hooks'
+import { CourseFilter } from '../../hooks/types'
+import { LooseObject } from '../../../../types/object'
 
 export const CourseForm = ({
   onSuccess,
+  defaultValues = {},
   filters
 }: {
   onSuccess: () => void
-  filters: LooseObject
+  filters: CourseFilter
+  defaultValues?: CourseFormType | LooseObject
 }) => {
   const { user } = useContext(UserContext)
-  const defaultValues = {}
 
   const { control, errors, handleSubmit, register } = useForm<CourseFormType>({
-    defaultValues: defaultValues,
+    defaultValues,
     resolver: yupResolver(schema)
   })
 
@@ -54,17 +57,27 @@ export const CourseForm = ({
     }
   })
 
+  const { updateCourse } = useUpdateCourse({
+    onCompleted: onSuccess,
+    onError: (error) => {
+      console.error(error)
+    }
+  })
+
   const defaultOptions = {
-    control: control,
-    errors: errors,
-    register: register
+    control,
+    errors,
+    register
   }
 
   const onSubmit = async (form: CourseFormType) => {
-    await createCourse({
-      variables: { clientId: user.client_id, accountId: user.account_id, ...form }
-    })
-
+    if (defaultValues?.id) {
+      updateCourse({ variables: { courseId: defaultValues.id, set: form } })
+    } else {
+      await createCourse({
+        variables: { clientId: user.client_id, accountId: user.account_id, ...form }
+      })
+    }
     console.log(form)
   }
 

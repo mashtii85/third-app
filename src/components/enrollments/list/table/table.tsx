@@ -14,7 +14,7 @@ import { useEnrollments } from '../../hooks'
 import { EnrollmentFilters } from '../../hooks/useEnrollments/types'
 
 // Helpers
-import { columns, rows, Toolbar } from './helpers'
+import { columns, rows } from './helpers'
 
 interface EnrollmentsTableProps {
   courseId: number
@@ -36,7 +36,7 @@ export const EnrolledUsersTable = ({ courseId, filters }: EnrollmentsTableProps)
   }
 
   return (
-    <Details2 open title="Enrollments" toolbar={<Toolbar filters={initialData} />}>
+    <Details2 open title="Enrollments">
       <Table loading={loading} columns={columns()} rows={rows(enrollments)} ref={ref} />
     </Details2>
   )

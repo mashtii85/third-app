@@ -12,17 +12,16 @@ import { useCreateTaxonomy } from '../hooks/useCreate'
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
-import { TaxonomySchema } from './schema'
+import { TaxonomySchema as schema } from './schema'
+
 // Types
-import { TaxonomyFormProps } from './type'
-import { Taxonomy } from '../../../types/taxonomy'
+import { TaxonomyFormProps } from './type.d'
+import { Taxonomy } from '../../../types/taxonomy.d'
 // TODO: find a ways to
 export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormProps) => {
   const { control, errors, handleSubmit, register } = useForm({
-    defaultValues: {
-      ...defaultValues
-    },
-    resolver: yupResolver(TaxonomySchema())
+    defaultValues,
+    resolver: yupResolver(schema)
   })
 
   const { createTaxonomy } = useCreateTaxonomy({

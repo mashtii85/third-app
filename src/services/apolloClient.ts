@@ -24,6 +24,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
 import fetch from 'node-fetch'
+import { LooseObject } from '../types/object'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
@@ -47,7 +48,7 @@ if (process.browser) {
     options: {
       reconnect: true,
       lazy: true,
-      connectionParams: () => {
+      connectionParams: (): LooseObject => {
         // Use full-access admin secret for now
         return {
           headers: {
@@ -100,7 +101,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-function createApolloClient(Config: any) {
+function createApolloClient(Config: any): ApolloClient<any> {
   return new ApolloClient({
     cache: new InMemoryCache(),
     defaultOptions: {
@@ -120,7 +121,7 @@ function createApolloClient(Config: any) {
   })
 }
 
-export function initializeApollo(initialState: any = null, Config: any) {
+export function initializeApollo(initialState: any = null, Config: any): ApolloClient<any> {
   const _apolloClient = apolloClient || createApolloClient(Config)
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
@@ -149,7 +150,7 @@ export function initializeApollo(initialState: any = null, Config: any) {
   return _apolloClient
 }
 
-export function addApolloState(client: any, pageProps: any) {
+export function addApolloState(client: any, pageProps: any): any {
   if (pageProps && pageProps.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract()
   }
@@ -157,11 +158,11 @@ export function addApolloState(client: any, pageProps: any) {
   return pageProps
 }
 
-export function resetWsConnection() {
+export function resetWsConnection(): any {
   wsLink.subscriptionClient.close(false, false)
 }
 
-export function useApollo(pageProps: any, Config: any) {
+export function useApollo(pageProps: any, Config: any): ApolloClient<any> {
   const state = pageProps[APOLLO_STATE_PROP_NAME]
   const store = useMemo(() => initializeApollo(state, Config), [state])
   return store

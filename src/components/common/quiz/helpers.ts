@@ -1,7 +1,7 @@
 import { QUESTION_TYPE } from '../../../types/lesson.d'
 import { QuizState } from './types'
 
-export const calculateScore = (state: QuizState) => {
+export const calculateScore = (state: QuizState): number => {
   let score = state.overAllScore
   const activeQuestion = state.questions[state.activeQuestionIndex]
   if (activeQuestion.type === QUESTION_TYPE.SelectAnswer) {

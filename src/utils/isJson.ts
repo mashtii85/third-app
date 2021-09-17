@@ -2,7 +2,7 @@
  * Components - Utils - Is Json
  */
 
-export const isJson = (str: string) => {
+export const isJson = (str: string): boolean => {
   try {
     JSON.parse(str)
   } catch (e) {
@@ -11,7 +11,7 @@ export const isJson = (str: string) => {
   return true
 }
 
-export const IsJsonString = (str: string) => {
+export const IsJsonString = (str: string): any => {
   try {
     return JSON.parse(str)
   } catch (e) {
