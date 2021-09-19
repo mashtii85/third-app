@@ -19,9 +19,6 @@ export const prepareVariables = ({
   if (filters?.courseId) {
     variables.course_id = { _eq: filters.courseId }
   }
-  if (filters?.clientId) {
-    variables.client_id = { _eq: filters.clientId }
-  }
   if (filters?.accountId) {
     variables.account_id = { _eq: filters.accountId }
   }

@@ -39,7 +39,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
   const submit = async ({ id, ...form }: Taxonomy) => {
     return id
       ? await updateTaxonomy({ variables: { taxonomyId: id, changes: form } })
-      : await createTaxonomy({ variables: { objects: [form] } })
+      : await createTaxonomy({ variables: { objects: [{ ...form, client_id: 2 }] } })
   }
 
   const defaultOptions = {
@@ -77,8 +77,6 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
       ]}
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
-      <FormField {...defaultOptions} name="client_id" type="hidden" />
-      <FormField {...defaultOptions} name="entity_id" type="hidden" />
     </Form>
   )
 }

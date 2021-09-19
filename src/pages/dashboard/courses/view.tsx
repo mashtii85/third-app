@@ -25,7 +25,7 @@ const PageDashboard: NextPage = () => {
     switch (user.account_type) {
       case ACCOUNT_TYPE.Client:
         return <Dashboard View={<ClientCourseView />} />
-      case ACCOUNT_TYPE.Account:
+      case ACCOUNT_TYPE.Member:
         return (
           <Dashboard
             View={<AccountCourseView />}

@@ -5,11 +5,13 @@
 export enum ACCOUNT_TYPE {
   Admin = 'admin',
   Client = 'client',
-  Account = 'account'
+  Member = 'member'
 }
+
 export interface CustomField {
   position: string
 }
+
 export interface Account {
   id: number
   name: string

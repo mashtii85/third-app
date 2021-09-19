@@ -57,7 +57,7 @@ export const Users: User[] = [
     id: 4,
     client_id: 2,
     account_id: 4,
-    account_type: ACCOUNT_TYPE.Account,
+    account_type: ACCOUNT_TYPE.Member,
     email: 'demo@example.com',
     name_first: 'Demo',
     name_last: 'User',

@@ -76,19 +76,9 @@ export const GET_LESSON_PROGRESS_BY_LESSONID = gql`
 
 // should move to lesson progress
 export const ADD_LESSON_PROGRESS_ONE = gql`
-  mutation AddLessonProgress(
-    $client_id: Int!
-    $enrollment_id: Int!
-    $lesson_id: Int!
-    $status: String
-  ) {
+  mutation AddLessonProgress($enrollment_id: Int!, $lesson_id: Int!, $status: String) {
     insert_lesson_progress_one(
-      object: {
-        client_id: $client_id
-        enrollment_id: $enrollment_id
-        lesson_id: $lesson_id
-        status: $status
-      }
+      object: { enrollment_id: $enrollment_id, lesson_id: $lesson_id, status: $status }
     ) {
       id
       status

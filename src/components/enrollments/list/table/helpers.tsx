@@ -30,13 +30,13 @@ export const columns = () => [
     text: 'Completed Lessons'
   },
   {
+    text: 'Status'
+  },
+  {
     text: 'Date',
     formatter: ({ row }: { row: CourseTableRowsType }) => {
       return formatDateStandard(row.date)
     }
-  },
-  {
-    text: 'Status'
   }
 ]
 
@@ -48,8 +48,8 @@ export const rows = (courses: Enrollment[]): CourseTableRowsType[] => {
       user: `${item.user.name_first} ${item.user.name_last}`,
       author: item.course?.custom_fields?.author || '-',
       completedLessons: item.completed_lessons.aggregate.count,
-      date: item.created_at,
-      status: item.status
+      status: item.status,
+      date: item.created_at
     }
   })
 

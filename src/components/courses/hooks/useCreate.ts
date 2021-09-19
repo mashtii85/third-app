@@ -20,10 +20,10 @@ export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOut
       const courseFromResponse = data?.course
       const variables: LooseObject = prepareCoursesArguments({
         filters: props.filters,
-        clientId: props.clientId
+        accountId: props.accountId
       })
 
-      variables.client_id = { _eq: props.clientId }
+      variables.client_id = { _eq: props.accountId }
       const { courses } = cache.readQuery({
         query: GET_COURSES,
         variables

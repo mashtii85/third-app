@@ -28,7 +28,7 @@ const PageDashboard: NextPage = () => {
       case ACCOUNT_TYPE.Client:
         View = <Dashboard View={<ClientCourseList clientId={user.client_id} />} />
         break
-      case ACCOUNT_TYPE.Account:
+      case ACCOUNT_TYPE.Member:
         View = View = <Dashboard View={<AccountCourseList accountId={user.account_id} />} />
         break
 

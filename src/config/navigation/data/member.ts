@@ -1,10 +1,10 @@
 /**
- * Navigation - Data - Account
+ * Navigation - Data - Member
  */
 
 import pages from '../../pages'
 
-export const Account: any = {
+export const Member: any = {
   right: [
     {
       id: 'navHomeMenu',

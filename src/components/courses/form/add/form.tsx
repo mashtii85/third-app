@@ -49,7 +49,7 @@ export const CourseForm = ({
   })
 
   const { createCourse } = useCreateCourse({
-    clientId: user.client_id,
+    accountId: user.account_id,
     filters,
     onCompleted: onSuccess,
     onError: (error) => {
@@ -75,7 +75,7 @@ export const CourseForm = ({
       updateCourse({ variables: { courseId: defaultValues.id, set: form } })
     } else {
       await createCourse({
-        variables: { clientId: user.client_id, accountId: user.account_id, ...form }
+        variables: { accountId: user.account_id, ...form }
       })
     }
     console.log(form)
