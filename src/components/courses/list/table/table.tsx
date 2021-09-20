@@ -32,7 +32,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   const { initialData, ref } = useTable<CourseFilter>({ filters, initialSort })
 
   const { courseList, loading } = useCourses({
-    clientId,
+    accountId: clientId,
     filters: initialData
   })
 

@@ -17,9 +17,10 @@ import {
 import { useAccounts } from '../../hooks/useAccounts'
 
 // Types
-import { Column } from '../../../../types/column'
-import { TableProps, UserAccount } from './types'
-import { Account } from '../../../../types/account'
+import { Column } from '../../../../types/column.d'
+import { TableProps, UserAccount } from './types.d'
+import { Account } from '../../../../types/account.d'
+
 import pages from '../../../../config/pages'
 
 export const AccountTable = ({ title }: TableProps) => {

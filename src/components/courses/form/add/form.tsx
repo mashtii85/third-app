@@ -19,7 +19,7 @@ import {
   UserContext
 } from '@drykiss/industry-ui'
 
-import { courseSchema as schema } from './schema'
+import { CourseSchema as schema } from './schema'
 
 // Constants
 import { statusActive } from '../../../../constants/status'
@@ -29,8 +29,9 @@ import { CourseFormType } from './types.d'
 
 // Hooks
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
-import { CourseFilter } from '../../hooks/types'
-import { LooseObject } from '../../../../types/object'
+import { CourseFilter } from '../../hooks/types.d'
+import { LooseObject } from '../../../../types/object.d'
+import { Course } from '../../../../types/course'
 
 export const CourseForm = ({
   onSuccess,
@@ -39,7 +40,7 @@ export const CourseForm = ({
 }: {
   onSuccess: () => void
   filters: CourseFilter
-  defaultValues?: CourseFormType | LooseObject
+  defaultValues?: Course | LooseObject
 }) => {
   const { user } = useContext(UserContext)
 

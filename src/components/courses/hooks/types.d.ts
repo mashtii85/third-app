@@ -4,11 +4,11 @@
 
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
-import { Course } from '../../../types/course'
+import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
-import { LooseObject } from '../../../types/object'
-import { Filter } from '../../../types/Filter'
+import { Filter } from '../../../types/filter.d'
 import { UseHookOutput } from '../../../types/hook.d'
+import { LooseObject } from '../../../types/object.d'
 
 export interface CourseFilter extends Filter {
   status: STATUS_ACTIVE
@@ -16,7 +16,7 @@ export interface CourseFilter extends Filter {
 }
 
 export interface UseCoursesProps {
-  clientId: number
+  accountId: number
   filters?: CourseFilter
 }
 
@@ -24,9 +24,7 @@ export interface CoursesData {
   courses: Course[]
 }
 
-export interface CoursesVariables {
-  where: LooseObject
-}
+export type CoursesVariables = LooseObject
 
 export interface EnrollmentsData {
   enrollments: [{ course: Course }] | []

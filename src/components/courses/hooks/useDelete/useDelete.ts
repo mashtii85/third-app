@@ -28,7 +28,7 @@ export const useDeleteCourse = (props: useDeleteCourseProps): useDeleteCourseOut
       update(cache, { data }) {
         const variables: LooseObject = prepareCoursesArguments({
           filters: props.filters,
-          clientId: props.clientId
+          accountId: props.clientId
         })
 
         variables.client_id = { _eq: props.clientId }

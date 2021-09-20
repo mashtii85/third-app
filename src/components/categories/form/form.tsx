@@ -31,12 +31,11 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
   })
 
   const [updateTaxonomy] = useMutation(UPDATE_TAXONOMY, {
-    onCompleted: () => {
-      onSuccess()
-    }
+    onCompleted: onSuccess
   })
 
   const submit = async ({ id, ...form }: Taxonomy) => {
+    // todo: hello, clientId is hard coded
     return id
       ? await updateTaxonomy({ variables: { taxonomyId: id, changes: form } })
       : await createTaxonomy({ variables: { objects: [{ ...form, client_id: 2 }] } })
@@ -63,6 +62,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
+
       {type === 'custom-field' && [
         // TODO: Input and Required and Label type is incorrect please review it later
         <FormLabel label="Input">
@@ -75,6 +75,7 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
           <SelectField {...defaultOptions} name="label" options={statusActive} />
         </FormLabel>
       ]}
+
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
     </Form>

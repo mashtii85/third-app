@@ -11,8 +11,8 @@ export interface UseTableProps<T> {
   initialSort: LooseObject
 }
 
-export interface UseTableOutput {
-  initialData: LooseObject
+export interface UseTableOutput<T> {
+  initialData: T
   initialSort: LooseObject
   ref: MutableRefObject<any>
 }

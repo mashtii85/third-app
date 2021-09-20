@@ -5,7 +5,11 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_COURSES } from '../queries'
-import { CoursesData, CoursesVariables, UseCoursesProps } from './types'
+
+// Types
+import { CoursesData, CoursesVariables, UseCoursesProps } from './types.d'
+
+// Helpers
 import { prepareCoursesArguments } from './helpers'
 
 export const useCourses = ({ accountId, filters }: UseCoursesProps) => {

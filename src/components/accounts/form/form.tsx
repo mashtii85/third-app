@@ -20,9 +20,7 @@ import { Account } from '../../../types/account'
 
 export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register } = useForm({
-    defaultValues: {
-      ...defaultValues
-    },
+    defaultValues,
     resolver: yupResolver(schema)
   })
 

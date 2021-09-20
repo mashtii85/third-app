@@ -15,7 +15,9 @@ import { CourseTableRowsType } from './types.d'
 import { CourseForm } from '../../form'
 
 import pages from '../../../../config/pages'
-import { LooseObject } from '../../../../types/object'
+
+// Types
+import { CourseFilter } from '../../hooks/types.d'
 
 export const columns = ({
   handleDelete,
@@ -84,7 +86,7 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
   return list
 }
 
-export const Toolbar = ({ filters }: { filters: LooseObject }) => {
+export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
   // we don't know it's type
   const offCanvas = useContext<any>(OffCanvasContext)
 

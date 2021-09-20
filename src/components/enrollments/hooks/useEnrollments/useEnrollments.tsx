@@ -26,8 +26,7 @@ export const useEnrollments = ({
     offset: 0,
     status: STATUS_ACTIVE.Active,
     orderBy: {
-      item: 'created_by',
-      order: 'asc'
+      created_by: 'asc'
     },
     userStatus: STATUS_ACTIVE.Active
 

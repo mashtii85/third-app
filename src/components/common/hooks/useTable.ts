@@ -11,7 +11,7 @@ import { IsJsonString } from '../../../utils/isJson'
 import { OrderBy } from '../../../types/orderBy'
 import { UseTableProps, UseTableOutput } from './types.d'
 
-export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTableOutput => {
+export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTableOutput<T> => {
   const ref = useRef<any>()
 
   const defaultSort: OrderBy = {
@@ -27,7 +27,7 @@ export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTabl
     }
     : defaultSort
 
-  const initialData = {
+  const initialData: T = {
     ...filters,
     limit: parseInt(ref.current?.pageSize, 10) || generalConfig.paginationSize,
     offset:

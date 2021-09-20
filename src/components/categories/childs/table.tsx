@@ -13,9 +13,16 @@ import { GET_TAXONOMIES } from '../queries'
 import { capitalize, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 import { TaxonomyForm } from '../form/form'
-import { offCanvasType } from '../../../types/offCanvas'
 
-export const TaxonomyChildTable = () => {
+// Types
+import { offCanvasType } from '../../../types/offCanvas.d'
+import { Taxonomy } from '../../../types/taxonomy.d'
+
+// to do: I add parameter in here
+
+export const TaxonomyChildTable = ({ defaultValues }: { defaultValues: Taxonomy }) => {
+  console.log(defaultValues)
+
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const queryVariables = {}
@@ -29,16 +36,11 @@ export const TaxonomyChildTable = () => {
     variables: queryVariables
   })
 
-  const handleSuccess = () => {
-    offCanvas.close()
-  }
-
-  const handleClick = (e: any, row = { id: '' }) => {
+  const handleClick = (e: any, row: any) => {
+    console.log(e)
     offCanvas.show({
-      title: row.id ? 'Edit' : 'Add',
-      content: (
-        <TaxonomyForm defaultValues={{ ...row }} type="custom-field" onSuccess={handleSuccess} />
-      )
+      title: row?.id ? 'Edit' : 'Add',
+      content: <TaxonomyForm defaultValues={row} type="custom-field" onSuccess={offCanvas.close} />
     })
   }
 
@@ -49,7 +51,10 @@ export const TaxonomyChildTable = () => {
         context: 'secondary',
         disabled: isReadOnly,
         icon: ['fas', 'edit'],
-        onClick: (e: any, row: any) => handleClick('edit', row.data),
+        onClick: (e: any, row: any) => {
+          console.log(e)
+          handleClick('edit', row.data)
+        },
         tooltip: 'Edit'
       }
     ]
@@ -60,12 +65,14 @@ export const TaxonomyChildTable = () => {
       hidden: true
     },
     {
+      text: 'id',
       hidden: true
     },
     {
       text: 'Name'
     },
     {
+      text: 'Taxonomy Status',
       hidden: true
     },
     {
@@ -94,7 +101,11 @@ export const TaxonomyChildTable = () => {
     <>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
 
-      <AddButton content="Add New" disabled={loading} handleClick={handleClick}>
+      <AddButton
+        content="Add New"
+        disabled={loading}
+        handleClick={(data) => handleClick('add', data)}
+      >
         <div></div>
       </AddButton>
     </>

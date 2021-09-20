@@ -11,5 +11,5 @@ export interface CourseTableRowsType {
   enrolled: number
   actions: string
   status: STATUS_ACTIVE
-  description: string
+  description?: string
 }
