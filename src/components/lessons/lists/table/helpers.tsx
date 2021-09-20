@@ -19,7 +19,7 @@ import { Lesson } from '../../../../types/lesson.d'
 import { LessonTableRowsType } from './types.d'
 
 // Pages
-import pages from '../../../../config/pages.json'
+import pages from '../../../../config/pages'
 
 // Forms
 import { LessonForm } from '../../form/form'

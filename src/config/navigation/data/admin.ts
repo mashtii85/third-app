@@ -15,6 +15,25 @@ export const Admin: Navigation = {
       to: pages.dashboard.root
     },
     {
+      id: 'navClientsMenu',
+      name: 'Clients',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navClientsList',
+            name: 'List',
+            to: pages.dashboard.accounts.list
+          },
+          {
+            id: 'navMembersCreate',
+            name: 'Create',
+            to: pages.dashboard.accounts.create
+          }
+        ]
+      }
+    },
+    {
       id: 'navAccount',
       icon: 'cog',
       name: '',
@@ -31,11 +50,6 @@ export const Admin: Navigation = {
             id: 'navAccount',
             name: 'Account',
             to: pages.dashboard.account.view
-          },
-          {
-            id: 'navClients',
-            name: 'Clients',
-            to: pages.dashboard.account.clients
           },
           {
             id: 'navPlayground',

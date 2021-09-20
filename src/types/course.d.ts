@@ -7,7 +7,6 @@ import { Medium } from './medium'
 import { AggregateData } from './aggregateData.d'
 import { STATUS_ACTIVE } from './select.d'
 import { CourseEnrollment } from './courseEnrollment.d'
-import { STATUS_ACTIVE } from './select.d'
 
 export interface CustomFields {
   author?: string

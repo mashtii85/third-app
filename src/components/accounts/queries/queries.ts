@@ -6,10 +6,8 @@ import { USER_FIELDS } from '../../users/queries'
 
 export const GET_ACCOUNTS = gql`
   query GetAccounts($clientId: Int!) {
-    accounts: account_client(where: { client_id: { _eq: $clientId } }) {
-      account {
-        ...AccountFields
-      }
+    accounts: account(where: { client_id: { _eq: $clientId } }) {
+      ...AccountFields
     }
   }
   ${ACCOUNT_FIELDS}
@@ -37,6 +35,7 @@ export const CREATE_ACCOUNT = gql`
 export const GET_ACCOUNT_USER = gql`
   query GetAccountUser($accountId: Int!) {
     users: account_user_by_pk(account_id: $accountId) {
+      id
       user {
         ...UserFields
       }

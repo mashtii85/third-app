@@ -19,6 +19,7 @@ export interface UseAccountsVariable {
   accountType?: string
   clientId?: number
   status?: string
+  type?: string
 }
 
 export interface UseUserOutput extends UseHookOutput {

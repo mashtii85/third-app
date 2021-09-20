@@ -36,5 +36,5 @@ export interface User {
   status: USER_STATUS
   created_at: string
   updated_at: string
-  account_users?: AccountUsers[]
+  accounts?: AccountUsers[]
 }

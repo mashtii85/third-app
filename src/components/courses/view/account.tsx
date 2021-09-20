@@ -41,7 +41,7 @@ import { CourseProgressChart } from '../chart'
 // Types
 import { Module } from '../../../types/module'
 import { StepperActionModel, StepperModel } from '../../../types/stepper'
-import { Lesson, LESSON_TYPE } from '../../../types/lesson.d'
+import { Lesson, LESSON_TYPE, QuizQuestion } from '../../../types/lesson.d'
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../types/lessonProgress.d'
 import { COURSE_PAGE_MODE } from './types.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
@@ -209,7 +209,7 @@ export const AccountCourseView = () => {
               : isActive && stateHolder.canCompleteLesson
                 ? 'In progress ...'
                 : null,
-          status: progress.status,
+          status: progress?.status,
           actions: [actionModel]
         })
       })
@@ -226,7 +226,6 @@ export const AccountCourseView = () => {
       })
     } else {
       const argument = {
-        client_id: lesson?.client_id,
         enrollment_id: (course as Course).id,
         lesson_id: lesson?.id,
         status: LESSON_PROGRESS_STATUS.Started
@@ -355,6 +354,17 @@ export const AccountCourseView = () => {
     setStateHolder(stateHolder)
   }
 
+  const prepareLessonQuestions = (questions: any): QuizQuestion[] => {
+    return questions.map((q: any): QuizQuestion => {
+      return {
+        questionText: q.name,
+        answers: q.meta?.answers,
+        correctAnswers: q.meta?.correctAnswers,
+        type: q.meta.type
+      }
+    })
+  }
+
   return (
     <Row>
       <Column md={4}>
@@ -395,7 +405,10 @@ export const AccountCourseView = () => {
                     <VideoPlayer videos={parseVideos(lesson.media)} />
                   )}
                   {lesson.type === LESSON_TYPE.Quiz && (
-                    <Quiz questions={lesson.questions} onComplete={onQuizComplete} />
+                    <Quiz
+                      questions={prepareLessonQuestions(lesson.questions)}
+                      onComplete={onQuizComplete}
+                    />
                   )}
                   {lesson.content && <p>{lesson.content}</p>}
                   {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) && (

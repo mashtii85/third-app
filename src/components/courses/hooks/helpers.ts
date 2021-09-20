@@ -11,11 +11,11 @@ import { PrepareCourseArgumentProps } from './types'
 
 export const prepareCoursesArguments = ({
   filters,
-  clientId
+  accountId
 }: PrepareCourseArgumentProps): LooseObject => {
   nullFreeObject(filters)
   const whereClause: LooseObject = {}
-  whereClause.client_id = { _eq: clientId }
+  whereClause.account_id = { _eq: accountId }
 
   if (filters?.q) {
     whereClause.title = { _ilike: filters.q }

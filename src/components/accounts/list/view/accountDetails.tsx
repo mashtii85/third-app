@@ -1,11 +1,14 @@
 /**
  * Components - Account - View - Details
  */
-// Hook
+
+// Hooks
 import { useAccount } from '../../hooks/useAccount'
+
 // UI
 import { Details2, DetailsText, formatDateStandard } from '@drykiss/industry-ui'
-// types
+
+// Types
 import { AccountDetailsProps } from './type.d'
 
 const AccountDetails = ({ accountId, title = '' }: AccountDetailsProps) => {
@@ -15,7 +18,6 @@ const AccountDetails = ({ accountId, title = '' }: AccountDetailsProps) => {
     <Details2 open title={title}>
       <DetailsText content="Name" text={account.name || ''} />
       <DetailsText content="Status" text={account.status || ''} />
-      <DetailsText content="Structure" text={account.structure || ''} />
       <DetailsText content="Date Added" text={formatDateStandard(account.created_at) || ''} />
     </Details2>
   )

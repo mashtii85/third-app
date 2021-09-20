@@ -15,51 +15,37 @@ export const Client: Navigation = {
       to: pages.dashboard.root
     },
     {
-      id: 'navCoursesMenu',
-      name: 'Courses',
+      id: 'navLearningMenu',
+      name: 'Learning',
       type: {
         as: 'dropdown',
         items: [
           {
             id: 'navCourses',
-            name: 'List',
+            name: 'Courses',
             to: pages.dashboard.coursesClient.root
           },
           {
-            id: 'navCoursesCreate',
-            name: 'Create',
-            to: pages.dashboard.coursesClient.manage
-          }
-        ]
-      }
-    },
-    {
-      id: 'navEnrollmentsMenu',
-      name: 'Enrollments',
-      type: {
-        as: 'dropdown',
-        items: [
-          {
             id: 'navEnrollments',
-            name: 'List',
+            name: 'Enrollments',
             to: pages.dashboard.enrollments.root
           }
         ]
       }
     },
     {
-      id: 'navAccountMenu',
-      name: 'Accounts',
+      id: 'navMembersMenu',
+      name: 'Members',
       type: {
         as: 'dropdown',
         items: [
           {
-            id: 'navAccounts',
+            id: 'navMembersList',
             name: 'List',
             to: pages.dashboard.accounts.list
           },
           {
-            id: 'navAccountsCreate',
+            id: 'navMembersCreate',
             name: 'Create',
             to: pages.dashboard.accounts.create
           }
@@ -83,11 +69,6 @@ export const Client: Navigation = {
             id: 'navAccount',
             name: 'Account',
             to: pages.dashboard.account.view
-          },
-          {
-            id: 'navUsers',
-            name: 'Users',
-            to: pages.dashboard.account.users
           },
           {
             id: 'navCategories',

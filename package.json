@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "start": "tsc && next -p 3100",
+    "start": "next -p 3100",
     "test": "tsc",
     "test:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
     "cy:start": "cypress open -C ./cypress-dev.json",

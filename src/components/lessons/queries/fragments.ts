@@ -15,7 +15,6 @@ export const LESSON_FIELDS = gql`
     status
     ordering
     module_id
-    client_id
     custom_fields
     created_at
     updated_at

@@ -8,8 +8,8 @@ import { GET_COURSES } from '../queries'
 import { CoursesData, CoursesVariables, UseCoursesProps } from './types'
 import { prepareCoursesArguments } from './helpers'
 
-export const useCourses = ({ clientId, filters }: UseCoursesProps) => {
-  const variables = prepareCoursesArguments({ filters, clientId })
+export const useCourses = ({ accountId, filters }: UseCoursesProps) => {
+  const variables = prepareCoursesArguments({ filters, accountId })
   const { data, error, loading } = useQuery<CoursesData, CoursesVariables>(GET_COURSES, {
     variables
   })

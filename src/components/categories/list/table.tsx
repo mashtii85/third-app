@@ -115,7 +115,7 @@ export const TaxonomyTable = ({ title }: TableProps) => {
       content: (
         <TaxonomyForm
           onSuccess={handleSuccess}
-          defaultValues={{ entity_id: 1, client_id: 1, type: defaultTab, ...defaultValues }}
+          defaultValues={{ type: defaultTab, ...defaultValues }}
         />
       ),
       title: `${row ? 'Edit' : 'Add'} Course Category`

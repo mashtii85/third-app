@@ -67,12 +67,12 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
   ]
 
   const rows = () =>
-    (userDetail.account_users || [])
+    (userDetail.accounts || [])
       .filter((item: AccountUsers) => item !== null)
       .map((item: AccountUsers) => ({
         id: item.id,
         name: item.account.name,
-        position: item?.account_user?.custom_fields?.position,
+        position: item?.account_user?.custom_fields?.position || '-',
         status: capitalize(item.status),
         accountId: item.account.id,
         actions: '',

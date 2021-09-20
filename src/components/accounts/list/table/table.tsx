@@ -1,8 +1,10 @@
 /**
  * Components - Taxonomy - List - Table
  */
+
 // React
 import { useContext } from 'react'
+
 // UI
 import {
   UserContext,
@@ -13,12 +15,18 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 import { useAccounts } from '../../hooks/useAccounts'
+
 // Types
 import { Column } from '../../../../types/column'
 import { TableProps, UserAccount } from './types'
 import { Account } from '../../../../types/account'
 import pages from '../../../../config/pages'
+
 export const AccountTable = ({ title }: TableProps) => {
+  const {
+    user: { id: clientId = 0 }
+  } = useContext(UserContext)
+
   // Table Column
   const columns: Column<Account>[] = [
     { hidden: true },
@@ -30,32 +38,25 @@ export const AccountTable = ({ title }: TableProps) => {
       hidden: true
     },
     {
-      text: 'Type'
+      text: 'Status'
     },
     {
       text: 'Created'
-    },
-    {
-      text: 'Status'
     }
   ]
-  const {
-    user: { id: clientId = 0 }
-  } = useContext(UserContext)
 
   const { accounts = [], loading = true } = useAccounts({
     clientId
   })
 
   const rows = () =>
-    accounts.map(({ account }: UserAccount) => {
+    accounts.map((account: UserAccount) => {
       return {
-        accountId: account.id,
+        id: account.id,
         name: account.name,
         url: pages.dashboard.accounts.view,
-        type: account.type,
-        created: formatDateStandard(account.created_at),
-        status: capitalize(account.status)
+        status: capitalize(account.status),
+        created: formatDateStandard(account.created_at)
       }
     })
 

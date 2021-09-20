@@ -7,18 +7,13 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AccountSchema as schema } from './schema'
 // UI
-import {
-  Form,
-  FormField,
-  FormError,
-  FormLabel,
-  SelectField,
-  RadioField
-} from '@drykiss/industry-ui'
+import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 import { statusActive } from '../../../constants/status'
-// hooks
+
+// Hooks
 import { useCreateAccount } from '../hooks/useCreate'
+
 // Types
 import { AccountFormProps } from './types.d'
 import { Account } from '../../../types/account'
@@ -41,7 +36,7 @@ export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
       objects: [
         {
           ...form,
-          account_clients: { data: { client_id: defaultValues.clientId, status: form.status } }
+          client_id: defaultValues.clientId
         }
       ]
     }
@@ -63,32 +58,16 @@ export const AccountForm = ({ defaultValues, onSuccess }: AccountFormProps) => {
           <FormError message={errors?.name?.message} />
         )}
       </FormLabel>
+
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
         {errors.status && errors.status.type === 'required' && (
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
-      <FormLabel label="Structure">
-        <RadioField
-          {...defaultOptions}
-          data={[
-            {
-              id: 'Personal',
-              label: 'Personal',
-              value: 'Personal'
-            },
-            {
-              id: 'Business',
-              label: 'Business',
-              value: 'Business'
-            }
-          ]}
-          name="structure"
-          stacked
-        />
-      </FormLabel>
+
       <FormField {...defaultOptions} name="type" type="hidden" />
+
       <AddButton content="Submit" type="submit" handleClick={console.log}>
         <div></div>
       </AddButton>

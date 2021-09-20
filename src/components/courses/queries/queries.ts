@@ -54,6 +54,14 @@ export const GET_COURSE = gql`
           media {
             ...MediaFields
           }
+          questions: taxonomies(
+            where: { type: { _eq: "lesson-questions" }, entity: { _eq: "lesson" } }
+          ) {
+            id
+            name
+            meta
+            status
+          }
         }
       }
       media {
@@ -72,20 +80,13 @@ export const GET_COURSE = gql`
 
 export const CREATE_COURSE = gql`
   mutation CreateCourse(
-    $clientId: Int!
     $accountId: Int!
     $status: String!
     $title: String!
     $description: String!
   ) {
     course: insert_course_one(
-      object: {
-        client_id: $clientId
-        account_id: $accountId
-        status: $status
-        title: $title
-        description: $description
-      }
+      object: { account_id: $accountId, status: $status, title: $title, description: $description }
     ) {
       ...CourseFields
       enrolled: course_enrollments_aggregate {

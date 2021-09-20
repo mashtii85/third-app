@@ -11,31 +11,23 @@ import { useRouter } from 'next/router'
 // UI
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../common/tab'
-
 import TaxonomyList from './list'
 import { TAXONOMY_TABS } from '../../../constants/tabs'
+
 const TaxonomyTabs = () => {
   const { query } = useRouter()
 
   const tab = useMemo(() => {
-    return query.tab || TAXONOMY_TABS.COURSE_CATEGORIES
+    return query.tab || TAXONOMY_TABS.MEMBER_TYPES
   }, [query.tab])
 
   return (
     <Tabs key={tab}>
-      <Tab
-        active={tab === TAXONOMY_TABS.COURSE_CATEGORIES}
-        label="Course Categories"
-        activeTab="Course Categories"
-      >
-        <TaxonomyList type={TAXONOMY_TABS.COURSE_CATEGORIES} title="Course Categories" />
+      <Tab active={tab === TAXONOMY_TABS.MEMBER_TYPES} label="Members">
+        <TaxonomyList type={TAXONOMY_TABS.MEMBER_TYPES} title="Member Types" />
       </Tab>
-      <Tab
-        active={tab === TAXONOMY_TABS.ACCOUNT_CATEGORIES}
-        label="Account Categories"
-        activeTab="Account Categories"
-      >
-        <TaxonomyList type={TAXONOMY_TABS.ACCOUNT_CATEGORIES} title="Account Categories" />
+      <Tab active={tab === TAXONOMY_TABS.COURSE_TYPES} label="Courses">
+        <TaxonomyList type={TAXONOMY_TABS.COURSE_TYPES} title="Course Types" />
       </Tab>
     </Tabs>
   )

@@ -54,7 +54,7 @@ export interface CourseVariables {
 
 // useCreateCourse
 export interface UseCreateCourseProps {
-  clientId: number
+  accountId: number
   onCompleted: (data: { course: Course }) => void
   onError: (data: ApolloError) => void
   filters: CourseFilter
@@ -65,6 +65,6 @@ export interface UseCreateCourseOutput extends UseHookOutput {
 }
 
 export interface PrepareCourseArgumentProps {
+  accountId: number
   filters?: CourseFilter
-  clientId: number
 }

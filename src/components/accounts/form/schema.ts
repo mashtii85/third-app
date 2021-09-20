@@ -4,7 +4,7 @@
 
 // Yup
 import { object, string } from 'yup'
-import { STATUS_ACTIVE } from '../../../types/select'
+import { STATUS_ACTIVE } from '../../../types/select.d'
 
 export const AccountSchema = () => {
   return object().shape({

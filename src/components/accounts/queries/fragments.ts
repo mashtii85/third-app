@@ -8,8 +8,9 @@ import { gql } from '@apollo/client'
 export const ACCOUNT_FIELDS = gql`
   fragment AccountFields on account {
     id
+    client_id
+    taxonomy_id
     type
-    structure
     name
     custom_fields
     meta

@@ -22,7 +22,7 @@ export const DashboardView = () => {
         return <ClientDashboardOverview clientId={user.client_id} />
 
       // todo: this is not right
-      case ACCOUNT_TYPE.Account:
+      case ACCOUNT_TYPE.Member:
         return (
           <Details2 open title="Courses in progress">
             <AccountCourseList accountId={user.account_id} />
