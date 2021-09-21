@@ -3,58 +3,47 @@
  */
 
 // React
-import { useContext } from 'react'
+import { useContext, MouseEvent } from 'react'
 
 // Apollo
-import { useQuery } from '@apollo/client'
-import { GET_TAXONOMIES } from '../queries'
+import { useTaxonomies } from '../hooks/useTaxonomies'
 
 // UI
 import { capitalize, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 import { TaxonomyForm } from '../form/form'
-
 // Types
-import { offCanvasType } from '../../../types/offCanvas.d'
-import { Taxonomy } from '../../../types/taxonomy.d'
-
-// to do: I add parameter in here
-
-export const TaxonomyChildTable = ({ defaultValues }: { defaultValues: Taxonomy }) => {
-  console.log(defaultValues)
-
+import { offCanvasType } from '../../../types/offCanvas'
+import { TaxonomyChildTableProps } from './type'
+import { Taxonomy } from '../../../types/taxonomy'
+export const TaxonomyChildTable = ({ type, parentId }: TaxonomyChildTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
-  const queryVariables = {}
+  const { loading, taxonomies } = useTaxonomies({ category: type, isParent: true, parentId })
 
-  const {
-    data: { taxonomies } = {
-      taxonomies: []
-    },
-    loading
-  } = useQuery(GET_TAXONOMIES, {
-    variables: queryVariables
-  })
+  const handleSuccess = () => {
+    offCanvas.close()
+  }
 
-  const handleClick = (e: any, row: any) => {
-    console.log(e)
+  const handleClick = (_: MouseEvent, row?: Taxonomy): void => {
     offCanvas.show({
       title: row?.id ? 'Edit' : 'Add',
-      content: <TaxonomyForm defaultValues={row} type="custom-field" onSuccess={offCanvas.close} />
+      content: (
+        <TaxonomyForm
+          defaultValues={{ ...row, type, parent_id: parentId }}
+          isShowQuestionForm
+          onSuccess={handleSuccess}
+        />
+      )
     })
   }
 
-  const actionsData = (row: any) => {
-    const isReadOnly = row.data.meta?.isSystem
+  const actionsData = () => {
     return [
       {
         context: 'secondary',
-        disabled: isReadOnly,
         icon: ['fas', 'edit'],
-        onClick: (e: any, row: any) => {
-          console.log(e)
-          handleClick('edit', row.data)
-        },
+        onClick: (_: MouseEvent, row: Taxonomy) => handleClick(_, row.data),
         tooltip: 'Edit'
       }
     ]
@@ -86,7 +75,7 @@ export const TaxonomyChildTable = ({ defaultValues }: { defaultValues: Taxonomy 
   ]
 
   const rows = () =>
-    taxonomies.map((item: any) => {
+    taxonomies.map((item: Taxonomy) => {
       return {
         data: item,
         id: item.id,
@@ -101,11 +90,7 @@ export const TaxonomyChildTable = ({ defaultValues }: { defaultValues: Taxonomy 
     <>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
 
-      <AddButton
-        content="Add New"
-        disabled={loading}
-        handleClick={(data) => handleClick('add', data)}
-      >
+      <AddButton content="Add New" disabled={loading} handleClick={handleClick}>
         <div></div>
       </AddButton>
     </>

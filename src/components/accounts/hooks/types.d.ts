@@ -30,6 +30,10 @@ export interface UseAccountsOutput extends UseHookOutput {
   accounts?: Account[]
 }
 
+export interface UseUserAccountsOutput extends UseHookOutput {
+  users?: User[]
+}
+
 export interface AccountVariables {
   variables: UseAccountsVariable
   accountType: string

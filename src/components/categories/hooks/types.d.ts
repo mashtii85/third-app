@@ -1,12 +1,31 @@
 import { ApolloError } from '@apollo/client'
 import { UseHookOutput } from '../../../types/hook'
+import { Taxonomy } from '../../../types/taxonomy'
+
+export interface UseTaxonomiesVariable {
+  category?: string | string[]
+  isParent: boolean
+  parentId?: number
+}
+
+export interface TaxonomiesData {
+  taxonomies: Taxonomy[]
+}
 
 // useCreateTaxonomy
 export interface UseCreateTaxonomyProps {
+  parentId: number
+  isParent: boolean
   taxonomyId?: number
   category: string
   onCompleted: (data: { insert_taxonomy }) => void
   onError: (data: ApolloError) => void
+}
+
+export interface UseTaxonomiesOutput extends UseHookOutput {
+  loading: boolean
+  error?: any
+  taxonomies: Taxonomy[]
 }
 
 export interface UseCreateTaxonomyOutput extends UseHookOutput {

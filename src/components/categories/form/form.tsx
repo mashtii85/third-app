@@ -1,5 +1,5 @@
 /**
- * Components - Compliance - Form
+ * Components - Taxonomy - Form
  */
 
 // Apollo
@@ -13,19 +13,26 @@ import { useCreateTaxonomy } from '../hooks/useCreate'
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
 import { TaxonomySchema as schema } from './schema'
-
+import { CustomFieldForm } from './customFieldForm'
 // Types
 import { TaxonomyFormProps } from './type.d'
 import { Taxonomy } from '../../../types/taxonomy.d'
-// TODO: find a ways to
-export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormProps) => {
-  const { control, errors, handleSubmit, register } = useForm({
+
+export const TaxonomyForm = ({
+  defaultValues,
+  onSuccess,
+  isShowQuestionForm
+}: TaxonomyFormProps) => {
+  const { control, errors, handleSubmit, register, setValue, watch } = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   })
-
+  const { parent_id: parentId, type: currentType } = defaultValues
+  const watchLabel = watch('custom_fields.label') as string
   const { createTaxonomy } = useCreateTaxonomy({
-    category: defaultValues.type,
+    parentId,
+    isParent: !!parentId,
+    category: currentType,
     onCompleted: onSuccess,
     onError: console.error
   })
@@ -38,7 +45,11 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
     // todo: hello, clientId is hard coded
     return id
       ? await updateTaxonomy({ variables: { taxonomyId: id, changes: form } })
-      : await createTaxonomy({ variables: { objects: [{ ...form, client_id: 2 }] } })
+      : await createTaxonomy({
+        variables: {
+          objects: [{ ...form, client_id: 2 }]
+        }
+      })
   }
 
   const defaultOptions = {
@@ -46,15 +57,27 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
     errors: errors,
     register: register
   }
+  const onChangeLabel = () => {
+    const makeName: any = (watchLabel || '').toLowerCase().split(' ').join('-')
+    setValue('name', makeName)
+  }
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
+      {isShowQuestionForm && (
+        <FormLabel label="Label">
+          <FormField {...defaultOptions} name="custom_fields.label" onChange={onChangeLabel} />
+        </FormLabel>
+      )}
+
       <FormLabel label="Name">
         <FormField {...defaultOptions} name="name" />
         {errors.name && errors.name.type === 'required' && (
           <FormError message={errors?.name?.message} />
         )}
       </FormLabel>
+
+      {isShowQuestionForm && <CustomFieldForm defaultOptions={defaultOptions} />}
 
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
@@ -63,21 +86,9 @@ export const TaxonomyForm = ({ defaultValues, onSuccess, type }: TaxonomyFormPro
         )}
       </FormLabel>
 
-      {type === 'custom-field' && [
-        // TODO: Input and Required and Label type is incorrect please review it later
-        <FormLabel label="Input">
-          <SelectField {...defaultOptions} name="input" options={statusActive} />
-        </FormLabel>,
-        <FormLabel label="Required">
-          <SelectField {...defaultOptions} name="required" options={statusActive} />
-        </FormLabel>,
-        <FormLabel label="Label">
-          <SelectField {...defaultOptions} name="label" options={statusActive} />
-        </FormLabel>
-      ]}
-
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
+      {isShowQuestionForm && <FormField {...defaultOptions} name="parent_id" type="hidden" />}
     </Form>
   )
 }

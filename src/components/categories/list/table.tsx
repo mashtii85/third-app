@@ -18,25 +18,24 @@ import { TaxonomyDelete } from '../module/delete'
 // Next
 import { useRouter } from 'next/router'
 // Apollo
-import { useQuery } from '@apollo/client'
-import { GET_TAXONOMIES } from '../queries'
+import { useTaxonomies } from '../hooks/useTaxonomies'
 // Types
 import { Column, FormatterData } from '../../../types/column'
 import { TableProps } from './types'
 import { offCanvasType } from '../../../types/offCanvas'
 import { Taxonomy } from '../../../types/taxonomy'
-import { TaxonomyChildTable } from '../childs/table'
+import { TaxonomyChildTable } from '../child/table'
+
+import { TAXONOMY_TABS } from '../../../constants/tabs'
 
 export const TaxonomyTable = ({ title }: TableProps) => {
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
-  const defaultTab: string | string[] = query.tab || 'course-categories'
-
+  const defaultTab: string | string[] = query.tab || TAXONOMY_TABS.COURSE_TYPES
   const handleClick = (e: MouseEvent<HTMLElement>, row: Taxonomy) => {
-    // TODO:  need to find a way to provide entity_id and client_id
     e.stopPropagation()
     const defaultValues = row ? { ...row, status: row.status.toLowerCase() } : {}
-
+    const pageTitle = defaultTab[0].toUpperCase() + defaultTab.slice(1)
     offCanvas.show({
       content: (
         <TaxonomyForm
@@ -44,7 +43,7 @@ export const TaxonomyTable = ({ title }: TableProps) => {
           defaultValues={{ type: defaultTab, ...defaultValues }}
         />
       ),
-      title: `${row ? 'Edit' : 'Add'} Course Category`
+      title: `${row ? 'Edit' : 'Add'} ${pageTitle} Category`
     })
   }
 
@@ -58,21 +57,17 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     {
       context: 'danger',
       icon: ['fas', 'trash'],
-
       onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
       tooltip: 'Delete'
+    },
+    {
+      context: 'info',
+      icon: ['fas', 'question'],
+      onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
+      tooltip: 'Custom Fields'
     }
   ]
 
-  if (defaultTab === 'account-categories') {
-    formatterData.push({
-      context: 'info',
-      icon: ['fas', 'question'],
-      numberOverlay: 'childCount',
-      onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
-      tooltip: 'Custom Fields'
-    })
-  }
   // Table Column
   const columns: Column<Taxonomy>[] = [
     {
@@ -90,11 +85,11 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     { hidden: true }
   ]
 
-  const handleQuestionsClick = (row: any) => {
+  const handleQuestionsClick = (row: Taxonomy) => {
     offCanvas.show({
-      content: <TaxonomyChildTable defaultValues={row} />,
+      content: <TaxonomyChildTable type={defaultTab} parentId={row.id} />,
       submit: false,
-      title: 'Questions'
+      title: 'Custom Field'
     })
   }
 
@@ -108,18 +103,10 @@ export const TaxonomyTable = ({ title }: TableProps) => {
 
   // const handleDeleteSuccess = offCanvas.close
 
-  const {
-    data: { taxonomies } = {
-      taxonomies: []
-    },
-    loading
-  } = useQuery(GET_TAXONOMIES, {
-    variables: {
-      category: defaultTab
-    }
-  })
-
-  const handleSuccess = offCanvas.close
+  const { loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
+  const handleSuccess = () => {
+    offCanvas.close()
+  }
 
   const rows = () =>
     taxonomies.map((item: Taxonomy) => {
