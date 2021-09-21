@@ -1,5 +1,5 @@
 /**
- * Components - Lessons - List - Table - Hooks - helpers
+ * Components - Lessons - Hooks - helpers
  */
 
 import { nullFreeObject } from '../../../utils/nullFreeObject'

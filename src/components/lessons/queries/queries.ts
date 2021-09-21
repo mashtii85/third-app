@@ -17,42 +17,50 @@ export const GET_LESSONS = gql`
   ${LESSON_FIELDS}
 `
 
-export const UPDATE_LESSON_STATUS = gql`
-  mutation UpdateLesson($lessonId: Int!, $status: String) {
-    update_lesson_by_pk(pk_columns: { id: $lessonId }, _set: { status: $status }) {
+export const UPDATE_LESSON_BY_PK = gql`
+  mutation UpdateLesson($id: Int!, $changes: lesson_set_input = {}) {
+    update_lesson_by_pk(pk_columns: { id: $id }, _set: $changes) {
+      ...LessonFields
+    }
+  }
+  ${LESSON_FIELDS}
+`
+
+export const DELETE_LESSON_BY_PK = gql`
+  mutation DeleteLessonByPK($id: Int!) {
+    delete_lesson_by_pk(id: $id) {
       id
+      module_id
+      course_id
     }
   }
 `
 
-export const CREATE_LESSON = gql`
+export const INSERT_LESSON_ONE = gql`
   mutation CreateLesson(
-    $client_id: Int!
-    $course_id: Int!
-    $module_id: Int!
+    $courseId: Int!
+    $moduleId: Int!
     $title: String
     $description: String
     $type: String
     $content: String
     $status: String
-    $ordering: Int
   ) {
     insert_lesson_one(
       object: {
-        client_id: $client_id
-        client_id: $client_id
-        module_id: $module_id
+        course_id: $courseId
+        module_id: $moduleId
         title: $title
         description: $description
         type: $type
         content: $content
         status: $status
-        ordering: $ordering
       }
     ) {
-      id
+      ...LessonFields
     }
   }
+  ${LESSON_FIELDS}
 `
 
 // should move to lesson progress

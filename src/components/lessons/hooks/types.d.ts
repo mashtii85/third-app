@@ -1,9 +1,9 @@
 /**
- * Components - Lessons - List - Table - Hooks - helpers
+ * Components - Lessons - Hooks - types
  */
 
 // Types
-import { OrderBy } from '../../../types/orderBy.d'
+// import { OrderBy } from '../../../types/orderBy.d'
 import { Lesson, LESSON_TYPE, LESSON_STATUS } from '../../../types/lesson.d'
 import { ApolloError } from '@apollo/client'
 import { LooseObject } from '../../../types/object'
@@ -14,9 +14,9 @@ export interface LessonFilter {
   type: LESSON_TYPE
   content: string
   status?: LESSON_STATUS
-  limit: number
-  offset: number
-  orderBy: OrderBy
+  // limit: number
+  // offset: number
+  // orderBy: OrderBy
 }
 
 export interface UseLessonsProps {
@@ -47,18 +47,9 @@ export interface LessonVariables {
   lessonId: number
 }
 
-// useCreateLesson
 export interface UseCreateLessonProps {
-  clientId?: number
-  courseId?: number
-  moduleId?: number
-  title?: string
-  description?: string
-  type?: LESSON_TYPE
-  content?: string
-  status?: LESSON_STATUS
-  ordering?: number
+  lesson: Lesson
+  // filters: LooseObject
   onCompleted: (data: { lesson: Lesson }) => void
   onError: (data: ApolloError) => void
-  filters: LooseObject
 }
