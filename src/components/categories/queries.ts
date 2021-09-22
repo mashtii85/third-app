@@ -17,17 +17,8 @@ export const TAXONOMY_FIELDS = gql`
 `
 
 export const GET_TAXONOMIES = gql`
-  query GetTaxonomy($category: String!) {
-    taxonomies: taxonomy(where: { type: { _eq: $category }, parent_id: { _is_null: true } }) {
-      ...TaxonomyFields
-    }
-  }
-  ${TAXONOMY_FIELDS}
-`
-
-export const GET_PARENT_TAXONOMIES = gql`
-  query GetParentTaxonomies($category: String!, $parentId: Int!) {
-    taxonomies: taxonomy(where: { type: { _eq: $category }, parent_id: { _eq: $parentId } }) {
+  query GetTaxonomy($where: taxonomy_bool_exp) {
+    taxonomies: taxonomy(where: $where) {
       ...TaxonomyFields
     }
   }

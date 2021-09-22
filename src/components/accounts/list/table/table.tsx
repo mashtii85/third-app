@@ -32,7 +32,7 @@ export const AccountTable = ({ title }: TableProps) => {
   const columns: Column<Account>[] = [
     { hidden: true },
     {
-      formatter: TableLink('', 'accountId', 'name', 'url'),
+      formatter: TableLink('', 'id', 'name', 'url'),
       text: 'Name'
     },
     {

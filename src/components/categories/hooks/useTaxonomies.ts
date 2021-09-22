@@ -4,16 +4,13 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_TAXONOMIES, GET_PARENT_TAXONOMIES } from '../queries'
+import { GET_TAXONOMIES } from '../queries'
+import { prepareTaxonomyArguments } from './helper'
 import { TaxonomiesData, UseTaxonomiesVariable, UseTaxonomiesOutput } from './types'
-export const useTaxonomies = ({
-  category,
-  parentId,
-  isParent
-}: UseTaxonomiesVariable): UseTaxonomiesOutput => {
-  const TAXONOMIES = isParent ? GET_PARENT_TAXONOMIES : GET_TAXONOMIES
-  const { data, error, loading } = useQuery<TaxonomiesData, UseTaxonomiesVariable>(TAXONOMIES, {
-    variables: { category, parentId, isParent }
+export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutput => {
+  const variables = prepareTaxonomyArguments(filter)
+  const { data, error, loading } = useQuery<TaxonomiesData, UseTaxonomiesVariable>(GET_TAXONOMIES, {
+    variables
   })
 
   if (error) {

@@ -2,6 +2,8 @@
  * Types - Account
  */
 
+// import { Taxonomy } from './taxonomy'
+
 export enum ACCOUNT_TYPE {
   Admin = 'admin',
   Client = 'client',
@@ -19,5 +21,6 @@ export interface Account {
   type: string
   structure: string
   created_at: string
+  taxonomy_id: number
   custom_fields: CustomField
 }

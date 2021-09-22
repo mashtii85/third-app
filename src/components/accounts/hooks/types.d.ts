@@ -22,10 +22,6 @@ export interface UseAccountsVariable {
   type?: string
 }
 
-export interface UseUserAccountsOutput extends UseHookOutput {
-  users?: User[]
-}
-
 export interface UseAccountsOutput extends UseHookOutput {
   accounts?: Account[]
 }

@@ -7,7 +7,7 @@ import Router from 'next/router'
 import { useContext } from 'react'
 
 import { AccountForm } from '../form/form'
-import { Details2, UserContext } from '@drykiss/industry-ui'
+import { UserContext } from '@drykiss/industry-ui'
 import pages from '../../../config/pages'
 const CreateAccount = () => {
   const {
@@ -19,12 +19,10 @@ const CreateAccount = () => {
     Router.push(`${pages.dashboard.accounts.view}?id=${account.id}`)
   }
   return (
-    <Details2 title="Create Account" open>
-      <AccountForm
-        defaultValues={{ clientId, type: accountType, status }}
-        onSuccess={handleSuccess}
-      />
-    </Details2>
+    <AccountForm
+      defaultValues={{ clientId, type: accountType, status }}
+      onSuccess={handleSuccess}
+    />
   )
 }
 

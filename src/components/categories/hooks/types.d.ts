@@ -1,11 +1,12 @@
 import { ApolloError } from '@apollo/client'
 import { UseHookOutput } from '../../../types/hook'
+import { LooseObject } from '../../../types/object'
 import { Taxonomy } from '../../../types/taxonomy'
 
-export interface UseTaxonomiesVariable {
+export interface UseTaxonomiesVariable extends LooseObject {
   category?: string | string[]
-  isParent: boolean
   parentId?: number
+  parent_id?: number
 }
 
 export interface TaxonomiesData {
