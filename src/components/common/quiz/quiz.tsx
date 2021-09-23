@@ -9,6 +9,7 @@ import { QUESTION_TYPE } from '../../../types/lesson.d'
 import { Radio } from './icons/radio'
 import { CheckBox } from './icons/checkbox'
 import VideoPlayer from '../videoPlayer/videoPlayer'
+import { QuizResult } from './components/quizResults'
 
 const reducer = (state: QuizState, action: QuizActionTypes) => {
   const newState = { ...state }
@@ -56,6 +57,8 @@ const reducer = (state: QuizState, action: QuizActionTypes) => {
           throw Error('Please implement score calculation for extra type')
         }
       })
+      newState.bestScore = bestScore
+
       newState.finalScore = +((newState.overAllScore / bestScore) * 100).toFixed(0)
 
       newState.quizFinished = true
@@ -78,6 +81,7 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
     activeQuestionIndex: 0,
     finalScore: 0,
     overAllScore: 0,
+    bestScore: 0,
     questions,
     quizFinished: false,
     selectedAnswers: [],
@@ -131,6 +135,7 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
         activeQuestionIndex: 0,
         finalScore: 0,
         overAllScore: 0,
+        bestScore: 0,
         questions,
         quizFinished: false,
         selectedAnswers: [],
@@ -147,13 +152,16 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
 
       {quizFinished ? (
         <QuizFinishedWrapper>
-          <P>overAllScore:{finalScore}%</P>
-          {<CenterButton title="Try again" onClick={handleResetClick} />}
-          {finalScore < minimumScoreToPass ? (
-            <CenterButton title="Try Again" onClick={handleResetClick} />
-          ) : (
-            <CenterButton title="Continue" onClick={() => onComplete(finalScore)} />
-          )}
+          <QuizResult
+            onRetakeClick={handleResetClick}
+            onDoneClick={() =>
+              onComplete({ score: finalScore, passed: finalScore >= minimumScoreToPass })
+            }
+            passed={finalScore >= minimumScoreToPass}
+            bestScore={state.bestScore}
+            finalScore={finalScore}
+            correctAnswers={state.overAllScore}
+          />
         </QuizFinishedWrapper>
       ) : (
         <>
@@ -169,7 +177,8 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
           {activeQuestion.type === QUESTION_TYPE.SelectAnswer && (
             <>
               <MessageWrapper>
-                please select {activeQuestion.correctAnswers.length} answer
+                please select
+                {activeQuestion.correctAnswers.length === 1 ? ' an' : ' one or more'} answer
                 {activeQuestion.correctAnswers.length > 1 ? 's' : ''}
               </MessageWrapper>
 
@@ -252,10 +261,7 @@ const AnswerText = styled.p`
   font-size: 12px;
 `
 
-const P = styled.p``
-
 const QuizFinishedWrapper = styled(Center)`
-  background-color: blue;
   flex-direction: column;
 `
 
@@ -284,7 +290,7 @@ const StyledQuestionText = styled.p`
   font-size: 14px;
 `
 const StyledQuestionsWrapper = styled.div`
-  min-height: 600px;
+  min-height: 390px;
   width: 100%;
   border: 1px solid #ccc;
   padding: 1rem;

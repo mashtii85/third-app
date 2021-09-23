@@ -15,6 +15,7 @@ const COLOUR = {
   info: 'rgb(249, 156, 35)',
   warning: 'rgb(230, 8, 17)',
   danger: 'rgb(232, 9, 94)',
+  darkText: '#666666',
 
   help: 'rgb(255, 222, 3)'
 }
