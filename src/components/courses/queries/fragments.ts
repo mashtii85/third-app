@@ -12,6 +12,7 @@ export const COURSE_FIELDS = gql`
     account_id
     description
     custom_fields
+    taxonomy_id
     status
     created_at
   }

@@ -14,7 +14,6 @@ import { columns, rows, Toolbar } from './helpers'
 
 // Hooks
 import { useCourses } from '../../hooks'
-
 // Types
 import { CourseFilter } from '../../hooks/types'
 import { CourseTableRowsType } from './types'
@@ -57,6 +56,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
 
   const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
     console.log(e, row)
+
     offCanvas.show({
       content: (
         <CourseForm
@@ -66,7 +66,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
             id: row.id,
             title: row.title,
             status: row.status,
-            description: row.description
+            description: row.description,
+            taxonomy_id: row.taxonomy_id
           }}
         />
       ),

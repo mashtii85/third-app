@@ -84,9 +84,16 @@ export const CREATE_COURSE = gql`
     $status: String!
     $title: String!
     $description: String!
+    $taxonomy_id: Int
   ) {
     course: insert_course_one(
-      object: { account_id: $accountId, status: $status, title: $title, description: $description }
+      object: {
+        account_id: $accountId
+        status: $status
+        title: $title
+        description: $description
+        taxonomy_id: $taxonomy_id
+      }
     ) {
       ...CourseFields
       enrolled: course_enrollments_aggregate {

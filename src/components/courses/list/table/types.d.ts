@@ -12,4 +12,5 @@ export interface CourseTableRowsType {
   actions: string
   status: STATUS_ACTIVE
   description?: string
+  taxonomy_id?: number
 }

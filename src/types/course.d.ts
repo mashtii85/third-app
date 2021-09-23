@@ -28,5 +28,6 @@ export interface Course {
   modules?: Module[]
   enrolled: AggregateData
   status: STATUS_ACTIVE
+  taxonomy_id?: number
   course_enrollments?: CourseEnrollment[]
 }

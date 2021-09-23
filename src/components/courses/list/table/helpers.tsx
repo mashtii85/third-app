@@ -28,6 +28,10 @@ export const columns = ({
 }) => {
   return [
     {
+      text: 'taxonomy_id',
+      hidden: true
+    },
+    {
       text: 'id',
       hidden: true
     },
@@ -73,6 +77,7 @@ export const columns = ({
 export const rows = (courses: Course[]): CourseTableRowsType[] => {
   const list = courses.map((item) => {
     return {
+      taxonomy_id: item.taxonomy_id,
       id: item.id,
       title: item.title,
       author: item.custom_fields?.author || '',

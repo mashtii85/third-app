@@ -9,9 +9,20 @@ import { Row, Column, Details2, DetailsText, Heading, Image, Space } from '@dryk
 import { Course } from '../../../../../types/course'
 
 import { useCourse } from '../../../hooks'
-
+import { useTaxonomies } from '../../../../categories/hooks/useTaxonomies'
 export const ClientDetails = ({ courseId }: { courseId: number }) => {
   const { course, loading, error } = useCourse(courseId)
+  const { taxonomies } = useTaxonomies({
+    id: course?.taxonomy_id
+  })
+
+  let courseType = ''
+
+  if (course?.taxonomy_id) {
+    const [taxonomy] = taxonomies
+    courseType = taxonomy?.name || ''
+  }
+
   if (error) {
     console.error(error.message)
   }
@@ -32,6 +43,7 @@ export const ClientDetails = ({ courseId }: { courseId: number }) => {
               />
             )}
             <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
+            <DetailsText content="Course Type" text={courseType} />
           </Details2>
         </Column>
         <Column md="3.5"></Column>
