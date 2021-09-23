@@ -104,9 +104,9 @@ export const Toolbar = ({ courseId, moduleId }: ToolbarModel) => {
         />
       ),
       submit: true,
-      title: 'Add A Lesson'
+      title: 'Add a lesson'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create A Lesson" />
+  return <Button context="white" onClick={handleClick} size="sm" content="Create a lesson" />
 }

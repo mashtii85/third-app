@@ -95,9 +95,9 @@ export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
     offCanvas.show({
       content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: 'Add A Course'
+      title: 'Add a course'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create A Course" />
+  return <Button context="white" onClick={handleClick} size="sm" content="Create a course" />
 }
