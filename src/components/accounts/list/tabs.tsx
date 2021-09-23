@@ -14,6 +14,7 @@ import { Tab } from '../../common/tab'
 import { UserAccounts } from '../list/table/userAccounts'
 import AccountDetails from './view/accountDetails'
 import { ACCOUNT_TABS } from '../../../constants/tabs'
+import { ACCOUNT_TYPE } from '../../../types/account'
 
 const AccountTabs = () => {
   const { query } = useRouter()
@@ -30,7 +31,7 @@ const AccountTabs = () => {
         <AccountDetails accountId={accountId} title="Account Details" />
       </Tab>
       <Tab active={tab === ACCOUNT_TABS.USERS} label="Users">
-        <UserAccounts type="accounts" title="Users" accountId={accountId} />
+        <UserAccounts type={ACCOUNT_TYPE.Member} title="Users" accountId={accountId} />
       </Tab>
     </Tabs>
   )

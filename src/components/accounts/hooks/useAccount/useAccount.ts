@@ -4,12 +4,12 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_ACCOUNT } from '../queries/queries'
+import { GET_ACCOUNT } from '../../queries'
 
 // Types
-import { AccountData, UseAccountOutput, UseAccountsVariable } from './types.d'
+import { AccountData, UseAccountOutput, UseAccountVariable } from '../types.d'
 
-export const useAccount = ({ accountId }: UseAccountsVariable): UseAccountOutput => {
+export const useAccount = ({ accountId }: UseAccountVariable): UseAccountOutput => {
   const { data, error, loading } = useQuery<AccountData, any>(GET_ACCOUNT, {
     variables: {
       accountId

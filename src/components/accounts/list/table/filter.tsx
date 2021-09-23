@@ -1,0 +1,38 @@
+/**
+ * Components - Accounts - List - Table - Filter
+ */
+
+// UI
+
+import { FormField, FormLabel, SelectField } from '@drykiss/industry-ui'
+import { Control, FieldErrors } from 'react-hook-form'
+import { statusActive } from '../../../../constants/status'
+import { LooseObject } from '../../../../types/object'
+
+export const UserAccountsFilters = ({
+  control,
+  errors,
+  register
+}: {
+  control: Control
+  errors: FieldErrors
+  register: any
+  setFilters: (value: LooseObject) => void
+}) => {
+  const defaultOptions = {
+    control,
+    errors,
+    register
+  }
+
+  return (
+    <>
+      <FormLabel label="Description">
+        <FormField {...defaultOptions} name="description" />
+      </FormLabel>
+      <FormLabel label="Status">
+        <SelectField {...defaultOptions} name="status" options={statusActive} />
+      </FormLabel>
+    </>
+  )
+}

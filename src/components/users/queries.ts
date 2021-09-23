@@ -24,15 +24,7 @@ export const USER_FIELDS = gql`
 export const GET_USER = gql`
   query GetUser($userId: Int!) {
     user: user_by_pk(id: $userId) {
-      id
-      email
-      status
-      name_first
-      name_last
-      custom_fields
-      is_verified
-      created_at
-      updated_at
+      ...UserFields
       accounts {
         ...AccountUserFields
         account {
@@ -41,9 +33,9 @@ export const GET_USER = gql`
       }
     }
   }
+  ${USER_FIELDS}
   ${ACCOUNT_FIELDS}
   ${ACCOUNT_USER_FIELDS}
-  ${USER_FIELDS}
 `
 
 export const UPDATE_USER = gql`

@@ -10,7 +10,7 @@ type FormatterData<T> = {
 
 export interface Column<T> {
   hidden?: boolean
-  formatter?: ReactNode
+  formatter?: ({ row }: { row: T }) => ReactNode
   formatterData?: FormatterData<T>[]
   text?: string
 }

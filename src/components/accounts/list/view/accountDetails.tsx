@@ -3,7 +3,8 @@
  */
 
 // Hooks
-import { useAccount } from '../../hooks/useAccount'
+import { useAccount } from '../../hooks'
+
 import { useTaxonomies } from '../../../categories/hooks/useTaxonomies'
 // UI
 import { Details2, DetailsText, formatDateStandard } from '@drykiss/industry-ui'

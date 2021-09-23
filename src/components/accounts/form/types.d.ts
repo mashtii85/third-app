@@ -1,10 +1,20 @@
-import { Account } from '../../../types/account'
-import { Options } from '../../../types/taxonomy'
+// Types
+import { SELECT, STATUS_ACTIVE } from '../../../types/select.d'
+import { AccountsRow } from '../list/table/types.d'
+import { AccountFilters } from '../types.d'
+
 export interface AccountFormProps {
-  defaultValues: Account | any
+  filters?: AccountFilters
+  defaultValues?: AccountsRow
+
   onSuccess: (data: any) => void
 }
 
-export interface SubmissionFormProps extends Account {
-  taxonomy: Options
+export interface CreateAccountForm {
+  name: string
+  firstName: string
+  lastName: string
+  email: string
+  status: STATUS_ACTIVE
+  taxonomy: SELECT
 }

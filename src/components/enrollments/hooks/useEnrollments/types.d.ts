@@ -6,11 +6,11 @@
 import { ApolloError } from '@apollo/client'
 
 // Types
-import { LooseObject } from '../../../../types/object'
-import { STATUS_ACTIVE } from '../../../../types/select'
-import { OrderBy } from '../../../../types/orderBy'
-import { User } from '../../../../types/user'
-import { AggregateData } from '../../../../types/aggregateData'
+import { LooseObject } from '../../../../types/object.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { OrderBy } from '../../../../types/orderBy.d'
+import { User } from '../../../../types/user.d'
+import { AggregateData } from '../../../../types/aggregateData.d'
 import { Course } from '../../../../types/course.d'
 
 export interface Enrollment {

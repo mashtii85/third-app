@@ -6,10 +6,10 @@ import { capitalize, Details2, formatDateStandard, Table } from '@drykiss/indust
 import { useUserAccounts } from '../../hooks/useUserAccounts'
 // Types
 import { Column } from '../../../../types/column'
-import { TableProps, UserAccount } from './types'
+import { UserAccount, UserTableProps } from './types'
 import { User } from '../../../../types/user.d'
 
-export const UserAccounts = ({ title, accountId }: TableProps) => {
+export const UserAccounts = ({ title, accountId, type }: UserTableProps) => {
   // Table Column
   const columns: Column<User>[] = [
     {
@@ -30,7 +30,8 @@ export const UserAccounts = ({ title, accountId }: TableProps) => {
   ]
 
   const { users = [], loading = true } = useUserAccounts({
-    accountId
+    accountId,
+    type
   })
 
   const rows = () =>

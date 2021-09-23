@@ -4,12 +4,21 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_ACCOUNT_USER } from '../queries/queries'
+import { ACCOUNT_TYPE } from '../../../types/account'
+import { GET_ACCOUNT_USER } from '../queries'
 
 // Types
-import { UserData, UseAccountsVariable, UseUserAccountsOutput } from './types.d'
+import { UserData, UseUserAccountsOutput } from './types.d'
 
-export const useUserAccounts = ({ accountId }: UseAccountsVariable): UseUserAccountsOutput => {
+export const useUserAccounts = ({
+  accountId,
+  type
+}: {
+  accountId: number
+  type: ACCOUNT_TYPE
+}): UseUserAccountsOutput => {
+  // Todo add type to query
+  console.log(type)
   const result = useQuery<UserData, any>(GET_ACCOUNT_USER, {
     variables: {
       accountId
@@ -22,5 +31,5 @@ export const useUserAccounts = ({ accountId }: UseAccountsVariable): UseUserAcco
     return { loading: false, error }
   }
 
-  return { loading, users: data?.users }
+  return { loading, users: data?.users || [] }
 }

@@ -15,7 +15,7 @@ import {
   startOfYear
 } from 'date-fns'
 
-export const getDates = (): any => {
+export const getDates = () => {
   const today = new Date()
   const monthEnd = endOfMonth(new Date())
   const monthStart = startOfMonth(new Date())

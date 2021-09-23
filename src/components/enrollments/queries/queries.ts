@@ -35,7 +35,7 @@ import { USER_FIELDS } from '../../users/queries'
 // `
 
 export const GET_ENROLLMENTS = gql`
-  query GetEnrollements($where: course_enrollment_bool_exp) {
+  query GetEnrollments($where: course_enrollment_bool_exp) {
     enrollments: course_enrollment(where: $where) {
       user {
         ...UserFields

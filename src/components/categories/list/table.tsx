@@ -101,8 +101,6 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     })
   }
 
-  // const handleDeleteSuccess = offCanvas.close
-
   const { loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
   const handleSuccess = () => {
     offCanvas.close()

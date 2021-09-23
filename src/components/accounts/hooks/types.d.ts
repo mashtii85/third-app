@@ -4,30 +4,41 @@ import { Account } from '../../../types/account.d'
 import { UseHookOutput } from '../../../types/hook.d'
 import { LooseObject } from '../../../types/object'
 import { User } from '../../../types/user'
+import { AccountFilters } from '../types'
 
 export interface AccountData {
   accounts?: Account[]
   account?: Account | any
 }
 
+export interface UseUserAccountsOutput extends UseHookOutput {
+  users?: User[]
+}
+
 export interface UserData {
   users?: User[]
 }
 
-export interface UseAccountsVariable {
+export interface UseAccountVariable {
+  filters?: AccountFilters
   accountId?: number
-  accountType?: string
-  clientId?: number
-  status?: string
-  type?: string
+  // accountType?: ACCOUNT_TYPE
+  // clientId?: number
+  // status?: STATUS_ACTIVE
+  // type?: string
+}
+
+export interface UseAccountsVariable {
+  filters?: AccountFilters
+  // accountId?: number
+  // accountType?: ACCOUNT_TYPE
+  // clientId?: number
+  // status?: STATUS_ACTIVE
+  // type?: string
 }
 
 export interface UseAccountsOutput extends UseHookOutput {
   accounts?: Account[]
-}
-
-export interface UseUserAccountsOutput extends UseHookOutput {
-  users?: User[]
 }
 
 export interface AccountVariables {
@@ -39,7 +50,8 @@ export interface AccountVariables {
 }
 
 export interface UseCreateAccountProps {
-  onCompleted: (data: { insert_account }) => void
+  filters?: AccountFilters
+  onCompleted: (data: { account }) => void
   onError: (data: ApolloError) => void
 }
 

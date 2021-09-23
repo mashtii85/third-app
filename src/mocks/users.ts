@@ -16,6 +16,7 @@ export const Users: User[] = [
     email: 'admin@example.com',
     name_first: 'Admin',
     name_last: 'RWA',
+    is_verified: true,
     custom_fields: {
       phone: '+443 222 444'
     },
@@ -31,6 +32,7 @@ export const Users: User[] = [
     email: 'uaefa@example.com',
     name_first: 'UAE FA',
     name_last: 'Manager',
+    is_verified: true,
     custom_fields: {
       phone: '+443 222 444'
     },
@@ -46,6 +48,7 @@ export const Users: User[] = [
     email: 'drykiss@example.com',
     name_first: 'DryKISS',
     name_last: 'Manager',
+    is_verified: true,
     custom_fields: {
       phone: '+443 333 555'
     },
@@ -61,6 +64,7 @@ export const Users: User[] = [
     email: 'demo@example.com',
     name_first: 'Demo',
     name_last: 'User',
+    is_verified: true,
     custom_fields: {
       phone: '+443 666 777'
     },

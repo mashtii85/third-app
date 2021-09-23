@@ -1,69 +1,50 @@
 /**
- * Components - Taxonomy - List - Table
+ * Components - Accounts - List - Table
  */
 
 // React
-import { useContext } from 'react'
-
+import { MouseEvent, useContext } from 'react'
 // UI
-import {
-  UserContext,
-  capitalize,
-  Details2,
-  formatDateStandard,
-  Table,
-  TableLink
-} from '@drykiss/industry-ui'
-import { useAccounts } from '../../hooks/useAccounts'
+import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
+import { useAccounts } from '../../hooks'
 
 // Types
-import { Column } from '../../../../types/column.d'
-import { TableProps, UserAccount } from './types.d'
-import { Account } from '../../../../types/account.d'
+import { AccountsRow, AccountTableProps } from './types.d'
+import { offCanvasType } from '../../../../types/offCanvas'
 
-import pages from '../../../../config/pages'
+import { columns, rows, UserAccountToolbar } from './helpers'
+import { useTable } from '../../../common/hooks/useTable'
+import { AccountForm } from '../../form/form'
 
-export const AccountTable = ({ title }: TableProps) => {
-  const {
-    user: { id: clientId = 0 }
-  } = useContext(UserContext)
+const initialSort = {}
 
-  // Table Column
-  const columns: Column<Account>[] = [
-    { hidden: true },
-    {
-      formatter: TableLink('', 'id', 'name', 'url'),
-      text: 'Name'
-    },
-    {
-      hidden: true
-    },
-    {
-      text: 'Status'
-    },
-    {
-      text: 'Created'
-    }
-  ]
+export const AccountTable = (props: AccountTableProps) => {
+  const { initialData, ref } = useTable({ filters: props.filters, initialSort })
+  const { accounts, loading } = useAccounts({ filters: initialData })
 
-  const { accounts = [], loading = true } = useAccounts({
-    clientId
-  })
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
-  const rows = () =>
-    accounts.map((account: UserAccount) => {
-      return {
-        id: account.id,
-        name: account.name,
-        url: pages.dashboard.accounts.view,
-        status: capitalize(account.status),
-        created: formatDateStandard(account.created_at)
-      }
+  const handleEdit = (_: MouseEvent<HTMLElement>, row: AccountsRow) => {
+    offCanvas.show({
+      content: (
+        <AccountForm onSuccess={offCanvas.close} defaultValues={row} filters={props.filters} />
+      ),
+      submit: true,
+      title: `Edit ${props.filters?.type}`
     })
+    console.log(row)
+  }
 
   return (
-    <Details2 open title={title}>
-      <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
+    <Details2 open title={props.title} toolbar={<UserAccountToolbar filters={props.filters} />}>
+      <Table
+        fullHeight
+        align
+        columns={columns(handleEdit)}
+        loading={loading}
+        rows={rows(accounts)}
+        ref={ref}
+      />
     </Details2>
   )
 }

@@ -29,6 +29,7 @@ export interface User {
   account_id?: number
   account_type?: ACCOUNT_TYPE
   email: string
+  is_verified: boolean
   name?: string
   name_first: string
   name_last: string

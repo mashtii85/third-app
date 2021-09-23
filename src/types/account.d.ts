@@ -2,7 +2,8 @@
  * Types - Account
  */
 
-// import { Taxonomy } from './taxonomy'
+import { STATUS_ACTIVE } from './select'
+import { User } from './user'
 
 export enum ACCOUNT_TYPE {
   Admin = 'admin',
@@ -17,10 +18,11 @@ export interface CustomField {
 export interface Account {
   id: number
   name: string
-  status: string
+  status: STATUS_ACTIVE
   type: string
   structure: string
   created_at: string
   taxonomy_id: number
   custom_fields: CustomField
+  users: { user: User }[]
 }

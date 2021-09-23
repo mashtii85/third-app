@@ -6,7 +6,6 @@
 import { Row, Space } from '@drykiss/industry-ui'
 
 // Types
-import type { AdminDashboardOverviewProps } from '../types.d'
 import { ACCOUNT_TYPE } from '../../../../types/account.d'
 
 // Hooks
@@ -14,19 +13,16 @@ import { useAggregate } from '../hooks/useTileData'
 
 // Helpers
 import { TileItem } from './helpers'
-import { GET_TILES_DATA } from '../queries'
-import { prepareClientTiles } from '../helper'
+import { GET_ADMIN_TILES_DATA } from '../queries'
+import { prepareAdminTiles } from '../helper'
 
-export const AdminDashboardOverview = ({ adminId }: AdminDashboardOverviewProps) => {
+export const AdminDashboardOverview = () => {
   const { error, items } = useAggregate({
-    accountId: adminId,
-    query: GET_TILES_DATA,
-    prepareTiles: prepareClientTiles
+    query: GET_ADMIN_TILES_DATA,
+    prepareTiles: prepareAdminTiles
   })
 
-  if (error) {
-    console.error(error)
-  }
+  console.log(error)
 
   return (
     <>
@@ -34,7 +30,7 @@ export const AdminDashboardOverview = ({ adminId }: AdminDashboardOverviewProps)
         {items.map((item) => (
           <TileItem
             key={item.title}
-            accountType={ACCOUNT_TYPE.Client}
+            accountType={ACCOUNT_TYPE.Admin}
             title={item.title}
             to={item.to}
             colourConfig={item.colourConfig}
