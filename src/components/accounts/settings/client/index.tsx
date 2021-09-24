@@ -11,10 +11,14 @@ import { useRouter } from 'next/router'
 // UI
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../../common/tab'
-import { ClientTheme } from './theme'
+import { ThemeSettings } from '../theme'
 import { ClientAddress } from './address'
 
+// User
+import { useCurrentUser } from '../../../../utils/useCurrentUser'
+
 const ClientSettings = () => {
+  const { user } = useCurrentUser()
   const { query } = useRouter()
 
   const tab = useMemo(() => {
@@ -24,7 +28,7 @@ const ClientSettings = () => {
   return (
     <Tabs key={tab}>
       <Tab active={tab === 'theme'} label="Theme">
-        <ClientTheme />
+        <ThemeSettings accountId={user.account_id} />
       </Tab>
       <Tab active={tab === 'address'} label="Address">
         <ClientAddress />
