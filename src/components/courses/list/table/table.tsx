@@ -18,8 +18,8 @@ import { useCourses } from '../../hooks'
 import { CourseFilter } from '../../hooks/types'
 import { CourseTableRowsType } from './types'
 
-import { CourseForm, DeleteCourse } from '../../form'
-
+import { DeleteCourse } from '../../form'
+import { CourseForm } from '../../form/add/form'
 interface CourseTableProps {
   clientId: number
   filters: CourseFilter
@@ -63,11 +63,13 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
           onSuccess={offCanvas.close}
           filters={filters}
           defaultValues={{
+            ...row,
             id: row.id,
             title: row.title,
             status: row.status,
             description: row.description,
-            taxonomy_id: row.taxonomy_id
+            taxonomy: { value: row?.taxonomy.id, label: row?.taxonomy.name },
+            custom_fields: row.custom_fields
           }}
         />
       ),

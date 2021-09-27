@@ -9,6 +9,7 @@ import {
   COURSE_ENROLLMENT_AGGREGATE_FIELDS,
   ENROLLMENTS_FIELDS
 } from '../../enrollments/queries/fragments'
+import { TAXONOMY_FIELDS } from '../../categories/queries'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
 import { LESSON_FIELDS } from '../../lessons/queries/fragments'
 
@@ -16,12 +17,16 @@ export const GET_COURSES = gql`
   query GetCourses($limit: Int = 100, $order_by: [course_order_by!] = {}, $where: course_bool_exp) {
     courses: course(where: $where, limit: $limit, order_by: $order_by) {
       ...CourseFields
+      taxonomy {
+        ...TaxonomyFields
+      }
       enrolled: course_enrollments_aggregate {
         ...EnrollmentsAggregateFields
       }
     }
   }
   ${COURSE_FIELDS}
+  ${TAXONOMY_FIELDS}
   ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
 `
 

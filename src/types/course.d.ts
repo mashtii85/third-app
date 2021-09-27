@@ -7,6 +7,7 @@ import { Medium } from './medium'
 import { AggregateData } from './aggregateData.d'
 import { STATUS_ACTIVE } from './select.d'
 import { CourseEnrollment } from './courseEnrollment.d'
+import { Taxonomy } from './taxonomy'
 
 export interface CustomFields {
   author?: string
@@ -29,5 +30,6 @@ export interface Course {
   enrolled: AggregateData
   status: STATUS_ACTIVE
   taxonomy_id?: number
+  taxonomy: Taxonomy
   course_enrollments?: CourseEnrollment[]
 }

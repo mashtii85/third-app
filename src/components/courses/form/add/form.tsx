@@ -1,7 +1,6 @@
 /**
  * Components - Courses - Form - Add - Form
  */
-
 // React
 import { useContext } from 'react'
 
@@ -19,42 +18,27 @@ import {
   UserContext
 } from '@drykiss/industry-ui'
 import { TaxonomySelect } from '../../../accounts/form/select'
+import { CustomFieldElement } from './customFieldElement'
 import { CourseSchema as schema } from './schema'
-
 // Constants
 import { statusActive } from '../../../../constants/status'
 
 // Types
-import { CourseFormType, CourseFormSubmission } from './types.d'
-
+import { CourseFormType, CourseFormSubmission, CourseFormProps } from './types.d'
+import { Options } from '../../../../types/taxonomy'
 // Hooks
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
-import { useTaxonomies } from '../../../categories/hooks/useTaxonomies'
-import { CourseFilter } from '../../hooks/types.d'
-import { LooseObject } from '../../../../types/object.d'
-import { Course } from '../../../../types/course'
 
-export const CourseForm = ({
-  onSuccess,
-  defaultValues = {},
-  filters
-}: {
-  onSuccess: () => void
-  filters: CourseFilter
-  defaultValues?: Course | LooseObject
-}) => {
+export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
   const { user } = useContext(UserContext)
 
-  const { control, errors, setValue, handleSubmit, register } = useForm<CourseFormType>({
+  const { control, errors, handleSubmit, register, watch } = useForm<CourseFormType>({
     defaultValues,
     resolver: yupResolver(schema)
   })
-  const { taxonomies } = useTaxonomies({
-    id: defaultValues?.taxonomy_id
-  })
-  if (taxonomies.length > 0) {
-    setValue('taxonomy' as any, { value: taxonomies[0].id, label: taxonomies[0].name })
-  }
+
+  // Watchers
+  const taxonomyWatch: Options = watch('taxonomy')
   const { createCourse } = useCreateCourse({
     accountId: user.account_id,
     filters,
@@ -72,14 +56,13 @@ export const CourseForm = ({
   })
 
   const defaultOptions = {
-    control,
-    errors,
-    register
+    control: control,
+    errors: errors,
+    register: register
   }
 
   const onSubmit = async ({ taxonomy, ...form }: CourseFormSubmission) => {
     const formParams = { ...form, taxonomy_id: taxonomy?.value }
-
     if (defaultValues?.id) {
       updateCourse({ variables: { courseId: defaultValues.id, set: formParams } })
     } else {
@@ -100,6 +83,9 @@ export const CourseForm = ({
         <TextareaField {...defaultOptions} name="description" rows={3} />
       </FormLabel>
       <TaxonomySelect {...defaultOptions} label="Course Type" name="taxonomy" type="courses" />
+      {taxonomyWatch?.value && (
+        <CustomFieldElement {...defaultValues} {...defaultOptions} taxonomyWatch={taxonomyWatch} />
+      )}
     </Form>
   )
 }

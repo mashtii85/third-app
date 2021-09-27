@@ -11,6 +11,7 @@ export interface CustomFields {
   label: string
   options?: Options[]
   required: boolean
+  inputType: string
 }
 export interface Taxonomy {
   id?: number
