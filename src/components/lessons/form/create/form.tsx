@@ -12,10 +12,9 @@ import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss
 import { lessonSchema as schema } from './schema'
 
 // Constants
-import { lessonType, lessonStatus } from '../../form/add/types.d'
+import { lessonType, lessonStatus, LessonFormType } from './types.d'
 
 // Types
-import { LessonFormType } from './types'
 import { useCreateLesson } from '../../hooks/useCreate/useCreate'
 import { useUpdateLesson } from '../../hooks/useUpdate/useUpdate'
 import { LooseObject } from '../../../../types/object'

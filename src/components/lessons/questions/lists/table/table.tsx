@@ -1,32 +1,32 @@
 /**
- * Components - Taxonomy - Custom Field - Table
+ * Components - Lessons - Questions - Lists - Table
  */
 
 // React
 import { useContext, MouseEvent } from 'react'
 
 // Apollo
-import { useTaxonomies } from '../hooks/useTaxonomies'
+import { useTaxonomies } from '../../../../categories/hooks/useTaxonomies'
 
 // UI
 import { capitalize, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
-import { AddButton } from '../../common/buttons/addButton'
-import { TaxonomyForm } from '../form/form'
-// Types
-import { offCanvasType } from '../../../types/offCanvas'
-import { TaxonomyChildTableProps } from './type.d'
-import { Taxonomy, TAXONOMY_STATUS } from '../../../types/taxonomy.d'
-import { UseTaxonomiesVariable } from '../hooks/types.d'
+import { AddButton } from '../../../../common/buttons/addButton'
+import { LessonQuestionForm } from '../../form/create/form'
+import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 
-export const TaxonomyChildTable = (childTableProps: TaxonomyChildTableProps) => {
+// Types
+import { offCanvasType } from '../../../../../types/offCanvas'
+import { TaxonomyTableProps } from './type.d'
+import { Taxonomy, TAXONOMY_STATUS } from '../../../../../types/taxonomy.d'
+import { UseTaxonomiesVariable } from '../../../../categories/hooks/types.d'
+
+export const LessonQuestionsTable = (childTableProps: TaxonomyTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const taxonomiesVariable: UseTaxonomiesVariable = {
     category: childTableProps.type,
     entity: childTableProps.entity,
-    entityId: childTableProps.entityId,
-    parentId: childTableProps.parentId,
-    isParent: true
+    entityId: childTableProps.entityId
   }
   const { loading, taxonomies } = useTaxonomies(taxonomiesVariable)
 
@@ -38,19 +38,34 @@ export const TaxonomyChildTable = (childTableProps: TaxonomyChildTableProps) => 
     offCanvas.show({
       title: row?.id ? 'Edit' : 'Add',
       content: (
-        <TaxonomyForm
+        <LessonQuestionForm
           defaultValues={{
             ...row,
             entity: childTableProps.entity,
             entity_id: childTableProps.entityId,
             type: childTableProps.type,
-            parent_id: childTableProps.parentId,
             status: TAXONOMY_STATUS.Active
           }}
           isShowQuestionForm
           onSuccess={handleSuccess}
         />
       )
+    })
+  }
+
+  const handleDelete = (_: MouseEvent, row?: Taxonomy): void => {
+    offCanvas.show({
+      content: (
+        <LessonQuestionDeleteForm
+          taxonomyId={row?.id}
+          type={row?.type}
+          entity={childTableProps.entity}
+          entityId={childTableProps.entityId}
+          onSuccess={handleSuccess}
+        />
+      ),
+      title: 'Delete Taxonomy',
+      submit: false
     })
   }
 
@@ -61,6 +76,12 @@ export const TaxonomyChildTable = (childTableProps: TaxonomyChildTableProps) => 
         icon: ['fas', 'edit'],
         onClick: (_: MouseEvent, row: Taxonomy) => handleClick(_, row.data),
         tooltip: 'Edit'
+      },
+      {
+        context: 'danger',
+        icon: ['fas', 'trash'],
+        onClick: (_: MouseEvent, row: Taxonomy) => handleDelete(_, row.data),
+        tooltip: 'Delete'
       }
     ]
     return buttons

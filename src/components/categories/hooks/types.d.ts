@@ -7,6 +7,8 @@ export interface UseTaxonomiesVariable extends LooseObject {
   category?: string | string[]
   parentId?: number
   parent_id?: number
+  entity?: string
+  entityId?: number
 }
 
 export interface TaxonomiesData {
@@ -15,10 +17,12 @@ export interface TaxonomiesData {
 
 // useCreateTaxonomy
 export interface UseCreateTaxonomyProps {
-  parentId: number
-  isParent: boolean
+  entity?: string
+  entityId?: number
+  parentId?: number
+  isParent?: boolean
   taxonomyId?: number
-  category: string
+  category?: string
   onCompleted: (data: { insert_taxonomy }) => void
   onError: (data: ApolloError) => void
 }
@@ -36,11 +40,29 @@ export interface UseCreateTaxonomyOutput extends UseHookOutput {
 // useDeleteTaxonomy
 export interface UseDeleteTaxonomyProps {
   taxonomyId?: number
-  category: string | string[]
+  category?: string | string[]
+  entity?: string
+  entityId?: number
+  parentId?: number
   onCompleted: (data: { delete_taxonomy_by_pk }) => void
   onError: (data: ApolloError) => void
 }
 
 export interface UseDeleteTaxonomyOutput extends UseHookOutput {
   deleteTaxonomy: any
+}
+
+export interface UseTaxonomyProps {
+  taxonomyId?: number
+  entity?: string
+  entityId?: number
+  type?: string | string[]
+}
+
+export interface TaxonomyDeleteVariables {
+  taxonomyId?: number
+}
+
+export interface TaxonomyDeleteData {
+  delete_taxonomy_by_pk: Taxonomy
 }

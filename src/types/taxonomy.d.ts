@@ -13,13 +13,14 @@ export interface CustomFields {
   required: boolean
 }
 export interface Taxonomy {
-  id: number
-  name: string
+  id?: number
+  name?: string
   entity?: string
   status: TAXONOMY_STATUS
   type?: string
-  client_id: number
-  entity_id: number
+  client_id?: number
+  entity_id?: number
+  parent_id?: number
   custom_fields: CustomFields
-  data: Taxonomy
+  data?: Taxonomy
 }

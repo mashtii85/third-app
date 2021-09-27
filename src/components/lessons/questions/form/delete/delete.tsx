@@ -1,15 +1,15 @@
 /**
- * Components - Category - Module - Delete
+ * Components - Lessons - Questions - Form - Delete
  */
 
 // hooks
-import { useDeleteTaxonomy } from '../hooks/useDelete'
+import { useDeleteTaxonomy } from '../../../../categories/hooks/useDelete'
 // UI
 import { Text } from '@drykiss/industry-ui'
-import { AddButton } from '../../common/buttons/addButton'
+import { AddButton } from '../../../../common/buttons/addButton'
 // types
 import { TaxonomyDeleteProps } from './types'
-export const TaxonomyDelete = ({
+export const LessonQuestionDeleteForm = ({
   taxonomyId,
   type,
   entity,

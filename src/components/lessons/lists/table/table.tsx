@@ -17,16 +17,16 @@ import { useLessons } from '../../hooks/useLessons'
 // Type
 import { UseLessonsProps } from '../../hooks/types'
 import { LessonTableRowsType } from '../table/types'
-import { LessonFormType } from '../../form/add/types.d'
-import { LessonForm } from '../../form/add/form'
+import { LessonFormType } from '../../form/create/types'
+import { LessonForm } from '../../form/create/form'
 import { DeleteLessonForm } from '../../form/delete/delete'
+import { LessonQuestionsTable } from '../../questions/lists/table/table'
 
 export const LessonTable = (filters: UseLessonsProps) => {
   const offCanvas = useContext<any>(OffCanvasContext)
   const { lessonList, loading } = useLessons(filters)
 
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
-    console.log(e)
+  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteLessonForm
@@ -41,8 +41,7 @@ export const LessonTable = (filters: UseLessonsProps) => {
     })
   }
 
-  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
-    console.log(e)
+  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
     const defaultValues: LessonFormType = {
       id: row.id,
       title: row.title,
@@ -60,10 +59,18 @@ export const LessonTable = (filters: UseLessonsProps) => {
     })
   }
 
+  const handleQuestions = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
+    offCanvas.show({
+      content: <LessonQuestionsTable entity="lesson" entityId={row.id} type="lesson-questions" />,
+      submit: false,
+      title: 'Questions'
+    })
+  }
+
   return (
     <Table
       loading={loading}
-      columns={columns({ handleDelete, handleEdit })}
+      columns={columns({ handleDelete, handleEdit, handleQuestions })}
       rows={rows(lessonList)}
     />
   )

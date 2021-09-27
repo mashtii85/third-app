@@ -23,7 +23,7 @@ import { LessonTableRowsType } from './types.d'
 import pages from '../../../../config/pages'
 
 // Forms
-import { LessonForm } from '../../form/add/form'
+import { LessonForm } from '../../form/create/form'
 
 interface ToolbarModel {
   courseId?: number
@@ -32,10 +32,12 @@ interface ToolbarModel {
 
 export const columns = ({
   handleDelete,
-  handleEdit
+  handleEdit,
+  handleQuestions
 }: {
-  handleDelete: (e: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
-  handleEdit: (e: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
+  handleDelete: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
+  handleEdit: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
+  handleQuestions: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
 }) => {
   const columnsSchema = [
     { text: 'id', hidden: true },
@@ -44,7 +46,7 @@ export const columns = ({
       text: 'Title'
     },
     { text: 'Description', hidden: true },
-    { text: 'Type', hidden: true },
+    { text: 'Type' },
     { text: 'Content', hidden: true },
     { text: 'Status' },
     { text: 'Date' },
@@ -63,6 +65,12 @@ export const columns = ({
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'
+        },
+        {
+          context: 'info',
+          icon: ['fas', 'question'],
+          onClick: handleQuestions,
+          tooltip: 'Questions'
         }
       ]
     }
