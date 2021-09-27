@@ -2,22 +2,12 @@
  * Components - Enrollments - Form - Form
  */
 
-// React
-import { useContext } from 'react'
-
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // UI
-import {
-  FormField,
-  Form,
-  FormLabel,
-  SelectField,
-  TextareaField,
-  UserContext
-} from '@drykiss/industry-ui'
+import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss/industry-ui'
 
 import { courseSchema as schema } from './schema'
 
@@ -26,9 +16,11 @@ import { statusActive } from '../../../constants/status'
 
 // Types
 import { EnrollmentFormType } from './types.d'
-
-import { useCreateEnrollment } from '../hooks'
 import { LooseObject } from '../../../types/object'
+
+// Hooks
+import { useCreateEnrollment } from '../hooks'
+import { useCurrentUser } from '../../../utils/useCurrentUser'
 
 export const CourseForm = ({
   onSuccess,
@@ -37,7 +29,7 @@ export const CourseForm = ({
   onSuccess: () => void
   filters: LooseObject
 }) => {
-  const { user } = useContext(UserContext)
+  const { user } = useCurrentUser()
   const defaultValues = {}
 
   const { control, errors, handleSubmit, register } = useForm<EnrollmentFormType>({
@@ -64,8 +56,6 @@ export const CourseForm = ({
     await createEnrollment({
       variables: { clientId: user.client_id, accountId: user.account_id, ...form }
     })
-
-    console.log(form)
   }
 
   return (

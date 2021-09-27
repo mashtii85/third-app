@@ -33,7 +33,6 @@ interface CustomFieldRenderProps {
   setFilters?: (value: LooseObject) => void
   input: string
   inputType: string
-  key: number
   name: string
   label: string
   options: any

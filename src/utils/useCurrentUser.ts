@@ -9,16 +9,16 @@ import { useContext } from 'react'
 import { UserContext } from '@drykiss/industry-ui'
 
 // Types
-import { User } from '../types/user'
+import { CurrentUser } from '../types/user'
 
-interface CurrentUser {
+interface CurrentUserData {
   signIn: () => void
   signOut: () => void
-  user: User
+  user: CurrentUser
 }
 
-export const useCurrentUser = (): CurrentUser => {
-  const currentUser: CurrentUser = useContext(UserContext)
+export const useCurrentUser = (): CurrentUserData => {
+  const currentUser: CurrentUserData = useContext(UserContext)
 
   if (!currentUser) {
     throw new Error('useCurrentUser must be used within the UserProvider')

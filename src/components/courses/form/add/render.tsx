@@ -27,8 +27,7 @@ const inputComponents: { [x: string]: Function } = {
 }
 
 export const CustomFieldRender = (props: CustomFieldRenderProps) => {
-  const { control, errors, input, inputType, key, label, name, options, register, defaultValue } =
-    props
+  const { control, errors, input, inputType, label, name, options, register, defaultValue } = props
   const hasOptions = input === 'select' && options.length > 0
   const hasCurrencyInput = input === 'currencyInput'
   const hasData = ['checkbox', 'radio'].includes(input) && options.length > 0
@@ -40,7 +39,6 @@ export const CustomFieldRender = (props: CustomFieldRenderProps) => {
     }),
     errors,
     defaultValue,
-    key,
     label: camelCase.camelize(label || ''),
     name,
     register: register,

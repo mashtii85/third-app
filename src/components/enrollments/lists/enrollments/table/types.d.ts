@@ -4,7 +4,6 @@
 
 import { STATUS_ACTIVE } from '../../../../types/select'
 
-
 export interface CourseTableRowsType {
   id: number
   course?: string

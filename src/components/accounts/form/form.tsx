@@ -2,11 +2,11 @@
  * Components - Accounts - Form
  */
 
-import { useContext } from 'react'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AccountSchema as schema } from './schema'
+
 // UI
 import {
   Column,
@@ -15,16 +15,18 @@ import {
   FormError,
   FormLabel,
   SelectField,
-  Row,
-  UserContext
+  Row
 } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
 import { TaxonomySelect } from './select'
+
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../hooks'
+import { useCurrentUser } from '../../../utils/useCurrentUser'
 
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
+
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 import { ACCOUNT_TYPE } from '../../../types/account.d'
@@ -34,7 +36,8 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
     defaultValues,
     resolver: yupResolver(schema)
   })
-  const { user } = useContext(UserContext)
+
+  const { user } = useCurrentUser()
 
   const { createAccount } = useCreateAccount({
     filters,

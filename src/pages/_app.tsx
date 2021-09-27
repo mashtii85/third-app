@@ -29,7 +29,10 @@ import { AccessRules } from '../config/access/rules'
 import { Config } from '../config/config'
 import { Theme } from '../config/theme'
 import type { AppProps } from 'next/app'
+
+// CSS
 import 'react-datepicker/dist/react-datepicker.css'
+import 'tippy.js/dist/tippy.css'
 
 const MyApp = (props: AppProps) => {
   const apolloClient = useApollo(props.pageProps, Config)

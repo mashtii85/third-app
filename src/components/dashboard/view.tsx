@@ -2,19 +2,18 @@
  * Components - Dashboard - View
  */
 
-// React
-import { useContext } from 'react'
-
 // UI
-import { Details2, UserContext } from '@drykiss/industry-ui'
+import { Details2 } from '@drykiss/industry-ui'
 import { AdminDashboardOverview } from './tiles/overview/admin'
 import { ClientDashboardOverview } from './tiles/overview/client'
-
 import { ACCOUNT_TYPE } from '../../types/account.d'
 import { AccountCourseList } from '../courses/list'
 
+// Hooks
+import { useCurrentUser } from '../../utils/useCurrentUser'
+
 export const DashboardView = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useCurrentUser()
 
   const renderSwitch = (type: ACCOUNT_TYPE) => {
     switch (type) {

@@ -4,9 +4,11 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "start": "next -p 3100",
+    "start": "next dev -p 3100",
+    "start:build": "next start -p 3100",
     "test": "tsc",
-    "test:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
+    "lint": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore",
+    "lint:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
     "cy:start": "cypress open -C ./cypress-dev.json",
     "cy:start:serve": "cypress open -C ./cypress-local.json",
     "cy:test": "npm run package && start-server-and-test serve 5000 cy:run",

@@ -11,11 +11,12 @@ import { AddressTable } from '../../../addresses/lists/tables/table'
 // Helpers
 import { Toolbar } from '../../../addresses/lists/tables/helpers'
 
-// User
+// Hooks
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 export const ClientAddress = () => {
   const { user } = useCurrentUser()
+
   return (
     <Row>
       <Column md="5">

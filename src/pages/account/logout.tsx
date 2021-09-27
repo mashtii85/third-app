@@ -3,17 +3,17 @@
  */
 
 // React
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 
 // Next
 import type { NextPage } from 'next'
 import Router from 'next/router'
 
-// UI
-import { UserContext } from '@drykiss/industry-ui'
+// Hooks
+import { useCurrentUser } from '../../utils/useCurrentUser'
 
 const PageLogout: NextPage = () => {
-  const { signOut } = useContext(UserContext)
+  const { signOut } = useCurrentUser()
 
   useEffect(() => {
     const logout = async () => {

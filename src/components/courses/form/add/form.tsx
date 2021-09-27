@@ -1,36 +1,31 @@
 /**
  * Components - Courses - Form - Add - Form
  */
-// React
-import { useContext } from 'react'
 
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // UI
-import {
-  FormField,
-  Form,
-  FormLabel,
-  SelectField,
-  TextareaField,
-  UserContext
-} from '@drykiss/industry-ui'
+import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss/industry-ui'
+
 import { TaxonomySelect } from '../../../accounts/form/select'
 import { CustomFieldElement } from './customFieldElement'
 import { CourseSchema as schema } from './schema'
+
 // Constants
 import { statusActive } from '../../../../constants/status'
 
 // Types
 import { CourseFormType, CourseFormSubmission, CourseFormProps } from './types.d'
 import { Options } from '../../../../types/taxonomy'
+
 // Hooks
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
+import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
-  const { user } = useContext(UserContext)
+  const { user } = useCurrentUser()
 
   const { control, errors, handleSubmit, register, watch } = useForm<CourseFormType>({
     defaultValues,
@@ -64,7 +59,7 @@ export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFor
   const onSubmit = async ({ taxonomy, ...form }: CourseFormSubmission) => {
     const formParams = { ...form, taxonomy_id: taxonomy?.value }
     if (defaultValues?.id) {
-      updateCourse({ variables: { courseId: defaultValues.id, set: formParams } })
+      await updateCourse({ variables: { courseId: defaultValues.id, set: formParams } })
     } else {
       await createCourse({
         variables: { accountId: user.account_id, ...formParams }

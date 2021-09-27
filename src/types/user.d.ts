@@ -19,15 +19,13 @@ export interface AccountUsers {
   account: Account
   account_user: Account
 }
+
 export interface UserCustomFields {
   phone?: string
 }
 
 export interface User {
   id: number
-  client_id?: number
-  account_id?: number
-  account_type?: ACCOUNT_TYPE
   email: string
   is_verified: boolean
   name?: string
@@ -38,4 +36,10 @@ export interface User {
   created_at: string
   updated_at: string
   accounts?: AccountUsers[]
+}
+
+export interface CurrentUser extends User {
+  client_id: number
+  account_id: number
+  account_type: ACCOUNT_TYPE
 }

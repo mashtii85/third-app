@@ -2,22 +2,26 @@
  * Dashboard - Courses - View
  */
 
-// React
-import { useContext } from 'react'
-
 // Next
 import Router from 'next/router'
 import type { NextPage } from 'next'
 
-import { ACCOUNT_TYPE } from '../../../types/account.d'
-// UI
-import { Dashboard, UserContext } from '@drykiss/industry-ui'
-import { AccountCourseView, ClientCourseView } from '../../../components/courses/view'
-
+// Config
 import pages from '../../../config/pages'
 
+// GQL
+import { ACCOUNT_TYPE } from '../../../types/account.d'
+
+// UI
+import { Dashboard } from '@drykiss/industry-ui'
+import { AccountCourseView, ClientCourseView } from '../../../components/courses/view'
+
+// Hooks
+import { useCurrentUser } from '../../../utils/useCurrentUser'
+
 const PageDashboard: NextPage = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useCurrentUser()
+
   if (!user) {
     Router.push(pages.account.signIn)
     return null
