@@ -7,7 +7,10 @@
 import S3 from 'aws-sdk/clients/s3'
 
 // Config
-import { Config } from '../../config/config'
+import { Config } from '../../../config/config'
+
+// Types
+import { UploadParams } from './types'
 
 const s3 = new S3({
   accessKeyId: Config.AWS?.id,
@@ -17,15 +20,7 @@ const s3 = new S3({
   secretAccessKey: Config.AWS?.key
 })
 
-export interface UploadParams {
-  fileName: string
-  mimeType: string
-  bucket: string
-  folder: string
-  buffer: string
-}
-
-export const uploadS3 = (params: UploadParams) => {
+export const uploadS3 = (params: UploadParams): Promise<void> => {
   return new Promise((resolve, reject) => {
     const uploadParams = {
       Bucket: params.bucket,
