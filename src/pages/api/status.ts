@@ -5,12 +5,15 @@
 
 // Next
 import type { NextApiRequest, NextApiResponse } from 'next'
+import nc from 'next-connect'
 
 // Utils
-import { apiHandler } from '../../utils/api/handler'
+import { handlerOptions } from '../../utils/api/handlers'
 
-function handler(_req: NextApiRequest, res: NextApiResponse): void {
+const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
+
+handler.get((_req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json({ status: 'success' })
-}
+})
 
-export default apiHandler(handler, ['GET'])
+export default handler
