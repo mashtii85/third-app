@@ -19,6 +19,6 @@ export interface StepperModel {
   id: number
   label: string
   date?: string | null
-  status: LESSON_PROGRESS_STATUS
+  status?: LESSON_PROGRESS_STATUS
   actions?: StepperActionModel[]
 }

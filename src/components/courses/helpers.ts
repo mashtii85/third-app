@@ -7,7 +7,7 @@ import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../types/medium.d'
 import { ProgressChartModel } from '../../types/pieChart.d'
 import { Video } from '../common/videoPlayer/type'
 
-export const chartData = (data: LessonProgress[]) => {
+export const chartData = (data: LessonProgress[]): ProgressChartModel => {
   const result: ProgressChartModel = { data: [], status: {} }
   let started = 0
   let pending = 0
@@ -26,7 +26,7 @@ export const chartData = (data: LessonProgress[]) => {
     { id: 3, label: 'completed', value: completed }
   ]
 
-  result.status = { started, pending: total - started, completed, total }
+  result.status = { started, pending: total - (started + completed), completed, total }
 
   return result
 }

@@ -6,7 +6,9 @@
     "source.organizeImports": false
   },
   "eslint.validate": [
-    "javascript", "typescript", "typescriptreact"
+    "javascript",
+    "typescript",
+    "typescriptreact"
   ],
   // Editor
   "editor.bracketPairColorization.enabled": true,
@@ -29,18 +31,25 @@
   "scss.validate": false,
   "less.validate": false,
   "css.validate": false,
+  "editor.formatOnPaste": true,
+  "typescript.tsc.autoDetect": "watch",
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
 
-   "editor.formatOnPaste": true,
-        "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "cSpell.words": [
-      "showvolumecontrol"
-    ]
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "cSpell.words": [
+    "deepmerge",
+    "drykiss",
+    "hookform",
+    "ilike",
+    "realworldacademies",
+    "showvolumecontrol"
+  ]
 }

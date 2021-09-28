@@ -25,9 +25,6 @@ export interface DashboardTileItem {
 export interface ClientDashboardOverviewProps {
   clientId: number
 }
-export interface AdminDashboardOverviewProps {
-  adminId: number
-}
 
 export interface TileItemProps {
   title: string

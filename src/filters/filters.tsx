@@ -9,7 +9,7 @@ import { memo } from 'react'
 import { useForm } from 'react-hook-form'
 
 // UI
-import { Button, Column, Details, Form, FormLabel, Row, Search } from '@drykiss/industry-ui'
+import { Button, Column, Details2, Form, FormLabel, Row, Search } from '@drykiss/industry-ui'
 import { AddButton } from '../components/common/buttons/addButton'
 
 export const Filters = memo(
@@ -34,20 +34,13 @@ export const Filters = memo(
       const filters = data
 
       if (q !== lastQuery) {
-        filters.q = `%${q}%` || '%'
+        filters.q = `${q}%` || '%'
 
         // If search value is a number, set it as id for Job Id and Invoice Id search
         const queryIsNumber = /^\d+$/.test(q)
 
         if ('id' in initialValues) {
           filters.id = queryIsNumber ? Number(q) : null
-        }
-        if ('meta' in initialValues) {
-          filters.meta = queryIsNumber
-            ? {
-                invoiceNumber: Number(q)
-              }
-            : null
         }
 
         if (filters.id || filters.meta) {
@@ -66,7 +59,7 @@ export const Filters = memo(
 
     return (
       <Form handleSubmit={handleSubmit(handleSearch)}>
-        <Details summary="Filters">
+        <Details2 title="Filters">
           <Row>
             <Column sm={12} lg={12}>
               <FormLabel label="">
@@ -96,7 +89,7 @@ export const Filters = memo(
           <AddButton content="Search" context="secondary" handleClick={handleSearch} type="submit">
             <Button content="Reset filters" context="danger" onClick={resetFilters} size="sm" />
           </AddButton>
-        </Details>
+        </Details2>
       </Form>
     )
   },

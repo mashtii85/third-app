@@ -4,17 +4,25 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { TileData, CourseAggregateVariables, UseTileDataOutput, UseTileDataProps } from './types.d'
+
+import {
+  ClientTileData,
+  CourseAggregateVariables,
+  UseTileDataOutput,
+  UseTileDataProps
+} from './types.d'
+
+import { prepareTileData } from './helpers'
 
 export const useAggregate = ({
-  accountId,
+  clientId,
   query,
   prepareTiles
 }: UseTileDataProps): UseTileDataOutput => {
-  const { data, error, loading } = useQuery<TileData, CourseAggregateVariables>(query, {
-    variables: {
-      accountId
-    }
+  const variables = prepareTileData({ clientId })
+
+  const { data, error, loading } = useQuery<ClientTileData, CourseAggregateVariables>(query, {
+    variables
   })
 
   if (data) {

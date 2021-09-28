@@ -12,15 +12,15 @@ import { ACCOUNT_TYPE } from '../../../../types/account.d'
 // Hooks
 import { useAggregate } from '../hooks/useTileData'
 
+import { GET_CLIENT_TILES_DATA } from '../queries'
 // Helpers
 import { TileItem } from './helpers'
-import { GET_TILES_DATA } from '../queries'
 import { prepareClientTiles } from '../helper'
 
 export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewProps) => {
   const { error, items } = useAggregate({
-    accountId: clientId,
-    query: GET_TILES_DATA,
+    clientId,
+    query: GET_CLIENT_TILES_DATA,
     prepareTiles: prepareClientTiles
   })
 

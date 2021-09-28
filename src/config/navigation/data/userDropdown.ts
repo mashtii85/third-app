@@ -4,28 +4,26 @@
 
 // Types
 import { User } from '../../../types/user.d'
+import { NavItem, UserDropDownOutput } from './type'
 
-export const UserDropdown = (user: User) => {
-  const prepareNavItems = () => {
-    const items = [
-      {
-        id: 'navProfile',
-        name: 'Profile',
-        to: `/dashboard/users/view?id=${user.id}`
-      },
-      {
-        id: 'navLogoutDivider',
-        divider: true
-      },
-      {
-        id: 'navLogout',
-        name: 'Logout',
-        to: '/account/logout'
-      }
-    ]
+export const UserDropdown = (user: User): UserDropDownOutput => {
+  const prepareNavItems = (): NavItem[] => [
+    {
+      id: 'navProfile',
+      name: 'Profile',
+      to: `/dashboard/users/view?id=${user.id}`
+    },
+    {
+      id: 'navLogoutDivider',
+      divider: true
+    },
+    {
+      id: 'navLogout',
+      name: 'Logout',
+      to: '/account/logout'
+    }
+  ]
 
-    return items
-  }
   return {
     id: 'navUserDropdown',
     name: user.name_first,

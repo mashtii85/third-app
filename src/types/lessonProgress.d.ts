@@ -2,6 +2,8 @@
  * Types - Lesson Progress
  */
 
+import { Lesson } from './lesson.d'
+
 export enum LESSON_PROGRESS_STATUS {
   Pending = 'pending',
   Started = 'started',
@@ -9,7 +11,9 @@ export enum LESSON_PROGRESS_STATUS {
 }
 
 export interface LessonProgress {
-  id: number
-  label: string
-  status: LESSON_PROGRESS_STATUS
+  id?: number
+  label?: string
+  status?: LESSON_PROGRESS_STATUS
+  updated_at?: Date
+  lesson?: Lesson
 }

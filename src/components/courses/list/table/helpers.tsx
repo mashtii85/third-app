@@ -3,10 +3,10 @@
  */
 
 // React
-import { MouseEvent, useContext } from 'react'
+import { ChangeEvent, MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, OffCanvasContext } from '@drykiss/industry-ui'
+import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
 // Types
 import type { Course } from '../../../../types/course.d'
@@ -14,48 +14,105 @@ import { CourseTableRowsType } from './types.d'
 
 import { CourseForm } from '../../form'
 
-export const columns = () => [
-  {
-    text: 'id',
-    hidden: true
-  },
-  {
-    // formatter: TableLink('/dashboard/properties/view', 'id', 'title'),
-    text: 'Title'
-  },
-  {
-    text: 'Author'
-  },
-  {
-    text: 'Enrolled Users'
-  }
-]
+import pages from '../../../../config/pages'
+
+// Types
+import { CourseFilter } from '../../hooks/types.d'
+
+export const columns = ({
+  handleDelete,
+  handleEdit
+}: {
+  handleDelete: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
+  handleEdit: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
+}) => {
+  return [
+    {
+      text: 'taxonomy',
+      hidden: true
+    },
+    {
+      text: 'custom_fields',
+      hidden: true
+    },
+    {
+      text: 'taxonomy_id',
+      hidden: true
+    },
+    {
+      text: 'id',
+      hidden: true
+    },
+    {
+      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
+      text: 'Title'
+    },
+    {
+      text: 'Author'
+    },
+    {
+      text: 'Enrolled Users'
+    },
+    {
+      hidden: 'true',
+      text: 'Status'
+    },
+    {
+      hidden: true,
+      text: 'Description'
+    },
+    {
+      formatter: TableActions,
+      formatterData: [
+        {
+          context: 'secondary',
+          icon: ['fas', 'edit'],
+          onClick: handleEdit,
+          tooltip: 'Edit'
+        },
+        {
+          context: 'danger',
+          icon: ['fas', 'trash'],
+          onClick: handleDelete,
+          tooltip: 'Delete'
+        }
+      ],
+      text: 'Actions'
+    }
+  ]
+}
 
 export const rows = (courses: Course[]): CourseTableRowsType[] => {
   const list = courses.map((item) => {
     return {
+      taxonomy: item.taxonomy,
+      custom_fields: item.custom_fields,
+      taxonomy_id: item.taxonomy_id,
       id: item.id,
       title: item.title,
       author: item.custom_fields?.author || '',
-      enrolled: item.enrolled.aggregate.count
+      enrolled: item.enrolled?.aggregate?.count ?? 0,
+      status: item.status,
+      description: item.description,
+      actions: ''
     }
   })
 
   return list
 }
 
-export const Toolbar = () => {
+export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
   // we don't know it's type
   const offCanvas = useContext<any>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <CourseForm />,
+      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: 'Add A Course'
+      title: 'Add a course'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create A Course" />
+  return <Button context="white" onClick={handleClick} size="sm" content="Create a course" />
 }

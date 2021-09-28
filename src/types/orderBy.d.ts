@@ -3,6 +3,5 @@
  */
 
 export interface OrderBy {
-  item: string
-  order: 'asc' | 'desc'
+  [item: string]: 'asc' | 'desc'
 }

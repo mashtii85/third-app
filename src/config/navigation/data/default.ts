@@ -5,7 +5,7 @@
 // Types
 import { Navigation } from '../../../types/navigation.d'
 
-import pages from '../../pages.json'
+import pages from '../../pages'
 
 export const Default: Navigation = {
   right: [

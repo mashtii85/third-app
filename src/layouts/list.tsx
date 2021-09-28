@@ -23,11 +23,13 @@ export const LayoutList = ({
   return (
     <Row>
       <Column sm={12} lg={12}>
-        <Filters
-          initialValues={initialFilters}
-          renderFilters={(form: JSX.Element) => <FiltersComp {...form} {...otherProps} />}
-          setFilters={setFilters}
-        />
+        {FiltersComp && (
+          <Filters
+            initialValues={initialFilters}
+            renderFilters={(form: JSX.Element) => <FiltersComp {...form} {...otherProps} />}
+            setFilters={setFilters}
+          />
+        )}
 
         <TableComp filters={filters} initialFilters={initialFilters} {...otherProps} />
       </Column>

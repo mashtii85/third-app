@@ -7,14 +7,18 @@ import { ApolloError, DocumentNode } from '@apollo/client'
 import { DashboardTile } from '../types.d'
 import { AggregateData } from '../../../../types/aggregateData'
 
-export interface TileData {
+export interface ClientTileData {
   activeCourses: AggregateData
   enrolledCourses: AggregateData
   completedLessons: AggregateData
 }
 
+export interface AdminTileData {
+  activeClients: AggregateData
+}
+
 export interface CourseAggregateVariables {
-  accountId: number
+  clientId?: number
 }
 
 export interface UseTileDataOutput {
@@ -24,7 +28,7 @@ export interface UseTileDataOutput {
 }
 
 export interface UseTileDataProps {
-  accountId: number
+  clientId?: number
   query: DocumentNode
-  prepareTiles: (dashboardObjects?: TileData) => DashboardTile[]
+  prepareTiles: (dashboardObjects?: any) => DashboardTile[]
 }

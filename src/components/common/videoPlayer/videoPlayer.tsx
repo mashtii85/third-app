@@ -1,8 +1,8 @@
 import { ChangeEvent, useReducer, useRef } from 'react'
 import ReactPlayer from 'react-player'
 import BaseReactPlayer from 'react-player/base'
-
 import styled, { css } from 'styled-components'
+import fullScreen from '../../../utils/fullScreen'
 import { FavIcon } from './components/favIcon'
 import { FullScreen } from './components/fullScreen'
 import { Next } from './components/next'
@@ -37,6 +37,10 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
       newState.playing = !newState.playing
       return { ...newState }
     }
+    case 'toggleFullScreen': {
+      newState.fullScreen = !newState.fullScreen
+      return { ...newState }
+    }
     case 'setDuration': {
       newState.duration = action.payload
       return { ...newState }
@@ -59,8 +63,10 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
   }
 }
 
-const VideoPlayer = ({ videos }: VideoPlayerProps) => {
+const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
   const playerRef = useRef<BaseReactPlayer<{}>>(null)
+
+  const videoPlayerWrapperRef = useRef(null)
 
   const spentTime = useRef('0')
 
@@ -79,6 +85,7 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
     playbackRate: 1.0,
     loop: false,
     showVolumeControl: false,
+    fullScreen: false,
     selectedVideoIndex: 0
   })
   const { src, title, desc } = videos[state.selectedVideoIndex]
@@ -91,7 +98,9 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
     dispatch({ type: 'toggleIsPlaying' })
   }
   const handleEnded = () => {
-    console.log('video finished')
+    if (onVideoFinished) {
+      onVideoFinished(state.selectedVideoIndex)
+    }
   }
 
   const handleDuration = (e: number) => {
@@ -145,6 +154,18 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
     }
   }
 
+  const handleFullScreenClick = () => {
+    if (state.fullScreen) {
+      fullScreen.fullscreenEnabled &&
+        fullScreen &&
+        fullScreen.exitFullscreen &&
+        fullScreen.exitFullscreen()
+    } else {
+      fullScreen.requestFullscreen(videoPlayerWrapperRef.current)
+    }
+    dispatch({ type: 'toggleFullScreen' })
+  }
+
   let time
   if (spentTime.current) {
     const pureSeconds = spentTime.current.split('.')[0]
@@ -156,7 +177,7 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper ref={videoPlayerWrapperRef}>
       <HeadOverlay>
         <InfoWrapper>
           <VideoTitle>{title}</VideoTitle>
@@ -182,11 +203,11 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
         playbackRate={state.playbackRate}
         loop={state.loop}
         url={src}
-        onReady={() => console.log('onReady')}
-        onStart={() => console.log('onStart')}
-        onSeek={(e) => console.log('onSeek', e)}
+        onReady={() => console.info('onReady')}
+        onStart={() => console.info('onStart')}
+        onSeek={(e) => console.info('onSeek', e)}
         onEnded={handleEnded}
-        onError={(e) => console.log('onError', e)}
+        onError={(e) => console.error('onError', e)}
         onProgress={handleProgress}
         onDuration={handleDuration}
       />
@@ -237,7 +258,9 @@ const VideoPlayer = ({ videos }: VideoPlayerProps) => {
             </VolumeControlInputWrapper>
           </IconWrapper>
           <Setting selectedSpeed={state.playbackRate} onSpeedChange={handleSpeedChange} />
-          <FullScreen />
+          <IconWrapper onClick={handleFullScreenClick}>
+            <FullScreen />
+          </IconWrapper>
         </MainControlsWrapper>
       </BottomOverlay>
     </Wrapper>
@@ -254,10 +277,10 @@ const Time = styled.span`
 const ProgressInput = styled.input<{ value: number; width: string }>`
   -webkit-appearance: none;
   align-self: center;
+  background: rgba(255, 255, 255, 0.6);
   background-image: linear-gradient(#b6da25, #b6da25);
   background-repeat: no-repeat;
   background-size: ${({ value }) => value * 100}% 100%;
-  background: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   height: 4px;
   width: ${({ width }) => width};

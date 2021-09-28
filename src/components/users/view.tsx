@@ -3,7 +3,7 @@
  */
 
 // React
-import { useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // Apollo
 import { useMutation, useQuery } from '@apollo/client'
@@ -14,8 +14,10 @@ import { useRouter } from 'next/router'
 
 // UI
 import {
+  Button,
+  ButtonToolbar,
   Column,
-  Details,
+  Details2,
   DetailsText,
   formatDateStandard,
   OffCanvasContext,
@@ -23,7 +25,7 @@ import {
 } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
 import { UserForm } from './form'
-import { UserAccountsTable } from '../modules/accountUsers/table'
+import { UserAccountsTable } from './accounts/table'
 import { User } from '../../types/user.d'
 import { offCanvasType } from '../../types/offCanvas'
 
@@ -51,7 +53,6 @@ const UserDetails = () => {
   if (!user) {
     return <></>
   }
-
   const onSubmit = (form: User): void => {
     UpdateUser({
       variables: {
@@ -61,25 +62,34 @@ const UserDetails = () => {
     })
   }
 
-  const handleClick = (): void => {
+  const handleClick = (e: MouseEvent<HTMLElement>): void => {
+    e.stopPropagation()
     offCanvas.show({
       content: <UserForm defaultValues={user} submit={onSubmit} />,
       title: 'Edit user'
     })
   }
-
+  const Toolbar = () => {
+    return (
+      <ButtonToolbar>
+        <Button context="secondary" onClick={handleClick}>
+          Edit
+        </Button>
+      </ButtonToolbar>
+    )
+  }
   return (
     <Row>
       <Column md={6}>
         <ProfileHeader entity={{ name: `${user.name_first} ${user.name_last}` }} />
-        <Details button={'Edit'} handleClick={handleClick} open summary="Details">
+        <Details2 open title="Details" toolbar={<Toolbar />}>
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
           <DetailsText content="Email" text={user.email} />
           <DetailsText content="Phone" text={user?.custom_fields?.phone || '-'} />
           <DetailsText content="Status" text={user.status} />
           <DetailsText content="Date Added" text={formatDateStandard(user.created_at)} />
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />
-        </Details>
+        </Details2>
       </Column>
       <Column md={6}>
         <UserAccountsTable user={user} />

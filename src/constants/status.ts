@@ -1,5 +1,5 @@
 /**
- * Src - status
+ * Constants - Status
  */
 
 import { SELECT_STATUS_ACTIVE } from '../types/select.d'

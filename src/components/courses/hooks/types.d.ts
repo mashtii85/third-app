@@ -3,32 +3,28 @@
  */
 
 // Types
-import { OrderBy } from '../../../types/orderBy.d'
 import { STATUS_ACTIVE } from '../../../types/select.d'
-import { Course } from '../../../types/course'
+import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
-import { LooseObject } from '../../../types/object'
+import { Filter } from '../../../types/filter.d'
+import { UseHookOutput } from '../../../types/hook.d'
+import { LooseObject } from '../../../types/object.d'
 
-export interface CourseFilter {
+export interface CourseFilter extends Filter {
   status: STATUS_ACTIVE
   description: string
-  title?: string
-  limit: number
-  offset: number
-  orderBy: OrderBy
 }
 
-export interface UserCoursesProps {
-  clientId: number
+export interface UseCoursesProps {
+  accountId: number
   filters?: CourseFilter
 }
 
 export interface CoursesData {
   courses: Course[]
 }
-export interface CoursesVariables {
-  where: LooseObject
-}
+
+export type CoursesVariables = LooseObject
 
 export interface EnrollmentsData {
   enrollments: [{ course: Course }] | []
@@ -42,4 +38,31 @@ export interface EnrolmentOutputData {
 
 export interface EnrolledVariables {
   userId: number
+}
+
+// useCourse
+
+export interface CourseData {
+  course: Course
+}
+
+export interface CourseVariables {
+  courseId: number
+}
+
+// useCreateCourse
+export interface UseCreateCourseProps {
+  accountId: number
+  onCompleted: (data: { course: Course }) => void
+  onError: (data: ApolloError) => void
+  filters: CourseFilter
+}
+
+export interface UseCreateCourseOutput extends UseHookOutput {
+  createCourse: any
+}
+
+export interface PrepareCourseArgumentProps {
+  accountId: number
+  filters?: CourseFilter
 }

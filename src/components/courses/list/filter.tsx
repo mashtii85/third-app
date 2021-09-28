@@ -30,7 +30,7 @@ export const CourseFilters = ({
       <FormLabel label="Description">
         <FormField {...defaultOptions} name="description" />
       </FormLabel>
-      <FormLabel label="Description">
+      <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
       </FormLabel>
     </>

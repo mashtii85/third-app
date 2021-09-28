@@ -5,15 +5,18 @@
 
 // Types
 import { ACCOUNT_TYPE } from '../types/account.d'
-import { User, USER_STATUS } from '../types/user.d'
+import { CurrentUser, USER_STATUS } from '../types/user.d'
 
-export const Users: User[] = [
+export const Users: CurrentUser[] = [
   {
     id: 1,
+    client_id: 1,
+    account_id: 1,
     account_type: ACCOUNT_TYPE.Admin,
     email: 'admin@example.com',
     name_first: 'Admin',
     name_last: 'RWA',
+    is_verified: true,
     custom_fields: {
       phone: '+443 222 444'
     },
@@ -23,10 +26,13 @@ export const Users: User[] = [
   },
   {
     id: 2,
+    client_id: 2,
+    account_id: 2,
     account_type: ACCOUNT_TYPE.Client,
     email: 'uaefa@example.com',
     name_first: 'UAE FA',
     name_last: 'Manager',
+    is_verified: true,
     custom_fields: {
       phone: '+443 222 444'
     },
@@ -36,10 +42,13 @@ export const Users: User[] = [
   },
   {
     id: 3,
+    client_id: 3,
+    account_id: 3,
     account_type: ACCOUNT_TYPE.Client,
     email: 'drykiss@example.com',
     name_first: 'DryKISS',
     name_last: 'Manager',
+    is_verified: true,
     custom_fields: {
       phone: '+443 333 555'
     },
@@ -49,10 +58,13 @@ export const Users: User[] = [
   },
   {
     id: 4,
-    account_type: ACCOUNT_TYPE.Account,
+    client_id: 2,
+    account_id: 4,
+    account_type: ACCOUNT_TYPE.Member,
     email: 'demo@example.com',
     name_first: 'Demo',
     name_last: 'User',
+    is_verified: true,
     custom_fields: {
       phone: '+443 666 777'
     },

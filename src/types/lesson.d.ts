@@ -4,6 +4,8 @@
 
 import { Medium } from './medium'
 import { LessonProgress } from './lessonProgress'
+import { Module } from './module.d'
+import { Video } from '../components/common/videoPlayer/type'
 
 export enum LESSON_TYPE {
   Text = 'text',
@@ -17,7 +19,6 @@ export enum LESSON_STATUS {
   Inactive = 'inactive'
 }
 
-/* eslint-disable camelcase */
 type VideoLesson = {
   id: number
   type: LESSON_TYPE.Video
@@ -28,13 +29,37 @@ type VideoLesson = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module: Module
+  created_at: Date
+  updated_at: Date
 }
 
-export interface QuizQuestion {
-  question: string
-  answers: string[]
+export enum QUESTION_TYPE {
+  SelectAnswer = 'selectAnswer',
+  ShortTextAnswer = 'shortTextAnswer'
+}
+
+type SelectAnswer = {
+  type: QUESTION_TYPE.SelectAnswer
+  questionText: string
+  questionImage?: string
+  questionVideos?: Video[]
+  answers: {
+    answerText?: string
+    answerImage?: string
+  }[]
   correctAnswers: number[]
 }
+
+type ShortTextAnswer = {
+  type: QUESTION_TYPE.ShortTextAnswer
+  questionText: string
+  questionImage?: string
+  questionVideos?: Video[]
+  acceptableAnswers: string[]
+}
+
+export type QuizQuestion = SelectAnswer | ShortTextAnswer
 
 type QuizLesson = {
   id: number
@@ -47,6 +72,9 @@ type QuizLesson = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module: Module
+  created_at: Date
+  updated_at: Date
 }
 
 // separate these lessons when ever properties differ, like VideoLesson
@@ -61,6 +89,9 @@ type OtherLessons = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  module?: Module
+  created_at: Date
+  updated_at: Date
 }
 
-export type Lesson = VideoLesson | OtherLessons | QuizLesson
+export type Lesson = VideoLesson | QuizLesson | OtherLessons

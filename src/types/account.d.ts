@@ -2,18 +2,27 @@
  * Types - Account
  */
 
+import { STATUS_ACTIVE } from './select'
+import { User } from './user'
+
 export enum ACCOUNT_TYPE {
   Admin = 'admin',
   Client = 'client',
-  Account = 'account'
+  Member = 'member'
 }
 
-/* eslint-disable camelcase */
+export interface CustomField {
+  position: string
+}
+
 export interface Account {
   id: number
   name: string
-  status: string
+  status: STATUS_ACTIVE
   type: string
   structure: string
   created_at: string
+  taxonomy_id: number
+  custom_fields: CustomField
+  users: { user: User }[]
 }
