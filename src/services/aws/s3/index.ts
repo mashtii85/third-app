@@ -13,6 +13,7 @@ import { Config } from '../../../config/config'
 import { UploadParams } from './types'
 
 const s3 = new S3({
+  endpoint: Config.AWS?.endpoint,
   accessKeyId: Config.AWS?.id,
   apiVersion: '2006-03-01',
   region: Config.AWS?.region,
