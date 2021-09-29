@@ -2,13 +2,17 @@
  * Components - Taxonomy - Form
  */
 
+import { useCurrentUser } from '../../../utils/useCurrentUser'
+
 // Apollo
 import { useMutation } from '@apollo/client'
 import { UPDATE_TAXONOMY } from '../queries'
+
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useCreateTaxonomy } from '../hooks/useCreate'
+
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
@@ -25,6 +29,7 @@ export const TaxonomyForm = ({
   onSuccess,
   isShowQuestionForm
 }: TaxonomyFormProps) => {
+  const { user } = useCurrentUser()
   const { control, errors, handleSubmit, register, setValue, watch } = useForm({
     defaultValues,
     resolver: yupResolver(schema)
@@ -38,8 +43,9 @@ export const TaxonomyForm = ({
     isParent: !!defaultValues.parent_id,
     taxonomyId: defaultValues.id,
     onCompleted: onSuccess,
-    onError: console.error
+    onError: (error) => console.error(error.message)
   }
+
   const watchLabel = watch('custom_fields.label') as string
   const { createTaxonomy } = useCreateTaxonomy(createTaxonomyProps)
 
@@ -61,8 +67,7 @@ export const TaxonomyForm = ({
     } else {
       obj.entity = defaultValues.entity
       obj.entity_id = defaultValues.entity_id
-      // todo: hello, clientId is hard coded
-      obj.client_id = 2
+      obj.client_id = user.client_id
       return await createTaxonomy({ variables: { objects: [obj] } })
     }
   }
