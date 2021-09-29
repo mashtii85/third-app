@@ -18,6 +18,7 @@ import pages from '../../../../../config/pages'
 // Types
 import { LooseObject } from '../../../../../types/object'
 import { Enrollment } from '../../../hooks/useEnrollments/types'
+import { offCanvasType } from '../../../../../types/offCanvas'
 
 export const columns = () => [
   {
@@ -55,8 +56,7 @@ export const rows = (enrollments: Enrollment[]): CourseTableRowsType[] => {
 }
 
 export const Toolbar = ({ filters }: { filters: LooseObject }) => {
-  // we don't know it's type
-  const offCanvas = useContext<any>(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()

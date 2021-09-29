@@ -7,12 +7,12 @@ import { useQuery } from '@apollo/client'
 import { GET_COURSES } from '../queries'
 
 // Types
-import { CoursesData, CoursesVariables, UseCoursesProps } from './types.d'
+import { CoursesData, CoursesVariables, UseCourseOutput, UseCoursesProps } from './types'
 
 // Helpers
 import { prepareCoursesArguments } from './helpers'
 
-export const useCourses = ({ accountId, filters }: UseCoursesProps) => {
+export const useCourses = ({ accountId, filters }: UseCoursesProps): UseCourseOutput => {
   const variables = prepareCoursesArguments({ filters, accountId })
   const { data, error, loading } = useQuery<CoursesData, CoursesVariables>(GET_COURSES, {
     variables

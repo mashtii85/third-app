@@ -18,6 +18,7 @@ import pages from '../../../../config/pages'
 
 // Types
 import { CourseFilter } from '../../hooks/types.d'
+import { offCanvasType } from '../../../../types/offCanvas'
 
 export const columns = ({
   handleDelete,
@@ -102,8 +103,7 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
 }
 
 export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
-  // we don't know it's type
-  const offCanvas = useContext<any>(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()

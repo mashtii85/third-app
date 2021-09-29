@@ -33,6 +33,9 @@ const path = {
     enrollments: {
       root: '/dashboard/enrollments'
     },
+    locations: {
+      list: '/dashboard/locations'
+    },
     playground: '/dashboard/playground'
   }
 }

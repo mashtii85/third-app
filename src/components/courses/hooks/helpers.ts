@@ -33,6 +33,7 @@ export const prepareCoursesArguments = ({
 
   const otherClause = {
     limit: filters?.limit,
+    offset: filters?.offset,
     order_by: filters?.orderBy ? filters.orderBy : {}
   }
 
