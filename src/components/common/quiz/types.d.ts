@@ -1,8 +1,12 @@
 import { QuizQuestion } from '../../../types/lesson.d'
 
+export interface QuizCompletedData {
+  score: number
+  passed: boolean
+}
 export interface QuizProps {
   questions: QuizQuestion[]
-  onComplete: ({ score, passed }: { score: number; passed: boolean }) => void
+  onComplete: ({ score, passed }: QuizCompletedData) => void
   /** default is 50 */
   minimumScoreToPass?: number
 }

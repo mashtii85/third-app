@@ -16,14 +16,10 @@ import { columns, rows, Toolbar } from './helpers'
 import { useCourses } from '../../hooks'
 // Types
 import { CourseFilter } from '../../hooks/types'
-import { CourseTableRowsType } from './types'
+import { CourseTableProps, CourseTableRowsType } from './types'
 
 import { DeleteCourse } from '../../form'
 import { CourseForm } from '../../form/add/form'
-interface CourseTableProps {
-  clientId: number
-  filters: CourseFilter
-}
 
 const initialSort = {}
 

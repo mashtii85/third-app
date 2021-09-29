@@ -1,5 +1,5 @@
 /**
- * Components - Courses - List - Table - Hooks - useDeleteCourse - useDeleteCourse
+ * Components - Courses - Hooks - UseUpdateCourse - useDeleteCourse
  */
 
 // Apollo

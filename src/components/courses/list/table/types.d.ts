@@ -4,6 +4,7 @@
 
 import { STATUS_ACTIVE } from '../../../../types/select'
 import { Taxonomy } from '../../../../types/taxonomy'
+import { CourseFilter } from '../../hooks/types'
 
 export interface CourseTableRowsType {
   id: number | undefined
@@ -16,4 +17,9 @@ export interface CourseTableRowsType {
   taxonomy: Taxonomy
   taxonomy_id?: number
   custom_fields: any // Import type later
+}
+
+interface CourseTableProps {
+  clientId: number
+  filters: CourseFilter
 }

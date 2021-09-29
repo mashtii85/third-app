@@ -1,5 +1,5 @@
 /**
- * Components - Courses - List - Table - Hooks - useCourseQuery
+ * Components - Courses - Hooks - useCourseQuery
  */
 
 // Apollo
@@ -10,10 +10,15 @@ import { CREATE_COURSE, GET_COURSES } from '../queries'
 import { prepareCoursesArguments } from './helpers'
 
 // Types
-import { UseCreateCourseProps, UseCreateCourseOutput } from './types.d'
+import {
+  UseCreateCourseProps,
+  UseCreateCourseOutput,
+  CourseQueryData,
+  CreateCourseVariables
+} from './types.d'
 
 export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOutput => {
-  const [createCourse, { error, loading }] = useMutation(CREATE_COURSE, {
+  const [createCourse, { error, loading }] = useMutation<CreateCourseVariables>(CREATE_COURSE, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
@@ -24,7 +29,7 @@ export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOut
       })
 
       variables.client_id = { _eq: props.accountId }
-      const { courses } = cache.readQuery({
+      const { courses } = cache.readQuery<CourseQueryData, { variables?: LooseObject }>({
         query: GET_COURSES,
         variables
       }) || { courses: [] }

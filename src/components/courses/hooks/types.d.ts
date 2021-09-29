@@ -7,8 +7,8 @@ import { STATUS_ACTIVE } from '../../../types/select.d'
 import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
 import { Filter } from '../../../types/filter.d'
-import { UseHookOutput } from '../../../types/hook.d'
 import { LooseObject } from '../../../types/object.d'
+import { UseHookOutput, UseHookProps } from '../../../types/hook.d'
 
 export interface CourseFilter extends Filter {
   status: STATUS_ACTIVE
@@ -18,6 +18,10 @@ export interface CourseFilter extends Filter {
 export interface UseCoursesProps {
   accountId: number
   filters?: CourseFilter
+}
+
+export interface UseCourseOutput extends UseHookOutput {
+  courseList: Course[]
 }
 
 export interface CoursesData {
@@ -51,10 +55,12 @@ export interface CourseVariables {
 }
 
 // useCreateCourse
-export interface UseCreateCourseProps {
+export interface CreateCourseVariables {
+  course: Course
+}
+
+export interface UseCreateCourseProps extends UseHookProps<CreateCourseVariables> {
   accountId: number
-  onCompleted: (data: { course: Course }) => void
-  onError: (data: ApolloError) => void
   filters: CourseFilter
 }
 
@@ -65,4 +71,8 @@ export interface UseCreateCourseOutput extends UseHookOutput {
 export interface PrepareCourseArgumentProps {
   accountId: number
   filters?: CourseFilter
+}
+
+export interface CourseQueryData {
+  courses: Course[]
 }
