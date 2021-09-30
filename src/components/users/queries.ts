@@ -52,6 +52,9 @@ export const GET_USER_BY_EMAIL = gql`
       }
     }
   }
+  ${USER_FIELDS}
+  ${ACCOUNT_FIELDS}
+  ${ACCOUNT_USER_FIELDS}
 `
 
 export const UPDATE_USER = gql`
