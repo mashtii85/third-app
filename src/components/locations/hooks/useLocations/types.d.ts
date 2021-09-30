@@ -18,7 +18,7 @@ export interface LocationsData {
   locations: Location[]
 }
 
-export interface LocationsVariables { }
+export interface LocationsVariables {}
 
 export interface PrepareLocationArgumentProps {
   accountId: number
