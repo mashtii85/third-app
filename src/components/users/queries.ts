@@ -39,6 +39,21 @@ export const GET_USER = gql`
   ${ACCOUNT_USER_FIELDS}
 `
 
+export const GET_USER_BY_EMAIL = gql`
+  query GetUserByEmail($email: String!) {
+    user(where: { email: { _eq: $email } }) {
+      ...UserFields
+      password
+      accounts {
+        ...AccountUserFields
+        account {
+          ...AccountFields
+        }
+      }
+    }
+  }
+`
+
 export const UPDATE_USER = gql`
   mutation UpdateUser($userId: Int!, $changes: user_set_input) {
     update_user_by_pk(pk_columns: { id: $userId }, _set: $changes) {
