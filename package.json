@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@drykiss/industry-ui": "2.1.2",
-    "@types/styled-components": "5.1.14",
     "aws-sdk": "2.996.0",
     "deepmerge": "4.2.2",
     "graphql": "15.5.3",
@@ -48,14 +47,18 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
+    "@aws-sdk/types": "^3.34.0",
     "@babel/core": "7.15.5",
     "@babel/eslint-parser": "7.15.4",
     "@babel/plugin-transform-runtime": "7.15.0",
     "@babel/preset-env": "7.15.6",
     "@babel/preset-react": "7.14.5",
+    "@types/bcryptjs": "^2.4.2",
     "@types/multer": "^1.4.7",
     "@types/node-fetch": "2.5.12",
     "@types/react": "17.0.21",
+    "@types/styled-components": "5.1.14",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "4.31.1",
     "@typescript-eslint/parser": "4.31.1",
     "babel-plugin-styled-components": "1.13.2",
