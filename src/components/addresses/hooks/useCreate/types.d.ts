@@ -20,7 +20,7 @@ export interface AddressCreateVariables {
 }
 
 export interface AddressCreateData {
-  insert_address_one: Address
+  addresses: Address[]
 }
 
 export interface UseCreateAddressOutput extends UseHookOutput {

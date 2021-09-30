@@ -39,36 +39,12 @@ export const DELETE_ADDRESS_BY_PK = gql`
   ${ADDRESS_FIELDS}
 `
 
-export const INSERT_ADDRESS_ONE = gql`
-  mutation InsertAddressOne(
-    $entity: String!
-    $entityId: Int!
-    $name: String
-    $line1: String
-    $line2: String
-    $line3: String
-    $city: String
-    $postcode: String
-    $county: String
-    $status: String
-    $metaType: String
-  ) {
-    insert_address_one(
-      object: {
-        entity: $entity
-        entity_id: $entityId
-        name: $name
-        line1: $line1
-        line2: $line2
-        line3: $line3
-        city: $city
-        postcode: $postcode
-        county: $county
-        status: $status
-        meta: { type: $metaType }
+export const CREATE_ADDRESS = gql`
+  mutation CreateAddress($objects: [address_insert_input!]!) {
+    addresses: insert_address(objects: $objects) {
+      returning {
+        ...AddressFields
       }
-    ) {
-      ...AddressFields
     }
   }
   ${ADDRESS_FIELDS}
