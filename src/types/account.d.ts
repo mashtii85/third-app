@@ -3,6 +3,7 @@
  */
 
 import { STATUS_ACTIVE } from './select'
+import { Taxonomy } from './taxonomy'
 import { User } from './user'
 
 export enum ACCOUNT_TYPE {
@@ -25,4 +26,5 @@ export interface Account {
   taxonomy_id: number
   custom_fields: CustomField
   users: { user: User }[]
+  taxonomy?: Taxonomy
 }

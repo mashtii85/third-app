@@ -30,6 +30,7 @@ export interface UseAccountVariable {
 
 export interface UseAccountsVariable {
   filters?: AccountFilters
+
   // accountId?: number
   // accountType?: ACCOUNT_TYPE
   // clientId?: number

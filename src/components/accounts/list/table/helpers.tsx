@@ -43,6 +43,14 @@ export const columns = (
 ): Column<AccountsRow>[] => {
   return [
     {
+      text: 'taxonomy',
+      hidden: true
+    },
+    {
+      text: 'custom_fields',
+      hidden: true
+    },
+    {
       text: 'id',
       hidden: true
     },
@@ -97,6 +105,8 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       const user = account?.users[0]?.user ?? {}
 
       const model: AccountsRow = {
+        taxonomy: account.taxonomy,
+        custom_fields: account.custom_fields,
         id: account.id,
         userId: user?.id,
         name: account?.name,
@@ -117,19 +127,33 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
   return list ?? []
 }
 
-export const UserAccountToolbar = ({ filters }: { filters?: AccountFilters }) => {
+export const UserAccountToolbar = ({
+  filters,
+  type,
+  clientId
+}: {
+  filters?: AccountFilters
+  clientId: number
+  type: string
+}) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <AccountForm onSuccess={offCanvas.close} filters={filters} />,
+      content: (
+        <AccountForm
+          onSuccess={offCanvas.close}
+          filters={filters}
+          defaultValues={{
+            client_id: clientId,
+            type
+          }}
+        />
+      ),
       submit: true,
-      title: `Add A ${filters?.type}`
+      title: `Add A ${type}`
     })
   }
 
-  return (
-    <Button context="white" onClick={handleClick} size="sm" content={`Create a ${filters?.type}`} />
-  )
+  return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${type}`} />
 }
