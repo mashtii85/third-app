@@ -25,8 +25,7 @@ export const AddressTable = (filters: UseAddressProps) => {
   const offCanvas = useContext<any>(OffCanvasContext)
   const { addressList, loading } = useAddresses(filters)
 
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
-    console.log(e)
+  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteAddressForm
@@ -43,8 +42,7 @@ export const AddressTable = (filters: UseAddressProps) => {
     })
   }
 
-  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
-    console.log(e)
+  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
     const defaultValues: AddressFormType = {
       id: row.id,
       entity: row.entity,
