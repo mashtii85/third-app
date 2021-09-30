@@ -7,13 +7,20 @@
 // Next
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-// JWT
+// Libs
 import jwt from 'jsonwebtoken'
+import nc from 'next-connect'
+
+// Utils
+import { handlerOptions } from '../../../utils/api/handlers'
+// import { TE } from '../../../utils/api/errors'
 
 // Mocks
 import { Users } from '../../../mocks/users'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse): void {
+const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
+
+handler.post((req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const user = Users.find((u) => u.email === req.body.email)
 
@@ -30,4 +37,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse): void
   } else {
     res.status(400).json({ error: 'Bad Request' })
   }
-}
+})
+
+export default handler
