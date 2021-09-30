@@ -9,11 +9,8 @@ import type { NextPage } from 'next'
 import { Dashboard } from '@drykiss/industry-ui'
 import AccountList from '../../../components/accounts/list/account'
 
-// Types
-import { ACCOUNT_TYPE } from '../../../types/account.d'
-
 const PageAccountsView: NextPage = () => {
-  return <Dashboard View={<AccountList title="Accounts" type={ACCOUNT_TYPE.Client} />} />
+  return <Dashboard View={<AccountList title="Accounts" />} />
 }
 
 export default PageAccountsView

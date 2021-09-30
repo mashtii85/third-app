@@ -1,20 +1,10 @@
 /**
- *  Components - Taxonomy - Query
+ *  Components - Categories - Queries - Queries
  */
 
 // Apollo
 import { gql } from '@apollo/client'
-
-export const TAXONOMY_FIELDS = gql`
-  fragment TaxonomyFields on taxonomy {
-    entity
-    name
-    id
-    type
-    status
-    custom_fields
-  }
-`
+import { TAXONOMY_FIELDS } from './fragments'
 
 export const GET_TAXONOMIES = gql`
   query GetTaxonomy($where: taxonomy_bool_exp) {

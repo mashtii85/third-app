@@ -2,76 +2,45 @@
  * Components - Addresses - List - Table - Table
  */
 
-// React
-import { ChangeEvent, useContext } from 'react'
-
 // UI
-import { Table, OffCanvasContext } from '@drykiss/industry-ui'
+import { Details2, DetailsText } from '@drykiss/industry-ui'
 
 // Helpers
-import { columns, rows } from './helpers'
+import { Toolbar } from './helpers'
 
 // Hooks
 import { useAddresses } from '../../hooks/useAddresses'
 
 // Type
 import { UseAddressProps } from '../../hooks/types'
-import { AddressTableRowsType } from '../tables/types.d'
-import { AddressFormType } from '../../forms/create/types'
-import { AddressForm } from '../../forms/create/form'
-import { DeleteAddressForm } from '../../forms/delete/delete'
+import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
 
-export const AddressTable = (filters: UseAddressProps) => {
-  const offCanvas = useContext<any>(OffCanvasContext)
-  const { addressList, loading } = useAddresses(filters)
-
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
-    console.log(e)
-    offCanvas.show({
-      content: (
-        <DeleteAddressForm
-          id={row.id!}
-          entity={filters.entity}
-          entityId={filters.entityId}
-          type={filters.type}
-          title={row.name}
-          onSuccess={offCanvas.close}
-        />
-      ),
-      submit: false,
-      title: 'Delete Address'
-    })
-  }
-
-  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => {
-    console.log(e)
-    const defaultValues: AddressFormType = {
-      id: row.id,
-      entity: row.entity,
-      entityId: row.entityId,
-      name: row.name,
-      line1: row.line1,
-      line2: row.line2,
-      line3: row.line3,
-      city: row.city,
-      postcode: row.postcode,
-      county: row.county,
-      status: row.status
-    }
-    offCanvas.show({
-      content: (
-        <AddressForm onSuccess={offCanvas.close} filters={filters} defaultValues={defaultValues} />
-      ),
-      submit: true,
-      title: 'Edit Address'
-    })
+export const AddressTable = ({ filters }: { filters: UseAddressProps }) => {
+  const { addressList } = useAddresses(filters)
+  const selectedAddress = (): Address | undefined => {
+    const address = addressList.find((add) => add.status === ADDRESS_STATUS.Active)
+    return address
   }
 
   return (
-    <Table
-      loading={loading}
-      columns={columns({ handleDelete, handleEdit })}
-      rows={rows(addressList)}
-    />
+    <Details2
+      open
+      key={`${filters.entity}-${filters.entityId}`}
+      title="Selected address"
+      toolbar={<Toolbar filters={filters} />}
+    >
+      {selectedAddress() ? (
+        <>
+          <DetailsText content="Name" text={selectedAddress()?.name} />
+          <DetailsText content="Line" text={selectedAddress()?.line1} />
+          <DetailsText content="City" text={selectedAddress()?.city} />
+          <DetailsText content="Postcode" text={selectedAddress()?.postcode} />
+        </>
+      ) : (
+        <>
+          <DetailsText text="No selected address" />
+        </>
+      )}
+    </Details2>
   )
 }

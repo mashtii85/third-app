@@ -16,17 +16,17 @@ import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 
 // Types
 import { offCanvasType } from '../../../../../types/offCanvas'
-import { TaxonomyTableProps } from './type.d'
+import { LessonQuestionTableProps } from './type.d'
 import { Taxonomy, TAXONOMY_STATUS } from '../../../../../types/taxonomy.d'
 import { UseTaxonomiesVariable } from '../../../../categories/hooks/types.d'
 
-export const LessonQuestionsTable = (childTableProps: TaxonomyTableProps) => {
+export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const taxonomiesVariable: UseTaxonomiesVariable = {
-    category: childTableProps.type,
-    entity: childTableProps.entity,
-    entityId: childTableProps.entityId
+    category: tableProps.type,
+    entity: tableProps.entity,
+    entityId: tableProps.entityId
   }
   const { loading, taxonomies } = useTaxonomies(taxonomiesVariable)
 
@@ -41,9 +41,9 @@ export const LessonQuestionsTable = (childTableProps: TaxonomyTableProps) => {
         <LessonQuestionForm
           defaultValues={{
             ...row,
-            entity: childTableProps.entity,
-            entity_id: childTableProps.entityId,
-            type: childTableProps.type,
+            entity: tableProps.entity,
+            entity_id: tableProps.entityId,
+            type: tableProps.type,
             status: TAXONOMY_STATUS.Active
           }}
           isShowQuestionForm
@@ -59,8 +59,8 @@ export const LessonQuestionsTable = (childTableProps: TaxonomyTableProps) => {
         <LessonQuestionDeleteForm
           taxonomyId={row?.id}
           type={row?.type}
-          entity={childTableProps.entity}
-          entityId={childTableProps.entityId}
+          entity={tableProps.entity}
+          entityId={tableProps.entityId}
           onSuccess={handleSuccess}
         />
       ),
@@ -115,9 +115,7 @@ export const LessonQuestionsTable = (childTableProps: TaxonomyTableProps) => {
   return (
     <>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
-      <AddButton content="Add New" disabled={loading} handleClick={handleClick}>
-        <></>
-      </AddButton>
+      <AddButton content="Add New" disabled={loading} handleClick={handleClick} />
     </>
   )
 }

@@ -2,15 +2,17 @@
  * Components - Accounts - Form
  */
 
-import { ACCOUNT_TYPE } from '../../../types/account'
 import { LooseObject } from '../../../types/object.d'
 import { CreateAccountForm } from './types.d'
 
-export const prepareCreateAccount = (form: CreateAccountForm, type?: ACCOUNT_TYPE): LooseObject => {
+export const prepareCreateAccount = (form: CreateAccountForm): LooseObject => {
   const data = {
     name: form.name,
     status: form.status,
-    type,
+    custom_fields: form.custom_fields,
+    taxonomy_id: form.taxonomy.value,
+    client_id: form.client_id,
+    type: form.type,
     users: {
       data: {
         status: form.status,
@@ -42,7 +44,9 @@ export const prepareUpdateAccount = ({
     accountSet: {
       name: form.name,
       status: form.status,
-      taxonomy_id: form.taxonomy.value
+      taxonomy_id: form.taxonomy.value,
+      custom_fields: form.custom_fields,
+      client_id: form.clientId
     },
     userId,
     userSet: {

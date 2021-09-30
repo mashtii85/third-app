@@ -17,14 +17,18 @@ export const prepareUseAccounts = (filters?: AccountFilters): LooseObject => {
   if (filters?.accountId) {
     where.client_id = { _eq: filters.accountId }
   }
-
+  if (filters?.clientId) {
+    where.client_id = { _eq: filters.clientId }
+  }
   if (filters?.type) {
     where.type = { _eq: filters.type }
   }
 
-  variables.limit = filters?.limit
-  variables.offset = filters?.offset
-  variables.order = filters?.orderBy
+  variables.limit = filters?.limit || 20
+  variables.offset = filters?.offset || 0
+  variables.order = filters?.orderBy || {
+    created_at: 'desc'
+  }
 
   variables.where = where
   return variables

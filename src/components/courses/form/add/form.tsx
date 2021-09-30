@@ -79,7 +79,12 @@ export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFor
       </FormLabel>
       <TaxonomySelect {...defaultOptions} label="Course Type" name="taxonomy" type="courses" />
       {taxonomyWatch?.value && (
-        <CustomFieldElement {...defaultValues} {...defaultOptions} taxonomyWatch={taxonomyWatch} />
+        <CustomFieldElement
+          taxonomyType={'courses'}
+          {...defaultValues}
+          {...defaultOptions}
+          taxonomyWatch={taxonomyWatch}
+        />
       )}
     </Form>
   )

@@ -29,7 +29,7 @@ export interface UseCreateTaxonomyProps {
 
 export interface UseTaxonomiesOutput extends UseHookOutput {
   loading: boolean
-  error?: any
+  error?: ApolloError
   taxonomies: Taxonomy[]
 }
 

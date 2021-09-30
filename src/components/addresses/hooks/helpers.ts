@@ -1,5 +1,5 @@
 /**
- * Components - Lessons - Hooks - helpers
+ * Components - Addresses - Hooks - helpers
  */
 
 import { nullFreeObject } from '../../../utils/nullFreeObject'
@@ -20,9 +20,9 @@ export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseO
     whereClause.entity_id = { _eq: filters.entityId }
   }
 
-  if (filters?.type) {
-    whereClause.meta = { _contains: { type: filters.type } }
-  }
+  // if (filters?.type) {
+  //   whereClause.meta = { _contains: prepareMetaClause(filters.type) }
+  // }
 
   if (filters?.name) {
     whereClause.name = { _ilike: filters.name }
@@ -57,4 +57,15 @@ export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseO
   }
 
   return whereClause
+}
+
+export const prepareMetaClause = (commaSeparated?: string): LooseObject | undefined => {
+  if (!commaSeparated) return
+  const types: string[] = commaSeparated.split(',')
+  const metaProps: string[] = []
+  types.forEach((typ) => {
+    metaProps.push(`"${typ}": true`)
+  })
+  const metaClause = JSON.parse(`{${metaProps.join(',')}}`)
+  return metaClause
 }

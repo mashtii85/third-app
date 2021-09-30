@@ -3,7 +3,7 @@
  */
 
 // React
-import { ChangeEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Table, OffCanvasContext } from '@drykiss/industry-ui'
@@ -14,19 +14,25 @@ import { columns, rows } from './helpers'
 // Hooks
 import { useLessons } from '../../hooks/useLessons'
 
-// Type
-import { UseLessonsProps } from '../../hooks/types'
-import { LessonTableRowsType } from '../table/types'
-import { LessonFormType } from '../../form/create/types'
+// Forms
+import { MediaTable } from '../.../../../../media/lists/table/table'
 import { LessonForm } from '../../form/create/form'
 import { DeleteLessonForm } from '../../form/delete/delete'
 import { LessonQuestionsTable } from '../../questions/lists/table/table'
+
+// Types
+import { UseLessonsProps } from '../../hooks/types'
+import { LessonTableRowsType } from '../table/types'
+import { LessonFormType } from '../../form/create/types'
+import { MediaTableProps } from '../../../media/lists/table/types.d'
+import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export const LessonTable = (filters: UseLessonsProps) => {
   const offCanvas = useContext<any>(OffCanvasContext)
   const { lessonList, loading } = useLessons(filters)
 
-  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
+  const handleDelete = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteLessonForm
@@ -41,7 +47,7 @@ export const LessonTable = (filters: UseLessonsProps) => {
     })
   }
 
-  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
+  const handleEdit = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
     const defaultValues: LessonFormType = {
       id: row.id,
       title: row.title,
@@ -59,18 +65,35 @@ export const LessonTable = (filters: UseLessonsProps) => {
     })
   }
 
-  const handleQuestions = (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => {
+  const handleQuestions = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
     offCanvas.show({
-      content: <LessonQuestionsTable entity="lesson" entityId={row.id} type="lesson-questions" />,
+      content: (
+        <LessonQuestionsTable entity="lesson" entityId={row.id as number} type="lesson-questions" />
+      ),
       submit: false,
       title: 'Questions'
+    })
+  }
+
+  const handleFileUpload = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
+    const mediaTableProps: MediaTableProps = {
+      entity: 'lesson',
+      entityId: row.id as number,
+      category: MEDIUM_CATEGORY.Lesson,
+      status: STATUS_ACTIVE.Active,
+      type: MEDIUM_TYPE.Image
+    }
+    offCanvas.show({
+      content: <MediaTable mediaTableProps={mediaTableProps} />,
+      submit: false,
+      title: 'Attachments'
     })
   }
 
   return (
     <Table
       loading={loading}
-      columns={columns({ handleDelete, handleEdit, handleQuestions })}
+      columns={columns({ handleDelete, handleEdit, handleQuestions, handleFileUpload })}
       rows={rows(lessonList)}
     />
   )

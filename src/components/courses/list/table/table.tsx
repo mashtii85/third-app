@@ -32,9 +32,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   })
 
   const offCanvas = useContext<any>(OffCanvasContext)
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
-    console.log(e, row)
-
+  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteCourse
@@ -50,9 +48,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     })
   }
 
-  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
-    console.log(e, row)
-
+  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <CourseForm

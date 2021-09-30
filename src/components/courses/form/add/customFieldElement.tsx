@@ -4,12 +4,14 @@ import { Options } from '../../../../types/taxonomy'
 
 export const CustomFieldElement = ({
   taxonomyWatch,
+  taxonomyType,
   ...defaultOptions
 }: {
   taxonomyWatch: Options
+  taxonomyType: string
 }) => {
   const { taxonomies } = useTaxonomies({
-    category: 'courses',
+    category: taxonomyType,
     parentId: parseInt(taxonomyWatch?.value, 10)
   })
 

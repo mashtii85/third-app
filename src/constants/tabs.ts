@@ -8,6 +8,7 @@ export enum ACCOUNT_TABS {
 }
 
 export enum TAXONOMY_TABS {
-  COURSE_TYPES = 'courses',
-  MEMBER_TYPES = 'members'
+  COURSE = 'courses',
+  MEMBER = 'members',
+  LOCATION = 'locations'
 }

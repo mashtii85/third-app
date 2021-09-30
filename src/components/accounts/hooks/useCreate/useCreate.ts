@@ -11,13 +11,13 @@ import { UseCreateAccountOutput, UseCreateAccountProps } from '../types'
 import { prepareUseAccounts } from '../useAccounts/helpers'
 
 export const useCreateAccount = (props: UseCreateAccountProps): UseCreateAccountOutput => {
-  const variables = prepareUseAccounts(props.filters)
   const [createAccount, { error, loading }] = useMutation(CREATE_ACCOUNT, {
     onCompleted: props.onCompleted,
     onError: props.onError,
 
     update(cache, { data }) {
       const accountFromResponse = data?.account
+      const variables = prepareUseAccounts(props?.filters)
 
       const { accounts } = cache.readQuery({
         query: GET_ACCOUNTS,
@@ -27,7 +27,7 @@ export const useCreateAccount = (props: UseCreateAccountProps): UseCreateAccount
       cache.writeQuery({
         query: GET_ACCOUNTS,
         variables,
-        data: { accounts: [accounts, accountFromResponse] }
+        data: { accounts: [...accounts, accountFromResponse] }
       })
     }
   })

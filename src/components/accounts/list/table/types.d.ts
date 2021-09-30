@@ -37,4 +37,6 @@ export interface AccountsRow {
   status: STATUS_ACTIVE
   created: string
   actions: ''
+  taxonomy: any
+  custom_fields: any
 }

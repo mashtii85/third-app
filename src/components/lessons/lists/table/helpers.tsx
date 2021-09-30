@@ -3,7 +3,7 @@
  */
 
 // React
-import { ChangeEvent, MouseEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import {
@@ -18,6 +18,7 @@ import {
 // Types
 import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../../../types/lesson.d'
 import { LessonTableRowsType } from './types.d'
+import { Column } from '../../../../types/column.d'
 
 // Pages
 import pages from '../../../../config/pages'
@@ -33,13 +34,15 @@ interface ToolbarModel {
 export const columns = ({
   handleDelete,
   handleEdit,
-  handleQuestions
+  handleQuestions,
+  handleFileUpload
 }: {
-  handleDelete: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
-  handleEdit: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
-  handleQuestions: (_: ChangeEvent<HTMLInputElement>, row: LessonTableRowsType) => void
+  handleDelete: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
+  handleEdit: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
+  handleQuestions: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
+  handleFileUpload: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
 }) => {
-  const columnsSchema = [
+  const columnsSchema: Column<LessonTableRowsType>[] = [
     { text: 'id', hidden: true },
     {
       formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
@@ -71,6 +74,12 @@ export const columns = ({
           icon: ['fas', 'question'],
           onClick: handleQuestions,
           tooltip: 'Questions'
+        },
+        {
+          context: 'dark',
+          icon: ['fas', 'file-upload'],
+          onClick: handleFileUpload,
+          tooltip: 'Upload'
         }
       ]
     }

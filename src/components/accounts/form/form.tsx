@@ -8,39 +8,32 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { AccountSchema as schema } from './schema'
 
 // UI
-import {
-  Column,
-  Form,
-  FormField,
-  FormError,
-  FormLabel,
-  SelectField,
-  Row
-} from '@drykiss/industry-ui'
+import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
 import { TaxonomySelect } from './select'
-
+import { CustomFieldElement } from '../../courses/form/add/customFieldElement'
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../hooks'
-import { useCurrentUser } from '../../../utils/useCurrentUser'
-
+import { useTaxonomies } from '../../categories/hooks/useTaxonomies'
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { Options } from '../../../types/taxonomy'
 
 export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
-  const { control, errors, handleSubmit, register } = useForm<any>({
+  const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
-
-  const { user } = useCurrentUser()
+  const { taxonomies } = useTaxonomies({
+    category: defaultValues?.type + 's'
+  })
 
   const { createAccount } = useCreateAccount({
-    filters,
+    filters: { ...filters, clientId: defaultValues?.client_id, type: defaultValues?.type },
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error.message)
@@ -65,8 +58,7 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
         variables
       })
     } else {
-      const object = prepareCreateAccount(form, filters?.type)
-
+      const object = prepareCreateAccount(form)
       createAccount({ variables: { object } })
     }
   }
@@ -77,7 +69,12 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
     register
   }
 
-  const isClientMember = user.account_type === ACCOUNT_TYPE.Client
+  // Watchers
+  const taxonomyWatch: Options = watch('taxonomy')
+
+  const isClientMember = defaultValues?.type === ACCOUNT_TYPE.Member
+  const isClientCreateMember = taxonomies.length > 0
+
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
       <FormLabel label="Name">
@@ -94,7 +91,6 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
         )}
       </FormLabel>
 
-      {/* <FormField {...defaultOptions} name="type" type="hidden" /> */}
       <div>User</div>
       <FormLabel label="First Name">
         <FormField {...defaultOptions} name="firstName" />
@@ -105,21 +101,22 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
       <FormLabel label="Email">
         <FormField type="email" {...defaultOptions} name="email" />
       </FormLabel>
-      {isClientMember && (
+      {isClientMember && isClientCreateMember && (
         <>
           <div>Member</div>
-          <Row>
-            <Column md={6}>
-              <TaxonomySelect
-                {...defaultOptions}
-                label="Member Type"
-                name="taxonomy"
-                type="members"
-              />
-            </Column>
-          </Row>
+          <TaxonomySelect {...defaultOptions} label="Member Type" name="taxonomy" type="members" />
+          {taxonomyWatch?.value && (
+            <CustomFieldElement
+              {...defaultValues}
+              {...defaultOptions}
+              taxonomyType={'members'}
+              taxonomyWatch={taxonomyWatch}
+            />
+          )}
         </>
       )}
+      <FormField {...defaultOptions} name="client_id" type="hidden" />
+      <FormField {...defaultOptions} name="type" type="hidden" />
     </Form>
   )
 }

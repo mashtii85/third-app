@@ -31,9 +31,7 @@ export const LessonQuestionDeleteForm = ({
   return (
     <>
       <Text>Are you sure you want to delete this?</Text>
-      <AddButton content="Delete" context="danger" disabled={loading} handleClick={handleDelete}>
-        <></>
-      </AddButton>
+      <AddButton content="Delete" context="danger" disabled={loading} handleClick={handleDelete} />
     </>
   )
 }

@@ -18,16 +18,19 @@ const TaxonomyTabs = () => {
   const { query } = useRouter()
 
   const tab = useMemo(() => {
-    return query.tab || TAXONOMY_TABS.MEMBER_TYPES
+    return query.tab || TAXONOMY_TABS.MEMBER
   }, [query.tab])
 
   return (
     <Tabs key={tab}>
-      <Tab active={tab === TAXONOMY_TABS.MEMBER_TYPES} label="Members">
-        <TaxonomyList type={TAXONOMY_TABS.MEMBER_TYPES} title="Member Types" />
+      <Tab active={tab === TAXONOMY_TABS.MEMBER} label="Members">
+        <TaxonomyList type={TAXONOMY_TABS.MEMBER} title="Member Types" />
       </Tab>
-      <Tab active={tab === TAXONOMY_TABS.COURSE_TYPES} label="Courses">
-        <TaxonomyList type={TAXONOMY_TABS.COURSE_TYPES} title="Course Types" />
+      <Tab active={tab === TAXONOMY_TABS.COURSE} label="Courses">
+        <TaxonomyList type={TAXONOMY_TABS.COURSE} title="Course Types" />
+      </Tab>
+      <Tab active={tab === TAXONOMY_TABS.LOCATION} label="Locations">
+        <TaxonomyList type={TAXONOMY_TABS.LOCATION} title="Location Types" />
       </Tab>
     </Tabs>
   )

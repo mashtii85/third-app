@@ -4,40 +4,37 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { INSERT_ADDRESS_ONE, GET_ADDRESSES } from '../../queries/queries'
+import { CREATE_ADDRESS, GET_ADDRESSES } from '../../queries/queries'
 
 // Types
 import { AddressCreateData, AddressCreateVariables, UseCreateAddressOutput } from './types.d'
 import { UseAddressProps } from '../types'
 import { UseHookProps } from '../../../../types/hook.d'
 import { Address } from '../../../../types/address.d'
-import { LooseObject } from '../../../../types/object.d'
+
+// Helpers
+import { prepareArguments } from '../helpers'
 
 export const useCreateAddress = (
-  addressProps: UseAddressProps,
+  filters: UseAddressProps,
   props: UseHookProps<AddressCreateData>
 ): UseCreateAddressOutput => {
   const [createAddress, { error, loading }] = useMutation<
     AddressCreateData,
     AddressCreateVariables
-  >(INSERT_ADDRESS_ONE, {
+  >(CREATE_ADDRESS, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
-      const variables: LooseObject = {
-        where: { entity: { _eq: addressProps.entity }, entity_id: { _eq: addressProps.entityId } }
-      }
-      if (addressProps.type) {
-        variables.where.meta = { _contains: { type: addressProps.type } }
-      }
+      const where = prepareArguments({ filters })
       const { address } = cache.readQuery<{ address: Address[] }>({
         query: GET_ADDRESSES,
-        variables
+        variables: { where }
       }) || { address: [] }
       cache.writeQuery({
         query: GET_ADDRESSES,
-        variables,
-        data: { address: [...address, data?.insert_address_one] }
+        variables: { where },
+        data: { address: [...address, data?.addresses] }
       })
     }
   })

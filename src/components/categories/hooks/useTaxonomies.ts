@@ -5,8 +5,11 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_TAXONOMIES } from '../queries'
+// Helpers
 import { prepareTaxonomyArguments } from './helper'
+// Types
 import { TaxonomiesData, UseTaxonomiesVariable, UseTaxonomiesOutput } from './types'
+
 export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutput => {
   const variables = prepareTaxonomyArguments(filter)
   const { data, error, loading } = useQuery<TaxonomiesData, UseTaxonomiesVariable>(GET_TAXONOMIES, {
@@ -14,7 +17,7 @@ export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutpu
   })
 
   if (error) {
-    return { loading: false, error, taxonomies: data?.taxonomies || [] }
+    return { loading: false, error, taxonomies: [] }
   }
 
   return { loading, taxonomies: data?.taxonomies || [] }
