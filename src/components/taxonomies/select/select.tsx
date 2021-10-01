@@ -35,15 +35,15 @@ export const TaxonomySelect = ({
 
   const GetOptions = () => {
     const { taxonomies } = useTaxonomies({ category: type })
-
     return taxonomies.map((taxonomy) => {
       return { label: taxonomy.name, value: taxonomy.id }
     })
   }
 
   const options = GetOptions()
-
-  return (
+  return options.length === 0 ? (
+    <></>
+  ) : (
     <FormLabel id={name} label={label}>
       <ReactSelectField
         {...defaultOptions}

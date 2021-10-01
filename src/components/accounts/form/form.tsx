@@ -19,7 +19,7 @@ import { useTaxonomies } from '../../taxonomies/hooks'
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
 import { ACCOUNT_TYPE } from '../../../types/account.d'
-import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy'
+import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'

@@ -52,6 +52,11 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
 
   const handleEdit = (e: MouseEvent<HTMLElement>, row: LocationTableRowsType) => {
     console.log(e, row)
+    const taxonomy = row.taxonomy && {
+      value: row?.taxonomy?.id,
+      label: row?.taxonomy?.name
+    }
+
     offCanvas.show({
       content: (
         <UpsertLocation
@@ -61,7 +66,7 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
             id: row.id,
             name: row.name,
             status: row.status,
-            taxonomy: { value: row?.taxonomy?.id, label: row?.taxonomy?.name },
+            taxonomy,
             custom_fields: row.custom_fields
           }}
         />
