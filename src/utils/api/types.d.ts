@@ -5,6 +5,12 @@
 // Next
 import type { NextApiRequest } from 'next'
 
-interface ApiUploadRequest extends NextApiRequest {
+export interface ApiUploadRequest extends NextApiRequest {
   file: any
+}
+
+export enum LOG_LEVEL {
+  Error = 'error',
+  Warn = 'warn',
+  Info = 'info'
 }
