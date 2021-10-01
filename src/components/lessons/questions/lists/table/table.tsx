@@ -15,11 +15,11 @@ import { LessonQuestionForm } from '../../form/create/form'
 import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 
 // Types
-import { offCanvasType } from '../../../../../types/offCanvas'
+import { offCanvasType } from '../../../../../types/offCanvas.d'
 import { LessonQuestionTableProps } from './type.d'
 import { Taxonomy } from '../../../../../types/taxonomy.d'
-import { UseTaxonomiesVariable } from '../../../../taxonomies/hooks/useTaxonomies/types'
-import { STATUS_ACTIVE } from '../../../../../types/select'
+import { UseTaxonomiesVariable } from '../../../../taxonomies/hooks/useTaxonomies/types.d'
+import { STATUS_ACTIVE } from '../../../../../types/select.d'
 
 export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

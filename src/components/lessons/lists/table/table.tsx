@@ -27,9 +27,10 @@ import { LessonFormType } from '../../form/create/types'
 import { MediaTableProps } from '../../../media/lists/table/types.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { offCanvasType } from '../../../../types/offCanvas'
 
 export const LessonTable = (filters: UseLessonsProps) => {
-  const offCanvas = useContext<any>(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { lessonList, loading } = useLessons(filters)
 
   const handleDelete = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {

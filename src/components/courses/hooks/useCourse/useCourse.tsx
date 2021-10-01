@@ -9,7 +9,7 @@ import { CourseData } from '../types'
 import { CourseVariables } from './types'
 
 export const useCourse = (courseId: number) => {
-  const { data, error, loading } = useQuery<CourseData, CourseVariables>(GET_COURSE, {
+  const { data, error, loading, refetch } = useQuery<CourseData, CourseVariables>(GET_COURSE, {
     variables: {
       courseId
     }
@@ -19,5 +19,5 @@ export const useCourse = (courseId: number) => {
     return { loading: false, error }
   }
 
-  return { loading, course: data?.course }
+  return { loading, course: data?.course, refetch }
 }
