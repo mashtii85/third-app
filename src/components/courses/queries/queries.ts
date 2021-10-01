@@ -54,6 +54,7 @@ export const GET_COURSE = gql`
             id
             status
             updated_at
+            meta
             lesson {
               id
               module {
