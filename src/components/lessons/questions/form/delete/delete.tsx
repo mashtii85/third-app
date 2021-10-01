@@ -3,7 +3,7 @@
  */
 
 // hooks
-import { useDeleteTaxonomy } from '../../../../categories/hooks/useDelete'
+import { useDeleteTaxonomy } from '../../../../taxonomies/hooks'
 // UI
 import { Text } from '@drykiss/industry-ui'
 import { AddButton } from '../../../../common/buttons/addButton'

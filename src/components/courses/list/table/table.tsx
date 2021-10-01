@@ -18,8 +18,7 @@ import { useCourses } from '../../hooks'
 import { CourseFilter } from '../../hooks/types'
 import { CourseTableProps, CourseTableRowsType } from './types'
 
-import { DeleteCourse } from '../../form'
-import { CourseForm } from '../../form/add/form'
+import { DeleteCourse, CourseForm } from '../../forms'
 
 const initialSort = {}
 

@@ -12,7 +12,7 @@ import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/indu
 import type { Course } from '../../../../types/course.d'
 import { CourseTableRowsType } from './types.d'
 
-import { CourseForm } from '../../form'
+import { CourseForm } from '../../forms'
 
 import pages from '../../../../config/pages'
 

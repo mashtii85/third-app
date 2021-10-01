@@ -11,5 +11,6 @@ export const LOCATION_FIELDS = gql`
     name
     status
     created_at
+    custom_fields
   }
 `

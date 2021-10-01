@@ -2,7 +2,6 @@
  * Components - Lessons - Questions - Form - Create - Types
  */
 
-import { Control } from 'react-hook-form'
 import { Taxonomy } from '../../../types/taxonomy'
 
 export interface TaxonomyFormProps {
@@ -10,8 +9,4 @@ export interface TaxonomyFormProps {
   isShowQuestionForm?: boolean
   defaultValues: Taxonomy | any
   onSuccess: () => void
-}
-
-interface CustomFieldFormProps {
-  defaultOptions: { control: Control }
 }

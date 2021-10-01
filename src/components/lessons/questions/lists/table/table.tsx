@@ -6,7 +6,7 @@
 import { useContext, MouseEvent } from 'react'
 
 // Apollo
-import { useTaxonomies } from '../../../../categories/hooks/useTaxonomies'
+import { useTaxonomies } from '../../../../taxonomies/hooks'
 
 // UI
 import { capitalize, OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
@@ -17,8 +17,9 @@ import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 // Types
 import { offCanvasType } from '../../../../../types/offCanvas'
 import { LessonQuestionTableProps } from './type.d'
-import { Taxonomy, TAXONOMY_STATUS } from '../../../../../types/taxonomy.d'
-import { UseTaxonomiesVariable } from '../../../../categories/hooks/types.d'
+import { Taxonomy } from '../../../../../types/taxonomy.d'
+import { UseTaxonomiesVariable } from '../../../../taxonomies/hooks/useTaxonomies/types'
+import { STATUS_ACTIVE } from '../../../../../types/select'
 
 export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -44,7 +45,7 @@ export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
             entity: tableProps.entity,
             entity_id: tableProps.entityId,
             type: tableProps.type,
-            status: TAXONOMY_STATUS.Active
+            status: STATUS_ACTIVE.Active
           }}
           isShowQuestionForm
           onSuccess={handleSuccess}

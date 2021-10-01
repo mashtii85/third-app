@@ -6,18 +6,10 @@
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import {
-  Button,
-  formatDateStandard,
-  OffCanvasContext,
-  TableActions,
-  TableLink
-} from '@drykiss/industry-ui'
+import { Button, formatDateStandard, OffCanvasContext, TableActions } from '@drykiss/industry-ui'
 
 // Types
 import { LocationTableRowsType } from './types'
-
-import pages from '../../../../config/pages'
 
 // Types
 import { Location, LocationFilter } from '../../types'
@@ -45,11 +37,19 @@ export const columns = ({
       hidden: true
     },
     {
-      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'name'),
+      // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'name'),
       text: 'Name'
     },
     {
       text: 'Status'
+    },
+    {
+      text: 'Custom Fields',
+      hidden: true
+    },
+    {
+      text: 'Taxonomy id',
+      hidden: true
     },
     {
       text: 'Date',
@@ -82,6 +82,8 @@ export const rows = (locations: Location[]): LocationTableRowsType[] => {
       id: item.id,
       name: item.name,
       status: item.status,
+      taxonomy: item.taxonomy,
+      custom_fields: item.custom_fields,
       created_at: item.created_at,
       actions: ''
     }

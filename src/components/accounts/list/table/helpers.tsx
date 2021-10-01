@@ -14,7 +14,7 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 
-import { Account } from '../../../../types/account'
+import { Account, ACCOUNT_TYPE } from '../../../../types/account'
 import { Column } from '../../../../types/column'
 
 import { AccountForm } from '../../form/form'
@@ -134,7 +134,7 @@ export const UserAccountToolbar = ({
 }: {
   filters?: AccountFilters
   clientId: number
-  type: string
+  type: ACCOUNT_TYPE
 }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {

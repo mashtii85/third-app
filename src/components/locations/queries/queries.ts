@@ -4,6 +4,7 @@
 
 // Apollo
 import { gql } from '@apollo/client'
+import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 import { LOCATION_FIELDS } from './fragments'
 
 export const GET_LOCATIONS = gql`
@@ -15,9 +16,13 @@ export const GET_LOCATIONS = gql`
   ) {
     locations: location(where: $where, limit: $limit, offset: $offset, order_by: $order_by) {
       ...LocationFields
+      taxonomy {
+        ...TaxonomyFields
+      }
     }
   }
   ${LOCATION_FIELDS}
+  ${TAXONOMY_FIELDS}
 `
 
 export const CREATE_LOCATION = gql`
