@@ -25,6 +25,7 @@ const initialSort = {}
 
 export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
   const { initialData, ref } = useTable<LocationFilter>({ filters, initialSort })
+
   const { locationList, loading } = useLocations({
     accountId,
     filters: initialData
@@ -51,6 +52,10 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
 
   const handleEdit = (e: MouseEvent<HTMLElement>, row: LocationTableRowsType) => {
     console.log(e, row)
+    const taxonomy = row.taxonomy && {
+      value: row?.taxonomy?.id,
+      label: row?.taxonomy?.name
+    }
 
     offCanvas.show({
       content: (
@@ -60,7 +65,9 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
           defaultValues={{
             id: row.id,
             name: row.name,
-            status: row.status
+            status: row.status,
+            taxonomy,
+            custom_fields: row.custom_fields
           }}
         />
       ),

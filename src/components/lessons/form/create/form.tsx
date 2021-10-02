@@ -57,7 +57,6 @@ export const LessonForm = ({
     if (defaultValues?.id) {
       updateLesson({ variables: { id: defaultValues.id, changes: form } })
     } else {
-      // const { title, description, type, content, status } = form
       await createLesson({
         variables: {
           courseId: filters.courseId,

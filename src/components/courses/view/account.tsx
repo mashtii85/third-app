@@ -20,7 +20,11 @@ import {
   formatDateStandard,
   formatTime
 } from '@drykiss/industry-ui'
-import { LESSON_PROGRESS_STATUS, LessonProgress } from '../../../types/lessonProgress.d'
+import {
+  LESSON_PROGRESS_STATUS,
+  LessonProgress,
+  LessonProgressUpdateModel
+} from '../../../types/lessonProgress.d'
 import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../types/lesson.d'
 import { StepperActionModel, StepperModel } from '../../../types/stepper'
 // Helper
@@ -57,7 +61,7 @@ export const AccountCourseView = () => {
   const { query } = useRouter()
 
   const [lesson, setLesson] = useState<Lesson | null>(null)
-  const initialPageState = useRef({
+  const pageState = {
     pageMode: COURSE_PAGE_MODE.Progress,
     actionButtonCaption: 'Complete and continue',
     canCompleteLesson: false,
@@ -71,8 +75,8 @@ export const AccountCourseView = () => {
       dateCompleted: '',
       certificateId: ''
     }
-  })
-  const [stateHolder, setStateHolder] = useState(initialPageState.current)
+  }
+  const [stateHolder, setStateHolder] = useState(pageState)
 
   const completedQuizData = useRef<QuizCompletedData>({
     passed: false,
@@ -180,6 +184,7 @@ export const AccountCourseView = () => {
         } else isActive = false
 
         actionId++
+
         const actionModel: StepperActionModel = {
           id: actionId,
           active:
@@ -307,10 +312,18 @@ export const AccountCourseView = () => {
           )}`
         )
       } else {
-        let lessonProgressModel = { points: 100, status: LESSON_PROGRESS_STATUS.Completed }
+        let lessonProgressModel: LessonProgressUpdateModel = {
+          points: 1,
+          status: LESSON_PROGRESS_STATUS.Completed
+        }
         if (lesson?.type === LESSON_TYPE.Quiz) {
           lessonProgressModel = {
-            points: completedQuizData.current.score,
+            ...lessonProgressModel,
+            meta: {
+              ...lessonProgress?.meta,
+              quizScore: completedQuizData.current.score,
+              quizPassed: completedQuizData.current.passed
+            },
             status: completedQuizData.current.passed
               ? LESSON_PROGRESS_STATUS.Completed
               : LESSON_PROGRESS_STATUS.Started
@@ -337,12 +350,20 @@ export const AccountCourseView = () => {
         }
       }
     }
+    if (nextLesson) {
+      const tmp = getCurrentLesson(course, nextLesson.selectedModuleId, nextLesson.selectedLessonId)
+      tmp && startLesson(tmp)
+    }
+  }
+
+  const onQuizComplete = (data: QuizCompletedData) => {
+    completedQuizData.current = data
+    completeLesson()
   }
 
   const fillCertificateModel = (completedAt: string) => {
     if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished) return
     loadPageState()
-    const pageState = { ...initialPageState.current }
     pageState.certificateModel = {
       username: `${user.name_first} ${user.name_last}`,
       course: (course as Course).title,
@@ -353,7 +374,6 @@ export const AccountCourseView = () => {
   }
 
   const loadPageState = () => {
-    const pageState = { ...initialPageState.current }
     pageState.actionButtonCaption = stateHolder.actionButtonCaption
     pageState.canCompleteLesson = stateHolder.canCompleteLesson
     pageState.certificateModel = stateHolder.certificateModel
@@ -362,18 +382,6 @@ export const AccountCourseView = () => {
     pageState.selectedLessonId = stateHolder.selectedLessonId
     pageState.selectedModuleId = stateHolder.selectedModuleId
     pageState.showNextLesson = stateHolder.showNextLesson
-    initialPageState.current = pageState
-  }
-
-  const onQuizComplete = (data: QuizCompletedData) => {
-    completedQuizData.current = data
-
-    setStateHolder((prevState) => ({
-      ...prevState,
-      actionButtonCaption: 'Complete and continue',
-      canCompleteLesson: true,
-      showNextLesson: false
-    }))
   }
 
   const prepareLessonQuestions = (questions: any): QuizQuestion[] => {

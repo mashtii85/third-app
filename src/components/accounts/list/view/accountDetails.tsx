@@ -5,7 +5,7 @@
 // Hooks
 import { useAccount } from '../../hooks'
 
-import { useTaxonomies } from '../../../categories/hooks/useTaxonomies'
+import { useTaxonomies } from '../../../taxonomies/hooks'
 // UI
 import { Details2, DetailsText, formatDateStandard } from '@drykiss/industry-ui'
 

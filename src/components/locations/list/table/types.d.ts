@@ -2,14 +2,10 @@
  * Components - Locations - List - Table - Types
  */
 
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { LocationFilter } from '../../types.d'
+import { Location, LocationFilter } from '../../types.d'
 
-export interface LocationTableRowsType {
+export interface LocationTableRowsType extends Location {
   id: number | undefined
-  name: string
-  status: STATUS_ACTIVE
-  created_at: string
   actions: string
 }
 

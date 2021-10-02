@@ -10,6 +10,7 @@ import {
   formatTime,
   formatDateStandard,
   Button,
+  ButtonToolbar,
   OffCanvasContext,
   TableLink,
   TableActions
@@ -17,19 +18,18 @@ import {
 
 // Types
 import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../../../types/lesson.d'
-import { LessonTableRowsType } from './types.d'
+import { LessonTableRowsType, LessonToolbarType } from './types.d'
 import { Column } from '../../../../types/column.d'
+import { ModuleFormType } from '../../../module/forms/create/types.d'
 
 // Pages
 import pages from '../../../../config/pages'
 
 // Forms
 import { LessonForm } from '../../form/create/form'
-
-interface ToolbarModel {
-  courseId?: number
-  moduleId?: number
-}
+import { ModuleForm } from '../../../module/forms/create/form'
+import { ModuleDeleteForm } from '../../../module/forms/delete/delete'
+import { offCanvasType } from '../../../../types/offCanvas'
 
 export const columns = ({
   handleDelete,
@@ -103,9 +103,42 @@ export const rows = (lessons: Lesson[]) => {
   return list
 }
 
-export const Toolbar = ({ courseId, moduleId }: ToolbarModel) => {
-  const offCanvas = useContext<any>(OffCanvasContext)
-  const filters = { courseId, moduleId }
+export const Toolbar = (moduleToolbarProps: LessonToolbarType) => {
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+  const filters = { courseId: moduleToolbarProps.courseId, moduleId: moduleToolbarProps.id }
+
+  const handleEdit = (e: MouseEvent<HTMLElement>): void => {
+    e.stopPropagation()
+    const defaultValues: ModuleFormType = {
+      id: moduleToolbarProps.id,
+      courseId: moduleToolbarProps.courseId,
+      title: moduleToolbarProps.title,
+      description: moduleToolbarProps.description ?? '',
+      ordering: moduleToolbarProps.ordering ?? 0,
+      status: moduleToolbarProps.status
+    }
+    offCanvas.show({
+      content: <ModuleForm onSuccess={offCanvas.close} defaultValues={defaultValues} />,
+      submit: true,
+      title: 'Add a module'
+    })
+  }
+
+  const handleDelete = (e: MouseEvent<HTMLElement>): void => {
+    e.stopPropagation()
+    offCanvas.show({
+      content: (
+        <ModuleDeleteForm
+          id={moduleToolbarProps.id!}
+          courseId={moduleToolbarProps.courseId}
+          title={moduleToolbarProps.title}
+          onSuccess={offCanvas.close}
+        />
+      ),
+      title: 'Delete module',
+      submit: false
+    })
+  }
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
@@ -125,5 +158,11 @@ export const Toolbar = ({ courseId, moduleId }: ToolbarModel) => {
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create a lesson" />
+  return (
+    <ButtonToolbar>
+      <Button context="secondary" onClick={handleEdit} size="sm" startIcon="edit" />
+      <Button context="danger" onClick={handleDelete} size="sm" startIcon="trash" />
+      <Button context="white" onClick={handleClick} size="sm" content="Create a lesson" />
+    </ButtonToolbar>
+  )
 }

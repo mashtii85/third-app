@@ -4,11 +4,11 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_TAXONOMY } from '../../../../categories/queries'
+import { UPDATE_TAXONOMY } from '../../../../taxonomies/queries'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useCreateTaxonomy } from '../../../../categories/hooks/useCreate'
+import { useCreateTaxonomy } from '../../../../taxonomies/hooks'
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../../../constants/status'
@@ -17,7 +17,7 @@ import { TaxonomySchema as schema } from './schema'
 // Types
 import { TaxonomyFormProps } from './type.d'
 import { Taxonomy } from '../../../../../types/taxonomy.d'
-import { UseCreateTaxonomyProps } from '../../../../categories/hooks/types.d'
+import { UseCreateTaxonomyProps } from '../../../../taxonomies/hooks/useCreate/types'
 
 export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) => {
   const { control, errors, handleSubmit, register } = useForm({

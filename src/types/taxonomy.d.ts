@@ -1,11 +1,14 @@
-export enum TAXONOMY_STATUS {
-  Active = 'active',
-  Inactive = 'inactive'
-}
 export interface Options {
   label: string
   value: string
 }
+
+export enum TAXONOMY_TYPE {
+  COURSE = 'courses',
+  MEMBER = 'members',
+  LOCATION = 'locations'
+}
+
 export interface CustomFields {
   input: string
   label: string

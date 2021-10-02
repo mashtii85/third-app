@@ -10,24 +10,28 @@ import { AccountSchema as schema } from './schema'
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
-import { TaxonomySelect } from './select'
-import { CustomFieldElement } from '../../courses/form/add/customFieldElement'
+import { TaxonomySelect } from '../../taxonomies/select/select'
+
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../hooks'
-import { useTaxonomies } from '../../categories/hooks/useTaxonomies'
+import { useTaxonomies } from '../../taxonomies/hooks'
+
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
+import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
-import { Options } from '../../../types/taxonomy'
+
+import { CustomFieldElement } from '../../taxonomies/customField/customFieldElement'
 
 export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
+
   const { taxonomies } = useTaxonomies({
     category: defaultValues?.type + 's'
   })
@@ -104,12 +108,17 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
       {isClientMember && isClientCreateMember && (
         <>
           <div>Member</div>
-          <TaxonomySelect {...defaultOptions} label="Member Type" name="taxonomy" type="members" />
+          <TaxonomySelect
+            {...defaultOptions}
+            label="Member Type"
+            name="taxonomy"
+            type={TAXONOMY_TYPE.MEMBER}
+          />
           {taxonomyWatch?.value && (
             <CustomFieldElement
               {...defaultValues}
               {...defaultOptions}
-              taxonomyType={'members'}
+              type={TAXONOMY_TYPE.MEMBER}
               taxonomyWatch={taxonomyWatch}
             />
           )}

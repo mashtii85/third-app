@@ -4,11 +4,16 @@
 
 import { LooseObject } from '../../../../types/object'
 import { STATUS_ACTIVE } from '../../../../types/select'
+import { Options } from '../../../../types/taxonomy'
 import { Location, LocationFilter } from '../../types'
 
 export interface LocationFormType {
   name: string
   status: STATUS_ACTIVE
+}
+
+export interface LocationFormSubmission extends LocationFormType {
+  taxonomy?: Options
 }
 
 export interface LocationFormProps {

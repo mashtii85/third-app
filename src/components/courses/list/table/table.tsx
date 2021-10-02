@@ -18,8 +18,8 @@ import { useCourses } from '../../hooks'
 import { CourseFilter } from '../../hooks/types'
 import { CourseTableProps, CourseTableRowsType } from './types'
 
-import { DeleteCourse } from '../../form'
-import { CourseForm } from '../../form/add/form'
+import { DeleteCourse, CourseForm } from '../../forms'
+import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 
@@ -31,7 +31,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     filters: initialData
   })
 
-  const offCanvas = useContext<any>(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (

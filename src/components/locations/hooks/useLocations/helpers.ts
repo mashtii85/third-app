@@ -15,7 +15,6 @@ export const prepareLocationsArguments = ({
   nullFreeObject(filters)
   const whereClause: LooseObject = {}
   whereClause.account_id = { _eq: accountId }
-
   if (filters?.q) {
     whereClause.name = { _ilike: filters.q }
   }

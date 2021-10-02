@@ -9,7 +9,7 @@ import {
   COURSE_ENROLLMENT_AGGREGATE_FIELDS,
   ENROLLMENTS_FIELDS
 } from '../../enrollments/queries/fragments'
-import { TAXONOMY_FIELDS } from '../../categories/queries/fragments'
+import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
 import { LESSON_FIELDS } from '../../lessons/queries/fragments'
 
@@ -54,6 +54,7 @@ export const GET_COURSE = gql`
             id
             status
             updated_at
+            meta
             lesson {
               id
               module {
