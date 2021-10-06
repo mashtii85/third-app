@@ -191,6 +191,7 @@ export const AccountCourseView = () => {
             (isActive && !stateHolder.canCompleteLesson) ||
             progress?.status === LESSON_PROGRESS_STATUS.Completed,
           context: 'secondary',
+
           type: 'button',
           content:
             progress?.status === undefined || progress?.status === LESSON_PROGRESS_STATUS.Pending
@@ -204,9 +205,11 @@ export const AccountCourseView = () => {
           actionModel.content = 'View lesson'
         }
 
+
         data.push({
           id: lesson.id,
           label: lesson.title,
+					labelIcon:(lesson.type===LESSON_TYPE.Quiz || lesson.type===LESSON_TYPE.Video)?lesson.type:undefined,
           date:
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`

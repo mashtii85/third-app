@@ -37,13 +37,13 @@ export interface EnrollmentVariables {
 }
 
 export interface EnrollmentFilters {
-  q?: string
-  limit?: number
-  offset?: number
-  orderBy?: OrderBy
-  status?: STATUS_ACTIVE
-  userStatus?: STATUS_ACTIVE
-  clientId?: number
-  courseId?: number
-  accountId?: number
+  q: string
+  limit: number
+  offset: number
+  orderBy: OrderBy
+  status: STATUS_ACTIVE
+  userStatus: STATUS_ACTIVE
+  clientId: number
+  courseId: number
+  accountId: number
 }

@@ -7,7 +7,7 @@ import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { AccountFilters } from '../../types'
 
 export interface AccountTableProps {
-  filters?: AccountFilters
+  filters?: Partial<AccountFilters>
   title: string
   type?: ACCOUNT_TYPE
   accountId?: number

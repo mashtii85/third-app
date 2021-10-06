@@ -15,7 +15,7 @@ import { useCurrentUser } from '../../utils/useCurrentUser'
 export const DashboardView = () => {
   const { user } = useCurrentUser()
 
-  const renderSwitch = (type: ACCOUNT_TYPE) => {
+  const renderSwitch = (type: ACCOUNT_TYPE): JSX.Element => {
     switch (type) {
       case ACCOUNT_TYPE.Client:
         return <ClientDashboardOverview clientId={user.client_id} />
@@ -30,7 +30,7 @@ export const DashboardView = () => {
       case ACCOUNT_TYPE.Admin:
         return <AdminDashboardOverview />
       default:
-        break
+        return <></>
     }
   }
   return <>{renderSwitch(user.account_type)}</>

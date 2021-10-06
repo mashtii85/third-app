@@ -133,7 +133,7 @@ export const UserAccountToolbar = ({
   clientId,
   isAdminUser
 }: {
-  filters?: AccountFilters
+  filters?: Partial<AccountFilters>
   clientId: number
   isAdminUser: boolean
   type: ACCOUNT_TYPE

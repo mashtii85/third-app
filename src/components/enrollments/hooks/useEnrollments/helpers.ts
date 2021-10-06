@@ -9,7 +9,7 @@ import { EnrollmentFilters } from './types'
 export const prepareVariables = ({
   filters
 }: {
-  filters?: EnrollmentFilters
+  filters?: Partial<EnrollmentFilters>
 }): LooseObject | null => {
   if (!filters) {
     return null

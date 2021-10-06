@@ -6,7 +6,7 @@
 import { LooseObject } from '../../../../types/object.d'
 import { AccountFilters } from '../../types.d'
 
-export const prepareUseAccounts = (filters?: AccountFilters): LooseObject => {
+export const prepareUseAccounts = (filters?: Partial<AccountFilters>): LooseObject => {
   if (!filters) {
     return {}
   }

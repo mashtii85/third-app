@@ -4,8 +4,7 @@ import { AccountsRow } from '../list/table/types.d'
 import { AccountFilters } from '../types.d'
 
 export interface AccountFormProps {
-  filters?: AccountFilters
-  isAdminUser: boolean
+  filters?: Partial<AccountFilters> | undefined
   defaultValues?: AccountsRow | any
   onSuccess: (data: any) => void
 }

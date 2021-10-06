@@ -8,7 +8,7 @@ import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
 import { Filter } from '../../../types/filter.d'
 
-export interface CourseFilter extends Filter {
+export interface CourseFilter extends Partial<Filter> {
   status: STATUS_ACTIVE
   description: string
 }

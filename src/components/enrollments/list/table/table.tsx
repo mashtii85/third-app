@@ -18,7 +18,7 @@ import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 interface EnrollmentsTableProps {
   courseId: number
-  filters: EnrollmentFilters
+  filters: Partial<EnrollmentFilters>
 }
 
 const initialSort = {}
