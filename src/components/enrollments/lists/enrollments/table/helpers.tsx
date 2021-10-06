@@ -10,36 +10,38 @@ import { Button, formatDateStandard, OffCanvasContext, TableLink } from '@drykis
 
 // Types
 import { CourseTableRowsType } from './types'
-
 import { CourseForm } from '../../../form'
-
 import pages from '../../../../../config/pages'
+import { Column } from '../../../../../types/column'
 
 // Types
 import { LooseObject } from '../../../../../types/object'
 import { Enrollment } from '../../../hooks/useEnrollments/types'
 import { offCanvasType } from '../../../../../types/offCanvas'
 
-export const columns = () => [
-  {
-    text: 'id',
-    hidden: true
-  },
-  {
-    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
-    text: 'Title'
-  },
-  {
-    text: 'Status'
-  },
-  {
-    text: 'Author'
-  },
-  {
-    text: 'Date',
-    formatter: ({ row }: { row: CourseTableRowsType }) => formatDateStandard(row.date)
-  }
-]
+export const columns = () => {
+  const columnsSchema: Column<CourseTableRowsType>[] = [
+    {
+      text: 'id',
+      hidden: true
+    },
+    {
+      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
+      text: 'Title'
+    },
+    {
+      text: 'Status'
+    },
+    {
+      text: 'Author'
+    },
+    {
+      text: 'Date',
+      formatter: ({ row }: { row: CourseTableRowsType }) => formatDateStandard(row.date)
+    }
+  ]
+  return columnsSchema
+}
 
 export const rows = (enrollments: Enrollment[]): CourseTableRowsType[] => {
   const list: CourseTableRowsType[] = enrollments.map((item) => {

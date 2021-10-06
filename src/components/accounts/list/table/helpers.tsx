@@ -14,6 +14,7 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 
+// Forms
 import { Account, ACCOUNT_TYPE } from '../../../../types/account'
 import { Column } from '../../../../types/column'
 
@@ -26,10 +27,13 @@ import { AccountFilters } from '../../types.d'
 import { AccountsRow } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 const actionsData = (handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void) => {
   return [
     {
-      context: 'secondary',
+      context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: handleEdit,
       tooltip: 'Edit'

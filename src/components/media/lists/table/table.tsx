@@ -22,6 +22,9 @@ import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { UseMediaProps } from '../../hooks/get/types.d'
 import { MediaFormType } from '../../forms/create/types.d'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTableProps }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
@@ -80,7 +83,7 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
   const actionsData = () => {
     const buttons = [
       {
-        context: 'danger',
+        context: THEME_CONTEXT.danger,
         icon: ['fas', 'trash'],
         onClick: (_: MouseEvent, row: Medium) => handleDelete(_, row),
         tooltip: 'Delete'

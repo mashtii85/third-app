@@ -22,6 +22,9 @@ import { LessonTableRowsType, LessonToolbarType } from './types.d'
 import { Column } from '../../../../types/column.d'
 import { ModuleFormType } from '../../../module/forms/create/types.d'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 // Pages
 import pages from '../../../../config/pages'
 
@@ -58,25 +61,25 @@ export const columns = ({
       formatter: TableActions,
       formatterData: [
         {
-          context: 'secondary',
+          context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
           onClick: handleEdit,
           tooltip: 'Edit'
         },
         {
-          context: 'danger',
+          context: THEME_CONTEXT.danger,
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'
         },
         {
-          context: 'info',
+          context: THEME_CONTEXT.info,
           icon: ['fas', 'question'],
           onClick: handleQuestions,
-          tooltip: 'Questions'
+          tooltip: 'Quiz'
         },
         {
-          context: 'dark',
+          context: THEME_CONTEXT.dark,
           icon: ['fas', 'file-upload'],
           onClick: handleFileUpload,
           tooltip: 'Upload'

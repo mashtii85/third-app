@@ -1,5 +1,5 @@
 /**
- * Components - Lessons - Questions - Form - Create - Types
+ * Components - Lessons - Questions - Form - Upsert - Types
  */
 
 import { Taxonomy } from '../../../types/taxonomy'
@@ -7,6 +7,6 @@ import { Taxonomy } from '../../../types/taxonomy'
 export interface TaxonomyFormProps {
   type?: string
   isShowQuestionForm?: boolean
-  defaultValues: Taxonomy | any
+  defaultValues: Taxonomy
   onSuccess: () => void
 }

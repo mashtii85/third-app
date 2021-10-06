@@ -1,7 +1,8 @@
 import { ReactNode, MouseEvent } from 'react'
+import { ThemeContext } from '../config/types.d'
 
 type FormatterData<T> = {
-  context: string
+  context: ThemeContext
   icon: string[]
   numberOverlay?: string
   onClick?: (e: MouseEvent<HTMLElement>, data: T) => void

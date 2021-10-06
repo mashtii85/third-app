@@ -40,6 +40,9 @@ import { Course } from '../../../types/course'
 import { CourseData } from '../hooks/types'
 import { CourseProgressBar } from '../progressBar'
 
+// Constants
+import { THEME_CONTEXT } from '../../../constants/themeContext'
+
 // Types
 import {
   LESSON_PROGRESS_STATUS,
@@ -195,8 +198,7 @@ export const AccountCourseView = () => {
           active:
             (isActive && !stateHolder.canCompleteLesson) ||
             progress?.status === LESSON_PROGRESS_STATUS.Completed,
-          context: 'secondary',
-
+          context: THEME_CONTEXT.secondary,
           type: 'button',
           content:
             progress?.status === undefined || progress?.status === LESSON_PROGRESS_STATUS.Pending

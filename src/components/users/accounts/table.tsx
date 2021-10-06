@@ -18,6 +18,9 @@ import {
 // Types
 import type { AccountUsers, User } from '../../../types/user'
 
+// Constants
+import { THEME_CONTEXT } from '../../../constants/themeContext'
+
 interface UserAccountTableProps {
   user: User
 }
@@ -51,7 +54,7 @@ export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
       formatter: TableActions,
       formatterData: [
         {
-          context: 'secondary',
+          context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
           tooltip: 'Edit'
         }

@@ -8,37 +8,41 @@ import { formatDateStandard, TableLink } from '@drykiss/industry-ui'
 // Types
 import { CourseTableRowsType } from './types'
 import { Enrollment } from '../../hooks/useEnrollments/types'
+import { Column } from '../../../../types/column'
 
 import pages from '../../../../config/pages'
 
-export const columns = () => [
-  {
-    text: 'id',
-    hidden: true
-  },
-  {
-    text: 'Course',
-    formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'course')
-  },
-  {
-    text: 'User'
-  },
-  {
-    text: 'Author'
-  },
-  {
-    text: 'Completed Lessons'
-  },
-  {
-    text: 'Status'
-  },
-  {
-    text: 'Date',
-    formatter: ({ row }: { row: CourseTableRowsType }) => {
-      return formatDateStandard(row.date)
+export const columns = () => {
+  const columnsSchema: Column<CourseTableRowsType>[] = [
+    {
+      text: 'id',
+      hidden: true
+    },
+    {
+      text: 'Course',
+      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'course')
+    },
+    {
+      text: 'User'
+    },
+    {
+      text: 'Author'
+    },
+    {
+      text: 'Completed Lessons'
+    },
+    {
+      text: 'Status'
+    },
+    {
+      text: 'Date',
+      formatter: ({ row }: { row: CourseTableRowsType }) => {
+        return formatDateStandard(row.date)
+      }
     }
-  }
-]
+  ]
+  return columnsSchema
+}
 
 export const rows = (courses: Enrollment[]): CourseTableRowsType[] => {
   const list: CourseTableRowsType[] = courses.map((item) => {

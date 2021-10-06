@@ -3,7 +3,7 @@
  */
 
 // React
-import { ChangeEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
@@ -33,7 +33,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   })
 
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+  const handleDelete = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteCourse
@@ -49,7 +49,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     })
   }
 
-  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+  const handleEdit = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <CourseForm

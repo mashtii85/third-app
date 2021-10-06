@@ -12,25 +12,28 @@ import { Button, ButtonToolbar, capitalize, TableActions } from '@drykiss/indust
 import { Column, FormatterData } from '../../../../types/column'
 import { Taxonomy } from '../../../../types/taxonomy'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 export const formatterData = (
   handleDelete: (row: Taxonomy) => void,
   handleQuestionsClick: (row: Taxonomy) => void,
   handleClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => void
 ): FormatterData<Taxonomy>[] => [
     {
-      context: 'secondary',
+      context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: handleClick,
       tooltip: 'Edit'
     },
     {
-      context: 'danger',
+      context: THEME_CONTEXT.danger,
       icon: ['fas', 'trash'],
       onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
       tooltip: 'Delete'
     },
     {
-      context: 'info',
+      context: THEME_CONTEXT.info,
       icon: ['fas', 'question'],
       onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
       tooltip: 'Custom Fields'
