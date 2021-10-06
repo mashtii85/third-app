@@ -22,17 +22,16 @@ export const TE = (message: string, status: number = 500): void => {
   throw new AppError(message, status)
 }
 
-export const LOG = (err: AppError, type: LOG_LEVEL): void => {
-  // Todo: Move logging to Sentry
+export const LOG = (message: string, type: LOG_LEVEL): void => {
   switch (type) {
     case 'error':
-      console.error('API Error: ' + err.message)
+      console.error('API Error: ' + message)
       break
     case 'warn':
-      console.warn('API Warning: ' + err.message)
+      console.warn('API Warning: ' + message)
       break
     default:
-      console.info('API Info: ' + err.message)
+      console.info('API Info: ' + message)
   }
 }
 
@@ -41,7 +40,7 @@ export const handleNoMatch = (req: NextApiRequest, res: NextApiResponse): void =
 }
 
 export const handleErrors = (err: AppError, _req: NextApiRequest, res: NextApiResponse): void => {
-  LOG(err, LOG_LEVEL.Error)
+  LOG(err.message, LOG_LEVEL.Error)
 
   return res.status(err.status || 500).json({ error: err.message })
 }
