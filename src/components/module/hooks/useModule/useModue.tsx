@@ -7,10 +7,11 @@ import { useQuery } from '@apollo/client'
 import { GET_MODULES } from '../../queries/queries'
 import { ModuleDataList, ModuleFilter } from './types'
 
+// Utils
+import { generateWhereClause } from '../../../../utils/whereClause'
+
 export const useModule = (filters: Partial<ModuleFilter>) => {
-  const where = {
-    course_id: { _eq: filters.courseId }
-  }
+  const where = generateWhereClause(filters)
   const { data, error, loading, refetch } = useQuery<ModuleDataList>(GET_MODULES, {
     variables: { where }
   })
