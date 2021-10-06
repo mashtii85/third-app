@@ -30,14 +30,7 @@ const PageDashboard: NextPage = () => {
       case ACCOUNT_TYPE.Client:
         return <Dashboard View={<ClientCourseView />} />
       case ACCOUNT_TYPE.Member:
-        return (
-          <Dashboard
-            View={<AccountCourseView />}
-            pageHeading={{
-              heading: 'Course Details'
-            }}
-          />
-        )
+        return <Dashboard View={<AccountCourseView />} />
 
       default:
         return <Dashboard View={<></>} />

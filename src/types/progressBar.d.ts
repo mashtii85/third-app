@@ -1,15 +1,15 @@
 /**
- * Types - PieChart
+ * Types - ProgressBar
  */
 
-export interface ProgressChartData {
+export interface ProgressBarData {
   id: number
   label: string
   value: number
 }
 
-export interface ProgressChartModel {
-  data: ProgressChartData[]
+export interface ProgressBarModel {
+  data: ProgressBarData[]
   status: {
     started?: number
     pending?: number

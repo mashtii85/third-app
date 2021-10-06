@@ -2,12 +2,26 @@
  * Components - Courses - View
  */
 
+// React
+import { useEffect, useRef, useState } from 'react'
+
+// Next
+import { useRouter } from 'next/router'
+
+// Apollo
+import { useMutation, useQuery } from '@apollo/client'
+
+// GQL
 import {
   ADD_LESSON_PROGRESS_ONE,
   UPDATE_LESSON_PROGRESS_BY_PK
 } from '../../lessons/queries/queries'
+import { GET_COURSE } from '../queries'
+import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../enrollments/queries/queries'
+
 // UI
 import {
+  Breadcrumb,
   Button,
   Column,
   Details2,
@@ -15,45 +29,36 @@ import {
   Heading,
   Image,
   Row,
-  Space,
   Stepper,
   formatDateStandard,
   formatTime
 } from '@drykiss/industry-ui'
+import { StepperActionModel, StepperModel } from '../../../types/stepper'
+import VideoPlayer from '../../common/videoPlayer/videoPlayer'
+import { CompletionCertificate } from './completionCertificate'
+import { Course } from '../../../types/course'
+import { CourseData } from '../hooks/types'
+import { CourseProgressBar } from '../progressBar'
+
+// Types
 import {
   LESSON_PROGRESS_STATUS,
   LessonProgress,
   LessonProgressUpdateModel
 } from '../../../types/lessonProgress.d'
-import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../types/lesson.d'
-import { StepperActionModel, StepperModel } from '../../../types/stepper'
-// Helper
-import { findNextLesson, getCurrentLesson, getCurrentLessonProgress } from '../../lessons/helpers'
-// React
-import { useEffect, useRef, useState } from 'react'
-// Apollo
-import { useMutation, useQuery } from '@apollo/client'
-
-import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
-import { COURSE_PAGE_MODE } from './types.d'
-// Styled components
-import { CompletionCertificate } from './completionCertificate'
-import { Course } from '../../../types/course'
-import { CourseData } from '../hooks/types'
-import { CourseProgressChart } from '../chart'
-import { GET_COURSE } from '../queries'
-// Types
 import { Module } from '../../../types/module'
 import { Quiz } from '../../common/quiz/quiz'
 import { QuizCompletedData } from '../../common/quiz/types'
-import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../enrollments/queries/queries'
-import VideoPlayer from '../../common/videoPlayer/videoPlayer'
+import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../types/lesson.d'
+
+// Helpers
 import { parseVideos } from '../helpers'
-import { scrollTo } from '../../../utils/scrollTo'
-// User
 import { useCurrentUser } from '../../../utils/useCurrentUser'
-// Next
-import { useRouter } from 'next/router'
+import { findNextLesson, getCurrentLesson, getCurrentLessonProgress } from '../../lessons/helpers'
+import { scrollTo } from '../../../utils/scrollTo'
+
+import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
+import { COURSE_PAGE_MODE } from './types.d'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -205,11 +210,13 @@ export const AccountCourseView = () => {
           actionModel.content = 'View lesson'
         }
 
-
         data.push({
           id: lesson.id,
           label: lesson.title,
-					labelIcon:(lesson.type===LESSON_TYPE.Quiz || lesson.type===LESSON_TYPE.Video)?lesson.type:undefined,
+          labelIcon:
+            lesson.type === LESSON_TYPE.Quiz || lesson.type === LESSON_TYPE.Video
+              ? lesson.type
+              : undefined,
           date:
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
@@ -398,82 +405,98 @@ export const AccountCourseView = () => {
     })
   }
 
+  const breadcrumbs = [
+    {
+      to: '/',
+      title: 'Home'
+    },
+    {
+      to: '/dashboard/courses',
+      title: 'Courses'
+    },
+    {
+      to: 'dashboard/courses/view?id=' + course?.id,
+      title: course?.title
+    }
+  ]
+
   return (
-    <Row>
-      <Column md={4}>
-        <Heading tag="h2" content={(course as Course)?.title} />
-        <Space />
-        {(course as Course)?.modules?.length &&
-          (course as Course)?.modules?.map((m: Module) => (
-            <Details2 key={m.id} open title={m.title}>
-              <Stepper items={prepareLessons(m)} />
-            </Details2>
-          ))}
-      </Column>
-
-      <Column md={8}>
-        {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
-          <Heading tag="h2" content="Completion Certificate" />
-        ) : (
-          <Heading tag="h2" content={lesson ? lesson.title : 'Course overview'} />
-        )}
-        <Space />
-
-        <Row>
-          <Column md={8}>
-            {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
-              <Details2 open title="Congratulation, You have been promoted!">
-                <CompletionCertificate
-                  username={stateHolder.certificateModel.username}
-                  course={stateHolder.certificateModel.course}
-                  dateCompleted={stateHolder.certificateModel.dateCompleted}
-                  certificateId={stateHolder.certificateModel.certificateId}
-                />
+    <>
+      <Row>
+        <Column md="8">
+          <Heading tag="h1" content={(course as Course)?.title} />
+          <Breadcrumb breadcrumbs={breadcrumbs} separator="\" size="sm" />
+        </Column>
+        <Column md="4">
+          <CourseProgressBar progressBarData={lessonSummary()} />
+        </Column>
+      </Row>
+      <Row>
+        <Column md={3}>
+          {(course as Course)?.modules?.length &&
+            (course as Course)?.modules?.map((m: Module) => (
+              <Details2 key={m.id} open title={m.title}>
+                <Stepper items={prepareLessons(m)} />
               </Details2>
-            ) : lesson ? (
-              <Details2 open title="Lesson">
-                <>
-                  {lesson.type === LESSON_TYPE.Video && lesson.media && (
-                    <VideoPlayer videos={parseVideos(lesson.media)} />
-                  )}
-                  {lesson.type === LESSON_TYPE.Quiz && (
-                    <Quiz
-                      questions={prepareLessonQuestions(lesson.questions)}
-                      onComplete={onQuizComplete}
-                    />
-                  )}
-                  {lesson.content && <p>{lesson.content}</p>}
-                  {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) && (
-                    <Button
-                      context="secondary"
-                      content={stateHolder.actionButtonCaption}
-                      data-cy="complete"
-                      onClick={completeLesson}
-                    />
-                  )}
-                </>
-              </Details2>
-            ) : (
-              <Details2 open title="Details">
-                {(course as Course)?.media?.length && (
-                  <Image
-                    alt={(course as Course)?.title}
-                    src={`/${((course as Course)?.media ?? [])[0].filename}`}
+            ))}
+        </Column>
+
+        <Column md={9}>
+          <Row>
+            <Column md={9}>
+              {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
+                <Details2 open title="Completion Certificate">
+                  <CompletionCertificate
+                    username={stateHolder.certificateModel.username}
+                    course={stateHolder.certificateModel.course}
+                    dateCompleted={stateHolder.certificateModel.dateCompleted}
+                    certificateId={stateHolder.certificateModel.certificateId}
                   />
-                )}
-                {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
-                <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
-              </Details2>
-            )}
-          </Column>
+                </Details2>
+              ) : lesson ? (
+                <Details2 open title={lesson.title}>
+                  <>
+                    {lesson.type === LESSON_TYPE.Video && lesson.media && (
+                      <VideoPlayer videos={parseVideos(lesson.media)} />
+                    )}
+                    {lesson.type === LESSON_TYPE.Quiz && (
+                      <Quiz
+                        questions={prepareLessonQuestions(lesson.questions)}
+                        onComplete={onQuizComplete}
+                      />
+                    )}
+                    {lesson.content && <p>{lesson.content}</p>}
+                    {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) && (
+                      <Button
+                        context="secondary"
+                        content={stateHolder.actionButtonCaption}
+                        data-cy="complete"
+                        onClick={completeLesson}
+                      />
+                    )}
+                  </>
+                </Details2>
+              ) : (
+                <Details2 open title="Course overview">
+                  {(course as Course)?.media?.length && (
+                    <Image
+                      alt={(course as Course)?.title}
+                      src={`/${((course as Course)?.media ?? [])[0].filename}`}
+                    />
+                  )}
+                  {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
+                  <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
+                </Details2>
+              )}
+            </Column>
 
-          <Column md={4}>
-            <Details2 open title="Progress">
-              <CourseProgressChart pieData={lessonSummary()} />
-            </Details2>
-          </Column>
-        </Row>
-      </Column>
-    </Row>
+            <Column md={3}>
+              <Details2 title="Resources">Resources</Details2>
+              <Details2 title="Notes">Notes</Details2>
+            </Column>
+          </Row>
+        </Column>
+      </Row>
+    </>
   )
 }
