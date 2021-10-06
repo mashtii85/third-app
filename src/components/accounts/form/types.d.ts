@@ -5,6 +5,7 @@ import { AccountFilters } from '../types.d'
 
 export interface AccountFormProps {
   filters?: AccountFilters
+  isAdminUser: boolean
   defaultValues?: AccountsRow | any
   onSuccess: (data: any) => void
 }

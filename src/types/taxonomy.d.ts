@@ -4,6 +4,7 @@ export interface Options {
 }
 
 export enum TAXONOMY_TYPE {
+  CLIENT = 'clients',
   COURSE = 'courses',
   MEMBER = 'members',
   LOCATION = 'locations'

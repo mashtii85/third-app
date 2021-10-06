@@ -11,7 +11,8 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, rows, Toolbar } from './helpers'
-
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
 // Hooks
 import { useCourses } from '../../hooks'
 // Types
@@ -60,8 +61,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
             title: row.title,
             status: row.status,
             description: row.description,
-            taxonomy: { value: row?.taxonomy.id, label: row?.taxonomy.name },
-            custom_fields: row.custom_fields
+            taxonomy: { value: row?.taxonomy?.id, label: row?.taxonomy?.name },
+            custom_fields: formatToValidDate(row?.custom_fields)
           }}
         />
       ),

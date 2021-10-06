@@ -44,7 +44,6 @@ export const CustomFieldRender = (props: CustomFieldRenderProps) => {
     label: camelCase.camelize(label || ''),
     name,
     register: register,
-    minDate: '2020-04-19T08:29:04.839Z',
     type: input === 'input' ? inputType : input
   }
 
