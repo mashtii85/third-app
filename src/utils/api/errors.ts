@@ -8,16 +8,31 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 // Types
 import { LOG_LEVEL } from './types.d'
 
-export const LOG = (message: string, type: LOG_LEVEL): void => {
+export class AppError extends Error {
+  public status: number
+
+  constructor(message: string, status: number) {
+    super(message)
+    this.name = 'AppError'
+    this.status = status
+  }
+}
+
+export const TE = (message: string, status: number = 500): void => {
+  throw new AppError(message, status)
+}
+
+export const LOG = (err: AppError, type: LOG_LEVEL): void => {
+  // Todo: Move logging to Sentry
   switch (type) {
     case 'error':
-      console.error('API Error: ' + message)
+      console.error('API Error: ' + err.message)
       break
     case 'warn':
-      console.warn('API Warning: ' + message)
+      console.warn('API Warning: ' + err.message)
       break
     default:
-      console.info('API Info: ' + message)
+      console.info('API Info: ' + err.message)
   }
 }
 
@@ -25,16 +40,8 @@ export const handleNoMatch = (req: NextApiRequest, res: NextApiResponse): void =
   return res.status(405).json({ error: `Method ${req.method} Not Allowed` })
 }
 
-export const handleErrors = (err: any, _req: NextApiRequest, res: NextApiResponse): void => {
-  LOG(err.message, LOG_LEVEL.Error)
+export const handleErrors = (err: AppError, _req: NextApiRequest, res: NextApiResponse): void => {
+  LOG(err, LOG_LEVEL.Error)
 
-  return res.status(500).json({ error: err.message })
-}
-
-export const TE = (message: string, CustomException?: any): void => {
-  if (CustomException) {
-    throw new CustomException(message)
-  }
-
-  throw new Error(message)
+  return res.status(err.status || 500).json({ error: err.message })
 }
