@@ -36,6 +36,9 @@ const path = {
     locations: {
       list: '/dashboard/locations'
     },
+    events: {
+      list: '/dashboard/events'
+    },
     playground: '/dashboard/playground'
   }
 }

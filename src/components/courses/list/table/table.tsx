@@ -50,6 +50,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   }
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
+    const taxonomy = row?.taxonomy && { value: row?.taxonomy.id, label: row?.taxonomy.name }
+
     offCanvas.show({
       content: (
         <CourseForm
@@ -61,7 +63,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
             title: row.title,
             status: row.status,
             description: row.description,
-            taxonomy: { value: row?.taxonomy?.id, label: row?.taxonomy?.name },
+            taxonomy,
             custom_fields: formatToValidDate(row?.custom_fields)
           }}
         />

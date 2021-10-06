@@ -58,8 +58,8 @@ export const TaxonomyTable = ({ title, type }: TableProps) => {
     })
   }
 
-  const { loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
-
+  const { error, loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
+  console.log(error?.message)
   const handleSuccess = offCanvas.close
 
   return (

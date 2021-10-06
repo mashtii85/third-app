@@ -7,7 +7,8 @@ export enum TAXONOMY_TYPE {
   CLIENT = 'clients',
   COURSE = 'courses',
   MEMBER = 'members',
-  LOCATION = 'locations'
+  LOCATION = 'locations',
+  EVENT = 'events'
 }
 
 export interface CustomFields {

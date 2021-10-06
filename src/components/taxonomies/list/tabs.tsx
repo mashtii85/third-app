@@ -50,6 +50,9 @@ const TaxonomyTabs = () => {
           <Tab active={tab === TAXONOMY_TYPE.LOCATION} label="Locations">
             <TaxonomyList type={TAXONOMY_TYPE.LOCATION} title="Location Types" />
           </Tab>
+          <Tab active={tab === TAXONOMY_TYPE.EVENT} label="Events">
+            <TaxonomyList type={TAXONOMY_TYPE.EVENT} title="Event Types" />
+          </Tab>
         </Tabs>
       )}
     </>

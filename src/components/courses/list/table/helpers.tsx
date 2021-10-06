@@ -101,7 +101,6 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
       actions: ''
     }
   })
-
   return list
 }
 
