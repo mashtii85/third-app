@@ -7,18 +7,18 @@
 import S3 from 'aws-sdk/clients/s3'
 
 // Config
-import { Config } from '../../../config/config'
+import { AWS } from '../../../config/aws'
 
 // Types
 import { UploadParams } from './types'
 
 const s3 = new S3({
-  endpoint: Config.AWS?.endpoint,
-  accessKeyId: Config.AWS?.id,
+  endpoint: AWS?.endpoint,
+  accessKeyId: AWS?.id,
   apiVersion: '2006-03-01',
-  region: Config.AWS?.region,
+  region: AWS?.region,
   s3ForcePathStyle: true,
-  secretAccessKey: Config.AWS?.key
+  secretAccessKey: AWS?.key
 })
 
 export const uploadS3 = (params: UploadParams): Promise<void> => {
