@@ -52,6 +52,11 @@ export const Admin: Navigation = {
             to: pages.dashboard.account.view
           },
           {
+            id: 'navCategories',
+            name: 'Categories',
+            to: pages.dashboard.categories.view
+          },
+          {
             id: 'navPlayground',
             name: 'Playground',
             to: pages.dashboard.playground

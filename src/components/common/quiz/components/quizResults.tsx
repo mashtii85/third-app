@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 interface QuizResultsProps {
@@ -28,6 +29,11 @@ export const QuizResult = ({
   onRetakeClick,
   onDoneClick
 }: QuizResultsProps) => {
+  const [showCompleteButton, setShowCompleteButton] = useState(true)
+  const handleDoneClick = () => {
+    onDoneClick()
+    setShowCompleteButton(false)
+  }
   return (
     <>
       <Wrapper>
@@ -44,7 +50,9 @@ export const QuizResult = ({
       </Wrapper>
       <ActionButtonsWrapper>
         {!passed ? <RetakeButton onClick={onRetakeClick}>Retake</RetakeButton> : <div />}
-        <DoneButton onClick={onDoneClick}>Done</DoneButton>
+        {showCompleteButton && (
+          <DoneButton onClick={handleDoneClick}>Complete and continue</DoneButton>
+        )}
       </ActionButtonsWrapper>
     </>
   )
@@ -57,7 +65,7 @@ const DoneButton = styled.button`
   font-size: 12px;
   line-height: 18px;
   color: white;
-  width: 47px;
+  min-width: 47px;
   height: 30px;
   cursor: pointer;
 `

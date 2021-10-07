@@ -11,7 +11,7 @@ import { prepareUseAccounts } from './helpers'
 
 export const useAccounts = ({ filters }: UseAccountsVariable): UseAccountsOutput => {
   const variables = prepareUseAccounts(filters)
-  const { data, error, loading } = useQuery<AccountData, any>(GET_ACCOUNTS, {
+  const { data, error, loading } = useQuery<Partial<AccountData>, any>(GET_ACCOUNTS, {
     variables
   })
 

@@ -10,10 +10,8 @@ import { AccountTableProps } from './table/types'
 const AccountList = (props: AccountTableProps) => {
   const initialFilters = {
     q: null,
-    status: null,
-    type: props.type || ''
+    status: null
   }
-
   return <LayoutList initialFilters={initialFilters} TableComp={Table} otherProps={props} />
 }
 

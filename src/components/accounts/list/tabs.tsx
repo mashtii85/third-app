@@ -14,7 +14,7 @@ import { Tab } from '../../common/tab'
 import { UserAccounts } from '../list/table/userAccounts'
 import AccountDetails from './view/accountDetails'
 import { ACCOUNT_TABS } from '../../../constants/tabs'
-import { ACCOUNT_TYPE } from '../../../types/account'
+import { ACCOUNT_TYPE } from '../../../types/account.d'
 
 const AccountTabs = () => {
   const { query } = useRouter()

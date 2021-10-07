@@ -2,11 +2,8 @@
  * Components - Enrollments - Lists - EnrolledUsers - Table - Table
  */
 
-// React
-import { useContext } from 'react'
-
 // UI
-import { Details2, Table, UserContext } from '@drykiss/industry-ui'
+import { Details2, Table } from '@drykiss/industry-ui'
 import { useTable } from '../../../common/hooks/useTable'
 import { useEnrollments } from '../../hooks'
 
@@ -16,16 +13,19 @@ import { EnrollmentFilters } from '../../hooks/useEnrollments/types'
 // Helpers
 import { columns, rows } from './helpers'
 
+// Hooks
+import { useCurrentUser } from '../../../../utils/useCurrentUser'
+
 interface EnrollmentsTableProps {
   courseId: number
-  filters: EnrollmentFilters
+  filters: Partial<EnrollmentFilters>
 }
 
 const initialSort = {}
 
 export const EnrolledUsersTable = ({ courseId, filters }: EnrollmentsTableProps) => {
   const { initialData, ref } = useTable({ filters, initialSort })
-  const { user } = useContext(UserContext)
+  const { user } = useCurrentUser()
 
   const { enrollments, error, loading } = useEnrollments({
     filters: { ...initialData, courseId, clientId: user.id }

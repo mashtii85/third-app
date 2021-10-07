@@ -3,7 +3,7 @@
  */
 
 // Types
-import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
+import { Address, ADDRESS_STATUS } from '../../../types/address.d'
 import { LooseObject } from '../../../types/object'
 
 export interface AddressFilter {
@@ -19,6 +19,7 @@ export interface UseAddressProps {
   entity: string
   entityId: number
   type?: string
+  status?: ADDRESS_STATUS
 }
 
 export interface AddressesData {

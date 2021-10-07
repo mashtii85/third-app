@@ -14,7 +14,8 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 
-import { Account } from '../../../../types/account'
+// Forms
+import { Account, ACCOUNT_TYPE } from '../../../../types/account'
 import { Column } from '../../../../types/column'
 
 import { AccountForm } from '../../form/form'
@@ -26,10 +27,13 @@ import { AccountFilters } from '../../types.d'
 import { AccountsRow } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 const actionsData = (handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void) => {
   return [
     {
-      context: 'secondary',
+      context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: handleEdit,
       tooltip: 'Edit'
@@ -51,7 +55,7 @@ export const columns = (
       hidden: true
     },
     {
-      formatter: TableLink('', 'accountId', 'name', 'url'),
+      formatter: TableLink('', 'id', 'name', 'url'),
       text: 'Name'
     },
     {
@@ -86,6 +90,14 @@ export const columns = (
       formatter: TableActions,
       formatterData: actionsData(handleEdit),
       text: 'Actions'
+    },
+    {
+      text: 'taxonomy',
+      hidden: true
+    },
+    {
+      text: 'custom_fields',
+      hidden: true
     }
   ]
 }
@@ -108,7 +120,9 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
         url: pages.dashboard.accounts.view,
         status: account.status,
         created: formatDateStandard(account.created_at),
-        actions: ''
+        actions: '',
+        taxonomy: account.taxonomy,
+        custom_fields: account.custom_fields
       }
       list.push(model)
     }
@@ -117,19 +131,36 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
   return list ?? []
 }
 
-export const UserAccountToolbar = ({ filters }: { filters?: AccountFilters }) => {
+export const UserAccountToolbar = ({
+  filters,
+  type,
+  clientId,
+  isAdmin
+}: {
+  filters?: Partial<AccountFilters>
+  clientId: number
+  isAdmin: boolean
+  type: ACCOUNT_TYPE
+}) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <AccountForm onSuccess={offCanvas.close} filters={filters} />,
+      content: (
+        <AccountForm
+          onSuccess={offCanvas.close}
+          filters={filters}
+          isAdmin={isAdmin}
+          defaultValues={{
+            client_id: clientId,
+            type
+          }}
+        />
+      ),
       submit: true,
-      title: `Add A ${filters?.type}`
+      title: `Add A ${type}`
     })
   }
 
-  return (
-    <Button context="white" onClick={handleClick} size="sm" content={`Create a ${filters?.type}`} />
-  )
+  return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${type}`} />
 }

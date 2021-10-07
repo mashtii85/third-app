@@ -1,5 +1,5 @@
 /**
- * Components - Courses - List - Table - Hooks - useDeleteCourse - Types.d
+ * Components - Courses - Hooks - useDeleteCourse - Types.d
  */
 
 // Types.d

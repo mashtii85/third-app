@@ -5,9 +5,9 @@
 
 // Types
 import { ACCOUNT_TYPE } from '../types/account.d'
-import { User, USER_STATUS } from '../types/user.d'
+import { CurrentUser, USER_STATUS } from '../types/user.d'
 
-export const Users: User[] = [
+export const Users: CurrentUser[] = [
   {
     id: 1,
     client_id: 1,

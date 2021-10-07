@@ -12,12 +12,13 @@ import { FormField, Form, FormLabel, Row, Column } from '@drykiss/industry-ui'
 import { addressSchema as schema } from './schema'
 
 // Types
-import { AddressFormType } from './types'
+import { AddressFormType } from './types.d'
 import { useCreateAddress } from '../../hooks/useCreate/useCreate'
 import { useUpdateAddress } from '../../hooks/useUpdate/useUpdate'
-import { LooseObject } from '../../../../types/object'
+import { LooseObject } from '../../../../types/object.d'
 import { ADDRESS_STATUS } from '../../../../types/address.d'
-import { UseAddressProps } from '../../hooks/types'
+import { UseAddressProps } from '../../hooks/types.d'
+import { prepareMetaClause } from '../../hooks/helpers'
 
 export const AddressForm = ({
   filters,
@@ -59,7 +60,7 @@ export const AddressForm = ({
     } else {
       const variables = {
         entity: filters.entity,
-        entityId: filters.entityId,
+        entity_id: filters.entityId,
         name: form.name,
         line1: form.line1,
         line2: form.line2,
@@ -68,9 +69,9 @@ export const AddressForm = ({
         postcode: form.postcode,
         county: form.county,
         status: ADDRESS_STATUS.Active,
-        metaType: filters.type
+        meta: prepareMetaClause(filters.type)
       }
-      await createAddress({ variables: variables })
+      await createAddress({ variables: { objects: [variables] } })
     }
   }
 

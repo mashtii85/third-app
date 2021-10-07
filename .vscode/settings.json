@@ -37,19 +37,20 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescript]": {
-
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
-
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "cSpell.words": [
+    "camelize",
+    "datepicker",
     "deepmerge",
     "drykiss",
     "hookform",
     "ilike",
     "realworldacademies",
-    "showvolumecontrol"
+    "showvolumecontrol",
+    "upsert"
   ]
 }

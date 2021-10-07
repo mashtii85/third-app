@@ -3,33 +3,33 @@
  */
 
 // UI
-import { Details2, Space, Row, Column } from '@drykiss/industry-ui'
+import { Space, Row, Column } from '@drykiss/industry-ui'
 
 // Types
 import { AddressTable } from '../../../addresses/lists/tables/table'
+import { UseAddressProps } from '../../../addresses/hooks/types.d'
 
-// Helpers
-import { Toolbar } from '../../../addresses/lists/tables/helpers'
+// Constants
+import { ENTITIES } from '../../../../constants/entities'
 
-// User
+// Hooks
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 export const ClientAddress = () => {
   const { user } = useCurrentUser()
+  const filters: UseAddressProps = {
+    entity: ENTITIES.Account,
+    entityId: user.account_id,
+    type: 'invoice,registered'
+  }
+
   return (
     <Row>
       <Column md="5">
         {user.account_id && (
           <>
             <Space />
-            <Details2
-              open
-              key={user.account_id}
-              title="Addresses"
-              toolbar={<Toolbar entity="account" entityId={user.account_id} type="invoice" />}
-            >
-              <AddressTable entity="account" entityId={user.account_id} type="invoice" />
-            </Details2>
+            <AddressTable filters={filters} />
           </>
         )}
       </Column>

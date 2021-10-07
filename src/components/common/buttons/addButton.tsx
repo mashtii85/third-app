@@ -17,7 +17,7 @@ export const AddButton = ({
   size = SIZE.SM,
   type = 'button'
 }: {
-  children: JSX.Element | JSX.Element[]
+  children?: JSX.Element | JSX.Element[]
   content?: string
   context?: string
   data?: LooseObject

@@ -3,7 +3,7 @@
  */
 
 // React
-import { ChangeEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
@@ -11,19 +11,16 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, rows, Toolbar } from './helpers'
-
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
 // Hooks
 import { useCourses } from '../../hooks'
 // Types
 import { CourseFilter } from '../../hooks/types'
-import { CourseTableRowsType } from './types'
+import { CourseTableProps, CourseTableRowsType } from './types'
 
-import { CourseForm, DeleteCourse } from '../../form'
-
-interface CourseTableProps {
-  clientId: number
-  filters: CourseFilter
-}
+import { DeleteCourse, CourseForm } from '../../forms'
+import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 
@@ -35,10 +32,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     filters: initialData
   })
 
-  const offCanvas = useContext<any>(OffCanvasContext)
-  const handleDelete = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
-    console.log(e, row)
-
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+  const handleDelete = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteCourse
@@ -54,8 +49,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     })
   }
 
-  const handleEdit = (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
-    console.log(e, row)
+  const handleEdit = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
+    const taxonomy = row?.taxonomy && { value: row?.taxonomy.id, label: row?.taxonomy.name }
 
     offCanvas.show({
       content: (
@@ -63,11 +58,13 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
           onSuccess={offCanvas.close}
           filters={filters}
           defaultValues={{
+            ...row,
             id: row.id,
             title: row.title,
             status: row.status,
             description: row.description,
-            taxonomy_id: row.taxonomy_id
+            taxonomy,
+            custom_fields: formatToValidDate(row?.custom_fields)
           }}
         />
       ),

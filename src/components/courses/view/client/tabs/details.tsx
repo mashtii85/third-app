@@ -9,7 +9,7 @@ import { Row, Column, Details2, DetailsText, Heading, Image, Space } from '@dryk
 import { Course } from '../../../../../types/course'
 
 import { useCourse } from '../../../hooks'
-import { useTaxonomies } from '../../../../categories/hooks/useTaxonomies'
+import { useTaxonomies } from '../../../../taxonomies/hooks'
 export const ClientDetails = ({ courseId }: { courseId: number }) => {
   const { course, loading, error } = useCourse(courseId)
   const { taxonomies } = useTaxonomies({

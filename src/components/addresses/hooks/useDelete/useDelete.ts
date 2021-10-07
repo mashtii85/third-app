@@ -10,11 +10,13 @@ import { DELETE_ADDRESS_BY_PK, GET_ADDRESSES } from '../../queries/queries'
 import { AddressDeleteData, AddressDeleteVariables, UseDeleteAddressOutput } from './types.d'
 import { UseHookProps } from '../../../../types/hook.d'
 import { Address } from '../../../../types/address.d'
-import { LooseObject } from '../../../../types/object.d'
-import { UseAddressProps } from '../types'
+import { UseAddressProps } from '../types.d'
+
+// Helpers
+import { prepareArguments } from '../helpers'
 
 export const useDeleteAddress = (
-  addressProps: UseAddressProps,
+  filters: UseAddressProps,
   props: UseHookProps<AddressDeleteData>
 ): UseDeleteAddressOutput => {
   const [deleteAddress, { loading, error }] = useMutation<
@@ -24,20 +26,15 @@ export const useDeleteAddress = (
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
-      const variables: LooseObject = {
-        where: { entity: { _eq: addressProps.entity }, entity_id: { _eq: addressProps.entityId } }
-      }
-      if (addressProps.type) {
-        variables.where.meta = { _contains: { type: addressProps.type } }
-      }
+      const where = prepareArguments({ filters })
       const { address } = cache.readQuery<{ address: Address[] }>({
         query: GET_ADDRESSES,
-        variables
+        variables: { where }
       }) || { address: [] }
       const addressList = address.filter((adr) => adr.id !== data?.delete_address_by_pk.id)
       cache.writeQuery({
         query: GET_ADDRESSES,
-        variables,
+        variables: { where },
         data: { address: addressList }
       })
     }

@@ -3,7 +3,7 @@
  */
 
 // Types
-import type { ACCOUNT_TYPE } from '../../../types/user.d'
+import type { ACCOUNT_TYPE } from '../../../types/account.d'
 
 export interface ColourConfig {
   [key: number]: string

@@ -3,103 +3,29 @@
  */
 
 // React
-import { ChangeEvent, MouseEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
-import {
-  formatTime,
-  formatDateStandard,
-  Button,
-  OffCanvasContext,
-  TableActions
-} from '@drykiss/industry-ui'
+import { Button, OffCanvasContext } from '@drykiss/industry-ui'
 
 // Types
-import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
-import { AddressTableRowsType, ToolbarModel } from './types'
+import { UseAddressProps } from '../../hooks/types'
+import { offCanvasType } from '../../../../types/offCanvas.d'
 
 // Forms
-import { AddressForm } from '../../forms/create/form'
+import { AddressListForm } from '../../forms/list/list'
 
-export const columns = ({
-  handleDelete,
-  handleEdit
-}: {
-  handleDelete: (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => void
-  handleEdit: (e: ChangeEvent<HTMLInputElement>, row: AddressTableRowsType) => void
-}) => {
-  const columnsSchema = [
-    { text: 'Id', hidden: true },
-    { text: 'Name' },
-    { text: 'Line1', hidden: true },
-    { text: 'Line2', hidden: true },
-    { text: 'Line3', hidden: true },
-    { text: 'City' },
-    { text: 'Postcode' },
-    { text: 'County', hidden: true },
-    { text: 'Status', hidden: true },
-    { text: 'Date' },
-    {
-      text: 'Actions',
-      formatter: TableActions,
-      formatterData: [
-        {
-          context: 'secondary',
-          icon: ['fas', 'edit'],
-          onClick: handleEdit,
-          tooltip: 'Edit'
-        },
-        {
-          context: 'danger',
-          icon: ['fas', 'trash'],
-          onClick: handleDelete,
-          tooltip: 'Delete'
-        }
-      ]
-    }
-  ]
-  return columnsSchema
-}
-
-export const rows = (addresses: Address[]) => {
-  const list = addresses?.map((address) => {
-    return {
-      id: address.id,
-      name: address.name,
-      line1: address.line1,
-      line2: address.line2,
-      line3: address.line3,
-      city: address.city,
-      postcode: address.postcode,
-      county: address.county,
-      status: address.status,
-      date: `${formatDateStandard(address.created_at)} ${formatTime(address.created_at)}`,
-      actions: ''
-    }
-  })
-  return list
-}
-
-export const Toolbar = ({ entity, entityId, type }: ToolbarModel) => {
-  const offCanvas = useContext<any>(OffCanvasContext)
-  const filters = { entity, entityId, type }
+export const Toolbar = ({ filters }: { filters: UseAddressProps }) => {
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: (
-        <AddressForm
-          filters={filters}
-          onSuccess={offCanvas.close}
-          defaultValues={{
-            status: ADDRESS_STATUS.Active
-          }}
-        />
-      ),
-      submit: true,
-      title: 'Add an address'
+      content: <AddressListForm filters={filters} />,
+      submit: false,
+      title: 'Edit addresses'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create an address" />
+  return <Button context="white" onClick={handleClick} size="sm" content="Edit" />
 }

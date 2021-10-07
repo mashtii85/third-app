@@ -33,7 +33,7 @@ export const useEnrollments = ({
     // order_by: {}
   }
 }: {
-  filters?: EnrollmentFilters
+  filters?: Partial<EnrollmentFilters>
 }): EnrollmentOutputData => {
   const where: LooseObject | null = prepareVariables({ filters })
   const { data, error, loading } = useQuery<EnrollmentData, EnrollmentVariables>(GET_ENROLLMENTS, {

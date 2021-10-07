@@ -46,6 +46,7 @@ const UserDetails = () => {
       refetch()
     }
   })
+
   if (!query?.id) {
     return <></>
   }

@@ -4,9 +4,9 @@ import { AccountsRow } from '../list/table/types.d'
 import { AccountFilters } from '../types.d'
 
 export interface AccountFormProps {
-  filters?: AccountFilters
-  defaultValues?: AccountsRow
-
+  filters?: Partial<AccountFilters> | undefined
+  defaultValues?: AccountsRow | any
+  isAdmin: boolean
   onSuccess: (data: any) => void
 }
 
@@ -17,4 +17,8 @@ export interface CreateAccountForm {
   email: string
   status: STATUS_ACTIVE
   taxonomy: SELECT
+  client_id: number
+  clientId: number
+  type: string
+  custom_fields: any
 }

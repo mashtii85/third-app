@@ -20,5 +20,6 @@ export const ADDRESS_FIELDS = gql`
     created_at
     updated_at
     status
+    meta
   }
 `

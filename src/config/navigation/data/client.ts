@@ -15,6 +15,34 @@ export const Client: Navigation = {
       to: pages.dashboard.root
     },
     {
+      id: 'navLocationsMenu',
+      name: 'Locations',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navLocationsList',
+            name: 'List',
+            to: pages.dashboard.locations.list
+          }
+        ]
+      }
+    },
+    {
+      id: 'navEventsMenu',
+      name: 'Events',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navEventsList',
+            name: 'List',
+            to: pages.dashboard.events.list
+          }
+        ]
+      }
+    },
+    {
       id: 'navLearningMenu',
       name: 'Learning',
       type: {

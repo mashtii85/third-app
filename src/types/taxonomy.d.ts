@@ -1,25 +1,35 @@
-export enum TAXONOMY_STATUS {
-  Active = 'active',
-  Inactive = 'inactive'
-}
+// Types
+import { STATUS_ACTIVE } from './select.d'
+
 export interface Options {
   label: string
   value: string
 }
+
+export enum TAXONOMY_TYPE {
+  CLIENT = 'clients',
+  COURSE = 'courses',
+  MEMBER = 'members',
+  LOCATION = 'locations',
+  EVENT = 'events'
+}
+
 export interface CustomFields {
   input: string
   label: string
   options?: Options[]
   required: boolean
+  inputType: string
 }
 export interface Taxonomy {
-  id: number
-  name: string
+  id?: number
+  name?: string
   entity?: string
-  status: TAXONOMY_STATUS
+  status: STATUS_ACTIVE
   type?: string
-  client_id: number
-  entity_id: number
+  client_id?: number
+  entity_id?: number
+  parent_id?: number
   custom_fields: CustomFields
-  data: Taxonomy
+  data?: Taxonomy
 }

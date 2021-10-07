@@ -3,30 +3,41 @@
  */
 
 // React
-import { ChangeEvent, MouseEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
-// Types
-import type { Course } from '../../../../types/course.d'
-import { CourseTableRowsType } from './types.d'
-
-import { CourseForm } from '../../form'
-
+// Forms
+import { CourseForm } from '../../forms'
 import pages from '../../../../config/pages'
 
 // Types
+import type { Course } from '../../../../types/course.d'
+import { CourseTableRowsType } from './types.d'
 import { CourseFilter } from '../../hooks/types.d'
+import { offCanvasType } from '../../../../types/offCanvas'
+import { Column } from '../../../../types/column'
+
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
 
 export const columns = ({
   handleDelete,
   handleEdit
 }: {
-  handleDelete: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
-  handleEdit: (e: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => void
+  handleDelete: (e: MouseEvent<HTMLElement>, row: CourseTableRowsType) => void
+  handleEdit: (e: MouseEvent<HTMLElement>, row: CourseTableRowsType) => void
 }) => {
-  return [
+  const columnsSchema: Column<CourseTableRowsType>[] = [
+    {
+      text: 'taxonomy',
+      hidden: true
+    },
+    {
+      text: 'custom_fields',
+      hidden: true
+    },
     {
       text: 'taxonomy_id',
       hidden: true
@@ -46,7 +57,7 @@ export const columns = ({
       text: 'Enrolled Users'
     },
     {
-      hidden: 'true',
+      hidden: true,
       text: 'Status'
     },
     {
@@ -57,13 +68,13 @@ export const columns = ({
       formatter: TableActions,
       formatterData: [
         {
-          context: 'secondary',
+          context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
           onClick: handleEdit,
           tooltip: 'Edit'
         },
         {
-          context: 'danger',
+          context: THEME_CONTEXT.danger,
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'
@@ -72,11 +83,14 @@ export const columns = ({
       text: 'Actions'
     }
   ]
+  return columnsSchema
 }
 
 export const rows = (courses: Course[]): CourseTableRowsType[] => {
   const list = courses.map((item) => {
     return {
+      taxonomy: item.taxonomy,
+      custom_fields: item.custom_fields,
       taxonomy_id: item.taxonomy_id,
       id: item.id,
       title: item.title,
@@ -87,13 +101,11 @@ export const rows = (courses: Course[]): CourseTableRowsType[] => {
       actions: ''
     }
   })
-
   return list
 }
 
 export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
-  // we don't know it's type
-  const offCanvas = useContext<any>(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()

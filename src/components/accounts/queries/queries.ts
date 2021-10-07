@@ -3,11 +3,15 @@ import { gql } from '@apollo/client'
 
 import { ACCOUNT_FIELDS } from './fragments'
 import { USER_FIELDS } from '../../users/queries'
+import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 
 export const GET_ACCOUNTS = gql`
   query GetAccounts($where: account_bool_exp) {
     accounts: account(where: $where) {
       ...AccountFields
+      taxonomy {
+        ...TaxonomyFields
+      }
       users(limit: 1) {
         id
         status
@@ -17,6 +21,7 @@ export const GET_ACCOUNTS = gql`
       }
     }
   }
+  ${TAXONOMY_FIELDS}
   ${ACCOUNT_FIELDS}
   ${USER_FIELDS}
 `
@@ -42,6 +47,9 @@ export const CREATE_ACCOUNT = gql`
   mutation CreateAccount($object: account_insert_input!) {
     account: insert_account_one(object: $object) {
       ...AccountFields
+      taxonomy {
+        ...TaxonomyFields
+      }
       users(limit: 1) {
         id
         status
@@ -51,7 +59,7 @@ export const CREATE_ACCOUNT = gql`
       }
     }
   }
-
+  ${TAXONOMY_FIELDS}
   ${ACCOUNT_FIELDS}
   ${USER_FIELDS}
 `

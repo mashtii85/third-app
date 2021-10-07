@@ -2,42 +2,40 @@
  * Components - Accounts - Form
  */
 
-import { useContext } from 'react'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AccountSchema as schema } from './schema'
+
 // UI
-import {
-  Column,
-  Form,
-  FormField,
-  FormError,
-  FormLabel,
-  SelectField,
-  Row,
-  UserContext
-} from '@drykiss/industry-ui'
+import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
-import { TaxonomySelect } from './select'
+import { TaxonomySelect } from '../../taxonomies/select/select'
+
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../hooks'
+import { useTaxonomies } from '../../taxonomies/hooks'
 
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
+import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
 
-export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
-  const { control, errors, handleSubmit, register } = useForm<any>({
+import { CustomFieldElement } from '../../taxonomies/customField/customFieldElement'
+
+export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: AccountFormProps) => {
+  const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
-  const { user } = useContext(UserContext)
+  const { taxonomies } = useTaxonomies({
+    category: defaultValues?.type
+  })
 
   const { createAccount } = useCreateAccount({
-    filters,
+    filters: { ...filters, clientId: defaultValues?.client_id, type: defaultValues?.type },
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error.message)
@@ -62,8 +60,7 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
         variables
       })
     } else {
-      const object = prepareCreateAccount(form, filters?.type)
-
+      const object = prepareCreateAccount(form)
       createAccount({ variables: { object } })
     }
   }
@@ -74,7 +71,15 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
     register
   }
 
-  const isClientMember = user.account_type === ACCOUNT_TYPE.Client
+  // Watchers
+  const taxonomyWatch: Options = watch('taxonomy')
+
+  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
+  const isClientCreateMember = taxonomies.length > 0
+  const isClientUser = isClientMember && isClientCreateMember
+
+  const taxonomySelectTitle = isAdmin ? 'Client' : 'Member'
+
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
       <FormLabel label="Name">
@@ -91,7 +96,6 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
         )}
       </FormLabel>
 
-      {/* <FormField {...defaultOptions} name="type" type="hidden" /> */}
       <div>User</div>
       <FormLabel label="First Name">
         <FormField {...defaultOptions} name="firstName" />
@@ -102,21 +106,27 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
       <FormLabel label="Email">
         <FormField type="email" {...defaultOptions} name="email" />
       </FormLabel>
-      {isClientMember && (
+      {(isClientUser || isAdmin) && (
         <>
-          <div>Member</div>
-          <Row>
-            <Column md={6}>
-              <TaxonomySelect
-                {...defaultOptions}
-                label="Member Type"
-                name="taxonomy"
-                type="members"
-              />
-            </Column>
-          </Row>
+          <div>{taxonomySelectTitle}</div>
+          <TaxonomySelect
+            {...defaultOptions}
+            label={`${taxonomySelectTitle} Type`}
+            name="taxonomy"
+            type={defaultValues?.type}
+          />
+          {taxonomyWatch?.value && (
+            <CustomFieldElement
+              {...defaultValues}
+              {...defaultOptions}
+              type={defaultValues?.type}
+              taxonomyWatch={taxonomyWatch}
+            />
+          )}
         </>
       )}
+      <FormField {...defaultOptions} name="client_id" type="hidden" />
+      <FormField {...defaultOptions} name="type" type="hidden" />
     </Form>
   )
 }

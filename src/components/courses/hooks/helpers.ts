@@ -33,7 +33,8 @@ export const prepareCoursesArguments = ({
 
   const otherClause = {
     limit: filters?.limit,
-    order_by: filters?.orderBy ? filters.orderBy : {}
+    offset: filters?.offset,
+    order_by: filters?.order_by ? filters.order_by : {}
   }
 
   return { ...otherClause, where: whereClause }

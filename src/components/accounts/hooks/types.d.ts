@@ -7,8 +7,8 @@ import { User } from '../../../types/user'
 import { AccountFilters } from '../types'
 
 export interface AccountData {
-  accounts?: Account[]
-  account?: Account | any
+  accounts: Account[]
+  account: Account | any
 }
 
 export interface UseUserAccountsOutput extends UseHookOutput {
@@ -20,8 +20,8 @@ export interface UserData {
 }
 
 export interface UseAccountVariable {
-  filters?: AccountFilters
-  accountId?: number
+  filters: Partial<AccountFilters>
+  accountId: number
   // accountType?: ACCOUNT_TYPE
   // clientId?: number
   // status?: STATUS_ACTIVE
@@ -29,7 +29,8 @@ export interface UseAccountVariable {
 }
 
 export interface UseAccountsVariable {
-  filters?: AccountFilters
+  filters?: Partial<AccountFilters>
+
   // accountId?: number
   // accountType?: ACCOUNT_TYPE
   // clientId?: number
@@ -50,8 +51,8 @@ export interface AccountVariables {
 }
 
 export interface UseCreateAccountProps {
-  filters?: AccountFilters
-  onCompleted: (data: { account }) => void
+  filters?: Partial<AccountFilters>
+  onCompleted: (data: { account: Account }) => void
   onError: (data: ApolloError) => void
 }
 

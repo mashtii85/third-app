@@ -2,5 +2,5 @@
  * Components - Lessons - Form - Index
  */
 
-export { LessonForm } from './add/form'
+export { LessonForm } from './create/form'
 export { DeleteLessonForm } from './delete/delete'

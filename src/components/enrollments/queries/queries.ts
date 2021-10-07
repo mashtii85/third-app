@@ -2,11 +2,11 @@
  *  Components - Enrollments - queries
  */
 
+import { COURSE_FIELDS } from '../../courses/queries/fragments'
+import { ENROLLMENTS_FIELDS } from './fragments'
+import { USER_FIELDS } from '../../users/queries'
 // Apollo
 import { gql } from '@apollo/client'
-import { ENROLLMENTS_FIELDS } from './fragments'
-import { COURSE_FIELDS } from '../../courses/queries/fragments'
-import { USER_FIELDS } from '../../users/queries'
 
 // export const GET_ENROLLMENTS = gql`
 //   query GetEnrollments(

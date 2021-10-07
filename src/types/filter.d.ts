@@ -5,8 +5,14 @@
 import { OrderBy } from './orderBy'
 
 export interface Filter {
-  q?: string
+  q: string
   limit: number
   offset: number
-  orderBy: OrderBy
+  order_by: OrderBy
+}
+
+export interface DBFilters extends Omit<Filter, 'q'> {
+  limit: number
+  offset: number
+  order_by: OrderBy
 }
