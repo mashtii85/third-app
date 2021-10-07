@@ -2,21 +2,27 @@
  * Auth utils
  */
 
+// Libs
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+
+// Types
+import { LoginDataModel } from './types.d'
+import { AccountUsers, CurrentUser } from '../../types/user.d'
+import { ACCOUNT_TYPE } from '../../types/account.d'
 
 export const hashPassword = (password: string): string => {
   return bcrypt.hashSync(password, 10)
 }
 
-export const validatePassword = (user: any, password: string): boolean => {
-  if (!password || !user.password) {
+export const validatePassword = (userPassword: string, formPassword: string): boolean => {
+  if (!formPassword || !userPassword) {
     return false
   }
-  return bcrypt.compareSync(password, user.password)
+  return bcrypt.compareSync(formPassword, userPassword)
 }
 
-export const generateToken = (data: any): string => {
+export const generateToken = (data: LoginDataModel): string => {
   return jwt.sign(data, process.env.JWT_PRIVATE_KEY, {
     algorithm: 'RS512',
     expiresIn: '7d'
@@ -29,37 +35,31 @@ export const validateToken = (token: string): boolean => {
   })
 }
 
-export const prepareUserData = (user, account, role) => {
-  // Get admin
-  let adminId = null
-  if (account && account.admins.length) {
-    adminId = account.admins[0].adminId
-  } else if (account && account.type === 'admin') {
-    adminId = account.id
-  }
-
-  const userData = {
+export const prepareUserData = (
+  user: CurrentUser,
+  accountUser: Partial<AccountUsers>
+): LoginDataModel => {
+  const userData: CurrentUser = {
     id: user.id,
     email: user.email,
-    nameFirst: user.nameFirst,
-    nameLast: user.nameLast,
-    adminId: adminId,
-    accountId: account ? account.id : null,
-    accountType: account ? account.type : 'tenant',
-    role: role
+    name_first: user.name_first,
+    name_last: user.name_last,
+    custom_fields: user.custom_fields,
+    is_verified: user.is_verified,
+    status: user.status,
+    client_id: accountUser?.account?.client_id || 0,
+    account_id: accountUser.account_id || 0,
+    account_type: accountUser?.account?.type || ACCOUNT_TYPE.Member
   }
-
-  // Override superadmin role
-  const hasuraRole = account && account.type === 'superadmin' ? 'admin' : role
 
   return {
     'https://hasura.io/jwt/claims': {
-      'x-hasura-allowed-roles': [hasuraRole],
-      'x-hasura-default-role': hasuraRole,
+      'x-hasura-allowed-roles': [userData.account_type],
+      'x-hasura-default-role': userData.account_type,
       'x-hasura-user-id': user.id.toString(),
-      'x-hasura-admin-id': adminId ? adminId.toString() : 'null',
-      'x-hasura-account-id': account ? account.id.toString() : 'null',
-      'x-hasura-account-type': account ? account.type : 'tenant'
+      'x-hasura-client-id': userData?.client_id?.toString() || 'null',
+      'x-hasura-account-id': userData?.account_id?.toString() || 'null',
+      'x-hasura-account-type': userData.account_type || 'null'
     },
     user: userData
   }
