@@ -3,7 +3,7 @@
  */
 
 // Types
-import { SELECT_STATUS } from '../../../../types/select.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 interface ModuleFormType {
   id: number | undefined
@@ -11,5 +11,5 @@ interface ModuleFormType {
   title: string
   description: string | undefined
   ordering: number | undefined
-  status: SELECT_STATUS
+  status: STATUS_ACTIVE
 }

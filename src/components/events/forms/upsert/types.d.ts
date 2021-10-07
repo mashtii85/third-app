@@ -2,9 +2,9 @@
  * Components - Event - Forms - Upsert - types.d
  */
 
-import { LooseObject } from '../../../../types/object'
-import { Options } from '../../../../types/taxonomy'
-import { Event, EventFilter } from '../../types'
+import { LooseObject } from '../../../../types/object.d'
+import { Options } from '../../../../types/taxonomy.d'
+import { Event, EventFilter } from '../../types.d'
 
 export interface EventFormType
   extends Omit<Event, 'id', 'taxonomy' | 'custom_fields' | 'location_id'> { }

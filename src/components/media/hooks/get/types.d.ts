@@ -3,7 +3,7 @@
  */
 
 // Types
-import { Media, MEDIUM_TYPE, MEDIUM_CATEGORY } from '../../../../types/medium.d'
+import { Medium, MEDIUM_TYPE, MEDIUM_CATEGORY } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { LooseObject } from '../../../../types/object'
 
@@ -26,11 +26,11 @@ export interface UseMediaProps {
 }
 
 export interface MediaData {
-  media: Media
+  media: Medium
 }
 
 export interface MediaDataList {
-  media: Media[]
+  media: Medium[]
 }
 
 export interface MediaSearchVariables {
@@ -39,21 +39,4 @@ export interface MediaSearchVariables {
 
 export interface MediaVariables {
   mediaId: number
-}
-
-export enum GraphQLLogicalOperators {
-  _eq = '_eq',
-  _contains = '_contains',
-  _ilike = '_ilike'
-}
-
-export interface GraphQLValue<T> {
-  key: T
-}
-export interface GraphQLOperator {
-  [key: string]: GraphQLValue
-}
-
-export interface GraphQLWhereClause {
-  [key: string]: GraphQLOperator
 }

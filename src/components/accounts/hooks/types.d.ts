@@ -52,7 +52,7 @@ export interface AccountVariables {
 
 export interface UseCreateAccountProps {
   filters?: Partial<AccountFilters>
-  onCompleted: (data: { account }) => void
+  onCompleted: (data: { account: Account }) => void
   onError: (data: ApolloError) => void
 }
 

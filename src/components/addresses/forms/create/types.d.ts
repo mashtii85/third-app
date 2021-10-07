@@ -28,7 +28,7 @@ export interface ADDRESS_STATUS_DROPDOWN {
   value: 'active' | 'inactive'
 }
 
-export const addressStatus: ADDRESS_STATUS_DROPDOWN[] = [
-  { text: 'Active', value: 'active' },
-  { text: 'Inactive', value: 'inactive' }
-]
+// export const addressStatus: ADDRESS_STATUS_DROPDOWN[] = [
+//   { text: 'Active', value: 'active' },
+//   { text: 'Inactive', value: 'inactive' }
+// ]

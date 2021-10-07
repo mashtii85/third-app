@@ -12,7 +12,7 @@ export interface Filter {
 }
 
 export interface DBFilters extends Omit<Filter, 'q'> {
-  limit?: number
-  offset?: number
-  order_by?: OrderBy
+  limit: number
+  offset: number
+  order_by: OrderBy
 }

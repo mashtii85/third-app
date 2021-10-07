@@ -3,7 +3,7 @@
  */
 import { Control, FieldErrors } from 'react-hook-form'
 
-import { LooseObject } from '../../../../types/object.d'
+import { LooseObject } from '../../../types/object.d'
 
 interface CustomFieldRenderProps {
   control?: Control

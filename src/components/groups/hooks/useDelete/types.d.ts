@@ -5,7 +5,7 @@
 // Types
 import { Group } from '../../../../types/group.d'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { groupFilter } from '../useGroup/types.d'
+import { GroupFilter } from '../useGroup/types.d'
 
 export interface GroupDeleteVariables {
   id: number
@@ -16,7 +16,7 @@ export interface GroupDeleteData {
 }
 
 export interface useDeleteGroupProps extends UseHookProps<GroupDeleteData> {
-  filters: groupFilter
+  filters: GroupFilter
   id: number
 }
 

@@ -27,7 +27,7 @@ export const prepareEventsArguments = ({
     condition.status = { _eq: STATUS_ACTIVE.Active }
   }
 
-  const otherClause: DBFilters = {
+  const otherClause: Partial<DBFilters> = {
     limit: filters?.limit,
     offset: filters?.offset,
     order_by: filters?.order_by ? filters.order_by : {}

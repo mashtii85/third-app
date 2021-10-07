@@ -5,7 +5,6 @@
 import { Location, LocationFilter } from '../../types.d'
 
 export interface LocationTableRowsType extends Location {
-  id: number | undefined
   actions: string
 }
 

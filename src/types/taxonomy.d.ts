@@ -1,3 +1,6 @@
+// Types
+import { STATUS_ACTIVE } from './select.d'
+
 export interface Options {
   label: string
   value: string
@@ -22,7 +25,7 @@ export interface Taxonomy {
   id?: number
   name?: string
   entity?: string
-  status: TAXONOMY_STATUS
+  status: STATUS_ACTIVE
   type?: string
   client_id?: number
   entity_id?: number

@@ -3,7 +3,7 @@
  */
 
 // Types
-import { SELECT_STATUS } from '../../../../types/select.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 interface GroupFormType {
   id: number | undefined
@@ -11,5 +11,5 @@ interface GroupFormType {
   taxonomyId: number | undefined
   name: string
   description: string | undefined
-  status: SELECT_STATUS
+  status: STATUS_ACTIVE
 }

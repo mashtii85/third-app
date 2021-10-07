@@ -24,12 +24,12 @@ import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 // Types
 import { offCanvasType } from '../../../../../types/offCanvas.d'
 import { LessonQuestionTableProps } from './type.d'
-import { Taxonomy, CustomFields } from '../../../../../types/taxonomy.d'
+import { Taxonomy } from '../../../../../types/taxonomy.d'
 import { UseTaxonomiesVariable } from '../../../../taxonomies/hooks/useTaxonomies/types.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { prepareTaxonomyDefaultValues } from './helpers'
 
 export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -39,27 +39,19 @@ export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
     entity: tableProps.entity,
     entityId: tableProps.entityId
   }
+
   const { loading, taxonomies } = useTaxonomies(taxonomiesVariable)
 
-  const handleSuccess = () => {
-    offCanvas.close()
-  }
+  const handleSuccess = offCanvas.close
 
   const handleClick = (_: MouseEvent, row?: Taxonomy): void => {
-    const taxonomy = { ...row }
-    const customFields: CustomFields = { input: '', inputType: '', label: '', required: false }
-    taxonomy.custom_fields = taxonomy.custom_fields ?? customFields
+    const defaultValues = prepareTaxonomyDefaultValues(row!, tableProps)
+
     offCanvas.show({
       title: row?.id ? 'Edit' : 'Add',
       content: (
         <LessonQuestionForm
-          defaultValues={{
-            ...taxonomy,
-            entity: tableProps.entity,
-            entity_id: tableProps.entityId,
-            type: tableProps.type,
-            status: STATUS_ACTIVE.Active
-          }}
+          defaultValues={defaultValues}
           isShowQuestionForm
           onSuccess={handleSuccess}
         />

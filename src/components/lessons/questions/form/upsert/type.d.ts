@@ -2,7 +2,7 @@
  * Components - Lessons - Questions - Form - Upsert - Types
  */
 
-import { Taxonomy } from '../../../types/taxonomy'
+import { Taxonomy } from '../../../../../types/taxonomy'
 
 export interface TaxonomyFormProps {
   type?: string
