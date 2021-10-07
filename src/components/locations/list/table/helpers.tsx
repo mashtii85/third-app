@@ -17,6 +17,9 @@ import { offCanvasType } from '../../../../types/offCanvas'
 import { UpsertLocation } from '../../forms'
 import { Column } from '../../../../types/column'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 export interface LocationRows {
   id: number
   name: string
@@ -59,13 +62,13 @@ export const columns = ({
       formatter: TableActions,
       formatterData: [
         {
-          context: 'secondary',
+          context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
           onClick: handleEdit,
           tooltip: 'Edit'
         },
         {
-          context: 'danger',
+          context: THEME_CONTEXT.danger,
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'

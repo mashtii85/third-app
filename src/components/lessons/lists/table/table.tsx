@@ -72,7 +72,7 @@ export const LessonTable = (filters: UseLessonsProps) => {
         <LessonQuestionsTable entity="lesson" entityId={row.id as number} type="lesson-questions" />
       ),
       submit: false,
-      title: 'Questions'
+      title: 'Quiz'
     })
   }
 

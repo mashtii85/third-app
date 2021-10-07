@@ -3,8 +3,9 @@
  */
 
 // Types.d
-import { Media, MEDIA_STATUS } from '../../../../types/media.d'
+import { Medium } from '../../../../types/medium.d'
 import { UseHookOutput } from '../../../../types/hook.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export interface MediaUpdateVariables {
   id: number
@@ -16,12 +17,12 @@ export interface MediaUpdateVariables {
     city: String
     county: string
     postcode: string
-    status: MEDIA_STATUS
+    status: STATUS_ACTIVE
   }
 }
 
 export interface MediaUpdateData {
-  media: Media
+  media: Medium
 }
 
 export interface UseUpdateMediaOutput extends UseHookOutput {

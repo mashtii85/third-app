@@ -7,7 +7,8 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useAccounts } from '../../hooks'
-
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
 // Types
 import { AccountsRow, AccountTableProps } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
@@ -21,8 +22,8 @@ const initialSort = {}
 
 export const AccountTable = (props: AccountTableProps) => {
   const { user } = useCurrentUser()
-  const accountType =
-    user.account_type === ACCOUNT_TYPE.Admin ? ACCOUNT_TYPE.Client : ACCOUNT_TYPE.Member
+  const isAdmin = user.account_type === ACCOUNT_TYPE.Admin
+  const accountType = isAdmin ? ACCOUNT_TYPE.Client : ACCOUNT_TYPE.Member
   const clientId = user.id
   const { initialData, ref } = useTable({ filters: props.filters, initialSort })
 
@@ -33,12 +34,15 @@ export const AccountTable = (props: AccountTableProps) => {
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: AccountsRow) => {
     const { taxonomy } = row
+
     offCanvas.show({
       content: (
         <AccountForm
+          isAdmin={isAdmin}
           onSuccess={offCanvas.close}
           defaultValues={{
             ...row,
+            custom_fields: formatToValidDate(row?.custom_fields),
             client_id: clientId,
             type: accountType,
             taxonomy: { label: taxonomy?.name, value: taxonomy?.id }
@@ -57,7 +61,12 @@ export const AccountTable = (props: AccountTableProps) => {
       open
       title={props.title}
       toolbar={
-        <UserAccountToolbar type={accountType} clientId={clientId} filters={props.filters} />
+        <UserAccountToolbar
+          isAdmin={isAdmin}
+          type={accountType}
+          clientId={clientId}
+          filters={props.filters}
+        />
       }
     >
       <Table

@@ -17,15 +17,15 @@ import { TaxonomyUpsert, TaxonomyDelete } from '../../forms'
 
 import { TableProps } from '../types'
 import { offCanvasType } from '../../../../types/offCanvas'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { Taxonomy } from '../../../../types/taxonomy.d'
 import { TaxonomyChildTable } from '../../child/table'
 
 import { columns, rows, Toolbar } from './helpers'
 
-export const TaxonomyTable = ({ title }: TableProps) => {
+export const TaxonomyTable = ({ title, type }: TableProps) => {
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
-  const defaultTab: string | string[] = query.tab || TAXONOMY_TYPE.COURSE
+  const defaultTab: string | string[] = query.tab || type
 
   const handleClick = (e: MouseEvent<HTMLElement>, row: Taxonomy) => {
     e.stopPropagation()
@@ -58,8 +58,8 @@ export const TaxonomyTable = ({ title }: TableProps) => {
     })
   }
 
-  const { loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
-
+  const { error, loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
+  console.log(error?.message)
   const handleSuccess = offCanvas.close
 
   return (

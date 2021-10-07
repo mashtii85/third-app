@@ -18,7 +18,6 @@ import { useTaxonomies } from '../../taxonomies/hooks'
 
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
 import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 
 // Helpers
@@ -26,14 +25,13 @@ import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
 import { CustomFieldElement } from '../../taxonomies/customField/customFieldElement'
 
-export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
+export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
-
   const { taxonomies } = useTaxonomies({
-    category: defaultValues?.type + 's'
+    category: defaultValues?.type
   })
 
   const { createAccount } = useCreateAccount({
@@ -76,8 +74,11 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
 
-  const isClientMember = defaultValues?.type === ACCOUNT_TYPE.Member
+  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
   const isClientCreateMember = taxonomies.length > 0
+  const isClientUser = isClientMember && isClientCreateMember
+
+  const taxonomySelectTitle = isAdmin ? 'Client' : 'Member'
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
@@ -105,20 +106,20 @@ export const AccountForm = ({ defaultValues, filters, onSuccess }: AccountFormPr
       <FormLabel label="Email">
         <FormField type="email" {...defaultOptions} name="email" />
       </FormLabel>
-      {isClientMember && isClientCreateMember && (
+      {(isClientUser || isAdmin) && (
         <>
-          <div>Member</div>
+          <div>{taxonomySelectTitle}</div>
           <TaxonomySelect
             {...defaultOptions}
-            label="Member Type"
+            label={`${taxonomySelectTitle} Type`}
             name="taxonomy"
-            type={TAXONOMY_TYPE.MEMBER}
+            type={defaultValues?.type}
           />
           {taxonomyWatch?.value && (
             <CustomFieldElement
               {...defaultValues}
               {...defaultOptions}
-              type={TAXONOMY_TYPE.MEMBER}
+              type={defaultValues?.type}
               taxonomyWatch={taxonomyWatch}
             />
           )}

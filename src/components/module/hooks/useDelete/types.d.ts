@@ -5,7 +5,7 @@
 // Types.d
 import { Module } from '../../../../types/module.d'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { moduleFilter } from '../get/types'
+import { ModuleFilter } from '../useModule/types.d'
 
 export interface ModuleDeleteVariables {
   id: number
@@ -16,7 +16,7 @@ export interface ModuleDeleteData {
 }
 
 export interface useDeletemoduleProps extends UseHookProps<ModuleDeleteData> {
-  filters: moduleFilter
+  filters: ModuleFilter
   id: number
 }
 

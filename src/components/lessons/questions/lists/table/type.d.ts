@@ -3,7 +3,7 @@
  */
 
 export interface LessonQuestionTableProps {
-  type: string | string[]
+  type: string
   entity: string
   entityId: number
 }

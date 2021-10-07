@@ -29,6 +29,20 @@ export const Client: Navigation = {
       }
     },
     {
+      id: 'navEventsMenu',
+      name: 'Events',
+      type: {
+        as: 'dropdown',
+        items: [
+          {
+            id: 'navEventsList',
+            name: 'List',
+            to: pages.dashboard.events.list
+          }
+        ]
+      }
+    },
+    {
       id: 'navLearningMenu',
       name: 'Learning',
       type: {

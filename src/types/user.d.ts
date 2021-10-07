@@ -1,7 +1,7 @@
 /**
  * Types - User
  */
-import { Account, ACCOUNT_TYPE } from './account'
+import { Account, ACCOUNT_TYPE } from './account.d'
 
 export enum USER_STATUS {
   Active = 'active',

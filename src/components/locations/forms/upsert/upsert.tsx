@@ -65,7 +65,7 @@ export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: Locat
     } else {
       createLocation({
         variables: {
-          object: { ...form, account_id: user.account_id, taxonomy_id: taxonomyWatch.value }
+          object: { ...form, account_id: user?.account_id, taxonomy_id: taxonomyWatch?.value }
         }
       })
     }

@@ -11,10 +11,13 @@ import { Taxonomy } from '../../../types/taxonomy'
 import { TaxonomyChildTableProps } from './type'
 import { UseTaxonomiesVariable } from '../hooks/useTaxonomies/types'
 
+// Constants
+import { THEME_CONTEXT } from '../../../constants/themeContext'
+
 const actionsData = (handleClick: (_: MouseEvent<HTMLElement>, row?: Taxonomy) => void) => {
   const buttons = [
     {
-      context: 'secondary',
+      context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: (_: MouseEvent<HTMLElement>, row: Taxonomy) => handleClick(_, row.data),
       tooltip: 'Edit'

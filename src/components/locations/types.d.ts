@@ -7,7 +7,7 @@ import { LooseObject } from '../../types/object'
 import { STATUS_ACTIVE } from '../../types/select.d'
 import { Taxonomy } from '../../types/taxonomy'
 
-export interface LocationFilter extends Filter {
+export interface LocationFilter extends Partial<Filter> {
   status: STATUS_ACTIVE
 }
 

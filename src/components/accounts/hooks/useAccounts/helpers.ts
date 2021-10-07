@@ -6,7 +6,7 @@
 import { LooseObject } from '../../../../types/object.d'
 import { AccountFilters } from '../../types.d'
 
-export const prepareUseAccounts = (filters?: AccountFilters): LooseObject => {
+export const prepareUseAccounts = (filters?: Partial<AccountFilters>): LooseObject => {
   if (!filters) {
     return {}
   }
@@ -26,7 +26,7 @@ export const prepareUseAccounts = (filters?: AccountFilters): LooseObject => {
 
   variables.limit = filters?.limit || 20
   variables.offset = filters?.offset || 0
-  variables.order = filters?.orderBy || {
+  variables.order = filters?.order_by || {
     created_at: 'desc'
   }
 

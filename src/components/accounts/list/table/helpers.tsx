@@ -14,6 +14,7 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 
+// Forms
 import { Account, ACCOUNT_TYPE } from '../../../../types/account'
 import { Column } from '../../../../types/column'
 
@@ -26,10 +27,13 @@ import { AccountFilters } from '../../types.d'
 import { AccountsRow } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 const actionsData = (handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void) => {
   return [
     {
-      context: 'secondary',
+      context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: handleEdit,
       tooltip: 'Edit'
@@ -43,14 +47,6 @@ export const columns = (
 ): Column<AccountsRow>[] => {
   return [
     {
-      text: 'taxonomy',
-      hidden: true
-    },
-    {
-      text: 'custom_fields',
-      hidden: true
-    },
-    {
       text: 'id',
       hidden: true
     },
@@ -59,7 +55,7 @@ export const columns = (
       hidden: true
     },
     {
-      formatter: TableLink('', 'accountId', 'name', 'url'),
+      formatter: TableLink('', 'id', 'name', 'url'),
       text: 'Name'
     },
     {
@@ -94,6 +90,14 @@ export const columns = (
       formatter: TableActions,
       formatterData: actionsData(handleEdit),
       text: 'Actions'
+    },
+    {
+      text: 'taxonomy',
+      hidden: true
+    },
+    {
+      text: 'custom_fields',
+      hidden: true
     }
   ]
 }
@@ -105,8 +109,6 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       const user = account?.users[0]?.user ?? {}
 
       const model: AccountsRow = {
-        taxonomy: account.taxonomy,
-        custom_fields: account.custom_fields,
         id: account.id,
         userId: user?.id,
         name: account?.name,
@@ -118,7 +120,9 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
         url: pages.dashboard.accounts.view,
         status: account.status,
         created: formatDateStandard(account.created_at),
-        actions: ''
+        actions: '',
+        taxonomy: account.taxonomy,
+        custom_fields: account.custom_fields
       }
       list.push(model)
     }
@@ -130,10 +134,12 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
 export const UserAccountToolbar = ({
   filters,
   type,
-  clientId
+  clientId,
+  isAdmin
 }: {
-  filters?: AccountFilters
+  filters?: Partial<AccountFilters>
   clientId: number
+  isAdmin: boolean
   type: ACCOUNT_TYPE
 }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -144,6 +150,7 @@ export const UserAccountToolbar = ({
         <AccountForm
           onSuccess={offCanvas.close}
           filters={filters}
+          isAdmin={isAdmin}
           defaultValues={{
             client_id: clientId,
             type

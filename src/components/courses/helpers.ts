@@ -1,14 +1,14 @@
 /**
- * Components - Charts - Course - Helper
+ * Components - ProgressBar - Course - Helper
  */
 
 import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../types/lessonProgress.d'
 import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../types/medium.d'
-import { ProgressChartModel } from '../../types/pieChart.d'
+import { ProgressBarModel } from '../../types/progressBar'
 import { Video } from '../common/videoPlayer/type'
 
-export const chartData = (data: LessonProgress[]): ProgressChartModel => {
-  const result: ProgressChartModel = { data: [], status: {} }
+export const progressData = (data: LessonProgress[]): ProgressBarModel => {
+  const result: ProgressBarModel = { data: [], status: {} }
   let started = 0
   let pending = 0
   let completed = 0

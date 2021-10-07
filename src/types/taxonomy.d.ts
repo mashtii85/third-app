@@ -1,12 +1,17 @@
+// Types
+import { STATUS_ACTIVE } from './select.d'
+
 export interface Options {
   label: string
   value: string
 }
 
 export enum TAXONOMY_TYPE {
+  CLIENT = 'clients',
   COURSE = 'courses',
   MEMBER = 'members',
-  LOCATION = 'locations'
+  LOCATION = 'locations',
+  EVENT = 'events'
 }
 
 export interface CustomFields {
@@ -20,7 +25,7 @@ export interface Taxonomy {
   id?: number
   name?: string
   entity?: string
-  status: TAXONOMY_STATUS
+  status: STATUS_ACTIVE
   type?: string
   client_id?: number
   entity_id?: number

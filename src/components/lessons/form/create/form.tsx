@@ -11,10 +11,8 @@ import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss
 
 import { lessonSchema as schema } from './schema'
 
-// Constants
-import { lessonType, lessonStatus, LessonFormType } from './types.d'
-
 // Types
+import { LessonFormType, LESSON_TYPE_DROPDOWN, LESSON_STATUS_DROPDOWN } from './types.d'
 import { useCreateLesson } from '../../hooks/useCreate/useCreate'
 import { useUpdateLesson } from '../../hooks/useUpdate/useUpdate'
 import { LooseObject } from '../../../../types/object'
@@ -28,6 +26,18 @@ export const LessonForm = ({
   onSuccess: () => void
   defaultValues: LessonFormType | LooseObject
 }) => {
+  const lessonType: LESSON_TYPE_DROPDOWN[] = [
+    { text: 'Text', value: 'text' },
+    { text: 'Video', value: 'video' },
+    { text: 'Quiz', value: 'quiz' },
+    { text: 'Assignment', value: 'assignment' }
+  ]
+
+  const lessonStatus: LESSON_STATUS_DROPDOWN[] = [
+    { text: 'Active', value: 'active' },
+    { text: 'Inactive', value: 'inactive' }
+  ]
+
   const { control, errors, handleSubmit, register } = useForm<LessonFormType>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)

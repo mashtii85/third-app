@@ -3,7 +3,7 @@
  */
 
 // React
-import { ChangeEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
@@ -11,7 +11,8 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, rows, Toolbar } from './helpers'
-
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
 // Hooks
 import { useCourses } from '../../hooks'
 // Types
@@ -32,7 +33,7 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   })
 
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const handleDelete = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+  const handleDelete = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
         <DeleteCourse
@@ -48,7 +49,9 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
     })
   }
 
-  const handleEdit = (_: ChangeEvent<HTMLInputElement>, row: CourseTableRowsType) => {
+  const handleEdit = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
+    const taxonomy = row?.taxonomy && { value: row?.taxonomy.id, label: row?.taxonomy.name }
+
     offCanvas.show({
       content: (
         <CourseForm
@@ -60,8 +63,8 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
             title: row.title,
             status: row.status,
             description: row.description,
-            taxonomy: { value: row?.taxonomy.id, label: row?.taxonomy.name },
-            custom_fields: row.custom_fields
+            taxonomy,
+            custom_fields: formatToValidDate(row?.custom_fields)
           }}
         />
       ),

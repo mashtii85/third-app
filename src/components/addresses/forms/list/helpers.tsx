@@ -23,6 +23,9 @@ import { offCanvasType } from '../../../../types/offCanvas'
 // Forms
 import { AddressForm } from '../../forms/create/form'
 
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
 export const columns = ({
   handleDelete,
   handleEdit
@@ -48,13 +51,13 @@ export const columns = ({
       formatter: TableActions,
       formatterData: [
         {
-          context: 'secondary',
+          context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
           onClick: handleEdit,
           tooltip: 'Edit'
         },
         {
-          context: 'danger',
+          context: THEME_CONTEXT.danger,
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'

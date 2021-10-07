@@ -9,8 +9,8 @@ import { GET_ACCOUNT } from '../../queries'
 // Types
 import { AccountData, UseAccountOutput, UseAccountVariable } from '../types.d'
 
-export const useAccount = ({ accountId }: UseAccountVariable): UseAccountOutput => {
-  const { data, error, loading } = useQuery<AccountData, any>(GET_ACCOUNT, {
+export const useAccount = ({ accountId }: Partial<UseAccountVariable>): UseAccountOutput => {
+  const { data, error, loading } = useQuery<Partial<AccountData>, any>(GET_ACCOUNT, {
     variables: {
       accountId
     }

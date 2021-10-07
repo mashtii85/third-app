@@ -3,7 +3,7 @@
  */
 
 import { Control } from 'react-hook-form'
-import { Taxonomy } from '../../../types/taxonomy'
+import { Taxonomy } from '../../../../types/taxonomy.d'
 
 export interface TaxonomyFormProps {
   type?: string

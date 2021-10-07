@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { ACCOUNT_TYPE } from '../../../types/account'
+import { ACCOUNT_TYPE } from '../../../types/account.d'
 import { GET_ACCOUNT_USER } from '../queries'
 
 // Types

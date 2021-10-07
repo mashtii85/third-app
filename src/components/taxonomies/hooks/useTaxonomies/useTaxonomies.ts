@@ -3,7 +3,8 @@
  */
 
 // Apollo
-import { useQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
+import { useEffect } from 'react'
 import { GET_TAXONOMIES } from '../../queries'
 // Helpers
 import { prepareTaxonomyArguments } from '../helpers'
@@ -12,9 +13,19 @@ import { TaxonomiesData, UseTaxonomiesVariable, UseTaxonomiesOutput } from './ty
 
 export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutput => {
   const variables = prepareTaxonomyArguments(filter)
-  const { data, error, loading } = useQuery<TaxonomiesData, UseTaxonomiesVariable>(GET_TAXONOMIES, {
+  const [getTaxonomies, { loading, error, data }] = useLazyQuery<
+    TaxonomiesData,
+    UseTaxonomiesVariable
+  >(GET_TAXONOMIES, {
     variables
   })
+
+  useEffect(() => {
+    getTaxonomies({ variables })
+    return (): void => {
+      getTaxonomies({ variables })
+    }
+  }, [filter.entity])
 
   if (error) {
     return { loading: false, error, taxonomies: [] }

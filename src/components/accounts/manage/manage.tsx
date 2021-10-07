@@ -15,6 +15,7 @@ const CreateAccount = () => {
   const {
     user: { id: clientId = 0, account_type: accountType = ACCOUNT_TYPE.Member }
   } = useCurrentUser()
+  const isAdmin = accountType === ACCOUNT_TYPE.Admin
 
   const handleSuccess = (data: any): void => {
     const [account] = data?.insert_account?.returning
@@ -24,10 +25,11 @@ const CreateAccount = () => {
   return (
     <AccountForm
       // defaultValues={{ status }}
+      isAdmin={isAdmin}
       filters={{
         limit: 20,
         offset: 0,
-        orderBy: { created_at: 'asc' },
+        order_by: { created_at: 'asc' },
         accountId: clientId,
         type: accountType
       }}
