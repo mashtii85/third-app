@@ -1,6 +1,7 @@
 /**
  * Config
  */
+
 export const version = '0.1.0'
 
 export const Canonical = 'https://lms.realworldacademies.com'

@@ -18,7 +18,7 @@ export enum MEDIUM_TYPE {
   Video = 'video'
 }
 
-export interface DropzoneType {
+export interface DropzoneType extends Blob {
   lastModified: number
   lastModifiedDate: Date
   name: string

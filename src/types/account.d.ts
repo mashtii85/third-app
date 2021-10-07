@@ -18,9 +18,10 @@ export interface CustomField {
 
 export interface Account {
   id: number
+  client_id?: number
   name: string
   status: STATUS_ACTIVE
-  type: string
+  type: ACCOUNT_TYPE
   structure: string
   created_at: string
   taxonomy_id: number

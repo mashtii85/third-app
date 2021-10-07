@@ -1,6 +1,7 @@
 /**
- * Auth - Login
+ * Auth - Switch Account
  *
+ * Note: uses mock data to login
  */
 
 // Next
@@ -13,14 +14,14 @@ import nc from 'next-connect'
 import { handlerOptions } from '../../../utils/api/handlers'
 
 // Services
-import { login } from '../../../services/auth/login'
+import { switchAccount } from '../../../services/auth/switchAccount'
 
 const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
 
 handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, password } = req.body || req.body.input
+  const { accountId } = req.body || req.body.input
 
-  const loginData = await login(email, password)
+  const loginData = await switchAccount(accountId, req.headers)
 
   res.status(200).json(loginData)
 })
