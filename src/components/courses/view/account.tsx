@@ -39,6 +39,7 @@ import { CompletionCertificate } from './completionCertificate'
 import { Course } from '../../../types/course'
 import { CourseData } from '../hooks/types'
 import { CourseProgressBar } from '../progressBar'
+import { NotesTable } from '../notes/lists/tables/table'
 
 // Constants
 import { THEME_CONTEXT } from '../../../constants/themeContext'
@@ -53,6 +54,7 @@ import { Module } from '../../../types/module'
 import { Quiz } from '../../common/quiz/quiz'
 import { QuizCompletedData } from '../../common/quiz/types'
 import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../types/lesson.d'
+import { POST_TYPE } from '../../../types/post.d'
 
 // Helpers
 import { parseVideos } from '../helpers'
@@ -434,7 +436,7 @@ export const AccountCourseView = () => {
         </Column>
       </Row>
       <Row>
-        <Column md={3}>
+        <Column md={3.5}>
           {(course as Course)?.modules?.length &&
             (course as Course)?.modules?.map((m: Module) => (
               <Details2 key={m.id} open title={m.title}>
@@ -442,10 +444,9 @@ export const AccountCourseView = () => {
               </Details2>
             ))}
         </Column>
-
-        <Column md={9}>
+        <Column md={8.5}>
           <Row>
-            <Column md={9}>
+            <Column md={7}>
               {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
                 <Details2 open title="Completion Certificate">
                   <CompletionCertificate
@@ -491,10 +492,15 @@ export const AccountCourseView = () => {
                 </Details2>
               )}
             </Column>
-
-            <Column md={3}>
+            <Column md={5}>
               <Details2 title="Resources">Resources</Details2>
-              <Details2 title="Notes">Notes</Details2>
+              <NotesTable
+                key="notes-table"
+                accountId={user.account_id}
+                entity="course"
+                entityId={course.id}
+                type={POST_TYPE.Note}
+              />
             </Column>
           </Row>
         </Column>
