@@ -23,7 +23,7 @@ interface loginModel {
 
 export const login = async (email: string, password: string): Promise<loginModel> => {
   if (!email || !password) {
-    TE('Email or password is missing')
+    TE('Email or password is missing', 401)
   }
 
   let user = null
