@@ -135,11 +135,11 @@ export const UserAccountToolbar = ({
   filters,
   type,
   clientId,
-  isAdminUser
+  isAdmin
 }: {
   filters?: Partial<AccountFilters>
   clientId: number
-  isAdminUser: boolean
+  isAdmin: boolean
   type: ACCOUNT_TYPE
 }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -150,7 +150,7 @@ export const UserAccountToolbar = ({
         <AccountForm
           onSuccess={offCanvas.close}
           filters={filters}
-          isAdminUser={isAdminUser}
+          isAdmin={isAdmin}
           defaultValues={{
             client_id: clientId,
             type

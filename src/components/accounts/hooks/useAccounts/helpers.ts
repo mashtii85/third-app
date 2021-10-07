@@ -26,7 +26,7 @@ export const prepareUseAccounts = (filters?: Partial<AccountFilters>): LooseObje
 
   variables.limit = filters?.limit || 20
   variables.offset = filters?.offset || 0
-  variables.order = filters?.orderBy || {
+  variables.order = filters?.order_by || {
     created_at: 'desc'
   }
 

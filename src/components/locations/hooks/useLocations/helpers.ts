@@ -28,7 +28,7 @@ export const prepareLocationsArguments = ({
   const otherClause = {
     limit: filters?.limit,
     offset: filters?.offset,
-    order_by: filters?.orderBy ? filters.orderBy : {}
+    order_by: filters?.order_by ? filters.order_by : {}
   }
   return { ...otherClause, where: whereClause }
 }

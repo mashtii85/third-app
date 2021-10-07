@@ -25,12 +25,7 @@ import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
 import { CustomFieldElement } from '../../taxonomies/customField/customFieldElement'
 
-export const AccountForm = ({
-  defaultValues,
-  isAdminUser,
-  filters,
-  onSuccess
-}: AccountFormProps) => {
+export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
@@ -79,11 +74,11 @@ export const AccountForm = ({
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
 
-  const isClientMember = isAdminUser ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
+  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
   const isClientCreateMember = taxonomies.length > 0
   const isClientUser = isClientMember && isClientCreateMember
 
-  const taxonomySelectTitle = isAdminUser ? 'Client' : 'Member'
+  const taxonomySelectTitle = isAdmin ? 'Client' : 'Member'
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
@@ -111,7 +106,7 @@ export const AccountForm = ({
       <FormLabel label="Email">
         <FormField type="email" {...defaultOptions} name="email" />
       </FormLabel>
-      {(isClientUser || isAdminUser) && (
+      {(isClientUser || isAdmin) && (
         <>
           <div>{taxonomySelectTitle}</div>
           <TaxonomySelect

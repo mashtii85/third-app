@@ -22,8 +22,8 @@ const initialSort = {}
 
 export const AccountTable = (props: AccountTableProps) => {
   const { user } = useCurrentUser()
-  const isAdminUser = user.account_type === ACCOUNT_TYPE.Admin
-  const accountType = isAdminUser ? ACCOUNT_TYPE.Client : ACCOUNT_TYPE.Member
+  const isAdmin = user.account_type === ACCOUNT_TYPE.Admin
+  const accountType = isAdmin ? ACCOUNT_TYPE.Client : ACCOUNT_TYPE.Member
   const clientId = user.id
   const { initialData, ref } = useTable({ filters: props.filters, initialSort })
 
@@ -38,7 +38,7 @@ export const AccountTable = (props: AccountTableProps) => {
     offCanvas.show({
       content: (
         <AccountForm
-          isAdminUser={isAdminUser}
+          isAdmin={isAdmin}
           onSuccess={offCanvas.close}
           defaultValues={{
             ...row,
@@ -62,7 +62,7 @@ export const AccountTable = (props: AccountTableProps) => {
       title={props.title}
       toolbar={
         <UserAccountToolbar
-          isAdminUser={isAdminUser}
+          isAdmin={isAdmin}
           type={accountType}
           clientId={clientId}
           filters={props.filters}

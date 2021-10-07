@@ -8,7 +8,7 @@ export interface Filter {
   q: string
   limit: number
   offset: number
-  orderBy: OrderBy
+  order_by: OrderBy
 }
 
 export interface DBFilters extends Omit<Filter, 'q'> {
