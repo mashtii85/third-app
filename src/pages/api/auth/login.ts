@@ -1,7 +1,6 @@
 /**
  * Auth - Login
  *
- * Note: uses mock data to login
  */
 
 // Next

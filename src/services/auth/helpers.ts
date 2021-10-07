@@ -29,7 +29,7 @@ export const generateToken = (data: LoginDataModel): string => {
   })
 }
 
-export const validateToken = (token: string): boolean => {
+export const validateToken = (token: string): Partial<LoginDataModel> => {
   return jwt.verify(token, process.env.NEXT_PUBLIC_JWT_PUBLIC_KEY, {
     algorithms: ['RS512']
   })
@@ -65,7 +65,7 @@ export const prepareUserData = (
   }
 }
 
-export const getUserFromToken = (headers) => {
+export const getUserFromToken = (headers: any): Partial<CurrentUser> | null => {
   if (!headers.Authorization) {
     return null
   }
@@ -83,24 +83,4 @@ export const getUserFromToken = (headers) => {
   }
 
   return decoded.user
-}
-
-export const getJWTData = (user) => {
-  const { accountUser } = user
-  let account = null
-  let role = 'tenant_user'
-
-  if (accountUser) {
-    account = accountUser.account
-    // Set user's role to {type}_user, unless the user has owner role
-    if (accountUser.role === 'owner') {
-      role = `${accountUser.account.type}_owner`
-    } else {
-      role = `${accountUser.account.type}_user`
-    }
-
-    // role = `${account.type}_${account.Account_User.role}`
-  }
-
-  return prepareUserData(user, account, role)
 }
