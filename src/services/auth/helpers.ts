@@ -47,9 +47,14 @@ export const prepareUserData = (
     custom_fields: user.custom_fields,
     is_verified: user.is_verified,
     status: user.status,
-    client_id: accountUser?.account?.client_id || 0,
     account_id: accountUser.account_id || 0,
-    account_type: accountUser?.account?.type || ACCOUNT_TYPE.Member
+    account_type: accountUser?.account?.type || ACCOUNT_TYPE.Member,
+    client_id: accountUser?.account?.client_id || 0
+  }
+
+  // Add Account ID as Client ID as fallback for admins and clients
+  if (userData.account_type !== ACCOUNT_TYPE.Member) {
+    userData.client_id = userData.account_id
   }
 
   return {
