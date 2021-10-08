@@ -6,15 +6,16 @@
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// // Hooks
+// Hooks
 import { useCreateMedia } from '../../hooks/useCreate/useCreate'
 
-// // UI
+// UI
 import { Dropzone, Form, FormField, FormLabel } from '@drykiss/industry-ui'
 import { AddButton } from '../../../common/buttons/addButton'
 import { MediaSchema as schema } from './schema'
 
-// User
+// Helpers
+import { uploadMediaToS3 } from './helpers'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 // Types
@@ -61,22 +62,31 @@ export const MediaForm = ({
 
   const onSubmit = async (form: MediaSubmitFormType) => {
     if (!form.dropzone) form.dropzone = dropzoneWatch
+
     const mediaProps: Medium[] = []
-    form.dropzone?.map((file) => {
-      const filename: string[] = file.name?.split('.')
-      mediaProps.push({
-        client_id: user.client_id as number,
-        entity: defaultValues.entity,
-        entity_id: defaultValues.entityId,
-        type: defaultValues.type,
-        status: defaultValues.status,
-        caption: file.name,
-        category: defaultValues.category,
-        filename: filename[0] ?? '',
-        extension: filename[1] ?? ''
+
+    await Promise.all(
+      await form.dropzone?.map(async (file) => {
+        const data = await uploadMediaToS3(file, 'image')
+
+        const filename: string = data.key
+
+        mediaProps.push({
+          client_id: user.client_id as number,
+          entity: defaultValues.entity,
+          entity_id: defaultValues.entityId,
+          type: defaultValues.type,
+          status: defaultValues.status,
+          caption: file.name,
+          category: defaultValues.category,
+          filename,
+          extension: filename?.split('.').pop()
+        })
+
+        return mediaProps
       })
-      return mediaProps
-    })
+    )
+
     if (mediaProps.length) await createMedia({ variables: { objects: mediaProps } })
   }
 

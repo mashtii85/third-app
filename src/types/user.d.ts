@@ -17,7 +17,6 @@ export interface AccountUsers {
   status: USER_STATUS
   user_id: number
   account: Account
-  account_user: Account
 }
 
 export interface UserCustomFields {
@@ -33,13 +32,15 @@ export interface User {
   name_last: string
   custom_fields?: UserCustomFields
   status: USER_STATUS
-  created_at: string
-  updated_at: string
+  created_at?: string
+  updated_at?: string
   accounts?: AccountUsers[]
 }
 
 export interface CurrentUser extends User {
-  client_id: number
+  account?: AccountUsers
   account_id: number
   account_type: ACCOUNT_TYPE
+  client_id: number
+  password?: string
 }
