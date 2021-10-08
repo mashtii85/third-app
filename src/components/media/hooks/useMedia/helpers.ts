@@ -21,35 +21,11 @@ export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseO
   }
 
   if (filters?.type) {
-    whereClause.meta = { _contains: { type: filters.type } }
+    whereClause.type = { _eq: filters.type }
   }
 
-  if (filters?.name) {
-    whereClause.name = { _ilike: filters.name }
-  }
-
-  if (filters?.line1) {
-    whereClause.line1 = { _ilike: filters.line1 }
-  }
-
-  if (filters?.line2) {
-    whereClause.line2 = { _ilike: filters.line2 }
-  }
-
-  if (filters?.line2) {
-    whereClause.line2 = { _ilike: filters.line2 }
-  }
-
-  if (filters?.city) {
-    whereClause.city = { _ilike: filters.city }
-  }
-
-  if (filters?.postcode) {
-    whereClause.postcode = { _ilike: filters.postcode }
-  }
-
-  if (filters?.county) {
-    whereClause.county = { _ilike: filters.county }
+  if (filters?.category) {
+    whereClause.category = { _eq: filters.category }
   }
 
   if (filters?.status) {

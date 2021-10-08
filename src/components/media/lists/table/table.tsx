@@ -6,7 +6,7 @@
 import { useContext, MouseEvent } from 'react'
 
 // Apollo
-import { useMedia } from '../../hooks/get/useMedia'
+import { useMedia } from '../../hooks/useMedia/useMedia'
 
 // UI
 import { OffCanvasContext, Table, TableActions } from '@drykiss/industry-ui'
@@ -19,7 +19,7 @@ import { offCanvasType } from '../../../../types/offCanvas'
 import { MediaTableProps } from './types.d'
 import { Medium, DropzoneProps, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UseMediaProps } from '../../hooks/get/types.d'
+import { UseMediaProps, MediaFilter } from '../../hooks/useMedia/types.d'
 import { MediaFormType } from '../../forms/create/types.d'
 
 // Constants
@@ -51,11 +51,16 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
       disabled: false,
       multiple: true
     }
+    const filters: Partial<MediaFilter> = {
+      entity: defaultValues.entity,
+      entityId: defaultValues.entityId
+    }
 
     offCanvas.show({
       title: 'Add',
       content: (
         <MediaForm
+          filters={filters}
           dropzoneProps={dropzoneProps}
           defaultValues={defaultValues}
           onSuccess={offCanvas.close}

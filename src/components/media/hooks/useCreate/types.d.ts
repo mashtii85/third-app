@@ -20,7 +20,7 @@ export interface MediaCreateType {
 }
 
 export interface MediaCreateData {
-  media: Medium
+  media: { returning: Medium[] }
 }
 
 export interface UseCreateMediaOutput extends UseHookOutput {

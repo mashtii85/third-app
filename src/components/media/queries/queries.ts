@@ -9,8 +9,8 @@ import { gql } from '@apollo/client'
 import { MEDIA_FIELDS } from './fragments'
 
 export const GET_MEDIA = gql`
-  query GetMedium($where: medium_bool_exp) {
-    media: medium(where: $where) {
+  query GetMedium($limit: Int = 100, $order_by: [medium_order_by!] = {}, $where: medium_bool_exp) {
+    media: medium(where: $where, limit: $limit, order_by: $order_by) {
       ...MediaFields
     }
   }

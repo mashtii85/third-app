@@ -5,7 +5,7 @@
 // Types.d
 import { Medium } from '../../../../types/medium.d'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { MediaFilter } from '../get/types'
+import { MediaFilter } from '../useMedia/types.d'
 
 export interface MediaDeleteVariables {
   id: number
