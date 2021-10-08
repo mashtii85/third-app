@@ -8,7 +8,8 @@ export interface QuizProps {
   questions: QuizQuestion[]
   onComplete: ({ score, passed }: QuizCompletedData) => void
   /** default is 50 */
-  minimumScoreToPass?: number
+  minimumScoreToPass?: number,
+  quizScoreInfo?: QuizCompletedData
 }
 export interface QuizState {
   activeQuestionIndex: number
