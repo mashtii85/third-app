@@ -7,10 +7,12 @@ import { STATUS_ACTIVE } from '../../../types/select.d'
 import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
 import { Filter } from '../../../types/filter.d'
+import { Options } from '../../../types/taxonomy'
 
-export interface CourseFilter extends Partial<Filter> {
+export interface CourseFilter extends Filter {
+  accountId: number
   status: STATUS_ACTIVE
-  description: string
+  taxonomy: Options
 }
 
 export interface CoursesData {
@@ -38,6 +40,5 @@ export interface CourseData {
 }
 
 export interface PrepareCourseArgumentProps {
-  accountId: number
   filters?: CourseFilter
 }

@@ -1,5 +1,5 @@
 /**
- * Components - Courses - Form - Add - types.d
+ * Components - Courses - Forms - Upsert - types.d
  */
 import { Control, FieldErrors } from 'react-hook-form'
 

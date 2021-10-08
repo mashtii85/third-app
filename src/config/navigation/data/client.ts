@@ -71,12 +71,12 @@ export const Client: Navigation = {
             id: 'navMembersList',
             name: 'List',
             to: pages.dashboard.accounts.list
-          },
-          {
-            id: 'navMembersCreate',
-            name: 'Create',
-            to: pages.dashboard.accounts.create
           }
+          // {
+          //   id: 'navMembersCreate',
+          //   name: 'Create',
+          //   to: pages.dashboard.accounts.create
+          // }
         ]
       }
     },

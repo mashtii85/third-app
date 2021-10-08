@@ -33,14 +33,9 @@ export const TaxonomySelect = ({
     register
   }
 
-  const GetOptions = () => {
-    const { taxonomies } = useTaxonomies({ category: type })
-    return taxonomies.map((taxonomy) => {
-      return { label: taxonomy.name, value: taxonomy.id }
-    })
-  }
+  const { taxonomies } = useTaxonomies({ category: type })
+  const options = taxonomies.map((taxonomy) => ({ label: taxonomy.name, value: taxonomy.id }))
 
-  const options = GetOptions()
   return options.length === 0 ? (
     <></>
   ) : (

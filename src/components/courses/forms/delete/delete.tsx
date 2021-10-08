@@ -7,22 +7,20 @@ import { SIZE } from '../../../../config/theme'
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteCourse } from '../../hooks'
+import { CourseFilter } from '../../hooks/types'
 
 export const DeleteCourse = ({
   id,
   title,
   filters,
-  clientId,
   onSuccess
 }: {
   id: number
-  clientId: number
-  filters: any
+  filters: CourseFilter
   title: string
   onSuccess: () => void
 }) => {
   const { deleteCourse } = useDeleteCourse({
-    clientId: clientId,
     filters: filters,
     onCompleted: onSuccess,
     onError: (error) => {

@@ -4,9 +4,9 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { LooseObject } from '../../../../types/object'
 import { CREATE_COURSE, GET_COURSES } from '../../queries'
 
+// Helpers
 import { prepareCoursesArguments } from '../helpers'
 
 // Types
@@ -23,13 +23,11 @@ export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOut
     onError: props.onError,
     update(cache, { data }) {
       const courseFromResponse = data?.course
-      const variables: LooseObject = prepareCoursesArguments({
-        filters: props.filters,
-        accountId: props.accountId
+      const variables = prepareCoursesArguments({
+        filters: props.filters
       })
 
-      variables.client_id = { _eq: props.accountId }
-      const { courses } = cache.readQuery<CourseQueryData, { variables?: LooseObject }>({
+      const { courses } = cache.readQuery<CourseQueryData>({
         query: GET_COURSES,
         variables
       }) || { courses: [] }

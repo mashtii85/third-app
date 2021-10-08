@@ -11,7 +11,7 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, rows, Toolbar } from './helpers'
-
+import { formatToValidDate } from '../../../../utils/dateFormatter'
 // Hooks
 import { useLocations } from '../../hooks'
 // Types
@@ -67,7 +67,7 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
             name: row.name,
             status: row.status,
             taxonomy,
-            custom_fields: row.custom_fields
+            custom_fields: formatToValidDate(row?.custom_fields)
           }}
         />
       ),

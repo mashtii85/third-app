@@ -78,7 +78,7 @@ export const Toolbar = ({
 }) => {
   return (
     <ButtonToolbar>
-      <Button context="secondary" onClick={handleClick}>
+      <Button context="secondary" size="sm" onClick={handleClick}>
         Add New
       </Button>
     </ButtonToolbar>

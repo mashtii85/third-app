@@ -19,6 +19,7 @@ interface CourseEnrolment {
   status: STATUS_ACTIVE
   updated_at: string
 }
+
 export interface Course {
   id?: number
   title: string

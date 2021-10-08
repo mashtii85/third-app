@@ -10,9 +10,7 @@ import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
-import { columns, rows, Toolbar } from './helpers'
-// Utils
-import { formatToValidDate } from '../../../../utils/dateFormatter'
+import { columns, prepareEditCourseValues, rows, Toolbar } from './helpers'
 // Hooks
 import { useCourses } from '../../hooks'
 // Types
@@ -24,11 +22,10 @@ import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 
-export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
+export const CourseTable = ({ filters }: CourseTableProps) => {
   const { initialData, ref } = useTable<CourseFilter>({ filters, initialSort })
 
   const { courseList, loading } = useCourses({
-    accountId: clientId,
     filters: initialData
   })
 
@@ -41,7 +38,6 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
           title={row.title}
           onSuccess={offCanvas.close}
           filters={initialData}
-          clientId={clientId}
         />
       ),
       submit: false,
@@ -50,23 +46,10 @@ export const CourseTable = ({ clientId, filters }: CourseTableProps) => {
   }
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
-    const taxonomy = row?.taxonomy && { value: row?.taxonomy.id, label: row?.taxonomy.name }
-
+    const defaultValues = prepareEditCourseValues(row)
     offCanvas.show({
       content: (
-        <CourseForm
-          onSuccess={offCanvas.close}
-          filters={filters}
-          defaultValues={{
-            ...row,
-            id: row.id,
-            title: row.title,
-            status: row.status,
-            description: row.description,
-            taxonomy,
-            custom_fields: formatToValidDate(row?.custom_fields)
-          }}
-        />
+        <CourseForm onSuccess={offCanvas.close} filters={filters} defaultValues={defaultValues} />
       ),
       submit: true,
       title: 'Edit Course'

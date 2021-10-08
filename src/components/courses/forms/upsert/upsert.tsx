@@ -1,5 +1,5 @@
 /**
- * Components - Courses - Form - Add - Form
+ * Components - Courses - Forms - Add - UpsertForm
  */
 
 // React Hook Form
@@ -24,7 +24,7 @@ import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
-export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
+export const UpsertForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
   const { user } = useCurrentUser()
 
   const { control, errors, handleSubmit, register, watch } = useForm<CourseFormType>({
@@ -36,7 +36,6 @@ export const CourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFor
   const taxonomyWatch: Options = watch('taxonomy')
 
   const { createCourse } = useCreateCourse({
-    accountId: user.account_id,
     filters,
     onCompleted: onSuccess,
     onError: (error) => {

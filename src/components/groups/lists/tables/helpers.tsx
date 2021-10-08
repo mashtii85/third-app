@@ -96,7 +96,7 @@ export const Toolbar = (filters: Partial<GroupFilter>) => {
 
   return (
     <ButtonToolbar>
-      <Button context="white" onClick={handleClick} size="sm" content="Create a group" />
+      <Button context="secondary" onClick={handleClick} size="sm" content="Create a group" />
     </ButtonToolbar>
   )
 }
