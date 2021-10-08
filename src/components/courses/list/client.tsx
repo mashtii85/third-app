@@ -6,8 +6,12 @@ import { CourseFilters } from './filter'
 import { CourseTable } from './table'
 import { LayoutList } from '../../../layouts/list'
 
-export const ClientCourseList = ({ clientId }: { clientId: number }) => {
+export const ClientCourseList = ({ accountId }: { accountId: number }) => {
   return (
-    <LayoutList FiltersComp={CourseFilters} TableComp={CourseTable} otherProps={{ clientId }} />
+    <LayoutList
+      FiltersComp={CourseFilters}
+      TableComp={CourseTable}
+      initialFilters={{ accountId }}
+    />
   )
 }

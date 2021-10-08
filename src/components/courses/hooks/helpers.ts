@@ -6,36 +6,42 @@ import { nullFreeObject } from '../../../utils/nullFreeObject'
 
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
-import { LooseObject } from '../../../types/object.d'
 import { PrepareCourseArgumentProps } from './types'
+import { Course } from '../../../types/course'
+import { GQLClause, GraphqlWhere } from '../../../types/gql'
+import { CourseDB } from '../types'
 
 export const prepareCoursesArguments = ({
-  filters,
-  accountId
-}: PrepareCourseArgumentProps): LooseObject => {
+  filters
+}: PrepareCourseArgumentProps): GQLClause<Course> => {
   nullFreeObject(filters)
-  const whereClause: LooseObject = {}
-  whereClause.account_id = { _eq: accountId }
+
+  let condition: GraphqlWhere<CourseDB> = { status: { _eq: STATUS_ACTIVE.Active } }
+
+  if (filters?.accountId) {
+    condition.account_id = { _eq: filters.accountId }
+  }
 
   if (filters?.q) {
-    whereClause.title = { _ilike: filters.q }
+    condition = {
+      _or: [{ title: { _ilike: filters.q } }, { description: { _ilike: filters.q } }]
+    }
   }
 
   if (filters?.status) {
-    whereClause.status = { _eq: filters.status }
-  } else {
-    whereClause.status = { _eq: STATUS_ACTIVE.Active }
+    condition.status = { _eq: filters.status }
   }
 
-  if (filters?.description) {
-    whereClause.description = { _ilike: filters.description }
+  if (filters?.taxonomy) {
+    condition.taxonomy_id = { _eq: filters.taxonomy.value }
   }
 
+  // if (filters.ta)
   const otherClause = {
     limit: filters?.limit,
     offset: filters?.offset,
     order_by: filters?.order_by ? filters.order_by : {}
   }
 
-  return { ...otherClause, where: whereClause }
+  return { ...otherClause, where: condition }
 }

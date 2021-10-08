@@ -34,7 +34,7 @@ export const Filters = memo(
       const filters = data
 
       if (q !== lastQuery) {
-        filters.q = `${q}%` || '%'
+        filters.q = q.length > 0 ? `%${q}%` : '%'
 
         // If search value is a number, set it as id for Job Id and Invoice Id search
         const queryIsNumber = /^\d+$/.test(q)
@@ -61,8 +61,8 @@ export const Filters = memo(
       <Form handleSubmit={handleSubmit(handleSearch)}>
         <Details2 title="Filters">
           <Row>
-            <Column sm={12} lg={12}>
-              <FormLabel label="">
+            <Column sm={4} lg={4}>
+              <FormLabel label="Search" context="primary">
                 <Search
                   errors={errors}
                   label="Search"
@@ -75,15 +75,13 @@ export const Filters = memo(
               </FormLabel>
             </Column>
 
-            <Column sm={12} lg={12}>
-              {renderFilters({
-                control,
-                errors,
-                initialValues,
-                register,
-                setFilters
-              })}
-            </Column>
+            {renderFilters({
+              control,
+              errors,
+              initialValues,
+              register,
+              setFilters
+            })}
           </Row>
 
           <AddButton content="Search" context="secondary" handleClick={handleSearch} type="submit">

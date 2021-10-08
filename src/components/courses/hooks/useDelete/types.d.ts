@@ -17,7 +17,6 @@ export interface CourseDeleteData {
 
 export interface useDeleteCourseProps extends UseHookProps<CourseDeleteData> {
   filters: CourseFilter
-  clientId: number
 }
 export interface useDeleteCourseOutput {
   deleteCourse: any

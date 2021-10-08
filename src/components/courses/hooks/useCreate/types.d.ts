@@ -12,7 +12,6 @@ export interface CreateCourseVariables {
 }
 
 export interface UseCreateCourseProps extends UseHookProps<CreateCourseVariables> {
-  accountId: number
   filters: CourseFilter
 }
 

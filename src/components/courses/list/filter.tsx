@@ -3,11 +3,14 @@
  */
 
 // UI
-
-import { FormField, FormLabel, SelectField } from '@drykiss/industry-ui'
+import { Column, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
+
+// Types
 import { LooseObject } from '../../../types/object'
+import { TaxonomySelect } from '../../taxonomies/select/select'
+import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 
 export const CourseFilters = ({
   control,
@@ -27,12 +30,19 @@ export const CourseFilters = ({
 
   return (
     <>
-      <FormLabel label="Description">
-        <FormField {...defaultOptions} name="description" />
-      </FormLabel>
-      <FormLabel label="Status">
-        <SelectField {...defaultOptions} name="status" options={statusActive} />
-      </FormLabel>
+      <Column sm={4} lg={4}>
+        <FormLabel label="Status">
+          <SelectField {...defaultOptions} name="status" options={statusActive} />
+        </FormLabel>
+      </Column>
+      <Column sm={4} lg={4}>
+        <TaxonomySelect
+          {...defaultOptions}
+          label={`Type`}
+          name="taxonomy"
+          type={TAXONOMY_TYPE.COURSE}
+        />
+      </Column>
     </>
   )
 }

@@ -22,6 +22,9 @@ import { Column } from '../../../../types/column'
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
 
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
+
 export const columns = ({
   handleDelete,
   handleEdit
@@ -117,4 +120,21 @@ export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
   }
 
   return <Button context="white" onClick={handleClick} size="sm" content="Create a course" />
+}
+
+export const prepareEditCourseValues = (row: CourseTableRowsType) => {
+  const taxonomy = row.taxonomy && {
+    value: row.taxonomy?.id,
+    label: row.taxonomy?.name
+  }
+
+  return {
+    ...row,
+    id: row.id,
+    title: row.title,
+    status: row.status,
+    description: row.description,
+    taxonomy,
+    custom_fields: formatToValidDate(row?.custom_fields)
+  }
 }

@@ -17,7 +17,6 @@ import {
   useDeleteCourseOutput
 } from './types.d'
 import { Course } from '../../../../types/course.d'
-import { LooseObject } from '../../../../types/object.d'
 
 export const useDeleteCourse = (props: useDeleteCourseProps): useDeleteCourseOutput => {
   const [deleteCourse, { loading }] = useMutation<CourseDeleteData, CourseDeleteVariables>(
@@ -26,12 +25,10 @@ export const useDeleteCourse = (props: useDeleteCourseProps): useDeleteCourseOut
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const variables: LooseObject = prepareCoursesArguments({
-          filters: props.filters,
-          accountId: props.clientId
+        const variables = prepareCoursesArguments({
+          filters: props.filters
         })
 
-        variables.client_id = { _eq: props.clientId }
         const { courses } = cache.readQuery<{ courses: Course[] }>({
           query: GET_COURSES,
           variables

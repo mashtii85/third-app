@@ -27,9 +27,5 @@ export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutpu
     }
   }, [filter.parentId || filter.entity])
 
-  if (error) {
-    return { loading: false, error, taxonomies: [] }
-  }
-
-  return { loading, taxonomies: data?.taxonomies || [] }
+  return { error, loading, taxonomies: data?.taxonomies || [] }
 }

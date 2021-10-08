@@ -20,6 +20,5 @@ export interface CourseTableRowsType {
 }
 
 interface CourseTableProps {
-  clientId: number
   filters: CourseFilter
 }

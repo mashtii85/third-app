@@ -19,7 +19,6 @@ export const LayoutList = ({
   otherProps
 }: LayoutListProps) => {
   const [filters, setFilters] = useState(initialFilters)
-
   return (
     <Row>
       <Column sm={12} lg={12}>
