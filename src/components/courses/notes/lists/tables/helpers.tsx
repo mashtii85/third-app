@@ -84,7 +84,6 @@ export const Toolbar = (filters: Partial<PostFilter>) => {
     offCanvas.show({
       content: (
         <NotesForm
-          courseId={filters.entityId!}
           onSuccess={offCanvas.close}
           defaultValues={{
             id: undefined,
