@@ -24,6 +24,7 @@ export const NotesForm = ({
   defaultValues,
   onSuccess
 }: {
+  courseId?: number
   defaultValues: Partial<NotesFormType>
   onSuccess: () => void
 }) => {

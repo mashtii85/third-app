@@ -60,7 +60,7 @@ export const GroupTable = (filters: Partial<GroupFilter>) => {
   }
 
   return (
-    <Details2 open title="Groups" toolbar={<Toolbar accountId={filters.accountId} />}>
+    <Details2 open title="Groups" size="sm" toolbar={<Toolbar accountId={filters.accountId} />}>
       <Table
         loading={loading}
         columns={columns({ handleDelete, handleEdit })}

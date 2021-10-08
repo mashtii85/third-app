@@ -25,7 +25,7 @@ export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutpu
     return (): void => {
       getTaxonomies({ variables })
     }
-  }, [filter.entity])
+  }, [filter.parentId || filter.entity])
 
   if (error) {
     return { loading: false, error, taxonomies: [] }

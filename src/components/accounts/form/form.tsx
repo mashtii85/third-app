@@ -30,10 +30,12 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
     defaultValues,
     resolver: yupResolver(schema)
   })
-  const { taxonomies } = useTaxonomies({
-    category: defaultValues?.type
-  })
+  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
 
+  const { taxonomies } = useTaxonomies({
+    category: isClientMember
+  })
+  console.log('defaultValues', defaultValues)
   const { createAccount } = useCreateAccount({
     filters: { ...filters, clientId: defaultValues?.client_id, type: defaultValues?.type },
     onCompleted: onSuccess,
@@ -74,7 +76,6 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
 
-  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
   const isClientCreateMember = taxonomies.length > 0
   const isClientUser = isClientMember && isClientCreateMember
 
@@ -113,13 +114,13 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
             {...defaultOptions}
             label={`${taxonomySelectTitle} Type`}
             name="taxonomy"
-            type={defaultValues?.type}
+            type={isClientMember}
           />
           {taxonomyWatch?.value && (
             <CustomFieldElement
               {...defaultValues}
               {...defaultOptions}
-              type={defaultValues?.type}
+              type={isClientMember}
               taxonomyWatch={taxonomyWatch}
             />
           )}
