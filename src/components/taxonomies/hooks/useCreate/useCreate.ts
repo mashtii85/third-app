@@ -11,11 +11,14 @@ import { prepareTaxonomyArguments } from '../helpers'
 import { UseCreateTaxonomyOutput, UseCreateTaxonomyProps } from './types'
 
 export const useCreateTaxonomy = (props: UseCreateTaxonomyProps): UseCreateTaxonomyOutput => {
-  const variables = prepareTaxonomyArguments(props)
   const [createTaxonomy, { error, loading }] = useMutation(CREATE_TAXONOMY, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
+      if (props.isParent) {
+        delete props.clientId
+      }
+      const variables = prepareTaxonomyArguments(props)
       const [taxonomyFromResponse] = data?.taxonomies.returning ?? []
       const { taxonomies } = cache.readQuery({
         query: GET_TAXONOMIES,

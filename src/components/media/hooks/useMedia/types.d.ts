@@ -3,9 +3,9 @@
  */
 
 // Types
-import { Medium, MEDIUM_TYPE, MEDIUM_CATEGORY } from '../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { LooseObject } from '../../../../types/object'
+import { Medium, MEDIUM_TYPE, MEDIUM_CATEGORY } from '../../../../../types/medium.d'
+import { STATUS_ACTIVE } from '../../../../../types/select.d'
+import { LooseObject } from '../../../../../types/object.d'
 
 export interface MediaFilter {
   entity: string
@@ -35,6 +35,7 @@ export interface MediaDataList {
 
 export interface MediaSearchVariables {
   where: LooseObject
+  order_by: LooseObject
 }
 
 export interface MediaVariables {

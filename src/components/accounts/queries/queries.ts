@@ -86,6 +86,7 @@ export const UPDATE_ACCOUNT_USER = gql`
     account: update_account_by_pk(pk_columns: { id: $accountId }, _set: $accountSet) {
       ...AccountFields
     }
+
     user: update_user_by_pk(pk_columns: { id: $userId }, _set: $userSet) {
       ...UserFields
     }

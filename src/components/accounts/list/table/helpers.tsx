@@ -105,27 +105,24 @@ export const columns = (
 export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
   const list: AccountsRow[] = []
   accounts?.forEach((account: Account) => {
-    if (account?.users?.length > 0) {
-      const user = account?.users[0]?.user ?? {}
-
-      const model: AccountsRow = {
-        id: account.id,
-        userId: user?.id,
-        name: account?.name,
-        firstName: user?.name_first,
-        lastName: user?.name_last,
-        user: `${user?.name_first ?? ''} ${user?.name_last ?? ''}`,
-        verified: user?.is_verified,
-        email: user?.email,
-        url: pages.dashboard.accounts.view,
-        status: account.status,
-        created: formatDateStandard(account.created_at),
-        actions: '',
-        taxonomy: account.taxonomy,
-        custom_fields: account.custom_fields
-      }
-      list.push(model)
+    const user = account?.users[0]?.user ?? {}
+    const model: AccountsRow = {
+      id: account.id,
+      userId: user?.id,
+      name: account?.name,
+      firstName: user?.name_first,
+      lastName: user?.name_last,
+      user: `${user?.name_first ?? ''} ${user?.name_last ?? ''}`,
+      verified: user?.is_verified,
+      email: user?.email,
+      url: pages?.dashboard?.accounts?.view,
+      status: account.status,
+      created: formatDateStandard(account?.created_at),
+      actions: '',
+      taxonomy: account?.taxonomy,
+      custom_fields: account?.custom_fields
     }
+    list.push(model)
   })
 
   return list ?? []
@@ -164,3 +161,6 @@ export const UserAccountToolbar = ({
 
   return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${type}`} />
 }
+
+export const isShowUser = ({ firstName, lastName, email }: AccountsRow): boolean =>
+  !!(firstName || lastName || email)

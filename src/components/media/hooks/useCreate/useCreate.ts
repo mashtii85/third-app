@@ -9,11 +9,14 @@ import { CREATE_MEDIUM, GET_MEDIA } from '../../queries/queries'
 // Types
 import { MediaCreateData, MediaCreateType, UseCreateMediaOutput } from './types.d'
 import { UseHookProps } from '../../../../types/hook.d'
-import { LooseObject } from '../../../../types/object.d'
 import { Medium } from '../../../../types/medium.d'
+import { MediaFilter } from '../useMedia/types.d'
+
+// Helpers
+import { prepareArguments } from '../useMedia/helpers'
 
 export const useCreateMedia = (
-  mediaProps: Partial<MediaCreateType>,
+  filters: Partial<MediaFilter>,
   props: UseHookProps<MediaCreateData>
 ): UseCreateMediaOutput => {
   const [createMedia, { error, loading }] = useMutation<MediaCreateData, MediaCreateType>(
@@ -22,17 +25,15 @@ export const useCreateMedia = (
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const variables: LooseObject = {
-          where: { entity: { _eq: mediaProps.entity }, entity_id: { _eq: mediaProps.entityId } }
-        }
+        const where = prepareArguments({ filters })
         const { media } = cache.readQuery<{ media: Medium[] }>({
           query: GET_MEDIA,
-          variables
+          variables: { where, order_by: { id: 'desc' } }
         }) || { media: [] }
         cache.writeQuery({
           query: GET_MEDIA,
-          variables,
-          data: { media: [...media, data?.media] }
+          variables: { where, order_by: { id: 'desc' } },
+          data: { media: [...media, ...(data?.media?.returning as Medium[])] }
         })
       }
     }

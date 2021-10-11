@@ -12,6 +12,7 @@ export interface UseCreateTaxonomyProps extends UseHookProps<TaxonomyPropsData> 
   isParent?: boolean
   taxonomyId?: number
   category?: string
+  clientId?: number
 }
 
 export interface UseCreateTaxonomyOutput extends UseHookOutput {

@@ -74,16 +74,16 @@ const reducer = (state: QuizState, action: QuizActionTypes) => {
   }
 }
 
-export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
+export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizProps) => {
   const { questions, onComplete } = props
-
+  const alreadyHasScore = !!quizScoreInfo
   const [state, dispatch] = useReducer(reducer, {
     activeQuestionIndex: 0,
-    finalScore: 0,
+    finalScore: quizScoreInfo?.score ?? 0,
     overAllScore: 0,
     bestScore: 0,
     questions,
-    quizFinished: false,
+    quizFinished: alreadyHasScore,
     selectedAnswers: [],
     shortAnsweredText: ''
   })
@@ -146,9 +146,11 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
 
   return (
     <StyledQuestionsWrapper>
-      <StyledProgressTitle>
-        Question {activeQuestionIndex + 1} of {questions.length}
-      </StyledProgressTitle>
+      {!state.quizFinished && (
+        <StyledProgressTitle>
+          Question {activeQuestionIndex + 1} of {questions.length}
+        </StyledProgressTitle>
+      )}
 
       {quizFinished ? (
         <QuizFinishedWrapper>
@@ -229,7 +231,7 @@ export const Quiz = ({ minimumScoreToPass = 50, ...props }: QuizProps) => {
 const CenterButton = ({ title, onClick }: { title: string; onClick: () => void }) => {
   return (
     <Center>
-      <StyledActionButton context="secondary" onClick={onClick}>
+      <StyledActionButton context="primary" onClick={onClick}>
         {title}
       </StyledActionButton>
     </Center>
@@ -263,6 +265,7 @@ const AnswerText = styled.p`
 
 const QuizFinishedWrapper = styled(Center)`
   flex-direction: column;
+  padding-top: 4rem;
 `
 
 const StyledActionButton = styled(Button)``

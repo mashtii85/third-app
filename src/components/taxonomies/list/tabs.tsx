@@ -35,23 +35,43 @@ const TaxonomyTabs = () => {
       {!isAdmin ? (
         <Tabs key={tab}>
           <Tab active={tab === TAXONOMY_TYPE.MEMBER} label="Members">
-            <TaxonomyList type={TAXONOMY_TYPE.MEMBER} title="Member Types" />
+            <TaxonomyList
+              clientId={user?.client_id}
+              type={TAXONOMY_TYPE.MEMBER}
+              title="Member Types"
+            />
             <Space />
-            <GroupTable accountId={user.account_id} />
+            <GroupTable accountId={user?.account_id} />
           </Tab>
           <Tab active={tab === TAXONOMY_TYPE.COURSE} label="Courses">
-            <TaxonomyList type={TAXONOMY_TYPE.COURSE} title="Course Types" />
+            <TaxonomyList
+              clientId={user?.client_id}
+              type={TAXONOMY_TYPE.COURSE}
+              title="Course Types"
+            />
           </Tab>
           <Tab active={tab === TAXONOMY_TYPE.LOCATION} label="Locations">
-            <TaxonomyList type={TAXONOMY_TYPE.LOCATION} title="Location Types" />
+            <TaxonomyList
+              clientId={user?.client_id}
+              type={TAXONOMY_TYPE.LOCATION}
+              title="Location Types"
+            />
           </Tab>
           <Tab active={tab === TAXONOMY_TYPE.EVENT} label="Events">
-            <TaxonomyList type={TAXONOMY_TYPE.EVENT} title="Event Types" />
+            <TaxonomyList
+              clientId={user?.client_id}
+              type={TAXONOMY_TYPE.EVENT}
+              title="Event Types"
+            />
           </Tab>
         </Tabs>
       ) : (
         <Tab active={tab === TAXONOMY_TYPE.CLIENT} label="Clients">
-          <TaxonomyList type={TAXONOMY_TYPE.CLIENT} title="Client Types" />
+          <TaxonomyList
+            clientId={user?.client_id}
+            type={TAXONOMY_TYPE.CLIENT}
+            title="Client Types"
+          />
         </Tab>
       )}
     </>

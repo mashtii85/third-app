@@ -3,7 +3,7 @@
  */
 
 // React
-import { Fragment } from 'react'
+import { ChangeEvent, Fragment } from 'react'
 
 // React Hook Form
 import { useFieldArray, useWatch } from 'react-hook-form'
@@ -44,6 +44,14 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
     name: 'custom_fields.options'
   })
 
+  const onChangeLabel = (data: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const {
+      target: { value = '' }
+    } = data
+    const { setValue } = defaultOptions?.control || {}
+    const makeName = value.toLowerCase().split(' ').join('-')
+    setValue(`custom_fields.options[${idx}].value`, makeName)
+  }
   return (
     <>
       <FormLabel label="Input">
@@ -77,6 +85,7 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
                     defaultValue={field.value}
                     name={`custom_fields.options[${idx}].label`}
                     placeholder="Label"
+                    onChange={(data: ChangeEvent<HTMLInputElement>) => onChangeLabel(data, idx)}
                   />
                 </Column>
 

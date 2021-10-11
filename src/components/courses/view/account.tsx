@@ -64,6 +64,8 @@ import { scrollTo } from '../../../utils/scrollTo'
 
 import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from './types.d'
+import styled from 'styled-components'
+import ArrowRightIcon from '../../icons/arrowRight'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -194,29 +196,29 @@ export const AccountCourseView = () => {
         } else isActive = false
 
         actionId++
+        const current =
+          progress?.status === undefined || progress?.status === LESSON_PROGRESS_STATUS.Pending
 
         const actionModel: StepperActionModel = {
           id: actionId,
           active:
             (isActive && !stateHolder.canCompleteLesson) ||
             progress?.status === LESSON_PROGRESS_STATUS.Completed,
-          context: THEME_CONTEXT.secondary,
+          context: THEME_CONTEXT.primary,
           type: 'button',
-          content:
-            progress?.status === undefined || progress?.status === LESSON_PROGRESS_STATUS.Pending
-              ? 'Start lesson'
-              : 'Continue lesson',
+          content: current ? 'Start lesson' : 'Continue lesson',
           handleClick: () => startLesson(lesson)
         }
 
         if (progress?.status === LESSON_PROGRESS_STATUS.Completed) {
-          actionModel.context = 'success'
+          actionModel.context = 'opaqueRed'
           actionModel.content = 'View lesson'
         }
 
         data.push({
           id: lesson.id,
           label: lesson.title,
+          highlighted: progress?.status === LESSON_PROGRESS_STATUS.Started,
           labelIcon:
             lesson.type === LESSON_TYPE.Quiz || lesson.type === LESSON_TYPE.Video
               ? lesson.type
@@ -293,11 +295,14 @@ export const AccountCourseView = () => {
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
-    if (!nextLesson) stateHolder.pageMode = COURSE_PAGE_MODE.Finished
+    if (!nextLesson) {
+      stateHolder.pageMode = COURSE_PAGE_MODE.Finished
+    }
 
     if (
       lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed &&
-      stateHolder.pageMode !== COURSE_PAGE_MODE.Finished
+      stateHolder.pageMode !== COURSE_PAGE_MODE.Finished &&
+      lesson?.type !== LESSON_TYPE.Quiz
     ) {
       stateHolder.pageMode = COURSE_PAGE_MODE.View
       if (nextLesson) {
@@ -313,13 +318,17 @@ export const AccountCourseView = () => {
         startLesson(currentLesson)
       }
     } else {
-      if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished)
+      if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished) {
         stateHolder.pageMode = COURSE_PAGE_MODE.Progress
-      stateHolder.canCompleteLesson = false
-      stateHolder.showNextLesson = false
-      stateHolder.completedLessonId = stateHolder.selectedLessonId
+        stateHolder.canCompleteLesson = false
+        stateHolder.showNextLesson = false
+        stateHolder.completedLessonId = stateHolder.selectedLessonId
+      }
 
-      if (lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed) {
+      if (
+        lessonProgress?.status === LESSON_PROGRESS_STATUS.Completed &&
+        lesson?.type !== LESSON_TYPE.Quiz
+      ) {
         fillCertificateModel(
           `${formatDateStandard(lessonProgress.updated_at)} ${formatTime(
             lessonProgress.updated_at
@@ -342,6 +351,12 @@ export const AccountCourseView = () => {
               ? LESSON_PROGRESS_STATUS.Completed
               : LESSON_PROGRESS_STATUS.Started
           }
+
+          // remove memoized completed quiz data
+          completedQuizData.current = {
+            score: 0,
+            passed: false
+          }
         }
         updateLessonProgressByPk({
           variables: { id: lessonProgress?.id, changes: lessonProgressModel }
@@ -354,12 +369,6 @@ export const AccountCourseView = () => {
             updateCourseEnrollmentByPk({
               variables: { id: course?.course_enrollments[0]?.id, changes: courseEnrollmentModel }
             })
-          }
-        }
-        if (lesson?.type === LESSON_TYPE.Quiz) {
-          completedQuizData.current = {
-            score: 0,
-            passed: false
           }
         }
       }
@@ -424,12 +433,25 @@ export const AccountCourseView = () => {
     }
   ]
 
+  const quizScoreInfo = (): QuizCompletedData | undefined => {
+    const meta = lesson?.lesson_progresses[lesson.lesson_progresses.length - 1]?.meta
+    if (meta?.quizScore && meta?.quizPassed) {
+      return {
+        score: meta.quizScore,
+        passed: meta.quizPassed
+      }
+    }
+    return undefined
+  }
+
   return (
     <>
       <Row>
         <Column md="8">
           <Heading tag="h1" content={(course as Course)?.title} />
-          <Breadcrumb breadcrumbs={breadcrumbs} separator="\" size="sm" />
+          <BreadcrumbWrapper>
+            <Breadcrumb breadcrumbs={breadcrumbs} separator="\" size="sm" />
+          </BreadcrumbWrapper>
         </Column>
         <Column md="4">
           <CourseProgressBar progressBarData={lessonSummary()} />
@@ -440,7 +462,7 @@ export const AccountCourseView = () => {
           {(course as Course)?.modules?.length &&
             (course as Course)?.modules?.map((m: Module) => (
               <Details2 key={m.id} open title={m.title}>
-                <Stepper items={prepareLessons(m)} />
+                <Stepper items={prepareLessons(m)} maxWidth="unset" />
               </Details2>
             ))}
         </Column>
@@ -464,19 +486,23 @@ export const AccountCourseView = () => {
                     )}
                     {lesson.type === LESSON_TYPE.Quiz && (
                       <Quiz
+                        quizScoreInfo={quizScoreInfo()}
                         questions={prepareLessonQuestions(lesson.questions)}
                         onComplete={onQuizComplete}
                       />
                     )}
                     {lesson.content && <p>{lesson.content}</p>}
-                    {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) && (
-                      <Button
-                        context="secondary"
-                        content={stateHolder.actionButtonCaption}
-                        data-cy="complete"
-                        onClick={completeLesson}
-                      />
-                    )}
+                    {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) &&
+                      lesson.type !== LESSON_TYPE.Quiz && (
+                        <StyledNextButton
+                          context="primary"
+                          data-cy="complete"
+                          onClick={completeLesson}
+                        >
+                          <span> {stateHolder.actionButtonCaption}</span>
+                          <ArrowRightIcon />
+                        </StyledNextButton>
+                      )}
                   </>
                 </Details2>
               ) : (
@@ -508,3 +534,18 @@ export const AccountCourseView = () => {
     </>
   )
 }
+const StyledNextButton = styled(Button)`
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
+`
+const BreadcrumbWrapper = styled.div`
+  ol {
+    padding: 0;
+    padding-top: 1rem;
+  }
+  a {
+    color: ${({ theme }) => theme.COLOUR.primary} !important;
+  }
+`

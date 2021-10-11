@@ -60,7 +60,7 @@ export const QuizResult = ({
 const DoneButton = styled.button`
   border: none;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.COLOUR.secondary};
+  background-color: ${({ theme }) => theme.COLOUR.primary};
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;

@@ -10,7 +10,8 @@ const TaxonomyList = (props: TableProps) => {
   const initialFilters = {
     q: null,
     status: null,
-    type: props.type || ''
+    type: props.type || '',
+    clientId: props.clientId
   }
 
   return <LayoutList initialFilters={initialFilters} otherProps={props} TableComp={Table} />

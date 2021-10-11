@@ -3,6 +3,7 @@
  */
 
 import { Account, ACCOUNT_TYPE } from '../../../../types/account.d'
+import { User } from '../../../../types/user'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { AccountFilters } from '../../types'
 
@@ -39,4 +40,5 @@ export interface AccountsRow {
   actions: ''
   taxonomy: any
   custom_fields: any
+  users?: User[]
 }

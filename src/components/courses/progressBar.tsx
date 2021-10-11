@@ -3,7 +3,7 @@
  */
 
 // Styles
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 // UI
 import { Progress, ProgressBar } from '@drykiss/industry-ui'
@@ -36,7 +36,7 @@ export const CourseProgressBar = ({ progressBarData }: CourseProgressBarProps) =
         </div>
         <br />
         <Progress size="md">
-          <ProgressBar animated context="primary" now={progress} striped></ProgressBar>
+          <ProgressBar animated context="lightRed" now={progress}></ProgressBar>
         </Progress>
       </StyledProgress>
       <StyledStatus>
@@ -67,6 +67,7 @@ const StyledProgress = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+    border-radius: 4px;
     p {
       padding: 0;
       margin: 0;
@@ -75,7 +76,7 @@ const StyledProgress = styled.div`
     }
   }
 `
-const statusSquare = (color: string) => `
+const statusSquare = (color: string) => css`
   content: '';
   width: 15px;
   height: 15px;

@@ -57,7 +57,7 @@ export interface UseCreateAccountProps {
 }
 
 export interface UseCreateAccountOutput extends UseHookOutput {
-  createAccount: any
+  createAccount?: any
 }
 
 export interface UseAccountOutput extends UseHookOutput {

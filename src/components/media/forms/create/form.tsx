@@ -20,16 +20,18 @@ import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 // Types
 import { MediaFormType, MediaSubmitFormType } from './types.d'
-import { MediaCreateType } from '../../hooks/useCreate/types'
-import { Medium, DropzoneProps, DropzoneType } from '../../../../types/medium'
+import { Medium, DropzoneProps, DropzoneType } from '../../../../types/medium.d'
+import { MediaFilter } from '../../hooks/useMedia/types.d'
 
 export const MediaForm = ({
+  filters,
   dropzoneProps,
   defaultValues,
   onSuccess
 }: {
+  filters: Partial<MediaFilter>
   dropzoneProps: DropzoneProps
-  defaultValues: MediaFormType
+  defaultValues: Partial<MediaFormType>
   onSuccess: () => void
 }) => {
   const { control, errors, handleSubmit, register, watch } = useForm<MediaFormType>({
@@ -38,14 +40,7 @@ export const MediaForm = ({
   })
 
   const { user } = useCurrentUser()
-  const mediaCreateProps: Partial<MediaCreateType> = {
-    entity: defaultValues.entity,
-    entityId: defaultValues.entityId,
-    category: defaultValues.category,
-    type: defaultValues.type,
-    status: defaultValues.status
-  }
-  const { loading, createMedia } = useCreateMedia(mediaCreateProps, {
+  const { loading, createMedia } = useCreateMedia(filters, {
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error)
@@ -68,15 +63,13 @@ export const MediaForm = ({
     await Promise.all(
       await form.dropzone?.map(async (file) => {
         const data = await uploadMediaToS3(file, 'image')
-
         const filename: string = data.key
-
         mediaProps.push({
-          client_id: user.client_id as number,
-          entity: defaultValues.entity,
-          entity_id: defaultValues.entityId,
-          type: defaultValues.type,
-          status: defaultValues.status,
+          client_id: user.client_id!,
+          entity: defaultValues.entity!,
+          entity_id: defaultValues.entityId!,
+          type: defaultValues.type!,
+          status: defaultValues.status!,
           caption: file.name,
           category: defaultValues.category,
           filename,
@@ -86,8 +79,7 @@ export const MediaForm = ({
         return mediaProps
       })
     )
-
-    if (mediaProps.length) await createMedia({ variables: { objects: mediaProps } })
+    if (mediaProps.length) return await createMedia({ variables: { objects: mediaProps } })
   }
 
   return (

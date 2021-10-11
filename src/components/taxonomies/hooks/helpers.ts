@@ -21,6 +21,10 @@ export const prepareTaxonomyArguments = (filters: UseTaxonomiesVariable): LooseO
     whereClause.id = { _eq: filters.id }
   }
 
+  if (filters.clientId) {
+    whereClause.client_id = { _eq: filters.clientId }
+  }
+
   if (filters?.parentId) {
     whereClause.parent_id = { _eq: filters.parentId }
   } else {
