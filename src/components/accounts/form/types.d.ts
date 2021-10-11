@@ -11,14 +11,16 @@ export interface AccountFormProps {
 }
 
 export interface CreateAccountForm {
-  name: string
-  firstName: string
-  lastName: string
-  email: string
-  status: STATUS_ACTIVE
-  taxonomy: SELECT
+  add_contact_user?: boolean
   client_id: number
   clientId: number
-  type: string
   custom_fields: any
+  firstName: string
+  email: string
+  isCreateUser?: string
+  lastName: string
+  name: string
+  status: STATUS_ACTIVE
+  taxonomy: SELECT
+  type: string
 }

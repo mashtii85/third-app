@@ -22,7 +22,7 @@ import { TaxonomyChildTable } from '../../child/table'
 
 import { columns, rows, Toolbar } from './helpers'
 
-export const TaxonomyTable = ({ title, type }: TableProps) => {
+export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
   const defaultTab: string | string[] = query.tab || type
@@ -31,6 +31,7 @@ export const TaxonomyTable = ({ title, type }: TableProps) => {
     e.stopPropagation()
     const defaultValues = row ? { ...row, status: row.status.toLowerCase() } : {}
     const pageTitle = defaultTab[0].toUpperCase() + defaultTab.slice(1)
+
     offCanvas.show({
       content: (
         <TaxonomyUpsert
@@ -58,7 +59,11 @@ export const TaxonomyTable = ({ title, type }: TableProps) => {
     })
   }
 
-  const { error, loading, taxonomies } = useTaxonomies({ category: defaultTab, isParent: false })
+  const { error, loading, taxonomies } = useTaxonomies({
+    category: defaultTab,
+    isParent: false,
+    clientId: clientId
+  })
   console.log(error?.message)
   const handleSuccess = offCanvas.close
 

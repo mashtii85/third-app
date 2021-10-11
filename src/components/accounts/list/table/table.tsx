@@ -13,7 +13,7 @@ import { formatToValidDate } from '../../../../utils/dateFormatter'
 import { AccountsRow, AccountTableProps } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
 // Hooks
-import { columns, rows, UserAccountToolbar } from './helpers'
+import { columns, rows, UserAccountToolbar, isShowUser } from './helpers'
 import { useTable } from '../../../common/hooks/useTable'
 import { AccountForm } from '../../form/form'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
@@ -42,6 +42,7 @@ export const AccountTable = (props: AccountTableProps) => {
           onSuccess={offCanvas.close}
           defaultValues={{
             ...row,
+            add_contact_user: isShowUser(row),
             custom_fields: formatToValidDate(row?.custom_fields),
             client_id: clientId,
             type: accountType,

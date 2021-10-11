@@ -4,8 +4,12 @@ export const formatToValidDate = (data: any): any => {
   if (data === null) return {}
   const isValid = (date: any = {}): boolean => isNaN(date)
 
+  const isNumber = (value: string): boolean => /^[-]?\d+$/.test(value)
+
   Object.keys(data).forEach((item: any) => {
-    if (!isValid(new Date(data[item]))) {
+    if (isNumber(data[item])) {
+      result[item] = data[item]
+    } else if (!isValid(new Date(data[item]))) {
       result[item] = new Date(data[item])
     } else {
       result[item] = data[item]

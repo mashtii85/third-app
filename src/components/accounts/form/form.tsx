@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { AccountSchema as schema } from './schema'
 
 // UI
-import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
+import { Checkbox, Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { statusActive } from '../../../constants/status'
 import { TaxonomySelect } from '../../taxonomies/select/select'
 
@@ -31,11 +31,10 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
     resolver: yupResolver(schema)
   })
   const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
-
   const { taxonomies } = useTaxonomies({
     category: isClientMember
   })
-  console.log('defaultValues', defaultValues)
+
   const { createAccount } = useCreateAccount({
     filters: { ...filters, clientId: defaultValues?.client_id, type: defaultValues?.type },
     onCompleted: onSuccess,
@@ -51,11 +50,13 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
     }
   })
 
-  const submit = (form: CreateAccountForm) => {
+  const submit = async (form: CreateAccountForm) => {
+    const userId = defaultValues?.userId || 0
+
     if (defaultValues?.id) {
       const variables = prepareUpdateAccount({
         form,
-        userId: defaultValues.userId,
+        userId,
         accountId: defaultValues.id
       })
       updateAccount({
@@ -75,6 +76,7 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
 
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
+  const addContactUserWatch = watch('add_contact_user')
 
   const isClientCreateMember = taxonomies.length > 0
   const isClientUser = isClientMember && isClientCreateMember
@@ -83,30 +85,6 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
-      <FormLabel label="Name">
-        <FormField {...defaultOptions} name="name" />
-        {errors.name && errors.name.type === 'required' && (
-          <FormError message={errors?.name?.message} />
-        )}
-      </FormLabel>
-
-      <FormLabel label="Status">
-        <SelectField {...defaultOptions} name="status" options={statusActive} />
-        {errors.status && errors.status.type === 'required' && (
-          <FormError message={errors?.status?.message} />
-        )}
-      </FormLabel>
-
-      <div>User</div>
-      <FormLabel label="First Name">
-        <FormField {...defaultOptions} name="firstName" />
-      </FormLabel>
-      <FormLabel label="Last Name">
-        <FormField {...defaultOptions} name="lastName" />
-      </FormLabel>
-      <FormLabel label="Email">
-        <FormField type="email" {...defaultOptions} name="email" />
-      </FormLabel>
       {(isClientUser || isAdmin) && (
         <>
           <div>{taxonomySelectTitle}</div>
@@ -124,6 +102,36 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
               taxonomyWatch={taxonomyWatch}
             />
           )}
+        </>
+      )}
+      <FormLabel label="Name">
+        <FormField {...defaultOptions} name="name" />
+        {errors.name && errors.name.type === 'required' && (
+          <FormError message={errors?.name?.message} />
+        )}
+      </FormLabel>
+      <FormLabel label="Status">
+        <SelectField {...defaultOptions} name="status" options={statusActive} />
+        {errors.status && errors.status.type === 'required' && (
+          <FormError message={errors?.status?.message} />
+        )}
+      </FormLabel>
+      <Checkbox
+        {...defaultOptions}
+        name="add_contact_user"
+        data={[{ label: 'Add contact user', value: true }]}
+      />
+      {addContactUserWatch && (
+        <>
+          <FormLabel label="First Name">
+            <FormField {...defaultOptions} name="firstName" />
+          </FormLabel>
+          <FormLabel label="Last Name">
+            <FormField {...defaultOptions} name="lastName" />
+          </FormLabel>
+          <FormLabel label="Email">
+            <FormField type="email" {...defaultOptions} name="email" />
+          </FormLabel>
         </>
       )}
       <FormField {...defaultOptions} name="client_id" type="hidden" />

@@ -43,6 +43,7 @@ export const TaxonomyUpsert = ({
     parentId: defaultValues.parent_id,
     isParent: !!defaultValues.parent_id,
     taxonomyId: defaultValues.id,
+    clientId: user.id,
     onCompleted: onSuccess,
     onError: (error) => console.error(error.message)
   }
@@ -60,7 +61,8 @@ export const TaxonomyUpsert = ({
       custom_fields: formData.custom_fields,
       name: formData.name,
       type: formData.type,
-      status: formData.status
+      status: formData.status,
+      client_id: user.client_id
     }
     if (formData.parent_id !== undefined) obj.parent_id = defaultValues.parent_id
     if (id) {
@@ -68,7 +70,6 @@ export const TaxonomyUpsert = ({
     } else {
       obj.entity = defaultValues.entity
       obj.entity_id = defaultValues.entity_id
-      obj.client_id = user.client_id
       return await createTaxonomy({ variables: { objects: [obj] } })
     }
   }
