@@ -24,28 +24,26 @@ interface AppProps {
 }
 
 export const AppProvider = ({ children, user }: AppProps) => {
-  const [getSettings, { data }] = useLazyQuery(APP_SETTINGS, {
-    variables: {
-      client_id: user?.client_id || 0
-    }
-  })
+  const [getSettings, { data }] = useLazyQuery(APP_SETTINGS)
 
   useEffect(() => {
-    getSettings()
+    getSettings({
+      variables: {
+        client_id: user?.client_id || 0
+      }
+    })
   }, [user?.id])
 
-  const settings = data?.app_settings || null
+  const appSettings = data?.app_settings || null
 
-  if (!settings) {
+  if (!appSettings) {
     return <PageLoading indicator={<LdsSpinner />} />
   }
 
-  console.log('settings', settings)
-
   // Check maintenance mode
-  if (settings.find(({ id }) => id === 'maintenanceMode')?.value?.enabled) {
+  if (appSettings.settings.find(({ id }) => id === 'maintenanceMode')?.value?.enabled) {
     return <ErrorPage statusCode={503} />
   }
 
-  return <AppContext.Provider value={settings}>{children}</AppContext.Provider>
+  return <AppContext.Provider value={appSettings}>{children}</AppContext.Provider>
 }

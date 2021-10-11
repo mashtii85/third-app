@@ -17,7 +17,7 @@ import { secretMiddleware } from '../../../utils/api/secret'
 const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
 
 handler.use(secretMiddleware).post(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { client_id } = req.body || req.body.input
+  const client_id = req.body.client_id || req.body.input?.client_id
 
   const data: any = await getSettings(client_id)
 
