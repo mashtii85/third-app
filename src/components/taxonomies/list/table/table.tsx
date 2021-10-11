@@ -53,7 +53,14 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
 
   const handleDelete = (row: Taxonomy) => {
     offCanvas.show({
-      content: <TaxonomyDelete taxonomyId={row.id} type={defaultTab} onSuccess={handleSuccess} />,
+      content: (
+        <TaxonomyDelete
+          clientId={clientId}
+          taxonomyId={row.id}
+          type={defaultTab}
+          onSuccess={handleSuccess}
+        />
+      ),
       title: 'Delete Taxonomy',
       submit: false
     })
