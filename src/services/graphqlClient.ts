@@ -17,7 +17,7 @@ export const gqlClient = async (): Promise<any> => {
   return new GraphQLClient(endpoint, { headers })
 }
 
-export const query = async (query: any, data: LooseObject): Promise<any> => {
+export const query = async (query: any, data?: LooseObject): Promise<any> => {
   const client = await gqlClient()
 
   return await client.request(query, data).catch((error: any) => {
