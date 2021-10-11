@@ -15,12 +15,14 @@ export const TaxonomyDelete = ({
   type,
   entity,
   entityId,
+  clientId,
   onSuccess
 }: TaxonomyDeleteProps) => {
   const taxonomiesVariable = {
     category: type,
     entity,
     entityId,
+    clientId,
     onCompleted: onSuccess,
     onError: console.error
   }

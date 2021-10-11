@@ -4,7 +4,6 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { useTaxonomies } from '../'
 
 // Queries
 import { DELETE_TAXONOMY, GET_TAXONOMIES } from '../../queries'
@@ -13,23 +12,13 @@ import { DELETE_TAXONOMY, GET_TAXONOMIES } from '../../queries'
 import { UseDeleteTaxonomyOutput, UseDeleteTaxonomyProps } from './types'
 import { Taxonomy } from '../../../../types/taxonomy'
 import { prepareTaxonomyArguments } from '../helpers'
-import { UseTaxonomiesVariable } from '../useTaxonomies/types'
 
 export const useDeleteTaxonomy = (props: UseDeleteTaxonomyProps): UseDeleteTaxonomyOutput => {
-  const variables = prepareTaxonomyArguments(props)
-  const taxonomiesVariable: UseTaxonomiesVariable = {
-    category: props.category,
-    entity: props.entity,
-    entityId: props.entityId,
-    parentId: props.parentId
-  }
-  // Refresh cache
-  useTaxonomies(taxonomiesVariable)
-
   const [deleteTaxonomy, { error, loading }] = useMutation(DELETE_TAXONOMY, {
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
+      const variables = prepareTaxonomyArguments(props)
       const taxonomyId = data?.taxonomy?.id
       const { taxonomies } = cache.readQuery({
         query: GET_TAXONOMIES,
