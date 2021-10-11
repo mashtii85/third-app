@@ -7,7 +7,7 @@ import { createContext, useEffect } from 'react'
 
 // GQL
 import { useLazyQuery } from '@apollo/client'
-import { GET_APP_SETTINGS } from './queries'
+import { APP_SETTINGS } from './queries'
 
 // UI
 import { LdsSpinner, PageLoading } from '@drykiss/industry-ui'
@@ -24,7 +24,7 @@ interface AppProps {
 }
 
 export const AppProvider = ({ children, user }: AppProps) => {
-  const [getSettings, { data }] = useLazyQuery(GET_APP_SETTINGS, {
+  const [getSettings, { data }] = useLazyQuery(APP_SETTINGS, {
     variables: {
       client_id: user?.client_id || 0
     }
@@ -34,7 +34,7 @@ export const AppProvider = ({ children, user }: AppProps) => {
     getSettings()
   }, [user?.id])
 
-  const settings = data?.settings || null
+  const settings = data?.app_settings || null
 
   if (!settings) {
     return <PageLoading indicator={<LdsSpinner />} />
