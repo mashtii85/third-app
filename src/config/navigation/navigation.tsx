@@ -11,20 +11,22 @@ import { Member } from './data/member'
 import { Config } from '../config'
 import { UserDropdown } from './data/userDropdown'
 import { useCurrentUser } from '../../utils/useCurrentUser'
+import { useApp } from '../../utils/useApp'
 import { ACCOUNT_TYPE } from '../../types/account.d'
 
 export const Navigation = () => {
   const { user } = useCurrentUser()
+  const { client_taxonomies } = useApp()
 
   let links = Default
 
   if (user) {
     switch (user.account_type) {
       case ACCOUNT_TYPE.Admin:
-        links = Admin
+        links = Admin(client_taxonomies)
         break
       case ACCOUNT_TYPE.Client:
-        links = Client
+        links = Client(client_taxonomies)
         break
       case ACCOUNT_TYPE.Member:
         links = Member
