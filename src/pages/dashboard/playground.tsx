@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components'
+import DocumentViewer from '../../components/common/docViewer/docViewer'
 import { Quiz } from '../../components/common/quiz/quiz'
 import { QUESTION_TYPE } from '../../types/lesson.d'
 
@@ -102,6 +103,17 @@ const PlaygroundPage = () => {
           }
         ]}
         onComplete={(data) => console.log({ data })}
+      />
+
+      <DocumentViewer
+        docs={[
+          {
+            uri: 'https://d1hk88326p7ilp.cloudfront.net/documents/6d981909-6410-4265-828a-8994b4630cc4.pptx'
+          },
+          {
+            uri: 'https://cleverly-website.s3.eu-west-2.amazonaws.com/Cleverly_s_Predictions_for_2021_1610473562_b7d55c9671.pdf'
+          }
+        ]}
       />
     </Wrapper>
   )
