@@ -16,7 +16,6 @@ export interface EventDeleteData {
 
 export interface useDeleteEventProps extends UseHookProps<EventDeleteData> {
   filters: EventFilter
-  accountId: number
 }
 export interface useDeleteEventOutput {
   deleteEvent: any

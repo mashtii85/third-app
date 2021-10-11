@@ -67,6 +67,7 @@ export const UpsertForm = ({ onSuccess, defaultValues = {}, filters }: CourseFor
       })
     }
   }
+
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(onSubmit)}>
       <FormLabel label="Title">

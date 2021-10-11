@@ -1,19 +1,19 @@
 /**
- * Components - Events - List - Filter
+ * Components - Accounts - List - Table - Filter
  */
 
 // UI
 
 import { Column, FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
-
-// Types
-import { LooseObject } from '../../../types/object'
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { statusActive } from '../../../constants/status'
 import { TaxonomySelect } from '../../taxonomies/select/select'
 
-export const EventFilters = ({
+// Types
+import { LooseObject } from '../../../types/object.d'
+import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+
+export const AccountsFilters = ({
   control,
   errors,
   register
@@ -41,7 +41,7 @@ export const EventFilters = ({
           {...defaultOptions}
           label={'Type'}
           name="taxonomy"
-          type={TAXONOMY_TYPE.EVENT}
+          type={TAXONOMY_TYPE.MEMBER}
         />
       </Column>
     </>

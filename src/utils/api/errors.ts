@@ -18,7 +18,7 @@ export class AppError extends Error {
   }
 }
 
-export const TE = (message: string, status: number = 500): void => {
+export const TE = (message: string, status = 500): void => {
   throw new AppError(message, status)
 }
 

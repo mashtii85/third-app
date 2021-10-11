@@ -1,4 +1,4 @@
-export const scrollTo = (elementId: string = ''): void => {
+export const scrollTo = (elementId = ''): void => {
   switch (elementId.toLowerCase()) {
     case '':
     case 'top':

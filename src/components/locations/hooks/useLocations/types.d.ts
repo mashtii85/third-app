@@ -7,7 +7,6 @@ import { Location, LocationFilter } from '../../types.d'
 
 export interface UseLocationsProps {
   filters: LocationFilter
-  accountId: number
 }
 
 export interface UseLocationsOutput extends UseHookOutput {
@@ -21,6 +20,5 @@ export interface LocationsData {
 export interface LocationsVariables {}
 
 export interface PrepareLocationArgumentProps {
-  accountId: number
   filters?: LocationFilter
 }

@@ -24,8 +24,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noImplicitReturns": true,
-    "strictFunctionTypes":true,
-    "strictNullChecks":true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "jsx": "preserve"
   },
   "include": [

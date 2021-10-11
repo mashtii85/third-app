@@ -1,5 +1,5 @@
 /**
- * Components - Types - GrapgQL
+ * Components - Types - GraphQL
  */
 
 export interface GraphQLCondition<T> {

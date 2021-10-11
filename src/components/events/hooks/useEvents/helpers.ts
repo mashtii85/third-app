@@ -3,31 +3,34 @@
  */
 
 // Types
-import { DBFilters } from '../../../../types/filter'
-import { LooseObject } from '../../../../types/object'
+import { GQLFilters } from '../../../../types/filter'
+import { GQLClause, GraphqlWhere } from '../../../../types/gql'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { nullFreeObject } from '../../../../utils/nullFreeObject'
+import { Event } from '../../types'
 import { PrepareEventArgumentProps } from './types'
 
 export const prepareEventsArguments = ({
-  filters,
-  accountId
-}: PrepareEventArgumentProps): LooseObject => {
-  nullFreeObject(filters)
+  filters
+}: PrepareEventArgumentProps): GQLClause<Event> => {
+  const condition: GraphqlWhere<Event> = { status: { _eq: STATUS_ACTIVE.Active } }
 
-  const condition: LooseObject = {}
-  condition.account_id = { _eq: accountId }
+  if (filters?.accountId) {
+    condition.account_id = { _eq: filters.accountId }
+  }
+
+  if (filters?.taxonomy) {
+    condition.taxonomy_id = { _eq: filters.taxonomy.value }
+  }
+
   if (filters?.q) {
     condition.title = { _ilike: filters.q }
   }
 
   if (filters?.status) {
     condition.status = { _eq: filters.status }
-  } else {
-    condition.status = { _eq: STATUS_ACTIVE.Active }
   }
 
-  const otherClause: Partial<DBFilters> = {
+  const otherClause: Partial<GQLFilters> = {
     limit: filters?.limit,
     offset: filters?.offset,
     order_by: filters?.order_by ? filters.order_by : {}

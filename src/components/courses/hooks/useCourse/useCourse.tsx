@@ -15,9 +15,5 @@ export const useCourse = (courseId: number) => {
     }
   })
 
-  if (error) {
-    return { loading: false, error }
-  }
-
-  return { loading, course: data?.course, refetch }
+  return { error, loading, course: data?.course, refetch }
 }

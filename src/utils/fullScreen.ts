@@ -70,7 +70,9 @@ const fullScreen = {
   get fullscreenEnabled(): any {
     return Boolean(document[vendor[key.fullscreenEnabled]])
   },
-  set fullscreenEnabled(val) {},
+  set fullscreenEnabled(val) {
+    console.log(val)
+  },
   get fullscreenElement(): any {
     return document[vendor[key.fullscreenElement]]
   },

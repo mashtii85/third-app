@@ -4,7 +4,7 @@
 
 // Yup
 import { object, string } from 'yup'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export const AccountSchema = object().shape({
   name: string().when('add_contact_user', {

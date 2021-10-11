@@ -19,11 +19,9 @@ import { LocationFormType, LocationFormProps, LocationFormSubmission } from './t
 import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 // Hooks
 import { useCreateLocation, useUpdateLocation } from '../../hooks'
-import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 
 export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: LocationFormProps) => {
-  const { user } = useCurrentUser()
   const { control, errors, handleSubmit, register, watch } = useForm<LocationFormType>({
     defaultValues,
     resolver: yupResolver(schema)
@@ -33,7 +31,6 @@ export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: Locat
   const taxonomyWatch: Options = watch('taxonomy')
 
   const { createLocation } = useCreateLocation({
-    accountId: user.account_id,
     filters,
     onCompleted: onSuccess,
     onError: (error) => {
@@ -65,7 +62,7 @@ export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: Locat
     } else {
       createLocation({
         variables: {
-          object: { ...form, account_id: user?.account_id, taxonomy_id: taxonomyWatch?.value }
+          object: { ...form, account_id: filters.accountId, taxonomy_id: taxonomyWatch?.value }
         }
       })
     }

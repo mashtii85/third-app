@@ -3,26 +3,32 @@
  */
 
 // Types
-import { LooseObject } from '../../../../types/object'
+import { GQLClause, GraphqlWhere } from '../../../../types/gql'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { nullFreeObject } from '../../../../utils/nullFreeObject'
+import { Location } from '../../types'
 import { PrepareLocationArgumentProps } from './types.d'
 
 export const prepareLocationsArguments = ({
-  filters,
-  accountId
-}: PrepareLocationArgumentProps): LooseObject => {
-  nullFreeObject(filters)
-  const whereClause: LooseObject = {}
-  whereClause.account_id = { _eq: accountId }
+  filters
+}: PrepareLocationArgumentProps): GQLClause<Location> => {
+  const condition: GraphqlWhere<Location> = {
+    status: { _eq: STATUS_ACTIVE.Active }
+  }
+
+  if (filters?.accountId) {
+    condition.account_id = { _eq: filters.accountId }
+  }
+
   if (filters?.q) {
-    whereClause.name = { _ilike: filters.q }
+    condition.name = { _ilike: filters.q }
   }
 
   if (filters?.status) {
-    whereClause.status = { _eq: filters.status }
-  } else {
-    whereClause.status = { _eq: STATUS_ACTIVE.Active }
+    condition.status = { _eq: filters.status }
+  }
+
+  if (filters?.taxonomy) {
+    condition.taxonomy_id = { _eq: filters.taxonomy.value }
   }
 
   const otherClause = {
@@ -30,5 +36,6 @@ export const prepareLocationsArguments = ({
     offset: filters?.offset,
     order_by: filters?.order_by ? filters.order_by : {}
   }
-  return { ...otherClause, where: whereClause }
+
+  return { ...otherClause, where: condition }
 }

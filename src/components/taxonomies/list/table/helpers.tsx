@@ -20,25 +20,25 @@ export const formatterData = (
   handleQuestionsClick: (row: Taxonomy) => void,
   handleClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => void
 ): FormatterData<Taxonomy>[] => [
-    {
-      context: THEME_CONTEXT.secondary,
-      icon: ['fas', 'edit'],
-      onClick: handleClick,
-      tooltip: 'Edit'
-    },
-    {
-      context: THEME_CONTEXT.danger,
-      icon: ['fas', 'trash'],
-      onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
-      tooltip: 'Delete'
-    },
-    {
-      context: THEME_CONTEXT.info,
-      icon: ['fas', 'question'],
-      onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
-      tooltip: 'Custom Fields'
-    }
-  ]
+  {
+    context: THEME_CONTEXT.secondary,
+    icon: ['fas', 'edit'],
+    onClick: handleClick,
+    tooltip: 'Edit'
+  },
+  {
+    context: THEME_CONTEXT.danger,
+    icon: ['fas', 'trash'],
+    onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleDelete(row),
+    tooltip: 'Delete'
+  },
+  {
+    context: THEME_CONTEXT.info,
+    icon: ['fas', 'question'],
+    onClick: (_e: MouseEvent<HTMLElement>, row: Taxonomy) => handleQuestionsClick(row),
+    tooltip: 'Custom Fields'
+  }
+]
 
 // Table Column
 export const columns = (
@@ -46,20 +46,20 @@ export const columns = (
   handleQuestionsClick: (row: Taxonomy) => void,
   handleClick: (e: MouseEvent<HTMLElement>, row: Taxonomy) => void
 ): Column<Taxonomy>[] => [
-    {
-      text: 'Name'
-    },
-    {
-      text: 'Status'
-    },
-    {
-      hidden: false,
-      formatter: TableActions,
-      formatterData: formatterData(handleDelete, handleQuestionsClick, handleClick),
-      text: 'Actions'
-    },
-    { hidden: true }
-  ]
+  {
+    text: 'Name'
+  },
+  {
+    text: 'Status'
+  },
+  {
+    hidden: false,
+    formatter: TableActions,
+    formatterData: formatterData(handleDelete, handleQuestionsClick, handleClick),
+    text: 'Actions'
+  },
+  { hidden: true }
+]
 
 export const rows = (taxonomies: Taxonomy[]) =>
   taxonomies.map((item) => {

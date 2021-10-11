@@ -18,6 +18,7 @@ interface TaxonomySelectProps {
   register: ReactNode
   type: TAXONOMY_TYPE
 }
+
 export const TaxonomySelect = ({
   control,
   errors,

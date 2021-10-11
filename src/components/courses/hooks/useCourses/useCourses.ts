@@ -19,5 +19,5 @@ export const useCourses = ({ filters }: UseCoursesProps): UseCourseOutput => {
     variables
   })
 
-  return { loading, error, courseList: data?.courses || [] }
+  return { error, loading, courseList: data?.courses || [] }
 }

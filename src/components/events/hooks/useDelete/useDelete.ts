@@ -16,8 +16,9 @@ import {
   useDeleteEventProps,
   useDeleteEventOutput
 } from './types'
-import { LooseObject } from '../../../../types/object'
 import { EventQuery } from '../types'
+import { GQLClause } from '../../../../types/gql'
+import { Event } from '../../types'
 
 export const useDeleteEvent = (props: useDeleteEventProps): useDeleteEventOutput => {
   const [deleteEvent, { loading }] = useMutation<EventDeleteData, EventDeleteVariables>(
@@ -26,9 +27,8 @@ export const useDeleteEvent = (props: useDeleteEventProps): useDeleteEventOutput
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const variables: LooseObject = prepareEventsArguments({
-          filters: props.filters,
-          accountId: props.accountId
+        const variables: GQLClause<Event> = prepareEventsArguments({
+          filters: props.filters
         })
 
         const { events } = cache.readQuery<EventQuery>({

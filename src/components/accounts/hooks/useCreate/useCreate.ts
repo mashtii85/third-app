@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client'
 import { CREATE_ACCOUNT, GET_ACCOUNTS } from '../../queries/queries'
 
 // Types
-import { UseCreateAccountOutput, UseCreateAccountProps } from '../types'
+import { UseCreateAccountOutput, UseCreateAccountProps } from './types'
 import { prepareUseAccounts } from '../useAccounts/helpers'
 
 export const useCreateAccount = (props: UseCreateAccountProps): UseCreateAccountOutput => {

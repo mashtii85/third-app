@@ -5,7 +5,7 @@
 // Types
 import { Post, POST_TYPE } from '../../../../types/post.d'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { postFilter } from '../usePost/types.d'
+import { PostFilter } from '../usePost/types.d'
 
 export interface PostDeleteVariables {
   id: number
@@ -16,7 +16,7 @@ export interface PostDeleteData {
 }
 
 export interface useDeletePostProps extends UseHookProps<PostDeleteData> {
-  filters: postFilter
+  filters: PostFilter
   id: number
 }
 

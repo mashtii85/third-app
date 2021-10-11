@@ -16,7 +16,7 @@ export interface LocationDeleteData {
 
 export interface useDeleteLocationProps extends UseHookProps<LocationDeleteData> {
   filters: LocationFilter
-  accountId: number
+  // accountId: number
 }
 export interface useDeleteLocationOutput {
   deleteLocation: any

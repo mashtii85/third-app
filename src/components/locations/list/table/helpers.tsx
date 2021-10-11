@@ -20,6 +20,8 @@ import { Column } from '../../../../types/column'
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
 
+import { formatToValidDate } from '../../../../utils/dateFormatter'
+
 export interface LocationRows {
   id: number
   name: string
@@ -108,4 +110,19 @@ export const Toolbar = ({ filters }: { filters: LocationFilter }) => {
   }
 
   return <Button context="white" onClick={handleClick} size="sm" content="Create a location" />
+}
+
+export const prepareLocationUpsertVariables = (row: LocationTableRowsType) => {
+  const taxonomy = row.taxonomy && {
+    value: row?.taxonomy?.id,
+    label: row?.taxonomy?.name
+  }
+  const values = {
+    id: row.id,
+    name: row.name,
+    status: row.status,
+    taxonomy,
+    custom_fields: formatToValidDate(row?.custom_fields)
+  }
+  return values
 }

@@ -22,6 +22,7 @@ interface CourseEnrolment {
 
 export interface Course {
   id?: number
+  account_id: number
   title: string
   description?: string
   custom_fields?: CustomFields

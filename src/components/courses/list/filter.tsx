@@ -38,7 +38,7 @@ export const CourseFilters = ({
       <Column sm={4} lg={4}>
         <TaxonomySelect
           {...defaultOptions}
-          label={`Type`}
+          label="Type"
           name="taxonomy"
           type={TAXONOMY_TYPE.COURSE}
         />

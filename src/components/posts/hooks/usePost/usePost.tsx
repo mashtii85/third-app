@@ -10,10 +10,11 @@ import { GET_POSTS } from '../../queries/queries'
 import { PostDataList, PostFilter } from './types.d'
 
 // Utils
-import { GraphQLWhereClause } from '../../../../types/graphQL.d'
+import { GraphqlWhere } from '../../../../types/gql'
+import { Post } from '../../../../types/post'
 
 export const usePost = (filters: Partial<PostFilter>) => {
-  const where: GraphQLWhereClause = {}
+  const where: GraphqlWhere<Post> = {}
   if (filters.accountId) where.account_id = { _eq: filters.accountId }
   if (filters.entity) where.entity = { _eq: filters.entity }
   if (filters.entityId) where.entity_id = { _eq: filters.entityId }
@@ -22,9 +23,5 @@ export const usePost = (filters: Partial<PostFilter>) => {
     variables: { where }
   })
 
-  if (error) {
-    return { loading: false, error, posts: [] }
-  }
-
-  return { loading, posts: data?.posts || [], refetch }
+  return { error, loading, posts: data?.posts || [], refetch }
 }

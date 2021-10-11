@@ -27,5 +27,5 @@ export interface Account {
   taxonomy_id: number
   custom_fields: CustomField
   users: { user: User }[]
-  taxonomy?: Taxonomy
+  taxonomy: Taxonomy | undefined
 }

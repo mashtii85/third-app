@@ -1,7 +1,6 @@
 /**
  * Components - Taxonomies - Hooks - helpers
  */
-import { ApolloError } from '@apollo/client'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook'
 
 import { Taxonomy } from '../../../../types/taxonomy'
