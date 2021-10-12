@@ -42,7 +42,7 @@ export const AppProvider = ({ children, user }: AppProps) => {
         client_id: user?.client_id || 0
       }
     })
-  }, [user?.id])
+  }, [user?.client_id])
 
   // Update theme and config when settings change
   useEffect(() => {
