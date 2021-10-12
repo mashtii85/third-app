@@ -22,10 +22,11 @@ export const getSettings = async (client_id: number): Promise<any> => {
   }
 
   const appSettings = {
+    config: client.meta?.config || {},
+    features: client.meta?.features || {},
     settings,
-    client_config: client.meta?.config || {},
-    client_taxonomies: taxonomies || [],
-    client_theme: client.meta?.theme || {}
+    taxonomies: taxonomies || [],
+    theme: client.meta?.theme || {}
   }
 
   return appSettings

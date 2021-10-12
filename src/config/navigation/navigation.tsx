@@ -16,17 +16,17 @@ import { ACCOUNT_TYPE } from '../../types/account.d'
 
 export const Navigation = () => {
   const { user } = useCurrentUser()
-  const { client_taxonomies } = useApp()
+  const { taxonomies } = useApp()
 
   let links = Default
 
   if (user) {
     switch (user.account_type) {
       case ACCOUNT_TYPE.Admin:
-        links = Admin(client_taxonomies)
+        links = Admin(taxonomies)
         break
       case ACCOUNT_TYPE.Client:
-        links = Client(client_taxonomies)
+        links = Client(taxonomies)
         break
       case ACCOUNT_TYPE.Member:
         links = Member
