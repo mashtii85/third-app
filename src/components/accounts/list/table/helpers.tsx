@@ -143,7 +143,7 @@ export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilte
     offCanvas.show({
       content: <UpsertAccount onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: `Add A ${caption}`
+      title: `Add a ${caption}`
     })
   }
 

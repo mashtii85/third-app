@@ -80,9 +80,15 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
+      <FormLabel label="Name">
+        <FormField {...defaultOptions} name="name" />
+        {errors.name && errors.name.type === 'required' && (
+          <FormError message={errors?.name?.message} />
+        )}
+      </FormLabel>
+
       {showTaxonomy && (
         <>
-          <div>{filters?.accountType}</div>
           <TaxonomySelect {...defaultOptions} label="Type" name="taxonomy" type={taxonomyType} />
           {taxonomyWatch?.value && (
             <CustomFieldElement
@@ -94,23 +100,20 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
           )}
         </>
       )}
-      <FormLabel label="Name">
-        <FormField {...defaultOptions} name="name" />
-        {errors.name && errors.name.type === 'required' && (
-          <FormError message={errors?.name?.message} />
-        )}
-      </FormLabel>
+
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
         {errors.status && errors.status.type === 'required' && (
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
+
       <Checkbox
         {...defaultOptions}
         name="add_contact_user"
         data={[{ label: 'Add contact user', value: true }]}
       />
+
       {addContactUserWatch && (
         <>
           <FormLabel label="First Name">
