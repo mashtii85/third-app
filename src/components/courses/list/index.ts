@@ -3,4 +3,4 @@
  */
 
 export { AccountCourseList } from './account'
-export { ClientCourseList } from './client'
+export { ClientCourseList } from './list'

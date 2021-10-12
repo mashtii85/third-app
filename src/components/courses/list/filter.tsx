@@ -11,15 +11,18 @@ import { Control, FieldErrors } from 'react-hook-form'
 import { LooseObject } from '../../../types/object'
 import { TaxonomySelect } from '../../taxonomies/select/select'
 import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { useQueryWatcher } from '../../common/hooks/useQueryWatcher/useQueryWatcher'
 
 export const CourseFilters = ({
   control,
   errors,
-  register
+  register,
+  watch
 }: {
   control: Control
   errors: FieldErrors
   register: any
+  watch: any
   setFilters: (value: LooseObject) => void
 }) => {
   const defaultOptions = {
@@ -27,6 +30,9 @@ export const CourseFilters = ({
     errors,
     register
   }
+
+  // Watchers
+  useQueryWatcher({ watcher: watch('taxonomy'), queryName: 'type' })
 
   return (
     <>

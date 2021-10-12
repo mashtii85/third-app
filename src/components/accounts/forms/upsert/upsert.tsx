@@ -54,7 +54,6 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
         form,
         userId,
         accountId: defaultValues.id
-        // clientId: filters?.clientId!
       })
       updateAccount({
         variables
@@ -78,11 +77,6 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
   const addContactUserWatch = watch('add_contact_user')
-
-  // const isClientCreateMember = taxonomies.length > 0
-  // const isClientUser = isClientMember && isClientCreateMember
-
-  // const taxonomySelectTitle = isAdmin ? 'Client' : 'Member'
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
@@ -130,8 +124,6 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
           </FormLabel>
         </>
       )}
-      {/* <FormField {...defaultOptions} name="client_id" type="hidden" /> */}
-      {/* <FormField {...defaultOptions} name="type" type="hidden" /> */}
     </Form>
   )
 }

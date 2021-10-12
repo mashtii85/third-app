@@ -53,7 +53,6 @@ export const prepareUpdateAccount = ({
       status: form.status,
       taxonomy_id: form.taxonomy.value,
       custom_fields: form.custom_fields
-      // client_id: clientId
     },
     userSet: {
       email: form.email,

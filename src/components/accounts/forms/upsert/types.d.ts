@@ -1,4 +1,5 @@
 // Types
+import { Account } from '../../../../types/account'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { Options } from '../../../../types/taxonomy'
 import { AccountsRow } from '../../list/table/types'
@@ -19,8 +20,6 @@ export interface CreateAccountForm {
   taxonomy: Options
   custom_fields: any
   add_contact_user?: boolean
-  client_id: number
-  clientId: number
   isCreateUser?: string
   type: string
 }

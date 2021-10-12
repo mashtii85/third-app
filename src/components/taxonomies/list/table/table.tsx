@@ -71,6 +71,7 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
     isParent: false,
     clientId: clientId
   })
+
   console.log(error?.message)
   const handleSuccess = offCanvas.close
 

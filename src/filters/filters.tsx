@@ -24,7 +24,7 @@ export const Filters = memo(
     setFilters: any
     lastQuery?: string
   }) => {
-    const { control, errors, handleSubmit, register, reset } = useForm({
+    const { control, errors, handleSubmit, register, reset, watch } = useForm({
       defaultValues: initialValues
     })
 
@@ -79,7 +79,8 @@ export const Filters = memo(
               errors,
               initialValues,
               register,
-              setFilters
+              setFilters,
+              watch
             })}
           </Row>
 

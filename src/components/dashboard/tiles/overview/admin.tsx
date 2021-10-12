@@ -22,7 +22,7 @@ export const AdminDashboardOverview = () => {
     prepareTiles: prepareAdminTiles
   })
 
-  console.log(error)
+  console.error(error)
 
   return (
     <>

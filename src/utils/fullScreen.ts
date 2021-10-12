@@ -70,13 +70,11 @@ const fullScreen = {
   get fullscreenEnabled(): any {
     return Boolean(document[vendor[key.fullscreenEnabled]])
   },
-  set fullscreenEnabled(val) {
-    console.log(val)
-  },
+  set fullscreenEnabled(val) { },
   get fullscreenElement(): any {
     return document[vendor[key.fullscreenElement]]
   },
-  set fullscreenElement(val) {},
+  set fullscreenElement(val) { },
   get onfullscreenchange(): any {
     return document[`on${vendor[key.fullscreenchange]}`.toLowerCase()]
   },
