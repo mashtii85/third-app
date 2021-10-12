@@ -34,7 +34,6 @@ export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFor
   const taxonomyWatch: Options = watch('taxonomy')
 
   const { createEvent } = useCreateEvent({
-    accountId: user.account_id,
     filters,
     onCompleted: onSuccess,
     onError: (error) => {

@@ -57,9 +57,7 @@ export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormPro
       type: formData.type,
       status: formData.status
     }
-    // The form.parent_id becomes an empty variable when it hasn't been set
-    // console.log('submit-form', { ...form })
-    // console.log('submit-parent_id', { ...form }.parent_id)
+
     if (formData.parent_id !== undefined) obj.parent_id = defaultValues.parent_id
     if (id) {
       return await updateTaxonomy({ variables: { taxonomyId: id, changes: obj } })

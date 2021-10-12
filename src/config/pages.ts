@@ -1,7 +1,8 @@
 const path = {
   home: '/',
   account: {
-    signIn: '/account/sign-in'
+    signIn: '/account/sign-in',
+    logout: '/account/logout'
   },
   dashboard: {
     root: '/dashboard',
@@ -12,7 +13,7 @@ const path = {
       clients: '/dashboard/account/clients',
       settings: '/dashboard/account/settings',
       users: '/dashboard/account/users',
-      view: '/dashboard/account/view'
+      view: '/dashboard/account'
     },
     accounts: {
       list: '/dashboard/accounts',
@@ -39,7 +40,8 @@ const path = {
     events: {
       list: '/dashboard/events'
     },
-    playground: '/dashboard/playground'
+    playground: '/dashboard/playground',
+    profile: '/dashboard/profile'
   }
 }
 

@@ -11,7 +11,7 @@ export interface Filter {
   order_by: OrderBy
 }
 
-export interface DBFilters extends Omit<Filter, 'q'> {
+export interface GQLFilters extends Omit<Filter, 'q'> {
   limit: number
   offset: number
   order_by: OrderBy

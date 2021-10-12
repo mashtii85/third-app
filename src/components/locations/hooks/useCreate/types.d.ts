@@ -10,7 +10,7 @@ export interface CreateLocationVariables {
 }
 
 export interface UseCreateLocationProps extends UseHookProps<CreateLocationVariables> {
-  accountId: number
+  // accountId: number
   filters: LocationFilter
 }
 

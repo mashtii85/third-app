@@ -9,15 +9,8 @@ import { Button, Space, Text } from '@drykiss/industry-ui'
 import { DeleteEventProps } from './types'
 import { useDeleteEvent } from '../../hooks'
 
-export const DeleteEvent = ({
-  accountId,
-  eventId,
-  title,
-  filters,
-  onSuccess
-}: DeleteEventProps) => {
+export const DeleteEvent = ({ eventId, title, filters, onSuccess }: DeleteEventProps) => {
   const { deleteEvent } = useDeleteEvent({
-    accountId,
     filters: filters,
     onCompleted: onSuccess,
     onError: (error) => {

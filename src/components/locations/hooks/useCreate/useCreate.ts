@@ -27,11 +27,11 @@ export const useCreateLocation = (props: UseCreateLocationProps): UseCreateLocat
       }
       const locationFromResponse = data.location
       const variables: LooseObject = prepareLocationsArguments({
-        filters: props.filters,
-        accountId: props.accountId
+        filters: props.filters
+        // accountId: props.accountId
       })
 
-      variables.account_id = { _eq: props.accountId }
+      variables.account_id = { _eq: props?.filters?.accountId }
       const { locations } = cache.readQuery<{ locations: Location[] }, any>({
         query: GET_LOCATIONS,
         variables

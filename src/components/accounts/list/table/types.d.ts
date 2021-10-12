@@ -4,14 +4,11 @@
 
 import { Account, ACCOUNT_TYPE } from '../../../../types/account.d'
 import { User } from '../../../../types/user'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { AccountFilters } from '../../types'
+import { Options } from '../../../../types/taxonomy'
 
 export interface AccountTableProps {
   filters?: Partial<AccountFilters>
-  title: string
-  type?: ACCOUNT_TYPE
-  accountId?: number
 }
 
 export interface UserTableProps {
@@ -24,21 +21,19 @@ export interface UserAccount {
   account?: Account | any
   [key: string]: any
 }
-
-export interface AccountsRow {
-  id: number
+export interface AccountsRow
+  extends Omit<Account, 'client_id' | 'structure' | 'taxonomy_id' | 'users' | 'taxonomy' | 'type'> {
   userId: number
-  name?: string
   firstName: string
   lastName: string
   user?: string
   verified: boolean
   email?: string
   url?: string
-  status: STATUS_ACTIVE
-  created: string
+  add_contact_user?: boolean
+  client_id?: number
   actions: ''
-  taxonomy: any
-  custom_fields: any
+  type?: ACCOUNT_TYPE
+  taxonomy?: Options
   users?: User[]
 }

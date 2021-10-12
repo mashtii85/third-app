@@ -9,9 +9,6 @@ import { MouseEvent, useContext } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import { GET_USER, UPDATE_USER } from './queries'
 
-// Next
-import { useRouter } from 'next/router'
-
 // UI
 import {
   Button,
@@ -26,17 +23,18 @@ import {
 import { ProfileHeader } from '../profileHeader/profileHeader'
 import { UserForm } from './form'
 import { UserAccountsTable } from './accounts/table'
-import { User } from '../../types/user.d'
 import { offCanvasType } from '../../types/offCanvas'
 
-const UserDetails = () => {
-  const { query } = useRouter()
+// Types
+import { User } from '../../types/user.d'
+import { UserDetailsProps } from './types.d'
 
+const UserDetails = ({ userId }: UserDetailsProps) => {
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
 
   const { data: { user = {} } = {}, refetch } = useQuery(GET_USER, {
     variables: {
-      userId: parseInt(query?.id as string)
+      userId: userId
     }
   })
 
@@ -46,10 +44,6 @@ const UserDetails = () => {
       refetch()
     }
   })
-
-  if (!query?.id) {
-    return <></>
-  }
 
   if (!user) {
     return <></>

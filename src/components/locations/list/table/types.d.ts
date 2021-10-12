@@ -4,7 +4,7 @@
 
 import { Location, LocationFilter } from '../../types.d'
 
-export interface LocationTableRowsType extends Location {
+export interface LocationTableRowsType extends Omit<Location, 'account_id' | 'taxonomy_id'> {
   actions: string
 }
 

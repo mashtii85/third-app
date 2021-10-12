@@ -10,8 +10,7 @@ import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
-import { columns, rows, Toolbar } from './helpers'
-import { formatToValidDate } from '../../../../utils/dateFormatter'
+import { columns, prepareLocationUpsertVariables, rows, Toolbar } from './helpers'
 // Hooks
 import { useLocations } from '../../hooks'
 // Types
@@ -23,22 +22,22 @@ import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 
-export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
+export const LocationTable = ({ filters }: LocationTableProps) => {
   const { initialData, ref } = useTable<LocationFilter>({ filters, initialSort })
 
   const { locationList, loading } = useLocations({
-    accountId,
     filters: initialData
   })
 
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+
   const handleDelete = (e: MouseEvent<HTMLElement>, row: LocationTableRowsType) => {
     console.log(e, row)
 
     offCanvas.show({
       content: (
         <DeleteLocation
-          accountId={accountId}
+          accountId={filters.accountId}
           locationId={row.id!}
           name={row.name}
           onSuccess={offCanvas.close}
@@ -52,23 +51,14 @@ export const LocationTable = ({ accountId, filters }: LocationTableProps) => {
 
   const handleEdit = (e: MouseEvent<HTMLElement>, row: LocationTableRowsType) => {
     console.log(e, row)
-    const taxonomy = row.taxonomy && {
-      value: row?.taxonomy?.id,
-      label: row?.taxonomy?.name
-    }
+    const defaultValues = prepareLocationUpsertVariables(row)
 
     offCanvas.show({
       content: (
         <UpsertLocation
           onSuccess={offCanvas.close}
           filters={filters}
-          defaultValues={{
-            id: row.id,
-            name: row.name,
-            status: row.status,
-            taxonomy,
-            custom_fields: formatToValidDate(row?.custom_fields)
-          }}
+          defaultValues={defaultValues}
         />
       ),
       submit: true,

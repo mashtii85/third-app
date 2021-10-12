@@ -26,11 +26,10 @@ export const useCreateEvent = (props: UseCreateEventProps): UseCreateEventOutput
         }
         const eventFromResponse = data.event
         const variables: LooseObject = prepareEventsArguments({
-          filters: props.filters,
-          accountId: props.accountId
+          filters: props.filters
         })
 
-        variables.account_id = { _eq: props.accountId }
+        variables.account_id = { _eq: props.filters.accountId }
         const { events } = cache.readQuery<{ events: Event[] }, any>({
           query: GET_EVENTS,
           variables

@@ -16,8 +16,9 @@ import {
   useDeleteLocationProps,
   useDeleteLocationOutput
 } from './types.d'
-import { LooseObject } from '../../../../types/object.d'
 import { LocationQuery } from '../types'
+import { GQLClause } from '../../../../types/gql'
+import { Location } from '../../types'
 
 export const useDeleteLocation = (props: useDeleteLocationProps): useDeleteLocationOutput => {
   const [deleteLocation, { loading }] = useMutation<LocationDeleteData, LocationDeleteVariables>(
@@ -26,9 +27,8 @@ export const useDeleteLocation = (props: useDeleteLocationProps): useDeleteLocat
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const variables: LooseObject = prepareLocationsArguments({
-          filters: props.filters,
-          accountId: props.accountId
+        const variables: GQLClause<Location> = prepareLocationsArguments({
+          filters: props.filters
         })
 
         const { locations } = cache.readQuery<LocationQuery>({

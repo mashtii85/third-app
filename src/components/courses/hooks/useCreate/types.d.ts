@@ -12,7 +12,7 @@ export interface CreateCourseVariables {
 }
 
 export interface UseCreateCourseProps extends UseHookProps<CreateCourseVariables> {
-  filters: CourseFilter
+  filters: Partial<CourseFilter>
 }
 
 export interface UseCreateCourseOutput extends UseHookOutput {

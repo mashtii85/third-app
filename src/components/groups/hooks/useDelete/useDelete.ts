@@ -10,8 +10,8 @@ import { DELETE_GROUP_BY_PK, GET_GROUPS } from '../../queries/queries'
 import { GroupDeleteData, GroupDeleteVariables, UseDeleteGroupOutput } from './types.d'
 import { UseHookProps } from '../../../../types/hook.d'
 import { GroupDeleteType } from '../useDelete/types.d'
-import { GraphQLWhereClause } from '../../../../types/graphQL.d'
 import { Group } from '../../../../types/group.d'
+import { GraphqlWhere } from '../../../../types/gql'
 
 export const useDeleteGroup = (
   groupProps: GroupDeleteType,
@@ -23,7 +23,7 @@ export const useDeleteGroup = (
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const where: GraphQLWhereClause = { account_id: { _eq: groupProps.accountId } }
+        const where: GraphqlWhere<Group> = { account_id: { _eq: groupProps.accountId! } }
         const { groups } = cache.readQuery<{ groups: Group[] }>({
           query: GET_GROUPS,
           variables: { where }

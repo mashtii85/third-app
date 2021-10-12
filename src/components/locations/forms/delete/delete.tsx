@@ -9,15 +9,8 @@ import { Button, Space, Text } from '@drykiss/industry-ui'
 import { DeleteLocationProps } from './types'
 import { useDeleteLocation } from '../../hooks'
 
-export const DeleteLocation = ({
-  accountId,
-  locationId,
-  name,
-  filters,
-  onSuccess
-}: DeleteLocationProps) => {
+export const DeleteLocation = ({ locationId, name, filters, onSuccess }: DeleteLocationProps) => {
   const { deleteLocation } = useDeleteLocation({
-    accountId,
     filters: filters,
     onCompleted: onSuccess,
     onError: (error) => {

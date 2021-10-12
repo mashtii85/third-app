@@ -10,6 +10,7 @@ import { Filter } from '../../../types/filter.d'
 import { Options } from '../../../types/taxonomy'
 
 export interface CourseFilter extends Filter {
+  id: number
   accountId: number
   status: STATUS_ACTIVE
   taxonomy: Options
@@ -40,5 +41,5 @@ export interface CourseData {
 }
 
 export interface PrepareCourseArgumentProps {
-  filters?: CourseFilter
+  filters?: Partial<CourseFilter>
 }

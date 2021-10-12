@@ -4,12 +4,10 @@
 
 import { Event, EventFilter } from '../../types'
 
-export interface EventTableRowsType extends Event {
-  id: number | undefined
+export interface EventTableRowsType extends Omit<Event, 'account_id' | 'taxonomy_id'> {
   actions: string
 }
 
 interface EventTableProps {
-  accountId: number
   filters: EventFilter
 }

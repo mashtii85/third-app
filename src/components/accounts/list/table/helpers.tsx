@@ -14,11 +14,14 @@ import {
   TableLink
 } from '@drykiss/industry-ui'
 
+// Utils
+import { formatToValidDate } from '../../../../utils/dateFormatter'
+
 // Forms
 import { Account, ACCOUNT_TYPE } from '../../../../types/account'
 import { Column } from '../../../../types/column'
 
-import { AccountForm } from '../../form/form'
+import { UpsertAccount } from '../../forms'
 
 import pages from '../../../../config/pages'
 
@@ -26,7 +29,6 @@ import pages from '../../../../config/pages'
 import { AccountFilters } from '../../types.d'
 import { AccountsRow } from './types.d'
 import { offCanvasType } from '../../../../types/offCanvas'
-
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
 
@@ -105,6 +107,11 @@ export const columns = (
 export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
   const list: AccountsRow[] = []
   accounts?.forEach((account: Account) => {
+    const taxonomy = account?.taxonomy && {
+      label: account.taxonomy?.name!,
+      value: account.taxonomy?.id?.toString() ?? ''
+    }
+
     const user = account?.users[0]?.user ?? {}
     const model: AccountsRow = {
       id: account.id,
@@ -117,9 +124,9 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       email: user?.email,
       url: pages?.dashboard?.accounts?.view,
       status: account.status,
-      created: formatDateStandard(account?.created_at),
+      created_at: formatDateStandard(account?.created_at),
       actions: '',
-      taxonomy: account?.taxonomy,
+      taxonomy,
       custom_fields: account?.custom_fields
     }
     list.push(model)
@@ -128,38 +135,38 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
   return list ?? []
 }
 
-export const UserAccountToolbar = ({
-  filters,
-  type,
-  clientId,
-  isAdmin
-}: {
-  filters?: Partial<AccountFilters>
-  clientId: number
-  isAdmin: boolean
-  type: ACCOUNT_TYPE
-}) => {
+export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilters> }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+  const caption = capitalize(filters?.userType)
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: (
-        <AccountForm
-          onSuccess={offCanvas.close}
-          filters={filters}
-          isAdmin={isAdmin}
-          defaultValues={{
-            client_id: clientId,
-            type
-          }}
-        />
-      ),
+      content: <UpsertAccount onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: `Add A ${type}`
+      title: `Add a ${caption}`
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${type}`} />
+  return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${caption}`} />
+}
+
+export const prepareAccountDefaultValues = ({
+  row,
+  accountId,
+  accountType
+}: {
+  row: AccountsRow
+  accountId?: number
+  accountType?: ACCOUNT_TYPE
+}): AccountsRow => {
+  return {
+    ...row,
+    add_contact_user: isShowUser(row),
+    custom_fields: formatToValidDate(row?.custom_fields),
+    client_id: accountId,
+    type: accountType!,
+    taxonomy: row.taxonomy
+  }
 }
 
 export const isShowUser = ({ firstName, lastName, email }: AccountsRow): boolean =>

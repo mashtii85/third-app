@@ -9,34 +9,30 @@ import { AccountSchema as schema } from './schema'
 
 // UI
 import { Checkbox, Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../constants/status'
-import { TaxonomySelect } from '../../taxonomies/select/select'
+import { statusActive } from '../../../../constants/status'
 
 // Hooks
-import { useCreateAccount, useUpdateAccount } from '../hooks'
-import { useTaxonomies } from '../../taxonomies/hooks'
+import { useCreateAccount, useUpdateAccount } from '../../hooks'
+// import { useTaxonomies } from '../../../taxonomies/hooks'
+import { TaxonomySelect } from '../../../taxonomies/select/select'
 
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
-import { Options, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
-import { CustomFieldElement } from '../../taxonomies/customField/customFieldElement'
+import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
+import { ACCOUNT_TYPE } from '../../../../types/account.d'
 
-export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: AccountFormProps) => {
+export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
-  const isClientMember = isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
-  const { taxonomies } = useTaxonomies({
-    category: isClientMember
-  })
-
   const { createAccount } = useCreateAccount({
-    filters: { ...filters, clientId: defaultValues?.client_id, type: defaultValues?.type },
+    filters,
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error.message)
@@ -63,7 +59,7 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
         variables
       })
     } else {
-      const object = prepareCreateAccount(form)
+      const object = prepareCreateAccount(form, filters?.userType, filters?.userId)
       createAccount({ variables: { object } })
     }
   }
@@ -74,53 +70,50 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
     register
   }
 
+  const taxonomyType =
+    filters?.accountType === ACCOUNT_TYPE.Admin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
+  const showTaxonomy =
+    filters?.accountType === ACCOUNT_TYPE.Admin || filters?.accountType === ACCOUNT_TYPE.Client
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
   const addContactUserWatch = watch('add_contact_user')
 
-  const isClientCreateMember = taxonomies.length > 0
-  const isClientUser = isClientMember && isClientCreateMember
-
-  const taxonomySelectTitle = isAdmin ? 'Client' : 'Member'
-
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
-      {(isClientUser || isAdmin) && (
-        <>
-          <div>{taxonomySelectTitle}</div>
-          <TaxonomySelect
-            {...defaultOptions}
-            label={`${taxonomySelectTitle} Type`}
-            name="taxonomy"
-            type={isClientMember}
-          />
-          {taxonomyWatch?.value && (
-            <CustomFieldElement
-              {...defaultValues}
-              {...defaultOptions}
-              type={isClientMember}
-              taxonomyWatch={taxonomyWatch}
-            />
-          )}
-        </>
-      )}
       <FormLabel label="Name">
         <FormField {...defaultOptions} name="name" />
         {errors.name && errors.name.type === 'required' && (
           <FormError message={errors?.name?.message} />
         )}
       </FormLabel>
+
+      {showTaxonomy && (
+        <>
+          <TaxonomySelect {...defaultOptions} label="Type" name="taxonomy" type={taxonomyType} />
+          {taxonomyWatch?.value && (
+            <CustomFieldElement
+              {...defaultValues}
+              {...defaultOptions}
+              type={taxonomyType}
+              taxonomyWatch={taxonomyWatch}
+            />
+          )}
+        </>
+      )}
+
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={statusActive} />
         {errors.status && errors.status.type === 'required' && (
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
+
       <Checkbox
         {...defaultOptions}
         name="add_contact_user"
         data={[{ label: 'Add contact user', value: true }]}
       />
+
       {addContactUserWatch && (
         <>
           <FormLabel label="First Name">
@@ -134,8 +127,6 @@ export const AccountForm = ({ defaultValues, isAdmin, filters, onSuccess }: Acco
           </FormLabel>
         </>
       )}
-      <FormField {...defaultOptions} name="client_id" type="hidden" />
-      <FormField {...defaultOptions} name="type" type="hidden" />
     </Form>
   )
 }

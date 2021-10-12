@@ -12,15 +12,12 @@ import { LocationsData, LocationsVariables, UseLocationsOutput, UseLocationsProp
 // Helpers
 import { prepareLocationsArguments } from './helpers'
 
-export const useLocations = ({ filters, accountId }: UseLocationsProps): UseLocationsOutput => {
-  const variables = prepareLocationsArguments({ filters, accountId })
+export const useLocations = ({ filters }: UseLocationsProps): UseLocationsOutput => {
+  const variables = prepareLocationsArguments({ filters })
+
   const { data, error, loading } = useQuery<LocationsData, LocationsVariables>(GET_LOCATIONS, {
     variables
   })
 
-  if (error) {
-    return { loading: false, error, locationList: [] }
-  }
-
-  return { loading, locationList: data?.locations || [] }
+  return { error, loading, locationList: data?.locations || [] }
 }

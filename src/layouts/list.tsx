@@ -3,7 +3,7 @@
  */
 
 // React
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // UI
 import { Column, Row } from '@drykiss/industry-ui'
@@ -19,6 +19,11 @@ export const LayoutList = ({
   otherProps
 }: LayoutListProps) => {
   const [filters, setFilters] = useState(initialFilters)
+
+  useEffect(() => {
+    setFilters(initialFilters)
+  }, [initialFilters])
+
   return (
     <Row>
       <Column sm={12} lg={12}>

@@ -2,21 +2,16 @@
  * Components - Courses - List - Table - Hooks - helpers
  */
 
-import { nullFreeObject } from '../../../utils/nullFreeObject'
-
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
 import { PrepareCourseArgumentProps } from './types'
 import { Course } from '../../../types/course'
 import { GQLClause, GraphqlWhere } from '../../../types/gql'
-import { CourseDB } from '../types'
 
 export const prepareCoursesArguments = ({
   filters
 }: PrepareCourseArgumentProps): GQLClause<Course> => {
-  nullFreeObject(filters)
-
-  let condition: GraphqlWhere<CourseDB> = { status: { _eq: STATUS_ACTIVE.Active } }
+  let condition: GraphqlWhere<Course> = { status: { _eq: STATUS_ACTIVE.Active } }
 
   if (filters?.accountId) {
     condition.account_id = { _eq: filters.accountId }

@@ -6,12 +6,14 @@
 import { User } from '../../../types/user.d'
 import { NavItem, UserDropDownOutput } from './type'
 
+import pages from '../../pages'
+
 export const UserDropdown = (user: User): UserDropDownOutput => {
   const prepareNavItems = (): NavItem[] => [
     {
       id: 'navProfile',
       name: 'Profile',
-      to: `/dashboard/users/view?id=${user.id}`
+      to: pages.dashboard.profile
     },
     {
       id: 'navLogoutDivider',
@@ -20,7 +22,7 @@ export const UserDropdown = (user: User): UserDropDownOutput => {
     {
       id: 'navLogout',
       name: 'Logout',
-      to: '/account/logout'
+      to: pages.account.logout
     }
   ]
 

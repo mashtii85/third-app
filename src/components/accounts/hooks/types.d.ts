@@ -1,15 +1,8 @@
-import { ApolloError } from '@apollo/client'
-
 import { Account } from '../../../types/account.d'
 import { UseHookOutput } from '../../../types/hook.d'
 import { LooseObject } from '../../../types/object'
 import { User } from '../../../types/user'
 import { AccountFilters } from '../types'
-
-export interface AccountData {
-  accounts: Account[]
-  account: Account | any
-}
 
 export interface UseUserAccountsOutput extends UseHookOutput {
   users?: User[]
@@ -19,23 +12,8 @@ export interface UserData {
   users?: User[]
 }
 
-export interface UseAccountVariable {
-  filters: Partial<AccountFilters>
-  accountId: number
-  // accountType?: ACCOUNT_TYPE
-  // clientId?: number
-  // status?: STATUS_ACTIVE
-  // type?: string
-}
-
 export interface UseAccountsVariable {
   filters?: Partial<AccountFilters>
-
-  // accountId?: number
-  // accountType?: ACCOUNT_TYPE
-  // clientId?: number
-  // status?: STATUS_ACTIVE
-  // type?: string
 }
 
 export interface UseAccountsOutput extends UseHookOutput {
@@ -50,16 +28,6 @@ export interface AccountVariables {
   where: LooseObject
 }
 
-export interface UseCreateAccountProps {
-  filters?: Partial<AccountFilters>
-  onCompleted: (data: { account: Account }) => void
-  onError: (data: ApolloError) => void
-}
-
-export interface UseCreateAccountOutput extends UseHookOutput {
-  createAccount?: any
-}
-
-export interface UseAccountOutput extends UseHookOutput {
-  account?: Account
-}
+// export interface UseCreateAccountProps extends UseHookProps<Account> {
+//   filters?: Partial<AccountFilters>
+// }

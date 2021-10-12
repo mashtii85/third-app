@@ -10,7 +10,6 @@ export interface CreateEventVariables {
 }
 
 export interface UseCreateEventProps extends UseHookProps<CreateEventVariables> {
-  accountId: number
   filters: EventFilter
 }
 

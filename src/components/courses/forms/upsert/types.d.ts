@@ -22,7 +22,7 @@ export interface CourseFormSubmission extends CourseFormType {
 
 export interface CourseFormProps {
   onSuccess: () => void
-  filters: CourseFilter
+  filters: Partial<CourseFilter>
   defaultValues?: Course | LooseObject
 }
 

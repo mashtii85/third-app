@@ -40,5 +40,5 @@ export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOut
     }
   })
 
-  return { error, createCourse, loading }
+  return { createCourse, error, loading }
 }

@@ -25,11 +25,10 @@ import { Options } from '../../../../types/taxonomy'
 
 const initialSort = {}
 
-export const EventTable = ({ accountId, filters }: EventTableProps) => {
+export const EventTable = ({ filters }: EventTableProps) => {
   const { initialData, ref } = useTable<EventFilter>({ filters, initialSort })
 
   const { eventList, loading } = useEvents({
-    accountId,
     filters: initialData
   })
 
@@ -40,7 +39,6 @@ export const EventTable = ({ accountId, filters }: EventTableProps) => {
     offCanvas.show({
       content: (
         <DeleteEvent
-          accountId={accountId}
           eventId={row.id!}
           title={row.title}
           onSuccess={offCanvas.close}
@@ -54,6 +52,7 @@ export const EventTable = ({ accountId, filters }: EventTableProps) => {
 
   const handleEdit = (e: MouseEvent<HTMLElement>, { actions, ...row }: EventTableRowsType) => {
     console.log(e, actions)
+    // todo: take a look
     let taxonomy: Options | undefined
     if (row?.taxonomy) {
       taxonomy = {

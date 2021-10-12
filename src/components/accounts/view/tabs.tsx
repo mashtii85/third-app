@@ -12,18 +12,19 @@ import { useRouter } from 'next/router'
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../common/tab'
 import { UserAccounts } from '../list/table/userAccounts'
-import AccountDetails from './view/accountDetails'
+import AccountDetails from './accountDetails'
+
+// Types
 import { ACCOUNT_TABS } from '../../../constants/tabs'
 import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { AccountTabsProps } from './type.d'
 
-const AccountTabs = () => {
+const AccountTabs = ({ accountId }: AccountTabsProps) => {
   const { query } = useRouter()
 
   const tab = useMemo(() => {
     return query.tab || ACCOUNT_TABS.ACCOUNT
   }, [query.tab])
-
-  const accountId: number = +(query?.id || '0')
 
   return (
     <Tabs key={tab}>
@@ -31,7 +32,7 @@ const AccountTabs = () => {
         <AccountDetails accountId={accountId} title="Account Details" />
       </Tab>
       <Tab active={tab === ACCOUNT_TABS.USERS} label="Users">
-        <UserAccounts type={ACCOUNT_TYPE.Member} title="Users" accountId={accountId} />
+        <UserAccounts accountId={accountId} type={ACCOUNT_TYPE.Member} title="Users" />
       </Tab>
     </Tabs>
   )
