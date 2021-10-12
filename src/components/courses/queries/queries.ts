@@ -39,6 +39,9 @@ export const GET_COURSE = gql`
   query GetCourse($courseId: Int!) {
     course: course_by_pk(id: $courseId) {
       ...CourseFields
+      taxonomy {
+        ...TaxonomyFields
+      }
       modules {
         id
         description
@@ -84,6 +87,7 @@ export const GET_COURSE = gql`
     }
   }
   ${COURSE_FIELDS}
+  ${TAXONOMY_FIELDS}
   ${LESSON_FIELDS}
   ${MEDIA_FIELDS}
   ${ENROLLMENTS_FIELDS}
@@ -107,12 +111,16 @@ export const CREATE_COURSE = gql`
       }
     ) {
       ...CourseFields
+      taxonomy {
+        ...TaxonomyFields
+      }
       enrolled: course_enrollments_aggregate {
         ...EnrollmentsAggregateFields
       }
     }
   }
   ${COURSE_FIELDS}
+  ${TAXONOMY_FIELDS}
   ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
 `
 
