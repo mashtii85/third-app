@@ -10,7 +10,7 @@ import { useLazyQuery } from '@apollo/client'
 import { APP_SETTINGS } from './queries'
 
 // UI
-import { LdsSpinner, PageLoading } from '@drykiss/industry-ui'
+import { Loading } from '../../components/common/loading'
 import ErrorPage from '../../pages/_error'
 
 // Types
@@ -37,7 +37,7 @@ export const AppProvider = ({ children, user }: AppProps) => {
   const appSettings = data?.app_settings || null
 
   if (!appSettings) {
-    return <PageLoading indicator={<LdsSpinner />} />
+    return <Loading />
   }
 
   // Check maintenance mode
