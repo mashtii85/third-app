@@ -10,6 +10,10 @@ export const prepareTaxonomyNavigation = (
   taxonomies: Partial<Taxonomy[]>,
   type: TAXONOMY_TYPE
 ): NavLink[] => {
+  if (!taxonomies?.length) {
+    return []
+  }
+
   const list: NavLink[] = taxonomies
     .filter((t) => t?.type === type)
     .map((t) => {
