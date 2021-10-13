@@ -13,8 +13,8 @@ export interface LessonFormType {
 }
 
 export interface LESSON_TYPE_DROPDOWN {
-  text: 'Text' | 'Video' | 'Quiz' | 'Assignment'
-  value: 'text' | 'video' | 'quiz' | 'assignment'
+  text: 'Text' | 'Video' | 'Quiz' | 'Assignment' | 'Pdf' | 'PowerPoint'
+  value: 'text' | 'video' | 'quiz' | 'assignment' | 'pdf' | 'powerpoint'
 }
 
 export interface LESSON_STATUS_DROPDOWN {

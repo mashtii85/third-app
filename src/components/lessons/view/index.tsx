@@ -20,24 +20,36 @@ import {
   formatDateStandard,
   formatTime,
   ButtonToolbar,
-  Button
+  Button,
+  Divider
 } from '@drykiss/industry-ui'
 import { LessonContentEdit } from '../form/edit/contentForm'
+import VideoPlayer from '../../common/videoPlayer/videoPlayer'
+import DocumentViewer from '../../common/docViewer/docViewer'
 
 // Hooks
 import { useLessons } from '../hooks/useLessons'
+import { useMedia } from '../../media/hooks/useMedia/useMedia'
 
 // Pages
 import pages from '../../../config/pages'
 
 // Helpers
-import { LessonDetailsToolbar } from './helpers'
+import { LessonDetailsToolbar, LessonContentUpload } from './helpers'
+import { parseVideos } from '../../courses/helpers'
+
+// Constants
+import { ENTITIES } from '../../../constants/entities'
 
 // Types
 import { LessonFilter } from '../hooks/types.d'
-import { LessonDetailsToolbarType } from './types'
+import { LessonContentToolbarType, LessonDetailsToolbarType } from './types'
 import { THEME_CONTEXT } from '../../../constants/themeContext'
-import { LessonFormType } from '../form/edit/types.d'
+import { LESSON_TYPE } from '../../../types/lesson.d'
+import { SIZE } from '../../../config/theme'
+import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
+import { STATUS_ACTIVE } from '../../../types/select.d'
+import { UseMediaProps } from '../../media/hooks/useMedia/types.d'
 
 export const LessonView = () => {
   const [editMode, setEditMode] = useState<boolean>(false)
@@ -46,6 +58,18 @@ export const LessonView = () => {
 
   const filters: Partial<LessonFilter> = { id: lessonId }
   const { lessonList } = useLessons(filters)
+
+  const mediaFilters: UseMediaProps = {
+    entity: ENTITIES.Lesson,
+    entityId: lessonId,
+    category: MEDIUM_CATEGORY.Lesson,
+    type: lessonList[0]?.type === LESSON_TYPE.Video ? MEDIUM_TYPE.Video : MEDIUM_TYPE.Document
+  }
+  const { mediaList } = useMedia(mediaFilters)
+  const medium: Medium | undefined = mediaList?.find(
+    (mdum) => mdum.filename && mdum.status === STATUS_ACTIVE.Active
+  )
+
   if (!lessonList || !lessonList[0]) return null
   const lesson = lessonList[0]
 
@@ -88,8 +112,10 @@ export const LessonView = () => {
     )
   }
 
-  const defaultValues: LessonFormType = {
+  const defaultValues: LessonContentToolbarType = {
     id: lessonId,
+    caption: medium?.caption,
+    type: lesson.type,
     content: lesson.content
   }
 
@@ -145,15 +171,52 @@ export const LessonView = () => {
               title="Content"
               toolbar={<LessonContentToolbar key={`content-toolbar-${lessonId}`} />}
             >
-              {editMode ? (
-                <LessonContentEdit
-                  key="lesson-content-edit"
-                  onSuccess={onSuccess}
-                  defaultValues={defaultValues}
-                />
-              ) : (
-                lesson?.content
-              )}
+              <>
+                {editMode ? (
+                  <>
+                    <>
+                      {(lesson.type === LESSON_TYPE.Video ||
+                        lesson.type === LESSON_TYPE.Pdf ||
+                        lesson.type === LESSON_TYPE.PowerPoint) && (
+                          <LessonContentUpload
+                            key="lesson-content-upload"
+                            defaultValues={defaultValues}
+                          />
+                        )}
+                      <Space />
+                      <Divider size={SIZE.SM} />
+                    </>
+                    <LessonContentEdit
+                      key="lesson-content-edit"
+                      onSuccess={onSuccess}
+                      defaultValues={defaultValues}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {medium && (
+                      <>
+                        {lesson.type === LESSON_TYPE.Video && (
+                          <VideoPlayer videos={parseVideos([medium])} />
+                        )}
+                        {(lesson.type === LESSON_TYPE.Pdf ||
+                          lesson.type === LESSON_TYPE.PowerPoint) && (
+                            <DocumentViewer
+                              docs={[
+                                {
+                                  uri: `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${medium?.filename}`
+                                }
+                              ]}
+                            />
+                          )}
+                        <Space />
+                        <Divider size={SIZE.SM} />
+                      </>
+                    )}
+                    {lesson?.content}
+                  </>
+                )}
+              </>
             </Details2>
           </Column>
         </Row>

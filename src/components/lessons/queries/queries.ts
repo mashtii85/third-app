@@ -4,6 +4,7 @@
 
 // Apollo
 import { gql } from '@apollo/client'
+import { MEDIA_FIELDS } from '../../media/queries/fragments'
 
 // Fragments
 import { LESSON_FIELDS } from './fragments'
@@ -12,9 +13,13 @@ export const GET_LESSONS = gql`
   query GetLessons($limit: Int = 100, $order_by: [lesson_order_by!] = {}, $where: lesson_bool_exp) {
     lessons: lesson(where: $where, limit: $limit, order_by: $order_by) {
       ...LessonFields
+      media {
+        ...MediaFields
+      }
     }
   }
   ${LESSON_FIELDS}
+  ${MEDIA_FIELDS}
 `
 
 export const UPDATE_LESSON_BY_PK = gql`

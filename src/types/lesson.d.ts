@@ -11,7 +11,9 @@ export enum LESSON_TYPE {
   Text = 'text',
   Video = 'video',
   Quiz = 'quiz',
-  Assignment = 'assignment'
+  Assignment = 'assignment',
+  Pdf = 'pdf',
+  PowerPoint = 'powerpoint'
 }
 
 export enum LESSON_STATUS {
@@ -84,7 +86,7 @@ type QuizLesson = {
 type OtherLessons = {
   id: number
   course_id: number
-  type: LESSON_TYPE.Text | LESSON_TYPE.Assignment
+  type: LESSON_TYPE.Text | LESSON_TYPE.Assignment | LESSON_TYPE.Pdf | LESSON_TYPE.PowerPoint
   title: string
   description?: string
   content: string

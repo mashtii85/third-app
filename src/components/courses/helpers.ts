@@ -36,6 +36,6 @@ export const parseVideos = (media: Medium[]): Video[] => {
     .map((item) => ({
       title: '',
       desc: '',
-      src: item.filename
+      src: `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${item?.filename}`
     }))
 }

@@ -30,7 +30,9 @@ export const LessonForm = ({
     { text: 'Text', value: 'text' },
     { text: 'Video', value: 'video' },
     { text: 'Quiz', value: 'quiz' },
-    { text: 'Assignment', value: 'assignment' }
+    { text: 'Assignment', value: 'assignment' },
+    { text: 'Pdf', value: 'pdf' },
+    { text: 'PowerPoint', value: 'powerpoint' }
   ]
 
   const lessonStatus: LESSON_STATUS_DROPDOWN[] = [
