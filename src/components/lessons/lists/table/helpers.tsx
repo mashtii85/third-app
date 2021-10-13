@@ -48,7 +48,7 @@ export const columns = ({
   const columnsSchema: Column<LessonTableRowsType>[] = [
     { text: 'id', hidden: true },
     {
-      formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
+      formatter: TableLink(pages.dashboard.lessons.view_by_id, 'id', 'title'),
       text: 'Title'
     },
     { text: 'Description', hidden: true },

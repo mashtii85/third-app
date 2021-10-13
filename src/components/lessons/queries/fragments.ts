@@ -8,6 +8,7 @@ import { gql } from '@apollo/client'
 export const LESSON_FIELDS = gql`
   fragment LessonFields on lesson {
     id
+    course_id
     description
     content
     title

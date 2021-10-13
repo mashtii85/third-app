@@ -29,7 +29,7 @@ import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { offCanvasType } from '../../../../types/offCanvas'
 
-export const LessonTable = (filters: UseLessonsProps) => {
+export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { lessonList, loading } = useLessons(filters)
 
@@ -54,7 +54,6 @@ export const LessonTable = (filters: UseLessonsProps) => {
       title: row.title,
       description: row.description,
       type: row.type,
-      content: row.content,
       status: row.status
     }
     offCanvas.show({

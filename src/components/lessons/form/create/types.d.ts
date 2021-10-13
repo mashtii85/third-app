@@ -9,7 +9,6 @@ export interface LessonFormType {
   title: string
   description: string | undefined
   type: LESSON_TYPE
-  content: string
   status: LESSON_STATUS
 }
 

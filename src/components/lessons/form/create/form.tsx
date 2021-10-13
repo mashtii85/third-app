@@ -74,7 +74,6 @@ export const LessonForm = ({
           title: form.title,
           description: form.description ?? '',
           type: form.type,
-          content: form.content,
           status: form.status
         }
       })
@@ -91,9 +90,6 @@ export const LessonForm = ({
       </FormLabel>
       <FormLabel label="Type">
         <SelectField {...defaultOptions} name="type" options={lessonType} />
-      </FormLabel>
-      <FormLabel label="Content">
-        <TextareaField {...defaultOptions} name="content" rows={10} />
       </FormLabel>
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={lessonStatus} />

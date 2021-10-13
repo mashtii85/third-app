@@ -21,6 +21,7 @@ export enum LESSON_STATUS {
 
 type VideoLesson = {
   id: number
+  course_id: number
   type: LESSON_TYPE.Video
   title: string
   description?: string
@@ -63,6 +64,7 @@ export type QuizQuestion = SelectAnswer | ShortTextAnswer
 
 type QuizLesson = {
   id: number
+  course_id: number
   type: LESSON_TYPE.Quiz
   questions: QuizQuestion[]
   title: string
@@ -81,6 +83,7 @@ type QuizLesson = {
 // VideoLesson is separated because it's media property is not optional
 type OtherLessons = {
   id: number
+  course_id: number
   type: LESSON_TYPE.Text | LESSON_TYPE.Assignment
   title: string
   description?: string
