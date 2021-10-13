@@ -3,18 +3,17 @@
  */
 
 // React
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useEffect } from 'react'
 
 // GQL
 import { useLazyQuery } from '@apollo/client'
 import { APP_SETTINGS } from './queries'
-import { ThemeContext } from 'styled-components'
 
-// Utils
-import merge from 'deepmerge'
+// Lodash
+import isEmpty from 'lodash/isEmpty'
 
 // UI
-import { ConfigContext } from '@drykiss/industry-ui'
+import { useAppTheme, useConfig } from '@drykiss/industry-ui'
 import { Loading } from '../../components/common/loading'
 import ErrorPage from '../../pages/_error'
 
@@ -29,8 +28,8 @@ interface AppProps {
 }
 
 export const AppProvider = ({ children, user }: AppProps) => {
-  const { config, setConfig } = useContext(ConfigContext)
-  const { setTheme, ...theme } = useContext(ThemeContext)
+  const { setConfig } = useConfig()
+  const { setTheme } = useAppTheme()
 
   const [getSettings, { data: { appSettings } = { appSettings: null } }] =
     useLazyQuery(APP_SETTINGS)
@@ -46,9 +45,11 @@ export const AppProvider = ({ children, user }: AppProps) => {
 
   // Update theme and config when settings change
   useEffect(() => {
-    if (appSettings) {
-      setConfig(merge(config, appSettings.config))
-      setTheme(merge(theme, appSettings.theme))
+    if (!isEmpty(appSettings?.config)) {
+      setConfig(appSettings.config)
+    }
+    if (!isEmpty(appSettings?.theme)) {
+      setTheme(appSettings.theme)
     }
   }, [appSettings])
 
