@@ -20,7 +20,7 @@ export const prepareTaxonomyNavigation = (
       return {
         id: `navItems${t?.name}`,
         name: t?.name,
-        to: `/items?type=${t?.id}`
+        to: `/dashboard/${type}?type=${t?.id}`
       }
     })
   list.push({
