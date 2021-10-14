@@ -14,19 +14,28 @@ export const ClientCourseView = () => {
   const { query } = useRouter()
 
   // todo: transfer this to courseTable route
-  const tabName: string = (query?.tab as string) ?? CLIENT_TAB.Details
-
+  const tab = (): string => {
+    switch (query?.tab?.toString().toLowerCase()) {
+      case CLIENT_TAB.Curriculum.toLowerCase():
+        return CLIENT_TAB.Curriculum
+      case CLIENT_TAB.Enrollments.toLowerCase():
+        return CLIENT_TAB.Enrollments
+      case CLIENT_TAB.Details.toLowerCase():
+      default:
+        return CLIENT_TAB.Details
+    }
+  }
   const courseId: number = +(query?.id || '0')
   return (
     <>
-      <Tabs>
-        <Tab active={tabName === CLIENT_TAB.Details || !tabName} label={CLIENT_TAB.Details}>
+      <Tabs key={tab()}>
+        <Tab active={tab() === CLIENT_TAB.Details} label={CLIENT_TAB.Details}>
           <ClientDetails courseId={courseId} />
         </Tab>
-        <Tab active={tabName === CLIENT_TAB.Curriculum || !tabName} label={CLIENT_TAB.Curriculum}>
+        <Tab active={tab() === CLIENT_TAB.Curriculum} label={CLIENT_TAB.Curriculum}>
           <ClientLessons courseId={courseId} />
         </Tab>
-        <Tab active={tabName === CLIENT_TAB.Enrollments || !tabName} label={CLIENT_TAB.Enrollments}>
+        <Tab active={tab() === CLIENT_TAB.Enrollments} label={CLIENT_TAB.Enrollments}>
           <EnrolledCourses courseId={courseId} />
         </Tab>
       </Tabs>

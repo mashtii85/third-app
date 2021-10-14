@@ -53,5 +53,80 @@ const findNextLesson = (
   }
   return null
 }
+const findPreviousLesson = (
+  course: Course,
+  selectedModuleId?: number,
+  selectedLessonId?: number
+): {
+  selectedModuleId: number
+  selectedLessonId: number
+} | null => {
+  const allArr = []
+  if (!course.modules || course.modules.length <= 0) return null
+  const modules = course.modules
+  for (const module of modules) {
+    if (module.lessons) {
+      for (let i = 0; i < module.lessons?.length; i++) {
+        const lesson = module.lessons[i]
+        const moduleId = module.id
+        const lessonId = lesson.id
+        allArr.push({
+          selectedModuleId: moduleId,
+          selectedLessonId: lessonId
+        })
+      }
+    }
+  }
+  for (let i = 0; i < allArr.length; i++) {
+    if (
+      i !== 0 &&
+      allArr[i].selectedLessonId === selectedLessonId &&
+      allArr[i].selectedModuleId === selectedModuleId
+    ) {
+      return allArr[i - 1]
+    }
+  }
+  return null
+}
 
-export { getCurrentLesson, getCurrentLessonProgress, findNextLesson }
+const getLessonNumber = (
+  course: Course,
+  selectedModuleId?: number,
+  selectedLessonId?: number
+): number => {
+  if (!course.modules || course.modules.length <= 0) return 0
+  const modules = course.modules
+  const allArr = []
+
+  for (const module of modules) {
+    if (module.lessons) {
+      for (let i = 0; i < module.lessons?.length; i++) {
+        const lesson = module.lessons[i]
+        const moduleId = module.id
+        const lessonId = lesson.id
+        allArr.push({
+          selectedModuleId: moduleId,
+          selectedLessonId: lessonId
+        })
+      }
+    }
+  }
+  for (let i = 0; i < allArr.length; i++) {
+    if (
+      i !== 0 &&
+      allArr[i].selectedLessonId === selectedLessonId &&
+      allArr[i].selectedModuleId === selectedModuleId
+    ) {
+      return i
+    }
+  }
+  return 0
+}
+
+export {
+  getCurrentLesson,
+  getCurrentLessonProgress,
+  findNextLesson,
+  findPreviousLesson,
+  getLessonNumber
+}

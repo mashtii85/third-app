@@ -9,26 +9,28 @@ import { ApolloError } from '@apollo/client'
 import { LooseObject } from '../../../types/object'
 
 export interface LessonFilter {
-  title?: string
-  description?: string
+  id: number
+  courseId: number
+  moduleId: number
+  title: string
+  description: string
   type: LESSON_TYPE
   content: string
-  status?: LESSON_STATUS
-  // limit: number
-  // offset: number
-  // orderBy: OrderBy
+  status: LESSON_STATUS
+  ordering: number
 }
 
 export interface UseLessonsProps {
-  courseId?: number
-  moduleId?: number
-  title?: string
-  description?: string
-  type?: LESSON_TYPE
-  content?: string
-  status?: LESSON_STATUS
-  ordering?: number
-  filters?: LessonFilter
+  id: number
+  courseId: number
+  moduleId: number
+  title: string
+  description: string
+  type: LESSON_TYPE
+  content: string
+  status: LESSON_STATUS
+  ordering: number
+  filters: LessonFilter
 }
 
 export interface LessonsData {

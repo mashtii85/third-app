@@ -34,6 +34,10 @@ const path = {
     enrollments: {
       root: '/dashboard/enrollments'
     },
+    lessons: {
+      root: '/dashboard/lessons',
+      view_by_id: '/dashboard/lessons/view'
+    },
     locations: {
       list: '/dashboard/locations'
     },

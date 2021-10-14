@@ -9,13 +9,12 @@ export interface LessonFormType {
   title: string
   description: string | undefined
   type: LESSON_TYPE
-  content: string
   status: LESSON_STATUS
 }
 
 export interface LESSON_TYPE_DROPDOWN {
-  text: 'Text' | 'Video' | 'Quiz' | 'Assignment'
-  value: 'text' | 'video' | 'quiz' | 'assignment'
+  text: 'Text' | 'Video' | 'Quiz' | 'Assignment' | 'Pdf' | 'PowerPoint'
+  value: 'text' | 'video' | 'quiz' | 'assignment' | 'pdf' | 'powerpoint'
 }
 
 export interface LESSON_STATUS_DROPDOWN {

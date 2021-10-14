@@ -12,6 +12,5 @@ export const lessonSchema: SchemaOf<LessonFormType> = object().shape({
   title: string().required(),
   description: string().notRequired(),
   type: mixed().oneOf(Object.values(LESSON_TYPE)),
-  content: string().required(),
   status: mixed().oneOf(Object.values(LESSON_STATUS))
 })

@@ -59,13 +59,20 @@ import { POST_TYPE } from '../../../types/post.d'
 // Helpers
 import { parseVideos } from '../helpers'
 import { useCurrentUser } from '../../../utils/useCurrentUser'
-import { findNextLesson, getCurrentLesson, getCurrentLessonProgress } from '../../lessons/helpers'
+import {
+  findNextLesson,
+  findPreviousLesson,
+  getCurrentLesson,
+  getCurrentLessonProgress,
+  getLessonNumber
+} from '../../lessons/helpers'
 import { scrollTo } from '../../../utils/scrollTo'
 
 import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from './types.d'
 import styled from 'styled-components'
 import ArrowRightIcon from '../../icons/arrowRight'
+import LeftArrowIcon from '../../icons/arrowLeft'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -227,8 +234,8 @@ export const AccountCourseView = () => {
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
               : isActive && stateHolder.canCompleteLesson
-              ? 'In progress ...'
-              : null,
+                ? 'In progress ...'
+                : null,
           status: progress?.status,
           actions: [actionModel]
         })
@@ -432,6 +439,25 @@ export const AccountCourseView = () => {
       title: course?.title
     }
   ]
+  const handlePreviousClick = () => {
+    const previousLesson = findPreviousLesson(
+      course as Course,
+      stateHolder.selectedModuleId,
+      stateHolder.selectedLessonId
+    )
+    if (previousLesson) {
+      stateHolder.selectedModuleId = previousLesson.selectedModuleId
+      stateHolder.selectedLessonId = previousLesson.selectedLessonId
+    }
+    const currentLesson = getCurrentLesson(
+      course,
+      stateHolder.selectedModuleId,
+      stateHolder.selectedLessonId
+    )
+    if (currentLesson) {
+      startLesson(currentLesson)
+    }
+  }
 
   const quizScoreInfo = (): QuizCompletedData | undefined => {
     const meta = lesson?.lesson_progresses[lesson.lesson_progresses.length - 1]?.meta
@@ -443,6 +469,11 @@ export const AccountCourseView = () => {
     }
     return undefined
   }
+  const lessonNumber = getLessonNumber(
+    course as Course,
+    stateHolder.selectedModuleId,
+    stateHolder.selectedLessonId
+  )
 
   return (
     <>
@@ -492,17 +523,33 @@ export const AccountCourseView = () => {
                       />
                     )}
                     {lesson.content && <p>{lesson.content}</p>}
-                    {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) &&
-                      lesson.type !== LESSON_TYPE.Quiz && (
-                        <StyledNextButton
+                    <ButtonsWrapper>
+                      {lessonNumber !== 0 ? (
+                        <StyledPrevButton
                           context="primary"
                           data-cy="complete"
-                          onClick={completeLesson}
+                          outline
+                          onClick={handlePreviousClick}
                         >
-                          <span> {stateHolder.actionButtonCaption}</span>
-                          <ArrowRightIcon />
-                        </StyledNextButton>
+                          <LeftArrowIcon context="primary" />
+                          <span>Previous Lesson</span>
+                        </StyledPrevButton>
+                      ) : (
+                        <div />
                       )}
+
+                      {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) &&
+                        lesson.type !== LESSON_TYPE.Quiz && (
+                          <StyledNextButton
+                            context="primary"
+                            data-cy="complete"
+                            onClick={completeLesson}
+                          >
+                            <span> {stateHolder.actionButtonCaption}</span>
+                            <ArrowRightIcon />
+                          </StyledNextButton>
+                        )}
+                    </ButtonsWrapper>
                   </>
                 </Details2>
               ) : (
@@ -540,6 +587,17 @@ const StyledNextButton = styled(Button)`
     gap: 0.5rem;
   }
 `
+const StyledPrevButton = styled(Button)`
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
+`
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const BreadcrumbWrapper = styled.div`
   ol {
     padding: 0;

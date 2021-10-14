@@ -8,7 +8,7 @@ const DocViewerHead: IHeaderOverride = (state, previousDocument, nextDocument) =
 
   return (
     <>
-      {documents?.length > 0 && (
+      {documents?.length > 1 && (
         <div>
           <button onClick={previousDocument} disabled={currentFileNo === 0}>
             Previous Document

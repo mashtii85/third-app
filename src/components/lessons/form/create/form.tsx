@@ -30,7 +30,9 @@ export const LessonForm = ({
     { text: 'Text', value: 'text' },
     { text: 'Video', value: 'video' },
     { text: 'Quiz', value: 'quiz' },
-    { text: 'Assignment', value: 'assignment' }
+    { text: 'Assignment', value: 'assignment' },
+    { text: 'Pdf', value: 'pdf' },
+    { text: 'PowerPoint', value: 'powerpoint' }
   ]
 
   const lessonStatus: LESSON_STATUS_DROPDOWN[] = [
@@ -74,7 +76,6 @@ export const LessonForm = ({
           title: form.title,
           description: form.description ?? '',
           type: form.type,
-          content: form.content,
           status: form.status
         }
       })
@@ -91,9 +92,6 @@ export const LessonForm = ({
       </FormLabel>
       <FormLabel label="Type">
         <SelectField {...defaultOptions} name="type" options={lessonType} />
-      </FormLabel>
-      <FormLabel label="Content">
-        <TextareaField {...defaultOptions} name="content" rows={10} />
       </FormLabel>
       <FormLabel label="Status">
         <SelectField {...defaultOptions} name="status" options={lessonStatus} />

@@ -11,6 +11,10 @@ export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseO
   nullFreeObject(filters)
 
   const whereClause: LooseObject = {}
+  if (filters?.id) {
+    whereClause.id = { _eq: filters.id }
+  }
+
   if (filters?.moduleId) {
     whereClause.module_id = { _eq: filters.moduleId }
   }

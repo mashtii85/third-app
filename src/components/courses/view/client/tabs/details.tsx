@@ -13,7 +13,6 @@ import {
   Details2,
   DetailsText,
   Heading,
-  // Image,
   Space
 } from '@drykiss/industry-ui'
 
