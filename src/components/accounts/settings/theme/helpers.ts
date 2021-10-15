@@ -27,24 +27,6 @@ export const fields = [
         value: 'colourActive'
       }
     ]
-  },
-  {
-    title: 'Messaging',
-    value: 'MESSAGING',
-    items: [
-      {
-        title: 'Container Background',
-        value: 'containerBackground'
-      },
-      {
-        title: 'Header Background',
-        value: 'headerBackground'
-      },
-      {
-        title: 'Message Content Colour',
-        value: 'messageContentColour'
-      }
-    ]
   }
 ]
 

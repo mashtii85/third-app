@@ -1,7 +1,7 @@
 /**
  * Components - Accounts - Settings - Theme - Form
  *
- * Allows an admin to set theme colors. This is saved in the account meta.
+ * Allows a client to set theme colors. This is saved in the account meta.
  */
 
 // React
@@ -17,13 +17,13 @@ import { useForm } from 'react-hook-form'
 import merge from 'deepmerge'
 
 // UI
-import { Form, FormField, Heading, Space } from '@drykiss/industry-ui'
+import { Form, FormField, Heading, Space, useAppTheme, useConfig } from '@drykiss/industry-ui'
 
-import { useConfig } from '../../../../services/config'
 import { colours, fields, StyledColour, StyledDropdown, StyledField } from './helpers'
 
 export const ThemeSettingsForm = ({ account, accountId, handleSuccess }) => {
-  const { theme, setTheme } = useConfig()
+  const { theme, setTheme } = useAppTheme()
+  const { config, setConfig } = useConfig()
 
   const defaults = {}
 
@@ -44,7 +44,15 @@ export const ThemeSettingsForm = ({ account, accountId, handleSuccess }) => {
       ...form
     }
 
-    setTheme(merge(theme, form))
+    console.log('set theme', form)
+
+    setConfig({
+      Brand: {
+        name: 'What'
+      }
+    })
+
+    setTheme({ form })
 
     // ToDo: Save updated meta
 

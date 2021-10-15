@@ -6,23 +6,41 @@
 import { useContext } from 'react'
 
 // UI
-import { Button, Details2, Heading, OffCanvasContext, Space } from '@drykiss/industry-ui'
+import {
+  Button,
+  Details2,
+  Heading,
+  OffCanvasContext,
+  Space,
+  useAppTheme
+} from '@drykiss/industry-ui'
 
 import { useApp } from '../../../../utils/useApp'
+import { ThemeSettingsForm } from './form'
 import { fields, StyledColour, StyledField } from './helpers'
 
+// Types
+import { offCanvasType } from '../../../../types/offCanvas'
+
 export const ThemeSettings = ({ accountId }) => {
-  const offCanvas = useContext(OffCanvasContext)
+  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+  const { theme } = useAppTheme()
   const app = useApp()
-  const theme = { x: {} }
 
   console.log(accountId, app)
+
+  const handleSuccess = (items) => {
+    console.log('items', items)
+    offCanvas.close()
+  }
 
   const handleThemeSettings = (e) => {
     e.stopPropagation()
 
     offCanvas.show({
-      content: <div>aaa</div>,
+      content: (
+        <ThemeSettingsForm account={{}} accountId={accountId} handleSuccess={handleSuccess} />
+      ),
       title: 'Theme Settings'
     })
   }
@@ -41,7 +59,7 @@ export const ThemeSettings = ({ accountId }) => {
               {f.items.map((i) => {
                 return (
                   <StyledField>
-                    {/* <StyledColour color={theme[f.value][i.value]} /> {i.title} */}
+                    <StyledColour color={theme[f.value][i.value]} /> {i.title}
                   </StyledField>
                 )
               })}
