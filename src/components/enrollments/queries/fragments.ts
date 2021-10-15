@@ -10,6 +10,8 @@ export const ENROLLMENTS_FIELDS = gql`
     id
     status
     created_at
+    course_id
+    account_id
     updated_at
   }
 `

@@ -4,14 +4,13 @@
 
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
-import { PrepareCourseArgumentProps } from './types'
-import { Course } from '../../../types/course'
+import { CourseDB, PrepareCourseArgumentProps } from './types'
 import { GQLClause, GraphqlWhere } from '../../../types/gql'
 
 export const prepareCoursesArguments = ({
   filters
-}: PrepareCourseArgumentProps): GQLClause<Course> => {
-  let condition: GraphqlWhere<Course> = { status: { _eq: STATUS_ACTIVE.Active } }
+}: PrepareCourseArgumentProps): GQLClause<CourseDB> => {
+  let condition: GraphqlWhere<CourseDB> = { status: { _eq: STATUS_ACTIVE.Active } }
 
   if (filters?.accountId) {
     condition.account_id = { _eq: filters.accountId }

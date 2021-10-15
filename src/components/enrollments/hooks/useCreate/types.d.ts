@@ -12,5 +12,5 @@ export interface UseCreateEnrollmentProps {
   userId: number
   onCompleted: (data: { course: any }) => void
   onError: (data: ApolloError) => void
-  filters: LooseObject
+  filters?: LooseObject
 }

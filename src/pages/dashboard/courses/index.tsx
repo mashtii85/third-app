@@ -32,7 +32,7 @@ const PageDashboard: NextPage = () => {
         View = <Dashboard View={<ClientCourseList accountId={user.account_id} />} />
         break
       case ACCOUNT_TYPE.Member:
-        View = View = <Dashboard View={<AccountCourseList accountId={user.account_id} />} />
+        View = View = <Dashboard View={<AccountCourseList />} />
         break
 
       default:

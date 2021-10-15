@@ -89,7 +89,7 @@ export const columns = ({
   return columnsSchema
 }
 
-export const rows = (courses: Course[]): CourseTableRowsType[] => {
+export const rows = (courses: Course[] = []): CourseTableRowsType[] => {
   const list = courses.map((item) => {
     return {
       taxonomy: item.taxonomy,

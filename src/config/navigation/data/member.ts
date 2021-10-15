@@ -18,19 +18,14 @@ export const Member: any = {
         as: 'dropdown',
         items: [
           {
-            id: 'navCoursesActive',
-            name: 'Active Courses',
-            to: pages.dashboard.coursesAccount.started
+            id: 'navEnrolledCourse',
+            name: 'Enrolled courses',
+            to: pages.dashboard.coursesAccount.enrolled
           },
           {
-            id: 'navCoursesCompleted',
-            name: 'Completed Courses',
-            to: pages.dashboard.coursesAccount.completed
-          },
-          {
-            id: 'navCoursesAll',
-            name: 'All Courses',
-            to: pages.dashboard.coursesAccount.all
+            id: 'navCourseCatalog',
+            name: 'Course catalog',
+            to: pages.dashboard.coursesAccount.catalog
           }
         ]
       }

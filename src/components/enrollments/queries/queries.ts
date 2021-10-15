@@ -62,9 +62,10 @@ export const GET_ENROLLMENTS = gql`
 export const INSERT_ENROLLMENT = gql`
   mutation InsertEnrollment($object: course_enrollment_insert_input!) {
     insert_course_enrollment_one(object: $object) {
-      account_id
+      ...EnrollmentFields
     }
   }
+  ${ENROLLMENTS_FIELDS}
 `
 
 export const UPDATE_COURSE_ENROLLMENT_BY_PK = gql`

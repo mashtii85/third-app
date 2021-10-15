@@ -8,7 +8,7 @@ import { AggregateData } from './aggregateData.d'
 import { STATUS_ACTIVE } from './select.d'
 import { CourseEnrollment } from './courseEnrollment.d'
 import { Taxonomy } from './taxonomy'
-
+import { Account } from './account'
 export interface CustomFields {
   author?: string
 }
@@ -23,7 +23,9 @@ interface CourseEnrolment {
 export interface Course {
   id?: number
   account_id: number
+  account: Account
   title: string
+  client_id: number
   description?: string
   custom_fields?: CustomFields
   length?: string
