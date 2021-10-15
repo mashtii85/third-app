@@ -8,10 +8,12 @@ import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
 import { Filter } from '../../../types/filter.d'
 import { Options } from '../../../types/taxonomy'
+import { Account } from '../../../types/account'
 
 export interface CourseFilter extends Filter {
   id: number
   accountId: number
+  clientId?: number
   status: STATUS_ACTIVE
   taxonomy: Options
 }
@@ -36,6 +38,7 @@ export interface EnrolledVariables {
 
 // useCourse
 
+export type CourseDB = Course & Account
 export interface CourseData {
   course: Course
 }

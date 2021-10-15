@@ -24,7 +24,7 @@ export const DashboardView = () => {
       case ACCOUNT_TYPE.Member:
         return (
           <Details2 open title="Courses in progress">
-            <AccountCourseList accountId={user.account_id} />
+            <AccountCourseList />
           </Details2>
         )
       case ACCOUNT_TYPE.Admin:

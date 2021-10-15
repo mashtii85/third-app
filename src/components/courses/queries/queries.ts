@@ -15,8 +15,8 @@ import { LESSON_FIELDS } from '../../lessons/queries/fragments'
 
 export const GET_COURSES = gql`
   query GetCourses(
-    $limit: Int!
-    $offset: Int!
+    $limit: Int
+    $offset: Int
     $order_by: [course_order_by!] = {}
     $where: course_bool_exp
   ) {
@@ -148,4 +148,21 @@ export const DELETE_COURSE = gql`
   }
   ${COURSE_FIELDS}
   ${COURSE_ENROLLMENT_AGGREGATE_FIELDS}
+`
+
+export const COURSE_ENROLLMENT = gql`
+  query courseEnrollment($accountId: Int, $userId: Int) {
+    courses: course(where: { account_id: { _eq: $accountId } }) {
+      ...CourseFields
+      media {
+        ...MediaFields
+      }
+      course_enrollments(where: { user_id: { _eq: $userId } }) {
+        ...EnrollmentFields
+      }
+    }
+  }
+  ${COURSE_FIELDS}
+  ${ENROLLMENTS_FIELDS}
+  ${MEDIA_FIELDS}
 `

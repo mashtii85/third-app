@@ -21,9 +21,8 @@ const path = {
       view: '/dashboard/accounts/view'
     },
     coursesAccount: {
-      started: '/dashboard/courses?show=started',
-      completed: '/dashboard/courses?show=completed',
-      all: '/dashboard/courses?show=all',
+      enrolled: '/dashboard/courses?show=enrolled',
+      catalog: '/dashboard/courses?show=catalog',
       view_by_id: '/dashboard/courses/view?id='
     },
     coursesClient: {

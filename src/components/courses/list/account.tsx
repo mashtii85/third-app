@@ -1,36 +1,91 @@
 /**
  * Components - Courses - List - AccountCourseList
  */
+// Next
+import { useRouter } from 'next/router'
+
+// Styled Components
+import styled from 'styled-components'
 
 // UI
-import { Card, Column, Row } from '@drykiss/industry-ui'
+import { Button, Card, CardBody, Column, Row, Space } from '@drykiss/industry-ui'
 
 import pages from '../../../config/pages'
-import { useEnrollments } from '../../enrollments/hooks'
+import { useCourseEnrollment } from '../../courses/hooks/useCourseEnrollment/useCourseEnrollment'
+import { useCreateEnrollment } from '../../enrollments/hooks/useCreate/useCreate'
+import { useCurrentUser } from '../../../utils/useCurrentUser'
+import { Course } from '../../../types/course'
 
-export const AccountCourseList = ({ accountId }: { accountId: number }) => {
-  const { enrollments, error, loading } = useEnrollments({ filters: { accountId } })
+export const AccountCourseList = () => {
+  const { user } = useCurrentUser()
+  const {
+    query: { show = {} },
+    push
+  } = useRouter()
+  const handleSuccess = (data: any) => {
+    const courseId = data?.insert_course_enrollment_one?.course_id
+    push(`${pages.dashboard.coursesAccount.view_by_id}${courseId}`)
+  }
 
+  const { createEnrollment } = useCreateEnrollment({
+    userId: user.client_id,
+    onCompleted: handleSuccess,
+    onError: (error) => {
+      console.error(error)
+    }
+  })
+
+  let courses: Course[] = []
+
+  const { loading = false, courseList = [] }: any = useCourseEnrollment(user.client_id, user.id)
+  if (show === 'catalog') {
+    courses = courseList.filter((item: any) => !item?.course_enrollments?.length)
+  } else if (show === 'enrolled') {
+    courses = courseList.filter((item: any) => item?.course_enrollments?.length > 0)
+  } else {
+    courses = courseList
+  }
   if (loading) {
     console.log('loading')
   }
 
-  if (error) {
-    console.error(error.message)
+  const handleEnrollCourse = (item: Course) => {
+    const object = {
+      account_id: item.account_id,
+      course_id: item.id,
+      status: 'active',
+      user_id: user.id
+    }
+    createEnrollment({ variables: { object } })
   }
+
+  const StyledCardBody = styled(CardBody)``
 
   return (
     <Row>
-      {enrollments.map((item) => (
+      {courses.map((item: any) => (
         <Column key={item.id} md={3}>
           <Card
-            alt={item.course.title}
-            body={item.course.description}
+            alt={item.title}
             bordered={true}
-            image={item.course.media?.[0]?.filename ? `/${item.course.media[0].filename}` : null}
-            title={item.course.title}
-            to={`${pages.dashboard.coursesAccount.view_by_id}${item.course.id}`}
-          />
+            image={item.media?.[0]?.filename ? `/ ${item.media[0].filename} ` : null}
+            title={item.title}
+          >
+            <StyledCardBody>
+              <Row>
+                <Column md={12}>
+                  <p>{item.description}</p>
+                </Column>
+              </Row>
+              {show === 'catalog' && (
+                <Row justify={'end'}>
+                  <Space marginRight="sm">
+                    <Button onClick={() => handleEnrollCourse(item)}>Enroll</Button>
+                  </Space>
+                </Row>
+              )}
+            </StyledCardBody>
+          </Card>
         </Column>
       ))}
     </Row>
