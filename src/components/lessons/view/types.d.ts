@@ -14,13 +14,6 @@ export interface LessonDetailsToolbarType {
   status: LESSON_STATUS
 }
 
-export interface LessonContentToolbarType {
-  id: number
-  caption?: string
-  type: LESSON_TYPE
-  content: string
-}
-
 export interface LessonViewStateHolder {
   editMode: boolean
   medium: Medium

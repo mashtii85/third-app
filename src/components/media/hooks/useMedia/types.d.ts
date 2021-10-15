@@ -21,8 +21,8 @@ export interface MediaFilter {
 export interface UseMediaProps {
   entity: string
   entityId: number
-  category?: string
-  type?: string
+  category?: MEDIUM_CATEGORY
+  type?: MEDIUM_TYPE
 }
 
 export interface MediaData {
