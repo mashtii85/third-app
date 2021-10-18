@@ -30,7 +30,6 @@ export const prepareCoursesArguments = ({
     condition.taxonomy_id = { _eq: filters.taxonomy.value }
   }
 
-  // if (filters.ta)
   const otherClause = {
     limit: filters?.limit,
     offset: filters?.offset,

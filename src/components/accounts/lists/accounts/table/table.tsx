@@ -1,21 +1,21 @@
 /**
- * Components - Accounts - List - Table
+ * Components - Accounts - Lists - Accounts - Table
  */
 
 // React
 import { MouseEvent, useContext } from 'react'
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
-import { useAccounts } from '../../hooks'
+import { useAccounts } from '../../../hooks'
 
 // Types
-import { AccountsRow, AccountTableProps } from './types.d'
-import { offCanvasType } from '../../../../types/offCanvas'
+import { AccountsRow, AccountTableProps } from './types'
+import { offCanvasType } from '../../../../../types/offCanvas'
 
 // Hooks
 import { columns, rows, UserAccountToolbar, prepareAccountDefaultValues } from './helpers'
-import { useTable } from '../../../common/hooks/useTable'
-import { UpsertAccount } from '../../forms'
+import { useTable } from '../../../../common/hooks/useTable'
+import { UpsertAccount } from '../../../forms'
 
 const initialSort = {}
 

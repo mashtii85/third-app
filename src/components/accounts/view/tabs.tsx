@@ -11,13 +11,13 @@ import { useRouter } from 'next/router'
 // UI
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../common/tab'
-import { UserAccounts } from '../list/table/userAccounts'
+
 import AccountDetails from './accountDetails'
 
 // Types
 import { ACCOUNT_TABS } from '../../../constants/tabs'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
 import { AccountTabsProps } from './type.d'
+import { AccountUsersList } from '../lists/accountUsers/list'
 
 const AccountTabs = ({ accountId }: AccountTabsProps) => {
   const { query } = useRouter()
@@ -32,7 +32,7 @@ const AccountTabs = ({ accountId }: AccountTabsProps) => {
         <AccountDetails accountId={accountId} title="Account Details" />
       </Tab>
       <Tab active={tab === ACCOUNT_TABS.USERS} label="Users">
-        <UserAccounts accountId={accountId} type={ACCOUNT_TYPE.Member} title="Users" />
+        <AccountUsersList accountId={accountId} />
       </Tab>
     </Tabs>
   )

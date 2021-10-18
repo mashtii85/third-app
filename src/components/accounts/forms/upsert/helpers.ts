@@ -2,6 +2,7 @@
  * Components - Accounts - Form
  */
 
+import { hashPassword } from '../../../../services/auth/helpers'
 import { ACCOUNT_TYPE } from '../../../../types/account'
 import { LooseObject } from '../../../../types/object'
 import { CreateAccountForm } from './types'
@@ -11,56 +12,67 @@ export const prepareCreateAccount = (
   accountType?: ACCOUNT_TYPE,
   accountId?: number
 ): LooseObject => {
-  const data = {
+  const data: LooseObject = {
     name: form.name,
     status: form.status,
     custom_fields: form.custom_fields,
     taxonomy_id: form.taxonomy.value,
     client_id: accountId,
-    type: accountType,
-    users: {
+    type: accountType
+  }
+
+  if (form.add_contact_user) {
+    const user = {
+      data: {
+        email: form.email,
+        name_first: form.firstName,
+        name_last: form.lastName,
+        password: hashPassword(form.password),
+        status: form.status
+      }
+    }
+    data.users = {
       data: {
         status: form.status,
-        user: {
-          data: {
-            email: form.email,
-            name_first: form.firstName,
-            name_last: form.lastName,
-            status: form.status
-          }
-        }
+        user
       }
     }
   }
+
   return data
 }
 
 export const prepareUpdateAccount = ({
   form,
-  accountId,
-  userId
+  accountId
 }: {
   form: CreateAccountForm
   accountId: number
-  userId: number
 }): LooseObject => {
-  const variables: any = {
+  const variables: LooseObject = {
     accountId,
-    userId: userId,
     status: form.status,
     accountSet: {
       name: form.name,
       status: form.status,
       taxonomy_id: form.taxonomy.value,
       custom_fields: form.custom_fields
-    },
-    userSet: {
+    }
+  }
+
+  if (form.add_contact_user) {
+    variables.hasUser = true
+    variables.userObject = {
+      accounts: { data: { account_id: accountId, status: form.status } },
       email: form.email,
       name_first: form.firstName,
       name_last: form.lastName,
       status: form.status,
+      password: hashPassword(form.password),
       taxonomy_id: form.taxonomy.value
     }
+  } else {
+    variables.hasUser = false
   }
 
   return variables

@@ -1,5 +1,5 @@
 /**
- * Components - Courses - List - Table - Hooks - Types.d
+ * Components - Courses - Hooks - Types.d
  */
 
 // Types

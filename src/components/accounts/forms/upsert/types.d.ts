@@ -1,8 +1,7 @@
 // Types
-import { Account } from '../../../../types/account'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { Options } from '../../../../types/taxonomy'
-import { AccountsRow } from '../../list/table/types'
+import { AccountsRow } from '../../lists/accounts/table/types'
 import { AccountFilters } from '../../types'
 
 export interface AccountFormProps {
@@ -15,6 +14,7 @@ export interface CreateAccountForm {
   name: string
   firstName: string
   lastName: string
+  password: string
   email: string
   status: STATUS_ACTIVE
   taxonomy: Options

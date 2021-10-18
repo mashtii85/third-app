@@ -64,31 +64,20 @@ export const CREATE_ACCOUNT = gql`
   ${USER_FIELDS}
 `
 
-export const GET_ACCOUNT_USER = gql`
-  query GetAccountUser($accountId: Int!) {
-    users: account_user_by_pk(account_id: $accountId) {
-      id
-      user {
-        ...UserFields
-      }
-    }
-  }
-  ${USER_FIELDS}
-`
-
 export const UPDATE_ACCOUNT_USER = gql`
   mutation UpdateAccount(
     $accountSet: account_set_input = {}
     $accountId: Int!
-    $userSet: user_set_input = {}
-    $userId: Int!
+    $userObject: [user_insert_input!] = {}
+    $hasUser: Boolean!
   ) {
     account: update_account_by_pk(pk_columns: { id: $accountId }, _set: $accountSet) {
       ...AccountFields
     }
-
-    user: update_user_by_pk(pk_columns: { id: $userId }, _set: $userSet) {
-      ...UserFields
+    user: insert_user(objects: $userObject) @include(if: $hasUser) {
+      returning {
+        ...UserFields
+      }
     }
   }
   ${ACCOUNT_FIELDS}

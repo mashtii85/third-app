@@ -35,6 +35,7 @@ export interface User {
   created_at?: string
   updated_at?: string
   accounts?: AccountUsers[]
+  taxonomy_id?: number
 }
 
 export interface CurrentUser extends User {

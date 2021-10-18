@@ -65,3 +65,17 @@ export const UPDATE_USER = gql`
   }
   ${USER_FIELDS}
 `
+
+export const GET_USERS = gql`
+  query GetUsers(
+    $limit: Int!
+    $where: user_bool_exp = {}
+    $offset: Int!
+    $order_by: [user_order_by!] = {}
+  ) {
+    users: user(where: $where, limit: $limit, offset: $offset, order_by: $order_by) {
+      ...UserFields
+    }
+  }
+  ${USER_FIELDS}
+`
