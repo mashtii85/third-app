@@ -6,12 +6,12 @@
 import { gql } from '@apollo/client'
 
 export const GET_APP_SETTINGS = gql`
-  query GetSettings($client_id: Int!) {
+  query GetSettings($clientId: Int!, $includeClient: Boolean!) {
     settings: setting {
       id
       value
     }
-    client: account_by_pk(id: $client_id) {
+    client: account_by_pk(id: $clientId) @include(if: $includeClient) {
       id
       name
       type
@@ -19,10 +19,10 @@ export const GET_APP_SETTINGS = gql`
     }
     taxonomies: taxonomy(
       where: {
-        client_id: { _eq: $client_id }
+        client_id: { _eq: $clientId }
         type: { _in: ["courses", "clients", "events", "locations", "members"] }
       }
-    ) {
+    ) @include(if: $includeClient) {
       id
       name
       type
