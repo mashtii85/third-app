@@ -1,16 +1,13 @@
 /**
- * Components - Accounts - List - Account
+ * Components - Accounts - Lists - Accounts - List
  */
 
 // UI
-import { LayoutList } from '../../../layouts/list'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { LayoutList } from '../../../../layouts/list'
+import { ACCOUNT_TYPE } from '../../../../types/account.d'
 import { AccountsFilters as Filters } from './filter'
 import { AccountTable as Table } from './table/table'
-import { useCurrentUser } from '../../../utils/useCurrentUser'
-
-// todo: if there's no more remove this
-// import { AccountTableProps } from './table/types.d'
+import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 export const AccountList = () => {
   const { user } = useCurrentUser()

@@ -7,7 +7,7 @@ import type { NextPage } from 'next'
 
 // UI
 import { Dashboard } from '@drykiss/industry-ui'
-import { AccountList } from '../../../components/accounts/list/list'
+import { AccountList } from '../../../components/accounts/lists/accounts/list'
 
 const PageAccountsView: NextPage = () => {
   return <Dashboard View={<AccountList />} />

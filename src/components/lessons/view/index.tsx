@@ -2,9 +2,6 @@
  * Components - Lessons - View
  */
 
-// React
-import { MouseEvent, useState } from 'react'
-
 // Next
 import { useRouter } from 'next/router'
 
@@ -18,57 +15,38 @@ import {
   DetailsText,
   Link,
   formatDateStandard,
-  formatTime,
-  ButtonToolbar,
-  Button,
-  Divider
+  formatTime
 } from '@drykiss/industry-ui'
-import { LessonContentEdit } from '../form/edit/contentForm'
-import VideoPlayer from '../../common/videoPlayer/videoPlayer'
-import DocumentViewer from '../../common/docViewer/docViewer'
+import { LessonContent } from './components/text/view'
+import { LessonVideo } from './components/video/view'
+import { LessonDocument } from './components/document/view'
+import { LessonQuiz } from './components/quiz/view'
 
 // Hooks
 import { useLessons } from '../hooks/useLessons'
-import { useMedia } from '../../media/hooks/useMedia/useMedia'
 
 // Pages
 import pages from '../../../config/pages'
 
 // Helpers
-import { LessonDetailsToolbar, LessonContentUpload } from './helpers'
-import { parseVideos } from '../../courses/helpers'
+import { LessonDetailsToolbar } from './helpers'
 
 // Constants
 import { ENTITIES } from '../../../constants/entities'
 
 // Types
 import { LessonFilter } from '../hooks/types.d'
-import { LessonContentToolbarType, LessonDetailsToolbarType } from './types'
-import { THEME_CONTEXT } from '../../../constants/themeContext'
+import { LessonDetailsToolbarType } from './types'
 import { LESSON_TYPE } from '../../../types/lesson.d'
-import { SIZE } from '../../../config/theme'
-import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
 import { UseMediaProps } from '../../media/hooks/useMedia/types.d'
 
 export const LessonView = () => {
-  const [editMode, setEditMode] = useState<boolean>(false)
   const { query } = useRouter()
   const lessonId: number = +(query?.id || '0')
 
   const filters: Partial<LessonFilter> = { id: lessonId }
   const { lessonList } = useLessons(filters)
-
-  const mediaFilters: UseMediaProps = {
-    entity: ENTITIES.Lesson,
-    entityId: lessonId,
-    category: MEDIUM_CATEGORY.Lesson,
-    type: lessonList[0]?.type === LESSON_TYPE.Video ? MEDIUM_TYPE.Video : MEDIUM_TYPE.Document
-  }
-  const { mediaList } = useMedia(mediaFilters)
-  const medium: Medium | undefined = mediaList?.find(
-    (mdum) => mdum.filename && mdum.status === STATUS_ACTIVE.Active
-  )
 
   if (!lessonList || !lessonList[0]) return null
   const lesson = lessonList[0]
@@ -81,46 +59,18 @@ export const LessonView = () => {
     status: lesson.status
   }
 
-  const LessonContentToolbar = () => {
-    const handleCancel = (e: MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
-      setEditMode(false)
-    }
-    const handleEdit = (e: MouseEvent<HTMLElement>): void => {
-      e.stopPropagation()
-      setEditMode(true)
-    }
-
-    return (
-      <ButtonToolbar>
-        {editMode ? (
-          <Button
-            context={THEME_CONTEXT.warning}
-            onClick={handleCancel}
-            size="sm"
-            startIcon="times"
-          />
-        ) : (
-          <Button
-            context={THEME_CONTEXT.secondary}
-            onClick={handleEdit}
-            size="sm"
-            startIcon="edit"
-          />
-        )}
-      </ButtonToolbar>
-    )
+  const videoFilter: UseMediaProps = {
+    entity: ENTITIES.Lesson,
+    entityId: lessonId,
+    category: MEDIUM_CATEGORY.Lesson,
+    type: MEDIUM_TYPE.Video
   }
 
-  const defaultValues: LessonContentToolbarType = {
-    id: lessonId,
-    caption: medium?.caption,
-    type: lesson.type,
-    content: lesson.content
-  }
-
-  const onSuccess = () => {
-    setEditMode(false)
+  const documentFilter: UseMediaProps = {
+    entity: ENTITIES.Lesson,
+    entityId: lessonId,
+    category: MEDIUM_CATEGORY.Lesson,
+    type: MEDIUM_TYPE.Document
   }
 
   return (
@@ -165,59 +115,27 @@ export const LessonView = () => {
             </Details2>
           </Column>
           <Column md={9}>
-            <Details2
-              open
-              key={`content-${lessonId}`}
-              title="Content"
-              toolbar={<LessonContentToolbar key={`content-toolbar-${lessonId}`} />}
-            >
-              <>
-                {editMode ? (
-                  <>
-                    <>
-                      {(lesson.type === LESSON_TYPE.Video ||
-                        lesson.type === LESSON_TYPE.Pdf ||
-                        lesson.type === LESSON_TYPE.PowerPoint) && (
-                          <LessonContentUpload
-                            key="lesson-content-upload"
-                            defaultValues={defaultValues}
-                          />
-                        )}
-                      <Space />
-                      <Divider size={SIZE.SM} />
-                    </>
-                    <LessonContentEdit
-                      key="lesson-content-edit"
-                      onSuccess={onSuccess}
-                      defaultValues={defaultValues}
-                    />
-                  </>
-                ) : (
-                  <>
-                    {medium && (
-                      <>
-                        {lesson.type === LESSON_TYPE.Video && (
-                          <VideoPlayer videos={parseVideos([medium])} />
-                        )}
-                        {(lesson.type === LESSON_TYPE.Pdf ||
-                          lesson.type === LESSON_TYPE.PowerPoint) && (
-                            <DocumentViewer
-                              docs={[
-                                {
-                                  uri: `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${medium?.filename}`
-                                }
-                              ]}
-                            />
-                          )}
-                        <Space />
-                        <Divider size={SIZE.SM} />
-                      </>
-                    )}
-                    {lesson?.content}
-                  </>
-                )}
-              </>
-            </Details2>
+            <>
+              {lesson.type === LESSON_TYPE.Video && (
+                <>
+                  <LessonVideo filters={videoFilter} />
+                  <Space />
+                </>
+              )}
+              {(lesson.type === LESSON_TYPE.Pdf || lesson.type === LESSON_TYPE.PowerPoint) && (
+                <>
+                  <LessonDocument filters={documentFilter} lessonType={lesson.type} />
+                  <Space />
+                </>
+              )}
+              {lesson.type === LESSON_TYPE.Quiz && (
+                <>
+                  <LessonQuiz />
+                  <Space />
+                </>
+              )}
+              <LessonContent lessonId={lessonId} />
+            </>
           </Column>
         </Row>
       </Column>

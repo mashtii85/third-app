@@ -1,17 +1,17 @@
 /**
- * Components - Accounts - List - Table - Filter
+ * Components - Accounts - Lists - Accounts - Table - Filter
  */
 
 // UI
 
 import { Column, FormLabel, SelectField } from '@drykiss/industry-ui'
 import { Control, FieldErrors } from 'react-hook-form'
-import { statusActive } from '../../../constants/status'
-import { TaxonomySelect } from '../../taxonomies/select/select'
+import { statusActive } from '../../../../constants/status'
+import { TaxonomySelect } from '../../../taxonomies/select/select'
 
 // Types
-import { LooseObject } from '../../../types/object.d'
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { UsersFilter } from '../../types'
 
 export const AccountsFilters = ({
   control,
@@ -21,7 +21,7 @@ export const AccountsFilters = ({
   control: Control
   errors: FieldErrors
   register: any
-  setFilters: (value: LooseObject) => void
+  setFilters: (value: UsersFilter) => void
 }) => {
   const defaultOptions = {
     control,

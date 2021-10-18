@@ -13,7 +13,6 @@ import { statusActive } from '../../../../constants/status'
 
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../../hooks'
-// import { useTaxonomies } from '../../../taxonomies/hooks'
 import { TaxonomySelect } from '../../../taxonomies/select/select'
 
 // Types
@@ -47,12 +46,9 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
   })
 
   const submit = async (form: CreateAccountForm) => {
-    const userId = defaultValues?.userId || 0
-
     if (defaultValues?.id) {
       const variables = prepareUpdateAccount({
         form,
-        userId,
         accountId: defaultValues.id
       })
       updateAccount({
@@ -74,6 +70,7 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
     filters?.accountType === ACCOUNT_TYPE.Admin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
   const showTaxonomy =
     filters?.accountType === ACCOUNT_TYPE.Admin || filters?.accountType === ACCOUNT_TYPE.Client
+
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
   const addContactUserWatch = watch('add_contact_user')
@@ -107,24 +104,36 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
           <FormError message={errors?.status?.message} />
         )}
       </FormLabel>
-
-      <Checkbox
-        {...defaultOptions}
-        name="add_contact_user"
-        data={[{ label: 'Add contact user', value: true }]}
-      />
-
-      {addContactUserWatch && (
+      {/* create an account is only available for the first time or
+      as long as there is no user in account */}
+      {!defaultValues?.userId && (
         <>
-          <FormLabel label="First Name">
-            <FormField {...defaultOptions} name="firstName" />
-          </FormLabel>
-          <FormLabel label="Last Name">
-            <FormField {...defaultOptions} name="lastName" />
-          </FormLabel>
-          <FormLabel label="Email">
-            <FormField type="email" {...defaultOptions} name="email" />
-          </FormLabel>
+          <Checkbox
+            {...defaultOptions}
+            name="add_contact_user"
+            data={[{ label: 'Add contact user', value: true }]}
+          />
+
+          {addContactUserWatch && (
+            <>
+              <FormLabel label="First Name">
+                <FormField {...defaultOptions} name="firstName" />
+              </FormLabel>
+
+              <FormLabel label="Last Name">
+                <FormField {...defaultOptions} name="lastName" />
+              </FormLabel>
+
+              <FormLabel label="Password">
+                <FormField {...defaultOptions} name="password" />
+                {errors?.password?.message && <FormError message={errors.password.message} />}
+              </FormLabel>
+
+              <FormLabel label="Email">
+                <FormField type="email" {...defaultOptions} name="email" />
+              </FormLabel>
+            </>
+          )}
         </>
       )}
     </Form>

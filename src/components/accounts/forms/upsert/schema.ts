@@ -3,14 +3,12 @@
  */
 
 // Yup
-import { object, string } from 'yup'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { bool, object, string } from 'yup'
 
 export const AccountSchema = object().shape({
-  name: string().when('add_contact_user', {
-    is: true,
-    then: string().required()
-  }),
+  add_contact_user: bool(),
+  name: string().required(),
+  status: string().required(),
   firstName: string().when('add_contact_user', {
     is: true,
     then: string().required()
@@ -23,10 +21,16 @@ export const AccountSchema = object().shape({
     is: true,
     then: string().required()
   }),
-  status: string().when('add_contact_user', {
+  password: string().when('add_contact_user', {
     is: true,
-    then: string().oneOf([STATUS_ACTIVE.Active, STATUS_ACTIVE.Inactive]).required()
+    then: string()
+      .required('password is required')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/,
+        `Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character`
+      )
   }),
+
   taxonomy: object().shape({
     label: string(),
     value: string()

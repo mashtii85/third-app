@@ -40,12 +40,12 @@ export const LessonContentEdit = ({
     register: register
   }
 
-  const onSubmit = async (form: LessonFormType) => {
-    await updateLesson({ variables: { id: defaultValues.id, changes: form } })
+  const onSubmit = (form: LessonFormType) => {
+    updateLesson({ variables: { id: defaultValues.id, changes: form } })
   }
 
   return (
-    <Form id="contentEditForm">
+    <Form id="contentEditForm" handleSubmit={onSubmit}>
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
       <TextareaField {...defaultOptions} name="content" rows={7} />

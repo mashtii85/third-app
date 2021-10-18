@@ -1,5 +1,5 @@
 /**
- * Components - Taxonomy - List - Table
+ * Components - Accounts - Lists - Accounts - Table - Helpers
  */
 
 // React
@@ -15,22 +15,23 @@ import {
 } from '@drykiss/industry-ui'
 
 // Utils
-import { formatToValidDate } from '../../../../utils/dateFormatter'
+import { formatToValidDate } from '../../../../../utils/dateFormatter'
 
 // Forms
-import { Account, ACCOUNT_TYPE } from '../../../../types/account'
-import { Column } from '../../../../types/column'
+import { Account, ACCOUNT_TYPE } from '../../../../../types/account'
+import { Column } from '../../../../../types/column'
 
-import { UpsertAccount } from '../../forms'
+import { UpsertAccount } from '../../../forms'
 
-import pages from '../../../../config/pages'
+import pages from '../../../../../config/pages'
 
 // Types
-import { AccountFilters } from '../../types.d'
-import { AccountsRow } from './types.d'
-import { offCanvasType } from '../../../../types/offCanvas'
+import { AccountFilters } from '../../../types'
+import { AccountsRow } from './types'
+import { offCanvasType } from '../../../../../types/offCanvas'
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { generatePassword } from '../../../../../utils/passwordGenerator'
 
 const actionsData = (handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void) => {
   return [
@@ -68,6 +69,7 @@ export const columns = (
       text: 'Last Name',
       hidden: true
     },
+
     {
       text: 'User'
     },
@@ -138,10 +140,17 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
 export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilters> }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const caption = capitalize(filters?.userType)
+  const randomPassword = generatePassword()
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <UpsertAccount onSuccess={offCanvas.close} filters={filters} />,
+      content: (
+        <UpsertAccount
+          onSuccess={offCanvas.close}
+          filters={filters}
+          defaultValues={{ password: randomPassword }}
+        />
+      ),
       submit: true,
       title: `Add a ${caption}`
     })
@@ -159,13 +168,15 @@ export const prepareAccountDefaultValues = ({
   accountId?: number
   accountType?: ACCOUNT_TYPE
 }): AccountsRow => {
+  const password = !row.id || !row?.userId ? generatePassword() : undefined
   return {
     ...row,
     add_contact_user: isShowUser(row),
     custom_fields: formatToValidDate(row?.custom_fields),
     client_id: accountId,
     type: accountType!,
-    taxonomy: row.taxonomy
+    taxonomy: row.taxonomy,
+    password
   }
 }
 

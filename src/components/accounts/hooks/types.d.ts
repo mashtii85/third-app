@@ -4,14 +4,6 @@ import { LooseObject } from '../../../types/object'
 import { User } from '../../../types/user'
 import { AccountFilters } from '../types'
 
-export interface UseUserAccountsOutput extends UseHookOutput {
-  users?: User[]
-}
-
-export interface UserData {
-  users?: User[]
-}
-
 export interface UseAccountsVariable {
   filters?: Partial<AccountFilters>
 }

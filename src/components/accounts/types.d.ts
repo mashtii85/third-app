@@ -16,3 +16,9 @@ export interface AccountFilters extends Filter {
   taxonomy: Options
   status: STATUS_ACTIVE
 }
+
+export interface UsersFilter extends Filter {
+  accountId: number
+  status: STATUS_ACTIVE
+  taxonomy: Options
+}
