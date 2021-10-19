@@ -11,7 +11,6 @@ import { APP_SETTINGS } from './queries'
 
 // Lodash
 import isEmpty from 'lodash/isEmpty'
-import merge from 'lodash/merge'
 
 // UI
 import { useAppTheme, useConfig } from '@drykiss/industry-ui'
@@ -29,7 +28,7 @@ interface AppProps {
 }
 
 export const AppProvider = ({ children, user }: AppProps) => {
-  const { config, setConfig } = useConfig()
+  const { setConfig } = useConfig()
   const { setTheme } = useAppTheme()
 
   const [getSettings, { data: { appSettings } = { appSettings: null } }] =
@@ -47,10 +46,10 @@ export const AppProvider = ({ children, user }: AppProps) => {
   // Update theme and config when settings change
   useEffect(() => {
     if (!isEmpty(appSettings?.config)) {
-      setConfig(merge(config, appSettings.config))
+      setConfig({ ...appSettings.config })
     }
     if (!isEmpty(appSettings?.theme)) {
-      setTheme(appSettings.theme)
+      setTheme({ ...appSettings.theme })
     }
   }, [appSettings])
 
