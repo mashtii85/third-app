@@ -18,16 +18,29 @@ import {
 import { useApp } from '../../../../utils/useApp'
 import { ThemeSettingsForm } from './form'
 import { fields, StyledColour, StyledField } from './helpers'
+import { useUpdateAccount } from '../../../accounts/hooks'
 
 // Types
+import { Account } from '../../../../types/account'
 import { offCanvasType } from '../../../../types/offCanvas'
 
-export const ThemeSettings = ({ accountId }) => {
+interface ThemeSettingsProps {
+  account: Account
+}
+
+export const ThemeSettings = ({ account }: ThemeSettingsProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { theme } = useAppTheme()
   const app = useApp()
 
-  console.log(accountId, app)
+  console.log('account', account)
+
+  const { updateAccount } = useUpdateAccount({
+    onCompleted: () => { },
+    onError: (error) => {
+      console.error(error.message)
+    }
+  })
 
   const handleSuccess = (items) => {
     console.log('items', items)
@@ -38,9 +51,7 @@ export const ThemeSettings = ({ accountId }) => {
     e.stopPropagation()
 
     offCanvas.show({
-      content: (
-        <ThemeSettingsForm account={{}} accountId={accountId} handleSuccess={handleSuccess} />
-      ),
+      content: <ThemeSettingsForm account={account} handleSuccess={handleSuccess} />,
       title: 'Theme Settings'
     })
   }
@@ -53,12 +64,12 @@ export const ThemeSettings = ({ accountId }) => {
     <Details2 fitParentHeight open title="Theme Settings" toolbar={<Toolbar />}>
       {fields.map((f) => {
         return (
-          <div>
+          <div key={f.value}>
             <Heading tag="h3" content={f.title} />
             <div>
               {f.items.map((i) => {
                 return (
-                  <StyledField>
+                  <StyledField key={i.value}>
                     <StyledColour color={theme[f.value][i.value]} /> {i.title}
                   </StyledField>
                 )

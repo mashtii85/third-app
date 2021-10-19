@@ -16,14 +16,14 @@ import { useForm } from 'react-hook-form'
 // Utils
 import merge from 'deepmerge'
 
-// UI
-import { Form, FormField, Heading, Space, useAppTheme, useConfig } from '@drykiss/industry-ui'
+import { theme } from '../../../../config/theme'
 
+// UI
+import { Form, FormField, Heading, Space, useAppTheme } from '@drykiss/industry-ui'
 import { colours, fields, StyledColour, StyledDropdown, StyledField } from './helpers'
 
-export const ThemeSettingsForm = ({ account, accountId, handleSuccess }) => {
+export const ThemeSettingsForm = ({ account, handleSuccess }) => {
   const { theme, setTheme } = useAppTheme()
-  const { config, setConfig } = useConfig()
 
   const defaults = {}
 
@@ -46,13 +46,10 @@ export const ThemeSettingsForm = ({ account, accountId, handleSuccess }) => {
 
     console.log('set theme', form)
 
-    setConfig({
-      Brand: {
-        name: 'What'
-      }
+    setTheme((prev) => {
+      console.log('prev', prev)
+      return { ...prev, ...form }
     })
-
-    setTheme({ form })
 
     // ToDo: Save updated meta
 
@@ -97,10 +94,4 @@ export const ThemeSettingsForm = ({ account, accountId, handleSuccess }) => {
       })}
     </Form>
   )
-}
-
-ThemeSettingsForm.propTypes = {
-  account: object.isRequired,
-  accountId: number.isRequired,
-  handleSuccess: func.isRequired
 }
