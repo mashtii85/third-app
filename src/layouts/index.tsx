@@ -23,7 +23,7 @@ const Layout = ({ children }: LayoutProps) => {
   const { user } = useCurrentUser()
 
   return (
-    <AppProvider user={user}>
+    <AppProvider key={user?.id || 0} user={user}>
       <Bootstrap fixed Navigation={Navigation}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
