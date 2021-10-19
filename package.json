@@ -32,7 +32,7 @@
     }
   },
   "dependencies": {
-    "@drykiss/industry-ui": "2.1.10",
+    "@drykiss/industry-ui": "2.1.11",
     "aws-sdk": "2.1002.0",
     "cors": "2.8.5",
     "deepmerge": "4.2.2",
