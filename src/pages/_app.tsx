@@ -11,7 +11,7 @@ import '../config/icons'
 
 // UI
 import {
-  AppTheme,
+  AppThemeProvider,
   AppLayout,
   AuthorizationProvider,
   ConfigProvider,
@@ -38,7 +38,7 @@ const MyApp = (props: AppProps) => {
   const apolloClient = useApollo(props.pageProps, Config)
 
   return (
-    <AppTheme theme={Theme}>
+    <AppThemeProvider theme={Theme}>
       <ConfigProvider config={{ ...Config, AccessPages, AccessRules }}>
         <ThemeStyle />
         <ApolloProvider client={apolloClient}>
@@ -55,7 +55,7 @@ const MyApp = (props: AppProps) => {
           </UserProvider>
         </ApolloProvider>
       </ConfigProvider>
-    </AppTheme>
+    </AppThemeProvider>
   )
 }
 

@@ -47,6 +47,10 @@ export default class MyDocument extends Document<DocumentProps> {
       <Html className="no-js" lang="en" dir="ltr" prefix="og: http://ogp.me/ns#">
         <Head>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+					<link
+          href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap'
+          rel='stylesheet'
+        />
         </Head>
         <body
           style={{
