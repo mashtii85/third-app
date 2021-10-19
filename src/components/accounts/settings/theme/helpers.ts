@@ -19,12 +19,56 @@ export const fields = [
         value: 'background'
       },
       {
-        title: 'Border',
+        title: 'Top border',
         value: 'borderTopColor'
       },
       {
-        title: 'Text Colour',
+        title: 'Active colour',
         value: 'colourActive'
+      },
+      {
+        title: 'Caret hover colour',
+        value: 'caretColourHover'
+      },
+      {
+        title: 'Dropdown active',
+        value: 'dropdownActive'
+      },
+      {
+        title: 'Dropdown background',
+        value: 'dropdownBackground'
+      },
+      {
+        title: 'Dropdown hover background',
+        value: 'dropdownBackgroundHover'
+      },
+      {
+        title: 'Dropdown colour',
+        value: 'dropdownColour'
+      },
+      {
+        title: 'Dropdown hover colour',
+        value: 'dropdownColourHover'
+      },
+      {
+        title: 'Overlay background',
+        value: 'backgroundOverlay'
+      },
+      {
+        title: 'Toggler',
+        value: 'colourToggler'
+      },
+      {
+        title: 'Link color',
+        value: 'colourDefault'
+      },
+      {
+        title: 'Desktop link color',
+        value: 'colourDefaultDesktop'
+      },
+      {
+        title: 'List item background',
+        value: 'backgroundHoverListItem'
       }
     ]
   }

@@ -4,26 +4,24 @@
  * Allows a client to set theme colors. This is saved in the account meta.
  */
 
-// React
-import { func, number, object } from 'prop-types'
-
 // React Hook Form
 import { useForm } from 'react-hook-form'
 
-// Apollo
-// import { useMutation } from '@apollo/client'
-
-// Utils
-import merge from 'deepmerge'
-
-import { theme } from '../../../../config/theme'
-
 // UI
-import { Form, FormField, Heading, Space, useAppTheme } from '@drykiss/industry-ui'
+import { Form, FormField, Heading, Space, useAppTheme, useConfig } from '@drykiss/industry-ui'
 import { colours, fields, StyledColour, StyledDropdown, StyledField } from './helpers'
+import { useUpdateAccount } from '../../../accounts/hooks'
 
 export const ThemeSettingsForm = ({ account, handleSuccess }) => {
+  const { config, setConfig } = useConfig()
   const { theme, setTheme } = useAppTheme()
+
+  const { updateAccount } = useUpdateAccount({
+    onCompleted: () => { },
+    onError: (error) => {
+      console.error(error.message)
+    }
+  })
 
   const defaults = {}
 
@@ -40,18 +38,26 @@ export const ThemeSettingsForm = ({ account, handleSuccess }) => {
 
   const onSubmit = async (form) => {
     const meta = { ...account.meta } || {}
-    meta.themeSettings = {
+    meta.theme = {
       ...form
     }
 
-    console.log('set theme', form)
+    setTheme({ ...form })
 
-    setTheme((prev) => {
-      console.log('prev', prev)
-      return { ...prev, ...form }
+    // Workaround - need to figure out why setTheme doesn't work unless config is updated as well
+    // Probably need to force a re-render
+    setConfig({ ...config })
+
+    // Update a
+    await updateAccount({
+      variables: {
+        accountId: account.id,
+        accountSet: {
+          meta
+        },
+        hasUser: false
+      }
     })
-
-    // ToDo: Save updated meta
 
     handleSuccess()
   }

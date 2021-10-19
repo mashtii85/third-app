@@ -8,17 +8,17 @@ import { useContext } from 'react'
 // UI
 import {
   Button,
+  Column,
   Details2,
   Heading,
   OffCanvasContext,
+  Row,
   Space,
   useAppTheme
 } from '@drykiss/industry-ui'
 
-import { useApp } from '../../../../utils/useApp'
 import { ThemeSettingsForm } from './form'
 import { fields, StyledColour, StyledField } from './helpers'
-import { useUpdateAccount } from '../../../accounts/hooks'
 
 // Types
 import { Account } from '../../../../types/account'
@@ -31,19 +31,8 @@ interface ThemeSettingsProps {
 export const ThemeSettings = ({ account }: ThemeSettingsProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { theme } = useAppTheme()
-  const app = useApp()
 
-  console.log('account', account)
-
-  const { updateAccount } = useUpdateAccount({
-    onCompleted: () => { },
-    onError: (error) => {
-      console.error(error.message)
-    }
-  })
-
-  const handleSuccess = (items) => {
-    console.log('items', items)
+  const handleSuccess = () => {
     offCanvas.close()
   }
 
@@ -57,28 +46,32 @@ export const ThemeSettings = ({ account }: ThemeSettingsProps) => {
   }
 
   const Toolbar = () => (
-    <Button content="Edit" context="secondary" onClick={handleThemeSettings} size="sm" />
+    <Button content="Edit" context="white" onClick={handleThemeSettings} size="sm" />
   )
 
   return (
-    <Details2 fitParentHeight open title="Theme Settings" toolbar={<Toolbar />}>
-      {fields.map((f) => {
-        return (
-          <div key={f.value}>
-            <Heading tag="h3" content={f.title} />
-            <div>
-              {f.items.map((i) => {
-                return (
-                  <StyledField key={i.value}>
-                    <StyledColour color={theme[f.value][i.value]} /> {i.title}
-                  </StyledField>
-                )
-              })}
-            </div>
-            <Space />
-          </div>
-        )
-      })}
-    </Details2>
+    <Row>
+      <Column md={6}>
+        <Details2 fitParentHeight open title="Theme Settings" toolbar={<Toolbar />}>
+          {fields.map((f) => {
+            return (
+              <div key={f.value}>
+                <Heading tag="h3" content={f.title} />
+                <div>
+                  {f.items.map((i) => {
+                    return (
+                      <StyledField key={i.value}>
+                        <StyledColour color={theme[f.value][i.value]} /> {i.title}
+                      </StyledField>
+                    )
+                  })}
+                </div>
+                <Space />
+              </div>
+            )
+          })}
+        </Details2>
+      </Column>
+    </Row>
   )
 }
