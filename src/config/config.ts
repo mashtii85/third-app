@@ -18,7 +18,7 @@ export const apiConfig = {
 }
 
 export const Brand = {
-  logo: '/logo.png',
+  logo: '/logo-default.png',
   name: 'RWA'
 }
 
