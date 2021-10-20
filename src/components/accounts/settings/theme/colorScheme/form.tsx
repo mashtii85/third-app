@@ -45,7 +45,7 @@ export const ThemeSettingsForm = ({
     defaultValues: { ...defaults }
   })
 
-  const onSubmit = async (form) => {
+  const onSubmit = async (form: any) => {
     const meta = { ...account.meta } || {}
     meta.theme = {
       ...form

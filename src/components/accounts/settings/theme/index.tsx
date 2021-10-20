@@ -3,9 +3,10 @@
  */
 
 // UI
-import { Column, Row } from '@drykiss/industry-ui'
+import { Column, Row, Space } from '@drykiss/industry-ui'
 
 import { ColorScheme } from './colorScheme'
+import { Brand } from './brand'
 import { ThemeLogo } from './logo'
 
 // Types
@@ -18,7 +19,11 @@ export const ThemeSettings = ({ account }: { account: Account }) => {
         <ColorScheme account={account} />
       </Column>
       <Column md={6}>
-        <ThemeLogo account={account} />
+        <>
+          <Brand account={account} />
+          <Space />
+          <ThemeLogo account={account} />
+        </>
       </Column>
     </Row>
   )
