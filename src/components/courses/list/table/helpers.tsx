@@ -9,7 +9,7 @@ import { MouseEvent, useContext } from 'react'
 import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
 // Forms
-import { CourseForm } from '../../forms'
+import { UpsertCourseForm } from '../../forms'
 import pages from '../../../../config/pages'
 
 // Types
@@ -113,7 +113,7 @@ export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <CourseForm onSuccess={offCanvas.close} filters={filters} />,
+      content: <UpsertCourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
       title: 'Add a course'
     })

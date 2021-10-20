@@ -1,26 +1,12 @@
 /**
- * Components - Users - Queries
+ * Components - Users - Queries - Queries
  */
 
 // Apollo
 import { gql } from '@apollo/client'
 
-import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS } from '../accounts/queries/fragments'
-
-export const USER_FIELDS = gql`
-  fragment UserFields on user {
-    id
-    email
-    status
-    name_first
-    name_last
-    custom_fields
-    meta
-    is_verified
-    created_at
-    updated_at
-  }
-`
+import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS } from '../../accounts/queries/fragments'
+import { USER_FIELDS } from './fragments'
 
 export const GET_USER = gql`
   query GetUser($userId: Int!) {
@@ -59,7 +45,7 @@ export const GET_USER_BY_EMAIL = gql`
 
 export const UPDATE_USER = gql`
   mutation UpdateUser($userId: Int!, $changes: user_set_input) {
-    update_user_by_pk(pk_columns: { id: $userId }, _set: $changes) {
+    user: update_user_by_pk(pk_columns: { id: $userId }, _set: $changes) {
       ...UserFields
     }
   }
@@ -74,6 +60,28 @@ export const GET_USERS = gql`
     $order_by: [user_order_by!] = {}
   ) {
     users: user(where: $where, limit: $limit, offset: $offset, order_by: $order_by) {
+      ...UserFields
+    }
+  }
+  ${USER_FIELDS}
+`
+
+export const DELETE_USER_ACCOUNT_BY_USERID = gql`
+  mutation deleteAccountUser($userId: Int!) {
+    users: delete_account_user(where: { user_id: { _eq: $userId } }) {
+      returning {
+        user {
+          ...UserFields
+        }
+      }
+    }
+  }
+  ${USER_FIELDS}
+`
+
+export const CREATE_USER = gql`
+  mutation createUser($object: user_insert_input!) {
+    user: insert_user_one(object: $object) {
       ...UserFields
     }
   }

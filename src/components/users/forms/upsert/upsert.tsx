@@ -1,5 +1,5 @@
 /**
- * Components - Users - List - Form
+ * Components - Users - Forms - Upsert - UpsertUser
  */
 
 // React Hook Form
@@ -17,12 +17,15 @@ import {
   SelectField
 } from '@drykiss/industry-ui'
 import { usersSchema as schema } from './schema'
-import { statusActive } from '../../constants/status'
-import { UserFormProps } from './types.d'
+import { statusActive } from '../../../../constants/status'
+import { UserForm, UserFormProps } from './types.d'
+import { useCreateUser, useUpdateUser } from '../../hooks'
+import { UserRow } from '../../../accounts/lists/accountUsers/table/types'
+import { CreateUserModel } from '../../hooks/useCreate/types'
 
-export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
-  const { errors, handleSubmit, register } = useForm({
-    defaultValues: defaultValues,
+export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserFormProps) => {
+  const { errors, handleSubmit, register } = useForm<UserForm>({
+    defaultValues,
     resolver: yupResolver(schema)
   })
 
@@ -30,9 +33,36 @@ export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
     errors: errors,
     register: register
   }
+  const { createUser } = useCreateUser({
+    filters,
+    onCompleted: onSuccess,
+    onError: (error) => {
+      console.error(error)
+    }
+  })
+
+  const { updateUser } = useUpdateUser({
+    onCompleted: onSuccess,
+    onError: (error) => {
+      console.log(error.message)
+    }
+  })
+
+  const onSubmit = (values: UserRow) => {
+    if (defaultValues?.id) {
+      updateUser({ variables: { userId: defaultValues.id, changes: values } })
+    } else {
+      const object: CreateUserModel = {
+        accounts: { data: { account_id: filters?.accountId!, status: values.status } },
+        ...values,
+        is_verified: false
+      }
+      createUser({ variables: { object } })
+    }
+  }
 
   return (
-    <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
+    <Form id="offCanvasForm" handleSubmit={handleSubmit(onSubmit)}>
       <>
         <Row>
           <Column md={6}>
@@ -62,7 +92,7 @@ export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
           <Column md={6}>
             <FormLabel label="Phone">
               <FormField {...defaultOptions} name={'custom_fields.phone'} />
-              {errors.custom_fields && <FormError message={errors?.custom_fields.message} />}
+              {errors.custom_fields && <FormError message={errors?.custom_fields.phone?.message} />}
             </FormLabel>
           </Column>
         </Row>
@@ -73,7 +103,12 @@ export const UserForm = ({ defaultValues, submit }: UserFormProps) => {
             <FormError message={errors?.status?.message || ''} />
           )}
         </FormLabel>
-        <FormField {...defaultOptions} name="id" type="hidden" />
+        {!defaultValues?.id && (
+          <FormLabel label="Password">
+            <FormField {...defaultOptions} name="password" />
+            {errors?.password?.message && <FormError message={errors.password.message} />}
+          </FormLabel>
+        )}
       </>
     </Form>
   )

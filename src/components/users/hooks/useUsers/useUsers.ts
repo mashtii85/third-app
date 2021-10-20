@@ -4,11 +4,11 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_USERS } from '../../../users/queries'
-import { UsersFilter } from '../../types'
+import { GET_USERS } from '../../queries'
+import { UsersFilter } from '../../../accounts/types'
 
 // Types
-import { prepareUsersArguments } from './helpers'
+import { prepareUsersArguments } from '../helpers'
 import { UserData, UseUsersOutput } from './types'
 
 export const useUsers = ({ filters }: { filters: UsersFilter }): UseUsersOutput => {
