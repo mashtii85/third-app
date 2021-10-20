@@ -6,9 +6,6 @@
 // Styled Components
 import styled from 'styled-components'
 
-// UI
-import { Dropdown, THEME_COLOUR_LIST } from '@drykiss/industry-ui'
-
 export const fields = [
   {
     title: 'Navbar',
@@ -74,8 +71,6 @@ export const fields = [
   }
 ]
 
-export const colours = [...THEME_COLOUR_LIST].slice(0, -1)
-
 export const StyledField = styled.div`
   align-items: center;
   display: flex;
@@ -89,20 +84,4 @@ export const StyledColour = styled.div`
   height: 1rem;
   margin-right: 0.25rem;
   width: 1rem;
-`
-
-export const StyledDropdown = styled(Dropdown)`
-  margin-right: 1rem;
-  .dropdown--toggle {
-    color: rgb(0, 55, 83);
-  }
-  .dropdown--menu {
-    min-width: 14rem;
-  }
-  .dropdown--menu div {
-    display: inline-block;
-  }
-  .dropdown--link {
-    padding: 0.15rem 0.4rem;
-  }
 `

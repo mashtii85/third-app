@@ -7,15 +7,26 @@
 // React Hook Form
 import { useForm } from 'react-hook-form'
 
+// Color Picker
+import { RgbStringColorPicker } from 'react-colorful'
+
 // UI
-import { Form, FormField, Heading, Space, useAppTheme, useConfig } from '@drykiss/industry-ui'
-import { colours, fields, StyledColour, StyledDropdown, StyledField } from './helpers'
+import {
+  Details2,
+  Form,
+  FormField,
+  Heading,
+  Space,
+  useAppTheme,
+  useConfig
+} from '@drykiss/industry-ui'
+import { fields, StyledColour, StyledField } from './helpers'
 import { useUpdateAccount } from '../../../../accounts/hooks'
 
 // Types
 import { Account } from '../../../../../types/account'
 
-export const ThemeSettingsForm = ({
+export const ColorSchemeForm = ({
   account,
   handleSuccess
 }: {
@@ -32,7 +43,7 @@ export const ThemeSettingsForm = ({
     }
   })
 
-  const defaults = {}
+  const defaults: any = {}
 
   fields.forEach((f) => {
     defaults[f.value] = {}
@@ -86,20 +97,19 @@ export const ThemeSettingsForm = ({
             <div>
               {f.items.map((i) => {
                 const fieldName = f.value + '.' + i.value
-                return (
+                const title = (
                   <StyledField>
-                    <FormField {...defaultOptions} name={fieldName} type="hidden" />
-                    <StyledColour color={watch(fieldName)} />
-                    <StyledDropdown
-                      elementType="colour"
-                      items={colours}
-                      onChange={(e) => {
-                        setValue(fieldName, e.colour)
-                      }}
-                    >
-                      Select {i.title}
-                    </StyledDropdown>
+                    <StyledColour color={watch(fieldName)} /> {i.title}
                   </StyledField>
+                )
+                return (
+                  <Details2 context="white" title={title}>
+                    <FormField {...defaultOptions} name={fieldName} type="hidden" />
+                    <RgbStringColorPicker
+                      color={watch(fieldName)}
+                      onChange={(c) => setValue(fieldName, c)}
+                    />
+                  </Details2>
                 )
               })}
             </div>

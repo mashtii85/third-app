@@ -8,7 +8,7 @@ import { MouseEvent } from 'react'
 // UI
 import { Button, Details2, Heading, Space, useAppTheme, useOffCanvas } from '@drykiss/industry-ui'
 
-import { ThemeSettingsForm } from './form'
+import { ColorSchemeForm } from './form'
 import { fields, StyledColour, StyledField } from './helpers'
 
 // Types
@@ -26,8 +26,8 @@ export const ColorScheme = ({ account }: { account: Account }) => {
     e.stopPropagation()
 
     offCanvas.show({
-      content: <ThemeSettingsForm account={account} handleSuccess={handleSuccess} />,
-      title: 'Theme Settings'
+      content: <ColorSchemeForm account={account} handleSuccess={handleSuccess} />,
+      title: 'Color Scheme'
     })
   }
 
