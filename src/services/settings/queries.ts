@@ -16,6 +16,14 @@ export const GET_APP_SETTINGS = gql`
       name
       type
       meta
+      media(
+        where: { entity: { _eq: "account" }, category: { _eq: "logo" } }
+        limit: 1
+        order_by: { created_at: desc }
+      ) {
+        id
+        filename
+      }
     }
     taxonomies: taxonomy(
       where: {

@@ -20,8 +20,21 @@ export const getSettings = async (clientId: number): Promise<any> => {
     TE('Error fetching app settings')
   }
 
+  // Set config
+  const config = client?.meta?.config || {
+    Brand: {
+      name: client.name
+    }
+  }
+
+  // Set themeLogo as config.Brand.logo
+  if (client.media.length) {
+    config.Brand.logo = client.media[0].filename
+    config.Brand.logoCDN = true
+  }
+
   const appSettings = {
-    config: client?.meta?.config || {},
+    config,
     features: client?.meta?.features || {},
     settings,
     taxonomies: taxonomies || [],
