@@ -17,7 +17,6 @@ export const GET_MEDIA = gql`
   ${MEDIA_FIELDS}
 `
 
-// Regarding medium_insert_input is an array I think CREATE_MEDIA will be better
 export const CREATE_MEDIUM = gql`
   mutation CreateMedium($objects: [medium_insert_input!]!) {
     media: insert_medium(objects: $objects) {

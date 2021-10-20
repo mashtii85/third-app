@@ -62,7 +62,7 @@ export const MediaForm = ({
 
     await Promise.all(
       await form.dropzone?.map(async (file) => {
-        const data = await uploadMediaToS3(file, 'image')
+        const data = await uploadMediaToS3(file, defaultValues.type!)
         const filename: string = data.key
         mediaProps.push({
           client_id: user.client_id!,
@@ -79,7 +79,7 @@ export const MediaForm = ({
         return mediaProps
       })
     )
-    if (mediaProps.length) return await createMedia({ variables: { objects: mediaProps } })
+    if (mediaProps.length) await createMedia({ variables: { objects: mediaProps } })
   }
 
   return (

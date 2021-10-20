@@ -15,9 +15,9 @@ import { useMutation, useQuery } from '@apollo/client'
 import {
   ADD_LESSON_PROGRESS_ONE,
   UPDATE_LESSON_PROGRESS_BY_PK
-} from '../../lessons/queries/queries'
-import { GET_COURSE } from '../queries'
-import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../enrollments/queries/queries'
+} from '../../../lessons/queries/queries'
+import { GET_COURSE } from '../../queries'
+import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../../enrollments/queries/queries'
 
 // UI
 import {
@@ -33,46 +33,46 @@ import {
   formatDateStandard,
   formatTime
 } from '@drykiss/industry-ui'
-import { StepperActionModel, StepperModel } from '../../../types/stepper'
-import VideoPlayer from '../../common/videoPlayer/videoPlayer'
+import { StepperActionModel, StepperModel } from '../../../../types/stepper'
+import VideoPlayer from '../../../common/videoPlayer/videoPlayer'
 import { CompletionCertificate } from './completionCertificate'
-import { Course } from '../../../types/course'
-import { CourseData } from '../hooks/types'
-import { CourseProgressBar } from '../progressBar'
-import { NotesTable } from '../notes/lists/tables/table'
-
-// Constants
-import { THEME_CONTEXT } from '../../../constants/themeContext'
-
-// Types
-import {
-  LESSON_PROGRESS_STATUS,
-  LessonProgress,
-  LessonProgressUpdateModel
-} from '../../../types/lessonProgress.d'
-import { Module } from '../../../types/module'
-import { Quiz } from '../../common/quiz/quiz'
-import { QuizCompletedData } from '../../common/quiz/types'
-import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../types/lesson.d'
-import { POST_TYPE } from '../../../types/post.d'
+import { Course } from '../../../../types/course'
+import { CourseData } from '../../hooks/types'
+import { CourseProgressBar } from '../../progressBar'
+import { NotesTable } from '../../notes/lists/tables/table'
+import { Quiz } from '../../../common/quiz/quiz'
+import styled from 'styled-components'
+import ArrowRightIcon from '../../../icons/arrowRight'
+import LeftArrowIcon from '../../../icons/arrowLeft'
 
 // Helpers
-import { parseVideos } from '../helpers'
-import { useCurrentUser } from '../../../utils/useCurrentUser'
+import { parseVideos } from '../../helpers'
+import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import {
   findNextLesson,
   findPreviousLesson,
   getCurrentLesson,
   getCurrentLessonProgress,
   getLessonNumber
-} from '../../lessons/helpers'
-import { scrollTo } from '../../../utils/scrollTo'
+} from '../../../lessons/helpers'
+import { scrollTo } from '../../../../utils/scrollTo'
 
-import { COURSE_ENROLLMENT_STATUS } from '../../../types/courseEnrollment.d'
-import { COURSE_PAGE_MODE } from './types.d'
-import styled from 'styled-components'
-import ArrowRightIcon from '../../icons/arrowRight'
-import LeftArrowIcon from '../../icons/arrowLeft'
+// Constants
+import { THEME_CONTEXT } from '../../../../constants/themeContext'
+
+// Types
+import {
+  LESSON_PROGRESS_STATUS,
+  LessonProgress,
+  LessonProgressUpdateModel
+} from '../../../../types/lessonProgress.d'
+import { Module } from '../../../../types/module.d'
+import { QuizCompletedData } from '../../../common/quiz/types.d'
+import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../../types/lesson.d'
+import { POST_TYPE } from '../../../../types/post.d'
+import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
+import { COURSE_PAGE_MODE } from '../types.d'
+import { ENTITIES } from '../../../../constants/entities'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -570,7 +570,7 @@ export const AccountCourseView = () => {
               <NotesTable
                 key="notes-table"
                 accountId={user.account_id}
-                entity="course"
+                entity={ENTITIES.Course}
                 entityId={course.id}
                 type={POST_TYPE.Note}
               />

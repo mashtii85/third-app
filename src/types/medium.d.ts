@@ -3,13 +3,15 @@
  */
 
 // Types
+import { Post } from './post.d'
 import { STATUS_ACTIVE } from './select.d'
 
 export enum MEDIUM_CATEGORY {
   Avatar = 'avatar',
   Cover = 'cover',
   Logo = 'logo',
-  Lesson = 'lesson'
+  Lesson = 'lesson',
+  Resource = 'resource'
 }
 
 export enum MEDIUM_TYPE {
@@ -38,12 +40,14 @@ export interface DropzoneProps {
 export interface Medium {
   id?: number
   client_id: number
-  entity: string
-  entity_id: number
+  entity?: string
+  entity_id?: number
   type: MEDIUM_TYPE
   status: STATUS_ACTIVE
   caption?: string
   category?: MEDIUM_CATEGORY
   extension?: string
   filename: string
+  post?: Post
+  // It's good to have a file size column
 }

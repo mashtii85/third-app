@@ -3,12 +3,13 @@
  */
 
 // Types
+import { ENTITIES } from '../../../../../constants/entities'
 import { POST_TYPE } from '../../../../../types/post.d'
 import { STATUS_ACTIVE } from '../../../../../types/select.d'
 
 export interface NotesFormType {
   id: number | undefined
-  entity: string
+  entity: ENTITIES
   entityId: number
   accountId: number
   title: string

@@ -5,7 +5,7 @@
 // UI
 import { Image } from '@drykiss/industry-ui'
 
-// Style
+// Styles
 import styled from 'styled-components'
 
 export const CoverImage = ({

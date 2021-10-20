@@ -6,9 +6,10 @@
 import { Medium, MEDIUM_TYPE, MEDIUM_CATEGORY } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { LooseObject } from '../../../../types/object.d'
+import { ENTITIES } from '../../../../constants/entities'
 
 export interface MediaFilter {
-  entity: string
+  entity: ENTITIES
   entityId: number
   type: MEDIUM_TYPE
   status: STATUS_ACTIVE
@@ -19,7 +20,7 @@ export interface MediaFilter {
 }
 
 export interface UseMediaProps {
-  entity: string
+  entity: ENTITIES
   entityId: number
   category?: MEDIUM_CATEGORY
   type?: MEDIUM_TYPE

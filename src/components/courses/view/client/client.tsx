@@ -5,7 +5,8 @@
 // UI
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../../common/tab'
-import { ClientDetails, ClientLessons, EnrolledCourses } from './tabs'
+import { ClientDetails, ClientLessons, EnrolledCourses, ClientResources } from './tabs'
+
 // Next
 import { useRouter } from 'next/router'
 import { CLIENT_TAB } from '../types.d'
@@ -20,6 +21,8 @@ export const ClientCourseView = () => {
         return CLIENT_TAB.Curriculum
       case CLIENT_TAB.Enrollments.toLowerCase():
         return CLIENT_TAB.Enrollments
+      case CLIENT_TAB.Resources.toLowerCase():
+        return CLIENT_TAB.Resources
       case CLIENT_TAB.Details.toLowerCase():
       default:
         return CLIENT_TAB.Details
@@ -37,6 +40,9 @@ export const ClientCourseView = () => {
         </Tab>
         <Tab active={tab() === CLIENT_TAB.Enrollments} label={CLIENT_TAB.Enrollments}>
           <EnrolledCourses courseId={courseId} />
+        </Tab>
+        <Tab active={tab() === CLIENT_TAB.Resources} label={CLIENT_TAB.Resources}>
+          <ClientResources courseId={courseId} />
         </Tab>
       </Tabs>
     </>

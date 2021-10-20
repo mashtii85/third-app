@@ -28,6 +28,7 @@ import { MediaTableProps } from '../../../media/lists/table/types.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { offCanvasType } from '../../../../types/offCanvas'
+import { ENTITIES } from '../../../../constants/entities'
 
 export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -77,7 +78,7 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
 
   const handleFileUpload = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
     const mediaTableProps: MediaTableProps = {
-      entity: 'lesson',
+      entity: ENTITIES.Lesson,
       entityId: row.id as number,
       category: MEDIUM_CATEGORY.Lesson,
       status: STATUS_ACTIVE.Active,
