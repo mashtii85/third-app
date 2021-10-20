@@ -10,9 +10,18 @@ import { useForm } from 'react-hook-form'
 // UI
 import { Form, FormField, Heading, Space, useAppTheme, useConfig } from '@drykiss/industry-ui'
 import { colours, fields, StyledColour, StyledDropdown, StyledField } from './helpers'
-import { useUpdateAccount } from '../../../accounts/hooks'
+import { useUpdateAccount } from '../../../../accounts/hooks'
 
-export const ThemeSettingsForm = ({ account, handleSuccess }) => {
+// Types
+import { Account } from '../../../../../types/account'
+
+export const ThemeSettingsForm = ({
+  account,
+  handleSuccess
+}: {
+  account: Account
+  handleSuccess: () => void
+}) => {
   const { config, setConfig } = useConfig()
   const { theme, setTheme } = useAppTheme()
 

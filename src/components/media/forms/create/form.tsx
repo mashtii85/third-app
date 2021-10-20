@@ -32,7 +32,7 @@ export const MediaForm = ({
   filters: Partial<MediaFilter>
   dropzoneProps: DropzoneProps
   defaultValues: Partial<MediaFormType>
-  onSuccess: () => void
+  onSuccess: (data: any) => void
 }) => {
   const { control, errors, handleSubmit, register, watch } = useForm<MediaFormType>({
     defaultValues: defaultValues,
