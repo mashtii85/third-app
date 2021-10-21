@@ -20,7 +20,7 @@ import {
   Space
 } from '@drykiss/industry-ui'
 
-import { input, inputType } from '../../../../../constants/inputTypes'
+import { input, inputType } from '../../../../../../../../constants/inputTypes'
 import { AnswerFormType } from './types.d'
 
 export const AnswerForm = ({ defaultOptions }: AnswerFormType) => {

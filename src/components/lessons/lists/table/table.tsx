@@ -18,7 +18,6 @@ import { useLessons } from '../../hooks/useLessons'
 import { MediaTable } from '../.../../../../media/lists/table/table'
 import { LessonForm } from '../../form/create/form'
 import { DeleteLessonForm } from '../../form/delete/delete'
-import { LessonQuestionsTable } from '../../questions/lists/table/table'
 
 // Types
 import { UseLessonsProps } from '../../hooks/types'
@@ -66,16 +65,6 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
     })
   }
 
-  const handleQuestions = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
-    offCanvas.show({
-      content: (
-        <LessonQuestionsTable entity="lesson" entityId={row.id as number} type="lesson-questions" />
-      ),
-      submit: false,
-      title: 'Quiz'
-    })
-  }
-
   const handleFileUpload = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
     const mediaTableProps: MediaTableProps = {
       entity: ENTITIES.Lesson,
@@ -94,7 +83,7 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   return (
     <Table
       loading={loading}
-      columns={columns({ handleDelete, handleEdit, handleQuestions, handleFileUpload })}
+      columns={columns({ handleDelete, handleEdit, handleFileUpload })}
       rows={rows(lessonList)}
     />
   )

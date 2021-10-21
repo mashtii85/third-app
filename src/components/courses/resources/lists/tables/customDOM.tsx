@@ -3,16 +3,25 @@
  */
 
 // Styles
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 // UI
 import { Link } from '@drykiss/industry-ui'
 
 export const CustomRow = styled.div`
+  font-size: 12px;
   color: gray;
 `
-export const Content = styled.p`
-  height: 66px;
+
+export const Title = styled.b`
+  font-size: 13px;
+  color: black;
+`
+
+export const Content = styled.p<{ height?: number }>`
+  ${({ height }) => css`
+    height: ${height ?? 66}px;
+  `}
   margin: 0em;
   overflow-x: hidden;
   overflow-y: auto;

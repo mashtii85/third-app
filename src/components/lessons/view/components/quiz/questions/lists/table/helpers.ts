@@ -3,8 +3,8 @@
  */
 
 // Types
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { CustomFields, Taxonomy } from '../../../../../types/taxonomy'
+import { STATUS_ACTIVE } from '../../../../../../../../types/select.d'
+import { CustomFields, Taxonomy } from '../../../../../../../../types/taxonomy'
 import { LessonQuestionTableProps } from './type.d'
 
 export const prepareTaxonomyDefaultValues = (

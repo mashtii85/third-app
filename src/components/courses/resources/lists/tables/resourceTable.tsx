@@ -17,13 +17,13 @@ import {
   ButtonToolbar,
   OffCanvasContext
 } from '@drykiss/industry-ui'
-import { CustomRow, DateSpan, Content, RightAlign, BlackSpan, MaroonSpan } from './customDOM'
+import { CustomRow, Title, DateSpan, Content, RightAlign, BlackSpan, MaroonSpan } from './customDOM'
 import { ResourcesDeleteForm } from '../../forms/delete/form'
 import { ResourcesForm } from '../../forms/upsert/form'
 
 // Helpers
 import { fileinfo } from '../../forms/attachment/helpers'
-import { getIconByFilename } from './helpers'
+import { getIconByFilename, Icon } from './helpers'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
@@ -43,7 +43,7 @@ export const ResourceTable = ({ posts }: { posts: Post[] }) => {
           {posts?.map((post) => {
             return (
               <>
-                <ResourceRow post={post} />
+                <ResourceRow post={post} clientView={true} />
                 <Divider />
               </>
             )
@@ -56,7 +56,7 @@ export const ResourceTable = ({ posts }: { posts: Post[] }) => {
   )
 }
 
-export const ResourceRow = ({ post }: { post: Post }) => {
+export const ResourceRow = ({ post, clientView }: { post: Post; clientView: boolean }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleDelete = () => {
@@ -96,22 +96,23 @@ export const ResourceRow = ({ post }: { post: Post }) => {
     })
   }
 
-  const date: string = `${formatDateStandard(post.updated_at)} ${formatTime(post.updated_at)}`
+  let date: string = `${formatDateStandard(post.updated_at)}`
+  if (clientView) date += ` ${formatTime(post.updated_at)}`
   const hasAttachment: boolean = !!post?.custom_fields?.resource_type
   let icon = ''
   let info = ''
   if (post?.custom_fields?.resource_type) {
     switch (post?.custom_fields?.resource_type) {
       case RESOURCE_TYPE.Link:
-        icon = 'link icon'
-        info = post?.custom_fields?.link ?? 'No link'
+        icon = 'link'
+        info = post?.custom_fields?.link ?? 'nolink'
         break
       case RESOURCE_TYPE.File:
         if (post?.custom_fields?.filename) {
           icon = getIconByFilename(post?.custom_fields?.filename)
           info = fileinfo(post?.custom_fields?.filename, post?.custom_fields?.filesize ?? 0)
         } else {
-          icon = 'no file icon'
+          icon = 'nofile'
         }
         break
     }
@@ -119,15 +120,18 @@ export const ResourceRow = ({ post }: { post: Post }) => {
     icon = 'no attachment icon'
     info = 'No attachment'
   }
+
   return (
     <>
       <CustomRow>
         <Row>
-          <Column md={2}>{icon}</Column>
-          <Column md={9}>
+          <Column md={2}>
+            <Icon key={`icon-${post.id}`} iconname={icon} />
+          </Column>
+          <Column md={clientView ? 9 : 10}>
             <Row>
               <Column md={8}>
-                <b>{post.title}</b>
+                <Title>{post.title}</Title>
               </Column>
               <Column md={4}>
                 <DateSpan>{date}</DateSpan>
@@ -138,7 +142,7 @@ export const ResourceRow = ({ post }: { post: Post }) => {
             </Row>
             <Row>
               <Column md={12}>
-                <Content>
+                <Content height={clientView ? 66 : 36}>
                   {!post.content || post.content === '' ? 'No content' : post.content}
                 </Content>
               </Column>
@@ -188,28 +192,30 @@ export const ResourceRow = ({ post }: { post: Post }) => {
               </Row>
             )}
           </Column>
-          <Column md={1}>
-            <Row>
-              <ButtonToolbar>
-                <Button
-                  context={THEME_CONTEXT.secondary}
-                  size={SIZE.SM}
-                  startIcon="edit"
-                  onClick={handleEdit}
-                />
-              </ButtonToolbar>
-            </Row>
-            <Row>
-              <ButtonToolbar>
-                <Button
-                  context={THEME_CONTEXT.warning}
-                  size={SIZE.SM}
-                  startIcon="trash"
-                  onClick={handleDelete}
-                />
-              </ButtonToolbar>
-            </Row>
-          </Column>
+          {clientView && (
+            <Column md={1}>
+              <Row>
+                <ButtonToolbar>
+                  <Button
+                    context={THEME_CONTEXT.secondary}
+                    size={SIZE.SM}
+                    startIcon="edit"
+                    onClick={handleEdit}
+                  />
+                </ButtonToolbar>
+              </Row>
+              <Row>
+                <ButtonToolbar>
+                  <Button
+                    context={THEME_CONTEXT.warning}
+                    size={SIZE.SM}
+                    startIcon="trash"
+                    onClick={handleDelete}
+                  />
+                </ButtonToolbar>
+              </Row>
+            </Column>
+          )}
         </Row>
       </CustomRow>
     </>

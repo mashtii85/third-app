@@ -12,8 +12,12 @@ import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
 import { ResourcesForm } from '../../forms/upsert/form'
 import { offCanvasType } from '../../../../../types/offCanvas'
 
+// Helpers
+import { CustomIcon } from '../../../../common/icons/icons'
+
 // Constants
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { ICONS_PATHS } from '../../../../../constants/iconPaths'
 
 // Types
 import { POST_TYPE } from '../../../../../types/post.d'
@@ -25,12 +29,12 @@ export const getIconByFilename = (filename: string): string => {
   switch (ext) {
     case 'pdf':
     case '.pdf':
-      return 'pdf icon'
+      return 'pdf'
     case 'ppt':
     case '.ppt':
     case 'pptx':
     case '.pptx':
-      return 'ppt icon'
+      return 'ppt'
     case '.jpg':
     case 'jpg':
     case '.jpeg':
@@ -42,8 +46,49 @@ export const getIconByFilename = (filename: string): string => {
     case '.gif':
     case 'gif':
     default:
-      return 'image icon'
+      return 'image'
   }
+}
+
+export const Icon = ({
+  iconname = 'img',
+  size = 80,
+  color = '#999'
+}: {
+  iconname: string
+  size?: number
+  color?: string
+}) => {
+  let path: string = ''
+  switch (iconname.toLowerCase()) {
+    case 'lnk':
+    case 'link':
+      path = ICONS_PATHS.Link
+      break
+    case 'nolnk':
+    case 'nolink':
+      path = ICONS_PATHS.NoLink
+      break
+    case 'img':
+    case 'image':
+      path = ICONS_PATHS.Image
+      break
+    case 'pdf':
+      path = ICONS_PATHS.Pdf
+      break
+    case 'ppt':
+    case 'pptx':
+      path = ICONS_PATHS.Ppt
+      break
+    case 'nofile':
+      path = ICONS_PATHS.NoFile
+      break
+    case 'noattachment':
+    default:
+      path = ICONS_PATHS.NoAttachment
+      break
+  }
+  return <CustomIcon path={path} size={size} color={color} />
 }
 
 export const Toolbar = (filters: Partial<PostFilter>) => {

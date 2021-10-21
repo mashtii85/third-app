@@ -6,7 +6,7 @@
 import { useContext, MouseEvent } from 'react'
 
 // Apollo
-import { useTaxonomies } from '../../../../taxonomies/hooks'
+import { useTaxonomies } from '../../../../../../../taxonomies/hooks'
 
 // UI
 import {
@@ -17,18 +17,18 @@ import {
   Table,
   TableActions
 } from '@drykiss/industry-ui'
-import { AddButton } from '../../../../common/buttons/addButton'
+import { AddButton } from '../../../../../../../common/buttons/addButton'
 import { LessonQuestionForm } from '../../form/upsert/form'
 import { LessonQuestionDeleteForm } from '../../form/delete/delete'
 
 // Types
-import { offCanvasType } from '../../../../../types/offCanvas.d'
+import { offCanvasType } from '../../../../../../../../types/offCanvas.d'
 import { LessonQuestionTableProps } from './type.d'
-import { Taxonomy } from '../../../../../types/taxonomy.d'
-import { UseTaxonomiesVariable } from '../../../../taxonomies/hooks/useTaxonomies/types.d'
+import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
+import { UseTaxonomiesVariable } from '../../../../../../../taxonomies/hooks/useTaxonomies/types.d'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { THEME_CONTEXT } from '../../../../../../../../constants/themeContext'
 import { prepareTaxonomyDefaultValues } from './helpers'
 
 export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {
