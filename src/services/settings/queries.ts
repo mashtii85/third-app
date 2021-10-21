@@ -29,6 +29,7 @@ export const GET_APP_SETTINGS = gql`
       where: {
         client_id: { _eq: $clientId }
         type: { _in: ["courses", "clients", "events", "locations", "members"] }
+        parent_id: { _is_null: true }
       }
     ) @include(if: $includeClient) {
       id
