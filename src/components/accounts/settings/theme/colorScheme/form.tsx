@@ -8,14 +8,17 @@
 import { useForm } from 'react-hook-form'
 
 // Color Picker
-import { RgbStringColorPicker } from 'react-colorful'
+import { HexColorPicker } from 'react-colorful'
+import { colord } from 'colord'
 
 // UI
 import {
+  Column,
   Details2,
   Form,
   FormField,
   Heading,
+  Row,
   Space,
   useAppTheme,
   useConfig
@@ -48,7 +51,7 @@ export const ColorSchemeForm = ({
   fields.forEach((f) => {
     defaults[f.value] = {}
     f.items.forEach((i) => {
-      defaults[f.value][i.value] = theme[f.value][i.value]
+      defaults[f.value][i.value] = colord(theme[f.value][i.value]).toHex()
     })
   })
 
@@ -97,18 +100,21 @@ export const ColorSchemeForm = ({
             <div>
               {f.items.map((i) => {
                 const fieldName = f.value + '.' + i.value
+                const color = colord(watch(fieldName)).toHex()
                 const title = (
                   <StyledField>
-                    <StyledColour color={watch(fieldName)} /> {i.title}
+                    <StyledColour color={color} /> {i.title}
                   </StyledField>
                 )
                 return (
                   <Details2 context="white" title={title}>
-                    <FormField {...defaultOptions} name={fieldName} type="hidden" />
-                    <RgbStringColorPicker
-                      color={watch(fieldName)}
-                      onChange={(c) => setValue(fieldName, c)}
-                    />
+                    <Row>
+                      <Column md={3}>
+                        <FormField {...defaultOptions} name={fieldName} />
+                      </Column>
+                    </Row>
+                    <Space />
+                    <HexColorPicker color={color} onChange={(c) => setValue(fieldName, c)} />
                   </Details2>
                 )
               })}
