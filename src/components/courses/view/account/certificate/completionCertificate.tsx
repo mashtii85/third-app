@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Image } from '@drykiss/industry-ui'
 
 // Types
-import { CompletionCertificateStyledComponent } from '../types'
+import { CompletionCertificateStyledComponent } from '../../types'
 
 export const CompletionCertificate = (input: CompletionCertificateStyledComponent) => {
   const { certificateId, course, dateCompleted, username } = input

@@ -65,7 +65,7 @@ export const GET_COURSE = gql`
               }
             }
           }
-          media {
+          media(order_by: { id: desc }, limit: 1) {
             ...MediaFields
           }
           questions: taxonomies(

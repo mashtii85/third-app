@@ -34,8 +34,7 @@ import {
   formatTime
 } from '@drykiss/industry-ui'
 import { StepperActionModel, StepperModel } from '../../../../types/stepper'
-import VideoPlayer from '../../../common/videoPlayer/videoPlayer'
-import { CompletionCertificate } from './completionCertificate'
+import { CompletionCertificate } from './certificate/completionCertificate'
 import { Course } from '../../../../types/course'
 import { CourseData } from '../../hooks/types'
 import { CourseProgressBar } from '../../progressBar'
@@ -44,9 +43,9 @@ import { Quiz } from '../../../common/quiz/quiz'
 import styled from 'styled-components'
 import ArrowRightIcon from '../../../icons/arrowRight'
 import LeftArrowIcon from '../../../icons/arrowLeft'
+import { CourseLessonDocument } from './components/document/view'
 
 // Helpers
-import { parseVideos } from '../../helpers'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import {
   findNextLesson,
@@ -59,6 +58,7 @@ import { scrollTo } from '../../../../utils/scrollTo'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { ENTITIES } from '../../../../constants/entities'
 
 // Types
 import {
@@ -72,7 +72,8 @@ import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../../types/lesson.d'
 import { POST_TYPE } from '../../../../types/post.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from '../types.d'
-import { ENTITIES } from '../../../../constants/entities'
+import { CourseLessonVideo } from './components/video/view'
+// import { LessonsTable } from './tables/lessonsTable'
 
 export const AccountCourseView = () => {
   let hasActive = false
@@ -490,6 +491,14 @@ export const AccountCourseView = () => {
       </Row>
       <Row>
         <Column md={3.5}>
+          {/* <LessonsTable
+            key={`lesson-table-${course.id}`}
+            course={course}
+            hasActive={hasActive}
+            refetch={refetch}
+            stateHolder={stateHolder}
+            user={user}
+          /> */}
           {(course as Course)?.modules?.length &&
             (course as Course)?.modules?.map((m: Module) => (
               <Details2 key={m.id} open title={m.title}>
@@ -512,8 +521,10 @@ export const AccountCourseView = () => {
               ) : lesson ? (
                 <Details2 open title={lesson.title}>
                   <>
+                    {(lesson.type === LESSON_TYPE.Pdf || lesson.type === LESSON_TYPE.PowerPoint) &&
+                      lesson.media && <CourseLessonDocument filename={lesson.media[0].filename} />}
                     {lesson.type === LESSON_TYPE.Video && lesson.media && (
-                      <VideoPlayer videos={parseVideos(lesson.media)} />
+                      <CourseLessonVideo media={lesson.media} />
                     )}
                     {lesson.type === LESSON_TYPE.Quiz && (
                       <Quiz
