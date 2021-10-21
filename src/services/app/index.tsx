@@ -32,16 +32,18 @@ export const AppProvider = ({ children, user }: AppProps) => {
   const { config, setConfig } = useConfig()
   const { theme, setTheme } = useAppTheme()
 
-  const [getSettings, { data: { appSettings } = { appSettings: null } }] =
-    useLazyQuery(APP_SETTINGS)
-
-  // Fetch app settings when logged in user changes
-  useEffect(() => {
-    getSettings({
+  const [getSettings, { data: { appSettings } = { appSettings: null } }] = useLazyQuery(
+    APP_SETTINGS,
+    {
       variables: {
         client_id: user?.client_id || 0
       }
-    })
+    }
+  )
+
+  // Fetch app settings when logged in user changes
+  useEffect(() => {
+    getSettings()
   }, [user?.client_id])
 
   // Update theme and config when settings change
@@ -63,5 +65,9 @@ export const AppProvider = ({ children, user }: AppProps) => {
     return <ErrorPage statusCode={503} />
   }
 
-  return <AppContext.Provider value={appSettings}>{children}</AppContext.Provider>
+  return (
+    <AppContext.Provider value={{ ...appSettings, refetchSettings: getSettings }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
