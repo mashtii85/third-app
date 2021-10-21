@@ -1,5 +1,5 @@
 /**
- * Components - Addresss - List - Table - Types
+ * Components - Addresses - List - Table - Types
  */
 
 import { ADDRESS_STATUS } from '../../../../types/address'

@@ -9,7 +9,7 @@ import { MouseEvent, useContext } from 'react'
 import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
 
 // Forms
-import { CourseForm } from '../../../forms'
+import { UpsertCourseForm } from '../../../forms'
 
 // types
 import { CourseToolbarType } from './types.d'
@@ -31,7 +31,7 @@ export const Toolbar = ({ courseToolbarProps }: { courseToolbarProps: CourseTool
     e.stopPropagation()
     offCanvas.show({
       content: (
-        <CourseForm
+        <UpsertCourseForm
           filters={courseToolbarProps.filters}
           onSuccess={offCanvas.close}
           defaultValues={defaultValues}

@@ -14,6 +14,7 @@ import { AppProvider } from '../services/app'
 
 // Config
 import { Navigation } from '../config/navigation/navigation'
+import GlobalStyle from '../styles/global-styles'
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[]
@@ -34,6 +35,8 @@ const Layout = ({ children }: LayoutProps) => {
 
         {children}
       </Bootstrap>
+			<GlobalStyle />
+
     </AppProvider>
   )
 }

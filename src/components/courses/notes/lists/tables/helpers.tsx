@@ -69,7 +69,7 @@ export const rows = (posts: Post[]) => {
       id: post.id,
       title: post.title,
       content: post.content,
-      date: `${formatDateStandard(post.created_at)} ${formatTime(post.created_at)}`,
+      date: `${formatDateStandard(post.updated_at)} ${formatTime(post.updated_at)}`,
       actions: ''
     }
   })

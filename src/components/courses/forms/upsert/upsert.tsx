@@ -24,7 +24,7 @@ import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
-export const UpsertForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
+export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
   const { user } = useCurrentUser()
 
   const { control, errors, handleSubmit, register, watch } = useForm<CourseFormType>({

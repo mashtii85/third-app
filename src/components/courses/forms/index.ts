@@ -2,5 +2,5 @@
  * Components - Courses - Form - Index
  */
 
-export { UpsertForm as CourseForm } from './upsert/upsert'
-export { DeleteCourse } from './delete/delete'
+export { UpsertCourseForm } from './upsert/upsert'
+export { DeleteCourseForm } from './delete/delete'

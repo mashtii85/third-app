@@ -21,5 +21,6 @@ export const POST_FIELDS = gql`
     publish_at
     expire_at
     status
+    custom_fields
   }
 `

@@ -2,12 +2,15 @@
  * Components - Posts - Hooks - types
  */
 
-// Types
+// Constants
 import { Post, POST_TYPE } from '../../../../types/post.d'
+
+// Types
+import { ENTITIES } from '../../../../constants/entities'
 
 export interface PostFilter {
   accountId: number
-  entity: string
+  entity: ENTITIES
   entityId: number
   type: POST_TYPE
 }

@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 
 import { ACCOUNT_FIELDS } from './fragments'
-import { USER_FIELDS } from '../../users/queries'
+import { USER_FIELDS } from '../../users/queries/fragments'
 import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 
 export const GET_ACCOUNTS = gql`

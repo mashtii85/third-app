@@ -1,17 +1,18 @@
 /**
- * Components - AccountUsers - Hooks - UseUserAccounts - UseUserAccounts
+ * Components - Users - Hooks - Helpers
  */
 
-// Types
-import { GQLClause, GraphqlWhere } from '../../../../types/gql'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { User } from '../../../../types/user'
-import { UsersFilter } from '../../types'
+import { GQLClause, GraphqlWhere } from '../../../types/gql'
+import { STATUS_ACTIVE } from '../../../types/select.d'
+import { User } from '../../../types/user'
+import { UsersFilter } from '../../accounts/types'
 
-export const prepareUsersArguments = (filters: UsersFilter): GQLClause<User> => {
+// Types
+
+export const prepareUsersArguments = (filters?: Partial<UsersFilter>): GQLClause<User> => {
   const condition: GraphqlWhere<User> = { status: { _eq: STATUS_ACTIVE.Active } }
 
-  if (filters.accountId) {
+  if (filters?.accountId) {
     // @ts-ignore
     condition.accounts = { account: { id: { _eq: filters.accountId } } }
   }

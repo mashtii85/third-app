@@ -34,6 +34,7 @@ import { THEME_CONTEXT } from '../../constants/themeContext'
 // Hooks
 import { useCurrentUser } from '../../utils/useCurrentUser'
 import { useMedia } from '../media/hooks/useMedia/useMedia'
+import { ENTITIES } from '../../constants/entities'
 
 const HeadingContent = ({ entity }: HeaderProps) => {
   return (
@@ -48,7 +49,7 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { user } = useCurrentUser()
   const filters: UseMediaProps = {
-    entity: 'user',
+    entity: ENTITIES.User,
     entityId: user.id,
     category: MEDIUM_CATEGORY.Avatar,
     type: MEDIUM_TYPE.Image
@@ -60,7 +61,7 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
 
   const EditAvatar = () => {
     const defaultValues: MediaFormType = {
-      entity: 'user',
+      entity: ENTITIES.User,
       entityId: user.id,
       category: MEDIUM_CATEGORY.Avatar,
       status: STATUS_ACTIVE.Active,

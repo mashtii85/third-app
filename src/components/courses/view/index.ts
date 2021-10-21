@@ -2,5 +2,5 @@
  * Components - Courses - View
  */
 
-export { AccountCourseView } from './account'
+export { AccountCourseView } from './account/account'
 export { ClientCourseView } from './client/client'

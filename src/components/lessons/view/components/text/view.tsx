@@ -83,7 +83,7 @@ export const LessonContent = ({ lessonId }: { lessonId: number }) => {
               defaultValues={defaultValues}
             />
           ) : (
-            lesson.content
+            <>{lesson.content ?? 'No Content'}</>
           )}
         </>
       </Details2>

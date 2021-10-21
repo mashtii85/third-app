@@ -5,10 +5,6 @@
 // React
 import { MouseEvent, useContext } from 'react'
 
-// Apollo
-import { useMutation, useQuery } from '@apollo/client'
-import { GET_USER, UPDATE_USER } from './queries'
-
 // UI
 import {
   Button,
@@ -21,46 +17,27 @@ import {
   Row
 } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../profileHeader/profileHeader'
-import { UserForm } from './form'
+import { UpsertUserForm } from './forms'
 import { UserAccountsTable } from './accounts/table'
 import { offCanvasType } from '../../types/offCanvas'
 
 // Types
-import { User } from '../../types/user.d'
 import { UserDetailsProps } from './types.d'
+import { useUser } from './hooks/useUser/useUser'
 
 const UserDetails = ({ userId }: UserDetailsProps) => {
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
 
-  const { data: { user = {} } = {}, refetch } = useQuery(GET_USER, {
-    variables: {
-      userId: userId
-    }
-  })
-
-  const [UpdateUser] = useMutation(UPDATE_USER, {
-    onCompleted: () => {
-      offCanvas.close()
-      refetch()
-    }
-  })
+  const { loading, user } = useUser(userId)
 
   if (!user) {
     return <></>
-  }
-  const onSubmit = (form: User): void => {
-    UpdateUser({
-      variables: {
-        userId: form.id,
-        changes: form
-      }
-    })
   }
 
   const handleClick = (e: MouseEvent<HTMLElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <UserForm defaultValues={user} submit={onSubmit} />,
+      content: <UpsertUserForm defaultValues={user} onSuccess={offCanvas.close} />,
       title: 'Edit user'
     })
   }
@@ -73,6 +50,7 @@ const UserDetails = ({ userId }: UserDetailsProps) => {
       </ButtonToolbar>
     )
   }
+
   return (
     <Row>
       <Column md={6}>
@@ -87,7 +65,7 @@ const UserDetails = ({ userId }: UserDetailsProps) => {
         </Details2>
       </Column>
       <Column md={6}>
-        <UserAccountsTable user={user} />
+        <UserAccountsTable loading={loading} user={user} />
       </Column>
     </Row>
   )

@@ -3,10 +3,24 @@
  */
 
 // Types
+import { Medium } from './medium.d'
 import { STATUS_ACTIVE } from './select.d'
 
+export enum RESOURCE_TYPE {
+  File = 'file',
+  Link = 'link'
+}
+
 export enum POST_TYPE {
-  Note = 'note'
+  Note = 'note',
+  Resource = 'resource'
+}
+
+export interface PostCustomFields {
+  resource_type: RESOURCE_TYPE
+  link?: string
+  filename?: string
+  filesize?: number
 }
 
 export interface Post {
@@ -19,9 +33,10 @@ export interface Post {
   subtitle?: string
   type: POST_TYPE
   content?: string
-  created_at: Date
   updated_at?: Date
   publish_at?: Date
   expire_at?: Date
   status: STATUS_ACTIVE
+  custom_fields?: PostCustomFields
+  media?: Medium[]
 }

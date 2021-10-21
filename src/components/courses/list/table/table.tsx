@@ -17,7 +17,7 @@ import { useCourses } from '../../hooks'
 import { CourseFilter } from '../../hooks/types'
 import { CourseTableProps, CourseTableRowsType } from './types'
 
-import { DeleteCourse, CourseForm } from '../../forms'
+import { DeleteCourseForm, UpsertCourseForm } from '../../forms'
 import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
@@ -33,7 +33,7 @@ export const CourseTable = ({ filters }: CourseTableProps) => {
   const handleDelete = (_: MouseEvent<HTMLElement>, row: CourseTableRowsType) => {
     offCanvas.show({
       content: (
-        <DeleteCourse
+        <DeleteCourseForm
           id={row.id!}
           title={row.title}
           onSuccess={offCanvas.close}
@@ -49,7 +49,11 @@ export const CourseTable = ({ filters }: CourseTableProps) => {
     const defaultValues = prepareEditCourseValues(row)
     offCanvas.show({
       content: (
-        <CourseForm onSuccess={offCanvas.close} filters={filters} defaultValues={defaultValues} />
+        <UpsertCourseForm
+          onSuccess={offCanvas.close}
+          filters={filters}
+          defaultValues={defaultValues}
+        />
       ),
       submit: true,
       title: 'Edit Course'

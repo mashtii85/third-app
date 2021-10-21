@@ -9,7 +9,7 @@ import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteCourse } from '../../hooks'
 import { CourseFilter } from '../../hooks/types'
 
-export const DeleteCourse = ({
+export const DeleteCourseForm = ({
   id,
   title,
   filters,

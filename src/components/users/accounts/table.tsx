@@ -1,99 +1,30 @@
 /**
- * Components - Users - View - Accounts
+ * Components - Users - Accounts
  */
 
 // React
 import { useContext } from 'react'
 
 // UI
-import {
-  AuthorizationContext,
-  capitalize,
-  Details2,
-  Table,
-  TableActions,
-  TableLink
-} from '@drykiss/industry-ui'
-
-// Types
-import type { AccountUsers, User } from '../../../types/user'
+import { AuthorizationContext, Details2, Table } from '@drykiss/industry-ui'
 
 // Constants
-import { THEME_CONTEXT } from '../../../constants/themeContext'
+import { columns, rows } from './helpers'
 
-interface UserAccountTableProps {
-  user: User
-}
+// Types
+import { UserAccountTableProps } from './types'
 
-export const UserAccountsTable = ({ user }: UserAccountTableProps) => {
+export const UserAccountsTable = ({ user, loading }: UserAccountTableProps) => {
   const { hasRole } = useContext(AuthorizationContext)
-
-  const userDetail: User = Object.assign({}, user)
-
-  userDetail.name = `${userDetail.name_first} ${userDetail.name_last}`
-
-  const columns = [
-    {
-      hidden: true
-    },
-    {
-      formatter: TableLink('', 'accountId', 'name', 'url'),
-      text: 'Account'
-    },
-    {
-      hidden: true,
-      text: 'Position'
-    },
-    {
-      text: 'Status'
-    },
-    {
-      hidden: true
-    },
-    {
-      hidden: !hasRole('admin'),
-      formatter: TableActions,
-      formatterData: [
-        {
-          context: THEME_CONTEXT.secondary,
-          icon: ['fas', 'edit'],
-          tooltip: 'Edit'
-        }
-      ],
-      text: 'Actions'
-    },
-    {
-      hidden: true
-    },
-    {
-      hidden: true
-    }
-  ]
-
-  const rows = () =>
-    (userDetail.accounts || [])
-      .filter((item: AccountUsers) => item !== null)
-      .map((item: AccountUsers) => ({
-        id: item.id,
-        name: item.account.name,
-        // position: item?.account_user?.custom_fields?.position || '-',
-        status: capitalize(item.status),
-        accountId: item.account.id,
-        actions: '',
-        url:
-          item.account.type.toLowerCase() === 'tenant'
-            ? ''
-            : `/dashboard/${item.account.type.toLowerCase()}s/view`,
-        accountSelected: {
-          label: item.account.name,
-          type: item.account.type,
-          value: item.account.id
-        }
-      }))
+  const isNotAdmin = !hasRole('admin')
 
   return (
     <Details2 open title="Accounts">
-      <Table columns={columns} rows={rows()} />
+      <Table
+        columns={columns({ isNotAdmin })}
+        rows={rows({ accounts: user.accounts })}
+        loading={loading}
+      />
     </Details2>
   )
 }

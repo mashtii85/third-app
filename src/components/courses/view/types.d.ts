@@ -7,7 +7,8 @@ import { CourseData } from '../hooks/types'
 export enum CLIENT_TAB {
   Details = 'Details',
   Curriculum = 'Curriculum',
-  Enrollments = 'Enrollments'
+  Enrollments = 'Enrollments',
+  Resources = 'Resources'
 }
 
 export enum COURSE_PAGE_MODE {
