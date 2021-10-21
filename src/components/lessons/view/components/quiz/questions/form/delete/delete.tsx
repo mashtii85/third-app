@@ -3,10 +3,10 @@
  */
 
 // hooks
-import { useDeleteTaxonomy } from '../../../../taxonomies/hooks'
+import { useDeleteTaxonomy } from '../../../../../../../taxonomies/hooks'
 // UI
 import { Text } from '@drykiss/industry-ui'
-import { AddButton } from '../../../../common/buttons/addButton'
+import { AddButton } from '../../../../../../../common/buttons/addButton'
 // types
 import { TaxonomyDeleteProps } from './types'
 export const LessonQuestionDeleteForm = ({

@@ -4,6 +4,7 @@
 
 // UI
 import { Details2 } from '@drykiss/industry-ui'
+import { LessonQuestionsTable } from './questions/lists/table/table'
 
 // Hooks
 
@@ -11,11 +12,11 @@ import { Details2 } from '@drykiss/industry-ui'
 
 // Types
 
-export const LessonQuiz = () => {
+export const LessonQuiz = ({ lessonId }: { lessonId: number }) => {
   return (
     <>
       <Details2 open key={`quiz-content-${1}`} title="Quiz">
-        Quiz
+        <LessonQuestionsTable entity="lesson" entityId={lessonId} type="lesson-questions" />
       </Details2>
     </>
   )

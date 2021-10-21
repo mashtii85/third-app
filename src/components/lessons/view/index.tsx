@@ -130,7 +130,7 @@ export const LessonView = () => {
               )}
               {lesson.type === LESSON_TYPE.Quiz && (
                 <>
-                  <LessonQuiz />
+                  <LessonQuiz lessonId={lesson.id} />
                   <Space />
                 </>
               )}

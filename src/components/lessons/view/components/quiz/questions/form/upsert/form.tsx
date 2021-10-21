@@ -4,17 +4,17 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_TAXONOMY } from '../../../../taxonomies/queries'
+import { UPDATE_TAXONOMY } from '../../../../../../../taxonomies/queries'
 
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useCreateTaxonomy } from '../../../../taxonomies/hooks'
-import { useCurrentUser } from '../../../../../utils/useCurrentUser'
+import { useCreateTaxonomy } from '../../../../../../../taxonomies/hooks'
+import { useCurrentUser } from '../../../../../../../../utils/useCurrentUser'
 
 // UI
 import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../../../constants/status'
+import { statusActive } from '../../../../../../../../constants/status'
 import { TaxonomySchema as schema } from './schema'
 
 // Forms
@@ -22,8 +22,8 @@ import { AnswerForm } from '../answers/form'
 
 // Types
 import { TaxonomyFormProps } from './type'
-import { Taxonomy } from '../../../../../types/taxonomy'
-import { UseCreateTaxonomyProps } from '../../../../taxonomies/hooks/useCreate/types'
+import { Taxonomy } from '../../../../../../../../types/taxonomy'
+import { UseCreateTaxonomyProps } from '../../../../../../../taxonomies/hooks/useCreate/types'
 
 export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) => {
   const { user } = useCurrentUser()

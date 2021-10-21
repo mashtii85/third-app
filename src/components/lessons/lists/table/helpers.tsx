@@ -37,12 +37,10 @@ import { offCanvasType } from '../../../../types/offCanvas'
 export const columns = ({
   handleDelete,
   handleEdit,
-  handleQuestions,
   handleFileUpload
 }: {
   handleDelete: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
   handleEdit: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
-  handleQuestions: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
   handleFileUpload: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
 }) => {
   const columnsSchema: Column<LessonTableRowsType>[] = [
@@ -71,12 +69,6 @@ export const columns = ({
           icon: ['fas', 'trash'],
           onClick: handleDelete,
           tooltip: 'Delete'
-        },
-        {
-          context: THEME_CONTEXT.info,
-          icon: ['fas', 'question'],
-          onClick: handleQuestions,
-          tooltip: 'Quiz'
         },
         {
           context: THEME_CONTEXT.dark,
