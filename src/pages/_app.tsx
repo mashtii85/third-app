@@ -24,8 +24,6 @@ import {
 import Layout from '../layouts/index'
 
 // Config
-import { AccessPages } from '../config/access/pages'
-import { AccessRules } from '../config/access/rules'
 import { Config } from '../config/config'
 import { Theme } from '../config/theme'
 import type { AppProps } from 'next/app'
@@ -39,7 +37,7 @@ const MyApp = (props: AppProps) => {
 
   return (
     <AppThemeProvider theme={Theme}>
-      <ConfigProvider config={{ ...Config, AccessPages, AccessRules }}>
+      <ConfigProvider config={{ ...Config }}>
         <ThemeStyle />
         <ApolloProvider client={apolloClient}>
           <UserProvider>

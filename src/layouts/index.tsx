@@ -35,8 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
 
         {children}
       </Bootstrap>
-			<GlobalStyle />
-
+      <GlobalStyle />
     </AppProvider>
   )
 }
