@@ -72,6 +72,7 @@ import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../../types/lesson.d'
 import { POST_TYPE } from '../../../../types/post.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from '../types.d'
+import { ResourcesTable } from './components/resources/resourcesTable'
 import { CourseLessonVideo } from './components/video/view'
 // import { LessonsTable } from './tables/lessonsTable'
 
@@ -577,7 +578,9 @@ export const AccountCourseView = () => {
               )}
             </Column>
             <Column md={5}>
-              <Details2 title="Resources">Resources</Details2>
+              <Details2 title="Resources" open>
+                <ResourcesTable key={`resource-table-${course.id}`} courseId={course.id!} />
+              </Details2>
               <NotesTable
                 key="notes-table"
                 accountId={user.account_id}
