@@ -23,7 +23,7 @@ export const BrandForm = ({
   account,
   handleSuccess
 }: {
-  account: Account
+  account: Account | undefined
   handleSuccess: () => void
 }) => {
   const { config, setConfig } = useConfig()
@@ -48,7 +48,7 @@ export const BrandForm = ({
     const updatedBrand = { ...config.Brand }
     updatedBrand.name = form.name
 
-    const meta = account.meta ? cloneDeep(account.meta) : { config: {} }
+    const meta = account?.meta ? cloneDeep(account?.meta) : { config: {} }
     meta.config = meta.config ? { ...meta.config, Brand: updatedBrand } : { Brand: updatedBrand }
 
     setConfig({ ...config, Brand: updatedBrand })
@@ -56,7 +56,7 @@ export const BrandForm = ({
     // Update a
     await updateAccount({
       variables: {
-        accountId: account.id,
+        accountId: account?.id,
         accountSet: {
           meta
         },

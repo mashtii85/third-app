@@ -14,7 +14,7 @@ import { fields, StyledColour, StyledField } from './helpers'
 // Types
 import { Account } from '../../../../../types/account'
 
-export const ColorScheme = ({ account }: { account: Account }) => {
+export const ColorScheme = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()
   const { theme } = useAppTheme()
 

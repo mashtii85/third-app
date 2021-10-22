@@ -33,7 +33,7 @@ export const ColorSchemeForm = ({
   account,
   handleSuccess
 }: {
-  account: Account
+  account: Account | undefined
   handleSuccess: () => void
 }) => {
   const { config, setConfig } = useConfig()
@@ -60,7 +60,7 @@ export const ColorSchemeForm = ({
   })
 
   const onSubmit = async (form: any) => {
-    const meta = { ...account.meta } || {}
+    const meta = { ...account?.meta } || {}
     meta.theme = {
       ...form
     }
@@ -74,7 +74,7 @@ export const ColorSchemeForm = ({
     // Update a
     await updateAccount({
       variables: {
-        accountId: account.id,
+        accountId: account?.id,
         accountSet: {
           meta
         },

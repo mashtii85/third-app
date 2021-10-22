@@ -13,7 +13,7 @@ import { BrandForm } from './form'
 // Types
 import { Account } from '../../../../../types/account'
 
-export const Brand = ({ account }: { account: Account }) => {
+export const Brand = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()
   const { config } = useConfig()
 

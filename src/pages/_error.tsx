@@ -2,15 +2,12 @@
  * Error 500
  */
 
-// Next
-import type { NextPage } from 'next'
-
 // UI
 import { Page, Text } from '@drykiss/industry-ui'
 
-const ErrorPage: NextPage = ({ statusCode }) => {
+const ErrorPage = ({ statusCode = 500 }: { statusCode: number }) => {
   return (
-    <Page pageHeading={{ heading: '500 ERROR PAGE – NOT FOUND' }}>
+    <Page pageHeading={{ heading: `${statusCode} ERROR PAGE` }}>
       <Text>An Error occurred</Text>
     </Page>
   )

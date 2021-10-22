@@ -12,7 +12,7 @@ import { ThemeLogo } from './logo'
 // Types
 import { Account } from '../../../../types/account'
 
-export const ThemeSettings = ({ account }: { account: Account }) => {
+export const ThemeSettings = ({ account }: { account: Account | undefined }) => {
   return (
     <Row>
       <Column md={6}>

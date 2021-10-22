@@ -61,7 +61,9 @@ export const AppProvider = ({ children, user }: AppProps) => {
   }
 
   // Check maintenance mode
-  if (appSettings.settings.find(({ id }) => id === 'maintenanceMode')?.value?.enabled) {
+  if (
+    appSettings.settings.find(({ id }: { id: string }) => id === 'maintenanceMode')?.value?.enabled
+  ) {
     return <ErrorPage statusCode={503} />
   }
 

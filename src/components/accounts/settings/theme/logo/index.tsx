@@ -15,8 +15,9 @@ import { MEDIUM_CATEGORY, MEDIUM_TYPE, DropzoneProps } from '../../../../../type
 import { STATUS_ACTIVE } from '../../../../../types/select.d'
 import { MediaFormType } from '../../../../media/forms/create/types.d'
 import { MediaFilter } from '../../../../media/hooks/useMedia/types.d'
+import { ENTITIES } from '../../../../../constants/entities'
 
-export const ThemeLogo = ({ account }: { account: Account }) => {
+export const ThemeLogo = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()
   const { config, setConfig } = useConfig()
 
@@ -38,8 +39,8 @@ export const ThemeLogo = ({ account }: { account: Account }) => {
     }
 
     const defaultValues: MediaFormType = {
-      entity: 'account',
-      entityId: account.id,
+      entity: ENTITIES.Account,
+      entityId: account?.id || 0,
       category: MEDIUM_CATEGORY.Logo,
       status: STATUS_ACTIVE.Active,
       type: MEDIUM_TYPE.Image
