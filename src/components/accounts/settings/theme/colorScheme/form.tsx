@@ -71,7 +71,7 @@ export const ColorSchemeForm = ({
     // Probably need to force a re-render
     setConfig({ ...config })
 
-    // Update a
+    // Update account
     await updateAccount({
       variables: {
         accountId: account?.id,
