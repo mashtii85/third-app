@@ -116,21 +116,25 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
 
           {addContactUserWatch && (
             <>
-              <FormLabel label="First Name">
+              <FormLabel label="First name">
                 <FormField {...defaultOptions} name="firstName" />
               </FormLabel>
 
-              <FormLabel label="Last Name">
+              <FormLabel label="Last name">
                 <FormField {...defaultOptions} name="lastName" />
-              </FormLabel>
-
-              <FormLabel label="Password">
-                <FormField {...defaultOptions} name="password" />
-                {errors?.password?.message && <FormError message={errors.password.message} />}
               </FormLabel>
 
               <FormLabel label="Email">
                 <FormField type="email" {...defaultOptions} name="email" />
+              </FormLabel>
+
+              <FormLabel label="Initial password">
+                <FormField
+                  {...defaultOptions}
+                  helperMessage="The user will be asked to change it after first login"
+                  name="password"
+                />
+                {errors?.password?.message && <FormError message={errors.password.message} />}
               </FormLabel>
             </>
           )}
