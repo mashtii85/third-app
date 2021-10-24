@@ -16,12 +16,12 @@ import { useCreateEnrollment } from '../../enrollments/hooks/useCreate/useCreate
 import { useCurrentUser } from '../../../utils/useCurrentUser'
 import { Course } from '../../../types/course'
 
-export const AccountCourseList = () => {
+export const AccountCourseList = ({ show }: { show: string }) => {
   const { user } = useCurrentUser()
-  const {
-    query: { show = {} },
-    push
-  } = useRouter()
+  const { query, push } = useRouter()
+
+  const view = query.show || show
+
   const handleSuccess = (data: any) => {
     const courseId = data?.insert_course_enrollment_one?.course_id
     push(`${pages.dashboard.coursesAccount.view_by_id}${courseId}`)
@@ -38,13 +38,15 @@ export const AccountCourseList = () => {
   let courses: Course[] = []
 
   const { loading = false, courseList = [] }: any = useCourseEnrollment(user.client_id, user.id)
-  if (show === 'catalog') {
+
+  if (view === 'catalog') {
     courses = courseList.filter((item: any) => !item?.course_enrollments?.length)
-  } else if (show === 'enrolled') {
+  } else if (view === 'enrolled') {
     courses = courseList.filter((item: any) => item?.course_enrollments?.length > 0)
   } else {
     courses = courseList
   }
+
   if (loading) {
     console.log('loading')
   }
@@ -74,7 +76,11 @@ export const AccountCourseList = () => {
                 : null
             }
             title={item.title}
-            to={`${pages.dashboard.coursesAccount.view_by_id}${item.id}`}
+            to={
+              item.course_enrollments.length
+                ? `${pages.dashboard.coursesAccount.view_by_id}${item.id}`
+                : null
+            }
           >
             <StyledCardBody>
               <Row>
@@ -82,7 +88,7 @@ export const AccountCourseList = () => {
                   <p>{item.description}</p>
                 </Column>
               </Row>
-              {show === 'catalog' && (
+              {view === 'catalog' && (
                 <Row justify={'end'}>
                   <Space marginRight="sm">
                     <Button onClick={() => handleEnrollCourse(item)}>Enroll</Button>
