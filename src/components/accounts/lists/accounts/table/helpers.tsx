@@ -122,7 +122,7 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       firstName: user?.name_first,
       lastName: user?.name_last,
       user: `${user?.name_first ?? ''} ${user?.name_last ?? ''}`,
-      verified: user?.is_verified,
+      verified: user?.email_verified,
       email: user?.email,
       url: pages?.dashboard?.accounts?.view,
       status: account.status,

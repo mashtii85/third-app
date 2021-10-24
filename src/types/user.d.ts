@@ -26,7 +26,7 @@ export interface UserCustomFields {
 export interface User {
   id: number
   email: string
-  is_verified: boolean
+  email_verified: boolean
   name?: string
   name_first: string
   name_last: string
