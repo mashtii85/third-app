@@ -154,7 +154,7 @@ export const COURSE_ENROLLMENT = gql`
   query courseEnrollment($accountId: Int, $userId: Int) {
     courses: course(where: { account_id: { _eq: $accountId } }) {
       ...CourseFields
-      media {
+      media(where: { entity: { _eq: "course" } }) {
         ...MediaFields
       }
       course_enrollments(where: { user_id: { _eq: $userId } }) {
