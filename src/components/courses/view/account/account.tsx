@@ -491,7 +491,7 @@ export const AccountCourseView = () => {
         </Column>
       </Row>
       <Row>
-        <Column md={3.5}>
+        <Column md="3">
           {/* <LessonsTable
             key={`lesson-table-${course.id}`}
             course={course}
@@ -507,9 +507,9 @@ export const AccountCourseView = () => {
               </Details2>
             ))}
         </Column>
-        <Column md={8.5}>
+        <Column md="9">
           <Row>
-            <Column md={7}>
+            <Column md={8}>
               {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
                 <Details2 open title="Completion Certificate">
                   <CompletionCertificate
@@ -577,7 +577,7 @@ export const AccountCourseView = () => {
                 </Details2>
               )}
             </Column>
-            <Column md={5}>
+            <Column md={4}>
               <Details2 title="Resources" open>
                 <ResourcesTable key={`resource-table-${course.id}`} courseId={course.id!} />
               </Details2>
