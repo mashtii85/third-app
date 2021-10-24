@@ -68,8 +68,13 @@ export const AccountCourseList = () => {
           <Card
             alt={item.title}
             bordered={true}
-            image={item.media?.[0]?.filename ? `/ ${item.media[0].filename} ` : null}
+            image={
+              item.media?.[0]?.filename
+                ? `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${item.media[0].filename} `
+                : null
+            }
             title={item.title}
+            to={`${pages.dashboard.coursesAccount.view_by_id}${item.id}`}
           >
             <StyledCardBody>
               <Row>

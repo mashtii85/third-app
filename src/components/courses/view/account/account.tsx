@@ -569,7 +569,7 @@ export const AccountCourseView = () => {
                   {(course as Course)?.media?.length && (
                     <Image
                       alt={(course as Course)?.title}
-                      src={`/${((course as Course)?.media ?? [])[0].filename}`}
+                      src={`${process.env.NEXT_PUBLIC_S3_CDN_URL}/${course.media[0].filename} `}
                     />
                   )}
                   {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
