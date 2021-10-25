@@ -1,6 +1,6 @@
 // Types
+import { Options } from '../../../../types/options'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { Options } from '../../../../types/taxonomy'
 import { AccountsRow } from '../../lists/accounts/table/types'
 import { AccountFilters } from '../../types'
 

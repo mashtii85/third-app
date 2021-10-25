@@ -1,5 +1,5 @@
 /**
- *  Components - Groups - Queries
+ *  Components - Groups - Queries - Queries
  */
 
 // Apollo
@@ -9,9 +9,19 @@ import { gql } from '@apollo/client'
 import { GROUP_FIELDS } from './fragments'
 
 export const GET_GROUPS = gql`
-  query GetGroup($where: group_bool_exp) {
+  query GetGroups($where: group_bool_exp) {
     groups: group(where: $where) {
       ...GroupFields
+    }
+  }
+  ${GROUP_FIELDS}
+`
+
+export const GET_GROUPS_SELECT = gql`
+  query GetGroups($where: group_bool_exp) {
+    options: group(where: $where) {
+      label: name
+      value: id
     }
   }
   ${GROUP_FIELDS}

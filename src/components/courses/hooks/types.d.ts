@@ -7,8 +7,8 @@ import { STATUS_ACTIVE } from '../../../types/select.d'
 import { Course } from '../../../types/course.d'
 import { ApolloError } from '@apollo/client'
 import { Filter } from '../../../types/filter.d'
-import { Options } from '../../../types/taxonomy'
 import { Account } from '../../../types/account'
+import { Options } from '../../../types/options'
 
 export interface CourseFilter extends Filter {
   id: number

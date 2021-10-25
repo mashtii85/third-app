@@ -51,6 +51,7 @@ import {
   faTools,
   faTrash,
   faUser,
+  faUsers,
   faUserTie,
   faWindowMaximize
 } from '@fortawesome/free-solid-svg-icons'
@@ -106,6 +107,7 @@ library.add(
   faTools,
   faTrash,
   faUser,
+  faUsers,
   faUserTie,
   faWindowMaximize
 )

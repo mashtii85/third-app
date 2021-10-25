@@ -16,6 +16,8 @@ import { offCanvasType } from '../../../../../types/offCanvas'
 import { columns, rows, UserAccountToolbar, prepareAccountDefaultValues } from './helpers'
 import { useTable } from '../../../../common/hooks/useTable'
 import { UpsertAccount } from '../../../forms'
+import { GroupEntitiesTable } from '../../../../groupEntities/table/table'
+import { ENTITIES } from '../../../../../constants/entities'
 
 const initialSort = {}
 
@@ -48,12 +50,20 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
     })
   }
 
+  const handleShowGroupEntities = () => {
+    offCanvas.show({
+      content: <GroupEntitiesTable entity={ENTITIES.Account} entityId={filters?.accountId} />,
+      submit: false,
+      title: 'Groups'
+    })
+  }
+
   return (
     <Details2 open title="Accounts" toolbar={<UserAccountToolbar filters={filters} />}>
       <Table
         fullHeight
         align
-        columns={columns(handleEdit)}
+        columns={columns(handleEdit, handleShowGroupEntities)}
         loading={loading}
         rows={rows(accounts)}
         ref={ref}

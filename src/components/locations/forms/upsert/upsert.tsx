@@ -16,10 +16,11 @@ import { statusActive } from '../../../../constants/status'
 
 // Types
 import { LocationFormType, LocationFormProps, LocationFormSubmission } from './types'
-import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 // Hooks
 import { useCreateLocation, useUpdateLocation } from '../../hooks'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
+import { Options } from '../../../../types/options'
 
 export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: LocationFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<LocationFormType>({

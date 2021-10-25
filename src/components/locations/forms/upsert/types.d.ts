@@ -3,8 +3,8 @@
  */
 
 import { LooseObject } from '../../../../types/object'
+import { Options } from '../../../../types/options'
 import { STATUS_ACTIVE } from '../../../../types/select'
-import { Options } from '../../../../types/taxonomy'
 import { Location, LocationFilter } from '../../types'
 
 export interface LocationFormType {

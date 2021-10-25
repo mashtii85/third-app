@@ -17,13 +17,14 @@ import { TaxonomySelect } from '../../../taxonomies/select/select'
 
 // Types
 import { AccountFormProps, CreateAccountForm } from './types.d'
-import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import { ACCOUNT_TYPE } from '../../../../types/account.d'
+import { Options } from '../../../../types/options'
 
 export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, watch } = useForm<any>({

@@ -8,7 +8,7 @@ import { LooseObject } from '../../../../types/object'
 import { Course } from '../../../../types/course'
 
 import { STATUS_ACTIVE } from '../../../../types/select'
-import { Options } from '../../../../types/taxonomy'
+import { Options } from '../../../../types/options'
 
 export interface CourseFormType {
   title: string

@@ -4,8 +4,9 @@
 
 import { Filter } from '../../types/filter'
 import { LooseObject } from '../../types/object'
+import { Options } from '../../types/options'
 import { STATUS_ACTIVE } from '../../types/select'
-import { Options, Taxonomy } from '../../types/taxonomy'
+import { Taxonomy } from '../../types/taxonomy'
 
 export interface EventFilter extends Filter {
   accountId: number

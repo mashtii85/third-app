@@ -1,10 +1,6 @@
 // Types
+import { Options } from './options'
 import { STATUS_ACTIVE } from './select.d'
-
-export interface Options {
-  label: string
-  value: string
-}
 
 export enum TAXONOMY_TYPE {
   CLIENT = 'clients',

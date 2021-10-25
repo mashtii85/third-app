@@ -8,6 +8,10 @@ type Equality = {
   _eq: number | string
 }
 
+type NotEquality = {
+  _neq: number | string
+}
+
 type ILike = {
   _ilike: string
 }
@@ -28,7 +32,14 @@ type LessThanEqual = {
   _lte: string
 }
 
-type GraphQLType = Equality | ILike | LessThan | LessThanEqual | GreaterThan | GreaterThan
+type GraphQLType =
+  | Equality
+  | ILike
+  | LessThan
+  | LessThanEqual
+  | GreaterThan
+  | GreaterThan
+  | NotEquality
 
 type Or<T> = {
   _or?: {

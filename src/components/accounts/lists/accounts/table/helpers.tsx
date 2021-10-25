@@ -30,23 +30,34 @@ import { AccountFilters } from '../../../types'
 import { AccountsRow } from './types'
 import { offCanvasType } from '../../../../../types/offCanvas'
 // Constants
+
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
 import { generatePassword } from '../../../../../utils/passwordGenerator'
 
-const actionsData = (handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void) => {
+const actionsData = (
+  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void,
+  handleGroups: () => void
+) => {
   return [
     {
       context: THEME_CONTEXT.secondary,
       icon: ['fas', 'edit'],
       onClick: handleEdit,
       tooltip: 'Edit'
+    },
+    {
+      context: THEME_CONTEXT.black,
+      icon: ['fas', 'users'],
+      onClick: handleGroups,
+      tooltip: 'Groups'
     }
   ]
 }
 
 // Table Column
 export const columns = (
-  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void
+  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void,
+  handelGroups: () => void
 ): Column<AccountsRow>[] => {
   return [
     {
@@ -92,7 +103,7 @@ export const columns = (
     },
     {
       formatter: TableActions,
-      formatterData: actionsData(handleEdit),
+      formatterData: actionsData(handleEdit, handelGroups),
       text: 'Actions'
     },
     {
