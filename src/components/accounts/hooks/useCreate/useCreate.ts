@@ -8,7 +8,7 @@ import { CREATE_ACCOUNT, GET_ACCOUNTS } from '../../queries/queries'
 
 // Types
 import { UseCreateAccountOutput, UseCreateAccountProps } from './types'
-import { prepareUseAccounts } from '../useAccounts/helpers'
+import { prepareUseAccounts } from '../helpers'
 
 export const useCreateAccount = (props: UseCreateAccountProps): UseCreateAccountOutput => {
   const [createAccount, { error, loading }] = useMutation(CREATE_ACCOUNT, {

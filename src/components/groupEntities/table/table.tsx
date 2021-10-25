@@ -28,7 +28,6 @@ const initialSort = {}
 
 export const GroupEntitiesTable = (filters: Partial<GroupEntityFilter>) => {
   const { initialData, ref } = useTable<Partial<GroupEntityFilter>>({ filters, initialSort })
-
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const { groupEntities, loading } = useGroupEntities(filters)

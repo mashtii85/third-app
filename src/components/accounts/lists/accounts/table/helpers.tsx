@@ -34,10 +34,15 @@ import { offCanvasType } from '../../../../../types/offCanvas'
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
 import { generatePassword } from '../../../../../utils/passwordGenerator'
 
-const actionsData = (
-  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void,
+const actionsData = ({
+  handleEdit,
+  handleDelete,
+  handleGroups
+}: {
+  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void
+  handleDelete: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void
   handleGroups: () => void
-) => {
+}) => {
   return [
     {
       context: THEME_CONTEXT.secondary,
@@ -50,15 +55,26 @@ const actionsData = (
       icon: ['fas', 'users'],
       onClick: handleGroups,
       tooltip: 'Groups'
+    },
+    {
+      context: THEME_CONTEXT.danger,
+      icon: ['fas', 'trash'],
+      onClick: handleDelete,
+      tooltip: 'Delete'
     }
   ]
 }
 
 // Table Column
-export const columns = (
-  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void,
-  handelGroups: () => void
-): Column<AccountsRow>[] => {
+export const columns = ({
+  handleEdit,
+  handleDelete,
+  handleGroups
+}: {
+  handleEdit: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void
+  handleDelete: (_: MouseEvent<HTMLElement>, row: AccountsRow) => void
+  handleGroups: () => void
+}): Column<AccountsRow>[] => {
   return [
     {
       text: 'id',
@@ -103,7 +119,7 @@ export const columns = (
     },
     {
       formatter: TableActions,
-      formatterData: actionsData(handleEdit, handelGroups),
+      formatterData: actionsData({ handleEdit, handleDelete, handleGroups }),
       text: 'Actions'
     },
     {

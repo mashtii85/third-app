@@ -15,7 +15,7 @@ import { offCanvasType } from '../../../../../types/offCanvas'
 // Hooks
 import { columns, rows, UserAccountToolbar, prepareAccountDefaultValues } from './helpers'
 import { useTable } from '../../../../common/hooks/useTable'
-import { UpsertAccount } from '../../../forms'
+import { DeleteAccountForm, UpsertAccount } from '../../../forms'
 import { GroupEntitiesTable } from '../../../../groupEntities/table/table'
 import { ENTITIES } from '../../../../../constants/entities'
 
@@ -50,6 +50,21 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
     })
   }
 
+  const handleDelete = (_: MouseEvent<HTMLElement>, row: AccountsRow) => {
+    offCanvas.show({
+      content: (
+        <DeleteAccountForm
+          accountName={row.name!}
+          onSuccess={offCanvas.close}
+          filters={filters}
+          id={row.id!}
+        />
+      ),
+      submit: false,
+      title: 'Delete Account'
+    })
+  }
+
   const handleShowGroupEntities = () => {
     offCanvas.show({
       content: <GroupEntitiesTable entity={ENTITIES.Account} entityId={filters?.accountId} />,
@@ -63,7 +78,7 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
       <Table
         fullHeight
         align
-        columns={columns(handleEdit, handleShowGroupEntities)}
+        columns={columns({ handleEdit, handleDelete, handleGroups: handleShowGroupEntities })}
         loading={loading}
         rows={rows(accounts)}
         ref={ref}
