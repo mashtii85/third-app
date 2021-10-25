@@ -12,9 +12,9 @@ import {
   SelectField,
   TextareaField
 } from '@drykiss/industry-ui'
+import { Options } from '../../../types/options'
 
 import { DatePicker } from '../../calendar/datePicker'
-import { Options } from '../../../types/taxonomy'
 import { CustomFieldRenderProps } from './types'
 
 const inputComponents: { [x: string]: Function } = {

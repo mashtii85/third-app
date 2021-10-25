@@ -31,6 +31,10 @@ import type { AppProps } from 'next/app'
 // CSS
 import 'react-datepicker/dist/react-datepicker.css'
 import 'tippy.js/dist/tippy.css'
+import '@fullcalendar/common/main.min.css'
+import '@fullcalendar/daygrid/main.min.css'
+import '@fullcalendar/list/main.min.css'
+import '@fullcalendar/timegrid/main.min.css'
 
 const MyApp = (props: AppProps) => {
   const apolloClient = useApollo(props.pageProps, Config)

@@ -18,11 +18,12 @@ import { statusActive } from '../../../../constants/status'
 
 // Types
 import { CourseFormType, CourseFormSubmission, CourseFormProps } from './types'
-import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 
 // Hooks
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
+import { Options } from '../../../../types/options'
 
 export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {
   const { user } = useCurrentUser()
@@ -83,14 +84,14 @@ export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: Cou
         {...defaultOptions}
         label="Course Type"
         name="taxonomy"
-        type={TAXONOMY_TYPE.COURSE}
+        type={TAXONOMY_TYPE.Course}
       />
       {taxonomyWatch?.value && (
         <CustomFieldElement
           {...defaultValues}
           {...defaultOptions}
           taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.COURSE}
+          type={TAXONOMY_TYPE.Course}
         />
       )}
     </Form>

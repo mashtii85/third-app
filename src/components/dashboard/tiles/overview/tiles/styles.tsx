@@ -1,10 +1,10 @@
 /**
- * Components - Dashboard - view - tiles - styles
+ * Components - Dashboard - Tiles - Overview - Styles
  */
 
 // Styled Components
 import styled from 'styled-components'
-import Tile from '../components/tile'
+import Tile from '../../../components/tile'
 
 export const StyledTile = styled<any>(Tile)`
   height: 254px;

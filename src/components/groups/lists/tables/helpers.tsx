@@ -13,7 +13,7 @@ import { Group } from '../../../../types/group.d'
 import { GroupTableRowsType } from './types.d'
 import { Column } from '../../../../types/column.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { GroupFilter } from '../../hooks/useGroup/types.d'
+import { GroupFilter } from '../../hooks/useGroups/types'
 
 // Forms
 import { GroupForm } from '../../forms/upsert/form'
@@ -72,7 +72,6 @@ export const rows = (groups: Group[]) => {
 
 export const Toolbar = (filters: Partial<GroupFilter>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({

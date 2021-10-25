@@ -41,7 +41,7 @@ export const LocationFilters = ({
           {...defaultOptions}
           label={'Type'}
           name="taxonomy"
-          type={TAXONOMY_TYPE.LOCATION}
+          type={TAXONOMY_TYPE.Location}
         />
       </Column>
     </>

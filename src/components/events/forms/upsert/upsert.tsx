@@ -16,13 +16,14 @@ import { statusActive } from '../../../../constants/status'
 
 // Types
 import { EventFormType, EventFormProps, EventFormSubmission } from './types'
-import { Options, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 // Hooks
 import { useCreateEvent, useUpdateEvent } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import { LooseObject } from '../../../../types/object'
 import moment from 'moment'
+import { Options } from '../../../../types/options'
 
 export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFormProps) => {
   const { user } = useCurrentUser()
@@ -101,14 +102,14 @@ export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFor
         {...defaultOptions}
         label="Event Type"
         name="taxonomy"
-        type={TAXONOMY_TYPE.EVENT}
+        type={TAXONOMY_TYPE.Event}
       />
       {taxonomyWatch?.value && (
         <CustomFieldElement
           {...defaultValues}
           {...defaultOptions}
           taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.EVENT}
+          type={TAXONOMY_TYPE.Event}
         />
       )}
     </Form>

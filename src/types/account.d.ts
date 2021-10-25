@@ -2,7 +2,7 @@
  * Types - Account
  */
 
-import { STATUS_ACTIVE } from './select'
+import { STATUS_ACTIVE } from './select.d'
 import { Taxonomy } from './taxonomy'
 import { User } from './user'
 

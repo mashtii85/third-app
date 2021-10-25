@@ -1,9 +1,10 @@
 /**
- * Components - Dashboard - Tiles - Overview
+ * Components - Dashboard - Tiles - Overview - AdminDashboardOverview
  */
 
 // UI
-import { Row, Space } from '@drykiss/industry-ui'
+import { Space } from '@drykiss/industry-ui'
+import { Tiles } from './tiles/tiles'
 
 // Types
 import { ACCOUNT_TYPE } from '../../../../types/account.d'
@@ -12,9 +13,8 @@ import { ACCOUNT_TYPE } from '../../../../types/account.d'
 import { useAggregate } from '../hooks/useTileData'
 
 // Helpers
-import { TileItem } from './helpers'
 import { GET_ADMIN_TILES_DATA } from '../queries'
-import { prepareAdminTiles } from '../helper'
+import { prepareAdminTiles } from './helpers'
 
 export const AdminDashboardOverview = () => {
   const { error, items } = useAggregate({
@@ -26,18 +26,7 @@ export const AdminDashboardOverview = () => {
 
   return (
     <>
-      <Row justify="start">
-        {items.map((item) => (
-          <TileItem
-            key={item.title}
-            accountType={ACCOUNT_TYPE.Admin}
-            title={item.title}
-            to={item.to}
-            colourConfig={item.colourConfig}
-            value={item.value}
-          />
-        ))}
-      </Row>
+      <Tiles accountType={ACCOUNT_TYPE.Admin} items={items} />
 
       <Space marginBottom="md" />
     </>

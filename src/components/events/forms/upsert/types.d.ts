@@ -3,7 +3,7 @@
  */
 
 import { LooseObject } from '../../../../types/object.d'
-import { Options } from '../../../../types/taxonomy.d'
+import { Options } from '../../../../types/options'
 import { Event, EventFilter } from '../../types.d'
 
 export type EventFormType = Omit<Event, 'id', 'taxonomy' | 'custom_fields' | 'location_id'>

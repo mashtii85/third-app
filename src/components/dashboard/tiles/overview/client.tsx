@@ -1,9 +1,9 @@
 /**
- * Components - Dashboard - Tiles - Overview
+ * Components - Dashboard - Tiles - Overview - ClientDashboardOverview
  */
 
 // UI
-import { Row, Space } from '@drykiss/industry-ui'
+import { Space } from '@drykiss/industry-ui'
 
 // Types
 import type { ClientDashboardOverviewProps } from '../types.d'
@@ -14,8 +14,9 @@ import { useAggregate } from '../hooks/useTileData'
 
 import { GET_CLIENT_TILES_DATA } from '../queries'
 // Helpers
-import { TileItem } from './helpers'
-import { prepareClientTiles } from '../helper'
+import { EventsCalendar } from '../../../events/calendar/calendar'
+import { Tiles } from './tiles/tiles'
+import { prepareClientTiles } from './helpers'
 
 export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewProps) => {
   const { error, items } = useAggregate({
@@ -28,20 +29,11 @@ export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewPro
 
   return (
     <>
-      <Row justify="start">
-        {items.map((item) => (
-          <TileItem
-            key={item.title}
-            accountType={ACCOUNT_TYPE.Client}
-            title={item.title}
-            to={item.to}
-            colourConfig={item.colourConfig}
-            value={item.value}
-          />
-        ))}
-      </Row>
+      <Tiles accountType={ACCOUNT_TYPE.Client} items={items} />
 
       <Space marginBottom="md" />
+
+      <EventsCalendar />
     </>
   )
 }

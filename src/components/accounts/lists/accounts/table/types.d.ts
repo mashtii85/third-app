@@ -5,8 +5,8 @@
 import { Account, ACCOUNT_TYPE, CustomField } from '../../../../../types/account'
 import { User } from '../../../../../types/user'
 import { AccountFilters, UsersFilter } from '../../../types'
-import { Options } from '../../../../../types/taxonomy'
 import { STATUS_ACTIVE } from '../../../../../types/select'
+import { Options } from '../../../../../types/options'
 
 export interface AccountTableProps {
   filters?: Partial<AccountFilters>

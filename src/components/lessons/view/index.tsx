@@ -134,7 +134,7 @@ export const LessonView = () => {
                   <Space />
                 </>
               )}
-              <LessonContent lessonId={lessonId} />
+              <LessonContent lesson={lesson} />
             </>
           </Column>
         </Row>

@@ -27,49 +27,49 @@ const TaxonomyTabs = () => {
 
   const isAdmin = user?.account_type === ACCOUNT_TYPE.Admin
   const tab = useMemo(() => {
-    return query.tab || (isAdmin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER)
+    return query.tab || (isAdmin ? TAXONOMY_TYPE.Client : TAXONOMY_TYPE.Member)
   }, [query.tab])
 
   return (
     <>
       {!isAdmin ? (
         <Tabs key={tab}>
-          <Tab active={tab === TAXONOMY_TYPE.MEMBER} label="Members">
+          <Tab active={tab === TAXONOMY_TYPE.Member} label="Members">
             <TaxonomyList
               clientId={user?.client_id}
-              type={TAXONOMY_TYPE.MEMBER}
+              type={TAXONOMY_TYPE.Member}
               title="Member Types"
             />
             <Space />
             <GroupTable accountId={user?.account_id} />
           </Tab>
-          <Tab active={tab === TAXONOMY_TYPE.COURSE} label="Courses">
+          <Tab active={tab === TAXONOMY_TYPE.Course} label="Courses">
             <TaxonomyList
               clientId={user?.client_id}
-              type={TAXONOMY_TYPE.COURSE}
+              type={TAXONOMY_TYPE.Course}
               title="Course Types"
             />
           </Tab>
-          <Tab active={tab === TAXONOMY_TYPE.LOCATION} label="Locations">
+          <Tab active={tab === TAXONOMY_TYPE.Location} label="Locations">
             <TaxonomyList
               clientId={user?.client_id}
-              type={TAXONOMY_TYPE.LOCATION}
+              type={TAXONOMY_TYPE.Location}
               title="Location Types"
             />
           </Tab>
-          <Tab active={tab === TAXONOMY_TYPE.EVENT} label="Events">
+          <Tab active={tab === TAXONOMY_TYPE.Event} label="Events">
             <TaxonomyList
               clientId={user?.client_id}
-              type={TAXONOMY_TYPE.EVENT}
+              type={TAXONOMY_TYPE.Event}
               title="Event Types"
             />
           </Tab>
         </Tabs>
       ) : (
-        <Tab active={tab === TAXONOMY_TYPE.CLIENT} label="Clients">
+        <Tab active={tab === TAXONOMY_TYPE.Client} label="Clients">
           <TaxonomyList
             clientId={user?.client_id}
-            type={TAXONOMY_TYPE.CLIENT}
+            type={TAXONOMY_TYPE.Client}
             title="Client Types"
           />
         </Tab>

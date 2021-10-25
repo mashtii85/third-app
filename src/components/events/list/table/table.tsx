@@ -21,7 +21,7 @@ import { EventTableRowsType, EventTableProps } from './types'
 import { UpsertEvent, DeleteEvent } from '../../forms'
 import { offCanvasType } from '../../../../types/offCanvas'
 import { EventFormSubmission } from '../../forms/upsert/types'
-import { Options } from '../../../../types/taxonomy'
+import { Options } from '../../../../types/options'
 
 const initialSort = {}
 

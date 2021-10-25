@@ -83,3 +83,12 @@ export const UPDATE_ACCOUNT_USER = gql`
   ${ACCOUNT_FIELDS}
   ${USER_FIELDS}
 `
+
+export const DELETE_ACCOUNT_BY_ID = gql`
+  mutation deleteAccountById($accountId: Int!) {
+    account: delete_account_by_pk(id: $accountId) {
+      ...AccountFields
+    }
+  }
+  ${ACCOUNT_FIELDS}
+`

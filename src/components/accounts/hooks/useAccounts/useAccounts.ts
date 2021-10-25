@@ -8,7 +8,7 @@ import { GET_ACCOUNTS } from '../../queries/queries'
 // Types
 import { UseAccountsOutput, UseAccountsVariable } from '../types'
 import { AccountData } from '../useAccount/types'
-import { prepareUseAccounts } from './helpers'
+import { prepareUseAccounts } from '../helpers'
 
 export const useAccounts = ({ filters }: UseAccountsVariable): UseAccountsOutput => {
   const variables = prepareUseAccounts(filters)

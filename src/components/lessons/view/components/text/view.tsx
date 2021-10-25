@@ -12,21 +12,15 @@ import styled from 'styled-components'
 import { Details2, Button, ButtonToolbar } from '@drykiss/industry-ui'
 import { LessonContentEdit } from '../../../form/edit/contentForm'
 
-// Hooks
-import { useLessons } from '../../../hooks/useLessons'
-
 // Constants
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
 
 // Types
-import { LessonFilter } from '../../../hooks/types.d'
 import { LessonFormType } from '../../../form/edit/types.d'
+import { Lesson } from '../../../../../types/lesson.d'
 
-export const LessonContent = ({ lessonId }: { lessonId: number }) => {
+export const LessonContent = ({ lesson }: { lesson: Lesson }) => {
   const [editMode, setEditMode] = useState<boolean>(false)
-  const filters: Partial<LessonFilter> = { id: lessonId }
-  const { lessonList } = useLessons(filters)
-  const lesson = lessonList[0]
 
   const LessonTextualContentToolbar = () => {
     const handleEdit = (e: MouseEvent<HTMLElement>): void => {
@@ -61,9 +55,9 @@ export const LessonContent = ({ lessonId }: { lessonId: number }) => {
   }
 
   const defaultValues: LessonFormType = {
-    id: lessonId,
-    type: lesson.type,
-    content: lesson.content
+    id: lesson?.id,
+    type: lesson?.type,
+    content: lesson?.content
   }
 
   const onSuccess = () => {
@@ -74,9 +68,9 @@ export const LessonContent = ({ lessonId }: { lessonId: number }) => {
     <>
       <Details2
         open
-        key={`textual-content-${lessonId}`}
+        key={`textual-content-${lesson.id}`}
         title="Content"
-        toolbar={<LessonTextualContentToolbar key={`textual-content-toolbar-${lessonId}`} />}
+        toolbar={<LessonTextualContentToolbar key={`textual-content-toolbar-${lesson.id}`} />}
       >
         <>
           {editMode ? (

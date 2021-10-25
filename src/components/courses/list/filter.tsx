@@ -46,7 +46,7 @@ export const CourseFilters = ({
           {...defaultOptions}
           label="Type"
           name="taxonomy"
-          type={TAXONOMY_TYPE.COURSE}
+          type={TAXONOMY_TYPE.Course}
         />
       </Column>
     </>

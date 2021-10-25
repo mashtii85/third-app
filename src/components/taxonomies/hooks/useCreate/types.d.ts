@@ -1,17 +1,18 @@
+import { ENTITIES } from '../../../../constants/entities'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook'
-import { Taxonomy } from '../../../../types/taxonomy'
+import { Taxonomy, TAXONOMY_TYPE } from '../../../../types/taxonomy'
 
 interface TaxonomyPropsData {
   taxonomies: { returning: Taxonomy[] }
 }
 
 export interface UseCreateTaxonomyProps extends UseHookProps<TaxonomyPropsData> {
-  entity?: string
+  entity?: ENTITIES
   entityId?: number
   parentId?: number
   isParent?: boolean
   taxonomyId?: number
-  category?: string
+  category?: TAXONOMY_TYPE
   clientId?: number
 }
 

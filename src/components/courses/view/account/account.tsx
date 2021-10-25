@@ -579,10 +579,10 @@ export const AccountCourseView = () => {
             </Column>
             <Column md={4}>
               <Details2 title="Resources" open>
-                <ResourcesTable key={`resource-table-${course.id}`} courseId={course.id!} />
+                <ResourcesTable key={`resources-table-${course.id}`} courseId={course.id!} />
               </Details2>
               <NotesTable
-                key="notes-table"
+                key={`notes-table-${course.id}`}
                 accountId={user.account_id}
                 entity={ENTITIES.Course}
                 entityId={course.id}
