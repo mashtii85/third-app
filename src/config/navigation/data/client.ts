@@ -67,6 +67,10 @@ export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
               to: pages.dashboard.coursesClient.root
             },
             {
+              id: 'navEnrollmentsDivider',
+              divider: true
+            },
+            {
               id: 'navEnrollments',
               name: 'Enrollments',
               to: pages.dashboard.enrollments.root
