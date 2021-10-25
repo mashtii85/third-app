@@ -5,6 +5,9 @@
 // React
 import { MouseEvent, useState } from 'react'
 
+// Styles
+import styled from 'styled-components'
+
 // UI
 import { Details2, Button, ButtonToolbar } from '@drykiss/industry-ui'
 import { LessonContentEdit } from '../../../form/edit/contentForm'
@@ -83,10 +86,14 @@ export const LessonContent = ({ lessonId }: { lessonId: number }) => {
               defaultValues={defaultValues}
             />
           ) : (
-            <>{lesson.content ?? 'No Content'}</>
+            <StyledContent>{lesson.content ?? 'No Content'}</StyledContent>
           )}
         </>
       </Details2>
     </>
   )
 }
+
+const StyledContent = styled.div`
+  white-space: pre-wrap;
+`

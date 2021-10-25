@@ -534,7 +534,7 @@ export const AccountCourseView = () => {
                         onComplete={onQuizComplete}
                       />
                     )}
-                    {lesson.content && <p>{lesson.content}</p>}
+                    {lesson.content && <StyledContent>{lesson.content}</StyledContent>}
                     <ButtonsWrapper>
                       {lessonNumber !== 0 ? (
                         <StyledPrevButton
@@ -620,4 +620,8 @@ const BreadcrumbWrapper = styled.div`
   a {
     color: ${({ theme }) => theme.COLOUR.primary} !important;
   }
+`
+
+const StyledContent = styled.div`
+  white-space: pre-wrap;
 `
