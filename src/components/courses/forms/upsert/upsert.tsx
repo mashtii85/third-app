@@ -84,14 +84,14 @@ export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: Cou
         {...defaultOptions}
         label="Course Type"
         name="taxonomy"
-        type={TAXONOMY_TYPE.COURSE}
+        type={TAXONOMY_TYPE.Course}
       />
       {taxonomyWatch?.value && (
         <CustomFieldElement
           {...defaultValues}
           {...defaultOptions}
           taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.COURSE}
+          type={TAXONOMY_TYPE.Course}
         />
       )}
     </Form>

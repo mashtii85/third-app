@@ -22,5 +22,6 @@ export interface TaxonomiesData {
 export interface UseTaxonomiesOutput extends UseHookOutput {
   loading: boolean
   error?: ApolloError
+  refetch
   taxonomies: Taxonomy[]
 }

@@ -68,7 +68,7 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
   }
 
   const taxonomyType =
-    filters?.accountType === ACCOUNT_TYPE.Admin ? TAXONOMY_TYPE.CLIENT : TAXONOMY_TYPE.MEMBER
+    filters?.accountType === ACCOUNT_TYPE.Admin ? TAXONOMY_TYPE.Client : TAXONOMY_TYPE.Member
   const showTaxonomy =
     filters?.accountType === ACCOUNT_TYPE.Admin || filters?.accountType === ACCOUNT_TYPE.Client
 

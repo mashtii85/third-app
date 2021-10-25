@@ -242,7 +242,7 @@ const QuestionImage = styled.img`
   width: 100%;
 `
 
-const AnswerWrapper = styled.div``
+export const AnswerWrapper = styled.div``
 
 const ShortAnswerTextArea = styled.textarea`
   padding: 8px 16px;
@@ -252,12 +252,12 @@ const ShortAnswerTextArea = styled.textarea`
   margin: 0 1rem;
 `
 
-const AnswerImage = styled.img`
+export const AnswerImage = styled.img`
   width: 200px;
   border-radius: 4px;
 `
 
-const AnswerText = styled.p`
+export const AnswerText = styled.p`
   margin: 0;
   color: #595959;
   font-size: 12px;
@@ -277,7 +277,7 @@ const MessageWrapper = styled.div`
   padding: 0.5rem 1rem;
 `
 
-const StyledAnswer = styled.div`
+export const StyledAnswer = styled.div`
   cursor: pointer;
   margin-bottom: 1rem;
   margin-left: 2rem;

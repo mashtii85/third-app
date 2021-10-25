@@ -87,6 +87,7 @@ export const Theme = {
 
 export enum SIZE {
   XS = 'xs',
-  LG = 'lg',
-  SM = 'sm'
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg'
 }

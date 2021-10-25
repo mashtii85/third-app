@@ -41,7 +41,7 @@ export const EventFilters = ({
           {...defaultOptions}
           label={'Type'}
           name="taxonomy"
-          type={TAXONOMY_TYPE.EVENT}
+          type={TAXONOMY_TYPE.Event}
         />
       </Column>
     </>

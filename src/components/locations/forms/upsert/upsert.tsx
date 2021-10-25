@@ -81,14 +81,14 @@ export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: Locat
         {...defaultOptions}
         label="Location Type"
         name="taxonomy"
-        type={TAXONOMY_TYPE.LOCATION}
+        type={TAXONOMY_TYPE.Location}
       />
       {taxonomyWatch?.value && (
         <CustomFieldElement
           {...defaultValues}
           {...defaultOptions}
           taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.LOCATION}
+          type={TAXONOMY_TYPE.Location}
         />
       )}
     </Form>

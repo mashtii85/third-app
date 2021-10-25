@@ -13,7 +13,7 @@ import { TaxonomiesData, UseTaxonomiesVariable, UseTaxonomiesOutput } from './ty
 
 export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutput => {
   const variables = prepareTaxonomyArguments(filter)
-  const [getTaxonomies, { loading, error, data }] = useLazyQuery<
+  const [getTaxonomies, { loading, error, data, refetch }] = useLazyQuery<
     TaxonomiesData,
     UseTaxonomiesVariable
   >(GET_TAXONOMIES, {
@@ -27,5 +27,5 @@ export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutpu
     }
   }, [filter.parentId || filter.entity])
 
-  return { error, loading, taxonomies: data?.taxonomies || [] }
+  return { error, loading, refetch, taxonomies: data?.taxonomies || [] }
 }

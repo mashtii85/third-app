@@ -102,14 +102,14 @@ export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFor
         {...defaultOptions}
         label="Event Type"
         name="taxonomy"
-        type={TAXONOMY_TYPE.EVENT}
+        type={TAXONOMY_TYPE.Event}
       />
       {taxonomyWatch?.value && (
         <CustomFieldElement
           {...defaultValues}
           {...defaultOptions}
           taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.EVENT}
+          type={TAXONOMY_TYPE.Event}
         />
       )}
     </Form>

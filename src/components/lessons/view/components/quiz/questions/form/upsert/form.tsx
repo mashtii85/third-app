@@ -13,19 +13,19 @@ import { useCreateTaxonomy } from '../../../../../../../taxonomies/hooks'
 import { useCurrentUser } from '../../../../../../../../utils/useCurrentUser'
 
 // UI
-import { Form, FormField, FormError, FormLabel, SelectField } from '@drykiss/industry-ui'
-import { statusActive } from '../../../../../../../../constants/status'
-import { TaxonomySchema as schema } from './schema'
-
-// Forms
-import { AnswerForm } from '../answers/form'
+import { Form, FormField, FormLabel, SelectField } from '@drykiss/industry-ui'
+import { QuestionUpsertSchema as schema } from './schema'
 
 // Types
-import { TaxonomyFormProps } from './type'
-import { Taxonomy } from '../../../../../../../../types/taxonomy'
-import { UseCreateTaxonomyProps } from '../../../../../../../taxonomies/hooks/useCreate/types'
+import { QuestionUpsertFormType, QuestionUpsertType, QUESTION_TYPE } from './type.d'
+import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
+import { UseCreateTaxonomyProps } from '../../../../../../../taxonomies/hooks/useCreate/types.d'
 
-export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormProps) => {
+export const LessonQuestionForm = ({
+  filters,
+  defaultValues,
+  onSuccess
+}: QuestionUpsertFormType) => {
   const { user } = useCurrentUser()
 
   const { control, errors, handleSubmit, register } = useForm({
@@ -34,12 +34,10 @@ export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormPro
   })
 
   const createTaxonomyProps: UseCreateTaxonomyProps = {
-    category: defaultValues.type,
-    entity: defaultValues.entity,
-    entityId: defaultValues.entity_id,
-    parentId: defaultValues.parent_id,
-    isParent: !!defaultValues.parent_id,
-    taxonomyId: defaultValues.id,
+    category: filters?.type,
+    entity: filters?.entity,
+    entityId: filters?.entity_id,
+    isParent: !!filters?.parent_id,
     onCompleted: onSuccess,
     onError: console.error
   }
@@ -49,22 +47,20 @@ export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormPro
     onCompleted: onSuccess
   })
 
-  const submit = async ({ id, ...form }: Taxonomy) => {
-    const formData = { ...form }
-    const obj: Taxonomy = {
-      custom_fields: formData.custom_fields,
-      name: formData.name,
-      type: formData.type,
-      status: formData.status
+  const submit = async (form: QuestionUpsertType) => {
+    const obj: Partial<Taxonomy> = {
+      name: form?.name,
+      type: filters?.type,
+      meta: form.meta
     }
 
-    if (formData.parent_id !== undefined) obj.parent_id = defaultValues.parent_id
-    if (id) {
-      return await updateTaxonomy({ variables: { taxonomyId: id, changes: obj } })
+    if (filters.id) {
+      return await updateTaxonomy({ variables: { taxonomyId: filters.id, changes: obj } })
     } else {
-      obj.entity = defaultValues.entity
-      obj.entity_id = defaultValues.entity_id
       obj.client_id = user.client_id
+      obj.entity = filters.entity
+      obj.entity_id = filters.entity_id
+      obj.status = filters?.status!
       return await createTaxonomy({ variables: { objects: [obj] } })
     }
   }
@@ -75,25 +71,28 @@ export const LessonQuestionForm = ({ defaultValues, onSuccess }: TaxonomyFormPro
     register: register
   }
 
+  const questionType = [
+    { disabled: true, text: 'Please choose...', value: '' },
+    { text: 'Single Answer', value: QUESTION_TYPE.singleAnswer },
+    { text: 'Multiple Answers', value: QUESTION_TYPE.multipleAnswers }
+  ]
+
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
+      {/* TODO: do these two fields needed */}
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
 
-      <FormLabel label="Question">
-        <FormField {...defaultOptions} name="name" />
-        {errors.name && errors.name.type === 'required' && (
-          <FormError message={errors?.name?.message} />
-        )}
+      <FormLabel label="Question Type">
+        <SelectField {...defaultOptions} name="meta.type" options={questionType} />
       </FormLabel>
 
-      <AnswerForm defaultOptions={defaultOptions} />
+      <FormLabel label="Question Title">
+        <FormField {...defaultOptions} name="name" />
+      </FormLabel>
 
-      <FormLabel label="Status">
-        <SelectField {...defaultOptions} name="status" options={statusActive} />
-        {errors.status && errors.status.type === 'required' && (
-          <FormError message={errors?.status?.message} />
-        )}
+      <FormLabel label="Question Score">
+        <FormField {...defaultOptions} name="meta.score" />
       </FormLabel>
     </Form>
   )

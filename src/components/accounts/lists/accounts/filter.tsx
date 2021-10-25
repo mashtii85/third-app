@@ -41,7 +41,7 @@ export const AccountsFilters = ({
           {...defaultOptions}
           label={'Type'}
           name="taxonomy"
-          type={TAXONOMY_TYPE.MEMBER}
+          type={TAXONOMY_TYPE.Member}
         />
       </Column>
     </>
