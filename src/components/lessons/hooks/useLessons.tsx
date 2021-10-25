@@ -12,7 +12,8 @@ export const useLessons = (filters: Partial<LessonFilter>) => {
   const where = prepareArguments({ filters })
   const { data, error, loading } = useQuery<LessonsData, LessonsVariables>(GET_LESSONS, {
     variables: {
-      where
+      where,
+      order_by: { ordering: 'asc' }
     }
   })
 

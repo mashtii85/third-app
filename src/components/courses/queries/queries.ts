@@ -42,7 +42,7 @@ export const GET_COURSE = gql`
       taxonomy {
         ...TaxonomyFields
       }
-      modules {
+      modules(order_by: { ordering: asc }) {
         id
         description
         created_at
@@ -51,7 +51,7 @@ export const GET_COURSE = gql`
         title
         updated_at
         course_id
-        lessons {
+        lessons(order_by: { ordering: asc }) {
           ...LessonFields
           lesson_progresses {
             id
