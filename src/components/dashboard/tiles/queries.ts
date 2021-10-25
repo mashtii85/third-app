@@ -1,5 +1,5 @@
 /**
- * Components - Dashboard - Tiles - Query
+ * Components - Dashboard - Tiles - Overview - Queries
  */
 
 // Apollo

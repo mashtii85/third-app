@@ -14,11 +14,18 @@ export interface EventFilter extends Filter {
   status: STATUS_ACTIVE
 }
 
+export enum CALENDAR_STATUS {
+  Cancelled = 'cancelled',
+  Completed = 'completed',
+  Pending = 'sending',
+  Started = 'started'
+}
+
 export interface Event {
   id: number | undefined
   account_id: number
   title: string
-  status: STATUS_ACTIVE
+  status: CALENDAR_STATUS
   created_at: string
   taxonomy_id: number
   taxonomy?: Taxonomy

@@ -18,9 +18,5 @@ export const useEvents = ({ filters }: UseEventsProps): UseEventsOutput => {
     variables
   })
 
-  if (error) {
-    return { loading: false, error, eventList: [] }
-  }
-
-  return { loading, eventList: data?.events || [] }
+  return { error, loading, eventList: data?.events || [] }
 }

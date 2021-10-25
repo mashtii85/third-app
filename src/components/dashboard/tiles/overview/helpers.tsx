@@ -1,23 +1,51 @@
 /**
- * Components - Dashboard - Tiles - Overview
+ * Components - Dashboard - Tiles - Overview - Helpers
  */
 
-// UI
-import { Column } from '@drykiss/industry-ui'
-
 // Types
-import type { TileItemProps } from '../types.d'
-import { ACCOUNT_TYPE } from '../../../../types/account.d'
+import { AdminTileData, ClientTileData } from '../hooks/types'
+import type { DashboardTile } from './tiles/types'
 
-import { StyledTile } from '../styles'
+import pages from '../../../../config/pages'
 
-export const TileItem = ({ title, to, accountType, value, colourConfig }: TileItemProps) => (
-  <Column
-    md={4}
-    lg={accountType === ACCOUNT_TYPE.Client ? 2 : 3}
-    sm={6}
-    style={{ marginBottom: '1.8em' }}
-  >
-    <StyledTile rounded title={title} size="sm" colourConfig={colourConfig} to={to} body={value} />
-  </Column>
-)
+export const prepareClientTiles = (dashboardObjects?: ClientTileData): DashboardTile[] => {
+  const GREEN = 'success'
+  const LIGHT_RED = 'danger'
+  const RED = 'warning'
+
+  return [
+    {
+      colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
+      title: 'Active Courses',
+      to: pages.dashboard.coursesClient.root,
+      value: dashboardObjects?.activeCourses.aggregate.count ?? 'loading...'
+    },
+    {
+      colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
+      title: 'Completed Courses',
+      to: ``,
+      value: dashboardObjects?.completedLessons?.aggregate.count ?? 'loading...'
+    },
+    {
+      colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
+      title: 'Enrolled Courses',
+      to: ``,
+      value: dashboardObjects?.enrolledCourses?.aggregate.count ?? 'loading...'
+    }
+  ]
+}
+
+export const prepareAdminTiles = (dashboardObjects?: AdminTileData): DashboardTile[] => {
+  const GREEN = 'success'
+  const LIGHT_RED = 'danger'
+  const RED = 'warning'
+
+  return [
+    {
+      colourConfig: { 15: GREEN, 30: LIGHT_RED, 31: RED },
+      title: 'Active Clients',
+      to: pages.dashboard.accounts.list,
+      value: dashboardObjects?.activeClients.aggregate.count ?? 'loading...'
+    }
+  ]
+}

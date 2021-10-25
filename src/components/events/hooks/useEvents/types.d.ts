@@ -6,7 +6,7 @@ import { UseHookOutput } from '../../../../types/hook'
 import { Event, EventFilter } from '../../types'
 
 export interface UseEventsProps {
-  filters: EventFilter
+  filters?: Partial<EventFilter>
 }
 
 export interface UseEventsOutput extends UseHookOutput {
@@ -18,8 +18,8 @@ export interface EventsData {
 }
 
 // we need to compe up with an idea to strongly typed variables
-export interface EventsVariables {}
+export interface EventsVariables { }
 
 export interface PrepareEventArgumentProps {
-  filters?: EventFilter
+  filters?: Partial<EventFilter>
 }

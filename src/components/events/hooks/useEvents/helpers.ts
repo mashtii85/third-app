@@ -31,8 +31,8 @@ export const prepareEventsArguments = ({
   }
 
   const otherClause: Partial<GQLFilters> = {
-    limit: filters?.limit,
-    offset: filters?.offset,
+    limit: filters?.limit ?? 10,
+    offset: filters?.offset ?? 0,
     order_by: filters?.order_by ? filters.order_by : {}
   }
 
