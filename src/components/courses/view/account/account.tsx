@@ -29,6 +29,7 @@ import {
   Heading,
   Image,
   Row,
+  Space,
   Stepper,
   formatDateStandard,
   formatTime
@@ -528,6 +529,7 @@ export const AccountCourseView = () => {
                       />
                     )}
                     {lesson.content && <StyledContent>{lesson.content}</StyledContent>}
+                    <Space />
                     <ButtonsWrapper>
                       {lessonNumber !== 0 ? (
                         <StyledPrevButton
