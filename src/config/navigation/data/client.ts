@@ -12,10 +12,10 @@ import { prepareTaxonomyNavigation } from './helpers'
 import pages from '../../pages'
 
 export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
-  const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.LOCATION)
-  const courseTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.COURSE)
-  const eventTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.EVENT)
-  const memberTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.MEMBER)
+  const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Location)
+  const courseTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Course)
+  const eventTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Event)
+  const memberTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Member)
 
   return {
     right: [
