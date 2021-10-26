@@ -1,26 +1,14 @@
-import { QUESTION_TYPE } from '../../../types/lesson.d'
 import { QuizState } from './types'
 
 export const calculateScore = (state: QuizState): number => {
   let score = state.overAllScore
   const activeQuestion = state.questions[state.activeQuestionIndex]
-  if (activeQuestion.type === QUESTION_TYPE.SelectAnswer) {
-    activeQuestion.correctAnswers.forEach((item) => {
-      if (state.selectedAnswers.indexOf(item) !== -1) {
-        score++
-      }
-    })
-  } else if (activeQuestion.type === QUESTION_TYPE.ShortTextAnswer) {
-    if (
-      activeQuestion.acceptableAnswers
-        .map((item) => item.toLowerCase())
-        .indexOf(state.shortAnsweredText.toLowerCase()) !== -1
-    ) {
-      score++
+  const correctAnswers = activeQuestion?.taxonomies?.filter((taxonomy) => taxonomy.meta?.is_correct)
+  const eachAnswerScore = activeQuestion.meta?.score / correctAnswers?.length!
+  correctAnswers?.forEach((item) => {
+    if (state.selectedAnswers.indexOf(item.id!) !== -1) {
+      score += eachAnswerScore
     }
-  } else {
-    throw Error('please implement new question type in calculate score')
-  }
-
+  })
   return score
 }

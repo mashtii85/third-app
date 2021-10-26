@@ -1,14 +1,16 @@
-import { ChangeEvent, useReducer } from 'react'
+import { useReducer } from 'react'
+
+// UI
+import { Button } from '@drykiss/industry-ui'
 import styled from 'styled-components'
 import { Center } from '../wrappers/horizontalCenter'
-import { Button } from '@drykiss/industry-ui'
 
-import { QuizActionTypes, QuizProps, QuizState } from './types'
+import { QuizActionTypes, QuizProps, QuizState } from './types.d'
 import { calculateScore } from './helpers'
-import { QUESTION_TYPE } from '../../../types/lesson.d'
+import { QUESTION_TYPE } from '../../lessons/view/components/quiz/questions/form/upsert/type.d'
 import { Radio } from './icons/radio'
 import { CheckBox } from './icons/checkbox'
-import VideoPlayer from '../videoPlayer/videoPlayer'
+// import VideoPlayer from '../videoPlayer/videoPlayer'
 import { QuizResult } from './components/quizResults'
 
 const reducer = (state: QuizState, action: QuizActionTypes) => {
@@ -45,17 +47,11 @@ const reducer = (state: QuizState, action: QuizActionTypes) => {
       const { questions } = newState
 
       newState.overAllScore = calculateScore(newState)
-
       let bestScore = 0
 
       questions.forEach((item) => {
-        if (item.type === QUESTION_TYPE.SelectAnswer) {
-          bestScore += item.correctAnswers.length
-        } else if (item.type === QUESTION_TYPE.ShortTextAnswer) {
-          bestScore++
-        } else {
-          throw Error('Please implement score calculation for extra type')
-        }
+        if (item.meta?.score) bestScore += item.meta?.score
+        else throw Error('Please implement score calculation for extra type')
       })
       newState.bestScore = bestScore
 
@@ -76,6 +72,7 @@ const reducer = (state: QuizState, action: QuizActionTypes) => {
 
 export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizProps) => {
   const { questions, onComplete } = props
+
   const alreadyHasScore = !!quizScoreInfo
   const [state, dispatch] = useReducer(reducer, {
     activeQuestionIndex: 0,
@@ -93,32 +90,28 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
   const isLastQuestion = activeQuestionIndex === questions.length - 1
 
   const activeQuestion = questions[activeQuestionIndex]
+  const correctAnswers = activeQuestion?.taxonomies?.filter((taxonomy) => taxonomy.meta?.is_correct)
 
-  const handleAnswerClick = (index: number) => {
-    if (activeQuestion.type === QUESTION_TYPE.SelectAnswer) {
-      if (selectedAnswers.length === activeQuestion.correctAnswers.length) {
-        if (activeQuestion.correctAnswers.length === 1) {
-          dispatch({ type: 'setNewAnswerAction', payload: index })
-
-          return
-        }
-
-        if (selectedAnswers.indexOf(index) === -1) {
-          return
-        }
+  const handleAnswerClick = (answerId: number) => {
+    if (selectedAnswers.length === correctAnswers?.length) {
+      if (correctAnswers?.length === 1) {
+        dispatch({ type: 'setNewAnswerAction', payload: answerId })
+        return
       }
-
-      dispatch({ type: 'setAnswerAction', payload: index })
+      if (selectedAnswers.indexOf(answerId) === -1) {
+        return
+      }
     }
+    dispatch({ type: 'setAnswerAction', payload: answerId })
   }
 
-  const handleShortAnswerChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: 'setShortTextAnswerAction', payload: e.target.value })
-  }
+  // const handleShortAnswerChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   dispatch({ type: 'setShortTextAnswerAction', payload: e.target.value })
+  // }
 
-  const handleVideoFinished = (videoIndex: number) => {
-    console.log('video finished,index:' + videoIndex)
-  }
+  // const handleVideoFinished = (videoIndex: number) => {
+  //   console.log('video finished,index:' + videoIndex)
+  // }
 
   const handleNextClick = () => {
     if (isLastQuestion) {
@@ -146,11 +139,11 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
 
   return (
     <StyledQuestionsWrapper>
-      {!state.quizFinished && (
-        <StyledProgressTitle>
-          Question {activeQuestionIndex + 1} of {questions.length}
-        </StyledProgressTitle>
-      )}
+      <StyledProgressTitle>
+        {!state.quizFinished && questions && questions.length
+          ? `Question ${activeQuestionIndex + 1} of ${questions.length}`
+          : 'No Questions'}
+      </StyledProgressTitle>
 
       {quizFinished ? (
         <QuizFinishedWrapper>
@@ -167,62 +160,48 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
         </QuizFinishedWrapper>
       ) : (
         <>
-          {activeQuestion.questionVideos && (
+          {/* We have no for video or image question type */}
+          {/* {activeQuestion?.questionVideos && (
             <VideoPlayer
-              videos={activeQuestion.questionVideos}
+              videos={activeQuestion?.questionVideos}
               onVideoFinished={handleVideoFinished}
             />
-          )}
+          )} */}
+          {/* {activeQuestion?.questionImage &&
+            <QuestionImage src={activeQuestion?.questionImage} />} */}
 
-          {activeQuestion.questionImage && <QuestionImage src={activeQuestion.questionImage} />}
-          <StyledQuestionText>{activeQuestion.questionText}</StyledQuestionText>
-          {activeQuestion.type === QUESTION_TYPE.SelectAnswer && (
-            <>
-              <MessageWrapper>
-                please select
-                {activeQuestion.correctAnswers.length === 1 ? ' an' : ' one or more'} answer
-                {activeQuestion.correctAnswers.length > 1 ? 's' : ''}
-              </MessageWrapper>
+          <StyledQuestionText>{activeQuestion?.name}</StyledQuestionText>
+          <>
+            <MessageWrapper>
+              please select
+              {activeQuestion.meta?.type === QUESTION_TYPE.SingleAnswer
+                ? ' an answer'
+                : ' one or more answers'}
+            </MessageWrapper>
 
-              {activeQuestion.answers.map((item, index) => {
-                const isSelected = selectedAnswers.indexOf(index) !== -1
-                return (
-                  <StyledAnswer key={index} onClick={() => handleAnswerClick(index)}>
-                    {activeQuestion.correctAnswers.length === 1 ? (
-                      <Radio checked={isSelected} />
-                    ) : (
-                      <CheckBox checked={isSelected} />
-                    )}
-                    <AnswerWrapper>
-                      {item.answerImage && <AnswerImage src={item.answerImage} />}
-                      {item.answerText && <AnswerText>{item.answerText}</AnswerText>}
-                    </AnswerWrapper>
-                  </StyledAnswer>
-                )
-              })}
-              {selectedAnswers.length === activeQuestion.correctAnswers.length ? (
-                <CenterButton
-                  title={isLastQuestion ? 'Finish' : 'Next'}
-                  onClick={handleNextClick}
-                />
-              ) : (
-                <></>
-              )}
-            </>
-          )}
-          {activeQuestion.type === QUESTION_TYPE.ShortTextAnswer && (
-            <>
-              <ShortAnswerTextArea onChange={handleShortAnswerChange} />
-              {state.shortAnsweredText.length > 0 ? (
-                <CenterButton
-                  title={isLastQuestion ? 'Finish' : 'Next'}
-                  onClick={handleNextClick}
-                />
-              ) : (
-                <></>
-              )}
-            </>
-          )}
+            {activeQuestion?.taxonomies?.map((item) => {
+              const isSelected = selectedAnswers.indexOf(item.id!) !== -1
+              return (
+                <StyledAnswer key={item.id} onClick={() => handleAnswerClick(item.id!)}>
+                  {activeQuestion.meta?.type === QUESTION_TYPE.SingleAnswer && (
+                    <Radio checked={isSelected} />
+                  )}
+                  {activeQuestion.meta?.type === QUESTION_TYPE.MultipleAnswers && (
+                    <CheckBox checked={isSelected} />
+                  )}
+                  <AnswerWrapper>
+                    {/* {item.answerImage && <AnswerImage src={item.answerImage} />} */}
+                    {item.name && <AnswerText>{item.name}</AnswerText>}
+                  </AnswerWrapper>
+                </StyledAnswer>
+              )
+            })}
+            {selectedAnswers.length === correctAnswers?.length ? (
+              <CenterButton title={isLastQuestion ? 'Finish' : 'Next'} onClick={handleNextClick} />
+            ) : (
+              <></>
+            )}
+          </>
         </>
       )}
     </StyledQuestionsWrapper>
@@ -238,19 +217,19 @@ const CenterButton = ({ title, onClick }: { title: string; onClick: () => void }
   )
 }
 
-const QuestionImage = styled.img`
-  width: 100%;
-`
+// const QuestionImage = styled.img`
+//   width: 100%;
+// `
 
 export const AnswerWrapper = styled.div``
 
-const ShortAnswerTextArea = styled.textarea`
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  width: calc(100% - 2rem);
-  margin: 0 1rem;
-`
+// const ShortAnswerTextArea = styled.textarea`
+//   padding: 8px 16px;
+//   border: none;
+//   border-radius: 4px;
+//   width: calc(100% - 2rem);
+//   margin: 0 1rem;
+// `
 
 export const AnswerImage = styled.img`
   width: 200px;

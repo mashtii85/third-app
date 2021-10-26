@@ -2,10 +2,11 @@
  * Types - Lesson
  */
 
-import { Medium } from './medium'
-import { LessonProgress } from './lessonProgress'
+import { Medium } from './medium.d'
+import { LessonProgress } from './lessonProgress.d'
 import { Module } from './module.d'
-import { Video } from '../components/common/videoPlayer/type'
+import { Video } from '../components/common/videoPlayer/type.d'
+import { Taxonomy } from './taxonomy.d'
 
 export enum LESSON_TYPE {
   Text = 'text',
@@ -47,10 +48,11 @@ type SelectAnswer = {
   questionText: string
   questionImage?: string
   questionVideos?: Video[]
-  answers: {
-    answerText?: string
-    answerImage?: string
-  }[]
+  answers: Taxonomy[]
+  // answers: {
+  //   answerText?: string
+  //   answerImage?: string
+  // }[]
   correctAnswers: number[]
 }
 
@@ -79,6 +81,7 @@ type QuizLesson = {
   module: Module
   created_at: Date
   updated_at: Date
+  taxonomies: Taxonomy[]
 }
 
 // separate these lessons when ever properties differ, like VideoLesson

@@ -34,7 +34,7 @@ import {
   formatTime
 } from '@drykiss/industry-ui'
 import { StepperActionModel, StepperModel } from '../../../../types/stepper'
-import { CompletionCertificate } from './certificate/completionCertificate'
+import { CompletionCertificate } from './components/certificate/completionCertificate'
 import { Course } from '../../../../types/course'
 import { CourseData } from '../../hooks/types'
 import { CourseProgressBar } from '../../progressBar'
@@ -44,6 +44,8 @@ import styled from 'styled-components'
 import ArrowRightIcon from '../../../icons/arrowRight'
 import LeftArrowIcon from '../../../icons/arrowLeft'
 import { CourseLessonDocument } from './components/document/view'
+import { ResourcesTable } from './components/resources/resourcesTable'
+import { CourseLessonVideo } from './components/video/view'
 
 // Helpers
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
@@ -68,12 +70,11 @@ import {
 } from '../../../../types/lessonProgress.d'
 import { Module } from '../../../../types/module.d'
 import { QuizCompletedData } from '../../../common/quiz/types.d'
-import { LESSON_TYPE, Lesson, QuizQuestion } from '../../../../types/lesson.d'
+import { LESSON_TYPE, Lesson } from '../../../../types/lesson.d'
 import { POST_TYPE } from '../../../../types/post.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from '../types.d'
-import { ResourcesTable } from './components/resources/resourcesTable'
-import { CourseLessonVideo } from './components/video/view'
+// import { Taxonomy } from '../../../../types/taxonomy.d'
 // import { LessonsTable } from './tables/lessonsTable'
 
 export const AccountCourseView = () => {
@@ -416,17 +417,6 @@ export const AccountCourseView = () => {
     pageState.showNextLesson = stateHolder.showNextLesson
   }
 
-  const prepareLessonQuestions = (questions: any): QuizQuestion[] => {
-    return questions.map((q: any): QuizQuestion => {
-      return {
-        questionText: q.name,
-        answers: q.meta?.answers,
-        correctAnswers: q.meta?.correctAnswers,
-        type: q.meta.type
-      }
-    })
-  }
-
   const breadcrumbs = [
     {
       to: '/',
@@ -523,14 +513,17 @@ export const AccountCourseView = () => {
                 <Details2 open title={lesson.title}>
                   <>
                     {(lesson.type === LESSON_TYPE.Pdf || lesson.type === LESSON_TYPE.PowerPoint) &&
-                      lesson.media && <CourseLessonDocument filename={lesson.media[0].filename} />}
+                      lesson.media &&
+                      lesson.media[0]?.filename && (
+                        <CourseLessonDocument filename={lesson.media[0].filename} />
+                      )}
                     {lesson.type === LESSON_TYPE.Video && lesson.media && (
                       <CourseLessonVideo media={lesson.media} />
                     )}
                     {lesson.type === LESSON_TYPE.Quiz && (
                       <Quiz
                         quizScoreInfo={quizScoreInfo()}
-                        questions={prepareLessonQuestions(lesson.questions)}
+                        questions={lesson.taxonomies}
                         onComplete={onQuizComplete}
                       />
                     )}

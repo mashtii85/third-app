@@ -28,7 +28,7 @@ export const AnswerRow = ({ question, answer }: { question: Taxonomy; answer: Ta
   return (
     <>
       <StyledAnswer key={answer.id}>
-        {question?.meta?.type === QUESTION_TYPE.singleAnswer ? (
+        {question?.meta?.type === QUESTION_TYPE.SingleAnswer ? (
           <Radio checked={false} />
         ) : (
           <CheckBox checked={false} />
