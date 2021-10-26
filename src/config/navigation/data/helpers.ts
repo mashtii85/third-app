@@ -14,13 +14,19 @@ export const prepareTaxonomyNavigation = (
     return []
   }
 
+  // Temp override for members/accounts
+  let urlType: string = type
+  if (type === TAXONOMY_TYPE.Member || type === TAXONOMY_TYPE.Client) {
+    urlType = 'accounts'
+  }
+
   const list: NavLink[] = taxonomies
     .filter((t) => t?.type === type)
     .map((t) => {
       return {
         id: `navItems${t?.name}`,
         name: t?.name,
-        to: `/dashboard/${type}?type=${t?.id}`
+        to: `/dashboard/${urlType}?type=${t?.id}`
       }
     })
   list.push({
