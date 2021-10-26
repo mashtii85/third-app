@@ -46,9 +46,9 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
 
   const handleQuestionsClick = (row: Taxonomy) => {
     offCanvas.show({
-      content: <TaxonomyChildTable type={defaultTab} parentId={row.id} />,
+      content: <TaxonomyChildTable type={TAXONOMY_TYPE.CustomFields} parentId={row.id} />,
       submit: false,
-      title: 'Custom Field'
+      title: 'Custom Fields'
     })
   }
 

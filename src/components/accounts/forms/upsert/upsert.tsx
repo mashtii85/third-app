@@ -92,7 +92,6 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
             <CustomFieldElement
               {...defaultValues}
               {...defaultOptions}
-              type={taxonomyType}
               taxonomyWatch={taxonomyWatch}
             />
           )}
