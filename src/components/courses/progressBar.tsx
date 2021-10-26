@@ -21,7 +21,7 @@ interface CourseProgressBarProps {
 export const CourseProgressBar = ({ progressBarData }: CourseProgressBarProps) => {
   const { status = {} } = progressData(progressBarData)
 
-  const progress = ((status?.completed || 0) / (status?.total || 0)) * 100
+  const progress = Math.round(((status?.completed || 0) / (status?.total || 0)) * 100)
 
   return (
     <StyledHeader>
