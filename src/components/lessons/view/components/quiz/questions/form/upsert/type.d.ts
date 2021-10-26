@@ -6,8 +6,8 @@
 import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
 
 export enum QUESTION_TYPE {
-  singleAnswer = 'singleAnswer',
-  multipleAnswers = 'multipleAnswers'
+  SingleAnswer = 'singleAnswer',
+  MultipleAnswers = 'multipleAnswers'
 }
 
 export interface QUESTION_TYPE_DROPDOWN {

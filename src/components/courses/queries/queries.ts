@@ -53,6 +53,12 @@ export const GET_COURSE = gql`
         course_id
         lessons(order_by: { ordering: asc }) {
           ...LessonFields
+          taxonomies(where: { type: { _eq: "lesson-questions" } }) {
+            ...TaxonomyFields
+            taxonomies {
+              ...TaxonomyFields
+            }
+          }
           lesson_progresses {
             id
             status

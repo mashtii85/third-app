@@ -68,11 +68,11 @@ export const AnswerForm = ({ filters, defaultValues, onSuccess }: AnswerFormType
 
   const handleCheckedChange = (index: number) => {
     switch (filters?.meta?.type) {
-      case QUESTION_TYPE.singleAnswer:
+      case QUESTION_TYPE.SingleAnswer:
         for (let i = 0; i < fields?.length; i++) setValue(`answers[${i}].isCorrect`, false)
         setValue(`answers[${index}].isCorrect`, true)
         break
-      case QUESTION_TYPE.multipleAnswers:
+      case QUESTION_TYPE.MultipleAnswers:
       default:
         break
     }
@@ -109,8 +109,8 @@ export const AnswerForm = ({ filters, defaultValues, onSuccess }: AnswerFormType
         <Row>
           <Column xs={10} md={11}>
             <FormLabel label="Answer Options">
-              {filters?.meta?.type === QUESTION_TYPE.singleAnswer && <>Single Answer</>}
-              {filters?.meta?.type === QUESTION_TYPE.multipleAnswers && <>Multiple Answers</>}
+              {filters?.meta?.type === QUESTION_TYPE.SingleAnswer && <>Single Answer</>}
+              {filters?.meta?.type === QUESTION_TYPE.MultipleAnswers && <>Multiple Answers</>}
             </FormLabel>
           </Column>
 

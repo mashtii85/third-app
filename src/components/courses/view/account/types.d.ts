@@ -3,7 +3,7 @@
  */
 
 // Types
-import { LessonCertificateType } from './certificate/types.d'
+import { LessonCertificateType } from './components/certificate/types'
 import { COURSE_PAGE_MODE } from '../types.d'
 
 export interface LessonPageStateType {

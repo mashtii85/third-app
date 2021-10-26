@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import styled from 'styled-components'
 import DocumentViewer from '../../components/common/docViewer/docViewer'
-import { Quiz } from '../../components/common/quiz/quiz'
-import { QUESTION_TYPE } from '../../types/lesson.d'
+// import { Quiz } from '../../components/common/quiz/quiz'
+// import { QUESTION_TYPE } from '../../types/lesson.d'
 
 const PlaygroundPage = () => {
   return (
     <Wrapper>
-      <Quiz
+      {/* <Quiz
         questions={[
           // {
           //   type: QUESTION_TYPE.ShortTextAnswer,
@@ -103,7 +103,7 @@ const PlaygroundPage = () => {
           }
         ]}
         onComplete={(data) => console.log({ data })}
-      />
+      /> */}
 
       <DocumentViewer
         docs={[

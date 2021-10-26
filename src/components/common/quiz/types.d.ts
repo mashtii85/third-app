@@ -1,11 +1,12 @@
-import { QuizQuestion } from '../../../types/lesson.d'
+import { Taxonomy } from '../../../types/taxonomy.d'
 
 export interface QuizCompletedData {
   score: number
   passed: boolean
 }
 export interface QuizProps {
-  questions: QuizQuestion[]
+  // taxonomies: Taxonomy[]
+  questions: Taxonomy[]
   onComplete: ({ score, passed }: QuizCompletedData) => void
   /** default is 50 */
   minimumScoreToPass?: number
@@ -17,7 +18,7 @@ export interface QuizState {
   bestScore: number
   quizFinished: boolean
   selectedAnswers: number[]
-  questions: QuizQuestion[]
+  questions: Taxonomy[]
   shortAnsweredText: string
   finalScore: number
 }

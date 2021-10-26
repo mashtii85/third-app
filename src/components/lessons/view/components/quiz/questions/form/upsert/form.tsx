@@ -73,8 +73,8 @@ export const LessonQuestionForm = ({
 
   const questionType = [
     { disabled: true, text: 'Please choose...', value: '' },
-    { text: 'Single Answer', value: QUESTION_TYPE.singleAnswer },
-    { text: 'Multiple Answers', value: QUESTION_TYPE.multipleAnswers }
+    { text: 'Single Answer', value: QUESTION_TYPE.SingleAnswer },
+    { text: 'Multiple Answers', value: QUESTION_TYPE.MultipleAnswers }
   ]
 
   return (
