@@ -25,7 +25,7 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
   const { initialData, ref } = useTable({ filters, initialSort })
 
   const { accounts, loading } = useAccounts({
-    filters: { ...initialData }
+    filters: initialData
   })
 
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
