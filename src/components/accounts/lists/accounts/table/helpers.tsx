@@ -166,7 +166,7 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
 
 export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilters> }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const caption = capitalize(filters?.userType)
+  const caption = capitalize(filters?.userType ?? '')
   const randomPassword = generatePassword()
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()

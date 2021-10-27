@@ -16,6 +16,9 @@ export const prepareUseAccounts = (filters?: Partial<AccountFilters>): GQLClause
   if (filters?.accountId) {
     condition.client_id = { _eq: filters.accountId }
   }
+  if (filters?.q) {
+    condition.name = { _ilike: filters.q }
+  }
   if (filters?.accountId) {
     condition.client_id = { _eq: filters.accountId }
   }
