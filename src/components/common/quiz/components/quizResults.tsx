@@ -43,9 +43,12 @@ export const QuizResult = ({
           })}
         </TitleWrapper>
         <ContentWrapper>
-          <TwoPartText title="Your score is " value={finalScore + '%'} bold />
-          <TwoPartText title="Correct answers" value={correctAnswers + ''} />
-          <TwoPartText title="Incorrect answers" value={bestScore - correctAnswers + ''} />
+          <TwoPartText title="Your score is " value={Math.round(finalScore) + '%'} bold />
+          <TwoPartText title="Correct answers" value={Math.round(correctAnswers) + ''} />
+          <TwoPartText
+            title="Incorrect answers"
+            value={Math.round(bestScore - correctAnswers) + ''}
+          />
         </ContentWrapper>
       </Wrapper>
       <ActionButtonsWrapper>
