@@ -12,7 +12,7 @@ import { TE } from '../../utils/api/errors'
 
 export const getSettings = async (clientId: number): Promise<any> => {
   const { client, settings, taxonomies } = await query(GET_APP_SETTINGS, {
-    clientId,
+    clientId: clientId || 0,
     includeClient: !!clientId
   })
 
