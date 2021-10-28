@@ -13,6 +13,9 @@ RUN npm i --legacy-peer-deps
 # Copy source
 COPY . .
 
+# Build
+RUN npm run build
+
 # Port
 EXPOSE 3000
 
