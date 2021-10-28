@@ -6,6 +6,7 @@
   "scripts": {
     "start": "next dev -p 3100",
     "start:build": "next start -p 3100",
+    "start:production": "next start",
     "test": "tsc",
     "lint": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore",
     "lint:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
