@@ -55,6 +55,10 @@
           "name": "API_KEY"
         },
         {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-staging-hasura-zAsqdE",
+          "name": "NEXT_PUBLIC_GRAPHQL_SECRET"
+        },
+        {
           "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-jwtprivatekey-staging-hiit9k",
           "name": "JWT_PRIVATE_KEY"
         }
