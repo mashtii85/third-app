@@ -16,11 +16,11 @@ import { useCreateEnrollment } from '../../enrollments/hooks/useCreate/useCreate
 import { useCurrentUser } from '../../../utils/useCurrentUser'
 import { Course } from '../../../types/course'
 
-export const AccountCourseList = ({ show }: { show: string }) => {
+export const AccountCourseList = ({ show }: { show?: string }) => {
   const { user } = useCurrentUser()
   const { query, push } = useRouter()
 
-  const view = query.show || show
+  const view = query.show || show || 'catalog'
 
   const handleSuccess = (data: any) => {
     const courseId = data?.insert_course_enrollment_one?.course_id

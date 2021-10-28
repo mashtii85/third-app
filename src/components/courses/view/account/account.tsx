@@ -468,6 +468,10 @@ export const AccountCourseView = () => {
     stateHolder.selectedLessonId
   )
 
+  const cover = course?.media
+    ? `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${course?.media[0].filename} `
+    : null
+
   return (
     <>
       <Row>
@@ -562,10 +566,7 @@ export const AccountCourseView = () => {
               ) : (
                 <Details2 open title="Course overview">
                   {(course as Course)?.media?.length && (
-                    <Image
-                      alt={(course as Course)?.title}
-                      src={`${process.env.NEXT_PUBLIC_S3_CDN_URL}/${course.media[0].filename} `}
-                    />
+                    <Image alt={(course as Course)?.title} src={cover} />
                   )}
                   {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
                   <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
