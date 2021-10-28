@@ -1,0 +1,78 @@
+{
+  "requiresCompatibilities": ["FARGATE"],
+  "executionRoleArn": "arn:aws:iam::090317467148:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::090317467148:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "lms-staging",
+      "image": "090317467148.dkr.ecr.eu-west-2.amazonaws.com/test-repo:latest",
+      "interactive": false,
+      "environment": [
+        {
+          "name": "NEXT_PUBLIC_API_URL",
+          "value": "https://lms.cleverly.works/api"
+        },
+        {
+          "name": "NEXT_PUBLIC_AUTH_URL",
+          "value": "https://lms.cleverly.works/api/auth"
+        },
+        {
+          "name": "NEXT_PUBLIC_GRAPHQL_URL_WS",
+          "value": "wss://lms-api.cleverly.works/v1/graphql"
+        },
+        {
+          "name": "NEXT_PUBLIC_GRAPHQL_URL",
+          "value": "https://lms-api.cleverly.works/v1/graphql"
+        },
+        {
+          "name": "NEXT_PUBLIC_S3_UPLOAD_URL",
+          "value": "https://lms.cleverly.works/api/media/upload"
+        },
+        {
+          "name": "NEXT_PUBLIC_S3_BUCKET",
+          "value": "lms-staging-media"
+        },
+        {
+          "name": "NEXT_PUBLIC_S3_CDN_URL",
+          "value": "https://lms-staging-media.s3.eu-west-2.amazonaws.com"
+        },
+        {
+          "name": "NEXT_PUBLIC_JWT_PUBLIC_KEY",
+          "value": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAsjQXMZp1Z7PuqGxP+bpT\nyJNsiKRCDnKIjXzBxQylLh4IgXFgLMmHf6lsh8BT07EiP1Ndojertvi+ib7AFNQs\nCH9D1ayuqFOba/5Z+Q+MzyQOQjAnP1sserzOueBs8La/RqZffEedUo6x9/XzOeFB\ngLhAj2BEFt77bzwbgKQ1EdVjc1OYc66X+eh7az7u+ntZYzb2eflXAU5c1nK+tlH8\nNlO2BUP2ybJeb4bitVyqf1IEgMdyrjakGSKD6hF9V6wTw5Nh7vpuMJgaVUQl2Uzw\nHiEw/yiPCTubvASxs93ZwMfRhbYMlV2ueCtlEhz6rP/f0UAm9mACd5sO1klAQCfB\nxEVvfRREh3CXTFYEScSRnf954m2yAi4T5vSpUJBCCEJmVCP5IVuyew8lId/wkPoo\n/6hrwfJhwamWxYLU+uY6AxRpXeN+e5szR/I5juZxBq3MWIwM5dB1Z8rWoTfeDp0J\nzS/95iOcXFa3A9Uf+cs+g1aQMX/yJUfR9BNkCktCFtYgHrPVJT+2rhxVTm9D2572\nWzK9P3IrUVVkwTUgo+O6dV+gjzxivQJ89o+scv+vORoONrOw0OvcSUnwsWr9/Rca\neAsSLw0JxWR6cYh0f+MuWG67ObawgeXh19/6PdZD0iHG2him50svJhvUwom7b/jW\nr6idp3Ltan9J0Qs/37r+v2UCAwEAAQ==\n-----END PUBLIC KEY-----"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "lms-logs-staging",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "lms-logs-staging"
+        }
+      },
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-staging-aws-apikey-eBa7Ui",
+          "name": "API_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-jwtprivatekey-staging-hiit9k",
+          "name": "JWT_PRIVATE_KEY"
+        }
+      ],
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "pseudoTerminal": true
+    }
+  ],
+  "family": "lms-staging",
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "volumes": []
+}
