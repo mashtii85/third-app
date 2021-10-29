@@ -63,18 +63,21 @@ export const MediaForm = ({
     await Promise.all(
       await form.dropzone?.map(async (file) => {
         const data = await uploadMediaToS3(file, defaultValues.type!)
-        const filename: string = data.key
-        mediaProps.push({
-          client_id: user.client_id!,
-          entity: defaultValues.entity!,
-          entity_id: defaultValues.entityId!,
-          type: defaultValues.type!,
-          status: defaultValues.status!,
-          caption: file.name,
-          category: defaultValues.category,
-          filename,
-          extension: filename?.split('.').pop()
-        })
+
+        if (data?.key) {
+          const filename: string = data.key
+          mediaProps.push({
+            client_id: user.client_id!,
+            entity: defaultValues.entity!,
+            entity_id: defaultValues.entityId!,
+            type: defaultValues.type!,
+            status: defaultValues.status!,
+            caption: file.name,
+            category: defaultValues.category,
+            filename,
+            extension: filename?.split('.').pop()
+          })
+        }
 
         return mediaProps
       })
