@@ -55,10 +55,10 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
 
   return (
     <Row>
-      <Column md="5">
+      <Column md="6">
         {modules?.map((module: Module) => (
           <>
-            <Space />
+            <Space key={`space-${module.id}`} />
             <Details2
               open
               key={`details-${module.id}`}
@@ -82,7 +82,7 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
         <Space />
         <Button content="Create a module" context="secondary" onClick={handleClick} />
       </Column>
-      <Column md="7" children></Column>
+      <Column md="6" children></Column>
     </Row>
   )
 }
