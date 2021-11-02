@@ -13,7 +13,9 @@ export const USER_FIELDS = gql`
     name_last
     custom_fields
     meta
-    is_verified
+    email_verified
+    phone
+    phone_verified
     created_at
     updated_at
   }

@@ -38,6 +38,7 @@ export interface LessonsData {
 }
 
 export interface LessonsVariables {
+  order_by: LooseObject
   where: LooseObject
 }
 

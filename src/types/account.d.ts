@@ -26,6 +26,7 @@ export interface Account {
   created_at: string
   taxonomy_id: number
   custom_fields: CustomField
+  meta: any
   users: { user: User }[]
   taxonomy: Taxonomy | undefined
 }

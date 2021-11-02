@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react'
 
 // Next
 import { useRouter } from 'next/router'
+
 // UI
 import { Column, Row } from '@drykiss/industry-ui'
 import { Filters } from '../filters/filters'
+import { useApp } from '../utils/useApp'
 
 // Types
 import { LayoutListProps } from './types.d'
@@ -21,11 +23,12 @@ export const LayoutList = ({
   TableComp,
   otherProps
 }: LayoutListProps) => {
+  const { taxonomies } = useApp()
   const { query } = useRouter()
   const [filters, setFilters] = useState(query)
 
   useEffect(() => {
-    const filters = prepareFiltersFromQuery(query)
+    const filters = prepareFiltersFromQuery(query, taxonomies)
     setFilters({ ...initialFilters, ...filters })
   }, [query])
 

@@ -3,6 +3,7 @@
  */
 
 export interface NavLink {
+  divider?: boolean
   icon?: string
   id: string
   name?: string

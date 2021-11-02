@@ -3,7 +3,7 @@
  */
 
 // UI
-import { Space, Row, Column } from '@drykiss/industry-ui'
+import { Column, Row } from '@drykiss/industry-ui'
 
 // Types
 import { AddressTable } from '../../../addresses/lists/tables/table'
@@ -17,6 +17,7 @@ import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 export const ClientAddress = () => {
   const { user } = useCurrentUser()
+
   const filters: UseAddressProps = {
     entity: ENTITIES.Account,
     entityId: user.account_id,
@@ -25,15 +26,7 @@ export const ClientAddress = () => {
 
   return (
     <Row>
-      <Column md="5">
-        {user.account_id && (
-          <>
-            <Space />
-            <AddressTable filters={filters} />
-          </>
-        )}
-      </Column>
-      <Column md="7"></Column>
+      <Column md={6}>{user.account_id && <AddressTable filters={filters} />}</Column>
     </Row>
   )
 }

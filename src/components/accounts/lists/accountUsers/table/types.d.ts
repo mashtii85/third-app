@@ -5,7 +5,7 @@
 import { User } from '../../../../../types/user'
 
 export interface UserRow
-  extends Omit<User, 'id' | 'is_verified' | 'name' | 'updated_at' | 'accounts'> {
+  extends Omit<User, 'id' | 'email_verified' | 'name' | 'updated_at' | 'accounts'> {
   id?: number
   actions: ''
 }

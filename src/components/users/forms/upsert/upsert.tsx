@@ -55,7 +55,7 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
       const object: CreateUserModel = {
         accounts: { data: { account_id: filters?.accountId!, status: values.status } },
         ...values,
-        is_verified: false
+        email_verified: false
       }
       createUser({ variables: { object } })
     }

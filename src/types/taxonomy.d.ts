@@ -7,6 +7,7 @@ import { STATUS_ACTIVE } from './select.d'
 export enum TAXONOMY_TYPE {
   Client = 'clients',
   Course = 'courses',
+  CustomFields = 'custom-fields',
   Member = 'members',
   Location = 'locations',
   Event = 'events',

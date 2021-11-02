@@ -42,7 +42,7 @@ export const GET_COURSE = gql`
       taxonomy {
         ...TaxonomyFields
       }
-      modules {
+      modules(order_by: { ordering: asc }) {
         id
         description
         created_at
@@ -51,7 +51,7 @@ export const GET_COURSE = gql`
         title
         updated_at
         course_id
-        lessons {
+        lessons(order_by: { ordering: asc }) {
           ...LessonFields
           taxonomies(where: { type: { _eq: "lesson-questions" } }) {
             ...TaxonomyFields
@@ -160,7 +160,7 @@ export const COURSE_ENROLLMENT = gql`
   query courseEnrollment($accountId: Int, $userId: Int) {
     courses: course(where: { account_id: { _eq: $accountId } }) {
       ...CourseFields
-      media {
+      media(where: { entity: { _eq: "course" } }) {
         ...MediaFields
       }
       course_enrollments(where: { user_id: { _eq: $userId } }) {

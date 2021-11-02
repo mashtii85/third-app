@@ -13,8 +13,11 @@ RUN npm i --legacy-peer-deps
 # Copy source
 COPY . .
 
+# Build
+RUN npm run build
+
 # Port
-EXPOSE 3100
+EXPOSE 3000
 
 # Run
-CMD ["npm", "run" ,"start"]
+CMD ["npm", "run" ,"start:production"]

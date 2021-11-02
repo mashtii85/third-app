@@ -29,6 +29,7 @@ import {
   Heading,
   Image,
   Row,
+  Space,
   Stepper,
   formatDateStandard,
   formatTime
@@ -467,6 +468,10 @@ export const AccountCourseView = () => {
     stateHolder.selectedLessonId
   )
 
+  const cover = course?.media
+    ? `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${course?.media[0].filename} `
+    : null
+
   return (
     <>
       <Row>
@@ -481,7 +486,7 @@ export const AccountCourseView = () => {
         </Column>
       </Row>
       <Row>
-        <Column md={3.5}>
+        <Column md="3">
           {/* <LessonsTable
             key={`lesson-table-${course.id}`}
             course={course}
@@ -497,9 +502,9 @@ export const AccountCourseView = () => {
               </Details2>
             ))}
         </Column>
-        <Column md={8.5}>
+        <Column md="9">
           <Row>
-            <Column md={7}>
+            <Column md={8}>
               {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
                 <Details2 open title="Completion Certificate">
                   <CompletionCertificate
@@ -527,7 +532,8 @@ export const AccountCourseView = () => {
                         onComplete={onQuizComplete}
                       />
                     )}
-                    {lesson.content && <p>{lesson.content}</p>}
+                    {lesson.content && <StyledContent>{lesson.content}</StyledContent>}
+                    <Space />
                     <ButtonsWrapper>
                       {lessonNumber !== 0 ? (
                         <StyledPrevButton
@@ -560,17 +566,14 @@ export const AccountCourseView = () => {
               ) : (
                 <Details2 open title="Course overview">
                   {(course as Course)?.media?.length && (
-                    <Image
-                      alt={(course as Course)?.title}
-                      src={`/${((course as Course)?.media ?? [])[0].filename}`}
-                    />
+                    <Image alt={(course as Course)?.title} src={cover} />
                   )}
                   {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
                   <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
                 </Details2>
               )}
             </Column>
-            <Column md={5}>
+            <Column md={4}>
               <Details2 title="Resources" open>
                 <ResourcesTable key={`resources-table-${course.id}`} courseId={course.id!} />
               </Details2>
@@ -613,4 +616,8 @@ const BreadcrumbWrapper = styled.div`
   a {
     color: ${({ theme }) => theme.COLOUR.primary} !important;
   }
+`
+
+const StyledContent = styled.div`
+  white-space: pre-wrap;
 `

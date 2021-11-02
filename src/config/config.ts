@@ -2,6 +2,10 @@
  * Config
  */
 
+// Access settings
+import { AccessPages } from './access/pages'
+import { AccessRules } from './access/rules'
+
 export const version = '0.1.0'
 
 export const Canonical = 'https://lms.realworldacademies.com'
@@ -18,7 +22,7 @@ export const apiConfig = {
 }
 
 export const Brand = {
-  logo: '/logo.png',
+  logo: '/logo-default.png',
   name: 'RWA'
 }
 
@@ -53,7 +57,11 @@ export const Translations = {
   en: {}
 }
 
+// Access
+
 export const Config = {
+  AccessPages,
+  AccessRules,
   apiConfig,
   Brand,
   generalConfig,

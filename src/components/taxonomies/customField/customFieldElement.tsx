@@ -4,20 +4,18 @@
 
 import { CustomFieldRender } from './render'
 
-import { TAXONOMY_TYPE } from '../../../types/taxonomy'
+import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 import { useTaxonomies } from '../hooks'
 import { Options } from '../../../types/options'
 
 export const CustomFieldElement = ({
   taxonomyWatch,
-  type,
   ...defaultOptions
 }: {
   taxonomyWatch: Options
-  type: TAXONOMY_TYPE
 }) => {
   const { taxonomies } = useTaxonomies({
-    category: type,
+    category: TAXONOMY_TYPE.CustomFields,
     parentId: parseInt(taxonomyWatch?.value, 10)
   })
 
