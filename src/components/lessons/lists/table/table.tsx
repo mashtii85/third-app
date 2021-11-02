@@ -123,6 +123,7 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
     <Table
       loading={loading}
       columns={columns({
+        lessons: lessonList,
         handleDelete,
         handleEdit,
         handleFileUpload,
