@@ -19,7 +19,7 @@ import {
 // Types
 import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../../../types/lesson.d'
 import { LessonTableRowsType, LessonToolbarType } from './types.d'
-import { Column } from '../../../../types/column.d'
+import { Column, FormatterData } from '../../../../types/column.d'
 import { ModuleFormType } from '../../../module/forms/create/types.d'
 
 // Constants
@@ -47,6 +47,46 @@ export const columns = ({
   handleArrowUp: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
   handleArrowDown: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
 }) => {
+  const isDisabled = (): boolean => {
+    const no = Math.random()
+    console.log(no)
+    return no > 0.5
+  }
+  const actionData: FormatterData<LessonTableRowsType>[] = [
+    {
+      context: THEME_CONTEXT.secondary,
+      icon: ['fas', 'edit'],
+      onClick: handleEdit,
+      tooltip: 'Edit'
+    },
+    {
+      context: THEME_CONTEXT.danger,
+      icon: ['fas', 'trash'],
+      onClick: handleDelete,
+      tooltip: 'Delete'
+    },
+    {
+      context: THEME_CONTEXT.dark,
+      icon: ['fas', 'file-upload'],
+      onClick: handleFileUpload,
+      tooltip: 'Upload'
+    },
+    {
+      context: THEME_CONTEXT.white,
+      icon: ['fas', 'arrow-up'],
+      onClick: handleArrowUp,
+      tooltip: 'Up',
+      disabled: isDisabled()
+    },
+    {
+      context: THEME_CONTEXT.white,
+      icon: ['fas', 'arrow-down'],
+      onClick: handleArrowDown,
+      tooltip: 'Down',
+      disabled: isDisabled()
+    }
+  ]
+
   const columnsSchema: Column<LessonTableRowsType>[] = [
     { text: 'id', hidden: true },
     {
@@ -61,38 +101,7 @@ export const columns = ({
     {
       text: 'Actions',
       formatter: TableActions,
-      formatterData: [
-        {
-          context: THEME_CONTEXT.secondary,
-          icon: ['fas', 'edit'],
-          onClick: handleEdit,
-          tooltip: 'Edit'
-        },
-        {
-          context: THEME_CONTEXT.danger,
-          icon: ['fas', 'trash'],
-          onClick: handleDelete,
-          tooltip: 'Delete'
-        },
-        {
-          context: THEME_CONTEXT.dark,
-          icon: ['fas', 'file-upload'],
-          onClick: handleFileUpload,
-          tooltip: 'Upload'
-        },
-        {
-          context: THEME_CONTEXT.white,
-          icon: ['fas', 'arrow-up'],
-          onClick: handleArrowUp,
-          tooltip: 'Up'
-        },
-        {
-          context: THEME_CONTEXT.white,
-          icon: ['fas', 'arrow-down'],
-          onClick: handleArrowDown,
-          tooltip: 'Down'
-        }
-      ]
+      formatterData: actionData
     }
   ]
   return columnsSchema

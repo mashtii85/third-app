@@ -23,7 +23,7 @@ import { LessonDocument } from './components/document/view'
 import { LessonQuiz } from './components/quiz/view'
 
 // Hooks
-import { useLessons } from '../hooks/useLessons'
+import { useLessons } from '../hooks/useLesson/useLessons'
 
 // Pages
 import pages from '../../../config/pages'
@@ -35,8 +35,8 @@ import { LessonDetailsToolbar } from './helpers'
 import { ENTITIES } from '../../../constants/entities'
 
 // Types
-import { LessonFilter } from '../hooks/types.d'
-import { LessonDetailsToolbarType } from './types'
+import { LessonFilter } from '../hooks/useLesson/types.d'
+import { LessonDetailsToolbarType } from './types.d'
 import { LESSON_TYPE } from '../../../types/lesson.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
 import { UseMediaProps } from '../../media/hooks/useMedia/types.d'

@@ -61,10 +61,11 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
             <Space />
             <Details2
               open
-              key={module.id}
+              key={`details-${module.id}`}
               title={module.title}
               toolbar={
                 <Toolbar
+                  key={`toolbar-${module.id}`}
                   id={module.id}
                   courseId={courseId}
                   title={module.title}
@@ -74,14 +75,14 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
                 />
               }
             >
-              <LessonTable courseId={courseId} moduleId={module.id} />
+              <LessonTable key={`table-${module.id}`} courseId={courseId} moduleId={module.id} />
             </Details2>
           </>
         ))}
         <Space />
         <Button content="Create a module" context="secondary" onClick={handleClick} />
       </Column>
-      <Column md="7"></Column>
+      <Column md="7" children></Column>
     </Row>
   )
 }

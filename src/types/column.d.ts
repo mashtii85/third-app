@@ -7,6 +7,9 @@ type FormatterData<T> = {
   numberOverlay?: string
   onClick?: (e: MouseEvent<HTMLElement>, data: T) => void
   tooltip: string
+  disabled?: boolean
+  // For each table it may have different data
+  row?: any
 }
 
 export interface Column<T> {
