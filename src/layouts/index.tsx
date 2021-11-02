@@ -23,8 +23,11 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const { user } = useCurrentUser()
 
+  // Prepare unique key to automatically re-render the app when user account changes
+  const key = `${user?.account_id || 0}-${user?.id || 0}`
+
   return (
-    <AppProvider user={user}>
+    <AppProvider key={key} user={user}>
       <Bootstrap fixed Navigation={Navigation}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
@@ -35,8 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
 
         {children}
       </Bootstrap>
-			<GlobalStyle />
-
+      <GlobalStyle />
     </AppProvider>
   )
 }

@@ -6,23 +6,24 @@ import { useContext, MouseEvent } from 'react'
 
 // Next
 import { useRouter } from 'next/router'
+
 // Apollo
 import { useTaxonomies } from '../../hooks/useTaxonomies/useTaxonomies'
 
 // UI
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { TaxonomyUpsert, TaxonomyDelete } from '../../forms'
-
-// Types
-
-import { TableProps } from '../types'
-import { offCanvasType } from '../../../../types/offCanvas'
-import { Taxonomy } from '../../../../types/taxonomy.d'
+import { useApp } from '../../../../utils/useApp'
 import { TaxonomyChildTable } from '../../child/table'
-
 import { columns, rows, Toolbar } from './helpers'
 
+// Types
+import { TableProps } from '../types'
+import { offCanvasType } from '../../../../types/offCanvas'
+import { Taxonomy, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+
 export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
+  const { refetchSettings } = useApp()
   const { query } = useRouter()
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
   const defaultTab: string | string[] = query.tab || type
@@ -45,9 +46,9 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
 
   const handleQuestionsClick = (row: Taxonomy) => {
     offCanvas.show({
-      content: <TaxonomyChildTable type={defaultTab} parentId={row.id} />,
+      content: <TaxonomyChildTable type={TAXONOMY_TYPE.CustomFields} parentId={row.id} />,
       submit: false,
-      title: 'Custom Field'
+      title: 'Custom Fields'
     })
   }
 
@@ -66,14 +67,19 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
     })
   }
 
-  const { error, loading, taxonomies } = useTaxonomies({
+  const { loading, taxonomies } = useTaxonomies({
     category: defaultTab,
     isParent: false,
     clientId: clientId
   })
 
-  console.log(error?.message)
-  const handleSuccess = offCanvas.close
+  const handleSuccess = () => {
+    if (Object.values(TAXONOMY_TYPE).includes(type as TAXONOMY_TYPE)) {
+      // Refetch site settings if `type` is one of the main taxonomy types to update nav items
+      refetchSettings()
+    }
+    offCanvas.close()
+  }
 
   return (
     <Details2 open title={title} toolbar={<Toolbar handleClick={handleClick} />}>

@@ -48,7 +48,7 @@ export const LessonContentEdit = ({
     <Form id="contentEditForm" handleSubmit={onSubmit}>
       <FormField {...defaultOptions} name="id" type="hidden" />
       <FormField {...defaultOptions} name="type" type="hidden" />
-      <TextareaField {...defaultOptions} name="content" rows={7} />
+      <TextareaField {...defaultOptions} name="content" rows={20} />
       <AddButton content="Submit" type="submit" handleClick={handleSubmit(onSubmit)} />
     </Form>
   )

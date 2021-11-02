@@ -84,12 +84,7 @@ export const UpsertLocation = ({ onSuccess, defaultValues = {}, filters }: Locat
         type={TAXONOMY_TYPE.Location}
       />
       {taxonomyWatch?.value && (
-        <CustomFieldElement
-          {...defaultValues}
-          {...defaultOptions}
-          taxonomyWatch={taxonomyWatch}
-          type={TAXONOMY_TYPE.Location}
-        />
+        <CustomFieldElement {...defaultValues} {...defaultOptions} taxonomyWatch={taxonomyWatch} />
       )}
     </Form>
   )

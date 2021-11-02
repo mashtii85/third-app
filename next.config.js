@@ -12,6 +12,10 @@ const withTM = require('next-transpile-modules')([
 ])
 
 module.exports = withTM({
+  eslint: {
+    // Disable Next.js internal ESLint check due to differences with our config
+    ignoreDuringBuilds: true
+  },
   future: {
     webpack5: false
   }
