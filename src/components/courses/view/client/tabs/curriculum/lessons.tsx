@@ -5,26 +5,25 @@
 // React
 import { MouseEvent, useContext } from 'react'
 
+// Hooks
+import { useModule } from '../../../../../module/hooks/useModule/useModule'
+
 // UI
 import { Button, Details2, Space, Row, Column, OffCanvasContext } from '@drykiss/industry-ui'
-
-// Types
-import { Module } from '../../../../../types/module.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { ModuleFormType } from '../../../../module/forms/create/types.d'
-import { ModuleFilter } from '../../../../module/hooks/useModule/types.d'
-
-// Hooks
-import { useModule } from '../../../../module/hooks/useModule/useModue'
-
-import { LessonTable } from '../../../../lessons/lists/table/table'
+import { LessonTable } from '../../../../../lessons/lists/table/table'
 
 // Helpers
-import { Toolbar } from '../../../../lessons/lists/table/helpers'
+import { Toolbar } from '../../../../../lessons/lists/table/helpers'
 
 // Forms
-import { ModuleForm } from '../../../../module/forms/create/form'
-import { offCanvasType } from '../../../../../types/offCanvas'
+import { ModuleForm } from '../../../../../module/forms/create/form'
+import { offCanvasType } from '../../../../../../types/offCanvas'
+
+// Types
+import { Module } from '../../../../../../types/module.d'
+import { STATUS_ACTIVE } from '../../../../../../types/select.d'
+import { ModuleFormType } from '../../../../../module/forms/create/types.d'
+import { ModuleFilter } from '../../../../../module/hooks/useModule/types.d'
 
 export const ClientLessons = ({ courseId }: { courseId: number }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

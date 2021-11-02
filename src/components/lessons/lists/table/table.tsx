@@ -80,10 +80,24 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
     })
   }
 
+  const handleArrowUp = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
+    console.log('up', row.id)
+  }
+
+  const handleArrowDown = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
+    console.log('down', row.id)
+  }
+
   return (
     <Table
       loading={loading}
-      columns={columns({ handleDelete, handleEdit, handleFileUpload })}
+      columns={columns({
+        handleDelete,
+        handleEdit,
+        handleFileUpload,
+        handleArrowUp,
+        handleArrowDown
+      })}
       rows={rows(lessonList)}
     />
   )
