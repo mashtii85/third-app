@@ -10,7 +10,7 @@ import { DELETE_LESSON_BY_PK, GET_LESSONS } from '../../queries/queries'
 import { LessonDeleteData, LessonDeleteVariables, UseDeleteLessonOutput } from './types.d'
 import { UseHookProps } from '../../../../types/hook.d'
 import { Lesson } from '../../../../types/lesson.d'
-import { LooseObject } from '../../../../types/object.d'
+import { GQLClause } from '../../../../types/gql.d'
 
 export const useDeleteLesson = (
   moduleId: number,
@@ -22,7 +22,9 @@ export const useDeleteLesson = (
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        const variables: LooseObject = {
+        const variables: GQLClause<Lesson> = {
+          limit: 100,
+          order_by: { ordering: 'asc' },
           where: { module_id: { _eq: moduleId } }
         }
         const { lessons } = cache.readQuery<{ lessons: Lesson[] }>({
