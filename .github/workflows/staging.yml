@@ -35,7 +35,17 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and push it to ECR so that it can be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build \
+            --build-arg NEXT_PUBLIC_API_URL="https://lms.cleverly.works/api" \
+            --build-arg NEXT_PUBLIC_AUTH_URL="https://lms.cleverly.works/api/auth" \
+            --build-arg NEXT_PUBLIC_GRAPHQL_URL_WS="wss://lms-api.cleverly.works/v1/graphql" \
+            --build-arg NEXT_PUBLIC_GRAPHQL_URL="https://lms-api.cleverly.works/v1/graphql" \
+            --build-arg NEXT_PUBLIC_GRAPHQL_SECRET=${{ secrets.NEXT_PUBLIC_GRAPHQL_SECRET }} \
+            --build-arg NEXT_PUBLIC_S3_UPLOAD_URL="https://lms.cleverly.works/api/media/upload" \
+            --build-arg NEXT_PUBLIC_S3_BUCKET="lms-staging-media" \
+            --build-arg NEXT_PUBLIC_S3_CDN_URL="https://lms-staging-media.s3.eu-west-2.amazonaws.com" \
+            --build-arg NEXT_PUBLIC_JWT_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_JWT_PUBLIC_KEY }} \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
