@@ -91,8 +91,8 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
           </Column>
           <Column md={6}>
             <FormLabel label="Phone">
-              <FormField {...defaultOptions} name={'custom_fields.phone'} />
-              {errors.custom_fields && <FormError message={errors?.custom_fields.phone?.message} />}
+              <FormField {...defaultOptions} name={'phone'} />
+              {errors.phone && <FormError message={errors.phone.message} />}
             </FormLabel>
           </Column>
         </Row>

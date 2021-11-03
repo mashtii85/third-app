@@ -19,9 +19,7 @@ export interface AccountUsers {
   account: Account
 }
 
-export interface UserCustomFields {
-  phone?: string
-}
+export interface UserCustomFields { }
 
 export interface User {
   id: number
@@ -30,6 +28,7 @@ export interface User {
   name?: string
   name_first: string
   name_last: string
+  phone: string
   custom_fields?: UserCustomFields
   status: USER_STATUS
   created_at?: string

@@ -45,6 +45,7 @@ export const prepareUserData = (
     name_first: user.name_first,
     name_last: user.name_last,
     custom_fields: user.custom_fields,
+    phone: user.phone,
     email_verified: user.email_verified,
     status: user.status,
     account_id: accountUser.account_id || 0,

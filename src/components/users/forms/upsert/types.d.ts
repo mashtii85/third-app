@@ -4,7 +4,7 @@
 
 // Types
 import { LooseObject } from '../../../../types/object'
-import { UserCustomFields, USER_STATUS } from '../../../../types/user'
+import { USER_STATUS } from '../../../../types/user'
 import { UserRow } from '../../../accounts/lists/accountUsers/table/types'
 import { UsersFilter } from '../../../accounts/types'
 
@@ -13,7 +13,7 @@ export type UserForm = {
   name_last: string
   status: USER_STATUS
   email: string
-  custom_fields: UserCustomFields | undefined
+  phone: string | undefined
   password: string | undefined
 }
 
