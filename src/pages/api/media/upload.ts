@@ -10,6 +10,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import nc from 'next-connect'
 import mimetype from 'mimetype'
 import multer from 'multer'
+import cors from 'cors'
 
 // Services
 import { uploadS3 } from '../../../services/aws/s3'
@@ -31,33 +32,34 @@ const uploadMiddleware = upload.single('file')
 
 const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
 
-handler.use(uploadMiddleware)
+handler
+  .use(cors())
+  .use(uploadMiddleware)
+  .post(async (req: ApiUploadRequest, res: NextApiResponse) => {
+    const {
+      body: { bucket, folder },
+      file: { buffer, originalname }
+    } = req
 
-handler.post(async (req: ApiUploadRequest, res: NextApiResponse) => {
-  const {
-    body: { bucket, folder },
-    file: { buffer, originalname }
-  } = req
+    const name = fileName(originalname)
+    const mimeType = mimetype.lookup(originalname)
 
-  const name = fileName(originalname)
-  const mimeType = mimetype.lookup(originalname)
+    const uploadParams: UploadParams = {
+      fileName: name,
+      mimeType,
+      bucket,
+      folder,
+      buffer
+    }
 
-  const uploadParams: UploadParams = {
-    fileName: name,
-    mimeType,
-    bucket,
-    folder,
-    buffer
-  }
+    const data: any = await uploadS3(uploadParams)
 
-  const data: any = await uploadS3(uploadParams)
-
-  if (data) {
-    return res.status(200).json({ key: data?.key })
-  } else {
-    TE('Error uploading file')
-  }
-})
+    if (data) {
+      return res.status(200).json({ key: data?.key })
+    } else {
+      TE('Error uploading file')
+    }
+  })
 
 export default handler
 
