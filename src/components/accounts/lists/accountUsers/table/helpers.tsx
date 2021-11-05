@@ -38,6 +38,10 @@ export const columns = (
       text: 'Last Name'
     },
     {
+      hidden: true,
+      text: 'Phone'
+    },
+    {
       text: 'Email'
     },
     {
@@ -77,7 +81,7 @@ export const rows = (users: User[]): UserRow[] => {
       id: user.id,
       name_first: user.name_first,
       name_last: user.name_last,
-      // accountName:user.accounts.
+      phone: user.phone,
       email: user.email,
       created_at: formatDateStandard(user.created_at),
       status: user.status,
