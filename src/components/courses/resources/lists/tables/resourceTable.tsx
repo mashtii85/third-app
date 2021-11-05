@@ -43,7 +43,7 @@ export const ResourceTable = ({ posts }: { posts: Post[] }) => {
           {posts?.map((post) => {
             return (
               <>
-                <ResourceRow post={post} clientView={true} />
+                <ResourceRow key={`row-${post.id}`} post={post} clientView={true} />
                 <Divider />
               </>
             )

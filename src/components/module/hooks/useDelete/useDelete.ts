@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client'
 import { DELETE_MODULE_BY_PK } from '../../queries/queries'
 
 // Hooks
-import { useModule } from '../useModule/useModue'
+import { useModule } from '../useModule/useModule'
 
 // Types
 import { ModuleDeleteData, ModuleDeleteVariables, UseDeleteModuleOutput } from './types.d'

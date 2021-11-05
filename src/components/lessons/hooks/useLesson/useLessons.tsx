@@ -4,9 +4,11 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_LESSONS } from '../queries/queries'
-import { LessonsData, LessonsVariables, LessonFilter } from './types'
-import { prepareArguments } from './helpers'
+import { GET_LESSONS } from '../../queries/queries'
+import { prepareArguments } from '../helpers'
+
+// Types
+import { LessonsData, LessonsVariables, LessonFilter } from './types.d'
 
 export const useLessons = (filters: Partial<LessonFilter>) => {
   const where = prepareArguments({ filters })

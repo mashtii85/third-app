@@ -35,29 +35,27 @@ import { ModuleDeleteForm } from '../../../module/forms/delete/delete'
 import { offCanvasType } from '../../../../types/offCanvas'
 
 export const columns = ({
+  lessons,
   handleDelete,
   handleEdit,
-  handleFileUpload
+  handleFileUpload,
+  handleArrowUp,
+  handleArrowDown
 }: {
+  lessons: Lesson[]
   handleDelete: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
   handleEdit: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
   handleFileUpload: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
+  handleArrowUp: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
+  handleArrowDown: (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => void
 }) => {
-  const columnsSchema: Column<LessonTableRowsType>[] = [
-    { text: 'id', hidden: true },
-    {
-      formatter: TableLink(pages.dashboard.lessons.view_by_id, 'id', 'title'),
-      text: 'Title'
-    },
-    { text: 'Description', hidden: true },
-    { text: 'Type' },
-    { text: 'Content', hidden: true },
-    { text: 'Status' },
-    { text: 'Date' },
-    {
-      text: 'Actions',
-      formatter: TableActions,
-      formatterData: [
+  const isDisabled = (up: boolean, ordering: number): boolean =>
+    up ? ordering === lessons[0].ordering : ordering === lessons[lessons.length - 1].ordering
+
+  const actionFormatter = ({ row }: { row: LessonTableRowsType }) =>
+    TableActions({
+      row: row,
+      data: [
         {
           context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
@@ -75,8 +73,39 @@ export const columns = ({
           icon: ['fas', 'file-upload'],
           onClick: handleFileUpload,
           tooltip: 'Upload'
+        },
+        {
+          context: THEME_CONTEXT.white,
+          icon: ['fas', 'arrow-up'],
+          onClick: handleArrowUp,
+          tooltip: 'Up',
+          disabled: isDisabled(true, row?.ordering)
+        },
+        {
+          context: THEME_CONTEXT.white,
+          icon: ['fas', 'arrow-down'],
+          onClick: handleArrowDown,
+          tooltip: 'Down',
+          disabled: isDisabled(false, row?.ordering)
         }
       ]
+    })
+
+  const columnsSchema: Column<LessonTableRowsType>[] = [
+    { text: 'id', hidden: true },
+    {
+      formatter: TableLink(pages.dashboard.lessons.view_by_id, 'id', 'title'),
+      text: 'Title'
+    },
+    { text: 'Description', hidden: true },
+    { text: 'Type' },
+    { text: 'Content', hidden: true },
+    { text: 'Ordering', hidden: true },
+    { text: 'Status' },
+    { text: 'Date' },
+    {
+      text: 'Actions',
+      formatter: actionFormatter
     }
   ]
   return columnsSchema
@@ -90,6 +119,7 @@ export const rows = (lessons: Lesson[]) => {
       description: lesson.description,
       type: lesson.type,
       content: lesson.content,
+      ordering: lesson.ordering,
       status: lesson.status,
       date: `${formatDateStandard(lesson.updated_at)} ${formatTime(lesson.updated_at)}`,
       actions: ''

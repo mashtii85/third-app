@@ -31,6 +31,22 @@ export const UPDATE_LESSON_BY_PK = gql`
   ${LESSON_FIELDS}
 `
 
+export const SWAP_LESSONS = gql`
+  mutation SwapLessons($downId: Int!, $downOrdering: Int!, $upId: Int!, $upOrdering: Int!) {
+    down: update_lesson(where: { id: { _eq: $downId } }, _set: { ordering: $downOrdering }) {
+      returning {
+        ...LessonFields
+      }
+    }
+    up: update_lesson(where: { id: { _eq: $upId } }, _set: { ordering: $upOrdering }) {
+      returning {
+        ...LessonFields
+      }
+    }
+  }
+  ${LESSON_FIELDS}
+`
+
 export const DELETE_LESSON_BY_PK = gql`
   mutation DeleteLessonByPK($id: Int!) {
     delete_lesson_by_pk(id: $id) {

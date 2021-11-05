@@ -11,6 +11,7 @@ export interface LessonTableRowsType {
   description: string
   type: LESSON_TYPE
   content: string
+  ordering: number
   status: LESSON_STATUS
   date: string
 }

@@ -5,7 +5,7 @@
 // Types.d
 import { Lesson } from '../../../../types/lesson.d'
 import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { LessonFilter } from '../../hooks/types.d'
+import { LessonFilter } from '../useLesson/types.d'
 
 export interface LessonDeleteVariables {
   id: number

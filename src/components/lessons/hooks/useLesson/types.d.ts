@@ -4,9 +4,9 @@
 
 // Types
 // import { OrderBy } from '../../../types/orderBy.d'
-import { Lesson, LESSON_TYPE, LESSON_STATUS } from '../../../types/lesson.d'
+import { Lesson, LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson'
 import { ApolloError } from '@apollo/client'
-import { LooseObject } from '../../../types/object'
+import { LooseObject } from '../../../../types/object'
 
 export interface LessonFilter {
   id: number
