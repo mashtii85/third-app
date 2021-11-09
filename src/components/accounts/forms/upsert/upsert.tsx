@@ -27,23 +27,34 @@ import { ACCOUNT_TYPE } from '../../../../types/account.d'
 import { Options } from '../../../../types/options'
 
 export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
-  const { control, errors, handleSubmit, register, watch } = useForm<any>({
+  const { control, errors, handleSubmit, register, setError, watch } = useForm<any>({
     defaultValues,
     resolver: yupResolver(schema)
   })
+
+  const onError = (error: any) => {
+    if (
+      error.message.includes(
+        'Uniqueness violation. duplicate key value violates unique constraint "user_email_key"'
+      )
+    ) {
+      setError('email', {
+        type: 'duplicate',
+        message: 'Email is already exist, try another one!'
+      })
+    }
+    console.error(error?.message | error)
+  }
+
   const { createAccount } = useCreateAccount({
     filters,
     onCompleted: onSuccess,
-    onError: (error) => {
-      console.error(error.message)
-    }
+    onError
   })
 
   const { updateAccount } = useUpdateAccount({
     onCompleted: onSuccess,
-    onError: (error) => {
-      console.error(error.message)
-    }
+    onError
   })
 
   const submit = async (form: CreateAccountForm) => {
@@ -124,8 +135,14 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
                 <FormField {...defaultOptions} name="lastName" />
               </FormLabel>
 
+              <FormLabel label="Phone">
+                <FormField {...defaultOptions} name={'phone'} />
+                {errors.phone && <FormError message={errors.phone.message} />}
+              </FormLabel>
+
               <FormLabel label="Email">
                 <FormField type="email" {...defaultOptions} name="email" />
+                {errors.email && <FormError message={errors.email.message} />}
               </FormLabel>
 
               <FormLabel label="Initial password">

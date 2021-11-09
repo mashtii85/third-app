@@ -25,5 +25,6 @@ export interface UserQueryData {
 
 export interface CreateUserModel
   extends Omit<User, 'id' | 'name' | 'created_at' | 'updated_at' | 'accounts'> {
+  password?: string
   accounts: { data: { account_id: number; status: USER_STATUS } }
 }

@@ -4,6 +4,7 @@
 
 // Yup
 import { bool, object, string } from 'yup'
+import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
 
 export const AccountSchema = object().shape({
   add_contact_user: bool(),
@@ -26,11 +27,13 @@ export const AccountSchema = object().shape({
     then: string()
       .required('password is required')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/,
+        passwordRegex,
         `Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character`
       )
   }),
-
+  phone: string().test('matches', 'Incorrect phone number', (phoneNumber: any) => {
+    return phoneNumber.length === 0 || phoneNumberRegex.test(phoneNumber)
+  }),
   taxonomy: object().shape({
     label: string(),
     value: string()

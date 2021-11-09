@@ -15,6 +15,7 @@ export interface CreateAccountForm {
   firstName: string
   lastName: string
   password: string
+  phone: string
   email: string
   status: STATUS_ACTIVE
   taxonomy: Options

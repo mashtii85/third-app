@@ -28,6 +28,7 @@ export const prepareCreateAccount = (
         name_first: form.firstName,
         name_last: form.lastName,
         password: hashPassword(form.password),
+        phone: form.phone,
         status: form.status
       }
     }
@@ -64,6 +65,7 @@ export const prepareUpdateAccount = ({
     variables.hasUser = true
     variables.userObject = {
       accounts: { data: { account_id: accountId, status: form.status } },
+      phone: form.phone,
       email: form.email,
       name_first: form.firstName,
       name_last: form.lastName,

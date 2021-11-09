@@ -22,9 +22,10 @@ import { UserForm, UserFormProps } from './types.d'
 import { useCreateUser, useUpdateUser } from '../../hooks'
 import { UserRow } from '../../../accounts/lists/accountUsers/table/types'
 import { CreateUserModel } from '../../hooks/useCreate/types'
+import { hashPassword } from '../../../../services/auth/helpers'
 
 export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserFormProps) => {
-  const { errors, handleSubmit, register } = useForm<UserForm>({
+  const { errors, handleSubmit, register, setError } = useForm<UserForm>({
     defaultValues,
     resolver: yupResolver(schema)
   })
@@ -33,30 +34,44 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
     errors: errors,
     register: register
   }
+
+  const onError = (error: any) => {
+    if (
+      error.message.includes(
+        'Uniqueness violation. duplicate key value violates unique constraint "user_email_key"'
+      )
+    ) {
+      setError('email', {
+        type: 'duplicate',
+        message: 'Email is already exist, try another one!'
+      })
+    }
+    console.error(error?.message || error)
+  }
+
   const { createUser } = useCreateUser({
     filters,
     onCompleted: onSuccess,
-    onError: (error) => {
-      console.error(error)
-    }
+    onError
   })
 
   const { updateUser } = useUpdateUser({
     onCompleted: onSuccess,
-    onError: (error) => {
-      console.log(error.message)
-    }
+    onError
   })
 
   const onSubmit = (values: UserRow) => {
     if (defaultValues?.id) {
       updateUser({ variables: { userId: defaultValues.id, changes: values } })
     } else {
+      const { password, ...userObject } = values
       const object: CreateUserModel = {
         accounts: { data: { account_id: filters?.accountId!, status: values.status } },
-        ...values,
+        ...userObject,
+        password: hashPassword(password),
         email_verified: false
       }
+
       createUser({ variables: { object } })
     }
   }
@@ -84,9 +99,7 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
           <Column md={6}>
             <FormLabel label="Email">
               <FormField {...defaultOptions} name={'email'} type="email" />
-              {errors.email && errors.email.type === 'duplicate' && (
-                <FormError message={errors.email.message} />
-              )}
+              {errors.email && <FormError message={errors.email.message} />}
             </FormLabel>
           </Column>
           <Column md={6}>

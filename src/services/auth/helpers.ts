@@ -11,8 +11,12 @@ import { LoginDataModel } from './types.d'
 import { AccountUsers, CurrentUser } from '../../types/user.d'
 import { ACCOUNT_TYPE } from '../../types/account.d'
 
-export const hashPassword = (password: string): string => {
-  return bcrypt.hashSync(password, 10)
+export const hashPassword = (password?: string): string | undefined => {
+  if (password) {
+    return bcrypt.hashSync(password, 10)
+  } else {
+    return undefined
+  }
 }
 
 export const validatePassword = (userPassword: string, formPassword: string): boolean => {
