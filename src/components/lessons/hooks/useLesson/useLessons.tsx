@@ -12,7 +12,7 @@ import { LessonsData, LessonsVariables, LessonFilter } from './types.d'
 
 export const useLessons = (filters: Partial<LessonFilter>) => {
   const where = prepareArguments({ filters })
-  const { data, error, loading } = useQuery<LessonsData, LessonsVariables>(GET_LESSONS, {
+  const { data, error, loading, refetch } = useQuery<LessonsData, LessonsVariables>(GET_LESSONS, {
     variables: {
       where,
       order_by: { ordering: 'asc' }
@@ -23,5 +23,5 @@ export const useLessons = (filters: Partial<LessonFilter>) => {
     return { loading: false, error, lessonList: [] }
   }
 
-  return { loading, lessonList: data?.lessons || [] }
+  return { loading, lessonList: data?.lessons || [], refetch }
 }

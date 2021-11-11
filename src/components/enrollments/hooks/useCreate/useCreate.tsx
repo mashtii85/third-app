@@ -4,10 +4,10 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { LooseObject } from '../../../../types/object'
+import { GraphqlWhere } from '../../../../types/gql.d'
 import { GET_ENROLLMENTS, INSERT_ENROLLMENT } from '../../queries'
 
-// import { prepareArguments } from './helpers'
+import { CourseEnrolment } from '../../../../types/course.d'
 
 // Types
 import { UseCreateEnrollmentProps } from './types'
@@ -18,9 +18,11 @@ export const useCreateEnrollment = (props: UseCreateEnrollmentProps) => {
     onError: props.onError,
     update(cache, { data }) {
       const courseFromResponse = data?.course
-      // const where = prepareArguments({ filters: props.filters, clientId: props.userId })
-      const where: LooseObject = {}
-      where.client_id = { _eq: props.userId }
+      // const where: LooseObject = {}
+      // where.client_id = { _eq: props.userId }
+      const where: GraphqlWhere<CourseEnrolment> = {
+        client_id: { _eq: props.userId }
+      }
       const { courses } = cache.readQuery({
         query: GET_ENROLLMENTS,
         variables: { where }

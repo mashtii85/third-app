@@ -40,13 +40,15 @@ import { LessonDetailsToolbarType } from './types.d'
 import { LESSON_TYPE } from '../../../types/lesson.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
 import { UseMediaProps } from '../../media/hooks/useMedia/types.d'
+import { LessonAssignment } from './components/assignment/view'
+import { CurrentUser } from '../../../types/user.d'
 
-export const LessonView = () => {
+export const LessonView = ({ user }: { user: CurrentUser }) => {
   const { query } = useRouter()
   const lessonId: number = +(query?.id || '0')
 
   const filters: Partial<LessonFilter> = { id: lessonId }
-  const { lessonList } = useLessons(filters)
+  const { lessonList, refetch } = useLessons(filters)
 
   if (!lessonList || !lessonList[0]) return null
   const lesson = lessonList[0]
@@ -134,7 +136,14 @@ export const LessonView = () => {
                   <Space />
                 </>
               )}
-              <LessonContent lesson={lesson} />
+              {lesson.type === LESSON_TYPE.Assignment ? (
+                <>
+                  <LessonAssignment lesson={lesson} user={user} onsuccess={refetch!} />
+                  <Space />
+                </>
+              ) : (
+                <LessonContent lesson={lesson} />
+              )}
             </>
           </Column>
         </Row>

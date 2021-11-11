@@ -53,10 +53,13 @@ export const GET_COURSE = gql`
         course_id
         lessons(order_by: { ordering: asc }) {
           ...LessonFields
-          taxonomies(where: { type: { _eq: "lesson-questions" } }) {
+          taxonomies(where: { type: { _in: ["lesson-questions", "lesson-answers"] } }) {
             ...TaxonomyFields
             taxonomies {
               ...TaxonomyFields
+            }
+            media {
+              ...MediaFields
             }
           }
           lesson_progresses {
@@ -64,6 +67,7 @@ export const GET_COURSE = gql`
             status
             updated_at
             meta
+            points
             lesson {
               id
               module {

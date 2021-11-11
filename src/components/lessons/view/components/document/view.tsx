@@ -10,7 +10,7 @@ import DocumentViewer from '../../../../common/docViewer/docViewer'
 import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 
 // Helpers
-import { LessonMediaContentToolbar } from '../../helpers'
+import { doesFileExist, LessonMediaContentToolbar } from '../../helpers'
 
 // Types
 import { MediaFilter, UseMediaProps } from '../../../../media/hooks/useMedia/types.d'
@@ -18,6 +18,7 @@ import { STATUS_ACTIVE } from '../../../../../types/select.d'
 import { DropzoneProps, MEDIUM_TYPE } from '../../../../../types/medium.d'
 import { MediaFormType } from '../../../../media/forms/create/types.d'
 import { LESSON_TYPE } from '../../../../../types/lesson.d'
+import { useEffect } from 'react'
 
 export const LessonDocument = ({
   filters,
@@ -35,7 +36,7 @@ export const LessonDocument = ({
     category: filters.category,
     type: filters.type
   }
-  const defaultValues: MediaFormType = {
+  const defaultValues: Partial<MediaFormType> = {
     entity: filters.entity,
     entityId: filters.entityId,
     category: filters.category!,
@@ -58,6 +59,12 @@ export const LessonDocument = ({
     multiple: false
   }
 
+  const fileUrl = `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${medium?.filename}`
+  let fileExist = false
+  useEffect(() => {
+    fileExist = doesFileExist(fileUrl)
+  }, [])
+
   return (
     <>
       <Details2
@@ -73,19 +80,7 @@ export const LessonDocument = ({
           />
         }
       >
-        <>
-          {medium ? (
-            <DocumentViewer
-              docs={[
-                {
-                  uri: `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${medium?.filename}`
-                }
-              ]}
-            />
-          ) : (
-            'No Document'
-          )}
-        </>
+        <>{fileExist ? <DocumentViewer docs={[{ uri: fileUrl }]} /> : 'No Document'}</>
       </Details2>
     </>
   )

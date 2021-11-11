@@ -26,7 +26,9 @@ export interface UseDeleteMediaOutput extends UseHookOutput {
 
 interface MediaDeleteProps {
   id: number
-  entity?: string
-  entityId?: number
-  caption?: string
+  clientId: number
+  taxonomyId: number
+  entity: string
+  entityId: number
+  caption: string
 }

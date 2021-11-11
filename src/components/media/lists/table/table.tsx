@@ -39,7 +39,7 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
 
   const handleClick = (_: MouseEvent, row?: Medium): void => {
     console.log(row)
-    const defaultValues: MediaFormType = {
+    const defaultValues: Partial<MediaFormType> = {
       entity: mediaTableProps.entity,
       entityId: mediaTableProps.entityId,
       category: MEDIUM_CATEGORY.Lesson,

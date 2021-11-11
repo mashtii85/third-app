@@ -16,6 +16,7 @@ export interface CustomFields {
 interface CourseEnrolment {
   created_at: string
   id: number
+  client_id: number
   status: STATUS_ACTIVE
   updated_at: string
 }

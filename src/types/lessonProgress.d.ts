@@ -14,6 +14,7 @@ export interface LessonProgressMeta {
   quizScore: number
   quizPassed: boolean
 }
+
 export interface LessonProgressUpdateModel {
   points: number
   status: LESSON_PROGRESS_STATUS
@@ -27,4 +28,5 @@ export interface LessonProgress {
   updated_at?: Date
   lesson?: Lesson
   meta?: LessonProgressMeta
+  points?: number
 }

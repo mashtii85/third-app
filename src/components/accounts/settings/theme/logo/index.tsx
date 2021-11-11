@@ -38,7 +38,7 @@ export const ThemeLogo = ({ account }: { account: Account | undefined }) => {
       offCanvas.close()
     }
 
-    const defaultValues: MediaFormType = {
+    const defaultValues: Partial<MediaFormType> = {
       entity: ENTITIES.Account,
       entityId: account?.id || 0,
       category: MEDIUM_CATEGORY.Logo,

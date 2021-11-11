@@ -45,3 +45,14 @@ export const DELETE_MEDIUM_BY_PK = gql`
   }
   ${MEDIA_FIELDS}
 `
+
+export const DELETE_MEDIA = gql`
+  mutation DeleteMedium($where: medium_bool_exp!) {
+    media: delete_medium(where: $where) {
+      returning {
+        ...MediaFields
+      }
+    }
+  }
+  ${MEDIA_FIELDS}
+`

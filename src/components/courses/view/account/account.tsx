@@ -75,7 +75,9 @@ import { LESSON_TYPE, Lesson } from '../../../../types/lesson.d'
 import { POST_TYPE } from '../../../../types/post.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from '../types.d'
-// import { Taxonomy } from '../../../../types/taxonomy.d'
+import { CourseLessonAssignment } from './components/assignment/view'
+import { AssignmentActionTypes } from './components/assignment/types'
+import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 // import { LessonsTable } from './tables/lessonsTable'
 
 export const AccountCourseView = () => {
@@ -84,7 +86,7 @@ export const AccountCourseView = () => {
   const { query } = useRouter()
 
   const [lesson, setLesson] = useState<Lesson | null>(null)
-  const pageState = {
+  let pageState = {
     pageMode: COURSE_PAGE_MODE.Progress,
     actionButtonCaption: 'Complete and continue',
     canCompleteLesson: false,
@@ -94,7 +96,7 @@ export const AccountCourseView = () => {
     selectedLessonId: 0,
     certificateModel: {
       username: '',
-      course: '',
+      courseTitle: '',
       dateCompleted: '',
       certificateId: ''
     }
@@ -226,9 +228,13 @@ export const AccountCourseView = () => {
           actionModel.content = 'View lesson'
         }
 
-        data.push({
+        const item = {
           id: lesson.id,
           label: lesson.title,
+          info:
+            stateHolder.canCompleteLesson && progress?.status === LESSON_PROGRESS_STATUS.Started
+              ? 'In progress ...'
+              : undefined,
           highlighted: progress?.status === LESSON_PROGRESS_STATUS.Started,
           labelIcon:
             lesson.type === LESSON_TYPE.Quiz || lesson.type === LESSON_TYPE.Video
@@ -237,12 +243,11 @@ export const AccountCourseView = () => {
           date:
             progress?.status === LESSON_PROGRESS_STATUS.Completed
               ? `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
-              : isActive && stateHolder.canCompleteLesson
-                ? 'In progress ...'
-                : null,
+              : null,
           status: progress?.status,
           actions: [actionModel]
-        })
+        }
+        data.push(item)
       })
 
     return data
@@ -284,9 +289,9 @@ export const AccountCourseView = () => {
       setLesson(lesson)
     } else {
       stateHolder.pageMode = COURSE_PAGE_MODE.Progress
+      stateHolder.canCompleteLesson = true
       if (lesson?.type !== LESSON_TYPE.Quiz) {
         stateHolder.actionButtonCaption = 'Complete and continue'
-        stateHolder.canCompleteLesson = true
         stateHolder.showNextLesson = false
       }
       setLesson(prepareLessonForStarting(lesson) ?? null)
@@ -395,12 +400,36 @@ export const AccountCourseView = () => {
     completeLesson()
   }
 
+  const onAssignmentStateChanged = (action: AssignmentActionTypes) => {
+    switch (action.type) {
+      case 'finish':
+        completeLesson()
+        break
+      case 'reset':
+      case 'upload':
+      default:
+        refetch()
+        break
+    }
+    // const progress = getCurrentLessonProgress(
+    //   course,
+    //   stateHolder.selectedModuleId,
+    //   stateHolder.selectedLessonId
+    // )
+    // if (progress?.status === LESSON_PROGRESS_STATUS.Completed) {
+    //   const lessonProgressModel = { status: LESSON_PROGRESS_STATUS.Pending }
+    //   updateLessonProgressByPk({
+    //     variables: { id: progress.id, changes: lessonProgressModel }
+    //   })
+    // }
+  }
+
   const fillCertificateModel = (completedAt: string) => {
     if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished) return
     loadPageState()
     pageState.certificateModel = {
       username: `${user.name_first} ${user.name_last}`,
-      course: (course as Course).title,
+      courseTitle: (course as Course).title,
       dateCompleted: completedAt,
       certificateId: 'BVM QX4 CV6'
     }
@@ -408,14 +437,7 @@ export const AccountCourseView = () => {
   }
 
   const loadPageState = () => {
-    pageState.actionButtonCaption = stateHolder.actionButtonCaption
-    pageState.canCompleteLesson = stateHolder.canCompleteLesson
-    pageState.certificateModel = stateHolder.certificateModel
-    pageState.completedLessonId = stateHolder.completedLessonId
-    pageState.pageMode = stateHolder.pageMode
-    pageState.selectedLessonId = stateHolder.selectedLessonId
-    pageState.selectedModuleId = stateHolder.selectedModuleId
-    pageState.showNextLesson = stateHolder.showNextLesson
+    pageState = { ...stateHolder }
   }
 
   const breadcrumbs = [
@@ -472,6 +494,7 @@ export const AccountCourseView = () => {
     ? `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${course?.media[0].filename} `
     : null
 
+  const { username, courseTitle, dateCompleted, certificateId } = stateHolder.certificateModel
   return (
     <>
       <Row>
@@ -508,10 +531,10 @@ export const AccountCourseView = () => {
               {stateHolder.pageMode === COURSE_PAGE_MODE.Finished ? (
                 <Details2 open title="Completion Certificate">
                   <CompletionCertificate
-                    username={stateHolder.certificateModel.username}
-                    course={stateHolder.certificateModel.course}
-                    dateCompleted={stateHolder.certificateModel.dateCompleted}
-                    certificateId={stateHolder.certificateModel.certificateId}
+                    username={username}
+                    course={courseTitle}
+                    dateCompleted={dateCompleted}
+                    certificateId={certificateId}
                   />
                 </Details2>
               ) : lesson ? (
@@ -528,11 +551,21 @@ export const AccountCourseView = () => {
                     {lesson.type === LESSON_TYPE.Quiz && (
                       <Quiz
                         quizScoreInfo={quizScoreInfo()}
-                        questions={lesson.taxonomies}
+                        questions={lesson.taxonomies.filter(
+                          (taxonomy) => taxonomy.type === TAXONOMY_TYPE.LessonQuestions
+                        )}
                         onComplete={onQuizComplete}
                       />
                     )}
-                    {lesson.content && <StyledContent>{lesson.content}</StyledContent>}
+                    {lesson.type === LESSON_TYPE.Assignment ? (
+                      <CourseLessonAssignment
+                        user={user}
+                        lesson={lesson}
+                        onStateChanged={onAssignmentStateChanged}
+                      />
+                    ) : (
+                      lesson.content && <StyledContent>{lesson.content}</StyledContent>
+                    )}
                     <Space />
                     <ButtonsWrapper>
                       {lessonNumber !== 0 ? (
@@ -550,7 +583,8 @@ export const AccountCourseView = () => {
                       )}
 
                       {(stateHolder.canCompleteLesson || stateHolder.showNextLesson) &&
-                        lesson.type !== LESSON_TYPE.Quiz && (
+                        lesson.type !== LESSON_TYPE.Quiz &&
+                        lesson.type !== LESSON_TYPE.Assignment && (
                           <StyledNextButton
                             context="primary"
                             data-cy="complete"

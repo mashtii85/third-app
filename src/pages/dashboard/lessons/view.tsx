@@ -27,7 +27,7 @@ const PageDashboard: NextPage = () => {
     return null
   } else if (user.account_type !== ACCOUNT_TYPE.Client) return null
 
-  return <Dashboard key="lesson-view" View={<LessonView />} />
+  return <Dashboard key="lesson-view" View={<LessonView user={user} />} />
 }
 
 export default PageDashboard

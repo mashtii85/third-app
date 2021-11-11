@@ -34,6 +34,7 @@ type VideoLesson = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  taxonomies?: Taxonomy[]
   module: Module
   created_at: Date
   updated_at: Date
@@ -100,6 +101,7 @@ type OtherLessons = {
   ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
+  taxonomies?: Taxonomy[]
   module?: Module
   created_at: Date
   updated_at: Date

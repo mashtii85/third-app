@@ -60,7 +60,7 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
   )
 
   const EditAvatar = () => {
-    const defaultValues: MediaFormType = {
+    const defaultValues: Partial<MediaFormType> = {
       entity: ENTITIES.User,
       entityId: user.id,
       category: MEDIUM_CATEGORY.Avatar,

@@ -5,6 +5,7 @@
 // Apollo
 import { gql } from '@apollo/client'
 import { MEDIA_FIELDS } from '../../media/queries/fragments'
+import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 
 // Fragments
 import { LESSON_FIELDS } from './fragments'
@@ -13,12 +14,19 @@ export const GET_LESSONS = gql`
   query GetLessons($limit: Int = 100, $order_by: [lesson_order_by!] = {}, $where: lesson_bool_exp) {
     lessons: lesson(where: $where, limit: $limit, order_by: $order_by) {
       ...LessonFields
+      taxonomies {
+        ...TaxonomyFields
+        media {
+          ...MediaFields
+        }
+      }
       media {
         ...MediaFields
       }
     }
   }
   ${LESSON_FIELDS}
+  ${TAXONOMY_FIELDS}
   ${MEDIA_FIELDS}
 `
 

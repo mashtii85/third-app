@@ -6,16 +6,16 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
+// Hooks
+import { useCreateAddress } from '../../hooks/useCreate/useCreate'
+import { useUpdateAddress } from '../../hooks/useUpdate/useUpdate'
+
 // UI
 import { FormField, Form, FormLabel, Row, Column } from '@drykiss/industry-ui'
-
 import { addressSchema as schema } from './schema'
 
 // Types
 import { AddressFormType } from './types.d'
-import { useCreateAddress } from '../../hooks/useCreate/useCreate'
-import { useUpdateAddress } from '../../hooks/useUpdate/useUpdate'
-import { LooseObject } from '../../../../types/object.d'
 import { ADDRESS_STATUS } from '../../../../types/address.d'
 import { UseAddressProps } from '../../hooks/types.d'
 import { prepareMetaClause } from '../../hooks/helpers'
@@ -23,11 +23,11 @@ import { prepareMetaClause } from '../../hooks/helpers'
 export const AddressForm = ({
   filters,
   onSuccess,
-  defaultValues = {}
+  defaultValues
 }: {
   filters: UseAddressProps
   onSuccess: () => void
-  defaultValues: AddressFormType | LooseObject
+  defaultValues: Partial<AddressFormType>
 }) => {
   const { control, errors, handleSubmit, register } = useForm<AddressFormType>({
     defaultValues: defaultValues,

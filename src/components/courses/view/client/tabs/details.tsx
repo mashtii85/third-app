@@ -62,7 +62,7 @@ export const ClientDetails = ({ courseId }: { courseId: number }) => {
   )
 
   const EditCover = () => {
-    const defaultValues: MediaFormType = {
+    const defaultValues: Partial<MediaFormType> = {
       entity: ENTITIES.Course,
       entityId: courseId,
       category: MEDIUM_CATEGORY.Cover,

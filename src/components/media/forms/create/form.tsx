@@ -68,6 +68,7 @@ export const MediaForm = ({
           const filename: string = data.key
           mediaProps.push({
             client_id: user.client_id!,
+            taxonomy_id: defaultValues.taxonomyId,
             entity: defaultValues.entity!,
             entity_id: defaultValues.entityId!,
             type: defaultValues.type!,

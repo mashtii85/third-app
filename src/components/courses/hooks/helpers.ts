@@ -4,8 +4,8 @@
 
 // Types
 import { STATUS_ACTIVE } from '../../../types/select.d'
-import { CourseDB, PrepareCourseArgumentProps } from './types'
-import { GQLClause, GraphqlWhere } from '../../../types/gql'
+import { CourseDB, PrepareCourseArgumentProps } from './types.d'
+import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
 
 export const prepareCoursesArguments = ({
   filters

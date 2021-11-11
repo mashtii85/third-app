@@ -6,7 +6,7 @@ interface TaxonomyPropsData {
   taxonomies: { returning: Taxonomy[] }
 }
 
-export interface UseCreateTaxonomyProps extends UseHookProps<TaxonomyPropsData> {
+export interface UseUpdateTaxonomyProps extends UseHookProps<TaxonomyPropsData> {
   entity?: ENTITIES
   entityId?: number
   parentId?: number
@@ -14,9 +14,8 @@ export interface UseCreateTaxonomyProps extends UseHookProps<TaxonomyPropsData> 
   taxonomyId?: number
   category?: TAXONOMY_TYPE
   clientId?: number
-  meta?: any
 }
 
-export interface UseCreateTaxonomyOutput extends UseHookOutput {
-  createTaxonomy: any
+export interface UseUpdateTaxonomyOutput extends UseHookOutput {
+  updateTaxonomy: any
 }

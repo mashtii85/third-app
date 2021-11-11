@@ -6,7 +6,7 @@ import { SIZE } from '../../../../config/theme'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
-import { useDeleteMedia } from '../../hooks/useDelete/useDelete'
+import { useDeleteMediumById } from '../../hooks/useDelete/useDeleteById'
 
 // Types
 import { MediaDeleteProps } from '../../hooks/useDelete/types.d'
@@ -24,13 +24,13 @@ export const MediaDeleteForm = ({
   caption?: string
   onSuccess: () => void
 }) => {
-  const mediaDeleteProps: MediaDeleteProps = {
+  const mediaDeleteProps: Partial<MediaDeleteProps> = {
     id,
     entity,
     entityId,
     caption
   }
-  const { deleteMedia } = useDeleteMedia(mediaDeleteProps, {
+  const { deleteMedia } = useDeleteMediumById(mediaDeleteProps, {
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error)

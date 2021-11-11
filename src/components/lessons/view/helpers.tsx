@@ -72,7 +72,7 @@ export const LessonMediaContentToolbar = ({
   dropzoneProps
 }: {
   filters: Partial<MediaFilter>
-  defaultValues: MediaFormType
+  defaultValues: Partial<MediaFormType>
   dropzoneProps: DropzoneProps
 }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -103,4 +103,11 @@ export const LessonMediaContentToolbar = ({
       />
     </ButtonToolbar>
   )
+}
+
+export const doesFileExist = (urlToFile: string): boolean => {
+  const xhr = new XMLHttpRequest()
+  xhr.open('HEAD', urlToFile, false)
+  xhr.send()
+  return !(xhr.status === 404)
 }

@@ -10,6 +10,7 @@ import { DropzoneType, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/me
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 interface MediaFormType {
+  taxonomyId: number
   category: MEDIUM_CATEGORY
   entity: ENTITIES
   entityId: number

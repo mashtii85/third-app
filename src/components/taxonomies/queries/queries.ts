@@ -4,6 +4,7 @@
 
 // Apollo
 import { gql } from '@apollo/client'
+import { MEDIA_FIELDS } from '../../media/queries/fragments'
 import { TAXONOMY_FIELDS } from './fragments'
 
 export const GET_TAXONOMIES = gql`
@@ -39,9 +40,13 @@ export const UPDATE_TAXONOMY = gql`
       taxonomies {
         ...TaxonomyFields
       }
+      media {
+        ...MediaFields
+      }
     }
   }
   ${TAXONOMY_FIELDS}
+  ${MEDIA_FIELDS}
 `
 
 export const DELETE_TAXONOMY = gql`

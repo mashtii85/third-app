@@ -1,10 +1,10 @@
 /**
- * Components - Medias - Hooks - useDelete - useDelete
+ * Components - Medias - Hooks - useDelete - useDeleteById
  */
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_MEDIA, GET_MEDIA } from '../../queries/queries'
+import { DELETE_MEDIUM_BY_PK, GET_MEDIA } from '../../queries/queries'
 
 // Types
 import {
@@ -19,12 +19,12 @@ import { Medium } from '../../../../types/medium.d'
 // Helpers
 import { prepareArguments } from '../useMedia/helpers'
 
-export const useDeleteMedia = (
+export const useDeleteMediumById = (
   filters: Partial<MediaDeleteProps>,
   props: UseHookProps<MediaDeleteData>
 ): UseDeleteMediaOutput => {
   const [deleteMedia, { loading, error }] = useMutation<MediaDeleteData, MediaDeleteVariables>(
-    DELETE_MEDIA,
+    DELETE_MEDIUM_BY_PK,
     {
       onCompleted: props.onCompleted,
       onError: props.onError,

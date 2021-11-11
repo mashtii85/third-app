@@ -8,6 +8,7 @@ import { gql } from '@apollo/client'
 export const MEDIA_FIELDS = gql`
   fragment MediaFields on medium {
     id
+    client_id
     caption
     category
     created_at

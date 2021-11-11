@@ -29,7 +29,7 @@ export const LessonVideo = ({ filters }: { filters: UseMediaProps }) => {
     category: filters.category,
     type: filters.type
   }
-  const defaultValues: MediaFormType = {
+  const defaultValues: Partial<MediaFormType> = {
     entity: filters.entity,
     entityId: filters.entityId,
     category: filters.category!,

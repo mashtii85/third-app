@@ -19,9 +19,3 @@ interface FieldType {
 export interface AnswersSubmitType {
   answers: FieldType[]
 }
-
-export enum ANSWER_TYPE {
-  Text = 'text',
-  Media = 'media',
-  TextMedia = 'textmedia'
-}

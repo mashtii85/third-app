@@ -9,6 +9,8 @@ import { LooseObject } from '../../../../types/object.d'
 import { ENTITIES } from '../../../../constants/entities'
 
 export interface MediaFilter {
+  clientId: number
+  taxonomyId: number
   entity: ENTITIES
   entityId: number
   type: MEDIUM_TYPE
