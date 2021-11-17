@@ -8,6 +8,44 @@ import styled from 'styled-components'
 
 export const fields = [
   {
+    title: 'Colours',
+    value: 'COLOUR',
+    items: [
+      {
+        title: 'Primary',
+        value: 'primary'
+      },
+      {
+        title: 'Secondary',
+        value: 'secondary'
+      },
+      {
+        title: 'Success',
+        value: 'success'
+      },
+      {
+        title: 'Info',
+        value: 'info'
+      },
+      {
+        title: 'Warning',
+        value: 'warning'
+      },
+      {
+        title: 'Danger',
+        value: 'danger'
+      },
+      {
+        title: 'Dark',
+        value: 'dark'
+      },
+      {
+        title: 'Light',
+        value: 'light'
+      }
+    ]
+  },
+  {
     title: 'Navbar',
     value: 'NAVBAR',
     items: [
