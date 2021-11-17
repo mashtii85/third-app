@@ -16,10 +16,10 @@ import { THEME_CONTEXT } from '../../../constants/themeContext'
 // types
 import { LessonDetailsToolbarType } from './types.d'
 import { offCanvasType } from '../../../types/offCanvas.d'
-import { LessonFormType } from '../form/create/types.d'
+import { LessonFormType, LessonUpsertFormFilterType } from '../form/create/types.d'
 import { MediaFilter } from '../../media/hooks/useMedia/types.d'
 import { DropzoneProps, Medium } from '../../../types/medium.d'
-import { MediaFormType } from '../../media/forms/create/types'
+import { MediaFormType } from '../../media/forms/create/types.d'
 
 export const getLatestMedium = (media: Medium[]): Medium | undefined => {
   if (media?.length > 0) {
@@ -40,7 +40,7 @@ export const LessonDetailsToolbar = ({
   lessonDetailsToolbarProps: Partial<LessonDetailsToolbarType>
 }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const filters = { id: lessonDetailsToolbarProps.id }
+  const filters: Partial<LessonUpsertFormFilterType> = { id: lessonDetailsToolbarProps.id }
   const defaultValues: Partial<LessonFormType> = {
     id: lessonDetailsToolbarProps.id,
     title: lessonDetailsToolbarProps.title,

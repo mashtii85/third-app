@@ -3,36 +3,21 @@
  */
 
 // React
-import { MouseEvent, useContext } from 'react'
+import { MouseEvent } from 'react'
 
 // UI
-import {
-  formatTime,
-  formatDateStandard,
-  Button,
-  ButtonToolbar,
-  OffCanvasContext,
-  TableLink,
-  TableActions
-} from '@drykiss/industry-ui'
+import { formatTime, formatDateStandard, TableLink, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { Lesson, LESSON_STATUS, LESSON_TYPE } from '../../../../types/lesson.d'
-import { LessonTableRowsType, LessonToolbarType } from './types.d'
+import { Lesson } from '../../../../types/lesson.d'
+import { LessonTableRowsType } from './types.d'
 import { Column } from '../../../../types/column.d'
-import { ModuleFormType } from '../../../module/forms/create/types.d'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
 
 // Pages
 import pages from '../../../../config/pages'
-
-// Forms
-import { LessonForm } from '../../form/create/form'
-import { ModuleForm } from '../../../module/forms/create/form'
-import { ModuleDeleteForm } from '../../../module/forms/delete/delete'
-import { offCanvasType } from '../../../../types/offCanvas'
 
 export const columns = ({
   lessons,
@@ -112,7 +97,7 @@ export const columns = ({
 }
 
 export const rows = (lessons: Lesson[]) => {
-  const list = lessons?.map((lesson) => {
+  const list = lessons.map((lesson) => {
     return {
       id: lesson.id,
       title: lesson.title,
@@ -126,68 +111,4 @@ export const rows = (lessons: Lesson[]) => {
     }
   })
   return list
-}
-
-export const Toolbar = (moduleToolbarProps: LessonToolbarType) => {
-  const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const filters = { courseId: moduleToolbarProps.courseId, moduleId: moduleToolbarProps.id }
-
-  const handleEdit = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation()
-    const defaultValues: ModuleFormType = {
-      id: moduleToolbarProps.id,
-      courseId: moduleToolbarProps.courseId,
-      title: moduleToolbarProps.title,
-      description: moduleToolbarProps.description ?? '',
-      ordering: moduleToolbarProps.ordering ?? 0,
-      status: moduleToolbarProps.status
-    }
-    offCanvas.show({
-      content: <ModuleForm onSuccess={offCanvas.close} defaultValues={defaultValues} />,
-      submit: true,
-      title: 'Add a module'
-    })
-  }
-
-  const handleDelete = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation()
-    offCanvas.show({
-      content: (
-        <ModuleDeleteForm
-          id={moduleToolbarProps.id!}
-          courseId={moduleToolbarProps.courseId}
-          title={moduleToolbarProps.title}
-          onSuccess={offCanvas.close}
-        />
-      ),
-      title: 'Delete module',
-      submit: false
-    })
-  }
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    e.stopPropagation()
-    offCanvas.show({
-      content: (
-        <LessonForm
-          filters={filters}
-          onSuccess={offCanvas.close}
-          defaultValues={{
-            type: LESSON_TYPE.Text,
-            status: LESSON_STATUS.Active
-          }}
-        />
-      ),
-      submit: true,
-      title: 'Add a lesson'
-    })
-  }
-
-  return (
-    <ButtonToolbar>
-      <Button context="secondary" onClick={handleEdit} size="sm" startIcon="edit" />
-      <Button context="danger" onClick={handleDelete} size="sm" startIcon="trash" />
-      <Button context="white" onClick={handleClick} size="sm" content="Create a lesson" />
-    </ButtonToolbar>
-  )
 }

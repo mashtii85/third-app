@@ -1,5 +1,5 @@
 /**
- * Components - Lessons - View - Client - Tabs - Details
+ * Components - Course - View - Client - Tabs - Curriculum - CourseModules
  */
 
 // React
@@ -11,39 +11,41 @@ import { useModule } from '../../../../../module/hooks/useModule/useModule'
 // UI
 import { Button, Details2, Space, Row, Column, OffCanvasContext } from '@drykiss/industry-ui'
 import { LessonTable } from '../../../../../lessons/lists/table/table'
+import { ModuleForm } from '../../../../../module/forms/create/form'
 
 // Helpers
-import { Toolbar } from '../../../../../lessons/lists/table/helpers'
-
-// Forms
-import { ModuleForm } from '../../../../../module/forms/create/form'
-import { offCanvasType } from '../../../../../../types/offCanvas'
+import { Toolbar } from './helpers'
+import { CourseModuleOrderingHelper } from './orderingHelper'
 
 // Types
+import { offCanvasType } from '../../../../../../types/offCanvas.d'
 import { Module } from '../../../../../../types/module.d'
 import { STATUS_ACTIVE } from '../../../../../../types/select.d'
 import { ModuleFormType } from '../../../../../module/forms/create/types.d'
 import { ModuleFilter } from '../../../../../module/hooks/useModule/types.d'
 
-export const ClientLessons = ({ courseId }: { courseId: number }) => {
+export const ClientCourseModule = ({ courseId }: { courseId: number }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
+
   const filters: Partial<ModuleFilter> = { courseId }
-  const { modules, loading, error } = useModule(filters)
-  if (error) {
-    console.error(error.message)
-  }
-  if (loading) {
-    console.log('loading')
-  }
+  const { modules, refetch } = useModule(filters)
+
+  // correcting the ordering fields if found a problem
+  const sortedModules = CourseModuleOrderingHelper(modules)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
+    const ordering =
+      sortedModules && sortedModules.length > 0
+        ? sortedModules[sortedModules.length - 1].ordering! + 1
+        : undefined
+
     const defaultValues: ModuleFormType = {
       id: undefined,
       courseId: courseId,
       title: '',
       description: undefined,
-      ordering: undefined,
+      ordering,
       status: STATUS_ACTIVE.Active
     }
     offCanvas.show({
@@ -56,7 +58,7 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
   return (
     <Row>
       <Column md="6">
-        {modules?.map((module: Module) => (
+        {sortedModules?.map((module: Module) => (
           <>
             <Space key={`space-${module.id}`} />
             <Details2
@@ -72,10 +74,19 @@ export const ClientLessons = ({ courseId }: { courseId: number }) => {
                   status={module.status}
                   description={module.description}
                   ordering={module.ordering}
+                  modules={sortedModules}
+                  lessons={module.lessons}
+                  onChanged={refetch!}
                 />
               }
             >
-              <LessonTable key={`table-${module.id}`} courseId={courseId} moduleId={module.id} />
+              <LessonTable
+                key={`table-${module.id}`}
+                courseId={courseId}
+                moduleId={module.id}
+                lessons={module.lessons}
+                onChanged={refetch!}
+              />
             </Details2>
           </>
         ))}

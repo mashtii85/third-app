@@ -3,15 +3,14 @@
  */
 
 // Types
+import { Sortable } from './baseTypes.d'
 import { Lesson } from './lesson.d'
 import { STATUS_ACTIVE } from './select.d'
 
-export interface Module {
-  id: number
+export interface Module extends Sortable {
   course_id: number
   title: string
   description: string
-  ordering?: number
   status: STATUS_ACTIVE
   lessons?: Lesson[]
 }

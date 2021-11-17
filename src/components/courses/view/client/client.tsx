@@ -5,11 +5,12 @@
 // UI
 import { Tabs } from '@drykiss/industry-ui'
 import { Tab } from '../../../common/tab'
-import { ClientDetails, ClientLessons, EnrolledCourses, ClientResources } from './tabs'
+import { ClientDetails, EnrolledCourses, ClientResources } from './tabs'
 
 // Next
 import { useRouter } from 'next/router'
 import { CLIENT_TAB } from '../types.d'
+import { ClientCourseModule } from './tabs/curriculum/courseModules'
 
 export const ClientCourseView = () => {
   const { query } = useRouter()
@@ -36,7 +37,7 @@ export const ClientCourseView = () => {
           <ClientDetails courseId={courseId} />
         </Tab>
         <Tab active={tab() === CLIENT_TAB.Curriculum} label={CLIENT_TAB.Curriculum}>
-          <ClientLessons courseId={courseId} />
+          <ClientCourseModule courseId={courseId} />
         </Tab>
         <Tab active={tab() === CLIENT_TAB.Enrollments} label={CLIENT_TAB.Enrollments}>
           <EnrolledCourses courseId={courseId} />

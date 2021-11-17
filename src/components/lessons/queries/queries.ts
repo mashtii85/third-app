@@ -11,7 +11,11 @@ import { TAXONOMY_FIELDS } from '../../taxonomies/queries/fragments'
 import { LESSON_FIELDS } from './fragments'
 
 export const GET_LESSONS = gql`
-  query GetLessons($limit: Int = 100, $order_by: [lesson_order_by!] = {}, $where: lesson_bool_exp) {
+  query GetLessons(
+    $limit: Int = 100
+    $order_by: [lesson_order_by!] = { ordering: asc_nulls_last }
+    $where: lesson_bool_exp
+  ) {
     lessons: lesson(where: $where, limit: $limit, order_by: $order_by) {
       ...LessonFields
       taxonomies {
@@ -65,28 +69,12 @@ export const DELETE_LESSON_BY_PK = gql`
   }
 `
 
-export const INSERT_LESSON_ONE = gql`
-  mutation CreateLesson(
-    $courseId: Int!
-    $moduleId: Int!
-    $title: String
-    $description: String
-    $type: String
-    $content: String
-    $status: String
-  ) {
-    insert_lesson_one(
-      object: {
-        course_id: $courseId
-        module_id: $moduleId
-        title: $title
-        description: $description
-        type: $type
-        content: $content
-        status: $status
+export const CREATE_LESSON = gql`
+  mutation CreateLesson($objects: [lesson_insert_input!]!) {
+    lessons: insert_lesson(objects: $objects) {
+      returning {
+        ...LessonFields
       }
-    ) {
-      ...LessonFields
     }
   }
   ${LESSON_FIELDS}

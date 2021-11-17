@@ -140,7 +140,7 @@ export const Buttons = ({
         key={`${type}-file-upload`}
         context={THEME_CONTEXT.secondary}
         size={SIZE.SM}
-        content={type.replace(/(\w)(\w*)/g, (p0, p1, p2) => p1.toUpperCase() + p2.toLowerCase())}
+        content={type.replace(/(\w)(\w*)/g, (_, p1, p2) => p1.toUpperCase() + p2.toLowerCase())}
         onClick={() => handleFileUpload(type)}
         disabled={state?.fileCaption && state.fileCaption !== ''}
       />

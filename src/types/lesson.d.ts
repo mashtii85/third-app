@@ -7,6 +7,7 @@ import { LessonProgress } from './lessonProgress.d'
 import { Module } from './module.d'
 import { Video } from '../components/common/videoPlayer/type.d'
 import { Taxonomy } from './taxonomy.d'
+import { Sortable } from './baseTypes.d'
 
 export enum LESSON_TYPE {
   Text = 'text',
@@ -22,16 +23,17 @@ export enum LESSON_STATUS {
   Inactive = 'inactive'
 }
 
-type VideoLesson = {
-  id: number
+type BaseLesson = Sortable & {
   course_id: number
   module_id: number
+}
+
+type VideoLesson = BaseLesson & {
   type: LESSON_TYPE.Video
   title: string
   description?: string
   content: string
   media: Medium[]
-  ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
   taxonomies?: Taxonomy[]
@@ -68,10 +70,7 @@ type ShortTextAnswer = {
 
 export type QuizQuestion = SelectAnswer | ShortTextAnswer
 
-type QuizLesson = {
-  id: number
-  course_id: number
-  module_id: number
+type QuizLesson = BaseLesson & {
   type: LESSON_TYPE.Quiz
   questions: QuizQuestion[]
   title: string
@@ -89,16 +88,12 @@ type QuizLesson = {
 
 // separate these lessons when ever properties differ, like VideoLesson
 // VideoLesson is separated because it's media property is not optional
-type OtherLessons = {
-  id: number
-  module_id: number
-  course_id: number
+type OtherLessons = BaseLesson & {
   type: LESSON_TYPE.Text | LESSON_TYPE.Assignment | LESSON_TYPE.Pdf | LESSON_TYPE.PowerPoint
   title: string
   description?: string
   content: string
   media?: Medium[]
-  ordering?: number
   status: LESSON_STATUS
   lesson_progresses: LessonProgress[]
   taxonomies?: Taxonomy[]

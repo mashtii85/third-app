@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { INSERT_LESSON_ONE, GET_LESSONS } from '../../queries/queries'
+import { CREATE_LESSON, GET_LESSONS } from '../../queries/queries'
 
 // Types
 import { LessonCreateData, LessonCreateVariables, UseCreateLessonOutput } from './types.d'
@@ -17,7 +17,7 @@ export const useCreateLesson = (
   props: UseHookProps<LessonCreateData>
 ): UseCreateLessonOutput => {
   const [createLesson, { error, loading }] = useMutation<LessonCreateData, LessonCreateVariables>(
-    INSERT_LESSON_ONE,
+    CREATE_LESSON,
     {
       onCompleted: props.onCompleted,
       onError: props.onError,
@@ -34,7 +34,7 @@ export const useCreateLesson = (
         cache.writeQuery({
           query: GET_LESSONS,
           variables,
-          data: { lessons: [...lessons, data?.insert_lesson_one] }
+          data: { lessons: [...lessons, data?.lessons?.returning] }
         })
       }
     }

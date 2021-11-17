@@ -2,14 +2,21 @@
  * Components - Lessons - Form - types.d
  */
 
-import { LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson'
+import { LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson.d'
 
 export interface LessonFormType {
-  id: number | undefined
+  id: number
   title: string
-  description: string | undefined
+  description: string
   type: LESSON_TYPE
+  ordering: number
   status: LESSON_STATUS
+}
+
+export type LessonUpsertFormFilterType = {
+  id: number
+  courseId: number
+  moduleId: number
 }
 
 export interface LESSON_TYPE_DROPDOWN {

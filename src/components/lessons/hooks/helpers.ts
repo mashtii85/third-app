@@ -2,15 +2,18 @@
  * Components - Lessons - Hooks - helpers
  */
 
-import { nullFreeObject } from '../../../utils/nullFreeObject'
-
 // Types
-import { LooseObject } from '../../../types/object.d'
+import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
+import { Lesson } from '../../../types/lesson.d'
+import { LessonFilter } from './useLesson/types.d'
 
-export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseObject => {
-  nullFreeObject(filters)
+export const prepareArguments = ({
+  filters
+}: {
+  filters?: Partial<LessonFilter>
+}): GQLClause<Lesson> => {
+  const whereClause: GraphqlWhere<Lesson> = {}
 
-  const whereClause: LooseObject = {}
   if (filters?.id) {
     whereClause.id = { _eq: filters.id }
   }
@@ -32,12 +35,15 @@ export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseO
   }
 
   if (filters?.content) {
-    whereClause.contetn = { _ilike: filters.contetn }
+    whereClause.content = { _ilike: filters.content }
   }
 
   if (filters?.status) {
     whereClause.status = { _eq: filters.status }
   }
 
-  return whereClause
+  const variables: GQLClause<Lesson> = {
+    where: whereClause
+  }
+  return variables
 }

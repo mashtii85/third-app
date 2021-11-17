@@ -12,7 +12,6 @@ import { Table, OffCanvasContext } from '@drykiss/industry-ui'
 import { columns, rows } from './helpers'
 
 // Hooks
-import { useLessons } from '../../hooks/useLesson/useLessons'
 import { useSwapLesson } from '../../hooks/useSwapLessons/useSwapLessons'
 
 // Forms
@@ -25,17 +24,19 @@ import { ENTITIES } from '../../../../constants/entities'
 
 // Types
 import { LessonTableRowsType } from '../table/types.d'
-import { LessonFormType } from '../../form/create/types.d'
+import { LessonFormType, LessonUpsertFormFilterType } from '../../form/create/types.d'
 import { MediaTableProps } from '../../../media/lists/table/types.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { offCanvasType } from '../../../../types/offCanvas.d'
 import { UseLessonsProps } from '../../hooks/useLesson/types.d'
 import { SwapLessonsProps } from '../../hooks/useSwapLessons/types.d'
+import { LessonOrderingHelper } from '../orderingHelper'
 
-export const LessonTable = (filters: Partial<UseLessonsProps>) => {
+export const LessonTable = ({ courseId, moduleId, lessons, onChanged }: UseLessonsProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const { lessonList, loading } = useLessons(filters)
+
+  const sortedLessons = LessonOrderingHelper(lessons)
 
   const { updateLesson } = useSwapLesson({
     onCompleted: () => { },
@@ -49,9 +50,12 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
       content: (
         <DeleteLessonForm
           id={row.id!}
-          moduleId={filters.moduleId as number}
+          moduleId={moduleId}
           title={row.title}
-          onSuccess={offCanvas.close}
+          onSuccess={() => {
+            offCanvas.close()
+            onChanged()
+          }}
         />
       ),
       submit: false,
@@ -60,8 +64,9 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   }
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
-    const defaultValues: LessonFormType = {
-      id: row.id,
+    const filters: Partial<LessonUpsertFormFilterType> = { courseId, moduleId }
+    const defaultValues: Partial<LessonFormType> = {
+      id: row.id!,
       title: row.title,
       description: row.description,
       type: row.type,
@@ -92,10 +97,10 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   }
 
   const handleArrowUp = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
-    const selectedIndex = lessonList.findIndex((lesson) => lesson.id === row.id)
+    const selectedIndex = sortedLessons!.findIndex((lesson) => lesson.id === row.id)
     if (selectedIndex === 0) return
-    const down = lessonList[selectedIndex - 1]
-    const up = lessonList[selectedIndex]
+    const down = sortedLessons![selectedIndex - 1]
+    const up = sortedLessons![selectedIndex]
     const variables: SwapLessonsProps = {
       downId: down.id,
       downOrdering: up.ordering!,
@@ -106,10 +111,10 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   }
 
   const handleArrowDown = (_: MouseEvent<HTMLElement>, row: LessonTableRowsType) => {
-    const selectedIndex = lessonList.findIndex((lesson) => lesson.id === row.id)
-    if (selectedIndex === lessonList.length - 1) return
-    const down = lessonList[selectedIndex]
-    const up = lessonList[selectedIndex + 1]
+    const selectedIndex = sortedLessons!.findIndex((lesson) => lesson.id === row.id)
+    if (selectedIndex === sortedLessons!.length - 1) return
+    const down = sortedLessons![selectedIndex]
+    const up = sortedLessons![selectedIndex + 1]
     const variables: SwapLessonsProps = {
       downId: down.id,
       downOrdering: up.ordering!,
@@ -120,17 +125,22 @@ export const LessonTable = (filters: Partial<UseLessonsProps>) => {
   }
 
   return (
-    <Table
-      loading={loading}
-      columns={columns({
-        lessons: lessonList,
-        handleDelete,
-        handleEdit,
-        handleFileUpload,
-        handleArrowUp,
-        handleArrowDown
-      })}
-      rows={rows(lessonList)}
-    />
+    <>
+      {sortedLessons && sortedLessons?.length > 0 ? (
+        <Table
+          columns={columns({
+            lessons: sortedLessons,
+            handleDelete,
+            handleEdit,
+            handleFileUpload,
+            handleArrowUp,
+            handleArrowDown
+          })}
+          rows={rows(sortedLessons)}
+        />
+      ) : (
+        'No Lesson'
+      )}
+    </>
   )
 }

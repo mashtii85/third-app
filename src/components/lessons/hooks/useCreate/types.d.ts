@@ -17,7 +17,7 @@ export interface LessonCreateVariables {
 }
 
 export interface LessonCreateData {
-  insert_lesson_one: Lesson
+  lessons: { returning: Lesson[] }
 }
 
 export interface UseCreateLessonOutput extends UseHookOutput {

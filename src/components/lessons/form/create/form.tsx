@@ -6,25 +6,31 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
+// Hooks
+import { useCreateLesson } from '../../hooks/useCreate/useCreate'
+import { useUpdateLesson } from '../../hooks/useUpdate/useUpdate'
+
 // UI
 import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss/industry-ui'
 
 import { lessonSchema as schema } from './schema'
 
 // Types
-import { LessonFormType, LESSON_TYPE_DROPDOWN, LESSON_STATUS_DROPDOWN } from './types.d'
-import { useCreateLesson } from '../../hooks/useCreate/useCreate'
-import { useUpdateLesson } from '../../hooks/useUpdate/useUpdate'
-import { LooseObject } from '../../../../types/object'
+import {
+  LessonFormType,
+  LESSON_TYPE_DROPDOWN,
+  LESSON_STATUS_DROPDOWN,
+  LessonUpsertFormFilterType
+} from './types.d'
 
 export const LessonForm = ({
   filters,
   onSuccess,
-  defaultValues = {}
+  defaultValues
 }: {
-  filters: LooseObject
-  onSuccess: () => void
-  defaultValues: LessonFormType | LooseObject
+  filters: Partial<LessonUpsertFormFilterType>
+  onSuccess: (data: any) => void
+  defaultValues: Partial<LessonFormType>
 }) => {
   const lessonType: LESSON_TYPE_DROPDOWN[] = [
     { text: 'Text', value: 'text' },
@@ -41,11 +47,11 @@ export const LessonForm = ({
   ]
 
   const { control, errors, handleSubmit, register } = useForm<LessonFormType>({
-    defaultValues: defaultValues,
+    defaultValues,
     resolver: yupResolver(schema)
   })
 
-  const { createLesson } = useCreateLesson(filters.moduleId, {
+  const { createLesson } = useCreateLesson(filters.moduleId!, {
     onCompleted: onSuccess,
     onError: (error) => {
       console.error(error)
@@ -67,17 +73,19 @@ export const LessonForm = ({
 
   const onSubmit = async (form: LessonFormType) => {
     if (defaultValues?.id) {
-      updateLesson({ variables: { id: defaultValues.id, changes: form } })
+      await updateLesson({ variables: { id: defaultValues.id, changes: form } })
     } else {
+      const obj = {
+        course_id: filters.courseId,
+        module_id: filters.moduleId,
+        title: form.title,
+        description: form.description ?? '',
+        type: form.type,
+        ordering: defaultValues.ordering,
+        status: form.status
+      }
       await createLesson({
-        variables: {
-          courseId: filters.courseId,
-          moduleId: filters.moduleId,
-          title: form.title,
-          description: form.description ?? '',
-          type: form.type,
-          status: form.status
-        }
+        variables: { objects: [obj] }
       })
     }
   }

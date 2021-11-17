@@ -5,18 +5,19 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_LESSONS } from '../../queries/queries'
+
+// Helpers
 import { prepareArguments } from '../helpers'
 
 // Types
-import { LessonsData, LessonsVariables, LessonFilter } from './types.d'
+import { LessonsData, LessonFilter } from './types.d'
+import { GQLClause } from '../../../../types/gql.d'
+import { Lesson } from '../../../../types/lesson.d'
 
 export const useLessons = (filters: Partial<LessonFilter>) => {
-  const where = prepareArguments({ filters })
-  const { data, error, loading, refetch } = useQuery<LessonsData, LessonsVariables>(GET_LESSONS, {
-    variables: {
-      where,
-      order_by: { ordering: 'asc' }
-    }
+  const variables = prepareArguments({ filters })
+  const { data, error, loading, refetch } = useQuery<LessonsData, GQLClause<Lesson>>(GET_LESSONS, {
+    variables
   })
 
   if (error) {

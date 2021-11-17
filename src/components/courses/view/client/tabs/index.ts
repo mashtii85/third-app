@@ -3,6 +3,6 @@
  */
 
 export { ClientDetails } from './details'
-export { ClientLessons } from './curriculum/lessons'
+export { ClientCourseModule } from './curriculum/courseModules'
 export { EnrolledCourses } from './enrollments'
 export { ClientResources } from './resources/view'

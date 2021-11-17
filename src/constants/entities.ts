@@ -13,5 +13,6 @@ export enum ENTITIES {
   Medium = 'medium',
   Taxonomy = 'taxonomy',
   User = 'user',
-  Post = 'post'
+  Post = 'post',
+  Module = 'module'
 }
