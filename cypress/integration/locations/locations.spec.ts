@@ -5,8 +5,9 @@ enum BUTTONS {
 const timer = 1500
 describe('/Locations', () => {
   before(() => {
-    cy.login('client')
-    cy.visit('/dashboard/locations')
+    const { client } = Cypress.env('users')
+
+    cy.login(client.email, client.password).then(() => cy.visit('/dashboard/locations'))
   })
 
   it('should show Filters and Grid', () => {

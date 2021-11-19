@@ -1,37 +1,41 @@
 /**
  * Cypress - Support - Commands - Auth
  */
-import { ACCOUNT_TYPE } from '../../../src/types/account'
-// Login
-// Accepted types: admin, supplier
-export const _singIn = (): void => {
-  cy.request({
-    method: 'POST',
-    url: 'http://localhost:3000/api/users/login',
-    body: {
-      user: {
-        email: 'uaefa@example.com',
-        password: 'Lms1234!'
+
+export const login = (email: string, password: string): any => {
+  const timer = 1000
+  cy.dataSession({
+    name: 'login',
+    setup() {
+      cy.request({
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        url: 'http://localhost:3100/api/auth/login',
+        method: 'POST',
+        body: {
+          email,
+          password
+        }
+      })
+        .then((response) => {
+          if (response?.body?.token) {
+            window.localStorage.setItem('bearerToken', response.body.token)
+            return { bearerToken: response.body.token }
+          }
+          return null
+        })
+        .wait(timer)
+    },
+    validate(saved) {
+      if (saved.bearerToken != null) {
+        window.localStorage.setItem('bearerToken', saved.bearerToken)
+        return true
       }
-    }
-  }).then((resp) => {
-    window.localStorage.setItem('jwt', resp.body.user.token)
+      return false
+    },
+    recreate(saved) {
+      Cypress.env('bearerToken', saved.bearerToken)
+      cy.setCookie('bearerToken', saved.bearerToken)
+    },
+    shareAcrossSpecs: true
   })
-}
-
-export const login = (type: ACCOUNT_TYPE | string): void => {
-  const userType = type.toUpperCase()
-  cy.log(userType)
-  // _singIn()
-  cy.on('window:before:load', (win) => {
-    win.localStorage.setItem('bearerToken', Cypress.env(`token`))
-  })
-}
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      login: typeof login
-    }
-  }
 }

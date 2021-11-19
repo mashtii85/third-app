@@ -15,10 +15,11 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+// cypress/support/index.js
+import 'cypress-data-session'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -210,6 +211,12 @@ declare global {
        * @example cy.testViewPage(title: string = 'Details', el: string = 'summary')
        */
       testViewPage(title: string, el: string): Chainable<Element>
+
+      /**
+       * Custom command to Login
+       * @example cy.login(email?: string, password?: string)
+       */
+      login(email: string, password: string): Chainable<Element>
     }
   }
 }

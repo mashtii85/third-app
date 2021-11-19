@@ -3,6 +3,7 @@
  */
 
 import pages from '../../../src/config/pages'
+const timer = 1500
 describe('Accounts/Signin', () => {
   before(() => cy.visit(pages.account.signIn))
 
@@ -12,18 +13,23 @@ describe('Accounts/Signin', () => {
 
     cy.get('input[name="email"]').should('have.attr', 'type', 'text').should('be.empty')
 
-    cy.get('input[name="password"]').should('have.attr', 'type', 'password').should('be.empty')
+    cy.get('input[name="password"]')
+      .should('have.attr', 'type', 'password')
+      .should('be.empty')
+      .wait(timer)
   })
 
   it('Should display errors on incorrect input values', () => {
     cy.get('input[name="email"]')
       .type('text{enter}')
       .should('have.css', 'border-color', 'rgb(232, 9, 94)')
+      .wait(timer)
   })
 
   it('Should login successfully', () => {
-    cy.get('input[name="email"]').clear().type('uaefa@example.com')
-    cy.get('input[name="password"]').type(`Lms1234!{enter}`)
+    const { client } = Cypress.env('users')
+    cy.get('input[name="email"]').clear().type(client.email)
+    cy.get('input[name="password"]').type(`${client.password}{enter}`)
     cy.url({
       timeout: 60000
     }).should('include', '/dashboard')

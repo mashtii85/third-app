@@ -1,4 +1,3 @@
-import { login } from './commands/auth'
 import { getDetails2 } from './commands/details'
 import { getFilterComponent } from './commands/filter'
 import { offCanvasCheckHeader, offCanvasClose, offCanvasVisible } from './commands/offCanvas'
@@ -33,8 +32,7 @@ import {
   testListPage,
   testViewPage
 } from './commands/pages'
-
-Cypress.Commands.add('login', login)
+import { login } from './commands/auth'
 
 Cypress.Commands.add('dataCy', dataCy)
 
@@ -94,3 +92,6 @@ Cypress.Commands.add('testLayout', testLayout)
 Cypress.Commands.add('testListPage', testListPage)
 
 Cypress.Commands.add('testViewPage', testViewPage)
+
+// AUTH
+Cypress.Commands.add('login', login)

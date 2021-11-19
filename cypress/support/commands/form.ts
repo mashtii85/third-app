@@ -71,7 +71,7 @@ const formReactSelectByTyping = (name: string, optionName: string): any =>
 const formSelect = (name: string, option: string, force: boolean = false): any =>
   cy.get(`select[name="${name}"]`).select(option, { force })
 
-const reactSelectWorkflows = (fieldName: string, optionIndex: string): any =>
+const reactSelectWorkflows = (fieldName: string, optionIndex: number): any =>
   cy
     .get(fieldName)
     .click()
