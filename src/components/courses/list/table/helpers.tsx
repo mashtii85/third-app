@@ -53,12 +53,9 @@ export const columns = ({
       formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'title'),
       text: 'Title'
     },
-    {
-      text: 'Author'
-    },
-    {
-      text: 'Enrolled Users'
-    },
+    { text: 'Type' },
+    { text: 'Author' },
+    { text: 'Enrolled Users' },
     {
       hidden: true,
       text: 'Status'
@@ -97,6 +94,7 @@ export const rows = (courses: Course[] = []): CourseTableRowsType[] => {
       taxonomy_id: item.taxonomy_id,
       id: item.id,
       title: item.title,
+      type: item.taxonomy?.name,
       author: item.custom_fields?.author || '',
       enrolled: item.enrolled?.aggregate?.count ?? 0,
       status: item.status,

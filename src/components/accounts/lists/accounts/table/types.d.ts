@@ -38,6 +38,7 @@ export interface AccountsRow {
   client_id?: number
   actions?: ''
   type?: ACCOUNT_TYPE
+  memberType?: string
   taxonomy?: Options
   users?: User[]
 }

@@ -4,16 +4,13 @@
 
 // Types
 import { GQLClause, GraphqlWhere } from '../../../../types/gql'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { Location } from '../../types'
 import { PrepareLocationArgumentProps } from './types.d'
 
 export const prepareLocationsArguments = ({
   filters
 }: PrepareLocationArgumentProps): GQLClause<Location> => {
-  const condition: GraphqlWhere<Location> = {
-    status: { _eq: STATUS_ACTIVE.Active }
-  }
+  const condition: GraphqlWhere<Location> = {}
 
   if (filters?.accountId) {
     condition.account_id = { _eq: filters.accountId }

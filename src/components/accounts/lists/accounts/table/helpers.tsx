@@ -18,7 +18,7 @@ import {
 import { formatToValidDate } from '../../../../../utils/dateFormatter'
 
 // Forms
-import { Account, ACCOUNT_TYPE } from '../../../../../types/account'
+import { Account, ACCOUNT_TYPE } from '../../../../../types/account.d'
 import { Column } from '../../../../../types/column'
 
 import { UpsertAccount } from '../../../forms'
@@ -26,9 +26,9 @@ import { UpsertAccount } from '../../../forms'
 import pages from '../../../../../config/pages'
 
 // Types
-import { AccountFilters } from '../../../types'
-import { AccountsRow } from './types'
-import { offCanvasType } from '../../../../../types/offCanvas'
+import { AccountFilters } from '../../../types.d'
+import { AccountsRow } from './types.d'
+import { offCanvasType } from '../../../../../types/offCanvas.d'
 // Constants
 
 import { THEME_CONTEXT } from '../../../../../constants/themeContext'
@@ -96,20 +96,14 @@ export const columns = ({
       text: 'Last Name',
       hidden: true
     },
-
-    {
-      text: 'User'
-    },
+    { text: 'User' },
+    { text: 'Type' },
     {
       text: 'Verified',
       formatter: ({ row }) => (row?.verified ? 'Yes' : 'No' ?? 'No')
     },
-    {
-      text: 'Email'
-    },
-    {
-      hidden: true
-    },
+    { text: 'Email' },
+    { hidden: true },
     {
       text: 'Status',
       formatter: ({ row }) => capitalize(row.status)
@@ -149,6 +143,7 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       firstName: user?.name_first,
       lastName: user?.name_last,
       user: `${user?.name_first ?? ''} ${user?.name_last ?? ''}`,
+      memberType: taxonomy?.label,
       verified: user?.email_verified,
       email: user?.email,
       url: pages?.dashboard?.accounts?.view,

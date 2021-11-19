@@ -40,9 +40,8 @@ export const columns = ({
       // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'name'),
       text: 'Title'
     },
-    {
-      text: 'Status'
-    },
+    { text: 'Type' },
+    { text: 'Status' },
     {
       text: 'Custom Fields',
       hidden: true
@@ -97,6 +96,7 @@ export const rows = (events: Event[]): EventTableRowsType[] => {
     return {
       id: item.id,
       title: item.title,
+      type: item.taxonomy?.name,
       status: item.status,
       taxonomy: item.taxonomy,
       custom_fields: item.custom_fields,

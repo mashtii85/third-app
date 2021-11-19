@@ -45,9 +45,8 @@ export const columns = ({
       // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'name'),
       text: 'Name'
     },
-    {
-      text: 'Status'
-    },
+    { text: 'Type' },
+    { text: 'Status' },
     {
       text: 'Custom Fields',
       hidden: true
@@ -82,10 +81,11 @@ export const columns = ({
 }
 
 export const rows = (locations: Location[]): LocationTableRowsType[] => {
-  const list = locations.map((item) => {
+  const list: LocationTableRowsType[] = locations.map((item) => {
     return {
       id: item.id,
       name: item.name,
+      type: item.taxonomy?.name,
       status: item.status,
       taxonomy: item.taxonomy,
       custom_fields: item.custom_fields,
