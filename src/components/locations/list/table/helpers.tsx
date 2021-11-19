@@ -109,7 +109,11 @@ export const Toolbar = ({ filters }: { filters: LocationFilter }) => {
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create a location" />
+  return (
+    <div data-cy="create-location-button">
+      <Button context="white" onClick={handleClick} size="sm" content="Create a location" />
+    </div>
+  )
 }
 
 export const prepareLocationUpsertVariables = (row: LocationTableRowsType) => {

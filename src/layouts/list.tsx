@@ -33,21 +33,23 @@ export const LayoutList = ({
   }, [query])
 
   return (
-    <Row>
-      <Column sm={12} lg={12}>
-        {FiltersComp && (
-          <Filters
-            initialValues={initialFilters}
-            query={query}
-            renderFilters={(form: JSX.Element) => {
-              return <FiltersComp {...form} {...otherProps} />
-            }}
-            setFilters={setFilters}
-          />
-        )}
+    <div data-cy="layout-list">
+      <Row>
+        <Column sm={12} lg={12}>
+          {FiltersComp && (
+            <Filters
+              initialValues={initialFilters}
+              query={query}
+              renderFilters={(form: JSX.Element) => {
+                return <FiltersComp {...form} {...otherProps} />
+              }}
+              setFilters={setFilters}
+            />
+          )}
 
-        <TableComp filters={filters} initialFilters={initialFilters} {...otherProps} />
-      </Column>
-    </Row>
+          <TableComp filters={filters} initialFilters={initialFilters} {...otherProps} />
+        </Column>
+      </Row>
+    </div>
   )
 }

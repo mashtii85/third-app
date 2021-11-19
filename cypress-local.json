@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:5000",
-  "defaultCommandTimeout": 10000,
-  "port": 8000,
-  "projectId": "3rydvs",
-  "viewportHeight": 1080,
-  "viewportWidth": 1920,
-  "video": false
-}

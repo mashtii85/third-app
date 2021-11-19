@@ -13,7 +13,7 @@ export const EventsCalendar = () => {
   const events = prepareCalendarEvents(eventList)
 
   return (
-    <Details2 fitParentHeight title="Events" open>
+    <Details2 dataSet={{ 'data-cy': 'ppm' }} fitParentHeight title="Events" open>
       <Calendar
         // dateClick={dateClick}
         // eventClick={eventClick}

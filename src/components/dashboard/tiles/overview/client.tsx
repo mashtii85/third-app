@@ -28,12 +28,14 @@ export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewPro
   console.error(error)
 
   return (
-    <>
-      <Tiles accountType={ACCOUNT_TYPE.Client} items={items} />
+    <div data-cy="ClientDashboard">
+      {/* <div data-cy="client-tiles"> */}
+      <Tiles data-cy={'client-tiles'} accountType={ACCOUNT_TYPE.Client} items={items} />
+      {/* </div> */}
 
       <Space marginBottom="md" />
 
       <EventsCalendar />
-    </>
+    </div>
   )
 }

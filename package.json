@@ -10,10 +10,12 @@
     "test": "tsc",
     "lint": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore",
     "lint:fix": "npx eslint . --ext .js,ts,tsx --ignore-path .gitignore --fix",
-    "cy:start": "cypress open -C ./cypress-dev.json",
-    "cy:start:serve": "cypress open -C ./cypress-local.json",
-    "cy:test": "npm run package && start-server-and-test serve 5000 cy:run",
-    "cy:run": "cypress run -C ./cypress-local.json",
+    "cy:open": "cypress open -C ./cypress-dev.json",
+    "cy:run": "cypress run -C ./cypress-dev.json",
+    "cy:start": "start-server-and-test start 3100 cy:open",
+    "cy:start:build": "npm run build && start-server-and-test start:build 3100 cy:open",
+    "cy:test": "start-server-and-test start 3100 cy:run",
+    "cy:test:build": "npm run build && start-server-and-test start:build 3100 cy:run",
     "clean-cache": "rimraf -rf ./node_modules/.cache",
     "build": "rimraf -rf ./.next && next build",
     "export": "next export -s",
@@ -71,7 +73,7 @@
     "@typescript-eslint/parser": "4.31.1",
     "babel-plugin-styled-components": "1.13.2",
     "babel-plugin-transform-require-ignore": "0.1.1",
-    "cypress": "8.4.0",
+    "cypress": "^9.0.0",
     "cypress-dotenv": "1.2.2",
     "dotenv": "10.0.0",
     "eslint": "7.32.0",
@@ -96,6 +98,7 @@
     "prettier-config-standard": "4.0.0",
     "push-dir": "0.4.1",
     "serve": "12.0.1",
+    "start-server-and-test": "1.14.0",
     "typescript": "4.4.3"
   }
 }
