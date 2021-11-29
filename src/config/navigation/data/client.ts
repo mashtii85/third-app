@@ -2,29 +2,48 @@
  * Navigation - Data - Client
  */
 
-// Types
-import type { Navigation } from '../../../types/navigation'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
-
 // Helpers
 import { prepareTaxonomyNavigation } from './helpers'
 
 import pages from '../../pages'
 
-export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
-  const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Location)
-  const courseTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Course)
-  const eventTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Event)
+// Types
+import type { Navigation } from '../../../types/navigation'
+import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { Account } from '../../../types/account.d'
+
+export const Client = ({
+  account,
+  taxonomies
+}: {
+  account: Account | undefined
+  taxonomies: Partial<Taxonomy[]>
+}): Partial<Navigation> => {
   const memberTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Member)
 
-  return {
-    right: [
-      {
-        id: 'navHomeMenu',
-        name: 'Home',
-        to: pages.dashboard.root
-      },
-      {
+  // console.log('ACCOUNT_TYPE.Client', taxonomies)
+  const menu: any[] = [
+    {
+      id: 'navMembersMenu',
+      name: 'Members',
+      type: {
+        as: 'dropdown',
+        items: [
+          ...(memberTypes.length > 1 ? memberTypes : []),
+          {
+            id: 'navMembersList',
+            name: 'All Members',
+            to: pages.dashboard.accounts.list
+          }
+        ]
+      }
+    }
+  ]
+  if (account && account.meta) {
+    const { locations, events, learning } = account.meta
+    if (locations) {
+      const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Location)
+      menu.push({
         id: 'navLocationsMenu',
         name: 'Locations',
         type: {
@@ -38,8 +57,11 @@ export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
             }
           ]
         }
-      },
-      {
+      })
+    }
+    if (events) {
+      const eventTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Event)
+      menu.push({
         id: 'navEventsMenu',
         name: 'Events',
         type: {
@@ -53,8 +75,11 @@ export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
             }
           ]
         }
-      },
-      {
+      })
+    }
+    if (learning) {
+      const courseTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Course)
+      menu.push({
         id: 'navLearningMenu',
         name: 'Learning',
         type: {
@@ -77,22 +102,17 @@ export const Client = (taxonomies: Partial<Taxonomy[]>): Navigation => {
             }
           ]
         }
-      },
+      })
+    }
+  }
+  return {
+    right: [
       {
-        id: 'navMembersMenu',
-        name: 'Members',
-        type: {
-          as: 'dropdown',
-          items: [
-            ...(memberTypes.length > 1 ? memberTypes : []),
-            {
-              id: 'navMembersList',
-              name: 'All Members',
-              to: pages.dashboard.accounts.list
-            }
-          ]
-        }
+        id: 'navHomeMenu',
+        name: 'Home',
+        to: pages.dashboard.root
       },
+      ...menu,
       {
         id: 'navAccount',
         icon: 'cog',

@@ -41,4 +41,6 @@ export interface AccountsRow {
   memberType?: string
   taxonomy?: Options
   users?: User[]
+  meta?: any
+  clientModules?: string[]
 }

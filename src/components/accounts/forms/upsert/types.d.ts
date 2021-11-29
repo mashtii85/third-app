@@ -23,4 +23,18 @@ export interface CreateAccountForm {
   add_contact_user?: boolean
   isCreateUser?: string
   type: string
+  meta: any
+  clientModules: string[]
+}
+
+export interface ClientModuleProps {
+  locations: boolean
+  events: boolean
+  learning: boolean
+}
+
+export enum CLIENT_MODULE_TYPE {
+  Locations = 'locations',
+  Events = 'events',
+  Learning = 'learning'
 }

@@ -123,6 +123,10 @@ export const columns = ({
     {
       text: 'custom_fields',
       hidden: true
+    },
+    {
+      text: 'meta',
+      hidden: true
     }
   ]
 }
@@ -151,7 +155,8 @@ export const rows = (accounts?: Account[]): AccountsRow[] | [] => {
       created_at: formatDateStandard(account?.created_at),
       actions: '',
       taxonomy,
-      custom_fields: account?.custom_fields
+      custom_fields: account?.custom_fields,
+      meta: account?.meta
     }
     list.push(model)
   })
@@ -170,7 +175,10 @@ export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilte
         <UpsertAccount
           onSuccess={offCanvas.close}
           filters={filters}
-          defaultValues={{ password: randomPassword }}
+          defaultValues={{
+            password: randomPassword,
+            meta: { locations: false, events: false, learning: false }
+          }}
         />
       ),
       submit: true,

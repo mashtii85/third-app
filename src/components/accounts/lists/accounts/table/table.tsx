@@ -8,16 +8,17 @@ import { MouseEvent, useContext } from 'react'
 import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useAccounts } from '../../../hooks'
 
-// Types
-import { AccountsRow, AccountTableProps } from './types'
-import { offCanvasType } from '../../../../../types/offCanvas'
-
 // Hooks
 import { columns, rows, UserAccountToolbar, prepareAccountDefaultValues } from './helpers'
 import { useTable } from '../../../../common/hooks/useTable'
 import { DeleteAccountForm, UpsertAccount } from '../../../forms'
 import { GroupEntitiesTable } from '../../../../groupEntities/table/table'
 import { ENTITIES } from '../../../../../constants/entities'
+
+// Types
+import { AccountsRow, AccountTableProps } from './types.d'
+import { offCanvasType } from '../../../../../types/offCanvas.d'
+import { CLIENT_MODULE_TYPE } from '../../../forms/upsert/types.d'
 
 const initialSort = {}
 
@@ -31,6 +32,12 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: AccountsRow) => {
+    const clientModules: string[] = []
+    Object.keys(CLIENT_MODULE_TYPE).forEach((key) => {
+      const keyname = key.toLocaleLowerCase()
+      if (row?.meta && row?.meta[keyname] === true) clientModules.push(keyname)
+    })
+    row.clientModules = [...clientModules]
     const defaultValues = prepareAccountDefaultValues({
       row,
       accountId: filters?.accountId,

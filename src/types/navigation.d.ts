@@ -2,17 +2,25 @@
  * Types - Navigation
  */
 
-export interface NavLink {
-  divider?: boolean
-  icon?: string
+export interface NavLinkItem {
   id: string
-  name?: string
-  prefix?: string
-  to?: string
-  type?: any
+  name: string
+  to: string
+}
+
+export interface NavLinkType {
+  as: string
+  items: Partial<NavLinkItem>[]
+}
+
+export interface NavLink extends NavLinkItem {
+  divider: boolean
+  icon: string
+  prefix: string
+  type: Partial<NavLinkType>
 }
 
 export interface Navigation {
-  left?: NavLink[]
-  right?: NavLink[]
+  left: Partial<NavLink>[]
+  right: Partial<NavLink>[]
 }

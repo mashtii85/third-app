@@ -18,7 +18,8 @@ export const prepareCreateAccount = (
     custom_fields: form.custom_fields,
     taxonomy_id: form.taxonomy.value,
     client_id: accountId,
-    type: accountType
+    type: accountType,
+    meta: form.meta
   }
 
   if (form.add_contact_user) {
@@ -57,7 +58,8 @@ export const prepareUpdateAccount = ({
       name: form.name,
       status: form.status,
       taxonomy_id: form.taxonomy.value,
-      custom_fields: form.custom_fields
+      custom_fields: form.custom_fields,
+      meta: form.meta
     }
   }
 

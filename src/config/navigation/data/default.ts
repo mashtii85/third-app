@@ -7,7 +7,7 @@ import { Navigation } from '../../../types/navigation.d'
 
 import pages from '../../pages'
 
-export const Default: Navigation = {
+export const Default: Partial<Navigation> = {
   right: [
     {
       id: 'navHome',

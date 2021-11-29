@@ -16,7 +16,12 @@ import { useCreateAccount, useUpdateAccount } from '../../hooks'
 import { TaxonomySelect } from '../../../taxonomies/select/select'
 
 // Types
-import { AccountFormProps, CreateAccountForm } from './types.d'
+import {
+  AccountFormProps,
+  ClientModuleProps,
+  CLIENT_MODULE_TYPE,
+  CreateAccountForm
+} from './types.d'
 import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
 
 // Helpers
@@ -25,6 +30,7 @@ import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import { ACCOUNT_TYPE } from '../../../../types/account.d'
 import { Options } from '../../../../types/options'
+import { CheckboxDataType } from '../../../lessons/view/components/assignment/forms/upsert/types'
 
 export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const { control, errors, handleSubmit, register, setError, watch } = useForm<any>({
@@ -58,15 +64,21 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
   })
 
   const submit = async (form: CreateAccountForm) => {
+    const meta: ClientModuleProps = { locations: false, events: false, learning: false }
+    Object.keys(CLIENT_MODULE_TYPE).forEach((key) => {
+      const keyname = key.toLocaleLowerCase()
+      meta[keyname as keyof ClientModuleProps] = form.clientModules.indexOf(keyname) >= 0
+    })
+
     if (defaultValues?.id) {
+      form.meta = { ...defaultValues.meta, ...meta }
       const variables = prepareUpdateAccount({
         form,
         accountId: defaultValues.id
       })
-      updateAccount({
-        variables
-      })
+      updateAccount({ variables })
     } else {
+      form.meta = { ...meta }
       const object = prepareCreateAccount(form, filters?.userType, filters?.userId)
       createAccount({ variables: { object } })
     }
@@ -82,10 +94,19 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
     filters?.accountType === ACCOUNT_TYPE.Admin ? TAXONOMY_TYPE.Client : TAXONOMY_TYPE.Member
   const showTaxonomy =
     filters?.accountType === ACCOUNT_TYPE.Admin || filters?.accountType === ACCOUNT_TYPE.Client
+  const showClientModules = filters?.accountType === ACCOUNT_TYPE.Admin
 
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
   const addContactUserWatch = watch('add_contact_user')
+
+  const clientModules = (): CheckboxDataType[] => {
+    const result = Object.keys(CLIENT_MODULE_TYPE).map((key) => ({
+      label: key,
+      value: CLIENT_MODULE_TYPE[key as keyof typeof CLIENT_MODULE_TYPE]
+    }))
+    return result
+  }
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
@@ -107,6 +128,12 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
             />
           )}
         </>
+      )}
+
+      {showClientModules && (
+        <FormLabel label="Client modules">
+          <Checkbox {...defaultOptions} name="clientModules" data={clientModules()} />
+        </FormLabel>
       )}
 
       <FormLabel label="Status">
