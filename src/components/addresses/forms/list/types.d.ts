@@ -7,7 +7,7 @@ import { ENTITIES } from '../../../../constants/entities'
 
 export interface AddressTableRowsType {
   id?: number | undefined
-  entity: string
+  entity: ENTITIES
   entityId: number
   name: string
   line1: string
@@ -16,6 +16,7 @@ export interface AddressTableRowsType {
   city: string
   postcode: string
   county: string
+  meta: any
   status: ADDRESS_STATUS
   date: string
 }
@@ -23,5 +24,5 @@ export interface AddressTableRowsType {
 export interface AddressToolbarType {
   entity: ENTITIES
   entityId: number
-  type?: string
+  type: string
 }

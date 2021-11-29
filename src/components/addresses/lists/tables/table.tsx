@@ -3,38 +3,41 @@
  */
 
 // UI
-import { Details2, DetailsText } from '@drykiss/industry-ui'
+import { Details2, DetailsText, capitalize } from '@drykiss/industry-ui'
 
 // Helpers
 import { Toolbar } from './helpers'
 
 // Hooks
-import { useAddresses } from '../../hooks/useAddresses'
 
 // Type
-import { UseAddressProps } from '../../hooks/types'
-import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
+import { UseAddressProps } from '../../hooks/types.d'
+import { Address, ADDRESS_TYPE } from '../../../../types/address.d'
 
-export const AddressTable = ({ filters }: { filters: UseAddressProps }) => {
-  const { addressList } = useAddresses(filters)
-  const selectedAddress = (): Address | undefined => {
-    const address = addressList.find((add) => add.status === ADDRESS_STATUS.Active)
-    return address
-  }
-
+export const AddressTable = ({
+  addressType,
+  filters,
+  selectedAddress,
+  onCompleted
+}: {
+  addressType: ADDRESS_TYPE
+  filters: Partial<UseAddressProps>
+  selectedAddress?: Address
+  onCompleted: () => void
+}) => {
   return (
     <Details2
       open
       key={`${filters.entity}-${filters.entityId}`}
-      title="Selected address"
-      toolbar={<Toolbar filters={filters} />}
+      title={`${capitalize(addressType)} address`}
+      toolbar={<Toolbar addressType={addressType} filters={filters} onCompleted={onCompleted} />}
     >
-      {selectedAddress() ? (
+      {selectedAddress ? (
         <>
-          <DetailsText content="Name" text={selectedAddress()?.name} />
-          <DetailsText content="Line" text={selectedAddress()?.line1} />
-          <DetailsText content="City" text={selectedAddress()?.city} />
-          <DetailsText content="Postcode" text={selectedAddress()?.postcode} />
+          <DetailsText content="Name" text={selectedAddress?.name} />
+          <DetailsText content="Line" text={selectedAddress?.line1} />
+          <DetailsText content="City" text={selectedAddress?.city} />
+          <DetailsText content="Postcode" text={selectedAddress?.postcode} />
         </>
       ) : (
         <>

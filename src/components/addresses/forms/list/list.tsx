@@ -15,31 +15,53 @@ import { columns, rows } from './helpers'
 // Hooks
 import { useAddresses } from '../../hooks/useAddresses'
 
+// Forms
+import { AddressForm } from '../../forms/create/form'
+import { DeleteAddressForm } from '../../forms/delete/delete'
+import { useDefaultAddress } from '../../hooks/useDefaultAddress/useDefaultAddress'
+
 // Type
 import { UseAddressProps } from '../../hooks/types.d'
 import { AddressTableRowsType } from './types.d'
 import { AddressFormType } from '../../forms/create/types.d'
-import { ADDRESS_STATUS } from '../../../../types/address.d'
+import { ADDRESS_STATUS, ADDRESS_TYPE } from '../../../../types/address.d'
 import { offCanvasType } from '../../../../types/offCanvas.d'
+import { DefaultAddressHookProps } from '../../hooks/useDefaultAddress/types.d'
 
-// Forms
-import { AddressForm } from '../../forms/create/form'
-import { DeleteAddressForm } from '../../forms/delete/delete'
-
-export const AddressListForm = ({ filters }: { filters: UseAddressProps }) => {
+export const AddressListForm = ({
+  addressType,
+  filters,
+  onCompleted
+}: {
+  addressType: ADDRESS_TYPE
+  filters: Partial<UseAddressProps>
+  onCompleted: () => void
+}) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
   const { addressList, loading } = useAddresses(filters)
+
+  const handleCompleted = () => {
+    offCanvas.close()
+    onCompleted()
+  }
+
+  const { defaultAddress } = useDefaultAddress({
+    onCompleted: handleCompleted,
+    onError: (error) => {
+      console.error(error)
+    }
+  })
 
   const handleDelete = (_: MouseEvent<HTMLElement>, row: AddressTableRowsType): void => {
     offCanvas.show({
       content: (
         <DeleteAddressForm
           id={row.id!}
-          entity={filters.entity}
-          entityId={filters.entityId}
+          entity={filters.entity!}
+          entityId={filters.entityId!}
           type={filters.type}
           title={row.name}
-          onSuccess={offCanvas.close}
+          onSuccess={handleCompleted}
         />
       ),
       submit: false,
@@ -48,7 +70,7 @@ export const AddressListForm = ({ filters }: { filters: UseAddressProps }) => {
   }
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: AddressTableRowsType): void => {
-    const defaultValues: AddressFormType = {
+    const defaultValues: Partial<AddressFormType> = {
       id: row.id,
       entity: row.entity,
       entityId: row.entityId,
@@ -59,6 +81,7 @@ export const AddressListForm = ({ filters }: { filters: UseAddressProps }) => {
       city: row.city,
       postcode: row.postcode,
       county: row.county,
+      type: filters.type,
       status: row.status
     }
     offCanvas.show({
@@ -70,14 +93,29 @@ export const AddressListForm = ({ filters }: { filters: UseAddressProps }) => {
     })
   }
 
+  const handleChecked = async (_: MouseEvent<HTMLElement>, row: AddressTableRowsType) => {
+    const value = JSON.parse(`{"${addressType}": true}`)
+
+    const variables: DefaultAddressHookProps = {
+      id: row.id!,
+      entity: row.entity,
+      entityId: row.entityId,
+      deleteKey: addressType.toString(),
+      value
+    }
+
+    await defaultAddress({ variables })
+  }
+
   const handleClick = (e: MouseEvent): void => {
     e.stopPropagation()
     offCanvas.show({
       content: (
         <AddressForm
           filters={filters}
-          onSuccess={offCanvas.close}
+          onSuccess={handleCompleted}
           defaultValues={{
+            type: addressType,
             status: ADDRESS_STATUS.Active
           }}
         />
@@ -93,12 +131,10 @@ export const AddressListForm = ({ filters }: { filters: UseAddressProps }) => {
         fullHeight
         align
         loading={loading}
-        columns={columns({ handleDelete, handleEdit })}
+        columns={columns({ type: addressType, handleDelete, handleEdit, handleChecked })}
         rows={rows(addressList)}
       />
-      <AddButton content="Add New" disabled={loading} handleClick={handleClick}>
-        <></>
-      </AddButton>
+      <AddButton content="Add New" disabled={loading} handleClick={handleClick} />
     </>
   )
 }

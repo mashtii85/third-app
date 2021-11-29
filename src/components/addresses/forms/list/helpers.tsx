@@ -14,42 +14,44 @@ import {
   TableActions
 } from '@drykiss/industry-ui'
 
-// Types
-import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
-import { AddressTableRowsType, AddressToolbarType } from './types'
-import { Column } from '../../../../types/column'
-import { offCanvasType } from '../../../../types/offCanvas'
-
 // Forms
 import { AddressForm } from '../../forms/create/form'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { UseAddressProps } from '../../hooks/types'
+
+// Types
+import { Address, ADDRESS_STATUS, ADDRESS_TYPE } from '../../../../types/address.d'
+import { AddressTableRowsType, AddressToolbarType } from './types.d'
+import { Column } from '../../../../types/column.d'
+import { offCanvasType } from '../../../../types/offCanvas.d'
 
 export const columns = ({
+  type,
   handleDelete,
-  handleEdit
+  handleEdit,
+  handleChecked
 }: {
+  type: ADDRESS_TYPE
   handleDelete: (e: MouseEvent<HTMLElement>, row: AddressTableRowsType) => void
   handleEdit: (e: MouseEvent<HTMLElement>, row: AddressTableRowsType) => void
+  handleChecked: (e: MouseEvent<HTMLElement>, row: AddressTableRowsType) => void
 }) => {
-  const columnsSchema: Column<AddressTableRowsType>[] = [
-    { text: 'Id', hidden: true },
-    { text: 'Name' },
-    { text: 'entity', hidden: true },
-    { text: 'entityId', hidden: true },
-    { text: 'Line1', hidden: true },
-    { text: 'Line2', hidden: true },
-    { text: 'Line3', hidden: true },
-    { text: 'City' },
-    { text: 'Postcode' },
-    { text: 'County', hidden: true },
-    { text: 'Status', hidden: true },
-    { text: 'Date' },
-    {
-      text: 'Actions',
-      formatter: TableActions,
-      formatterData: [
+  const disabled = (row: AddressTableRowsType) =>
+    row && row.meta ? row?.meta[type] === true : false
+
+  const actionFormatter = ({ row }: { row: AddressTableRowsType }) =>
+    TableActions({
+      row: row,
+      data: [
+        {
+          context: THEME_CONTEXT.dark,
+          icon: ['fas', 'check'],
+          onClick: handleChecked,
+          tooltip: 'Select',
+          disabled: disabled(row)
+        },
         {
           context: THEME_CONTEXT.secondary,
           icon: ['fas', 'edit'],
@@ -63,13 +65,32 @@ export const columns = ({
           tooltip: 'Delete'
         }
       ]
+    })
+
+  const columnsSchema: Column<AddressTableRowsType>[] = [
+    { text: 'Id', hidden: true },
+    { text: 'Name' },
+    { text: 'entity', hidden: true },
+    { text: 'entityId', hidden: true },
+    { text: 'Line1', hidden: true },
+    { text: 'Line2', hidden: true },
+    { text: 'Line3', hidden: true },
+    { text: 'City' },
+    { text: 'Postcode' },
+    { text: 'County', hidden: true },
+    { text: 'Meta', hidden: true },
+    { text: 'Status', hidden: true },
+    { text: 'Date' },
+    {
+      text: 'Actions',
+      formatter: actionFormatter
     }
   ]
   return columnsSchema
 }
 
 export const rows = (addresses: Address[]): AddressTableRowsType[] => {
-  const list = addresses?.map((address) => {
+  const list: AddressTableRowsType[] = addresses?.map((address) => {
     return {
       id: address.id,
       name: address.name,
@@ -81,6 +102,7 @@ export const rows = (addresses: Address[]): AddressTableRowsType[] => {
       city: address.city,
       postcode: address.postcode,
       county: address.county,
+      meta: address.meta,
       status: address.status,
       date: `${formatDateStandard(address.created_at)} ${formatTime(address.created_at)}`,
       actions: ''
@@ -91,7 +113,7 @@ export const rows = (addresses: Address[]): AddressTableRowsType[] => {
 
 export const Toolbar = ({ entity, entityId, type }: AddressToolbarType) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
-  const filters = { entity, entityId, type }
+  const filters: Partial<UseAddressProps> = { entity, entityId, type }
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()

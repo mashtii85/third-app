@@ -16,16 +16,14 @@ import { addressSchema as schema } from './schema'
 
 // Types
 import { AddressFormType } from './types.d'
-import { ADDRESS_STATUS } from '../../../../types/address.d'
 import { UseAddressProps } from '../../hooks/types.d'
-import { prepareMetaClause } from '../../hooks/helpers'
 
 export const AddressForm = ({
   filters,
   onSuccess,
   defaultValues
 }: {
-  filters: UseAddressProps
+  filters: Partial<UseAddressProps>
   onSuccess: () => void
   defaultValues: Partial<AddressFormType>
 }) => {
@@ -68,8 +66,7 @@ export const AddressForm = ({
         city: form.city,
         postcode: form.postcode,
         county: form.county,
-        status: ADDRESS_STATUS.Active,
-        meta: prepareMetaClause(filters.type)
+        status: defaultValues.status
       }
       await createAddress({ variables: { objects: [variables] } })
     }
@@ -77,7 +74,6 @@ export const AddressForm = ({
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(onSubmit)}>
-      {/* {defaultValues.id && <FormField {...defaultOptions} name="id" type="hidden" />} */}
       <Row>
         <Column md={12}>
           <FormLabel label="Address name">
@@ -120,8 +116,6 @@ export const AddressForm = ({
             <FormField {...defaultOptions} name="county" />
           </FormLabel>
         </Column>
-        {/* {defaultValues.status &&
-           <FormField {...defaultOptions} name="status" type="hidden" />} */}
       </Row>
     </Form>
   )

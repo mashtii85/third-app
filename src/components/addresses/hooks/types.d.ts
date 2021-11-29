@@ -3,23 +3,28 @@
  */
 
 // Types
+import { ENTITIES } from '../../../constants/entities'
 import { Address, ADDRESS_STATUS } from '../../../types/address.d'
 import { LooseObject } from '../../../types/object'
 
 export interface AddressFilter {
-  name?: string
-  line?: string
-  city?: string
-  county?: string
-  postcode?: string
-  status?: ADDRESS_STATUS
+  entity: ENTITIES
+  entityId: number
+  name: string
+  line: string
+  city: string
+  county: string
+  postcode: string
+  type: string
+  default: string
+  status: ADDRESS_STATUS
 }
 
 export interface UseAddressProps {
-  entity: string
+  entity: ENTITIES
   entityId: number
-  type?: string
-  status?: ADDRESS_STATUS
+  type: string
+  status: ADDRESS_STATUS
 }
 
 export interface AddressesData {

@@ -26,15 +26,15 @@ export const useDeleteAddress = (
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
-      const where = prepareArguments({ filters })
+      const variables = prepareArguments({ filters })
       const { address } = cache.readQuery<{ address: Address[] }>({
         query: GET_ADDRESSES,
-        variables: { where }
+        variables
       }) || { address: [] }
       const addressList = address.filter((adr) => adr.id !== data?.delete_address_by_pk.id)
       cache.writeQuery({
         query: GET_ADDRESSES,
-        variables: { where },
+        variables,
         data: { address: addressList }
       })
     }

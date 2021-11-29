@@ -32,6 +32,10 @@ type LessThanEqual = {
   _lte: string
 }
 
+type Contains = {
+  _contains: any
+}
+
 type GraphQLType =
   | Equality
   | ILike
@@ -40,6 +44,7 @@ type GraphQLType =
   | GreaterThan
   | GreaterThan
   | NotEquality
+  | Contains
 
 type Or<T> = {
   _or?: {

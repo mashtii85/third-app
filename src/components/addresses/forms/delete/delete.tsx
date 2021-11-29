@@ -10,6 +10,7 @@ import { useDeleteAddress } from '../../hooks/useDelete/useDelete'
 
 // Types
 import { UseAddressProps } from '../../hooks/types'
+import { ENTITIES } from '../../../../constants/entities'
 
 export const DeleteAddressForm = ({
   id,
@@ -21,7 +22,7 @@ export const DeleteAddressForm = ({
 }: {
   id: number
   title: string
-  entity: string
+  entity: ENTITIES
   entityId: number
   type?: string
   onSuccess: () => void

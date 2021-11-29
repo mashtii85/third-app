@@ -30,6 +30,34 @@ export const UPDATE_ADDRESS_BY_PK = gql`
   ${ADDRESS_FIELDS}
 `
 
+export const SET_DEFAULT_ADDRESS = gql`
+  mutation UpdateAddress(
+    $entity: String!
+    $entityId: Int!
+    $deleteKey: String!
+    $id: Int!
+    $value: jsonb!
+  ) {
+    deleteKeys: update_address(
+      where: { entity: { _eq: $entity }, entity_id: { _eq: $entityId } }
+      _delete_key: { meta: $deleteKey }
+    ) {
+      returning {
+        ...AddressFields
+      }
+    }
+    update_address(where: { id: { _eq: $id }, meta: { _is_null: true } }, _set: { meta: $value }) {
+      returning {
+        ...AddressFields
+      }
+    }
+    update_address_by_pk(pk_columns: { id: $id }, _append: { meta: $value }) {
+      ...AddressFields
+    }
+  }
+  ${ADDRESS_FIELDS}
+`
+
 export const DELETE_ADDRESS_BY_PK = gql`
   mutation DeleteAddressByPK($id: Int!) {
     delete_address_by_pk(id: $id) {

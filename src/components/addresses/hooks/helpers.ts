@@ -2,69 +2,75 @@
  * Components - Addresses - Hooks - helpers
  */
 
-import { nullFreeObject } from '../../../utils/nullFreeObject'
-
 // Types
-import { LooseObject } from '../../../types/object'
+import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
+import { Address } from '../../../types/address.d'
+import { AddressFilter } from './types.d'
 
-export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseObject => {
-  nullFreeObject(filters)
+export const prepareArguments = ({
+  filters
+}: {
+  filters: Partial<AddressFilter>
+}): GQLClause<Address> => {
+  const where: GraphqlWhere<Address> = {}
 
-  const whereClause: LooseObject = {}
-
-  if (filters?.entity) {
-    whereClause.entity = { _eq: filters.entity }
+  if (filters.entity) {
+    where.entity = { _eq: filters.entity }
   }
 
-  if (filters?.entityId) {
-    whereClause.entity_id = { _eq: filters.entityId }
+  if (filters.entityId) {
+    where.entity_id = { _eq: filters.entityId }
   }
 
-  // if (filters?.type) {
-  //   whereClause.meta = { _contains: prepareMetaClause(filters.type) }
-  // }
+  if (filters.type) {
+    where.meta = { _contains: prepareMetaClause(filters.type) }
+  }
+
+  if (filters.default) {
+    where.meta = { _contains: prepareMetaClause(filters.default) }
+  }
 
   if (filters?.name) {
-    whereClause.name = { _ilike: filters.name }
+    where.name = { _ilike: filters.name }
   }
 
-  if (filters?.line1) {
-    whereClause.line1 = { _ilike: filters.line1 }
+  if (filters.line) {
+    where._or = [
+      { line1: { _ilike: `%${filters.line}%` } },
+      { line2: { _ilike: `%${filters.line}%` } },
+      { line3: { _ilike: `%${filters.line}%` } }
+    ]
   }
 
-  if (filters?.line2) {
-    whereClause.line2 = { _ilike: filters.line2 }
+  if (filters.city) {
+    where.city = { _ilike: filters.city }
   }
 
-  if (filters?.line2) {
-    whereClause.line2 = { _ilike: filters.line2 }
+  if (filters.postcode) {
+    where.postcode = { _ilike: filters.postcode }
   }
 
-  if (filters?.city) {
-    whereClause.city = { _ilike: filters.city }
+  if (filters.county) {
+    where.county = { _ilike: filters.county }
   }
 
-  if (filters?.postcode) {
-    whereClause.postcode = { _ilike: filters.postcode }
+  if (filters.status) {
+    where.status = { _eq: filters.status }
   }
 
-  if (filters?.county) {
-    whereClause.county = { _ilike: filters.county }
-  }
-
-  if (filters?.status) {
-    whereClause.status = { _eq: filters.status }
-  }
-
-  return whereClause
+  const variables: GQLClause<Address> = { where }
+  return variables
 }
 
-export const prepareMetaClause = (commaSeparated?: string): LooseObject | undefined => {
+export const prepareMetaClause = (
+  commaSeparated?: string,
+  value: boolean = true
+): any | undefined => {
   if (!commaSeparated) return
-  const types: string[] = commaSeparated.split(',')
+  const keys: string[] = commaSeparated.split(',')
   const metaProps: string[] = []
-  types.forEach((typ) => {
-    metaProps.push(`"${typ}": true`)
+  keys.forEach((key) => {
+    metaProps.push(`"${key}": ${value}`)
   })
   const metaClause = JSON.parse(`{${metaProps.join(',')}}`)
   return metaClause

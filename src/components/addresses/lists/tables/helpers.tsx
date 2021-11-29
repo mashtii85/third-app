@@ -8,20 +8,31 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { Button, OffCanvasContext } from '@drykiss/industry-ui'
 
-// Types
-import { UseAddressProps } from '../../hooks/types'
-import { offCanvasType } from '../../../../types/offCanvas.d'
-
 // Forms
 import { AddressListForm } from '../../forms/list/list'
 
-export const Toolbar = ({ filters }: { filters: UseAddressProps }) => {
+// Types
+import { UseAddressProps } from '../../hooks/types.d'
+import { offCanvasType } from '../../../../types/offCanvas.d'
+import { ADDRESS_TYPE } from '../../../../types/address.d'
+
+export const Toolbar = ({
+  addressType,
+  filters,
+  onCompleted
+}: {
+  addressType: ADDRESS_TYPE
+  filters: Partial<UseAddressProps>
+  onCompleted: () => void
+}) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation()
     offCanvas.show({
-      content: <AddressListForm filters={filters} />,
+      content: (
+        <AddressListForm addressType={addressType} filters={filters} onCompleted={onCompleted} />
+      ),
       submit: false,
       title: 'Edit addresses'
     })

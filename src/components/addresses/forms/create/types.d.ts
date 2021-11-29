@@ -20,6 +20,7 @@ export interface AddressFormType {
   city: string
   postcode: string
   county: string
+  type: string
   status: ADDRESS_STATUS
 }
 
@@ -27,8 +28,3 @@ export interface ADDRESS_STATUS_DROPDOWN {
   text: 'Active' | 'Inactive'
   value: 'active' | 'inactive'
 }
-
-// export const addressStatus: ADDRESS_STATUS_DROPDOWN[] = [
-//   { text: 'Active', value: 'active' },
-//   { text: 'Inactive', value: 'inactive' }
-// ]

@@ -16,7 +16,7 @@ import { Address } from '../../../../types/address.d'
 import { prepareArguments } from '../helpers'
 
 export const useCreateAddress = (
-  filters: UseAddressProps,
+  filters: Partial<UseAddressProps>,
   props: UseHookProps<AddressCreateData>
 ): UseCreateAddressOutput => {
   const [createAddress, { error, loading }] = useMutation<
@@ -26,14 +26,14 @@ export const useCreateAddress = (
     onCompleted: props.onCompleted,
     onError: props.onError,
     update(cache, { data }) {
-      const where = prepareArguments({ filters })
+      const variables = prepareArguments({ filters })
       const { address } = cache.readQuery<{ address: Address[] }>({
         query: GET_ADDRESSES,
-        variables: { where }
+        variables
       }) || { address: [] }
       cache.writeQuery({
         query: GET_ADDRESSES,
-        variables: { where },
+        variables,
         data: { address: [...address, data?.addresses] }
       })
     }
