@@ -70,7 +70,7 @@ export const INSERT_ENROLLMENT = gql`
 
 export const UPDATE_COURSE_ENROLLMENT_BY_PK = gql`
   mutation UpdateCourseEnrollmentById($id: Int!, $changes: course_enrollment_set_input) {
-    update_course_enrollment_by_pk(pk_columns: { id: $id }, _set: $changes) {
+    courseEnrollment: update_course_enrollment_by_pk(pk_columns: { id: $id }, _set: $changes) {
       id
       course_id
       status

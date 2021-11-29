@@ -8,17 +8,6 @@ import { useEffect, useRef, useState } from 'react'
 // Next
 import { useRouter } from 'next/router'
 
-// Apollo
-import { useMutation, useQuery } from '@apollo/client'
-
-// GQL
-import {
-  ADD_LESSON_PROGRESS_ONE,
-  UPDATE_LESSON_PROGRESS_BY_PK
-} from '../../../lessons/queries/queries'
-import { GET_COURSE } from '../../queries'
-import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../../enrollments/queries/queries'
-
 // UI
 import {
   Breadcrumb,
@@ -36,8 +25,6 @@ import {
 } from '@drykiss/industry-ui'
 import { StepperActionModel, StepperModel } from '../../../../types/stepper'
 import { CompletionCertificate } from './components/certificate/completionCertificate'
-import { Course } from '../../../../types/course'
-import { CourseData } from '../../hooks/types'
 import { CourseProgressBar } from '../../progressBar'
 import { NotesTable } from '../../notes/lists/tables/table'
 import { Quiz } from '../../../common/quiz/quiz'
@@ -66,7 +53,6 @@ import { ENTITIES } from '../../../../constants/entities'
 // Types
 import {
   LESSON_PROGRESS_STATUS,
-  LessonProgress,
   LessonProgressUpdateModel
 } from '../../../../types/lessonProgress.d'
 import { Module } from '../../../../types/module.d'
@@ -76,8 +62,11 @@ import { POST_TYPE } from '../../../../types/post.d'
 import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 import { COURSE_PAGE_MODE } from '../types.d'
 import { CourseLessonAssignment } from './components/assignment/view'
-import { AssignmentActionTypes } from './components/assignment/types'
 import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { lessonSummary, preparePageState } from './helpers'
+import { useCourse } from '../../hooks'
+import { useCreateLessonProgress, useUpdateLessonProgress } from './hooks'
+import { useUpdateCourseEnrollment } from '../../../enrollments/hooks/useUpdate/useUpdate'
 // import { LessonsTable } from './tables/lessonsTable'
 
 export const AccountCourseView = () => {
@@ -86,21 +75,7 @@ export const AccountCourseView = () => {
   const { query } = useRouter()
 
   const [lesson, setLesson] = useState<Lesson | null>(null)
-  let pageState = {
-    pageMode: COURSE_PAGE_MODE.Progress,
-    actionButtonCaption: 'Complete and continue',
-    canCompleteLesson: false,
-    showNextLesson: false,
-    completedLessonId: 0,
-    selectedModuleId: 0,
-    selectedLessonId: 0,
-    certificateModel: {
-      username: '',
-      courseTitle: '',
-      dateCompleted: '',
-      certificateId: ''
-    }
-  }
+  let pageState = preparePageState
   const [stateHolder, setStateHolder] = useState(pageState)
 
   const completedQuizData = useRef<QuizCompletedData>({
@@ -108,33 +83,30 @@ export const AccountCourseView = () => {
     score: 0
   })
 
-  const { data, refetch } = useQuery<CourseData>(GET_COURSE, {
-    skip: !query?.id,
-    variables: {
-      courseId: parseInt(query?.id as string)
-    }
-  })
+  const courseId = parseInt(query?.id as string)
+  const { course, refetch } = useCourse(courseId)
 
-  const [updateLessonProgressByPk] = useMutation(UPDATE_LESSON_PROGRESS_BY_PK, {
+  const { updateLessonProgress } = useUpdateLessonProgress({
     onCompleted: (data) => {
-      const progress = data.update_lesson_progress_by_pk
+      const progress = data.lessonProgress
       fillCertificateModel(
         `${formatDateStandard(progress.updated_at)} ${formatTime(progress.updated_at)}`
       )
       refetch()
-    }
+    },
+    onError: (error) => console.error(error.message)
   })
 
-  const [addLessonProgress] = useMutation(ADD_LESSON_PROGRESS_ONE, {
+  const { createLessonProgress } = useCreateLessonProgress({
     onCompleted: () => {
       refetch()
-    }
+    },
+    onError: (error) => console.error(error.message)
   })
 
-  const [updateCourseEnrollmentByPk] = useMutation(UPDATE_COURSE_ENROLLMENT_BY_PK, {
-    onCompleted: () => {
-      refetch()
-    }
+  const { updateCourseEnrollment } = useUpdateCourseEnrollment({
+    onCompleted: () => refetch(),
+    onError: (error) => console.error(error.message)
   })
 
   const { user } = useCurrentUser()
@@ -146,10 +118,10 @@ export const AccountCourseView = () => {
       stateHolder.completedLessonId !== 0 &&
       stateHolder.selectedLessonId !== 0 &&
       stateHolder.completedLessonId !== stateHolder.selectedLessonId &&
-      data?.course.title
+      course?.title
     ) {
       const currentLesson = getCurrentLesson(
-        data.course,
+        course,
         stateHolder.selectedModuleId,
         stateHolder.selectedLessonId
       )
@@ -163,32 +135,8 @@ export const AccountCourseView = () => {
     return <></>
   }
 
-  if (!data?.course) {
+  if (!course) {
     return <></>
-  }
-  const { course } = data
-  const lessonSummary = () => {
-    const progress: LessonProgress[] = []
-    const modules = (course as Course).modules || []
-
-    modules.forEach((module: Module) => {
-      const lessons: Lesson[] = module.lessons || []
-      lessons.forEach((lesson: Lesson) => {
-        const lessonProgress: LessonProgress = lesson?.lesson_progresses[0]
-        if (lessonProgress) {
-          progress.push(lessonProgress)
-        } else {
-          const lessonProgressModel: LessonProgress = {
-            label: LESSON_PROGRESS_STATUS.Pending,
-            status: LESSON_PROGRESS_STATUS.Pending,
-            id: 0,
-            updated_at: new Date()
-          }
-          progress.push(lessonProgressModel)
-        }
-      })
-    })
-    return progress
   }
 
   const prepareLessons = (module: Module): StepperModel[] => {
@@ -257,16 +205,16 @@ export const AccountCourseView = () => {
     const lessonProgress = lesson?.lesson_progresses[0] ?? null
     if (lessonProgress) {
       const lessonProgressModel = { status: LESSON_PROGRESS_STATUS.Started }
-      updateLessonProgressByPk({
+      updateLessonProgress({
         variables: { id: lessonProgress.id, changes: lessonProgressModel }
       })
     } else {
       const argument = {
-        enrollment_id: (course as Course).id,
+        enrollment_id: course.id,
         lesson_id: lesson?.id,
         status: LESSON_PROGRESS_STATUS.Started
       }
-      addLessonProgress({
+      createLessonProgress({
         variables: argument
       })
     }
@@ -302,12 +250,12 @@ export const AccountCourseView = () => {
 
   const completeLesson = () => {
     const lessonProgress = getCurrentLessonProgress(
-      course as Course,
+      course,
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
     const nextLesson = findNextLesson(
-      course as Course,
+      course,
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
@@ -374,7 +322,7 @@ export const AccountCourseView = () => {
             passed: false
           }
         }
-        updateLessonProgressByPk({
+        updateLessonProgress({
           variables: { id: lessonProgress?.id, changes: lessonProgressModel }
         })
 
@@ -382,7 +330,7 @@ export const AccountCourseView = () => {
           const courseEnrollmentModel = { status: COURSE_ENROLLMENT_STATUS.Completed }
 
           if (course?.course_enrollments) {
-            updateCourseEnrollmentByPk({
+            updateCourseEnrollment({
               variables: { id: course?.course_enrollments[0]?.id, changes: courseEnrollmentModel }
             })
           }
@@ -400,36 +348,12 @@ export const AccountCourseView = () => {
     completeLesson()
   }
 
-  const onAssignmentStateChanged = (action: AssignmentActionTypes) => {
-    switch (action.type) {
-      case 'finish':
-        completeLesson()
-        break
-      case 'reset':
-      case 'upload':
-      default:
-        refetch()
-        break
-    }
-    // const progress = getCurrentLessonProgress(
-    //   course,
-    //   stateHolder.selectedModuleId,
-    //   stateHolder.selectedLessonId
-    // )
-    // if (progress?.status === LESSON_PROGRESS_STATUS.Completed) {
-    //   const lessonProgressModel = { status: LESSON_PROGRESS_STATUS.Pending }
-    //   updateLessonProgressByPk({
-    //     variables: { id: progress.id, changes: lessonProgressModel }
-    //   })
-    // }
-  }
-
   const fillCertificateModel = (completedAt: string) => {
     if (stateHolder.pageMode !== COURSE_PAGE_MODE.Finished) return
     loadPageState()
     pageState.certificateModel = {
       username: `${user.name_first} ${user.name_last}`,
-      courseTitle: (course as Course).title,
+      courseTitle: course.title,
       dateCompleted: completedAt,
       certificateId: 'BVM QX4 CV6'
     }
@@ -456,7 +380,7 @@ export const AccountCourseView = () => {
   ]
   const handlePreviousClick = () => {
     const previousLesson = findPreviousLesson(
-      course as Course,
+      course,
       stateHolder.selectedModuleId,
       stateHolder.selectedLessonId
     )
@@ -485,7 +409,7 @@ export const AccountCourseView = () => {
     return undefined
   }
   const lessonNumber = getLessonNumber(
-    course as Course,
+    course,
     stateHolder.selectedModuleId,
     stateHolder.selectedLessonId
   )
@@ -499,13 +423,13 @@ export const AccountCourseView = () => {
     <>
       <Row>
         <Column md="8">
-          <Heading tag="h1" content={(course as Course)?.title} />
+          <Heading tag="h1" content={course?.title} />
           <BreadcrumbWrapper>
             <Breadcrumb breadcrumbs={breadcrumbs} separator="\" size="sm" />
           </BreadcrumbWrapper>
         </Column>
         <Column md="4">
-          <CourseProgressBar progressBarData={lessonSummary()} />
+          <CourseProgressBar progressBarData={lessonSummary(course)} />
         </Column>
       </Row>
       <Row>
@@ -518,8 +442,8 @@ export const AccountCourseView = () => {
             stateHolder={stateHolder}
             user={user}
           /> */}
-          {(course as Course)?.modules?.length &&
-            (course as Course)?.modules?.map((m: Module) => (
+          {course?.modules?.length &&
+            course?.modules?.map((m: Module) => (
               <Details2 key={m.id} open title={m.title}>
                 <Stepper items={prepareLessons(m)} maxWidth="unset" />
               </Details2>
@@ -561,7 +485,7 @@ export const AccountCourseView = () => {
                       <CourseLessonAssignment
                         user={user}
                         lesson={lesson}
-                        onStateChanged={onAssignmentStateChanged}
+                        onStateChanged={() => { }}
                       />
                     ) : (
                       lesson.content && <StyledContent>{lesson.content}</StyledContent>
@@ -599,11 +523,9 @@ export const AccountCourseView = () => {
                 </Details2>
               ) : (
                 <Details2 open title="Course overview">
-                  {(course as Course)?.media?.length && (
-                    <Image alt={(course as Course)?.title} src={cover} />
-                  )}
-                  {/* <DetailsText content="Author" text={(course as Course)?.author ?? ''} /> */}
-                  <DetailsText content="Description" text={(course as Course)?.description ?? ''} />
+                  {course?.media?.length && <Image alt={course?.title} src={cover} />}
+                  {/* <DetailsText content="Author" text={(course)?.author ?? ''} /> */}
+                  <DetailsText content="Description" text={course?.description ?? ''} />
                 </Details2>
               )}
             </Column>

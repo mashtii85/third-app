@@ -83,7 +83,7 @@ export const CREATE_LESSON = gql`
 // should move to lesson progress
 export const UPDATE_LESSON_PROGRESS_BY_PK = gql`
   mutation UpdateLessonProgress($id: Int!, $changes: lesson_progress_set_input) {
-    update_lesson_progress_by_pk(pk_columns: { id: $id }, _set: $changes) {
+    lessonProgress: update_lesson_progress_by_pk(pk_columns: { id: $id }, _set: $changes) {
       id
       updated_at
     }
@@ -102,7 +102,7 @@ export const GET_LESSON_PROGRESS_BY_LESSONID = gql`
 // should move to lesson progress
 export const ADD_LESSON_PROGRESS_ONE = gql`
   mutation AddLessonProgress($enrollment_id: Int!, $lesson_id: Int!, $status: String) {
-    insert_lesson_progress_one(
+    lessonProgress: insert_lesson_progress_one(
       object: { enrollment_id: $enrollment_id, lesson_id: $lesson_id, status: $status }
     ) {
       id
