@@ -191,6 +191,7 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
       <ReactPlayer
         ref={playerRef}
         width="100%"
+        height="auto"
         pip={state.pip}
         playing={state.playing}
         controls={state.controls}
