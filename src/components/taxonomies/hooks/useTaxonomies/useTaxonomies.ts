@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { GET_TAXONOMIES } from '../../queries'
 // Helpers
 import { prepareTaxonomyArguments } from '../helpers'
+import { prepareTaxonomies } from './helpers'
 // Types
 import { TaxonomiesData, UseTaxonomiesVariable, UseTaxonomiesOutput } from './types'
 
@@ -25,7 +26,8 @@ export const useTaxonomies = (filter: UseTaxonomiesVariable): UseTaxonomiesOutpu
     return (): void => {
       getTaxonomies({ variables })
     }
-  }, [filter.parentId || filter.entity])
+  }, [filter.parentId, filter.entity])
 
-  return { error, loading, refetch, taxonomies: data?.taxonomies || [] }
+  const taxonomies = prepareTaxonomies(data?.taxonomies)
+  return { error, loading, refetch, taxonomies }
 }

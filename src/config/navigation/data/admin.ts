@@ -15,6 +15,7 @@ export const Admin = (taxonomies: Partial<Taxonomy[]>): Navigation => {
   const clientTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Client)
 
   return {
+    left: [],
     right: [
       {
         id: 'navHomeMenu',

@@ -24,12 +24,13 @@ const inputComponents: { [x: string]: Function } = {
   input: FormField,
   radio: RadioField,
   select: SelectField,
+  selectEntity: SelectField,
   textArea: TextareaField
 }
 
 export const CustomFieldRender = (props: CustomFieldRenderProps) => {
   const { control, errors, input, inputType, label, name, options, register, defaultValue } = props
-  const hasOptions = input === 'select' && options.length > 0
+  const hasOptions = (input === 'select' || input === 'selectEntity') && options.length > 0
   const hasCurrencyInput = input === 'currencyInput'
   const hasData = ['checkbox', 'radio'].includes(input) && options.length > 0
 

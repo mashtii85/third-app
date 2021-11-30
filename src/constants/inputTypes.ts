@@ -10,6 +10,7 @@ export const input = [
   { text: 'Input', value: 'input', hasOptions: false },
   { text: 'Radio', value: 'radio', hasOptions: true },
   { text: 'Select', value: 'select', hasOptions: true },
+  { text: 'Select Entity', value: 'selectEntity', hasOptions: false },
   { text: 'TextArea', value: 'textArea', hasOptions: false }
 ]
 

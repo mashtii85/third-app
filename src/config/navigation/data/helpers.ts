@@ -9,7 +9,7 @@ import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 export const prepareTaxonomyNavigation = (
   taxonomies: Partial<Taxonomy[]>,
   type: TAXONOMY_TYPE
-): NavLink[] => {
+): Partial<NavLink>[] => {
   if (!taxonomies?.length) {
     return []
   }
@@ -20,7 +20,7 @@ export const prepareTaxonomyNavigation = (
     urlType = 'accounts'
   }
 
-  const list: NavLink[] = taxonomies
+  const list: Partial<NavLink>[] = taxonomies
     .filter((t) => t?.type === type)
     .map((t) => {
       return {

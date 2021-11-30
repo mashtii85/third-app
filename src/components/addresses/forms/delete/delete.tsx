@@ -27,7 +27,7 @@ export const DeleteAddressForm = ({
   type?: string
   onSuccess: () => void
 }) => {
-  const addressProps: UseAddressProps = { entity, entityId, type }
+  const addressProps: Partial<UseAddressProps> = { entity, entityId, type }
   const { deleteAddress } = useDeleteAddress(addressProps, {
     onCompleted: onSuccess,
     onError: (error) => {

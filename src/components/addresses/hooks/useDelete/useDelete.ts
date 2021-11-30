@@ -16,7 +16,7 @@ import { UseAddressProps } from '../types.d'
 import { prepareArguments } from '../helpers'
 
 export const useDeleteAddress = (
-  filters: UseAddressProps,
+  filters: Partial<UseAddressProps>,
   props: UseHookProps<AddressDeleteData>
 ): UseDeleteAddressOutput => {
   const [deleteAddress, { loading, error }] = useMutation<

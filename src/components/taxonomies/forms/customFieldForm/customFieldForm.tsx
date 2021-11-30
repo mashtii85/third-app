@@ -52,6 +52,7 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
     const makeName = value.toLowerCase().split(' ').join('-')
     setValue(`custom_fields.options[${idx}].value`, makeName)
   }
+
   return (
     <>
       <FormLabel label="Input">
