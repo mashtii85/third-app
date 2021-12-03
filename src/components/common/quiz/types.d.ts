@@ -1,16 +1,10 @@
+// Types
 import { Taxonomy } from '../../../types/taxonomy.d'
+import { CourseActionTypes } from '../../courses/view/account/types.d'
 
 export interface QuizCompletedData {
   score: number
   passed: boolean
-}
-export interface QuizProps {
-  // taxonomies: Taxonomy[]
-  questions: Taxonomy[]
-  onComplete: ({ score, passed }: QuizCompletedData) => void
-  /** default is 50 */
-  minimumScoreToPass?: number
-  quizScoreInfo?: QuizCompletedData
 }
 export interface QuizState {
   activeQuestionIndex: number
@@ -38,3 +32,12 @@ export type QuizActionTypes =
   | FinishAction
   | SetNewAnswerAction
   | SetShortTextAnswerAction
+
+export interface QuizProps {
+  // taxonomies: Taxonomy[]
+  questions: Taxonomy[]
+  onQuizStateChanged: (action: CourseActionTypes) => void
+  /** default is 50 */
+  minimumScoreToPass?: number
+  quizScoreInfo?: QuizCompletedData
+}

@@ -13,6 +13,7 @@ import { progressData } from './helpers'
 
 // Types
 import { LessonProgress } from '../../types/lessonProgress.d'
+import { THEME_CONTEXT } from '../../constants/themeContext'
 
 interface CourseProgressBarProps {
   progressBarData: LessonProgress[]
@@ -36,7 +37,7 @@ export const CourseProgressBar = ({ progressBarData }: CourseProgressBarProps) =
         </div>
         <br />
         <Progress size="md">
-          <ProgressBar animated context="lightRed" now={progress}></ProgressBar>
+          <ProgressBar animated context={THEME_CONTEXT.danger} now={progress}></ProgressBar>
         </Progress>
       </StyledProgress>
       <StyledStatus>

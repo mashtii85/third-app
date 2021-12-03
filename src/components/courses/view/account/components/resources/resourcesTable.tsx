@@ -31,7 +31,7 @@ export const ResourcesTable = ({ courseId }: { courseId: number }) => {
           {posts?.map((post) => {
             return (
               <>
-                <ResourceRow post={post} clientView={false} />
+                <ResourceRow key={`resource-row-${post.id}`} post={post} clientView={false} />
                 <Divider />
               </>
             )

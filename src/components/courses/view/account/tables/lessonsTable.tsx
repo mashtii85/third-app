@@ -76,7 +76,7 @@ export const LessonsTable = ({
         }
 
         if (progress?.status === LESSON_PROGRESS_STATUS.Completed) {
-          actionModel.context = 'opaqueRed'
+          actionModel.context = THEME_CONTEXT.danger
           actionModel.content = 'View lesson'
         }
 

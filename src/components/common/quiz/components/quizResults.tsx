@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 interface QuizResultsProps {
@@ -7,7 +6,6 @@ interface QuizResultsProps {
   finalScore: number
   correctAnswers: number
   onRetakeClick: () => void
-  onDoneClick: () => void
 }
 const passedText = ['Congratulations.', 'You have passed the exam.']
 const failedText = ['Sorry!', 'You failed the exam.']
@@ -26,14 +24,8 @@ export const QuizResult = ({
   bestScore,
   finalScore,
   correctAnswers,
-  onRetakeClick,
-  onDoneClick
+  onRetakeClick
 }: QuizResultsProps) => {
-  const [showCompleteButton, setShowCompleteButton] = useState(true)
-  const handleDoneClick = () => {
-    onDoneClick()
-    setShowCompleteButton(false)
-  }
   return (
     <>
       <Wrapper>
@@ -53,25 +45,11 @@ export const QuizResult = ({
       </Wrapper>
       <ActionButtonsWrapper>
         {!passed ? <RetakeButton onClick={onRetakeClick}>Retake</RetakeButton> : <div />}
-        {showCompleteButton && (
-          <DoneButton onClick={handleDoneClick}>Complete and continue</DoneButton>
-        )}
       </ActionButtonsWrapper>
     </>
   )
 }
-const DoneButton = styled.button`
-  border: none;
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.COLOUR.primary};
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  color: white;
-  min-width: 47px;
-  height: 30px;
-  cursor: pointer;
-`
+
 const RetakeButton = styled.button`
   border: none;
   background-color: transparent;
@@ -103,8 +81,8 @@ const TwoPartTextWrapper = styled.p<{ bold?: boolean }>`
       }
     `}
 `
-
 const ContentWrapper = styled.div``
+
 const TitleWrapper = styled.div<{ passed: boolean }>`
   font-size: 16px;
   font-weight: 700;

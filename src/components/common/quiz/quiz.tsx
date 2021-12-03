@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 
 // UI
 import { Button } from '@drykiss/industry-ui'
@@ -71,7 +71,7 @@ const reducer = (state: QuizState, action: QuizActionTypes) => {
 }
 
 export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizProps) => {
-  const { questions, onComplete } = props
+  const { questions, onQuizStateChanged } = props
 
   const alreadyHasScore = !!quizScoreInfo
   const [state, dispatch] = useReducer(reducer, {
@@ -86,6 +86,18 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
   })
 
   const { activeQuestionIndex, finalScore, quizFinished, selectedAnswers } = state
+
+  useEffect(() => {
+    if (quizFinished)
+      onQuizStateChanged({
+        type: 'quizFinished',
+        payload: {
+          finalScore,
+          minimumScore: minimumScoreToPass,
+          passed: finalScore >= minimumScoreToPass
+        }
+      })
+  }, [quizFinished])
 
   const isLastQuestion = activeQuestionIndex === questions.length - 1
 
@@ -140,7 +152,7 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
   return (
     <StyledQuestionsWrapper>
       <StyledProgressTitle>
-        {!state.quizFinished && questions && questions.length
+        {!quizFinished && questions && questions.length
           ? `Question ${activeQuestionIndex + 1} of ${questions.length}`
           : 'No Questions'}
       </StyledProgressTitle>
@@ -149,9 +161,6 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
         <QuizFinishedWrapper>
           <QuizResult
             onRetakeClick={handleResetClick}
-            onDoneClick={() =>
-              onComplete({ score: finalScore, passed: finalScore >= minimumScoreToPass })
-            }
             passed={finalScore >= minimumScoreToPass}
             bestScore={state.bestScore}
             finalScore={finalScore}

@@ -130,10 +130,6 @@ export const Buttons = ({
     onStateChanged({ type: 'reset', payload: newState })
   }
 
-  const handleFinish = () => {
-    onStateChanged({ type: 'finish' })
-  }
-
   const CustomButton = ({ type }: { type: MEDIUM_TYPE }) => {
     return (
       <Button
@@ -162,6 +158,7 @@ export const Buttons = ({
                   size={SIZE.SM}
                   startIcon="trash"
                   onClick={handleRemoveFile}
+                  disabled={state.isFinished}
                 />
               </ButtonToolbar>
             }
@@ -173,16 +170,8 @@ export const Buttons = ({
       )}
       <ButtonToolbar>
         {state.acceptableTypes.map((type) => (
-          <CustomButton type={type} />
+          <CustomButton key="custom-button" type={type} />
         ))}
-        <Button
-          key="finish"
-          context={THEME_CONTEXT.secondary}
-          size={SIZE.SM}
-          content="Continue"
-          onClick={handleFinish}
-          disabled={!state?.fileCaption || state?.fileCaption === ''}
-        />
       </ButtonToolbar>
     </>
   )

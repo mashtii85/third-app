@@ -5,6 +5,8 @@
 export enum THEME_CONTEXT {
   dark = 'dark',
   light = 'light',
+  lightRed = 'lightRed',
+  opaqueRed = 'opaqueRed',
   white = 'white',
   black = 'black',
   primary = 'primary',

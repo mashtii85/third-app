@@ -123,32 +123,34 @@ export const ResourceRow = ({ post, clientView }: { post: Post; clientView: bool
 
   return (
     <>
-      <CustomRow>
-        <Row>
-          <Column md={2}>
+      <CustomRow key={`custom-row-${post.id}`}>
+        <Row key={`row-${post.id}`}>
+          <Column key={`icon-column-${post.id}`} md={2}>
             <Icon key={`icon-${post.id}`} iconname={icon} />
           </Column>
-          <Column md={clientView ? 9 : 10}>
+          <Column key={`content-column-${post.id}`} md={clientView ? 9 : 10}>
             <Row>
-              <Column md={8}>
+              <Column key={`title-column-${post.id}`} md={8}>
                 <Title>{post.title}</Title>
               </Column>
-              <Column md={4}>
+              <Column key={`date-column-${post.id}`} md={4}>
                 <DateSpan>{date}</DateSpan>
               </Column>
             </Row>
-            <Row>
-              <Column md={12}>{info}</Column>
+            <Row key={`info-row-${post.id}`}>
+              <Column key={`info-column-${post.id}`} md={12}>
+                {info}
+              </Column>
             </Row>
-            <Row>
+            <Row key={`content-row-${post.id}`}>
               <Column md={12}>
-                <Content height={clientView ? 66 : 36}>
+                <Content key={`content-${post.id}`} height={clientView ? 66 : 36}>
                   {!post.content || post.content === '' ? 'No content' : post.content}
                 </Content>
               </Column>
             </Row>
             {hasAttachment && (
-              <Row>
+              <Row key={`attachment-row-${post.id}`}>
                 <Column md={12}>
                   <RightAlign>
                     {post.custom_fields?.resource_type === RESOURCE_TYPE.Link && (
@@ -169,7 +171,7 @@ export const ResourceRow = ({ post, clientView }: { post: Post; clientView: bool
                         <>
                           <MaroonSpan>
                             <Link
-                              key={`link-${post.id}`}
+                              key={`view-link-${post.id}`}
                               to={`${process.env.NEXT_PUBLIC_S3_CDN_URL}/${post.media[0].filename}`}
                             >
                               View
@@ -178,7 +180,7 @@ export const ResourceRow = ({ post, clientView }: { post: Post; clientView: bool
                           &nbsp;&nbsp;|&nbsp;&nbsp;
                           <BlackSpan>
                             <Link
-                              key={`link-${post.id}`}
+                              key={`download-link-${post.id}`}
                               to={`${process.env.NEXT_PUBLIC_S3_CDN_URL}/${post.media[0].filename}`}
                               target="_blank"
                             >
@@ -193,10 +195,11 @@ export const ResourceRow = ({ post, clientView }: { post: Post; clientView: bool
             )}
           </Column>
           {clientView && (
-            <Column md={1}>
+            <Column key={`button-column-${post.id}`} md={1}>
               <Row>
                 <ButtonToolbar>
                   <Button
+                    key={`edit-button-${post.id}`}
                     context={THEME_CONTEXT.secondary}
                     size={SIZE.SM}
                     startIcon="edit"
@@ -207,6 +210,7 @@ export const ResourceRow = ({ post, clientView }: { post: Post; clientView: bool
               <Row>
                 <ButtonToolbar>
                   <Button
+                    key={`delete-button-${post.id}`}
                     context={THEME_CONTEXT.warning}
                     size={SIZE.SM}
                     startIcon="trash"

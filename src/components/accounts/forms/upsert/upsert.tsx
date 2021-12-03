@@ -67,7 +67,7 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
     const meta: ClientModuleProps = { locations: false, events: false, learning: false }
     Object.keys(CLIENT_MODULE_TYPE).forEach((key) => {
       const keyname = key.toLocaleLowerCase()
-      meta[keyname as keyof ClientModuleProps] = form.clientModules.indexOf(keyname) >= 0
+      meta[keyname as keyof ClientModuleProps] = form.clientModules?.indexOf(keyname) >= 0
     })
 
     if (defaultValues?.id) {
