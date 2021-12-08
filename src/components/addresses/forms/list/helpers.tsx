@@ -22,10 +22,11 @@ import { THEME_CONTEXT } from '../../../../constants/themeContext'
 import { UseAddressProps } from '../../hooks/types'
 
 // Types
-import { Address, ADDRESS_STATUS, ADDRESS_TYPE } from '../../../../types/address.d'
+import { Address, ADDRESS_TYPE } from '../../../../types/address.d'
 import { AddressTableRowsType, AddressToolbarType } from './types.d'
 import { Column } from '../../../../types/column.d'
 import { offCanvasType } from '../../../../types/offCanvas.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export const columns = ({
   type,
@@ -123,7 +124,7 @@ export const Toolbar = ({ entity, entityId, type }: AddressToolbarType) => {
           filters={filters}
           onSuccess={offCanvas.close}
           defaultValues={{
-            status: ADDRESS_STATUS.Active
+            status: STATUS_ACTIVE.Active
           }}
         />
       ),

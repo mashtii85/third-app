@@ -1,5 +1,5 @@
 /**
- * Components - Addresss - Form - Add
+ * Components - Addresses - Form - Add
  */
 
 // React Hook Form

@@ -6,7 +6,7 @@
 import { object, string, number, mixed } from 'yup'
 
 // Types
-import { ADDRESS_STATUS } from '../../../../types/address.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 const r1 = `^([Gg][Ii][Rr] 0[Aa]{2})`
 const r2 = '|((([A-Za-z][0-9]{1,2})'
@@ -25,6 +25,6 @@ export const addressSchema = object()
     city: string().required(),
     postcode: string().matches(new RegExp(postcodeString)).required(),
     county: string(),
-    status: mixed().oneOf(Object.values(ADDRESS_STATUS))
+    status: mixed().oneOf(Object.values(STATUS_ACTIVE))
   })
   .required()

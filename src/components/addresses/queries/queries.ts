@@ -10,11 +10,12 @@ import { ADDRESS_FIELDS } from './fragments'
 
 export const GET_ADDRESSES = gql`
   query GetAddresses(
-    $limit: Int = 100
+    $limit: Int
+    $offset: Int
     $order_by: [address_order_by!] = {}
     $where: address_bool_exp
   ) {
-    address(where: $where, limit: $limit, order_by: $order_by) {
+    address(where: $where, limit: $limit, offset: $offset, order_by: $order_by) {
       ...AddressFields
     }
   }

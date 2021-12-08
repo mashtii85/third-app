@@ -16,4 +16,5 @@ export interface UseCreateLocationProps extends UseHookProps<CreateLocationVaria
 
 export interface UseCreateLocationOutput extends UseHookOutput {
   createLocation: any
+  data?: CreateLocationVariables | null
 }

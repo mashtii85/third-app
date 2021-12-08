@@ -8,32 +8,6 @@ import { ENROLLMENTS_FIELDS } from './fragments'
 import { gql } from '@apollo/client'
 import { USER_FIELDS } from '../../users/queries/fragments'
 
-// export const GET_ENROLLMENTS = gql`
-//   query GetEnrollments(
-//     $where: course_enrollment_bool_exp
-//     $limit: Int
-//     $offset: Int = 20
-//     $order_by: [course_enrollment_order_by!] = {}
-//   ) {
-//     enrollments: course_enrollment(
-//       where: $where
-//       limit: $limit
-//       offset: $offset
-//       order_by: $order_by
-//     ) {
-//       ...EnrollmentFields
-//       course {
-//         ...CourseFields
-//         media(limit: 1) {
-//           filename
-//         }
-//       }
-//     }
-//   }
-//   ${ENROLLMENTS_FIELDS}
-//   ${COURSE_FIELDS}
-// `
-
 export const GET_ENROLLMENTS = gql`
   query GetEnrollments($where: course_enrollment_bool_exp) {
     enrollments: course_enrollment(where: $where) {

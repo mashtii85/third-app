@@ -21,29 +21,29 @@ import { GQLClause } from '../../../../types/gql'
 import { Location } from '../../types'
 
 export const useDeleteLocation = (props: useDeleteLocationProps): useDeleteLocationOutput => {
-  const [deleteLocation, { loading }] = useMutation<LocationDeleteData, LocationDeleteVariables>(
-    DELETE_LOCATION,
-    {
-      onCompleted: props.onCompleted,
-      onError: props.onError,
-      update(cache, { data }) {
-        const variables: GQLClause<Location> = prepareLocationsArguments({
-          filters: props.filters
-        })
+  const [deleteLocation, { loading, data }] = useMutation<
+    LocationDeleteData,
+    LocationDeleteVariables
+  >(DELETE_LOCATION, {
+    onCompleted: props.onCompleted,
+    onError: props.onError,
+    update(cache, { data }) {
+      const variables: GQLClause<Location> = prepareLocationsArguments({
+        filters: props.filters
+      })
 
-        const { locations } = cache.readQuery<LocationQuery>({
-          query: GET_LOCATIONS,
-          variables
-        }) || { locations: [] }
+      const { locations } = cache.readQuery<LocationQuery>({
+        query: GET_LOCATIONS,
+        variables
+      }) || { locations: [] }
 
-        const locationList = locations.filter((location) => location.id !== data?.location.id)
-        cache.writeQuery<LocationQuery>({
-          query: GET_LOCATIONS,
-          variables,
-          data: { locations: locationList }
-        })
-      }
+      const locationList = locations.filter((location) => location.id !== data?.location.id)
+      cache.writeQuery<LocationQuery>({
+        query: GET_LOCATIONS,
+        variables,
+        data: { locations: locationList }
+      })
     }
-  )
-  return { deleteLocation, loading }
+  })
+  return { data, deleteLocation, loading }
 }

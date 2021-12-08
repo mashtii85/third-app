@@ -34,11 +34,9 @@ export const prepareUseAccounts = (filters?: Partial<AccountFilters>): GQLClause
     condition.status = { _eq: filters.status }
   }
 
-  variables.limit = filters?.limit
-  variables.offset = filters?.offset
-  variables.order_by = filters?.order_by || {
-    created_at: 'desc'
-  }
+  variables.limit = filters?.limit ?? null
+  variables.offset = filters?.offset ?? null
+  variables.order_by = filters?.orderBy ?? {}
 
   variables.where = condition
   return variables

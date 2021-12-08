@@ -18,11 +18,14 @@ import {
 
 import {
   dataCy,
+  getDropdownNavItem,
   getInputByName,
   getNavItem,
   getTab,
   getTableInModule,
-  id
+  getTile,
+  id,
+  testCalendar
 } from './commands/selectors'
 
 import {
@@ -95,3 +98,9 @@ Cypress.Commands.add('testViewPage', testViewPage)
 
 // AUTH
 Cypress.Commands.add('login', login)
+
+Cypress.Commands.add('getTile', getTile)
+
+Cypress.Commands.add('testCalendar', testCalendar)
+
+Cypress.Commands.add('getDropdownNavItem', getDropdownNavItem)

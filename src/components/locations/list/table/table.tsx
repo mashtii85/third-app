@@ -24,7 +24,6 @@ const initialSort = {}
 
 export const LocationTable = ({ filters }: LocationTableProps) => {
   const { initialData, ref } = useTable<LocationFilter>({ filters, initialSort })
-
   const { locationList, loading } = useLocations({
     filters: initialData
   })

@@ -69,5 +69,5 @@ export const Toolbar = ({ filters }: { filters: LooseObject }) => {
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create a course" />
+  return <Button context="white" onClick={handleClick} size="sm" content="Create a Course" />
 }

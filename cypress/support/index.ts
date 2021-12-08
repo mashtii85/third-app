@@ -217,6 +217,40 @@ declare global {
        * @example cy.login(email?: string, password?: string)
        */
       login(email: string, password: string): Chainable<Element>
+
+      /**
+       * Custom command to get IUI Tile
+       * @example cy.getTile({tile: string, url?: string, timer?: number})
+       */
+      getTile({
+        tile,
+        url,
+        timer
+      }: {
+        tile: string
+        url?: string
+        timer?: number
+      }): Chainable<Element>
+
+      /**
+       * Custom command to test Calendar
+       * @example cy.testCalendar(timer?:number=1000)
+       */
+      testCalendar(timer?: number): Chainable<Element>
+
+      /**
+      * Custom command to test Dropdown NavItem
+      * @example cy.getDropdownNavItem( item: string,
+          length: number,
+          itemList: string[] = [],
+          timer: number = 1000)
+      */
+      getDropdownNavItem(
+        item: string,
+        length: number,
+        itemList?: string[],
+        timer?: number
+      ): Chainable<Element>
     }
   }
 }

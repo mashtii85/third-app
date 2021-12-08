@@ -33,9 +33,9 @@ export const prepareGroupEntitiesArguments = ({
   }
 
   const otherClause = {
-    limit: filters?.limit,
-    offset: filters?.offset,
-    order_by: filters?.order_by ? filters.order_by : {}
+    limit: filters?.limit ?? null,
+    offset: filters?.offset ?? null,
+    order_by: filters?.orderBy ?? {}
   }
 
   return { ...otherClause, where: condition }

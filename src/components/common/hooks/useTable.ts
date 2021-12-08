@@ -21,10 +21,10 @@ export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTabl
   const sort = initialSort || defaultSort
   const orderBy = ref.current
     ? {
-        [ref.current?.sort.item || sort.item]: sort.inneritem
-          ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
-          : ref.current?.sort.order || sort.order
-      }
+      [ref.current?.sort.item || sort.item]: sort.inneritem
+        ? { [sort.inneritem]: ref.current?.sort.order || sort.order }
+        : ref.current?.sort.order || sort.order
+    }
     : defaultSort
 
   const initialData: T = {

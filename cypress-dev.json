@@ -9,6 +9,8 @@
   "waitForAnimations": false,
   "animationDistanceThreshold": 50,
   "env":{
+    "backendUrl":"http://localhost:8280/v1/graphql",
+    "frontendUrl":"http://localhost:3100",
       "users":{
         "admin":{
           "email":"uaefa@example.com",
@@ -24,5 +26,4 @@
         }
       }
     }
-
 }

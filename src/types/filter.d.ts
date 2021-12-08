@@ -8,11 +8,11 @@ export interface Filter {
   q: string
   limit: number
   offset: number
-  order_by: OrderBy
+  orderBy: OrderBy
 }
 
 export interface GQLFilters extends Omit<Filter, 'q'> {
-  limit: number
-  offset: number
-  order_by: OrderBy
+  limit: number | null
+  offset: number | null
+  order_by: OrderBy | {}
 }

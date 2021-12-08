@@ -42,9 +42,5 @@ export const useEnrollments = ({
     }
   })
 
-  if (error) {
-    return { loading: false, error, enrollments: [] }
-  }
-
-  return { loading, enrollments: data?.enrollments || [] }
+  return { error, loading, enrollments: data?.enrollments || [] }
 }

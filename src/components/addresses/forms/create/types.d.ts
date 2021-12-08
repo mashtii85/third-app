@@ -2,7 +2,7 @@
  * Components - Addresses - Form - types.d
  */
 
-import { ADDRESS_STATUS } from '../../../../types/address.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 interface ToolbarModel {
   entity: string
@@ -20,8 +20,8 @@ export interface AddressFormType {
   city: string
   postcode: string
   county: string
+  status: STATUS_ACTIVE
   type: string
-  status: ADDRESS_STATUS
 }
 
 export interface ADDRESS_STATUS_DROPDOWN {

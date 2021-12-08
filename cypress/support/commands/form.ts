@@ -85,7 +85,7 @@ const formTextarea = (name: string, text: string, force: boolean = false): any =
   cy.get(`textarea[name="${name}"]`).type(text, { force })
 
 const formTextInput = (name: string, text: string, force: boolean = false): any =>
-  cy.get(`input[name="${name}"]`).type(text, { force })
+  cy.get(`input[name="${name}"]`).clear().type(text, { force })
 
 const hasField = (fieldType: string, name: string, force: boolean = false): any => {
   switch (fieldType) {

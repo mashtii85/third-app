@@ -15,7 +15,7 @@ import { prepareLocationsArguments } from '../useLocations/helpers'
 import { UseCreateLocationProps, UseCreateLocationOutput, CreateLocationVariables } from './types.d'
 
 export const useCreateLocation = (props: UseCreateLocationProps): UseCreateLocationOutput => {
-  const [createLocation, { error, loading }] = useMutation<
+  const [createLocation, { error, loading, data }] = useMutation<
     CreateLocationVariables,
     LocationDeleteVariables
   >(CREATE_LOCATION, {
@@ -45,5 +45,5 @@ export const useCreateLocation = (props: UseCreateLocationProps): UseCreateLocat
     }
   })
 
-  return { error, createLocation, loading }
+  return { data, error, createLocation, loading }
 }

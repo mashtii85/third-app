@@ -8,6 +8,25 @@ const id = (value: string): any => cy.get(`[id=${value}]`)
 
 const getNavItem = (name: string): any => cy.contains(`nav div ul li a span`, name)
 
+const getDropdownNavItem = (
+  item: string,
+  length: number,
+  itemList: string[] = [],
+  timer: number = 1000
+): any => {
+  cy.get('.dropdown--toggle').within(() => {
+    cy.contains(item)
+      .click()
+      .wait(timer)
+      .get('.dropdown--menu')
+
+      .within(() => {
+        cy.get('.dropdown--link').should('have.length', length)
+        itemList.map((item) => cy.get(item))
+      })
+  })
+}
+
 const getInputByName = (name: string): any => cy.get(`input[name="${name}"]`)
 
 const getTableInModule = (element: string = 'summary', moduleName: string): any =>
@@ -20,4 +39,44 @@ const getTab = (tabName: string, contains: string, element: string = 'details'):
   cy.dataCy('loadingIndicator').should('not.exist')
 }
 
-export { dataCy, getInputByName, getNavItem, getTab, getTableInModule, id }
+const getTile = ({
+  tile,
+  url,
+  timer = 1000
+}: {
+  tile: string
+  url?: string
+  timer?: number
+}): any => {
+  cy.contains('div', tile)
+    .click()
+    .then(() => {
+      url && cy.url().should('include', `/${url}`).wait(timer).go('back').wait(timer)
+    })
+}
+
+const testCalendar = (timer: number = 1000): any => {
+  cy.get('.fc-header-toolbar').within(() => {
+    cy.get('.fc-prev-button').click().wait(timer)
+    cy.get('.fc-next-button').click().wait(timer)
+    cy.get('.fc-today-button').should('be.disabled').wait(timer)
+    cy.get('.fc-toolbar-title')
+    cy.get('.fc-dayGridMonth-button').click().wait(timer)
+    cy.get('.fc-timeGridWeek-button').click().wait(timer)
+    cy.get('.fc-timeGridDay-button').click().wait(timer)
+    cy.get('.fc-listWeek-button').click().wait(timer)
+  })
+  cy.get('.fc-list-empty')
+}
+
+export {
+  dataCy,
+  getDropdownNavItem,
+  getInputByName,
+  getNavItem,
+  getTab,
+  getTableInModule,
+  getTile,
+  id,
+  testCalendar
+}

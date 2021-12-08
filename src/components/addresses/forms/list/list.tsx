@@ -24,9 +24,10 @@ import { useDefaultAddress } from '../../hooks/useDefaultAddress/useDefaultAddre
 import { UseAddressProps } from '../../hooks/types.d'
 import { AddressTableRowsType } from './types.d'
 import { AddressFormType } from '../../forms/create/types.d'
-import { ADDRESS_STATUS, ADDRESS_TYPE } from '../../../../types/address.d'
+import { ADDRESS_TYPE } from '../../../../types/address.d'
 import { offCanvasType } from '../../../../types/offCanvas.d'
 import { DefaultAddressHookProps } from '../../hooks/useDefaultAddress/types.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export const AddressListForm = ({
   addressType,
@@ -116,7 +117,7 @@ export const AddressListForm = ({
           onSuccess={handleCompleted}
           defaultValues={{
             type: addressType,
-            status: ADDRESS_STATUS.Active
+            status: STATUS_ACTIVE.Active
           }}
         />
       ),

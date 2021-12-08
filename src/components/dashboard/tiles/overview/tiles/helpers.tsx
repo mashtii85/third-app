@@ -3,13 +3,11 @@
  */
 
 // UI
-import { Column } from '@drykiss/industry-ui'
+import { Column, Tile } from '@drykiss/industry-ui'
 
 // Types
 import type { TileItemProps } from './types'
 import { ACCOUNT_TYPE } from '../../../../../types/account.d'
-
-import { StyledTile } from './styles'
 
 export const TileItem = ({ title, to, accountType, value, colourConfig }: TileItemProps) => (
   <Column
@@ -18,6 +16,6 @@ export const TileItem = ({ title, to, accountType, value, colourConfig }: TileIt
     sm={6}
     style={{ marginBottom: '1.8em' }}
   >
-    <StyledTile rounded title={title} size="sm" colourConfig={colourConfig} to={to} body={value} />
+    <Tile rounded title={title} size="sm" colourConfig={colourConfig} to={to} body={value} />
   </Column>
 )

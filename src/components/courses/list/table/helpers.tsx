@@ -113,11 +113,15 @@ export const Toolbar = ({ filters }: { filters: CourseFilter }) => {
     offCanvas.show({
       content: <UpsertCourseForm onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: 'Add a course'
+      title: 'Add a Course'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create a course" />
+  return (
+    <div data-cy="create-course-button">
+      <Button context="white" onClick={handleClick} size="sm" content="Create a Course" />
+    </div>
+  )
 }
 
 export const prepareEditCourseValues = (row: CourseTableRowsType) => {

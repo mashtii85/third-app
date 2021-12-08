@@ -2,14 +2,17 @@
  * Cypress - Support - Commands - Auth
  */
 
+import { timer } from '../../constants/misc'
+
 export const login = (email: string, password: string): any => {
-  const timer = 1000
+  const url = Cypress.env('frontendUrl')
+
   cy.dataSession({
     name: 'login',
     setup() {
       cy.request({
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        url: 'http://localhost:3100/api/auth/login',
+        url: `${url}/api/auth/login`,
         method: 'POST',
         body: {
           email,

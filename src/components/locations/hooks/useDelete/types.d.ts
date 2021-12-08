@@ -19,6 +19,7 @@ export interface useDeleteLocationProps extends UseHookProps<LocationDeleteData>
   // accountId: number
 }
 export interface useDeleteLocationOutput {
+  data?: LocationDeleteData | null
   deleteLocation: any
   loading: boolean
 }

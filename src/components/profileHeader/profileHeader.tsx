@@ -94,7 +94,7 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
   }
 
   return (
-    <StyledHeader>
+    <StyledHeader data-cy="profile-header">
       <Container>
         <Row>
           <Column md={3}>

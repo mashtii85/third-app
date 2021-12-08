@@ -3,7 +3,6 @@
  */
 
 // Types
-import { GQLFilters } from '../../../../types/filter'
 import { GQLClause, GraphqlWhere } from '../../../../types/gql'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { Event } from '../../types'
@@ -30,10 +29,10 @@ export const prepareEventsArguments = ({
     condition.status = { _eq: filters.status }
   }
 
-  const otherClause: Partial<GQLFilters> = {
-    limit: filters?.limit ?? 10,
-    offset: filters?.offset ?? 0,
-    order_by: filters?.order_by ? filters.order_by : {}
+  const otherClause = {
+    limit: filters?.limit ?? null,
+    offset: filters?.offset ?? null,
+    order_by: filters?.orderBy ?? {}
   }
 
   return { ...otherClause, where: { ...condition } }

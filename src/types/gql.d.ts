@@ -32,8 +32,10 @@ type LessThanEqual = {
   _lte: string
 }
 
+// caution this type should only be used with json object try to change it
+// in a way which only appears for json type
 type Contains = {
-  _contains: any
+  _contains: string | number
 }
 
 type GraphQLType =
@@ -63,7 +65,7 @@ export type GraphqlWhere<T> = {
 
 export type GQLClause<T> = {
   where?: GraphqlWhere<T>
-  limit?: number
-  offset?: number
+  limit?: number | null
+  offset?: number | null
   order_by?: OrderBy
 }

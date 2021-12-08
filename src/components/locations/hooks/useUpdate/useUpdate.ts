@@ -13,12 +13,12 @@ import { UseHookProps } from '../../../../types/hook.d'
 export const useUpdateLocation = (
   props: UseHookProps<LocationUpdateData>
 ): UseUpdateLocationOutput => {
-  const [updateLocation, { loading, error }] = useMutation<
+  const [updateLocation, { loading, error, data }] = useMutation<
     LocationUpdateData,
     LocationUpdateVariables
   >(UPDATE_LOCATION, {
     onCompleted: props.onCompleted,
     onError: props.onError
   })
-  return { error, loading, updateLocation }
+  return { data, error, loading, updateLocation }
 }

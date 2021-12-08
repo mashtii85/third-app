@@ -3,7 +3,7 @@
  */
 
 import pages from '../../../src/config/pages'
-const timer = 1500
+import { timer } from '../../constants/misc'
 describe('Accounts/Signin', () => {
   before(() => cy.visit(pages.account.signIn))
 

@@ -20,5 +20,6 @@ export interface LocationUpdateData {
 }
 
 export interface UseUpdateLocationOutput extends UseHookOutput {
+  data?: LocationUpdateData | null
   updateLocation: any
 }

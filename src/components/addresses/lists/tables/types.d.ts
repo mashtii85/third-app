@@ -2,7 +2,7 @@
  * Components - Addresss - List - Table - Types
  */
 
-import { ADDRESS_STATUS } from '../../../../types/address'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export interface AddressTableRowsType {
   id?: number | undefined
@@ -15,7 +15,7 @@ export interface AddressTableRowsType {
   city: string
   postcode: string
   county: string
-  status: ADDRESS_STATUS
+  status: STATUS_ACTIVE
   date: string
 }
 

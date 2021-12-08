@@ -120,9 +120,13 @@ export const Toolbar = ({ filters }: { filters: EventFilter }) => {
     offCanvas.show({
       content: <UpsertEvent onSuccess={offCanvas.close} filters={filters} />,
       submit: true,
-      title: 'Add an event'
+      title: 'Add an Event'
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create an event" />
+  return (
+    <div data-cy="create-event-button">
+      <Button context="white" onClick={handleClick} size="sm" content="Create an Event" />
+    </div>
+  )
 }

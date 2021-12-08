@@ -3,8 +3,9 @@
  */
 
 // Types.d
-import { Address, ADDRESS_STATUS } from '../../../../types/address.d'
+import { Address } from '../../../../types/address.d'
 import { UseHookOutput } from '../../../../types/hook.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 export interface AddressUpdateVariables {
   id: number
@@ -16,7 +17,7 @@ export interface AddressUpdateVariables {
     city?: string
     county?: string
     postcode?: string
-    status?: ADDRESS_STATUS
+    status?: STATUS_ACTIVE
   }
 }
 

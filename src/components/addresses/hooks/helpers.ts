@@ -57,9 +57,13 @@ export const prepareArguments = ({
   if (filters.status) {
     where.status = { _eq: filters.status }
   }
-
-  const variables: GQLClause<Address> = { where }
-  return variables
+  const otherClause = {
+    limit: filters?.limit ?? null,
+    offset: filters?.offset ?? null,
+    order_by: filters?.orderBy ?? {}
+  }
+  const clause = { ...otherClause, where }
+  return clause
 }
 
 export const prepareMetaClause = (

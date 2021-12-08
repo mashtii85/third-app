@@ -16,7 +16,8 @@ import { useAddresses } from '../../../addresses/hooks/useAddresses'
 // Types
 import { AddressTable } from '../../../addresses/lists/tables/table'
 import { AddressFilter, UseAddressProps } from '../../../addresses/hooks/types.d'
-import { ADDRESS_STATUS, ADDRESS_TYPE } from '../../../../types/address.d'
+import { ADDRESS_TYPE } from '../../../../types/address.d'
+import { STATUS_ACTIVE } from '../../../../types/select.d'
 
 // type values: invoice, registered
 export const ClientAddress = () => {
@@ -26,11 +27,11 @@ export const ClientAddress = () => {
     entity: ENTITIES.Account,
     entityId: user.account_id
   }
-  const addressfilters: Partial<AddressFilter> = {
+  const addressFilters: Partial<AddressFilter> = {
     entity: filters.entity,
     entityId: filters.entityId
   }
-  const { addressList, refetch } = useAddresses(addressfilters)
+  const { addressList, refetch } = useAddresses(addressFilters)
   // const selectedAddress = addressList.find((add) => add.status === ADDRESS_STATUS.Active)
   // useEffect(() => {
   //   refetch!()
@@ -40,14 +41,14 @@ export const ClientAddress = () => {
       add.meta &&
       add.meta.registered &&
       add.meta.registered === true &&
-      add.status === ADDRESS_STATUS.Active
+      add.status === STATUS_ACTIVE.Active
   )
   const invoiceDefault = addressList.find(
     (add) =>
       add.meta &&
       add.meta.invoice &&
       add.meta.invoice === true &&
-      add.status === ADDRESS_STATUS.Active
+      add.status === STATUS_ACTIVE.Active
   )
 
   return (

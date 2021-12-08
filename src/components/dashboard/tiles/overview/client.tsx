@@ -28,10 +28,8 @@ export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewPro
   console.error(error)
 
   return (
-    <div data-cy="ClientDashboard">
-      {/* <div data-cy="client-tiles"> */}
-      <Tiles data-cy={'client-tiles'} accountType={ACCOUNT_TYPE.Client} items={items} />
-      {/* </div> */}
+    <div data-cy="client-dashboard">
+      <Tiles accountType={ACCOUNT_TYPE.Client} items={items} />
 
       <Space marginBottom="md" />
 

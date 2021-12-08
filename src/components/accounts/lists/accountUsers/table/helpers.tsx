@@ -111,5 +111,9 @@ export const Toolbar = ({ filters, onSuccess }: UserFormProps) => {
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content="Create a User" />
+  return (
+    <div data-cy="create-user-button">
+      <Button context="white" onClick={handleClick} size="sm" content="Create a User" />
+    </div>
+  )
 }

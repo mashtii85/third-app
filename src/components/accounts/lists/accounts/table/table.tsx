@@ -4,8 +4,9 @@
 
 // React
 import { MouseEvent, useContext } from 'react'
+
 // UI
-import { Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
+import { capitalize, Details2, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useAccounts } from '../../../hooks'
 
 // Hooks
@@ -53,7 +54,7 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
         />
       ),
       submit: true,
-      title: `Edit ${filters?.userType}`
+      title: `Edit ${capitalize(filters?.userType ?? '')}`
     })
   }
 

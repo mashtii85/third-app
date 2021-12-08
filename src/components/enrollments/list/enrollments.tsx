@@ -2,16 +2,10 @@
  * Components - Enrollments - List - Enrollments
  */
 
-import { EnrolledUsersFilters } from './filters'
-import { EnrolledUsersTable } from './table/table'
+import { EnrolledUsersFilters as Filters } from './filters'
+import { EnrolledUsersTable as Table } from './table/table'
 import { LayoutList } from '../../../layouts/list'
 
 export const Enrollments = ({ courseId }: { courseId?: number }) => {
-  return (
-    <LayoutList
-      FiltersComp={EnrolledUsersFilters}
-      TableComp={EnrolledUsersTable}
-      otherProps={{ courseId }}
-    />
-  )
+  return <LayoutList FiltersComp={Filters} TableComp={Table} otherProps={{ courseId }} />
 }

@@ -4,11 +4,7 @@
 
 // Constants
 import { ENTITIES } from '../constants/entities'
-
-export enum ADDRESS_STATUS {
-  Active = 'active',
-  Inactive = 'inactive'
-}
+import { STATUS_ACTIVE } from './select.d'
 
 export enum ADDRESS_TYPE {
   Registered = 'registered',
@@ -29,5 +25,5 @@ export interface Address {
   meta: any
   created_at: string
   updated_at: string
-  status: ADDRESS_STATUS
+  status: STATUS_ACTIVE
 }

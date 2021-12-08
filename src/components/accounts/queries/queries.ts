@@ -88,7 +88,11 @@ export const DELETE_ACCOUNT_BY_ID = gql`
   mutation deleteAccountById($accountId: Int!) {
     account: delete_account_by_pk(id: $accountId) {
       ...AccountFields
+      taxonomy {
+        ...TaxonomyFields
+      }
     }
   }
   ${ACCOUNT_FIELDS}
+  ${TAXONOMY_FIELDS}
 `

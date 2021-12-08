@@ -186,7 +186,11 @@ export const UserAccountToolbar = ({ filters }: { filters?: Partial<AccountFilte
     })
   }
 
-  return <Button context="white" onClick={handleClick} size="sm" content={`Create a ${caption}`} />
+  return (
+    <div data-cy="create-member-button">
+      <Button context="white" onClick={handleClick} size="sm" content={`Create a ${caption}`} />
+    </div>
+  )
 }
 
 export const prepareAccountDefaultValues = ({

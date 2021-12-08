@@ -4,10 +4,11 @@
 
 // Types
 import { ENTITIES } from '../../../constants/entities'
-import { Address, ADDRESS_STATUS } from '../../../types/address.d'
-import { LooseObject } from '../../../types/object'
+import { Address } from '../../../types/address.d'
+import { Filter } from '../../../types/filter'
+import { STATUS_ACTIVE } from '../../../types/select.d'
 
-export interface AddressFilter {
+export interface AddressFilter extends Filter {
   entity: ENTITIES
   entityId: number
   name: string
@@ -17,22 +18,18 @@ export interface AddressFilter {
   postcode: string
   type: string
   default: string
-  status: ADDRESS_STATUS
+  status: STATUS_ACTIVE
 }
 
 export interface UseAddressProps {
   entity: ENTITIES
   entityId: number
   type: string
-  status: ADDRESS_STATUS
+  status: STATUS_ACTIVE
 }
 
 export interface AddressesData {
   address: Address[]
-}
-
-export interface AddressesVariables {
-  where: LooseObject
 }
 
 export interface AddressData {
