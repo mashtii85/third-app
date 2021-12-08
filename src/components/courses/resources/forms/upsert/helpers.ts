@@ -94,11 +94,45 @@ export const getMediumTypeByFileExtension = (ext: string): MEDIUM_TYPE => {
     case 'jpeg':
     case '.png':
     case 'png':
+    case '.apng':
+    case 'apng':
     case '.bmp':
     case 'bmp':
     case '.gif':
     case 'gif':
-    default:
+    case '.svg':
+    case 'svg':
+    case '.webp':
+    case 'webp':
+    case '.ico':
+    case 'ico':
+    case '.tiff':
+    case 'tiff':
       return MEDIUM_TYPE.Image
+    case '.mp4':
+    case 'mp4':
+    case '.mkv':
+    case 'mkv':
+    case '.flv':
+    case 'flv':
+    case '.mov':
+    case 'mov':
+    case '.webm':
+    case 'webm':
+    case '.avi':
+    case 'avi':
+    case '.qt':
+    case 'qt':
+    case '.oqv':
+    case 'oqv':
+    case '.wmv':
+    case 'wmv':
+    case '.mpg':
+    case 'mpg':
+    case '.mpeg':
+    case 'mpeg':
+      return MEDIUM_TYPE.Video
+    default:
+      throw new Error('Unknown file extension!')
   }
 }

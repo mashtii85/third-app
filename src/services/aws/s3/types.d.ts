@@ -8,5 +8,5 @@ export interface UploadParams {
   mimeType: string
   bucket: string
   folder: string
-  buffer: string
+  buffer: Buffer
 }

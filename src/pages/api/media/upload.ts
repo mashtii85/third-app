@@ -11,6 +11,7 @@ import nc from 'next-connect'
 import mimetype from 'mimetype'
 import multer from 'multer'
 import cors from 'cors'
+import fs from 'fs'
 
 // Services
 import { uploadS3 } from '../../../services/aws/s3'
@@ -23,6 +24,8 @@ import { TE } from '../../../utils/api/errors'
 // Types
 import { ApiUploadRequest } from '../../../utils/api/types'
 import { UploadParams } from '../../../services/aws/s3/types'
+import { getMediumTypeByFileExtension } from '../../../components/courses/resources/forms/upsert/helpers'
+import { AWS } from '../../../config/aws'
 
 const upload = multer({
   storage: multer.memoryStorage()
@@ -43,6 +46,15 @@ handler
 
     const name = fileName(originalname)
     const mimeType = mimetype.lookup(originalname)
+
+    // If we're in the dev env
+    if (AWS?.endpoint && AWS.endpoint.includes('localhost')) {
+      // Copying uploaded file to localstack folder to keep them on DOCKER ENGINE restart
+      const ext = originalname.split('.').pop()
+      const filetype = getMediumTypeByFileExtension(ext)
+      const path = `../api.realworldacademies.com/localstack/files/${filetype}s/${name}`
+      fs.writeFileSync(path, buffer)
+    }
 
     const uploadParams: UploadParams = {
       fileName: name,
