@@ -62,8 +62,11 @@ export const TaxonomyUpsert = ({
       name: formData.name,
       type: formData.type,
       status: formData.status,
-      client_id: user.client_id
+      client_id: user.client_id,
+      entity: formData.entity
+      // entity_id: formData.entityOption.value
     }
+
     if (formData.parent_id !== undefined) obj.parent_id = defaultValues.parent_id
     if (id) {
       return await updateTaxonomy({ variables: { taxonomyId: id, changes: obj } })

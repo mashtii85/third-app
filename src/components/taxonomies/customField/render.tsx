@@ -14,6 +14,7 @@ import {
 } from '@drykiss/industry-ui'
 import { Options } from '../../../types/options'
 import { DatePicker } from '../../common/datePicker/datePicker'
+import { Select } from '../../selects/select'
 
 // Types
 import { CustomFieldRenderProps } from './types.d'
@@ -42,7 +43,7 @@ export const CustomFieldRender = (props: CustomFieldRenderProps) => {
     withTime,
     defaultValue
   } = props
-  const hasOptions = (input === 'select' || input === 'selectEntity') && options.length > 0
+  const hasOptions = input === 'select' && options.length > 0
   const hasCurrencyInput = input === 'currencyInput'
   const hasData = ['checkbox', 'radio'].includes(input) && options.length > 0
   const hasTime = input === 'datepicker' && withTime
@@ -72,14 +73,27 @@ export const CustomFieldRender = (props: CustomFieldRenderProps) => {
 
   return (
     <>
-      {hasCurrencyInput ? (
-        <FormLabel label={label}>
-          <InputComponent {...defaultProps} label="" />
-        </FormLabel>
+      {input === 'selectEntity' ? (
+        <Select
+          {...defaultProps}
+          type={inputType}
+          name={name}
+          label={label}
+          isClearable={true}
+          defaultValue={defaultValue}
+        />
+      ) : hasCurrencyInput ? (
+        <>
+          <FormLabel label={label}>
+            <InputComponent {...defaultProps} label="" />
+          </FormLabel>
+        </>
       ) : (
-        <FormLabel label={label}>
-          <InputComponent {...defaultProps} />
-        </FormLabel>
+        <>
+          <FormLabel label={label}>
+            <InputComponent {...defaultProps} />
+          </FormLabel>
+        </>
       )}
     </>
   )

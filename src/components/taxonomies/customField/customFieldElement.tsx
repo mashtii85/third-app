@@ -1,7 +1,6 @@
 /**
  * Components - Taxonomies - CustomField - Types.d
  */
-
 import { CustomFieldRender } from './render'
 
 import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
@@ -18,7 +17,6 @@ export const CustomFieldElement = ({
     category: TAXONOMY_TYPE.CustomFields,
     parentId: parseInt(taxonomyWatch?.value, 10)
   })
-
   return (
     <>
       {(taxonomies || []).map((item) => (

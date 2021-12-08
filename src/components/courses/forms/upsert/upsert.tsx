@@ -59,7 +59,6 @@ export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: Cou
 
   const onSubmit = ({ taxonomy, ...form }: CourseFormSubmission) => {
     const formParams = { ...form, taxonomy_id: taxonomy?.value }
-
     if (defaultValues?.id) {
       updateCourse({ variables: { courseId: defaultValues.id, set: formParams } })
     } else {

@@ -23,12 +23,15 @@ import {
 import { input, inputType } from '../../../../constants/inputTypes'
 import { CustomFieldFormProps } from './types.d'
 
+import { customFieldEntityOptions } from './helpers'
+
 export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
   // Watchers
   const inputWatch = useWatch({
     control: defaultOptions.control,
     name: 'custom_fields.input'
   })
+
   const hasOptions = (): boolean => {
     if (inputWatch) {
       const isOption = input.find((input: { value: string }) => input.value === inputWatch)
@@ -60,6 +63,18 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
       <FormLabel label="Input">
         <SelectField {...defaultOptions} name="custom_fields.input" options={input} />
       </FormLabel>
+
+      {inputWatch === 'selectEntity' && (
+        <>
+          <FormLabel label="Entity">
+            <SelectField
+              {...defaultOptions}
+              name="custom_fields.inputType"
+              options={customFieldEntityOptions}
+            />
+          </FormLabel>
+        </>
+      )}
 
       {withType && (
         <FormLabel label="Type">

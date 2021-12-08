@@ -2,32 +2,32 @@
  * Components - Selects - types
  */
 
-export enum SELECT_TYPE {
-  COURSES
-}
+import { DocumentNode } from '@apollo/client'
+import { ENTITIES } from '../../constants/entities'
+import { LooseObject } from '../../types/object'
 
 export interface SelectProps {
   control: any
-  errors: any
-  entity: string
-  entityId: number
+  errors?: any
+  entity?: string
+  entityId?: number
   isClearable: boolean
   name: string
-  label: string
-  type: SELECT_TYPE
-  defaultValue?: string
+  label: string | unknown
+  type: ENTITIES | string | unknown
+  defaultValue?: LooseObject
 }
 
 export interface GetQueryTypeOutput {
-  variables: {
+  variables?: {
     entity: string
     entityId: number
   }
-  query: string
+  query: DocumentNode
 }
 
 export interface GetQueryTypeInput {
-  entity: string
-  entityId: number
-  type: SELECT_TYPE
+  entity?: string
+  entityId?: number
+  type: ENTITIES | unknown
 }

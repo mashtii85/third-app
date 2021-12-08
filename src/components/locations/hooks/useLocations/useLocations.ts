@@ -12,7 +12,7 @@ import { LocationsData, LocationsVariables, UseLocationsOutput, UseLocationsProp
 // Helpers
 import { prepareLocationsArguments } from './helpers'
 
-export const useLocations = ({ filters }: UseLocationsProps): UseLocationsOutput => {
+export const useLocations = ({ filters }: Partial<UseLocationsProps>): UseLocationsOutput => {
   const variables = prepareLocationsArguments({ filters })
 
   const { data, error, loading } = useQuery<LocationsData, LocationsVariables>(GET_LOCATIONS, {

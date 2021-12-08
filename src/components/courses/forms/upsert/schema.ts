@@ -1,5 +1,5 @@
 /**
- * Components - Courses - Form - Add - Schema
+ * Components - Courses - Form - Upsert - Schema
  */
 
 // Yup
