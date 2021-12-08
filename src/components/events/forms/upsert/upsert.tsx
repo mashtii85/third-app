@@ -10,7 +10,8 @@ import { EventSchema as schema } from './schema'
 // UI
 import { FormField, Form, FormLabel, SelectField, TextareaField } from '@drykiss/industry-ui'
 import { TaxonomySelect } from '../../../taxonomies/select/select'
-import { DatePicker } from '../../../calendar/datePicker'
+import { DatePicker } from '../../../common/datePicker/datePicker'
+
 // Constants
 import { statusActive } from '../../../../constants/status'
 
@@ -87,11 +88,11 @@ export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFor
       </FormLabel>
 
       <FormLabel label="Start Date">
-        <DatePicker {...defaultOptions} name="start_at" options={statusActive} />
+        <DatePicker {...defaultOptions} name="start_at" />
       </FormLabel>
 
       <FormLabel label="End Date">
-        <DatePicker {...defaultOptions} name="end_at" options={statusActive} />
+        <DatePicker {...defaultOptions} name="end_at" />
       </FormLabel>
 
       <FormLabel label="Status">

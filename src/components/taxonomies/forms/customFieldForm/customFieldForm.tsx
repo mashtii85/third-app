@@ -39,6 +39,8 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
 
   const withType = inputWatch === 'input'
 
+  const withTime = inputWatch === 'datepicker'
+
   const { fields, append, remove } = useFieldArray({
     control: defaultOptions.control,
     name: 'custom_fields.options'
@@ -63,6 +65,15 @@ export const CustomFieldForm = ({ defaultOptions }: CustomFieldFormProps) => {
         <FormLabel label="Type">
           <SelectField {...defaultOptions} name="custom_fields.inputType" options={inputType} />
         </FormLabel>
+      )}
+
+      {withTime && (
+        <Checkbox
+          {...defaultOptions}
+          name="custom_fields.withTime"
+          data={[{ label: 'With time' }]}
+          stacked
+        />
       )}
 
       {hasOptions() && (

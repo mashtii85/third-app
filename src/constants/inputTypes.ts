@@ -6,7 +6,7 @@ export const input = [
   { disabled: true, text: 'Please choose...', value: '' },
   { text: 'Checkbox', value: 'checkbox', hasOptions: true },
   { text: 'CurrencyInput', value: 'currencyInput', hasOptions: false },
-  { text: 'Datepicker', value: 'datepicker', hasOptions: false },
+  { text: 'Date Picker', value: 'datepicker', hasOptions: false },
   { text: 'Input', value: 'input', hasOptions: false },
   { text: 'Radio', value: 'radio', hasOptions: true },
   { text: 'Select', value: 'select', hasOptions: true },

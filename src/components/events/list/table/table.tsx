@@ -72,12 +72,34 @@ export const EventTable = ({ filters }: EventTableProps) => {
     })
   }
 
+  const isdate = (date: string): boolean => {
+    try {
+      Date.parse(date)
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  const sanitizedEvents = eventList.map((event) => {
+    const newEvent = { ...event }
+    newEvent.custom_fields = { ...event.custom_fields }
+    if (event?.custom_fields) {
+      Object.keys(event?.custom_fields).forEach((key) => {
+        const val = event?.custom_fields[key]
+        if (isdate(val)) newEvent.custom_fields[key] = new Date(val)
+      })
+    }
+    return newEvent
+  })
+
+  console.log('sanitizedEvents', sanitizedEvents)
   return (
     <Details2 open title="Events" toolbar={<Toolbar filters={initialData} />}>
       <Table
         loading={loading}
         columns={columns({ handleDelete, handleEdit })}
-        rows={rows(eventList)}
+        rows={rows(sanitizedEvents)}
         ref={ref}
       />
     </Details2>

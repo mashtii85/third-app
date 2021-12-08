@@ -16,7 +16,8 @@ export const prepareTaxonomyDefaultValues = (
     input: '',
     inputType: '',
     label: '',
-    required: false
+    required: false,
+    withTime: false
   }
   const custom_fields = taxonomy.custom_fields ?? initialCustomFields
   return {

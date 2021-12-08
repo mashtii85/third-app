@@ -21,6 +21,7 @@ export interface CustomFields {
   options?: Options[]
   required: boolean
   inputType: string
+  withTime: boolean
 }
 
 export interface Taxonomy {

@@ -15,5 +15,6 @@ interface CustomFieldRenderProps {
   name: string
   label: string
   options: any
+  withTime: boolean
   defaultValue?: LooseObject
 }

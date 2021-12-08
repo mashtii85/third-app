@@ -30,6 +30,7 @@ export const CustomFieldElement = ({
           label={item?.custom_fields?.label}
           name={`custom_fields.${item.name}`}
           options={item?.custom_fields?.options}
+          withTime={item?.custom_fields?.withTime}
         />
       ))}
     </>
