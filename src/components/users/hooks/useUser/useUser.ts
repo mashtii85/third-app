@@ -4,8 +4,8 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
+import { User } from '../../../../types/user'
 import { GET_USER } from '../../queries'
-
 // Types
 import { UserData, UserVariables, UseUserOutput } from './types.d'
 
@@ -14,7 +14,6 @@ export const useUser = (userId: number): UseUserOutput => {
     variables: { userId }
   })
 
-  const user = data?.user ?? {}
-
+  const user: Partial<User> = data?.user ?? {}
   return { error, loading, user }
 }

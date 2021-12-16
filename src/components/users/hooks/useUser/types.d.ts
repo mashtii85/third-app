@@ -3,11 +3,10 @@
  */
 
 import { UseHookOutput } from '../../../../types/hook'
-import { LooseObject } from '../../../../types/object'
 import { User } from '../../../../types/user'
 
 export interface UseUserOutput extends UseHookOutput {
-  user: User | LooseObject
+  user: Partial<User>
 }
 
 export interface UserData {

@@ -18,5 +18,6 @@ export const USER_FIELDS = gql`
     phone_verified
     created_at
     updated_at
+    meta
   }
 `

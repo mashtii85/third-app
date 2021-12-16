@@ -30,9 +30,7 @@ export const ClientDashboardOverview = ({ clientId }: ClientDashboardOverviewPro
   return (
     <div data-cy="client-dashboard">
       <Tiles accountType={ACCOUNT_TYPE.Client} items={items} />
-
       <Space marginBottom="md" />
-
       <EventsCalendar />
     </div>
   )

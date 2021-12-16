@@ -21,6 +21,9 @@ export interface AccountUsers {
 
 export interface UserCustomFields { }
 
+export interface UserMeta {
+  locale?: string
+}
 export interface User {
   id: number
   email: string
@@ -35,6 +38,7 @@ export interface User {
   updated_at?: string
   accounts?: AccountUsers[]
   taxonomy_id?: number
+  meta?: Partial<UserMeta>
 }
 
 export interface CurrentUser extends User {

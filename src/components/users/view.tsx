@@ -23,7 +23,7 @@ import { offCanvasType } from '../../types/offCanvas'
 
 // Types
 import { UserDetailsProps } from './types.d'
-import { useUser } from './hooks/useUser/useUser'
+import { useUser } from './hooks'
 
 const UserDetails = ({ userId }: UserDetailsProps) => {
   const offCanvas: offCanvasType = useContext(OffCanvasContext)
@@ -38,9 +38,10 @@ const UserDetails = ({ userId }: UserDetailsProps) => {
     e.stopPropagation()
     offCanvas.show({
       content: <UpsertUserForm defaultValues={user} onSuccess={offCanvas.close} />,
-      title: 'Edit user'
+      title: 'Edit User'
     })
   }
+
   const Toolbar = () => {
     return (
       <ButtonToolbar>
@@ -58,7 +59,8 @@ const UserDetails = ({ userId }: UserDetailsProps) => {
         <Details2 open title="Details" toolbar={<Toolbar />}>
           <DetailsText content="Name" text={`${user.name_first} ${user.name_last}`} />
           <DetailsText content="Email" text={user.email} />
-          <DetailsText content="Phone" text={user?.custom_fields?.phone || '-'} />
+          <DetailsText content="Phone" text={user?.phone || '-'} />
+          <DetailsText content="Locale" text={user?.meta?.locale || '-'} />
           <DetailsText content="Status" text={user.status} />
           <DetailsText content="Date Added" text={formatDateStandard(user.created_at)} />
           <DetailsText content="Date Updated" text={formatDateStandard(user.updated_at)} />

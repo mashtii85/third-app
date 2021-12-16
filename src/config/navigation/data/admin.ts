@@ -11,7 +11,7 @@ import { prepareTaxonomyNavigation } from './helpers'
 
 import pages from '../../pages'
 
-export const Admin = (taxonomies: Partial<Taxonomy[]>): Navigation => {
+export const Admin = (taxonomies?: Taxonomy[]): Navigation => {
   const clientTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Client)
 
   return {

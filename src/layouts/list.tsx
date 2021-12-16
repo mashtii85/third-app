@@ -28,7 +28,7 @@ export const LayoutList = ({
   const [filters, setFilters] = useState(query)
 
   useEffect(() => {
-    const filters = prepareFiltersFromQuery(query, taxonomies)
+    const filters = prepareFiltersFromQuery(query, taxonomies ?? [])
     setFilters({ ...initialFilters, ...filters })
   }, [query])
 

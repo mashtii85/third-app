@@ -7,7 +7,7 @@ import type { NavLink } from '../../../types/navigation'
 import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 
 export const prepareTaxonomyNavigation = (
-  taxonomies: Partial<Taxonomy[]>,
+  taxonomies: Taxonomy[] = [],
   type: TAXONOMY_TYPE
 ): Partial<NavLink>[] => {
   if (!taxonomies?.length) {

@@ -20,7 +20,7 @@ export const Navigation = () => {
   const account = useCurrentAccount()
   const { taxonomies } = useApp()
 
-  let links = Default
+  let links = Default()
 
   if (user) {
     switch (user.account_type) {
@@ -44,11 +44,8 @@ export const Navigation = () => {
 
     return link
   })
-
-  // Prepare logo
   const logo = config.Brand.logoCDN
     ? `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${config.Brand.logo}`
     : config.Brand.logo
-
   return <Navbar contained={false} brand={logo} widgets={links} />
 }

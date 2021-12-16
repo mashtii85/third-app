@@ -1,10 +1,10 @@
 /**
- * Home
+ * Dashboard
  */
 
 // Next
 import Router from 'next/router'
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 
 // UI
 import { Dashboard } from '@drykiss/industry-ui'
@@ -13,7 +13,7 @@ import { DashboardView } from '../components/dashboard/view'
 // Hooks
 import { useCurrentUser } from '../utils/useCurrentUser'
 
-const Home: NextPage = () => {
+const PageDashboard: NextPage = () => {
   const { user } = useCurrentUser()
 
   if (!user) {
@@ -24,4 +24,4 @@ const Home: NextPage = () => {
   }
 }
 
-export default Home
+export default PageDashboard

@@ -76,7 +76,7 @@ export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
   const handleSuccess = () => {
     if (Object.values(TAXONOMY_TYPE).includes(type as TAXONOMY_TYPE)) {
       // Refetch site settings if `type` is one of the main taxonomy types to update nav items
-      refetchSettings()
+      refetchSettings!()
     }
     offCanvas.close()
   }

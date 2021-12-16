@@ -2,6 +2,8 @@
  * Components - Users - Forms - Upsert - UpsertUser
  */
 
+// Next
+import { useRouter } from 'next/router'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -23,11 +25,13 @@ import { useCreateUser, useUpdateUser } from '../../hooks'
 import { UserRow } from '../../../accounts/lists/accountUsers/table/types'
 import { CreateUserModel } from '../../hooks/useCreate/types'
 import { hashPassword } from '../../../../services/auth/helpers'
+import { User, UserMeta } from '../../../../types/user'
+import { locales } from '../../../../types/locales.d'
 
 export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserFormProps) => {
   const { errors, handleSubmit, register, setError } = useForm<UserForm>({
     defaultValues,
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema(!defaultValues?.id!!))
   })
 
   const defaultOptions = {
@@ -49,25 +53,35 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
     console.error(error?.message || error)
   }
 
-  const { createUser } = useCreateUser({
-    filters,
-    onCompleted: onSuccess,
-    onError
-  })
+  const onCompleted = ({ user }: { user: User }): void => {
+    const locale = user?.meta?.locale
+    if (router.locales !== locale) router.push(router.pathname, router.pathname, { locale })
+    onSuccess()
+  }
+
+  const router = useRouter()
+
+  const { createUser } = useCreateUser({ onCompleted, onError })
 
   const { updateUser } = useUpdateUser({
-    onCompleted: onSuccess,
+    onCompleted,
     onError
   })
 
   const onSubmit = (values: UserRow) => {
     if (defaultValues?.id) {
-      updateUser({ variables: { userId: defaultValues.id, changes: values } })
+      const userMeta: UserMeta = { ...defaultValues?.meta, locale: values?.meta?.locale }
+
+      updateUser({
+        variables: { userId: defaultValues.id, changes: { ...values, meta: userMeta } }
+      })
     } else {
+      const userMeta: UserMeta = { ...defaultValues?.meta, locale: values?.meta?.locale }
       const { password, ...userObject } = values
       const object: CreateUserModel = {
         accounts: { data: { account_id: filters?.accountId!, status: values.status } },
         ...userObject,
+        meta: userMeta,
         password: hashPassword(password),
         email_verified: false
       }
@@ -116,6 +130,14 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
             <FormError message={errors?.status?.message || ''} />
           )}
         </FormLabel>
+
+        <FormLabel label="Language">
+          <SelectField {...defaultOptions} name={'meta.locale'} options={locales} />
+          {errors.status && errors.status.type === 'required' && (
+            <FormError message={errors?.status?.message || ''} />
+          )}
+        </FormLabel>
+
         {!defaultValues?.id && (
           <FormLabel label="Password">
             <FormField {...defaultOptions} name="password" />

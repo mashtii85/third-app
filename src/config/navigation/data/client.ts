@@ -11,28 +11,31 @@ import pages from '../../pages'
 import type { Navigation } from '../../../types/navigation'
 import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
 import { Account } from '../../../types/account.d'
+import useTranslation from '../../../translations/hooks/useTranslation'
+import { LOCALE_NS } from '../../../types/locales.d'
+import { LooseObject } from '../../../types/object'
 
 export const Client = ({
   account,
   taxonomies
 }: {
   account: Account | undefined
-  taxonomies: Partial<Taxonomy[]>
+  taxonomies?: Taxonomy[]
 }): Partial<Navigation> => {
   const memberTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Member)
+  const { t } = useTranslation(LOCALE_NS.Navbar)
 
-  // console.log('ACCOUNT_TYPE.Client', taxonomies)
-  const menu: any[] = [
+  const menu: LooseObject[] = [
     {
       id: 'navMembersMenu',
-      name: 'Members',
+      name: t('Members'),
       type: {
         as: 'dropdown',
         items: [
           ...(memberTypes.length > 1 ? memberTypes : []),
           {
             id: 'navMembersList',
-            name: 'All Members',
+            name: t('AllMembers'),
             to: pages.dashboard.accounts.list
           }
         ]
@@ -43,16 +46,17 @@ export const Client = ({
     const { locations, events, learning } = account.meta
     if (locations) {
       const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Location)
+
       menu.push({
         id: 'navLocationsMenu',
-        name: 'Locations',
+        name: t('Locations'),
         type: {
           as: 'dropdown',
           items: [
             ...(locationTypes.length > 1 ? locationTypes : []),
             {
               id: 'navLocationsList',
-              name: 'All Locations',
+              name: t('AllLocations'),
               to: pages.dashboard.locations.list
             }
           ]
@@ -63,14 +67,14 @@ export const Client = ({
       const eventTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Event)
       menu.push({
         id: 'navEventsMenu',
-        name: 'Events',
+        name: t('Events'),
         type: {
           as: 'dropdown',
           items: [
             ...(eventTypes.length > 1 ? eventTypes : []),
             {
               id: 'navEventsList',
-              name: 'All Events',
+              name: t('AllEvents'),
               to: pages.dashboard.events.list
             }
           ]
@@ -81,14 +85,14 @@ export const Client = ({
       const courseTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Course)
       menu.push({
         id: 'navLearningMenu',
-        name: 'Learning',
+        name: t('Learning'),
         type: {
           as: 'dropdown',
           items: [
             ...(courseTypes.length > 1 ? courseTypes : []),
             {
               id: 'navCourses',
-              name: 'All Courses',
+              name: t('AllCourses'),
               to: pages.dashboard.coursesClient.root
             },
             {
@@ -97,7 +101,7 @@ export const Client = ({
             },
             {
               id: 'navEnrollments',
-              name: 'Enrollments',
+              name: t('Enrollments'),
               to: pages.dashboard.enrollments.root
             }
           ]
@@ -109,7 +113,7 @@ export const Client = ({
     right: [
       {
         id: 'navHomeMenu',
-        name: 'Home',
+        name: t('Home'),
         to: pages.dashboard.root
       },
       ...menu,
@@ -123,17 +127,17 @@ export const Client = ({
           items: [
             {
               id: 'navSettings',
-              name: 'Settings',
+              name: t('Settings'),
               to: pages.dashboard.account.settings
             },
             {
               id: 'navAccount',
-              name: 'Account',
+              name: t('Account'),
               to: pages.dashboard.account.view
             },
             {
               id: 'navCategories',
-              name: 'Categories',
+              name: t('Categories'),
               to: pages.dashboard.categories.view
             }
           ]
