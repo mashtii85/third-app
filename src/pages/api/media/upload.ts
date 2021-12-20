@@ -13,6 +13,9 @@ import multer from 'multer'
 import cors from 'cors'
 import fs from 'fs'
 
+// UI
+import { Path } from '@drykiss/industry-ui'
+
 // Services
 import { uploadS3 } from '../../../services/aws/s3'
 
@@ -50,7 +53,7 @@ handler
     // If we're in the dev env
     if (AWS?.endpoint && AWS.endpoint.includes('localhost')) {
       // Copying uploaded file to localstack folder to keep them on DOCKER ENGINE restart
-      const ext = originalname.split('.').pop()
+      const ext = Path.extname(originalname)
       const filetype = getMediumTypeByFileExtension(ext)
       const path = `../api.realworldacademies.com/localstack/files/${filetype}s/${name}`
       fs.writeFileSync(path, buffer)

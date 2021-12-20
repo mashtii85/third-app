@@ -3,8 +3,11 @@
  */
 
 // Yup
-import { object, string } from 'yup'
+import { object, string, SchemaOf } from 'yup'
 
-export const BrandSchema = object().shape({
+// Types
+import { BrandFormType } from './types.d'
+
+export const BrandSchema: SchemaOf<BrandFormType> = object().shape({
   name: string().required()
 })

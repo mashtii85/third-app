@@ -2,7 +2,6 @@
  * Components - Event - Forms - Upsert - types.d
  */
 
-import { LooseObject } from '../../../../types/object.d'
 import { Options } from '../../../../types/options'
 import { Event, EventFilter } from '../../types.d'
 
@@ -16,5 +15,5 @@ export interface EventFormSubmission
 export interface EventFormProps {
   onSuccess: () => void
   filters: EventFilter
-  defaultValues?: EventFormSubmission | LooseObject
+  defaultValues?: EventFormSubmission
 }

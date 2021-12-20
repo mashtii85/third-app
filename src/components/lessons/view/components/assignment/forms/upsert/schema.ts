@@ -3,10 +3,12 @@
  */
 
 // Yup
-import { object, number, array } from 'yup'
+import { object, number, array, SchemaOf } from 'yup'
 
-// TODO: Should change
-export const AnswersSchema = object()
+// Types
+import { AssignmentAnswerSubmitType } from './types.d'
+
+export const AnswersSchema: SchemaOf<AssignmentAnswerSubmitType> = object()
   .shape({
     meta: object().shape({
       answer_types: array().min(1).required(),

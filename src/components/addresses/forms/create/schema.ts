@@ -3,10 +3,11 @@
  */
 
 // Yup
-import { object, string, number, mixed } from 'yup'
+import { object, string, number, mixed, SchemaOf } from 'yup'
 
 // Types
 import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { AddressFormType } from './types.d'
 
 const r1 = `^([Gg][Ii][Rr] 0[Aa]{2})`
 const r2 = '|((([A-Za-z][0-9]{1,2})'
@@ -15,7 +16,7 @@ const r4 = '|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})$'
 
 export const postcodeString = r1 + r2 + r3 + r4
 
-export const addressSchema = object()
+export const addressSchema: SchemaOf<AddressFormType> = object()
   .shape({
     id: number(),
     name: string().required(),

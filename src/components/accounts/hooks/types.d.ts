@@ -1,7 +1,6 @@
 import { Account } from '../../../types/account.d'
 import { UseHookOutput } from '../../../types/hook.d'
 import { LooseObject } from '../../../types/object'
-import { User } from '../../../types/user'
 import { AccountFilters } from '../types'
 
 export interface UseAccountsVariable {

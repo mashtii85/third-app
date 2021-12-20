@@ -5,6 +5,9 @@
 // Hooks
 import { uploadMediaToS3 } from '../../../../media/forms/create/helpers'
 
+// UI
+import { Path } from '@drykiss/industry-ui'
+
 // Constants
 import { ENTITIES } from '../../../../../constants/entities'
 
@@ -25,7 +28,7 @@ export const prepareMediumCreateType = async (
     dropzone?.map(async (file) => {
       const data = await uploadMediaToS3(file, defaultValues.type!)
       const filename: string = data.key
-      const ext = filename?.split('.').pop()
+      const ext = Path.extname(filename)
       result.push({
         client_id: clientId,
         entity: ENTITIES.Post,

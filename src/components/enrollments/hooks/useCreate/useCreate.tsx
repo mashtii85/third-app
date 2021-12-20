@@ -18,8 +18,6 @@ export const useCreateEnrollment = (props: UseCreateEnrollmentProps) => {
     onError: props.onError,
     update(cache, { data }) {
       const courseFromResponse = data?.course
-      // const where: LooseObject = {}
-      // where.client_id = { _eq: props.userId }
       const where: GraphqlWhere<CourseEnrolment> = {
         client_id: { _eq: props.userId }
       }

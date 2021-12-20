@@ -29,4 +29,5 @@ export interface Account {
   meta: any
   users: { user: User }[]
   taxonomy: Taxonomy | undefined
+  taxonomy_id?: number
 }

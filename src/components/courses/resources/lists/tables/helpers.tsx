@@ -6,7 +6,7 @@
 import { MouseEvent, useContext } from 'react'
 
 // UI
-import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
+import { Button, ButtonToolbar, OffCanvasContext, Path } from '@drykiss/industry-ui'
 
 // Forms
 import { ResourcesForm } from '../../forms/upsert/form'
@@ -25,7 +25,7 @@ import { STATUS_ACTIVE } from '../../../../../types/select.d'
 import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
 
 export const getIconByFilename = (filename: string): string => {
-  const ext = filename.split('.').pop()
+  const ext = Path.extname(filename)
   switch (ext) {
     case 'pdf':
     case '.pdf':

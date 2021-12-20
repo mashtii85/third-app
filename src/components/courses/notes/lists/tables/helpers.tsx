@@ -80,7 +80,6 @@ export const Toolbar = (filters: Partial<PostFilter>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    // TODO: courseId={filters.entityId!} should be review also it types in the NotesForm
     e.stopPropagation()
     offCanvas.show({
       content: (

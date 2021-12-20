@@ -79,10 +79,6 @@ export const LessonQuestionForm = ({
 
   return (
     <Form id="offCanvasForm" handleSubmit={handleSubmit(submit)}>
-      {/* TODO: do these two fields needed */}
-      <FormField {...defaultOptions} name="id" type="hidden" />
-      <FormField {...defaultOptions} name="type" type="hidden" />
-
       <FormLabel label="Question Type">
         <SelectField {...defaultOptions} name="meta.type" options={questionType} />
       </FormLabel>

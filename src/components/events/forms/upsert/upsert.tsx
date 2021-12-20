@@ -26,7 +26,7 @@ import { LooseObject } from '../../../../types/object'
 import moment from 'moment'
 import { Options } from '../../../../types/options'
 
-export const UpsertEvent = ({ onSuccess, defaultValues = {}, filters }: EventFormProps) => {
+export const UpsertEvent = ({ onSuccess, defaultValues, filters }: EventFormProps) => {
   const { user } = useCurrentUser()
   const { control, errors, handleSubmit, register, watch } = useForm<EventFormType>({
     defaultValues,

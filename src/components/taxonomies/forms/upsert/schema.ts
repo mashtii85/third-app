@@ -3,9 +3,14 @@
  */
 
 // Yup
-import { object, string } from 'yup'
+import { object, string, SchemaOf } from 'yup'
 
-export const TaxonomySchema = object().shape({
-  name: string().required(),
-  status: string().oneOf(['active', 'inactive']).required()
-})
+// Types
+import { Taxonomy } from '../../../../types/taxonomy.d'
+
+export const TaxonomySchema: SchemaOf<Taxonomy> = object()
+  .shape({
+    name: string().required(),
+    status: string().oneOf(['active', 'inactive']).required()
+  })
+  .required()

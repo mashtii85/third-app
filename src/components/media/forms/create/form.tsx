@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useCreateMedia } from '../../hooks/useCreate/useCreate'
 
 // UI
-import { Dropzone, Form, FormField, FormLabel } from '@drykiss/industry-ui'
+import { Dropzone, Form, FormField, FormLabel, Path } from '@drykiss/industry-ui'
 import { AddButton } from '../../../common/buttons/addButton'
 import { MediaSchema as schema } from './schema'
 
@@ -76,7 +76,7 @@ export const MediaForm = ({
             caption: file.name,
             category: defaultValues.category,
             filename,
-            extension: filename?.split('.').pop()
+            extension: Path.extname(filename)
           })
         }
 

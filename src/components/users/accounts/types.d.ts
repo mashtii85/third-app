@@ -2,12 +2,12 @@
  * Components - Users - Accounts - Types.d
  */
 
-import { ACCOUNT_TYPE } from '../../../types/account'
-import { LooseObject } from '../../../types/object'
-import { User, USER_STATUS } from '../../../types/user'
+// Types
+import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { User, USER_STATUS } from '../../../types/user.d'
 
 interface UserAccountTableProps {
-  user: User | LooseObject
+  user: Partial<User>
   loading: boolean
 }
 

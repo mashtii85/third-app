@@ -17,7 +17,8 @@ import { Form, FormError, FormField, FormLabel, useConfig } from '@drykiss/indus
 import { useUpdateAccount } from '../../../hooks'
 
 // Types
-import { Account } from '../../../../../types/account'
+import { Account } from '../../../../../types/account.d'
+import { BrandFormType } from './types.d'
 
 export const BrandForm = ({
   account,
@@ -44,7 +45,7 @@ export const BrandForm = ({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = async (form: any) => {
+  const onSubmit = async (form: BrandFormType) => {
     const updatedBrand = { ...config.Brand }
     updatedBrand.name = form.name
 
