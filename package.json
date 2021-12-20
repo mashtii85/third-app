@@ -13,6 +13,7 @@
     "cy:open": "cypress open -C ./cypress-dev.json",
     "cy:run": "cypress run -C ./cypress-dev.json",
     "cy:start": "start-server-and-test start 3100 cy:open",
+    "cy:module":"npm run cy:run -- --spec \"cypress/integration/$npm_config_module/**.spec.ts\"",
     "cy:start:build": "npm run build && start-server-and-test start:build 3100 cy:open",
     "cy:test": "start-server-and-test start 3100 cy:run",
     "cy:test:build": "npm run build && start-server-and-test start:build 3100 cy:run",

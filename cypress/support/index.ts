@@ -85,9 +85,9 @@ declare global {
 
       /**
        * Custom command to play with a CheckBox
-       * @example cy.formCheckbox(name: string, value: string, force?: boolean)
+       * @example cy.formCheckbox(name: string)
        */
-      formCheckbox(name: string, value: string, force?: boolean): Chainable<Element>
+      formCheckbox(name: string): Chainable<Element>
 
       /**
        * Custom command to play with RadioButton
@@ -239,18 +239,10 @@ declare global {
       testCalendar(timer?: number): Chainable<Element>
 
       /**
-      * Custom command to test Dropdown NavItem
-      * @example cy.getDropdownNavItem( item: string,
-          length: number,
-          itemList: string[] = [],
-          timer: number = 1000)
-      */
-      getDropdownNavItem(
-        item: string,
-        length: number,
-        itemList?: string[],
-        timer?: number
-      ): Chainable<Element>
+       * Custom command to test Dropdown NavItem
+       * @example cy.getDropdownNavItem( item: string,itemList: string[] = [],timer: number = 1000)
+       */
+      getDropdownNavItem(item: string, itemList?: string[], timer?: number): Chainable<Element>
     }
   }
 }

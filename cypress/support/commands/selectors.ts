@@ -8,23 +8,19 @@ const id = (value: string): any => cy.get(`[id=${value}]`)
 
 const getNavItem = (name: string): any => cy.contains(`nav div ul li a span`, name)
 
-const getDropdownNavItem = (
-  item: string,
-  length: number,
-  itemList: string[] = [],
-  timer: number = 1000
-): any => {
-  cy.get('.dropdown--toggle').within(() => {
-    cy.contains(item)
-      .click()
-      .wait(timer)
-      .get('.dropdown--menu')
+const getDropdownNavItem = (item: string, itemList: string[] = [], timer: number = 1000): any => {
+  cy.get('.dropdown--toggle')
+    .within(() => {
+      cy.contains('span', item)
+        .click()
+        .get('.dropdown--menu')
 
-      .within(() => {
-        cy.get('.dropdown--link').should('have.length', length)
-        itemList.map((item) => cy.get(item))
-      })
-  })
+        .within(() => {
+          cy.get('.dropdown--link')
+          itemList.map((item) => cy.get(item))
+        })
+    })
+    .wait(timer)
 }
 
 const getInputByName = (name: string): any => cy.get(`input[name="${name}"]`)

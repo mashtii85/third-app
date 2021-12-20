@@ -1,5 +1,4 @@
 import { ENTITY_QUERY } from '../../constants/queries'
-import { fetchQueryAPI } from '../../utils/api'
 import { loginAsClient } from '../../utils/login'
 import pages from '../../../src/config/pages'
 import { prepareQueryName } from '../../utils/query'
@@ -9,7 +8,7 @@ describe(`fetch queries`, () => {
   const url = Cypress.env('backendUrl')
   const accountsModule = 'Accounts'
 
-  before(() => {
+  beforeEach(() => {
     loginAsClient(pages.dashboard.accounts.list)
   })
 
@@ -24,7 +23,7 @@ describe(`fetch queries`, () => {
         expect(xhr.response.statusCode).equal(200)
       })
     })
-    it.skip('should fetch data from Mock successfully', () => {
+    it('should fetch data from Mock successfully', () => {
       cy.fixture(accountsModule).then((accountsData) => {
         cy.log(accountsData)
         cy.intercept('POST', url, (req) => {

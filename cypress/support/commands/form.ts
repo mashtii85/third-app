@@ -35,13 +35,8 @@ const datepicker = (
     })
 }
 
-const formCheckbox = (name: string, value: string, force: boolean = false): any =>
-  cy
-    .get(`input[name="${name}"][type="checkbox"]`)
-    .scrollIntoView()
-    .parent()
-    .contains(value)
-    .click({ force })
+const formCheckbox = (name: string): any =>
+  cy.get(`input[name="${name}"][type="checkbox"]`).scrollIntoView()
 
 const formRadio = (
   name: string,

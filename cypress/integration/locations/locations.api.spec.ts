@@ -4,7 +4,7 @@ import { aliasQuery } from '../../utils/gql'
 
 describe(`fetch queries`, () => {
   const url = Cypress.env('backendUrl')
-  before(() => {
+  beforeEach(() => {
     loginAsClient(pages.dashboard.locations.list)
   })
 
@@ -18,7 +18,7 @@ describe(`fetch queries`, () => {
         expect(xhr.response.statusCode).equal(200)
       })
     })
-    it.skip('should fetch data from Mock successfully', () => {
+    it('should fetch data from Mock successfully', () => {
       cy.fixture('locations').then((locationsData) => {
         cy.intercept('POST', url, (req) => {
           aliasQuery(req, 'GetLocations', {

@@ -10,7 +10,7 @@ const url = Cypress.env('backendUrl')
 const eventQuery = prepareQueryName(ENTITY_QUERY.GetEvents)
 
 describe('should fetch all events successfully', () => {
-  before(() => {
+  beforeEach(() => {
     loginAsClient(pages.dashboard.events.list)
   })
 
@@ -26,17 +26,17 @@ describe('should fetch all events successfully', () => {
     })
   })
 
-  it.skip('should fetch data from Mock successfully', () => {
-    cy.fixture(eventsModule).then((accountsData) => {
+  it('should fetch data from Mock successfully', () => {
+    cy.fixture(eventsModule).then((eventsData) => {
       cy.intercept('POST', url, (req) => {
         aliasQuery(req, ENTITY_QUERY.GetEvents, {
           statusCode: 200,
-          body: accountsData
+          body: eventsData
         })
       })
 
       cy.wait(eventQuery, { timeout: 10000 }).then((xhr) => {
-        expect(xhr.response.body.data.accounts.length).equals(accountsData.data.accounts.length)
+        expect(xhr.response.body.data.events.length).equals(eventsData.data.events.length)
         expect(xhr.response.statusCode).equal(200)
       })
     })

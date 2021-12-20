@@ -20,7 +20,7 @@ describe("/Account's settings", () => {
   describe(`${SETTINGS_TABS.Address}`, () => {
     it(`should show The ${SETTINGS_TABS.Address}`, () => {
       cy.dataCy(`${SETTINGS_TABS.Address}`).click()
-      cy.getDetails2('Selected address').wait(timer)
+      cy.getDetails2('Registered address').wait(timer)
     })
   })
 })

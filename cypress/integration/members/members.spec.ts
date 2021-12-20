@@ -23,7 +23,7 @@ describe('/Members', () => {
   })
 
   describe('UI Tests', () => {
-    it.skip('should show Filters and Grid', () => {
+    it('should show Filters and Grid', () => {
       // assert that a matching request has been made
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
@@ -37,7 +37,7 @@ describe('/Members', () => {
       })
     })
 
-    it.skip('should raise error, so offCanvas still visible', () => {
+    it('should raise error, so offCanvas still visible', () => {
       cy.dataCy('offCanvas').within(() => {
         cy.offCanvasCheckHeader('Add a Member')
         cy.get('form')
@@ -53,7 +53,7 @@ describe('/Members', () => {
     })
 
     const member = 'new member'
-    it.skip('should insert a member', () => {
+    it('should insert a member', () => {
       cy.dataCy('offCanvas')
         .should('be.visible')
         .within(() => {
@@ -88,7 +88,7 @@ describe('/Members', () => {
                   // Status
                   cy.hasField('select', 'status')
                   cy.formSelect('status', 'Active')
-                  cy.formCheckbox('add_contact_user', 'Add contact user').check()
+                  cy.formCheckbox('add_contact_user').check()
                   cy.formTextInput('firstName', 'first name')
                   cy.formTextInput('lastName', 'last name')
                   cy.formTextInput('phone', '11sd')
@@ -97,7 +97,9 @@ describe('/Members', () => {
                 .should('exist')
             })
             .wait(timer)
+          cy.offCanvasClose()
         })
+
         describe('happy path', () => {
           openEditOffCanvas()
           it('should edit Account and add contact user', () => {
@@ -111,7 +113,7 @@ describe('/Members', () => {
                     // Status
                     cy.hasField('select', 'status')
                     cy.formSelect('status', 'Active')
-                    cy.formCheckbox('add_contact_user', 'Add contact user')
+                    cy.formCheckbox('add_contact_user').check()
                     cy.formTextInput('firstName', 'John')
                     cy.formTextInput('lastName', 'Doe')
                     cy.formTextInput('phone', '989195078781')
@@ -121,30 +123,34 @@ describe('/Members', () => {
                   .should('exist')
               })
               .wait(timer)
+            cy.offCanvasClose()
           })
         })
       })
     })
-    it('should open delete offCanvas', () => {
-      cy.getTableInModule(accountsModule)
-        .find('tbody')
-        .children()
-        .eq(0)
 
-        .find('button')
-        .children()
-        .eq(BUTTONS.Delete)
-        .click()
-        .wait(timer)
-    })
+    describe('delete', () => {
+      it('should open delete offCanvas', () => {
+        cy.getTableInModule(accountsModule)
+          .find('tbody')
+          .children()
+          .eq(0)
 
-    it('should delete member', () => {
-      cy.dataCy('offCanvas')
-        .should('be.visible')
-        .within(() => {
-          cy.contains('p', "'new member'")
-          cy.get('button').contains('Delete').click()
-        })
+          .find('button')
+          .children()
+          .eq(BUTTONS.Delete)
+          .click()
+          .wait(timer)
+      })
+
+      it('should delete member', () => {
+        cy.dataCy('offCanvas')
+          .should('be.visible')
+          .within(() => {
+            cy.contains('p', "'new member'")
+            cy.get('button').contains('Delete').click()
+          })
+      })
     })
   })
 })

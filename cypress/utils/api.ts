@@ -1,3 +1,4 @@
+import { timer } from '../constants/misc'
 import { ENTITY_QUERY } from '../constants/queries'
 import { aliasQuery } from './gql'
 import { prepareQueryName } from './query'
@@ -13,11 +14,13 @@ const fetchQueryAPI = (queryName: ENTITY_QUERY): any => {
     aliasQuery(req, queryName)
   })
 
-  cy.wait(query).then((xhr) => {
-    // expect(xhr.response.body.data.account).have.length.gte(0)
-    expect(xhr.response.statusCode).equal(200)
-    return cy.wrap(xhr?.response?.body?.data)
-  })
+  cy.wait(query)
+    .then((xhr) => {
+      // expect(xhr.response.body.data.account).have.length.gte(0)
+      expect(xhr.response.statusCode).equal(200)
+      return cy.wrap(xhr?.response?.body?.data)
+    })
+    .wait(timer)
 }
 
 export { fetchQueryAPI }
