@@ -35,7 +35,7 @@ import '@fullcalendar/common/main.min.css'
 import '@fullcalendar/daygrid/main.min.css'
 import '@fullcalendar/list/main.min.css'
 import '@fullcalendar/timegrid/main.min.css'
-import { I18nProvider } from '../translations/context/i18nContext'
+import { I18nProvider } from '../translations/context'
 
 const MyApp = (props: AppProps) => {
   const apolloClient = useApollo(props.pageProps, Config)
@@ -48,7 +48,7 @@ const MyApp = (props: AppProps) => {
           <UserProvider>
             <AuthorizationProvider>
               <OffCanvasProvider>
-                <I18nProvider>
+                <I18nProvider locale="en">
                   <AppLayout
                     Component={props.Component}
                     Layout={Layout}

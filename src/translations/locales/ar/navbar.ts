@@ -8,7 +8,7 @@ const navbar = {
   Categories: 'التصنيفات',
   Enrollments: 'التسجيلات',
   Events: 'الأحداث',
-  Home: 'مسكن',
+  Home111: 'مسكن',
   Learning: 'التعلم',
   Locations: 'المواقع',
   Logout: 'تسجيل خروج',

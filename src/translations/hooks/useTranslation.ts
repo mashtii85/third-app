@@ -1,5 +1,9 @@
+/**
+ * Translations - Hooks - UseTranslations
+ */
+
 import { useContext } from 'react'
-import { I18nContext } from '../context/i18nContext'
+import { I18nContext } from '../context'
 import { useTranslationOutput } from '../types'
 import { LooseObject } from '../../types/object'
 import { LOCALE_NS } from '../../types/locales.d'
@@ -13,6 +17,8 @@ export default function useTranslation(namespace?: LOCALE_NS): useTranslationOut
     // t('home:AllCourses')
     if (keys.length > 1) {
       const object = localization.translations as LooseObject
+
+      if (!object || !object[keys[0]] || !object[keys[0]][keys[1]]) return keys[1]
       const translation = object[keys[0]][keys[1]] as string
 
       return translation
@@ -23,13 +29,16 @@ export default function useTranslation(namespace?: LOCALE_NS): useTranslationOut
     // t('AllCourses')
     if (namespace) {
       const object = localization.translations as LooseObject
+      if (!object || !object[namespace] || !object[namespace][key]) {
+        return key
+      }
       const translation = object[namespace][key] as string
 
       return translation
     }
 
     if (!localization.translations[key]) {
-      console.warn(`Translation '${key}' for locale '${localization.locale}' not found.`)
+      return key
     }
 
     const translation = (localization.translations[key] || '') as string

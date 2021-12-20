@@ -3,7 +3,7 @@
  */
 
 // React
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
 // GQL
 import { useLazyQuery } from '@apollo/client'
@@ -12,7 +12,7 @@ import { APP_SETTINGS } from '../queries'
 // Types
 import { UseAppSettingsOutput } from './types'
 import { AppSettings } from '../types'
-import { Localization } from '../../../translations/types'
+import { Locale, Localization } from '../../../translations/types'
 
 // Lodash
 import isEmpty from 'lodash/isEmpty'
@@ -21,20 +21,28 @@ import merge from 'lodash/merge'
 // UI
 import { useAppTheme, useConfig } from '@drykiss/industry-ui'
 
-import defaultLocale from '../../../translations/locales/en'
+import localeTranslations from '../../../translations/locales'
+import { locales } from '../../../translations/config'
+import { I18nContext } from '../../../translations/context'
 
-export const prepareI18n = (appSettings: AppSettings): AppSettings => {
+// this process should happen in BE, it's just a test
+export const prepareServerI18n = (appSettings: AppSettings): Localization => {
   if (!appSettings) return appSettings
   const localization: Localization = {
     locale: 'en',
-    translations: defaultLocale
+    translations: {
+      profile: {
+        DateAdded: 'Date Added12',
+        DateUpdated: 'Date Updated12'
+      }
+    }
   }
 
-  const settings: AppSettings = { ...appSettings, localization }
-  return settings
+  return localization
 }
 
-export const useAppSettings = (clientId: number): UseAppSettingsOutput => {
+export const useAppSettings = (clientId: number, locale: Locale): UseAppSettingsOutput => {
+  const { setLocale } = useContext(I18nContext)
   const { config, setConfig } = useConfig()
   const { theme, setTheme } = useAppTheme()
 
@@ -53,15 +61,29 @@ export const useAppSettings = (clientId: number): UseAppSettingsOutput => {
   // Update theme and config when settings change
   useEffect(() => {
     if (!isEmpty(appSettings?.config)) {
-      setConfig({ ...merge(config, appSettings.config) })
+      const serverLocales = prepareServerI18n(appSettings)
+      // merge server side locales with local
+      const theLocales = merge(localeTranslations, {
+        [locale]: { ...localeTranslations[locale], ...serverLocales.translations }
+      })
+
+      // this should be removed as soon as we find out a solution
+      setLocale('ar')
+
+      const theConfig = merge(
+        config,
+        { Translations: theLocales, locales: locales },
+        appSettings.config
+      )
+
+      setConfig(theConfig)
     }
 
     if (!isEmpty(appSettings?.theme)) {
-      setTheme({ ...merge(theme, appSettings.theme) })
+      setTheme(merge(theme, appSettings.theme))
     }
+    // appSettings && setLocale(locale)
   }, [appSettings])
 
-  const settings = prepareI18n(appSettings)
-
-  return { appSettings: settings, error, getSettings, loading }
+  return { appSettings, error, getSettings, loading }
 }

@@ -1,9 +1,14 @@
-import locales from '../locales'
+/**
+ * Translations - Context - Helpers
+ */
 
 // Types
-import { Localization, Locale } from '../types'
+import { Localization, Locale, Translations } from '../types'
 
-export const getLocalizationProps = (language?: string): Localization => {
+export const getLocalizationProps = (
+  language: Locale,
+  locales: Record<Locale, Translations>
+): Localization => {
   const inputLocale = (language as Locale) ?? 'en'
   const lang = inputLocale
 

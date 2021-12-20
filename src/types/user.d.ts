@@ -1,6 +1,7 @@
 /**
  * Types - User
  */
+import { Locale } from '../translations/types'
 import { Account, ACCOUNT_TYPE } from './account.d'
 
 export enum USER_STATUS {
@@ -22,7 +23,7 @@ export interface AccountUsers {
 export interface UserCustomFields { }
 
 export interface UserMeta {
-  locale?: string
+  locale?: Locale
 }
 export interface User {
   id: number

@@ -5,6 +5,7 @@
 // Yup
 import { mixed, object, SchemaOf, string } from 'yup'
 import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
+import { locales } from '../../../../translations/config'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
 import { UserForm } from './types'
 
@@ -14,7 +15,7 @@ export const usersSchema = (hasPassword: boolean): SchemaOf<UserForm> =>
     name_last: string().required(),
     email: string().required().email(),
     meta: object().shape({
-      locale: string()
+      locale: mixed().oneOf(Object.values(locales))
     }),
     status: mixed().oneOf(Object.values(STATUS_ACTIVE)),
     phone: string().test('matches', 'Incorrect phone number', (phoneNumber: any) => {

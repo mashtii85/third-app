@@ -8,7 +8,8 @@ export enum LOCALE_NS {
   Home = 'home',
   Common = 'common',
   Navbar = 'navbar',
-  Login = 'login'
+  Login = 'login',
+  Profile = 'profile'
 }
 
 export const locales: Options[] = [

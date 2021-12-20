@@ -1,3 +1,7 @@
+/**
+ * Translations - Config
+ */
+
 import { Locale } from './types'
 
 export const defaultLocale = 'en' as const
@@ -10,6 +14,6 @@ export const languageNames = {
   es: 'Spanish'
 }
 
-export function isLocale(tested: string): tested is Locale {
+export function isLocale(tested?: string): tested is Locale {
   return locales.some((locale) => locale === tested)
 }
