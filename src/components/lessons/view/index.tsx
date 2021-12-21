@@ -21,6 +21,7 @@ import { LessonContent } from './components/text/view'
 import { LessonVideo } from './components/video/view'
 import { LessonDocument } from './components/document/view'
 import { LessonQuiz } from './components/quiz/view'
+import { LessonAssignment } from './components/assignment/view'
 
 // Hooks
 import { useLessons } from '../hooks/useLesson/useLessons'
@@ -40,8 +41,8 @@ import { LessonDetailsToolbarType } from './types.d'
 import { LESSON_TYPE } from '../../../types/lesson.d'
 import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
 import { UseMediaProps } from '../../media/hooks/useMedia/types.d'
-import { LessonAssignment } from './components/assignment/view'
 import { CurrentUser } from '../../../types/user.d'
+import { STATUS_ACTIVE } from '../../../types/select.d'
 
 export const LessonView = ({ user }: { user: CurrentUser }) => {
   const { query } = useRouter()
@@ -60,6 +61,11 @@ export const LessonView = ({ user }: { user: CurrentUser }) => {
     type: lesson.type,
     status: lesson.status
   }
+
+  const medium = lesson.media?.find(
+    (mdum) =>
+      mdum.filename && mdum.type === MEDIUM_TYPE.Video && mdum.status === STATUS_ACTIVE.Active
+  )
 
   const videoFilter: UseMediaProps = {
     entity: ENTITIES.Lesson,
@@ -120,7 +126,7 @@ export const LessonView = ({ user }: { user: CurrentUser }) => {
             <>
               {lesson.type === LESSON_TYPE.Video && (
                 <>
-                  <LessonVideo filters={videoFilter} />
+                  <LessonVideo medium={medium} filters={videoFilter} />
                   <Space />
                 </>
               )}

@@ -24,6 +24,7 @@ import { MediaFormType } from '../../forms/create/types.d'
 
 // Constants
 import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { ENTITIES } from '../../../../constants/entities'
 
 export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTableProps }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)
@@ -42,12 +43,12 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
     const defaultValues: Partial<MediaFormType> = {
       entity: mediaTableProps.entity,
       entityId: mediaTableProps.entityId,
-      category: MEDIUM_CATEGORY.Lesson,
+      category: mediaTableProps.category,
       status: STATUS_ACTIVE.Active,
-      type: MEDIUM_TYPE.Image
+      type: mediaTableProps.type
     }
     const dropzoneProps: DropzoneProps = {
-      accept: 'image/*,video/*',
+      accept: mediaTableProps.acceptTypes,
       disabled: false,
       multiple: true
     }
@@ -58,6 +59,7 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
 
     offCanvas.show({
       title: 'Add',
+      submit: false,
       content: (
         <MediaForm
           filters={filters}
@@ -66,6 +68,23 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
           onSuccess={offCanvas.close}
         />
       )
+    })
+  }
+
+  const handleFileUpload = (_: MouseEvent, row: Medium) => {
+    const mediaTableProps: MediaTableProps = {
+      entity: ENTITIES.Medium,
+      entityId: row.id as number,
+      category: MEDIUM_CATEGORY.Lesson, // Do we need new medium cat?
+      status: STATUS_ACTIVE.Active,
+      type: MEDIUM_TYPE.Document, // Do we need new medium type?
+      acceptTypes: '.srt,.vtt',
+      buttonCaption: 'New subtitle'
+    }
+    offCanvas.show({
+      content: <MediaTable mediaTableProps={mediaTableProps} />,
+      submit: false,
+      title: 'Subtitle' // Maybe any files types!
     })
   }
 
@@ -85,17 +104,25 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
     })
   }
 
-  const actionsData = () => {
-    const buttons = [
-      {
-        context: THEME_CONTEXT.danger,
-        icon: ['fas', 'trash'],
-        onClick: (_: MouseEvent, row: Medium) => handleDelete(_, row),
-        tooltip: 'Delete'
-      }
-    ]
-    return buttons
-  }
+  const actionFormatter = ({ row }: { row: Medium }) =>
+    TableActions({
+      row: row,
+      data: [
+        {
+          context: THEME_CONTEXT.dark,
+          icon: ['fas', 'file-upload'],
+          onClick: (_: MouseEvent, row: Medium) => handleFileUpload(_, row),
+          tooltip: 'Subtitles',
+          disabled: row.type !== MEDIUM_TYPE.Video
+        },
+        {
+          context: THEME_CONTEXT.danger,
+          icon: ['fas', 'trash'],
+          onClick: (_: MouseEvent, row: Medium) => handleDelete(_, row),
+          tooltip: 'Delete'
+        }
+      ]
+    })
 
   const columns = [
     { text: 'id', hidden: true },
@@ -105,8 +132,7 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
     { text: 'Type', hidden: true },
     { text: 'Status', hidden: true },
     {
-      formatter: TableActions,
-      formatterData: actionsData,
+      formatter: actionFormatter,
       text: 'Actions'
     }
   ]
@@ -127,7 +153,11 @@ export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTablePro
   return (
     <>
       <Table fullHeight align columns={columns} loading={loading} rows={rows()} />
-      <AddButton content="Add New" disabled={loading} handleClick={handleClick} />
+      <AddButton
+        content={mediaTableProps.buttonCaption}
+        disabled={loading}
+        handleClick={handleClick}
+      />
     </>
   )
 }

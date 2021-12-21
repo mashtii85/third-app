@@ -19,7 +19,7 @@ import {
   SpeedOption,
   VideoPlayerProps,
   VideoProgress
-} from './type'
+} from './type.d'
 
 const reducer = (state: PlayerState, action: PlayerActionTypes) => {
   const newState = { ...state }
@@ -53,6 +53,10 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
       newState.selectedVideoIndex = action.payload
       return { ...newState }
     }
+    case 'setSubtitle': {
+      newState.subtitles = action.payload
+      return { ...newState }
+    }
     case 'changePlaybackSpeed': {
       newState.playbackRate = action.payload
       return { ...newState }
@@ -63,7 +67,7 @@ const reducer = (state: PlayerState, action: PlayerActionTypes) => {
   }
 }
 
-const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
+const VideoPlayer = ({ videos, subtitles, onVideoFinished }: VideoPlayerProps) => {
   const playerRef = useRef<BaseReactPlayer<{}>>(null)
 
   const videoPlayerWrapperRef = useRef(null)
@@ -86,8 +90,10 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
     loop: false,
     showVolumeControl: false,
     fullScreen: false,
-    selectedVideoIndex: 0
+    selectedVideoIndex: 0,
+    subtitles
   })
+
   const { src, title, desc } = videos[state.selectedVideoIndex]
 
   if (!src) {
@@ -204,6 +210,14 @@ const VideoPlayer = ({ videos, onVideoFinished }: VideoPlayerProps) => {
         playbackRate={state.playbackRate}
         loop={state.loop}
         url={src}
+        config={{
+          file: {
+            attributes: {
+              crossOrigin: 'anonymous'
+            },
+            tracks: state.subtitles
+          }
+        }}
         onReady={() => console.info('onReady')}
         onStart={() => console.info('onStart')}
         onSeek={(e) => console.info('onSeek', e)}

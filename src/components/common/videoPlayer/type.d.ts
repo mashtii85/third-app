@@ -11,8 +11,18 @@ export interface VideoProgress {
   loadedSeconds: number
 }
 
+export interface Subtitle {
+  label: string
+  kind: 'subtitles' | 'captions'
+  src: string
+  srcLang: string
+  mode?: 'showing' | 'hidden'
+  default?: boolean
+}
+
 export interface VideoPlayerProps {
   videos: Video[]
+  subtitles: Subtitle[]
   onVideoFinished?: (videoIndex: number) => void
 }
 
@@ -31,6 +41,7 @@ export interface PlayerState {
   loop: boolean
   fullScreen: boolean
   selectedVideoIndex: number
+  subtitles: Subtitle[]
 }
 
 type SetVolume = {
@@ -57,6 +68,10 @@ type SetVideo = {
   type: 'setPlayingVideo'
   payload: number
 }
+type SetSubtitle = {
+  type: 'setSubtitle'
+  payload: Subtitle[]
+}
 
 type ToggleIsPlaying = {
   type: 'toggleIsPlaying'
@@ -75,6 +90,7 @@ export type PlayerActionTypes =
   | SetShowVolumeControl
   | SetPlaybackSpeed
   | SetVideo
+  | SetSubtitle
 
 export interface SpeedOption {
   optionName: string

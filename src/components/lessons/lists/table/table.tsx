@@ -87,7 +87,9 @@ export const LessonTable = ({ courseId, moduleId, lessons, onChanged }: UseLesso
       entityId: row.id as number,
       category: MEDIUM_CATEGORY.Lesson,
       status: STATUS_ACTIVE.Active,
-      type: MEDIUM_TYPE.Image
+      type: MEDIUM_TYPE.Image,
+      acceptTypes: 'image/*,video/*',
+      buttonCaption: 'New file'
     }
     offCanvas.show({
       content: <MediaTable mediaTableProps={mediaTableProps} />,

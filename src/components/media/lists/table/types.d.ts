@@ -13,4 +13,6 @@ export interface MediaTableProps {
   status: STATUS_ACTIVE
   type: MEDIUM_TYPE
   category?: MEDIUM_CATEGORY
+  acceptTypes: string
+  buttonCaption: string
 }

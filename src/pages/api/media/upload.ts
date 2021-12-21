@@ -29,6 +29,7 @@ import { ApiUploadRequest } from '../../../utils/api/types'
 import { UploadParams } from '../../../services/aws/s3/types'
 import { getMediumTypeByFileExtension } from '../../../components/courses/resources/forms/upsert/helpers'
 import { AWS } from '../../../config/aws'
+import { getMimeType } from '../mimeTypes'
 
 const upload = multer({
   storage: multer.memoryStorage()
@@ -48,7 +49,10 @@ handler
     } = req
 
     const name = fileName(originalname)
-    const mimeType = mimetype.lookup(originalname)
+    let mimeType = mimetype.lookup(originalname)
+
+    const ext = originalname.split('.').pop()
+    if (!mimeType) mimeType = getMimeType(ext)
 
     // If we're in the dev env
     if (AWS?.endpoint && AWS.endpoint.includes('localhost')) {
@@ -66,7 +70,6 @@ handler
       folder,
       buffer
     }
-
     const data: any = await uploadS3(uploadParams)
 
     if (data) {

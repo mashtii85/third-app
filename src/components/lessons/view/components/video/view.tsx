@@ -16,12 +16,26 @@ import { parseVideos } from '../../../../courses/helpers'
 // Types
 import { MediaFilter, UseMediaProps } from '../../../../media/hooks/useMedia/types.d'
 import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { DropzoneProps, MEDIUM_TYPE } from '../../../../../types/medium.d'
+import { DropzoneProps, Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../../types/medium.d'
 import { MediaFormType } from '../../../../media/forms/create/types.d'
+import { ENTITIES } from '../../../../../constants/entities'
+import { Subtitle } from '../../../../common/videoPlayer/type'
 
-export const LessonVideo = ({ filters }: { filters: UseMediaProps }) => {
-  const { mediaList } = useMedia(filters)
-  const medium = mediaList?.find((mdum) => mdum.filename && mdum.status === STATUS_ACTIVE.Active)
+export const LessonVideo = ({
+  medium,
+  filters
+}: {
+  medium: Medium | undefined
+  filters: UseMediaProps
+}) => {
+  const subtitleFilter: UseMediaProps = {
+    entity: ENTITIES.Medium,
+    entityId: medium?.id!,
+    category: MEDIUM_CATEGORY.Lesson,
+    type: MEDIUM_TYPE.Document
+  }
+  const { mediaList } = useMedia(subtitleFilter)
+  const media = mediaList?.filter((mdum) => mdum.filename && mdum.status === STATUS_ACTIVE.Active)
 
   const mediaFilters: Partial<MediaFilter> = {
     entity: filters.entity,
@@ -42,6 +56,17 @@ export const LessonVideo = ({ filters }: { filters: UseMediaProps }) => {
     multiple: false
   }
 
+  const subtitles: Subtitle[] = media?.map((item, index) => {
+    return {
+      label: `sub-${index}`,
+      kind: 'captions',
+      src: `${process.env.NEXT_PUBLIC_S3_CDN_URL}/${item?.filename}`,
+      srcLang: 'en',
+      mode: 'showing',
+      default: true
+    }
+  })
+
   return (
     <>
       <Details2
@@ -57,7 +82,13 @@ export const LessonVideo = ({ filters }: { filters: UseMediaProps }) => {
           />
         }
       >
-        <>{medium ? <VideoPlayer videos={parseVideos([medium])} /> : 'No Video'}</>
+        <>
+          {medium && subtitles?.length > 0 ? (
+            <VideoPlayer videos={parseVideos([medium])} subtitles={subtitles} />
+          ) : (
+            'No Video'
+          )}
+        </>
       </Details2>
     </>
   )

@@ -84,6 +84,10 @@ export const prepareResourceCreateType = (
 
 export const getMediumTypeByFileExtension = (ext: string): MEDIUM_TYPE => {
   switch (ext) {
+    case 'srt':
+    case '.srt':
+    case 'vtt':
+    case '.vtt':
     case 'pdf':
     case '.pdf':
     case 'ppt':

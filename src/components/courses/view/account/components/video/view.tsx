@@ -12,5 +12,5 @@ import { parseVideos } from '../../../../helpers'
 import { Medium } from '../../../../../../types/medium.d'
 
 export const CourseLessonVideo = ({ media }: { media: Medium[] }) => {
-  return <>{media ? <VideoPlayer videos={parseVideos(media)} /> : 'No Video'}</>
+  return <>{media ? <VideoPlayer videos={parseVideos(media)} subtitles={[]} /> : 'No Video'}</>
 }
