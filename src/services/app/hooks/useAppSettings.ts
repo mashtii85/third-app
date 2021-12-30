@@ -32,8 +32,8 @@ export const prepareServerI18n = (appSettings: AppSettings): Localization => {
     locale: 'en',
     translations: {
       profile: {
-        DateAdded: 'Date Added12',
-        DateUpdated: 'Date Updated12'
+        DateAdded: 'Date Added',
+        DateUpdated: 'Date Updated'
       }
     }
   }

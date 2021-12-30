@@ -4,6 +4,7 @@
 
 // Next
 import { useRouter } from 'next/router'
+
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -70,13 +71,13 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
 
   const onSubmit = (values: UserRow) => {
     if (defaultValues?.id) {
-      const userMeta: UserMeta = { ...defaultValues?.meta, locale: values?.meta?.locale }
+      const userMeta: Partial<UserMeta> = { ...defaultValues?.meta, locale: values?.meta?.locale }
 
       updateUser({
         variables: { userId: defaultValues.id, changes: { ...values, meta: userMeta } }
       })
     } else {
-      const userMeta: UserMeta = { ...defaultValues?.meta, locale: values?.meta?.locale }
+      const userMeta: Partial<UserMeta> = { ...defaultValues?.meta, locale: values?.meta?.locale }
       const { password, ...userObject } = values
       const object: CreateUserModel = {
         accounts: { data: { account_id: filters?.accountId!, status: values.status } },

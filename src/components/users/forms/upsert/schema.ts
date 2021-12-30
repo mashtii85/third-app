@@ -3,7 +3,7 @@
  */
 
 // Yup
-import { mixed, object, SchemaOf, string } from 'yup'
+import { bool, mixed, object, SchemaOf, string } from 'yup'
 import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
 import { locales } from '../../../../translations/config'
 import { STATUS_ACTIVE } from '../../../../types/select.d'
@@ -15,7 +15,13 @@ export const usersSchema = (hasPassword: boolean): SchemaOf<UserForm> =>
     name_last: string().required(),
     email: string().required().email(),
     meta: object().shape({
-      locale: mixed().oneOf(Object.values(locales))
+      locale: mixed().oneOf(Object.values(locales)),
+      notifications: object().shape({
+        alert: bool(),
+        email: bool(),
+        push: bool(),
+        sms: bool()
+      })
     }),
     status: mixed().oneOf(Object.values(STATUS_ACTIVE)),
     phone: string().test('matches', 'Incorrect phone number', (phoneNumber: any) => {

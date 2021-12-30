@@ -6,18 +6,10 @@
 import { useContext } from 'react'
 
 // Styles
-import styled from 'styled-components'
+import { StyledHeader, StyledHeading, StyledIcon } from './styles'
 
 // UI
-import {
-  OffCanvasContext,
-  Avatar,
-  Column,
-  Container,
-  Heading,
-  Icon,
-  Row
-} from '@drykiss/industry-ui'
+import { OffCanvasContext, Avatar, Column, Container, Row } from '@drykiss/industry-ui'
 import { MediaForm } from '../media/forms/create/form'
 
 // Types
@@ -56,7 +48,7 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
   }
   const { mediaList } = useMedia(filters)
   const avatar: Medium | undefined = mediaList?.find(
-    (mdum) => mdum.filename && mdum.status === STATUS_ACTIVE.Active
+    (medium) => medium.filename && medium.status === STATUS_ACTIVE.Active
   )
 
   const EditAvatar = () => {
@@ -124,20 +116,3 @@ export const ProfileHeader = ({ entity }: HeaderProps) => {
     </StyledHeader>
   )
 }
-
-const StyledHeader = styled.div`
-  background-color: #fff;
-  border: 1px solid #eee;
-  box-shadow: rgba(45, 62, 80, 0.12) 0 1px 5px 0;
-  margin-bottom: 0.5rem;
-  padding: 1rem 0;
-`
-
-const StyledHeading = styled(Heading)`
-  font-size: 1rem;
-  margin-top: 0.5rem;
-`
-
-const StyledIcon = styled(Icon)`
-  margin-right: 0.5rem;
-`

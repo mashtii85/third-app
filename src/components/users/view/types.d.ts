@@ -1,5 +1,5 @@
 /**
- * Components - Users - Types
+ * Components - Users - View - Types.d
  */
 
 export interface UserDetailsProps {

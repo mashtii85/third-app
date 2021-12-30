@@ -22,8 +22,15 @@ export interface AccountUsers {
 
 export interface UserCustomFields { }
 
+export interface NotificationSettingsType {
+  alert: boolean
+  email: boolean
+  push: boolean
+  sms: boolean
+}
 export interface UserMeta {
   locale?: Locale
+  notifications: Partial<NotificationSettingsType>
 }
 export interface User {
   id: number
