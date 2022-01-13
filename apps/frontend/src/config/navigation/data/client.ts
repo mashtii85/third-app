@@ -43,7 +43,8 @@ export const Client = ({
     }
   ]
   if (account && account.meta) {
-    const { locations, events, learning } = account.meta
+    const { locations, events, learning } = account.meta.features
+
     if (locations) {
       const locationTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Location)
 
