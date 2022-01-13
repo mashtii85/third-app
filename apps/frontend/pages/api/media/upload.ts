@@ -59,7 +59,7 @@ handler
       // Copying uploaded file to localstack folder to keep them on DOCKER ENGINE restart
       const ext = Path.extname(originalname)
       const filetype = getMediumTypeByFileExtension(ext)
-      const path = `../api.realworldacademies.com/localstack/files/${filetype}s/${name}`
+      const path = `../backend/localstack/files/${filetype}s/${name}`
       fs.writeFileSync(path, buffer)
     }
 
