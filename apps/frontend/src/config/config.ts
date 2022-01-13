@@ -8,7 +8,7 @@ import { AccessRules } from './access/rules'
 
 export const version = '0.1.0'
 
-export const Canonical = 'https://lms.realworldacademies.com'
+export const Canonical = 'https://availabletowork.com'
 
 export const apiConfig = {
   authURL: process.env.NEXT_PUBLIC_AUTH_URL,
@@ -23,7 +23,7 @@ export const apiConfig = {
 
 export const Brand = {
   logo: '/logo-default.png',
-  name: 'RWA'
+  name: 'ATW'
 }
 
 export const generalConfig = {

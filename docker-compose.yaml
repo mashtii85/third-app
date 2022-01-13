@@ -6,7 +6,7 @@ services:
       - "5542:5432"
     restart: always
     networks:
-      - rwa_network
+      - atw_network
     volumes:
       - db_data:/var/lib/postgresql/data
     env_file:
@@ -14,7 +14,7 @@ services:
   hasura:
     image: hasura/graphql-engine:v2.1.1
     networks:
-      - rwa_network
+      - atw_network
     ports:
       - "8280:8080"
     depends_on:
@@ -38,27 +38,14 @@ services:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
-      - rwa_network
+      - atw_network
     ports:
       - "4466:4566"
       - "4471:4571"
       - "4472:4572"
     restart: always
-  # lms:
-  #   build:
-  #     context: ../lms.realworldacademies.com
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ../lms.realworldacademies.com/src:/usr/src/app/src
-  #   networks:
-  #     - rwa_network
-  #   ports:
-  #     - "3100:3100"
-  #   restart: always
-  #   env_file:
-  #     - ../lms.realworldacademies.com/.env
 volumes:
-  db_data:
+  db_data: null
 networks:
-  rwa_network:
+  atw_network:
     driver: bridge
