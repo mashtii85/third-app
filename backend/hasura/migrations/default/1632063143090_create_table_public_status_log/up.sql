@@ -1,0 +1,1 @@
+CREATE TABLE "public"."status_log" ("id" serial NOT NULL, "client_id" integer NOT NULL, "entity_id" integer NOT NULL, "entity" varchar NOT NULL, "status" varchar NOT NULL, "notes" text, "meta" jsonb, "created_at" timestamptz NOT NULL DEFAULT now(), PRIMARY KEY ("id") , FOREIGN KEY ("client_id") REFERENCES "public"."account"("id") ON UPDATE cascade ON DELETE cascade);
