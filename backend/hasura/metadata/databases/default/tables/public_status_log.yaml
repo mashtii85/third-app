@@ -1,0 +1,133 @@
+table:
+  name: status_log
+  schema: public
+object_relationships:
+- name: account
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: account
+        schema: public
+- name: account_user
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: account_user
+        schema: public
+- name: address
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: address
+        schema: public
+- name: client
+  using:
+    foreign_key_constraint_on: client_id
+- name: course
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: course
+        schema: public
+- name: course_enrollment
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: course_enrollment
+        schema: public
+- name: lesson
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: lesson
+        schema: public
+- name: lesson_progress
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: lesson_progress
+        schema: public
+- name: location
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: location
+        schema: public
+- name: medium
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: medium
+        schema: public
+- name: module
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: module
+        schema: public
+- name: post
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: post
+        schema: public
+- name: taxonomy
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: taxonomy
+        schema: public
+- name: taxonomy_entity
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: taxonomy_entity
+        schema: public
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: user
+        schema: public

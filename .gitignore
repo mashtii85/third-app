@@ -63,3 +63,9 @@ bower_components
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Logs and databases
+*.log
+*.sqlite
+

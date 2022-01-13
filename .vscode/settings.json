@@ -1,21 +1,20 @@
 {
   // ESlint
   "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeAction.disableRuleComment": {
+    "enable": true,
+    "location": "separateLine"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.organizeImports": false
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   // Editor
   "editor.bracketPairColorization.enabled": true,
   "editor.formatOnSave": true,
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "editor.tabSize": 2,
   // Files
   "files.eol": "\n",
@@ -42,17 +41,22 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+  "prettier.semi": true,
   "cSpell.words": [
     "camelize",
     "Chainable",
     "datepicker",
+    "daygrid",
     "deepmerge",
     "Dropzone",
     "drykiss",
+    "fullcalendar",
     "hookform",
     "ilike",
+    "nrwl",
     "realworldacademies",
     "showvolumecontrol",
+    "timegrid",
     "upsert"
   ]
 }

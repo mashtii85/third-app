@@ -1,0 +1,35 @@
+table:
+  name: address
+  schema: public
+object_relationships:
+- name: account
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: account
+        schema: public
+- name: location
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: location
+        schema: public
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+array_relationships:
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public

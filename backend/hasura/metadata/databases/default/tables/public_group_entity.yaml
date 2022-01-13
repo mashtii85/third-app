@@ -1,0 +1,25 @@
+table:
+  name: group_entity
+  schema: public
+object_relationships:
+- name: account
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: account
+        schema: public
+- name: group
+  using:
+    foreign_key_constraint_on: group_id
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: user
+        schema: public

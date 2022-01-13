@@ -1,11 +1,7 @@
-# Real World Academies LMS
+# Available To Work
 
 E-learning platform
 
 # Installation
 
-1. Clone the repo
-2. Run `npm i --legacy-peer-deps` in the root of the project
-3. Create a `.env` file based on `.env.example` (use the same values for local setup)
-4. Run `npm start` to start the project
-5. Login using the demo mock user credentials: `demo@realworldacademies.com`/`Lms1234!`
+Follow "Local Setup" steps: https://app.clickup.com/2415269/v/dc/29pn5-1441/29pn5-15181

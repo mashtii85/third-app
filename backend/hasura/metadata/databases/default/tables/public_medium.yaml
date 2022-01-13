@@ -1,0 +1,124 @@
+table:
+  name: medium
+  schema: public
+object_relationships:
+- name: account
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: account
+        schema: public
+- name: client
+  using:
+    foreign_key_constraint_on: client_id
+- name: course
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: course
+        schema: public
+- name: lesson
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: lesson
+        schema: public
+- name: location
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: location
+        schema: public
+- name: module
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: module
+        schema: public
+- name: post
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: post
+        schema: public
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        entity_id: id
+      insertion_order: null
+      remote_table:
+        name: user
+        schema: public
+array_relationships:
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - id
+    - client_id
+    - taxonomy_id
+    - entity_id
+    - entity
+    - type
+    - category
+    - filename
+    - extension
+    - caption
+    - custom_fields
+    - meta
+    - status
+    - created_at
+    - updated_at
+  role: client
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - category
+    - entity
+    - extension
+    - filename
+    - status
+    - type
+    - client_id
+    - entity_id
+    - id
+    - taxonomy_id
+    - custom_fields
+    - meta
+    - caption
+    - created_at
+    - updated_at
+  role: member

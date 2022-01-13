@@ -1,0 +1,14 @@
+actions:
+- name: app_settings
+  definition:
+    kind: ""
+    handler: '{{ACTION_BASE_URL}}/app/settings'
+    headers:
+    - name: API_KEY
+      value_from_env: API_KEY
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: AppSettingsOutput
+  scalars: []

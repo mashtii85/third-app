@@ -1,0 +1,48 @@
+table:
+  name: lesson
+  schema: public
+object_relationships:
+- name: course
+  using:
+    foreign_key_constraint_on: course_id
+- name: module
+  using:
+    foreign_key_constraint_on: module_id
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+array_relationships:
+- name: lesson_progresses
+  using:
+    foreign_key_constraint_on:
+      column: lesson_id
+      table:
+        name: lesson_progress
+        schema: public
+- name: media
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: medium
+        schema: public
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public
+- name: taxonomies
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: taxonomy
+        schema: public

@@ -1,0 +1,127 @@
+// {
+//   "parser": "@typescript-eslint/parser",
+//   // "plugins": [
+//   //   "react-hooks"
+//   // ],
+
+//   "extends": [
+//     "plugin:@nrwl/nx/react-typescript",
+//     "eslint:recommended",
+//     "../../.eslintrc.json",
+//     "next",
+//     "next/core-web-vitals"
+//   ],
+//   "ignorePatterns": ["!**/*"],
+//   "overrides": [
+//     {
+//       "files": ["*.ts"],
+//       "rules": {
+//         "@next/next/no-html-link-for-pages": ["error", "apps/frontend/pages"],
+//         "@typescript-eslint/explicit-function-return-type": [
+//           "error"
+//         ]
+//       }
+//     },
+//     {
+//       "files": ["*.ts", "*.tsx"],
+//       "rules": {}
+//     }
+//   ],
+//   "env": {
+//     "browser": true,
+//     "es6": true,
+//     "jest": true
+//   },
+//   "settings": {
+//     "react": {
+//       "version": "detect"
+//     }
+//   },
+//   "globals": {
+//     "before": true,
+//     "cy": true,
+//     "Cypress": true,
+//     "localStorage": true,
+//     "JSX": true
+//   },
+//   "parserOptions": {
+//     "ecmaVersion": 6,
+//     "sourceType": "module",
+//     "ecmaFeatures": {
+//       "jsx": true
+//     }
+//   },
+//   "rules": {
+//     "no-debugger": "error",
+//     "camelcase": "off",
+//     "no-unused-vars": "off",
+//     "@typescript-eslint/no-unused-vars": "error",
+
+//     // GraphQL rules
+//     // "graphql/template-strings": [
+//     //   "error",
+//     //   {
+//     //     env: "apollo",
+//     //     schemaJson: require("./schema.json")
+//     //   }
+//     // ],
+//     "max-len": [
+//       "error",
+//       {
+//         // Ignore SVGs d=
+//         "ignoreTemplateLiterals": true,
+//         "code": 100,
+//         "tabWidth": 2
+//       }
+//     ],
+//     // Next JS does not require react import
+//     "react/react-in-jsx-scope": "off",
+//     // Make sure imports are taken care off
+//     "react/jsx-uses-react": "error",
+//     "react/jsx-uses-vars": "error",
+//     // don"t force es6 functions to include space before parent
+//     "space-before-function-parent": 0,
+//     "react/prop-types": 0,
+//     // allow specifying true explicitly for boolean props
+//     "react/jsx-boolean-value": 0,
+//     "react-hooks/rules-of-hooks": "error",
+//     "react/no-did-update-set-state": 0,
+//     "@typescript-eslint/explicit-function-return-type": "off"
+//   }
+// }
+{
+  "extends": [
+    "plugin:@nrwl/nx/react-typescript",
+    "next",
+    "next/core-web-vitals",
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@next/next/no-html-link-for-pages": [
+          "error"
+          // "apps/frontend/pages"
+        ],
+        "react/no-unescaped-entities": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/display-name": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "import/no-anonymous-default-export": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ],
+  "env": {
+    "jest": true
+  }
+}

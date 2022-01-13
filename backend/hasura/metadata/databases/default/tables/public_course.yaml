@@ -1,0 +1,50 @@
+table:
+  name: course
+  schema: public
+object_relationships:
+- name: account
+  using:
+    foreign_key_constraint_on: account_id
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+array_relationships:
+- name: course_enrollments
+  using:
+    foreign_key_constraint_on:
+      column: course_id
+      table:
+        name: course_enrollment
+        schema: public
+- name: lessons
+  using:
+    foreign_key_constraint_on:
+      column: course_id
+      table:
+        name: lesson
+        schema: public
+- name: media
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: medium
+        schema: public
+- name: modules
+  using:
+    foreign_key_constraint_on:
+      column: course_id
+      table:
+        name: module
+        schema: public
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public

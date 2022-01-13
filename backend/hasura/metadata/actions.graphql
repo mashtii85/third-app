@@ -1,0 +1,14 @@
+type Query {
+  app_settings(
+    client_id: Int!
+  ): AppSettingsOutput
+}
+
+type AppSettingsOutput {
+  settings: jsonb!
+  config: jsonb!
+  features: jsonb!
+  taxonomies: jsonb!
+  theme: jsonb!
+}
+

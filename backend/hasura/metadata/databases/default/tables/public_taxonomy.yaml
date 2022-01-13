@@ -1,0 +1,118 @@
+table:
+  name: taxonomy
+  schema: public
+object_relationships:
+- name: client
+  using:
+    foreign_key_constraint_on: client_id
+- name: parent_taxonomy
+  using:
+    foreign_key_constraint_on: parent_id
+array_relationships:
+- name: accounts
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: account
+        schema: public
+- name: addresses
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: address
+        schema: public
+- name: course_enrollments
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: course_enrollment
+        schema: public
+- name: courses
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: course
+        schema: public
+- name: events
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: event
+        schema: public
+- name: groups
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: group
+        schema: public
+- name: lessons
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: lesson
+        schema: public
+- name: locations
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: location
+        schema: public
+- name: media
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: medium
+        schema: public
+- name: modules
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: module
+        schema: public
+- name: posts
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: post
+        schema: public
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public
+- name: taxonomies
+  using:
+    foreign_key_constraint_on:
+      column: parent_id
+      table:
+        name: taxonomy
+        schema: public
+- name: taxonomy_entities
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: taxonomy_entity
+        schema: public
+- name: users
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: user
+        schema: public

@@ -1,0 +1,147 @@
+table:
+  name: account
+  schema: public
+object_relationships:
+- name: client
+  using:
+    foreign_key_constraint_on: client_id
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+array_relationships:
+- name: addresses
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: address
+        schema: public
+- name: course_enrollments
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: course_enrollment
+        schema: public
+- name: courses
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: course
+        schema: public
+- name: event_entities
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: event_entity
+        schema: public
+- name: events
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: event
+        schema: public
+- name: group_entities
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: group_entity
+        schema: public
+- name: groups
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: group
+        schema: public
+- name: locations
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: location
+        schema: public
+- name: media
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: medium
+        schema: public
+- name: member_communications
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: communication
+        schema: public
+- name: member_media
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: medium
+        schema: public
+- name: member_status_logs
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: status_log
+        schema: public
+- name: member_taxonomies
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: taxonomy
+        schema: public
+- name: member_taxonomy_entities
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: taxonomy_entity
+        schema: public
+- name: members
+  using:
+    foreign_key_constraint_on:
+      column: client_id
+      table:
+        name: account
+        schema: public
+- name: posts
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: post
+        schema: public
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public
+- name: users
+  using:
+    foreign_key_constraint_on:
+      column: account_id
+      table:
+        name: account_user
+        schema: public

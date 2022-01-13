@@ -1,0 +1,169 @@
+// {
+//   "root": true,
+//   "parser": "@typescript-eslint/parser",
+//   "ignorePatterns": ["**/*"],
+//   "plugins": ["@nrwl/nx", "react", "react-hooks", "@typescript-eslint"],
+//   "extends": [
+//     "eslint:recommended",
+//     "plugin:@typescript-eslint/recommended",
+//     "standard",
+//     "standard-react",
+//     "prettier",
+//     "prettier-standard"
+//   ],
+//   "env": {
+//     "browser": true,
+//     "es6": true,
+//     "jest": true
+//   },
+//   "settings": {
+//     "react": {
+//       "version": "detect"
+//     }
+//   },
+//   "globals": {
+//     "before": true,
+//     "cy": true,
+//     "Cypress": true,
+//     "localStorage": true,
+//     "JSX": true
+//   },
+//   "parserOptions": {
+//     "ecmaVersion": 6,
+//     "sourceType": "module",
+//     "ecmaFeatures": {
+//       "jsx": true
+//     }
+//   },
+//   "rules": {
+//     "no-debugger": "error",
+//     "camelcase": "off",
+//     "no-unused-vars": "off",
+//     "@typescript-eslint/no-unused-vars": "error",
+//     // "prettier/prettier": [
+//     //   1,
+//     //   {
+//     //     "printWidth": 100,
+//     //     "semi": false,
+//     //     "singleQuote": true,
+//     //     "trailingComma": "none"
+//     //   }
+//     // ],
+//     // GraphQL rules
+//     // "graphql/template-strings": [
+//     //   "error",
+//     //   {
+//     //     env: "apollo",
+//     //     schemaJson: require("./schema.json")
+//     //   }
+//     // ],
+//     "max-len": [
+//       "error",
+//       {
+//         // Ignore SVGs d=
+//         "ignoreTemplateLiterals": true,
+//         "code": 100,
+//         "tabWidth": 2
+//       }
+//     ],
+//     // Next JS does not require react import
+//     "react/react-in-jsx-scope": "off",
+//     // Make sure imports are taken care off
+//     "react/jsx-uses-react": "error",
+//     "react/jsx-uses-vars": "error",
+//     // don"t force es6 functions to include space before parent
+//     "space-before-function-parent": 0,
+//     "react/prop-types": 0,
+//     // allow specifying true explicitly for boolean props
+//     "react/jsx-boolean-value": 0,
+//     "react-hooks/rules-of-hooks": "error",
+//     "react/no-did-update-set-state": 0,
+//     "@typescript-eslint/explicit-function-return-type": "off"
+//   },
+//   "overrides": [
+//     {
+//       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+//       "rules": {
+//         "@nrwl/nx/enforce-module-boundaries": [
+//           "error",
+//           {
+//             "enforceBuildableLibDependency": true,
+//             "allow": [],
+//             "depConstraints": [
+//               {
+//                 "sourceTag": "*",
+//                 "onlyDependOnLibsWithTags": ["*"]
+//               }
+//             ]
+//           }
+//         ],
+//         "@typescript-eslint/explicit-function-return-type": ["error"]
+//       }
+//     },
+//     {
+//       "files": ["*.ts", "*.tsx"],
+//       "extends": ["plugin:@nrwl/nx/typescript"],
+//       "rules": {}
+//     },
+//     {
+//       "files": ["*.js", "*.jsx"],
+//       "extends": ["plugin:@nrwl/nx/javascript"],
+//       "rules": {}
+//     }
+//   ]
+// }
+
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "root": true,
+  "ignorePatterns": ["**/*", "**/*.d.ts"],
+  "plugins": ["@nrwl/nx", "prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ],
+        "camelCase": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "react/no-unescaped-entities": 0,
+        "react-hooks/exhaustive-deps": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript", "prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["error"]
+      }
+    }
+  ]
+}

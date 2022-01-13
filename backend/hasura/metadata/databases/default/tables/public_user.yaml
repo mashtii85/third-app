@@ -1,0 +1,72 @@
+table:
+  name: user
+  schema: public
+object_relationships:
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: taxonomy_id
+array_relationships:
+- name: accounts
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: account_user
+        schema: public
+- name: course_enrollments
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: course_enrollment
+        schema: public
+- name: event_entities
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: event_entity
+        schema: public
+- name: group_entities
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: group_entity
+        schema: public
+- name: media
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: medium
+        schema: public
+- name: notifications
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: notification
+        schema: public
+- name: posts
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: post
+        schema: public
+- name: status_logs
+  using:
+    manual_configuration:
+      column_mapping:
+        id: entity_id
+      insertion_order: null
+      remote_table:
+        name: status_log
+        schema: public
