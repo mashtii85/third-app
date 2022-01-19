@@ -5,7 +5,8 @@ import { validationSchema } from './config/validation'
 import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
 import { AuthService } from './routes/auth/auth.service'
-import { HttpResponseMiddleware } from './middlewares'
+
+import { HttpResponseMiddleware } from '@drykiss/nest-utils'
 
 // Routes
 import { AppController } from './routes/app/app.controller'

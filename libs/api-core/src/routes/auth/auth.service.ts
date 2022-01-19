@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
-import { response, Response } from 'express'
+import { Response } from 'express'
 import { LoginDto } from './auth.dto'
 
 @Injectable()

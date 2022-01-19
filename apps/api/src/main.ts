@@ -8,9 +8,12 @@ import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import {
   HttpExceptionFilter,
+} from '@availabletowork/api-core'
+
+import {
   HttpSuccessInterceptor,
   LoggerInterceptor
-} from '@availabletowork/api-core'
+} from '@drykiss/nest-utils'
 
 import { AppModule } from './app/app.module'
 

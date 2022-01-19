@@ -1,1 +1,1 @@
-export { JoiValidationPipe } from './validation.pipe'
+export { ValidationPipe as JoiValidationPipe } from './validation.pipe'
