@@ -66,8 +66,8 @@ export const prepareArguments = ({
   return clause
 }
 
-export const prepareMetaClause = (commaSeparated?: string, value = true): any | undefined => {
-  if (!commaSeparated) return
+export const prepareMetaClause = (commaSeparated?: string, value = true): string | undefined => {
+  if (!commaSeparated) return null
   const keys: string[] = commaSeparated.split(',')
   const metaProps: string[] = []
   keys.forEach((key) => {

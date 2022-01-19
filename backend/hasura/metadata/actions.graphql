@@ -1,7 +1,5 @@
 type Query {
-  app_settings(
-    client_id: Int!
-  ): AppSettingsOutput
+  app_settings(client_id: Int!): AppSettingsOutput
 }
 
 type AppSettingsOutput {
@@ -11,4 +9,3 @@ type AppSettingsOutput {
   taxonomies: jsonb!
   theme: jsonb!
 }
-

@@ -36,6 +36,8 @@ const translateMediumType = (mediumType: MEDIUM_TYPE): string => {
       return 'image/*'
     case MEDIUM_TYPE.Video:
       return 'video/*'
+    default:
+      return ''
   }
 }
 

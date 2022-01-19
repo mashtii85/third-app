@@ -16,7 +16,9 @@ export const useMedia = (filters: UseMediaProps) => {
   const where = prepareArguments({ filters })
   const { data, error, loading, refetch } = useQuery<MediaDataList, MediaSearchVariables>(
     GET_MEDIA,
-    { variables: { where, order_by: { id: 'desc' } } }
+    {
+      variables: { where, order_by: { id: 'desc' } }
+    }
   )
 
   if (error) {

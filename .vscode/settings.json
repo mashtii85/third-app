@@ -43,8 +43,10 @@
   },
   "prettier.semi": true,
   "cSpell.words": [
+    "availabletowork",
     "camelize",
     "Chainable",
+    "colord",
     "datepicker",
     "daygrid",
     "deepmerge",
@@ -53,8 +55,9 @@
     "fullcalendar",
     "hookform",
     "ilike",
+    "nestjs",
     "nrwl",
-    "availabletowork",
+    "precommit",
     "showvolumecontrol",
     "timegrid",
     "upsert"

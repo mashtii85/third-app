@@ -42,7 +42,7 @@ const handler = nc<NextApiRequest, NextApiResponse>(handlerOptions)
 handler
   .use(cors())
   .use(uploadMiddleware)
-  .post(async (req: ApiUploadRequest, res: NextApiResponse) => {
+  .post(async (req: ApiUploadRequest, res: NextApiResponse): Promise<void> => {
     const {
       body: { bucket, folder },
       file: { buffer, originalname }
@@ -76,6 +76,7 @@ handler
       return res.status(200).json({ key: data?.key })
     } else {
       TE('Error uploading file')
+      return res.status(400).json({ message: 'Error uploading file' })
     }
   })
 

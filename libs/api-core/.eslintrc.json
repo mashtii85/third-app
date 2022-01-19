@@ -1,0 +1,34 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "rules": {
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["off"],
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    "array-bracket-newline": "off",
+    "block-spacing": "off",
+    "space-before-blocks": "off",
+    "space-in-parens": "off",
+    "space-infix-ops": "off",
+    "no-spaced-func": "off",
+    "space-before-function-paren": "off",
+    "keyword-spacing": "off",
+    "array-bracket-spacing": "error",
+    "indent": [2, "tabs"],
+    "no-var": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

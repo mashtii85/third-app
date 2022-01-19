@@ -59,6 +59,7 @@ const fullScreen = {
     if (document.fullscreenElement !== null) {
       return document[vendor[key.exitFullscreen]].bind(document)
     }
+    return null
   },
   get fullscreenPseudoClass(): any {
     return `:${vendor[key.fullscreen]}`
