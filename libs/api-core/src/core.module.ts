@@ -4,10 +4,12 @@ import { configuration } from './config/configuration'
 import { validationSchema } from './config/validation'
 import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
-import { AuthController } from './auth/auth.controller'
-import { CommonController } from './common/common.controller'
-import { AuthService } from './auth/auth.service'
+import { AuthService } from './routes/auth/auth.service'
 import { HttpResponseMiddleware } from './middlewares'
+
+// Routes
+import { AuthController } from './routes/auth/auth.controller'
+import { StatusController } from './routes/status/status.controller'
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { HttpResponseMiddleware } from './middlewares'
       autoSchemaFile: true
     })
   ],
-  controllers: [AuthController, CommonController],
+  controllers: [AuthController, StatusController],
   providers: [CoreResolver, AuthService],
   exports: []
 })

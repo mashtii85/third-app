@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, Res } from '@nestjs/common'
 import { Response } from 'express'
 
 @Controller()
-export class CommonController {
+export class StatusController {
   @HttpCode(200)
   @Get('status')
   getStatus(@Res() response: Response): Response {
