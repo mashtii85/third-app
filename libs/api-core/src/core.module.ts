@@ -8,7 +8,9 @@ import { AuthService } from './routes/auth/auth.service'
 import { HttpResponseMiddleware } from './middlewares'
 
 // Routes
+import { AppController } from './routes/app/app.controller'
 import { AuthController } from './routes/auth/auth.controller'
+import { MediaController } from './routes/media/media.controller'
 import { StatusController } from './routes/status/status.controller'
 
 @Module({
@@ -22,7 +24,7 @@ import { StatusController } from './routes/status/status.controller'
       autoSchemaFile: true
     })
   ],
-  controllers: [AuthController, StatusController],
+  controllers: [AppController, AuthController, MediaController, StatusController],
   providers: [CoreResolver, AuthService],
   exports: []
 })

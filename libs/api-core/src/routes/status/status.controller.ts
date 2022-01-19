@@ -1,11 +1,11 @@
 import { Controller, Get, HttpCode, Res } from '@nestjs/common'
 import { Response } from 'express'
 
-@Controller()
+@Controller('/status')
 export class StatusController {
   @HttpCode(200)
-  @Get('status')
+  @Get()
   getStatus(@Res() response: Response): Response {
-    return response.status(400).json({ message: 'success' })
+    return response.json({ message: 'success' })
   }
 }
