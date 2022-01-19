@@ -3,6 +3,8 @@
   "projects": {
     "api": "apps/api",
     "api-core": "libs/api-core",
+    "auth": "libs/auth",
+    "aws": "libs/aws",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "nest-utils": "libs/nest-utils"
