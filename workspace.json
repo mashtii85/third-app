@@ -4,6 +4,7 @@
     "api": "apps/api",
     "api-core": "libs/api-core",
     "frontend": "apps/frontend",
-    "frontend-e2e": "apps/frontend-e2e"
+    "frontend-e2e": "apps/frontend-e2e",
+    "nest-utils": "libs/nest-utils"
   }
 }

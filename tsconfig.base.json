@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@availabletowork/api-core": ["libs/api-core/src/index.ts"]
+      "@availabletowork/api-core": ["libs/api-core/src/index.ts"],
+      "@drykiss/nest-utils": ["libs/nest-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
