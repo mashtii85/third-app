@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator'
 
 export class LoginDto {
   @IsString()
@@ -9,4 +9,10 @@ export class LoginDto {
   @IsString()
   @IsNotEmpty({ message: "password shouldn't be empty" })
   password: string
+}
+
+export class SwitchAccountDto {
+  @IsNumber()
+  @IsNotEmpty()
+  accountId: string
 }
