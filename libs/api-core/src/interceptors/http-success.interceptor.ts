@@ -37,10 +37,8 @@ export interface Response<T> {
 @Injectable()
 export class HttpSuccessInterceptor<T> implements NestInterceptor<T, Response<T>> {
   intercept(context: ExecutionContext, next: CallHandler): Observable<Response<T>> {
-    // return next.handle()
     return next.handle().pipe(
       map((data) => {
-        console.log(data)
         return {
           statusCode: context.switchToHttp().getResponse().statusCode,
           message: data.message,
