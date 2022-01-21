@@ -1,0 +1,51 @@
+const path = {
+  home: '/',
+  account: {
+    signIn: '/account/sign-in',
+    logout: '/account/logout'
+  },
+  dashboard: {
+    root: '/dashboard',
+    categories: {
+      view: '/dashboard/categories'
+    },
+    account: {
+      clients: '/dashboard/account/clients',
+      settings: '/dashboard/account/settings',
+      users: '/dashboard/account/users',
+      view: '/dashboard/account'
+    },
+    accounts: {
+      list: '/dashboard/accounts',
+      create: '/dashboard/accounts/create',
+      view: '/dashboard/accounts/view'
+    },
+    coursesAccount: {
+      enrolled: '/dashboard/courses?show=enrolled',
+      catalog: '/dashboard/courses?show=catalog',
+      view_by_id: '/dashboard/courses/view?id='
+    },
+    coursesClient: {
+      root: '/dashboard/courses',
+      manage: '/dashboard/courses/manage',
+      view_by_id: '/dashboard/courses/view'
+    },
+    enrollments: {
+      root: '/dashboard/enrollments'
+    },
+    lessons: {
+      root: '/dashboard/lessons',
+      view_by_id: '/dashboard/lessons/view'
+    },
+    locations: {
+      list: '/dashboard/locations'
+    },
+    events: {
+      list: '/dashboard/events'
+    },
+    playground: '/dashboard/playground',
+    profile: '/dashboard/profile'
+  }
+}
+
+export default path

@@ -1,4 +1,4 @@
 export const enum SETTINGS_TABS {
-  Theme = 'themeTab',
-  Address = 'addressTab'
+  Theme = 'theme0Tab',
+  Address = 'address1Tab'
 }

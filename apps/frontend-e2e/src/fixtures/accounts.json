@@ -1,0 +1,136 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "id": 10,
+        "client_id": 2,
+        "taxonomy_id": 6,
+        "type": "member",
+        "name": "Jasper Reilly",
+        "custom_fields": null,
+        "meta": null,
+        "status": "active",
+        "created_at": "2021-10-26T11:37:52.089997+00:00",
+        "updated_at": "2021-10-26T11:37:52.089997+00:00",
+        "__typename": "account",
+        "taxonomy": {
+          "id": 6,
+          "entity": null,
+          "entity_id": null,
+          "name": "Students",
+          "type": "members",
+          "status": "active",
+          "custom_fields": null,
+          "meta": null,
+          "__typename": "taxonomy"
+        },
+        "users": [
+          {
+            "id": 16,
+            "status": "active",
+            "user": {
+              "id": 16,
+              "email": "jasper@example.com",
+              "status": "active",
+              "name_first": "Jasper",
+              "name_last": "Reilly",
+              "custom_fields": null,
+              "meta": null,
+              "email_verified": null,
+              "phone": null,
+              "phone_verified": null,
+              "created_at": "2021-10-26T11:37:52.089997+00:00",
+              "updated_at": "2021-10-26T11:37:52.089997+00:00",
+              "__typename": "user"
+            },
+            "__typename": "account_user"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "client_id": 2,
+        "taxonomy_id": 6,
+        "type": "member",
+        "name": "Perry Dunbar",
+        "custom_fields": null,
+        "meta": null,
+        "status": "active",
+        "created_at": "2021-10-26T11:37:07.897839+00:00",
+        "updated_at": "2021-10-26T11:37:07.897839+00:00",
+        "__typename": "account",
+        "taxonomy": {
+          "id": 6,
+          "entity": null,
+          "entity_id": null,
+          "name": "Students",
+          "type": "members",
+          "status": "active",
+          "custom_fields": null,
+          "meta": null,
+          "__typename": "taxonomy"
+        },
+        "users": [
+          {
+            "id": 15,
+            "status": "active",
+            "user": {
+              "id": 15,
+              "email": "perry@example.com",
+              "status": "active",
+              "name_first": "Perry",
+              "name_last": "Dunbar",
+              "custom_fields": null,
+              "meta": null,
+              "email_verified": null,
+              "phone": null,
+              "phone_verified": null,
+              "created_at": "2021-10-26T11:37:07.897839+00:00",
+              "updated_at": "2021-10-26T11:37:07.897839+00:00",
+              "__typename": "user"
+            },
+            "__typename": "account_user"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "client_id": 2,
+        "taxonomy_id": null,
+        "type": "member",
+        "name": "Demo Member",
+        "custom_fields": null,
+        "meta": null,
+        "status": "active",
+        "created_at": "2021-09-19T15:56:55.846114+00:00",
+        "updated_at": "2021-09-19T15:56:55.846114+00:00",
+        "__typename": "account",
+        "taxonomy": null,
+        "users": [
+          {
+            "id": 4,
+            "status": "active",
+            "user": {
+              "id": 4,
+              "email": "demo@example.com",
+              "status": "active",
+              "name_first": "Demo",
+              "name_last": "User",
+              "custom_fields": {
+                "phone": ""
+              },
+              "meta": null,
+              "email_verified": true,
+              "phone": null,
+              "phone_verified": null,
+              "created_at": "2021-09-19T16:01:59.424443+00:00",
+              "updated_at": "2021-09-20T06:55:03.291663+00:00",
+              "__typename": "user"
+            },
+            "__typename": "account_user"
+          }
+        ]
+      }
+    ]
+  }
+}

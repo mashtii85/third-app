@@ -34,7 +34,7 @@ export const DeleteAccountForm = ({
 
   return (
     <>
-      <Text>Are you sure to delete `${accountName}` account?</Text>
+      <Text>Are you sure to delete '{accountName}' account?</Text>
       <Space />
       <Button size={SIZE.SM} content="Delete" context="danger" onClick={handleDelete} />
     </>

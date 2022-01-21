@@ -34,10 +34,12 @@ export const AccountTable = ({ filters }: AccountTableProps) => {
 
   const handleEdit = (_: MouseEvent<HTMLElement>, row: AccountsRow) => {
     const clientModules: string[] = []
+
     Object.keys(CLIENT_MODULE_TYPE).forEach((key) => {
       const keyname = key.toLocaleLowerCase()
       if (row?.meta && row?.meta[keyname] === true) clientModules.push(keyname)
     })
+
     row.clientModules = [...clientModules]
     const defaultValues = prepareAccountDefaultValues({
       row,
