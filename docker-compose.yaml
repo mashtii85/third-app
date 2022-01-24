@@ -22,6 +22,9 @@ services:
     restart: always
     env_file:
       - ./backend/.env
+    # linux users should uncomment following lines
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   localstack:
     image: localstack/localstack:latest
     environment:
@@ -44,6 +47,9 @@ services:
       - "4471:4571"
       - "4472:4572"
     restart: always
+   # linux users should uncomment following lines
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 volumes:
   db_data: null
 networks:

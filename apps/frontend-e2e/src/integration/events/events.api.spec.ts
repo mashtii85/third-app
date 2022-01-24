@@ -1,7 +1,7 @@
 import { ENTITY_QUERY } from '../../constants/queries'
 import { aliasQuery } from '../../utils/gql'
 import { prepareQueryName } from '../../utils/query'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/types'
 import { loginAsClient } from '../../utils/login'
 
 const eventsModule = 'Events'
@@ -26,7 +26,7 @@ describe('should fetch all events successfully', () => {
     })
   })
 
-  it('should fetch data from Mock successfully', () => {
+  it.only('should fetch data from Mock successfully', () => {
     cy.fixture(eventsModule).then((eventsData) => {
       cy.intercept('POST', url, (req) => {
         aliasQuery(req, ENTITY_QUERY.GetEvents, {

@@ -52,7 +52,7 @@ const formRadio = (
 const formReactSelect = (name: string, optionIndex: number, force?: boolean): any =>
   // @ts-ignore: Unreachable code error
   cy
-    .get(`label[for="${name}"]`, { force })
+    .contains('label', 'Type')
     .children()
     .eq(1)
     .click({ force })

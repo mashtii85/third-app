@@ -72,15 +72,15 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
   })
 
   const submit = (form: CreateAccountForm) => {
-    const meta: ClientModuleProps = { locations: false, events: false, learning: false }
+    const features: ClientModuleProps = { locations: false, events: false, learning: false }
     Object.keys(CLIENT_MODULE_TYPE).forEach((key) => {
       const keyname = key.toLocaleLowerCase()
-      meta[keyname as keyof ClientModuleProps] =
+      features[keyname as keyof ClientModuleProps] =
         form?.clientModules?.length > 0 ? form.clientModules.indexOf(keyname) >= 0 : false
     })
 
     if (defaultValues?.id) {
-      form.meta = { ...defaultValues.meta, ...meta }
+      form.meta = { ...defaultValues.meta, features }
 
       const variables = prepareUpdateAccount({
         form,
@@ -89,7 +89,7 @@ export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountForm
       })
       updateAccount({ variables })
     } else {
-      form.meta = meta
+      form.meta = features
       const object = prepareCreateAccount(form, filters?.userType, filters?.userId)
 
       createAccount({ variables: { object } })

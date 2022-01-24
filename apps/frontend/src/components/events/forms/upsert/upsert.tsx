@@ -16,14 +16,19 @@ import { statusActive } from '../../../../constants/status'
 // Types
 import { EventFormType, EventFormProps, EventFormSubmission } from './types'
 import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { LooseObject } from '../../../../types/object'
+import { Options } from '../../../../types/options'
+
 // Hooks
 import { useCreateEvent, useUpdateEvent } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
+
+// UI
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
-import { LooseObject } from '../../../../types/object'
 import moment from 'moment'
-import { Options } from '../../../../types/options'
 import { CustomSelect } from '../../../selects/select'
+
+// Constants
 import { ENTITIES } from '../../../../constants/entities'
 
 export const UpsertEvent = ({ onSuccess, defaultValues, filters }: EventFormProps) => {
@@ -39,6 +44,7 @@ export const UpsertEvent = ({ onSuccess, defaultValues, filters }: EventFormProp
     defaultValues,
     resolver: yupResolver(schema)
   })
+
   // Watchers
   const taxonomyWatch: Options = watch('taxonomy')
   const { createEvent } = useCreateEvent({
@@ -110,6 +116,7 @@ export const UpsertEvent = ({ onSuccess, defaultValues, filters }: EventFormProp
       <Label label="Status">
         <Select {...defaultOptions} name="status" options={statusActive} />
       </Label>
+
       <CustomSelect
         {...defaultOptions}
         label="Type"

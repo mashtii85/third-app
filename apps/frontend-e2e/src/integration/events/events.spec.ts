@@ -1,5 +1,5 @@
 import { BUTTONS } from '../../constants/buttons'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/types'
 import { timer } from '../../constants/misc'
 import { loginAsClient } from '../../utils/login'
 
@@ -44,9 +44,9 @@ describe('/Events', () => {
         cy.offCanvasCheckHeader('Add an Event')
         cy.get('form')
           .within(() => {
-            // cy.hasField('select', 'status')
-            // cy.formSelect('status', 'Active')
-            // cy.formReactSelect('taxonomy', 0)
+            cy.hasField('select', 'status')
+            cy.formSelect('status', 'Active')
+            cy.formReactSelect('taxonomy', 0)
           })
           .submit()
           .should('be.visible')
@@ -62,9 +62,10 @@ describe('/Events', () => {
           cy.get('form')
             .within(() => {
               cy.formTextInput('title', event)
-              // // Member Type
+              cy.formTextarea('description', 'new event')
+              // Member Type
               cy.formReactSelect('taxonomy', 0)
-              // // Status
+              // Status
               cy.hasField('select', 'status')
               cy.formSelect('status', 'Active')
             })

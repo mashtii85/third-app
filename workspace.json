@@ -7,6 +7,7 @@
     "aws": "libs/aws",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
-    "nest-utils": "libs/nest-utils"
+    "nest-utils": "libs/nest-utils",
+    "types": "libs/types"
   }
 }

@@ -1,20 +1,21 @@
 import { timer } from '../../../constants/misc'
 import { loginAsClient } from '../../../utils/login'
-import pages from '../../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/types'
 
 const enum TABS {
-  Account = 'accountTab',
-  Users = 'usersTab'
+  Account = 'account0Tab',
+  Users = 'users1Tab'
 }
 describe('/Account', () => {
   before(() => {
     loginAsClient(pages.dashboard.account.view)
+    // loginAsClient('/dashboard/account')
   })
 
   describe(`${TABS.Account}`, () => {
     it(`should show The ${TABS.Account} by default`, () => {
       cy.dataCy(`${TABS.Account}`)
-      cy.getDetails2('Account Details')
+      cy.getDetails2('Account Details').wait(timer)
     })
   })
 
