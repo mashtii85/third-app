@@ -1,6 +1,6 @@
-# nest-utils
+# Nest Utils
 
-This library was generated with [Nx](https://nx.dev).
+Reusable Nest.js utils.
 
 ## Running unit tests
 

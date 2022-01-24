@@ -1,3 +1,7 @@
+/**
+ * Helpers - Logger
+ */
+
 export enum LOG_LEVEL {
   Error = 'error',
   Warn = 'warn',
