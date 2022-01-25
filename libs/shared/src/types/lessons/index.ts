@@ -1,0 +1,7 @@
+export * from './answers.d'
+export * from './assignmentUpsert.d'
+export * from './create.d'
+export * from './questionDelete.d'
+export * from './questionTable.d'
+export * from './questionUpsert.d'
+export * from './questionUseDelete.d'

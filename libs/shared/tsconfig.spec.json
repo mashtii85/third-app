@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.test.tsx",
+    "**/*.spec.tsx",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/*.test.jsx",
+    "**/*.spec.jsx",
+    "**/*.d.ts", "src/types/events/list/table/table.ts", "src/types/dashboard/tiles/hooks/tilesHooks.ts"  ]
+, "src/types/courses/view/client/tabs/curriculum/curriculum.ts", "src/types/courses/view/account/account.ts", "src/types/addresses/forms/create/create.ts", "src/types/accounts/list/accounts/table.ts"}
