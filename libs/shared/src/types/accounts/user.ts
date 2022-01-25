@@ -1,7 +1,6 @@
 /**
  * Types - User
  */
-import { Locale } from '../../../../apps/frontend/src/translations/types'
 import { LooseObject } from '../general/object'
 import { Account, ACCOUNT_TYPE } from './account'
 
@@ -29,7 +28,7 @@ export interface NotificationSettingsType {
   sms: boolean
 }
 export interface UserMeta {
-  locale?: Locale
+  locale?: any
   notifications: Partial<NotificationSettingsType>
 }
 export interface User {
