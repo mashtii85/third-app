@@ -9,9 +9,9 @@ import { GraphQLClient } from 'graphql-request'
 import { LooseObject } from '../types'
 
 export const gqlClient = async (): Promise<any> => {
-  const endpoint: string = process.env.NEXT_PUBLIC_GRAPHQL_URL || ''
+  const endpoint: string = process.env.GRAPHQL_URL || ''
   const headers = {
-    'x-hasura-admin-secret': process.env.NEXT_PUBLIC_GRAPHQL_SECRET || '',
+    'x-hasura-admin-secret': process.env.GRAPHQL_SECRET || '',
     'content-type': 'application/json'
   }
   return new GraphQLClient(endpoint, { headers })

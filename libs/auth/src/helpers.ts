@@ -6,10 +6,10 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
+import { AccountUsers, ACCOUNT_TYPE, CurrentUser } from '@availabletowork/shared'
+
 // Types
 import { LoginDataModel } from './types.d'
-import { AccountUsers, CurrentUser } from '../../types/user.d'
-import { ACCOUNT_TYPE } from '../../types/account.d'
 
 export const hashPassword = (password?: string): string | undefined => {
   if (password) {
@@ -34,7 +34,7 @@ export const generateToken = (data: LoginDataModel): string => {
 }
 
 export const validateToken = (token: string): Partial<LoginDataModel> => {
-  return jwt.verify(token, process.env.NEXT_PUBLIC_JWT_PUBLIC_KEY, {
+  return jwt.verify(token, process.env.JWT_PUBLIC_KEY, {
     algorithms: ['RS512']
   })
 }

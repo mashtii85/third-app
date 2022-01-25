@@ -3,20 +3,16 @@
  */
 
 // Utils
-import { LOG, TE } from '../../utils/api/errors'
+import { LOG, LOG_LEVEL, query, TE } from '@drykiss/nest-utils'
 
 // GQL
-import { query } from '../graphqlClient'
-import { GET_USER_BY_EMAIL } from '../../components/users/queries'
+import { AccountUsers, CurrentUser, GET_USER_BY_EMAIL, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/shared'
 
 // Helpers
 import { generateToken, prepareUserData, validatePassword } from './helpers'
 
 // Types
 import { LoginModel } from './types.d'
-import { STATUS_ACTIVE } from '../../types/select.d'
-import { LOG_LEVEL } from '../../utils/api/types.d'
-import { AccountUsers, CurrentUser, USER_STATUS } from '../../types/user.d'
 
 export const login = async (email: string, password: string): Promise<LoginModel> => {
   if (!email || !password) {
