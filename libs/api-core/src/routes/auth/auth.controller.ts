@@ -9,10 +9,10 @@ export class AuthController {
 
   @Post('/login')
   async login(
-    @Body(new ValidationPipe()) credential: LoginDto,
+    @Body(new ValidationPipe()) credentials: LoginDto,
     @Res() response: Response
   ): Promise<Response> {
-    const token = await this.authService.login(credential, response)
+    const token = await this.authService.login(credentials, response)
     return token
   }
 

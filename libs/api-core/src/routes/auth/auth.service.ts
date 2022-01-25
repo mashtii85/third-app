@@ -4,8 +4,8 @@ import { LoginDto } from './auth.dto'
 
 @Injectable()
 export class AuthService {
-  public async login(credential: LoginDto, response: Response): Promise<Response> {
-    if (credential.email === 'uaefa@example.com' && credential.password === 'Lms123!') {
+  public async login(credentials: LoginDto, response: Response): Promise<Response> {
+    if (credentials.email === 'uaefa@example.com' && credentials.password === 'Lms123!') {
       return response.status(200).json({ token: 'token' })
     }
 
