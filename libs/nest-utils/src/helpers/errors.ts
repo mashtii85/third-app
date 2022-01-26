@@ -2,7 +2,6 @@
  * Helpers - Errors
  */
 
-
 // Types
 import { LOG, LOG_LEVEL } from './logger'
 

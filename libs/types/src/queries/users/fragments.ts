@@ -2,7 +2,6 @@
  * Queries - User - Fragments
  */
 
-
 // Apollo
 import { gql } from '@apollo/client'
 

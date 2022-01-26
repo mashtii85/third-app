@@ -6,14 +6,9 @@
 import { Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
-import {
-  HttpExceptionFilter,
-} from '@availabletowork/api-core'
+import { HttpExceptionFilter } from '@availabletowork/api-core'
 
-import {
-  HttpSuccessInterceptor,
-  LoggerInterceptor
-} from '@drykiss/nest-utils'
+import { HttpSuccessInterceptor, LoggerInterceptor } from '@drykiss/nest-utils'
 
 import { AppModule } from './app/app.module'
 
