@@ -1,1 +1,1 @@
-export { HttpResponseMiddleware } from './http-response.middleware'
+export { ApiKeyMiddleware } from './apiKey.middleware'

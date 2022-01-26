@@ -6,7 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
 import { AuthService } from './routes/auth/auth.service'
 
-import { HttpResponseMiddleware } from '@drykiss/nest-utils'
+import { ApiKeyMiddleware } from '@drykiss/nest-utils'
 
 // Routes
 import { AppController } from './routes/app/app.controller'
@@ -31,6 +31,6 @@ import { StatusController } from './routes/status/status.controller'
 })
 export class CoreModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(HttpResponseMiddleware).forRoutes('/*')
+    consumer.apply(ApiKeyMiddleware).forRoutes('/*')
   }
 }

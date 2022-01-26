@@ -10,6 +10,9 @@ export const TE = (message: string, status: HttpStatus = 400): void => {
 
   switch (status) {
     case 401:
+      error = 'Unauthorized'
+      break
+    case 403:
       error = 'Forbidden'
       break
     case 404:
