@@ -3,7 +3,7 @@
  */
 
 // Utils
-import { TE } from '../../utils/api/errors'
+import { TE } from '@drykiss/nest-utils'
 
 // Types
 import { LoginModel } from './types'

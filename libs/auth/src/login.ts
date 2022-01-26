@@ -8,12 +8,12 @@ import { LOG, LOG_LEVEL, query, TE } from '@drykiss/nest-utils'
 // GQL
 import { GET_USER_BY_EMAIL } from '@availabletowork/queries'
 
-// Helpers
-import { generateToken, prepareUserData, validatePassword } from './helpers'
-
 // Types
 import { AccountUsers, CurrentUser, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/types'
 import { LoginModel } from './types.d'
+
+// Helpers
+import { generateToken, prepareUserData, validatePassword } from './helpers'
 
 export const login = async (email: string, password: string): Promise<LoginModel> => {
   if (!email || !password) {
@@ -24,7 +24,7 @@ export const login = async (email: string, password: string): Promise<LoginModel
 
   const data = await query(GET_USER_BY_EMAIL, { email })
 
-  if (!data?.user) {
+  if (!data?.user.length) {
     LOG(`Login attempt with non-existing email address: ${email}`, LOG_LEVEL.Info)
     TE('Email or password is incorrect', 401)
   }
