@@ -12,8 +12,7 @@ export class AuthController {
     @Body(new ValidationPipe()) credentials: LoginDto,
     @Res() response: Response
   ): Promise<Response> {
-    const token = await this.authService.login(credentials, response)
-    return token
+    return await this.authService.login(credentials, response)
   }
 
   @Post('/switch-account')
