@@ -3,7 +3,7 @@
     "editorconfig.editorconfig",
     "eriklynd.json-tools",
     "attilabuti.vscode-mjml",
-    "jpoissonnier.vscode-styled-components",
+    "styled-components.vscode-styled-components",
     "dbaeumer.vscode-eslint",
     "firsttris.vscode-jest-runner",
     "streetsidesoftware.code-spell-checker"
