@@ -2,25 +2,27 @@
  * Helpers - Errors
  */
 
-// Types
-import { LOG, LOG_LEVEL } from './logger'
+// Libs
+import { HttpException, HttpStatus } from '@nestjs/common'
 
-export class AppError extends Error {
-  public status: number
+export const TE = (message: string, status: HttpStatus = 400): void => {
+  let error = 'Bad Request'
 
-  constructor(message: string, status: number) {
-    super(message)
-    this.name = 'AppError'
-    this.status = status
+  switch (status) {
+    case 401:
+      error = 'Forbidden'
+      break
+    case 404:
+      error = 'Not Found'
+      break
+    case 500:
+      error = 'Internal Server Error'
   }
-}
 
-export const TE = (message: string, status = 500): void => {
-  throw new AppError(message, status)
-}
+  throw new HttpException({
+    error,
+    message,
+    statusCode: status
+  }, status);
 
-export const handleErrors = (err: AppError, _req, res): void => {
-  LOG(err.message, LOG_LEVEL.Error)
-
-  return res.status(err.status || 500).json({ error: err.message })
 }

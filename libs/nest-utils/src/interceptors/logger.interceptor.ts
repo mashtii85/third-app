@@ -4,7 +4,7 @@ import { Observable, tap } from 'rxjs'
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log('before...')
+    console.log('Before...')
     const now = Date.now()
     return next.handle().pipe(tap(() => console.log(`After... ${Date.now() - now}ms`)))
   }

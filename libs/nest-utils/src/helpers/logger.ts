@@ -8,15 +8,15 @@ export enum LOG_LEVEL {
   Info = 'info'
 }
 
-export const LOG = (message: string, type: LOG_LEVEL): void => {
+export const LOG = (message: any, type: LOG_LEVEL): void => {
   switch (type) {
     case 'error':
-      console.error('API Error: ' + message)
+      console.error('API Error: ', message)
       break
     case 'warn':
-      console.warn('API Warning: ' + message)
+      console.warn('API Warning: ', message)
       break
     default:
-      console.info('API Info: ' + message)
+      console.info('API Info: ', message)
   }
 }
