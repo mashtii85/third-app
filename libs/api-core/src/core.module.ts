@@ -5,6 +5,7 @@ import { validationSchema } from './config/validation'
 import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
 import { AuthService } from './routes/auth/auth.service'
+import { AppService } from './routes/app/app.service'
 
 import { ApiKeyMiddleware } from '@drykiss/nest-utils'
 
@@ -26,7 +27,7 @@ import { StatusController } from './routes/status/status.controller'
     })
   ],
   controllers: [AppController, AuthController, MediaController, StatusController],
-  providers: [CoreResolver, AuthService],
+  providers: [CoreResolver, AppService, AuthService],
   exports: []
 })
 export class CoreModule {
