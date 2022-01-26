@@ -6,18 +6,13 @@
 import { LOG, LOG_LEVEL, query, TE } from '@drykiss/nest-utils'
 
 // GQL
-import {
-  AccountUsers,
-  CurrentUser,
-  GET_USER_BY_EMAIL,
-  STATUS_ACTIVE,
-  USER_STATUS
-} from '@availabletowork/types'
+import { GET_USER_BY_EMAIL } from '@availabletowork/queries'
 
 // Helpers
 import { generateToken, prepareUserData, validatePassword } from './helpers'
 
 // Types
+import { AccountUsers, CurrentUser, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/types'
 import { LoginModel } from './types.d'
 
 export const login = async (email: string, password: string): Promise<LoginModel> => {
