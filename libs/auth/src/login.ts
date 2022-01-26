@@ -6,7 +6,7 @@
 import { LOG, LOG_LEVEL, query, TE } from '@drykiss/nest-utils'
 
 // GQL
-import { AccountUsers, CurrentUser, GET_USER_BY_EMAIL, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/shared'
+import { AccountUsers, CurrentUser, GET_USER_BY_EMAIL, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/types'
 
 // Helpers
 import { generateToken, prepareUserData, validatePassword } from './helpers'

@@ -6,7 +6,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-import { AccountUsers, ACCOUNT_TYPE, CurrentUser } from '@availabletowork/shared'
+import { AccountUsers, ACCOUNT_TYPE, CurrentUser } from '@availabletowork/types'
 
 // Types
 import { LoginDataModel } from './types.d'

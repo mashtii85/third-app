@@ -8,6 +8,6 @@
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "nest-utils": "libs/nest-utils",
-    "shared": "libs/shared"
+    "types": "libs/types"
   }
 }

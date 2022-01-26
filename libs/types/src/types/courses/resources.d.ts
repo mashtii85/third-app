@@ -3,7 +3,7 @@
  */
 
 // Constants
-import { ENTITIES } from '@availabletowork/shared'
+import { ENTITIES } from '@availabletowork/types'
 
 // Types
 import { PostCustomFields, POST_TYPE } from '../../../../../types/post.d'
