@@ -2,7 +2,8 @@
  * Components - Events - Hooks - UseEvents - Types.d
  */
 
-import { UseHookOutput } from '../../../../types/hook'
+//Types
+import { UseHookOutput } from '../general'
 import { Event, EventFilter } from './events'
 
 export interface UseEventsProps {

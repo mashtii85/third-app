@@ -10,9 +10,9 @@ import { UPDATE_COURSE_ENROLLMENT_BY_PK } from '../../queries'
 import {
   CourseEnrollmentUpdateData,
   CourseEnrollmentUpdateVariables,
-  UseUpdateCourseEnrollmentOutput
-} from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+  UseUpdateCourseEnrollmentOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useUpdateCourseEnrollment = (
   props: UseHookProps<CourseEnrollmentUpdateData>

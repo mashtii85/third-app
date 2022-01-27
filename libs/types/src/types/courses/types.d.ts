@@ -2,7 +2,7 @@
  * Components - Courses - Types
  */
 
-import { Course } from '../../types/course'
+import { Course } from '.'
 
 export interface CourseListProps {
   courses: Course[]

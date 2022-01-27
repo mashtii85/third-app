@@ -5,15 +5,20 @@
 // Helpers
 import { prepareTaxonomyNavigation } from './helpers'
 
-import pages from '../../pages'
+import { pages } from '@availabletowork/types'
 
 // Types
-import type { Navigation } from '../../../types/navigation'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
-import { Account } from '../../../types/account.d'
+import {
+  Account,
+  LOCALE_NS,
+  LooseObject,
+  Navigation,
+  Taxonomy,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
+
+// I18n
 import useTranslation from '../../../translations/hooks/useTranslation'
-import { LOCALE_NS } from '../../../types/locales'
-import { LooseObject } from '../../../types/object'
 
 export const Client = ({
   account,

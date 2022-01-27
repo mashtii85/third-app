@@ -2,11 +2,14 @@
  * Components - Events - Forms - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+//Constants
+import { SIZE } from '@availabletowork/types'
+
+//Types
+import { DeleteEventProps } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
-import { DeleteEventProps } from './types'
 import { useDeleteEvent } from '../../hooks'
 
 export const DeleteEvent = ({ eventId, title, filters, onSuccess }: DeleteEventProps) => {

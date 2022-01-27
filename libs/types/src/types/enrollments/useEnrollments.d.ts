@@ -2,16 +2,11 @@
  * Components - Enrollments - Hooks - UseEnrollments - Types.d
  */
 
-// Apollo
-import { ApolloError } from '@apollo/client'
-
 // Types
-import { LooseObject } from '../../../../types/object.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { OrderBy } from '../../../../types/orderBy.d'
-import { User } from '../user'
-import { AggregateData } from '../../../../types/aggregateData.d'
-import { Course } from '../../../../types/course.d'
+import { ApolloError } from '@apollo/client'
+import { User } from '../users'
+import { Course } from '../courses'
+import { AggregateData, LooseObject, OrderBy, STATUS_ACTIVE } from '../general'
 
 export interface Enrollment {
   course: Course

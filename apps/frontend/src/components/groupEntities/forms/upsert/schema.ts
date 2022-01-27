@@ -6,8 +6,7 @@
 import { mixed, object, SchemaOf, string } from 'yup'
 
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { GroupEntityFormType } from './types'
+import { GroupEntityFormType, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const GroupSchema: SchemaOf<GroupEntityFormType> = object().shape({
   group: object({

@@ -3,9 +3,8 @@
  */
 
 // Types
-import { Group } from '../../../../types/group.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UseHookOutput } from '../../../../types/hook.d'
+import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { Group } from './group'
 
 export interface GroupUpdateVariables {
   id: number

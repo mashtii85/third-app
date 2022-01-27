@@ -9,11 +9,10 @@ import { MouseEvent } from 'react'
 import { Button, ButtonToolbar, capitalize, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { Column, FormatterData } from '../../../../types/column'
-import { Taxonomy } from '../../../../types/taxonomy'
+import { Column, FormatterData, Taxonomy } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 export const formatterData = (
   handleDelete: (row: Taxonomy) => void,

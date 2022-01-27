@@ -3,9 +3,8 @@
  */
 
 // Types
-import { Account } from '../../../../types/account'
-import { UseHookOutput } from '../../../../types/hook'
-import { AccountFilters } from '../../types'
+import { Account, AccountFilters } from '.'
+import { UseHookOutput } from '..'
 
 export interface UseAccountVariable {
   filters: Partial<AccountFilters>

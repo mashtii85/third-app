@@ -3,11 +3,10 @@
  */
 
 // Types
-// import { CourseFilter } from '../../../hooks'
-// import { Course } from '../../../../../types/course.d'
-// import { Lesson } from '../../../../../../types/lesson.d'
-// import { Module } from '../../../../../../types/module.d'
-// import { STATUS_ACTIVE } from '../../../../../../types/select.d'
+import { Course, CourseFilter } from '.'
+import { STATUS_ACTIVE } from '../general'
+import { Lesson } from '../lessons'
+import { Module } from '../module'
 
 export interface CourseToolbarType {
   filters: Partial<CourseFilter>

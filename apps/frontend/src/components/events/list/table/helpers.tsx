@@ -9,13 +9,14 @@ import { MouseEvent, useContext } from 'react'
 import { Button, formatDateStandard, OffCanvasContext, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { EventTableRowsType } from './types'
-
-// Types
-import { Event, EventFilter } from '../../types'
-import { offCanvasType } from '../../../../types/offCanvas'
+import {
+  Column,
+  Event,
+  EventFilter,
+  EventTableRowsType,
+  offCanvasType
+} from '@availabletowork/types'
 import { UpsertEvent } from '../../forms'
-import { Column } from '../../../../types/column'
 
 export interface EventRows {
   id: number

@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client'
 import { GET_EVENTS } from '../../queries'
 
 // Types
-import { EventsData, UseEventsOutput, UseEventsProps } from './types'
+import { EventsData, UseEventsOutput, UseEventsProps } from '@availabletowork/types'
 
 // Helpers
 import { prepareEventsArguments } from './helpers'

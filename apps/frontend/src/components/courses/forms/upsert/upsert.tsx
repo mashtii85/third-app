@@ -7,24 +7,26 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 // UI
 import { Input, Form, Label, Select, Textarea } from '@drykiss/industry-ui'
-
-// import { TaxonomySelect } from '../../../selects/taxonomies/taxonomies111111'
+import { CustomSelect } from '../../../selects/select'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import { CourseSchema as schema } from './schema'
 
-// Constants
-import { statusActive } from '../../../../constants/status'
-
 // Types
-import { CourseFormType, CourseFormSubmission, CourseFormProps } from './types'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
-import { ENTITIES } from '../../../../constants/entities'
-import { Options } from '../../../../types/options'
+import {
+  CourseFormType,
+  CourseFormSubmission,
+  CourseFormProps,
+  ENTITIES,
+  Options,
+  statusActive,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
 
 // Hooks
 import { useCreateCourse, useUpdateCourse } from '../../hooks'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
-import { CustomSelect } from '../../../selects/select'
+
+// Helpers
 import { prepareFormParams } from './helpers'
 
 export const UpsertCourseForm = ({ onSuccess, defaultValues = {}, filters }: CourseFormProps) => {

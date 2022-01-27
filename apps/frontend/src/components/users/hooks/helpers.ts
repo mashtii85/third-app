@@ -2,12 +2,11 @@
  * Components - Users - Hooks - Helpers
  */
 
-import { GQLClause, GraphqlWhere } from '../../../types/gql'
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { User } from '../../../types/user'
-import { UsersFilter } from '../../accounts/types'
-
 // Types
+import { GQLClause, GraphqlWhere, User, UsersFilter } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const prepareUsersArguments = (filters?: Partial<UsersFilter>): GQLClause<User> => {
   const condition: GraphqlWhere<User> = { status: { _eq: STATUS_ACTIVE.Active } }

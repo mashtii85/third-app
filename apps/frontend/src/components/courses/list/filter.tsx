@@ -4,14 +4,12 @@
 
 // UI
 import { Column, Label, Select } from '@drykiss/industry-ui'
-import { statusActive } from '../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
 
 // Types
-import { LooseObject } from '../../../types/object'
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { ENTITIES, LooseObject, statusActive, TAXONOMY_TYPE } from '@availabletowork/types'
+
 import { CustomSelect } from '../../selects/select'
-import { ENTITIES } from '../../../constants/entities'
 
 export const CourseFilters = ({
   control,

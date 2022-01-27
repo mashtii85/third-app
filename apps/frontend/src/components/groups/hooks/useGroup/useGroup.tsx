@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client'
 import { GET_GROUPS } from '../../queries/queries'
 
 // Types
-import { GroupDataList, GroupFilter } from './types.d'
+import { GroupDataList, GroupFilter } from '@availabletowork/types'
 
 // Utils
 import { generateWhereClause } from '../../../../utils/whereClause'

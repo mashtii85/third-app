@@ -15,8 +15,10 @@ import { Select, Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { ModuleSchema as schema } from './schema'
 
 // Types
-import { ModuleFormType } from './types.d'
-import { statusActive } from '../../../../constants/status'
+import { ModuleFormType } from '@availabletowork/types'
+
+// Constants
+import { statusActive } from '@availabletowork/types'
 
 export const ModuleForm = ({
   defaultValues,

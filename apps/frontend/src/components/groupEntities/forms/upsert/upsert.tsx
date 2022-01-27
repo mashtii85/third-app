@@ -6,18 +6,19 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// // Hooks
+// Hooks
 import { useCreateGroupEntity } from '../../hooks'
 
-// // UI
+// UI
 import { Select, Form, Error, Label } from '@drykiss/industry-ui'
 import { GroupSchema as schema } from './schema'
+import { GroupSelect } from '../../../selects/group/group'
+
+//Constants
+import { statusActive } from '@availabletowork/types'
 
 // Types
-import { GroupEntityFormType } from './types'
-import { statusActive } from '../../../../constants/status'
-import { GroupEntityFilter } from '../../hooks/useGroupEntities/types'
-import { GroupSelect } from '../../../selects/group/group'
+import { GroupEntityFilter, GroupEntityFormType } from '@availabletowork/types'
 
 export const UpsertGroupEntity = ({
   onSuccess,

@@ -2,8 +2,9 @@
  * Components - Dashboard - Tiles - Overview - Types
  */
 
-import { ACCOUNT_TYPE } from '../../../../../types/account.d'
-import { ColourConfig } from './tiles/overview'
+//Types
+import { ACCOUNT_TYPE } from '../accounts'
+import { ColourConfig } from './overview'
 
 export interface TileItemProps {
   title: string

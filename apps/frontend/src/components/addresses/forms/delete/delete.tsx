@@ -2,15 +2,14 @@
  * Components - Addresses - Form - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteAddress } from '../../hooks/useDelete/useDelete'
 
 // Types
-import { UseAddressProps } from '../../hooks/types'
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, UseAddressProps } from '@availabletowork/types'
 
 export const DeleteAddressForm = ({
   id,

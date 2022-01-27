@@ -3,12 +3,10 @@
  */
 
 // Types
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { Course } from '../../../types/course.d'
+import { Course } from '.'
+import { Filter, Options, STATUS_ACTIVE } from '../general'
 import { ApolloError } from '@apollo/client'
-import { Filter } from '../../../types/filter.d'
-import { Account } from '../../../types/account'
-import { Options } from '../../../types/options'
+import { Account } from '../accounts'
 
 export interface CourseFilter extends Filter {
   id: number

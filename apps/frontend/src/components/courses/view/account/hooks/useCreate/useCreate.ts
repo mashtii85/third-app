@@ -7,8 +7,11 @@ import { useMutation } from '@apollo/client'
 import { ADD_LESSON_PROGRESS_ONE } from '../../../../../lessons/queries/queries'
 
 // Types
-import { UseCreateLessonProgressOutput, CreateLessonProgressVariables } from './types'
-import { UseHookProps } from '../../../../../../types/hook.d'
+import {
+  CreateLessonProgressVariables,
+  UseCreateLessonProgressOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCreateLessonProgress = (
   props: UseHookProps<CreateLessonProgressVariables>

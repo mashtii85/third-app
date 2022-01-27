@@ -3,9 +3,9 @@
  */
 
 // Types
-import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
+import { Taxonomy } from '../taxonomies'
 
-export enum QUESTION_TYPE {
+export enum ANSWER_TYPE1 {
   SingleAnswer = 'singleAnswer',
   MultipleAnswers = 'multipleAnswers'
 }

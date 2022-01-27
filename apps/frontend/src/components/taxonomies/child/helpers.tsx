@@ -7,12 +7,12 @@ import { MouseEvent } from 'react'
 
 // UI
 import { capitalize, TableActions } from '@drykiss/industry-ui'
-import { Taxonomy } from '../../../types/taxonomy'
-import { TaxonomyChildTableProps } from './type'
-import { TaxonomyFilters } from '../hooks/useTaxonomies/types'
+
+// Types
+import { Taxonomy, TaxonomyChildTableProps, TaxonomyFilters } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 const actionsData = (handleClick: (_: MouseEvent<HTMLElement>, row?: Taxonomy) => void) => {
   const buttons = [

@@ -16,18 +16,19 @@ import {
 } from '@drykiss/industry-ui'
 
 // Types
-import { Post, POST_TYPE } from '../../../../../types/post.d'
-import { NotesTableRowsType } from './types.d'
-import { Column } from '../../../../../types/column.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
-
-// Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import {
+  Column,
+  NotesTableRowsType,
+  offCanvasType,
+  Post,
+  PostFilter,
+  POST_TYPE,
+  STATUS_ACTIVE,
+  THEME_CONTEXT
+} from '@availabletowork/types'
 
 // Forms
 import { NotesForm } from '../../forms/upsert/form'
-import { offCanvasType } from '../../../../../types/offCanvas'
 
 export const columns = ({
   handleDelete,

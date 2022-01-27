@@ -2,12 +2,12 @@
  * Components - Courses - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+//Types
+import { CourseFilter, SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteCourse } from '../../hooks'
-import { CourseFilter } from '../../hooks/types'
 
 export const DeleteCourseForm = ({
   id,

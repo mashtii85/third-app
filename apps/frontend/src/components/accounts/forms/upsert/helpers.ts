@@ -3,9 +3,9 @@
  */
 
 import { hashPassword } from '../../../../services/auth/helpers'
-import { ACCOUNT_TYPE } from '../../../../types/account'
-import { LooseObject } from '../../../../types/object'
-import { CreateAccountForm } from './types'
+
+// Types
+import { ACCOUNT_TYPE, CreateAccountForm, LooseObject } from '@availabletowork/types'
 
 export const prepareCreateAccount = (
   form: CreateAccountForm,

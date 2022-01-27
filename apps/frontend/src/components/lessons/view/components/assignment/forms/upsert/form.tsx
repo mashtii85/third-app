@@ -15,11 +15,15 @@ import { Checkbox, Input, Form, Label } from '@drykiss/industry-ui'
 import { AnswersSchema as schema } from './schema'
 
 // Types
-import { AnswerFormType, AssignmentAnswerSubmitType, CheckboxDataType } from './types.d'
-import { UseCreateTaxonomyProps } from '../../../../../../taxonomies/hooks/useCreate/types.d'
-import { UseUpdateTaxonomyProps } from '../../../../../../taxonomies/hooks/useUpdate/types.d'
-import { Taxonomy } from '../../../../../../../types/taxonomy.d'
-import { MEDIUM_TYPE } from '../../../../../../../types/medium.d'
+import {
+  AnswerFormType,
+  AssignmentAnswerSubmitType,
+  CheckboxDataType,
+  MEDIUM_TYPE,
+  Taxonomy,
+  UseCreateTaxonomyProps,
+  UseUpdateTaxonomyProps
+} from '@availabletowork/types'
 
 export const AssignmentAnswerForm = ({ defaultValues, onSuccess }: AnswerFormType) => {
   const {

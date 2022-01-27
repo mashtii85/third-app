@@ -4,10 +4,12 @@
 
 // UI
 import { LayoutList } from '../../../../layouts/list'
-import { ACCOUNT_TYPE } from '../../../../types/account.d'
 import { AccountsFilters as Filters } from './filter'
 import { AccountTable as Table } from './table/table'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
+
+//Types
+import { ACCOUNT_TYPE } from '@availabletowork/types'
 
 export const AccountList = () => {
   const { user } = useCurrentUser()

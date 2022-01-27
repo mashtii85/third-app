@@ -11,12 +11,12 @@ import { prepareCoursesArguments } from '../helpers'
 
 // Types
 import {
+  Course,
   CourseDeleteData,
   CourseDeleteVariables,
   useDeleteCourseProps,
   useDeleteCourseOutput
-} from './types.d'
-import { Course } from '../../../../types/course.d'
+} from '@availabletowork/types'
 
 export const useDeleteCourse = (props: useDeleteCourseProps): useDeleteCourseOutput => {
   const [deleteCourse, { loading }] = useMutation<CourseDeleteData, CourseDeleteVariables>(

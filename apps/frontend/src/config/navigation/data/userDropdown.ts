@@ -3,10 +3,10 @@
  */
 
 // Types
-import { User } from '../../../types/user.d'
-import { NavItem, UserDropDownOutput } from './type'
+import { User } from '@availabletowork/types'
+import { NavItem, UserDropDownOutput } from '@availabletowork/types'
 
-import pages from '../../pages'
+import { pages } from '@availabletowork/types'
 
 export const UserDropdown = (user: User): UserDropDownOutput => {
   const prepareNavItems = (): NavItem[] => [

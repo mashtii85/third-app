@@ -6,10 +6,10 @@
 import { useCustomUpdateModule } from '../../../../../module/hooks/useCustomUpdate/useCustomUpdate'
 
 // Constants
-import { ENTITIES } from '../../../../../../constants/entities'
+import { ENTITIES } from '@availabletowork/types'
 
 // Types
-import { Module } from '../../../../../../types/module.d'
+import { Module } from '@availabletowork/types'
 import { bulkUpdateQueryGenerator } from '../../../../../common/ordering/bulkUpdateQueryGenerator'
 
 // default ordering of input list must be {ordering: asc_nulls_last}

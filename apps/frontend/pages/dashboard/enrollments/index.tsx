@@ -6,11 +6,8 @@
 import Router from 'next/router'
 import type { NextPage } from 'next'
 
-// Config
-import pages from '../../../src/config/pages'
-
-// GQL
-import { ACCOUNT_TYPE } from '../../../src/types/account.d'
+// Types
+import { ACCOUNT_TYPE, pages } from '@availabletowork/types'
 
 // UI
 import { Dashboard } from '@drykiss/industry-ui'

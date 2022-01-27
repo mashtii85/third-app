@@ -3,8 +3,7 @@
  */
 
 // Types
-import { LooseObject } from '../types/object'
-import { Taxonomy } from '../types/taxonomy'
+import { LooseObject, Taxonomy } from '@availabletowork/types'
 
 export const prepareFiltersFromQuery = (
   query: LooseObject,

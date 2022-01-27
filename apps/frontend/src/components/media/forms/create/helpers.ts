@@ -3,7 +3,7 @@
  */
 
 // Types
-import { DropzoneType } from '../../../../types/medium'
+import { DropzoneType } from '@availabletowork/types'
 
 export const uploadMediaToS3 = async (file: DropzoneType, type: string): Promise<any> => {
   const bucket = process.env.NEXT_PUBLIC_S3_BUCKET || ''

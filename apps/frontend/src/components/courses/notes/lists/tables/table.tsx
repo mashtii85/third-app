@@ -19,11 +19,13 @@ import { NotesForm } from '../../forms/upsert/form'
 import { NotesDeleteForm } from '../../forms/delete/delete'
 
 // Types
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
-import { NotesTableRowsType } from './types.d'
-import { NotesFormType } from '../../forms/upsert/types.d'
-import { PostDeleteType } from '../../../../posts/hooks/useDelete/types.d'
-import { offCanvasType } from '../../../../../types/offCanvas'
+import {
+  NotesFormType,
+  NotesTableRowsType,
+  offCanvasType,
+  PostDeleteType,
+  PostFilter
+} from '@availabletowork/types'
 
 export const NotesTable = (filters: Partial<PostFilter>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

@@ -4,8 +4,7 @@
 
 // Yup
 import { mixed, object, string, SchemaOf, number } from 'yup'
-import { LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson.d'
-import { LessonFormType } from './types.d'
+import { LessonFormType, LESSON_TYPE, LESSON_STATUS } from '@availabletowork/types'
 
 export const lessonSchema: SchemaOf<LessonFormType> = object()
   .shape({

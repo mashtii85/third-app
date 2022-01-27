@@ -7,8 +7,8 @@ import { useQuery } from '@apollo/client'
 import { GET_COURSES } from '../../queries'
 
 // Types
-import { UseCourseOutput, UseCoursesProps } from './types'
-import { CoursesData } from '../types'
+import { CoursesData, UseCourseOutput, UseCoursesProps } from '@availabletowork/types'
+
 // Helpers
 import { prepareCoursesArguments } from '../helpers'
 

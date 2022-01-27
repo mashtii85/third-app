@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { GET_ACCOUNT } from '../../queries'
 
 // Types
-import { AccountData, UseAccountOutput, UseAccountVariable } from './types.d'
+import { AccountData, UseAccountOutput, UseAccountVariable } from '@availabletowork/types'
 
 export const useAccount = ({ accountId }: Partial<UseAccountVariable>): UseAccountOutput => {
   const { data, error, loading, refetch } = useQuery<Partial<AccountData>, any>(GET_ACCOUNT, {
@@ -21,9 +21,5 @@ export const useAccount = ({ accountId }: Partial<UseAccountVariable>): UseAccou
     refetch()
   }, [accountId])
 
-  if (error) {
-    return { loading: false, error }
-  }
-
-  return { loading, account: data?.account }
+  return { account: data?.account, error, loading }
 }

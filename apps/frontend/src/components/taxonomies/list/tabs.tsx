@@ -17,8 +17,7 @@ import TaxonomyList from './list'
 import { GroupTable } from '../../groups/lists/tables/table'
 
 // Types
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { ACCOUNT_TYPE, TAXONOMY_TYPE } from '@availabletowork/types'
 
 const TaxonomyTabs = () => {
   const { query } = useRouter()

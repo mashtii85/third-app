@@ -8,8 +8,7 @@ import { GET_GROUPS_SELECT } from '../../queries'
 import { prepareGroupSelectArguments } from './helpers'
 
 // Types
-import { GroupFilter } from '../useGroups/types'
-import { SelectDataList, UseSelectOutput } from '../../../../types/select'
+import { GroupFilter, SelectDataList, UseSelectOutput } from '@availabletowork/types'
 
 export const useSelectGroups = (filters: Partial<GroupFilter>): UseSelectOutput => {
   const variables = prepareGroupSelectArguments(filters)

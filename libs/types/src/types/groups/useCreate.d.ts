@@ -3,16 +3,8 @@
  */
 
 // Types.d
-import { Group } from '../../../../types/group.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UseHookOutput } from '../../../../types/hook.d'
-
-export interface GroupCreateType {
-  accoutId: number
-  name: string
-  description: string
-  status: STATUS_ACTIVE
-}
+import { UseHookOutput } from '../general'
+import { Group } from './group'
 
 export interface GroupCreateData {
   groups: { returning: Group[] }

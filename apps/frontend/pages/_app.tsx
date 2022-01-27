@@ -27,7 +27,8 @@ import Layout from '../src/layouts'
 // Config
 import { Config } from '../src/config/config'
 
-import { Theme } from '../src/config/theme'
+import { Theme } from '@availabletowork/types'
+
 import type { AppProps } from 'next/app'
 
 // CSS

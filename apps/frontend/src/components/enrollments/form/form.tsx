@@ -12,11 +12,10 @@ import { Input, Form, Label, Select, Textarea } from '@drykiss/industry-ui'
 import { courseSchema as schema } from './schema'
 
 // Constants
-import { statusActive } from '../../../constants/status'
+import { statusActive } from '@availabletowork/types'
 
 // Types
-import { EnrollmentFormType } from './types.d'
-import { LooseObject } from '../../../types/object'
+import { EnrollmentFormType, LooseObject } from '@availabletowork/types'
 
 // Hooks
 import { useCreateEnrollment } from '../hooks'

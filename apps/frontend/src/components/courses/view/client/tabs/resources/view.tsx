@@ -12,8 +12,10 @@ import { useCurrentUser } from '../../../../../../utils/useCurrentUser'
 import { ResourcesTable } from '../../../../resources/lists/tables/table'
 
 // Types
-import { POST_TYPE } from '../../../../../../types/post.d'
-import { ENTITIES } from '../../../../../../constants/entities'
+import { POST_TYPE } from '@availabletowork/types'
+
+//Constants
+import { ENTITIES } from '@availabletowork/types'
 
 export const ClientResources = ({ courseId }: { courseId: number }) => {
   const { user } = useCurrentUser()

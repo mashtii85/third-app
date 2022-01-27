@@ -2,11 +2,9 @@
  * Components - Courses - Hooks - useDeleteCourse - Types.d
  */
 
-// Types.d
-import { Course } from '../../../../types/course.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { CourseFilter } from '../types'
-
+// Types
+import { Course, CourseFilter } from '.'
+import { UseHookProps } from '../general'
 export interface CourseDeleteVariables {
   courseId: number
 }

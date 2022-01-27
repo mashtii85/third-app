@@ -3,9 +3,8 @@
  */
 
 // Types
-import { Course } from '../../../../types/course.d'
-import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
-import { CourseFilter } from './hooks'
+import { Course, CourseFilter } from '.'
+import { UseHookOutput, UseHookProps } from '../general'
 
 export interface CreateCourseVariables {
   course: Course

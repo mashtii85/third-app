@@ -2,7 +2,8 @@
  * Components - Event - Forms - Upsert - types.d
  */
 
-import { Options } from '../../../../types/options'
+//Types
+import { Options } from '..'
 import { Event, EventFilter } from './events'
 
 export interface EventFormType

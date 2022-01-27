@@ -2,9 +2,9 @@
  * Components - Lessons - Hooks - useDelete - Types.d
  */
 
-// Types.d
-import { Lesson } from '../../../../types/lesson.d'
-import { UseHookOutput, UseHookProps } from '../../../../types/hook.d'
+// Types
+import { Lesson } from '.'
+import { UseHookOutput, UseHookProps } from '../general'
 import { LessonFilter } from './useLesson'
 
 export interface LessonDeleteVariables {

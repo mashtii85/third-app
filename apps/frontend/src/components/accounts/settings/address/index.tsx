@@ -2,22 +2,19 @@
  * Components - Accounts - Settings - Client - Address
  */
 
-// import { useEffect } from 'react'
 // UI
 import { Column, Row, Space } from '@drykiss/industry-ui'
+import { AddressTable } from '../../../addresses/lists/tables/table'
 
 // Constants
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
 
 // Hooks
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import { useAddresses } from '../../../addresses/hooks/useAddresses'
 
 // Types
-import { AddressTable } from '../../../addresses/lists/tables/table'
-import { AddressFilter, UseAddressProps } from '../../../addresses/hooks/types.d'
-import { ADDRESS_TYPE } from '../../../../types/address.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { AddressFilter, ADDRESS_TYPE, UseAddressProps } from '@availabletowork/types'
 
 // type values: invoice, registered
 export const ClientAddress = () => {

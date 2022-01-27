@@ -7,10 +7,14 @@ import { useMutation } from '@apollo/client'
 import { CREATE_ADDRESS, GET_ADDRESSES } from '../../queries/queries'
 
 // Types
-import { AddressCreateData, AddressCreateVariables, UseCreateAddressOutput } from './types.d'
-import { UseAddressProps } from '../types'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Address } from '../../../../types/address.d'
+import {
+  Address,
+  AddressCreateData,
+  AddressCreateVariables,
+  UseCreateAddressOutput,
+  UseAddressProps,
+  UseHookProps
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareArguments } from '../helpers'

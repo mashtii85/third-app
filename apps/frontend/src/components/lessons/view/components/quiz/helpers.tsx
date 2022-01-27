@@ -7,17 +7,19 @@ import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
-import { offCanvasType } from '../../../../../types/offCanvas'
+
 import { LessonQuestionForm } from './questions/form/upsert/form'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import {
+  offCanvasType,
+  QuestionsListToolbarType,
+  QuestionUpsertType,
+  Taxonomy
+} from '@availabletowork/types'
 
 // Types
-import { QuestionsListToolbarType } from './types.d'
-import { QuestionUpsertType } from './questions/form/upsert/type.d'
-import { Taxonomy } from '../../../../../types/taxonomy.d'
-import { SIZE } from '../../../../../config/theme'
+import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
 
 export const QuestionsListToolbar = (toolbarProps: QuestionsListToolbarType) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

@@ -2,7 +2,7 @@
  * Navigation - Data - Member
  */
 
-import pages from '../../pages'
+import { pages } from '@availabletowork/types'
 
 export const Member: any = {
   right: [

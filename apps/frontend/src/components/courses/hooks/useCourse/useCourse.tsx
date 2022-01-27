@@ -5,8 +5,7 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_COURSE } from '../../queries'
-import { CourseData } from '../types'
-import { CourseVariables } from './types'
+import { CourseData, CourseVariables } from '@availabletowork/types'
 
 export const useCourse = (courseId: number) => {
   const { data, error, loading, refetch } = useQuery<CourseData, CourseVariables>(GET_COURSE, {

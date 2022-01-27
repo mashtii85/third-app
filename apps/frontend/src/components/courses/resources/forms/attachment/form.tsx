@@ -10,7 +10,7 @@ import { Input, Label } from '@drykiss/industry-ui'
 import { CourseAttachmentFileUploader } from './helpers'
 
 // Types
-import { DropzoneProps } from '../../../../../types/medium'
+import { DropzoneProps } from '@availabletowork/types'
 
 export const ResourceAttachmentForm = ({
   dropzoneProps,

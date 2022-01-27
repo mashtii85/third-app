@@ -4,10 +4,10 @@
 
 // Hooks
 import { useAccount } from '../components/accounts/hooks/useAccount/useAccount'
+import { useCurrentUser } from './useCurrentUser'
 
 // Types
-import { useCurrentUser } from './useCurrentUser'
-import { Account } from '../types/account.d'
+import { Account } from '@availabletowork/types'
 
 export const useCurrentAccount = (): Account | undefined => {
   const { user } = useCurrentUser()

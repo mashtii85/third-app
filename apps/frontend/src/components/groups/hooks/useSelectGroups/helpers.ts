@@ -2,11 +2,11 @@
  * Components - Groups - Hooks - UseSelectGroups - Helpers
  */
 
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { GQLClause, GraphqlWhere } from '../../../../types/gql'
-import { Group } from '../../../../types/group'
-import { GroupFilter } from '../useGroups/types'
+import { GQLClause, GraphqlWhere, Group, GroupFilter } from '@availabletowork/types'
 
 export const prepareGroupSelectArguments = (filters: Partial<GroupFilter>): GQLClause<Group> => {
   const condition: GraphqlWhere<Group> = { status: { _eq: STATUS_ACTIVE.Active } }

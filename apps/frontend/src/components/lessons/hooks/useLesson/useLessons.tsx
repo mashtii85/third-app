@@ -10,9 +10,7 @@ import { GET_LESSONS } from '../../queries/queries'
 import { prepareArguments } from '../helpers'
 
 // Types
-import { LessonsData, LessonFilter } from './types.d'
-import { GQLClause } from '../../../../types/gql.d'
-import { Lesson } from '../../../../types/lesson.d'
+import { GQLClause, Lesson, LessonsData, LessonFilter } from '@availabletowork/types'
 
 export const useLessons = (filters: Partial<LessonFilter>) => {
   const variables = prepareArguments({ filters })

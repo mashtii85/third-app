@@ -5,9 +5,10 @@
 import { nullFreeObject } from '../../../utils/nullFreeObject'
 
 // Types
-import { LooseObject } from '../../../types/object'
-import { TaxonomyFilters } from './useTaxonomies/types'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+import { LooseObject, TaxonomyFilters } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const prepareTaxonomyArguments = (filters?: TaxonomyFilters): LooseObject => {
   nullFreeObject(filters)

@@ -3,12 +3,8 @@
  */
 
 // Types
-import { ENTITIES } from '../../constants/entities'
-import { Filter } from '../../../../types/filter'
-import { GroupEntity } from '../../../../types/groupEntity'
-import { UseHookOutput } from '../../../../types/hook'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-
+import { ENTITIES } from '../../constants'
+import { Filter, GroupEntity, STATUS_ACTIVE, UseHookOutput } from '../general'
 export interface GroupEntityFilter extends Filter {
   entityId: number
   entity: ENTITIES

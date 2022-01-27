@@ -7,7 +7,7 @@ import { Space } from '@drykiss/industry-ui'
 import { Tiles } from './tiles/tiles'
 
 // Types
-import { ACCOUNT_TYPE } from '../../../../types/account.d'
+import { ACCOUNT_TYPE } from '@availabletowork/types'
 
 // Hooks
 import { useAggregate } from '../hooks/useTileData'

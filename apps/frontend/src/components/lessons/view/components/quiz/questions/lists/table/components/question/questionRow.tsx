@@ -8,7 +8,7 @@ import { AnswerTable } from '../answer/answerTable'
 import { QuestionRowFooter } from './questionRowFooter'
 
 // Types
-import { Taxonomy } from '../../../../../../../../../../types/taxonomy.d'
+import { Taxonomy } from '@availabletowork/types'
 
 export const QuestionRow = ({
   question,

@@ -1,6 +1,12 @@
 import { useEffect } from 'react'
-import { LooseObject } from '../../../types/object'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+
+// Types
+import { LooseObject } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Utils
 import { historyPush } from '../../../utils/historyPush'
 
 export const useWatcher = (

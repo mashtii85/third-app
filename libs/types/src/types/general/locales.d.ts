@@ -12,7 +12,7 @@ export enum LOCALE_NS {
   Profile = 'profile'
 }
 
-export const locales: Options[] = [
+export const localesOptions: Options[] = [
   {
     label: 'English',
     value: 'en'

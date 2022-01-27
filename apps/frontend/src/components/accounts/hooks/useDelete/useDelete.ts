@@ -14,9 +14,9 @@ import {
   AccountDeleteData,
   AccountDeleteVariables,
   useDeleteAccountProps,
-  useDeleteAccountOutput
-} from './types.d'
-import { Account } from '../../../../types/account'
+  useDeleteAccountOutput,
+  Account
+} from '@availabletowork/types'
 
 export const useDeleteAccount = (props: useDeleteAccountProps): useDeleteAccountOutput => {
   const [deleteAccount, { loading }] = useMutation<AccountDeleteData, AccountDeleteVariables>(

@@ -9,10 +9,10 @@ import { DatePickerCalendar, Space } from '@drykiss/industry-ui'
 import enGB from 'date-fns/locale/en-GB'
 
 // Constants
-import { SIZE } from '../../../config/theme'
+import { SIZE } from '@availabletowork/types'
 
 // Types
-import { DatePickerProps } from './types.d'
+import { DatePickerProps } from '@availabletowork/types'
 
 export const DatePicker = ({
   name,

@@ -4,7 +4,7 @@
 
 // Yup
 import { mixed, object, string } from 'yup'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const CourseSchema = object().shape({
   title: string().required(),

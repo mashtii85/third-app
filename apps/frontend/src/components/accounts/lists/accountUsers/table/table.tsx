@@ -7,16 +7,15 @@ import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Details, OffCanvasContext, Table } from '@drykiss/industry-ui'
+import { DeleteUserForm, UpsertUserForm } from '../../../../users/forms'
 import { useUsers } from '../../../../users/hooks'
+import { useTable } from '../../../../common/hooks/useTable'
 
 // Types
-import { UserTableProps } from '../../accounts/table/types'
+import { offCanvasType, UserRow, UserTableProps, UsersFilter } from '@availabletowork/types'
+
+// Helpers
 import { columns, rows, Toolbar } from './helpers'
-import { useTable } from '../../../../common/hooks/useTable'
-import { UsersFilter } from '../../../types'
-import { offCanvasType } from '../../../../../types/offCanvas'
-import { UserRow } from './types'
-import { DeleteUserForm, UpsertUserForm } from '../../../../users/forms'
 
 const initialSort = {}
 

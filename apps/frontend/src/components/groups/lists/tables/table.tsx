@@ -19,11 +19,13 @@ import { GroupForm } from '../../forms/upsert/form'
 import { GroupDeleteForm } from '../../forms/delete/delete'
 
 // Types
-import { GroupFilter } from '../../hooks/useGroups/types'
-import { GroupTableRowsType } from './types.d'
-import { GroupFormType } from '../../forms/upsert/types.d'
-import { GroupDeleteType } from '../../hooks/useDelete/types.d'
-import { offCanvasType } from '../../../../types/offCanvas'
+import {
+  GroupDeleteType,
+  GroupFilter,
+  GroupFormType,
+  GroupTableRowsType,
+  offCanvasType
+} from '@availabletowork/types'
 
 export const GroupTable = (filters: Partial<GroupFilter>) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

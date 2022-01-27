@@ -15,16 +15,20 @@ import { MediaForm } from '../../forms/create/form'
 import { MediaDeleteForm } from '../../forms/delete/delete'
 
 // Types
-import { offCanvasType } from '../../../../types/offCanvas'
-import { MediaTableProps } from './types.d'
-import { Medium, DropzoneProps, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UseMediaProps, MediaFilter } from '../../hooks/useMedia/types.d'
-import { MediaFormType } from '../../forms/create/types.d'
+import {
+  MediaFormType,
+  MediaFilter,
+  MediaTableProps,
+  UseMediaProps,
+  offCanvasType,
+  Medium,
+  DropzoneProps,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE
+} from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/types'
 
 export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTableProps }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

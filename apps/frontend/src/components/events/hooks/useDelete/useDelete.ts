@@ -11,14 +11,14 @@ import { prepareEventsArguments } from '../useEvents/helpers'
 
 // Types
 import {
+  Event,
   EventDeleteData,
   EventDeleteVariables,
   useDeleteEventProps,
-  useDeleteEventOutput
-} from './types'
-import { EventQuery } from '../types'
-import { GQLClause } from '../../../../types/gql'
-import { Event } from '../../types'
+  useDeleteEventOutput,
+  EventQuery,
+  GQLClause
+} from '@availabletowork/types'
 
 export const useDeleteEvent = (props: useDeleteEventProps): useDeleteEventOutput => {
   const [deleteEvent, { loading }] = useMutation<EventDeleteData, EventDeleteVariables>(

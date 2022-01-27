@@ -8,18 +8,23 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { capitalize, Details, OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { useAccounts } from '../../../hooks'
-
-// Hooks
 import { columns, rows, UserAccountToolbar, prepareAccountDefaultValues } from './helpers'
-import { useTable } from '../../../../common/hooks/useTable'
 import { DeleteAccountForm, UpsertAccount } from '../../../forms'
 import { GroupEntitiesTable } from '../../../../groupEntities/table/table'
-import { ENTITIES } from '../../../../../constants/entities'
+
+// Hooks
+import { useTable } from '../../../../common/hooks/useTable'
+
+// Constants
+import { ENTITIES } from '@availabletowork/types'
 
 // Types
-import { AccountsRow, AccountTableProps } from './types.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
-import { CLIENT_MODULE_TYPE } from '../../../forms/upsert/types.d'
+import {
+  AccountsRow,
+  AccountTableProps,
+  CLIENT_MODULE_TYPE,
+  offCanvasType
+} from '@availabletowork/types'
 
 const initialSort = {}
 

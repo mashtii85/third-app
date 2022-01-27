@@ -4,8 +4,8 @@
 
 // Types
 import { ApolloError, DocumentNode } from '@apollo/client'
-import { AggregateData } from '../../../../types/aggregateData'
-import { DashboardTile } from './tiles/overview/tiles/tiles'
+import { AggregateData } from '../general'
+import { DashboardTile } from './tiles'
 
 export interface ClientTileData {
   activeCourses: AggregateData

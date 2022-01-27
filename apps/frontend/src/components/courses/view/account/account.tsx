@@ -48,17 +48,18 @@ import { completeLesson, fillCertificateModel, lessonSummary, preparePageState }
 import { reducer } from './reducer'
 
 // Constants
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, LESSON_TYPE } from '@availabletowork/types'
 
 // Types
-import { Module } from '../../../../types/module.d'
-import { QuizCompletedData } from '../../../common/quiz/types.d'
-import { LESSON_TYPE } from '../../../../types/lesson.d'
-import { POST_TYPE } from '../../../../types/post.d'
-import { COURSE_PAGE_MODE } from '../types.d'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
-import { AssignmentActionTypes } from './components/assignment/types.d'
-import { CourseActionTypes } from './types.d'
+import {
+  AssignmentActionTypes,
+  CourseActionTypes,
+  Module,
+  QuizCompletedData,
+  POST_TYPE,
+  COURSE_PAGE_MODE,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
 
 export const AccountCourseView = () => {
   const { query } = useRouter()

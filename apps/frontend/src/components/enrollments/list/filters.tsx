@@ -6,10 +6,8 @@
 import { Label, Select } from '@drykiss/industry-ui'
 import { Control, FieldErrors } from 'react-hook-form'
 
-import { statusActive } from '../../../constants/status'
-
 // Types
-import { LooseObject } from '../../../types/object'
+import { statusActive, LooseObject } from '@availabletowork/types'
 
 export const EnrolledUsersFilters = ({
   control,

@@ -6,13 +6,10 @@
 
 import { Column, Label, Select } from '@drykiss/industry-ui'
 import { Control, FieldErrors } from 'react-hook-form'
-import { statusActive } from '../../../../constants/status'
 import { CustomSelect } from '../../../selects/select'
 
 // Types
-import { LooseObject } from '../../../../types/object'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, LooseObject, statusActive, TAXONOMY_TYPE } from '@availabletowork/types'
 
 export const AccountUsersFilters = ({
   control,

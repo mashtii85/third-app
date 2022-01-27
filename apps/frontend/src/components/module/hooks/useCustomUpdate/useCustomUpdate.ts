@@ -6,8 +6,12 @@
 import { gql, useMutation } from '@apollo/client'
 
 // Types
-import { ModuleUpdateData, ModuleUpdateVariables, UseUpdateModuleOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  ModuleUpdateData,
+  ModuleUpdateVariables,
+  UseUpdateModuleOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCustomUpdateModule = (
   customQuery: string,

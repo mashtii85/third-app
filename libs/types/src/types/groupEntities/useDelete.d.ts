@@ -3,14 +3,8 @@
  */
 
 // Types
-import { GroupEntity } from '../../../../types/groupEntity'
-
-import { UseHookOutput, UseHookProps } from '../../../../types/hook'
-import { GroupEntityFilter } from './hooks/useGroupEntities/useGroupEntities'
-
-export interface GroupDeleteVariables {
-  id: number
-}
+import { GroupEntity, UseHookOutput, UseHookProps } from '../general'
+import { GroupEntityFilter } from './useGroupEntities'
 
 export interface GroupEntityDeleteData {
   groupEntity: GroupEntity

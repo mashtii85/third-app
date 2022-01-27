@@ -6,8 +6,7 @@
 import { Column, Tile } from '@drykiss/industry-ui'
 
 // Types
-import type { TileItemProps } from './types'
-import { ACCOUNT_TYPE } from '../../../../../types/account.d'
+import { ACCOUNT_TYPE, TileItemProps } from '@availabletowork/types'
 
 export const TileItem = ({ title, to, accountType, value, colourConfig }: TileItemProps) => (
   <Column

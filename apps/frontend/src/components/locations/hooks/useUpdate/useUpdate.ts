@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_LOCATION } from '../../queries'
 
 // Types
-import { LocationUpdateData, LocationUpdateVariables, UseUpdateLocationOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  LocationUpdateData,
+  LocationUpdateVariables,
+  UseHookProps,
+  UseUpdateLocationOutput
+} from '@availabletowork/types'
 
 export const useUpdateLocation = (
   props: UseHookProps<LocationUpdateData>

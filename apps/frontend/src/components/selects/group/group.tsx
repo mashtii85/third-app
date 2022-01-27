@@ -3,9 +3,14 @@
  */
 // UI
 import { Label, ReactSelect } from '@drykiss/industry-ui'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Types
+import { GroupSelectProps } from '@availabletowork/types'
+// Hooks
 import { useSelectGroups } from '../../groups/hooks/useSelectGroups/useSelectGroups'
-import { GroupSelectProps } from './types'
 
 export const GroupSelect = ({
   control,

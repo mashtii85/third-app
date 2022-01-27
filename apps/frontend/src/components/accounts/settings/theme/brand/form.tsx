@@ -17,8 +17,7 @@ import { Form, Input, Label, useConfig } from '@drykiss/industry-ui'
 import { useUpdateAccount } from '../../../hooks'
 
 // Types
-import { Account } from '../../../../../types/account.d'
-import { BrandFormType } from './types.d'
+import { Account, BrandFormType } from '@availabletowork/types'
 
 export const BrandForm = ({
   account,

@@ -3,7 +3,7 @@
  */
 
 // Types
-import { POST_TYPE } from '../../../../../types/post.d'
+import { POST_TYPE } from '../posts'
 
 export interface ResourcesTableRowsType {
   id: number

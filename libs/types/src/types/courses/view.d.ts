@@ -2,7 +2,7 @@
  * Components - Courses - View - types.d
  */
 
-import { CourseData } from './hooks'
+import { CourseData } from '.'
 
 export enum CLIENT_TAB {
   Details = 'Details',

@@ -8,14 +8,21 @@ import { formatDateStandard, formatTime } from '@drykiss/industry-ui'
 // Helpers
 import { scrollTo } from '../../../../utils/scrollTo'
 
-// Types
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
-import { Lesson, LESSON_TYPE } from '../../../../types/lesson.d'
-import { LESSON_PROGRESS_STATUS } from '../../../../types/lessonProgress.d'
-import { Module } from '../../../../types/module.d'
-import { StepperActionModel, StepperModel } from '../../../../types/stepper.d'
-import { COURSE_PAGE_MODE } from '../types.d'
-import { CourseActionTypes, CourseState } from './types.d'
+// Constants
+import { THEME_CONTEXT } from '@availabletowork/types'
+
+//Types
+import {
+  CourseActionTypes,
+  COURSE_PAGE_MODE,
+  CourseState,
+  Lesson,
+  LESSON_PROGRESS_STATUS,
+  LESSON_TYPE,
+  Module,
+  StepperActionModel,
+  StepperModel
+} from '@availabletowork/types'
 
 const stepperItemInfo = (
   lessonType: LESSON_TYPE,

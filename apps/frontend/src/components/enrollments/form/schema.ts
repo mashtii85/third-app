@@ -4,8 +4,7 @@
 
 // Yup
 import { mixed, object, string, SchemaOf } from 'yup'
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { EnrollmentFormType } from './types.d'
+import { EnrollmentFormType, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const courseSchema: SchemaOf<EnrollmentFormType> = object().shape({
   title: string().required(),

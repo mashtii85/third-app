@@ -15,7 +15,7 @@ import {
   UseCreateUserOutput,
   UserQueryData,
   CreateUserVariables
-} from './types'
+} from '@availabletowork/types'
 
 export const useCreateUser = (props: UseCreateUserProps): UseCreateUserOutput => {
   const [createUser, { error, loading }] = useMutation<CreateUserVariables>(CREATE_USER, {

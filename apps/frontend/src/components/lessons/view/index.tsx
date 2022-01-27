@@ -26,23 +26,23 @@ import { LessonAssignment } from './components/assignment/view'
 // Hooks
 import { useLessons } from '../hooks/useLesson/useLessons'
 
-// Pages
-import pages from '../../../config/pages'
+// Types
+import {
+  LessonDetailsToolbarType,
+  LessonFilter,
+  LESSON_TYPE,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  pages,
+  CurrentUser,
+  UseMediaProps
+} from '@availabletowork/types'
 
 // Helpers
 import { LessonDetailsToolbar } from './helpers'
 
 // Constants
-import { ENTITIES } from '../../../constants/entities'
-
-// Types
-import { LessonFilter } from '../hooks/useLesson/types.d'
-import { LessonDetailsToolbarType } from './types.d'
-import { LESSON_TYPE } from '../../../types/lesson.d'
-import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../types/medium.d'
-import { UseMediaProps } from '../../media/hooks/useMedia/types.d'
-import { CurrentUser } from '../../../types/user.d'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const LessonView = ({ user }: { user: CurrentUser }) => {
   const { query } = useRouter()

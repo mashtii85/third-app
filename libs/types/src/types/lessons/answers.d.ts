@@ -3,7 +3,7 @@
  */
 
 // Types
-import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
+import { Taxonomy } from '../taxonomies'
 
 interface AnswerFormType {
   filters: Partial<Taxonomy>

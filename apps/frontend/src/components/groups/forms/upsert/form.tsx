@@ -6,17 +6,19 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// // Hooks
+// Hooks
 import { useCreateGroup } from '../../hooks/useCreate/useCreate'
 import { useUpdateGroup } from '../../hooks/useUpdate/useUpdate'
 
-// // UI
+// UI
 import { Select, Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { GroupSchema as schema } from './schema'
 
 // Types
-import { GroupFormType } from './types.d'
-import { statusActive } from '../../../../constants/status'
+import { GroupFormType } from '@availabletowork/types'
+
+//Constants
+import { statusActive } from '@availabletowork/types'
 
 export const GroupForm = ({
   defaultValues,

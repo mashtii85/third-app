@@ -2,8 +2,9 @@
  * Components - Lessons - Questions - Lists - Table - Types
  */
 
-import { ENTITIES } from '../../constants/entities'
-import { TAXONOMY_TYPE } from '../../../../../../../../types/taxonomy.d'
+//Types
+import { ENTITIES } from '../../constants'
+import { TAXONOMY_TYPE } from '../taxonomies'
 
 export interface LessonQuestionTableProps {
   type: TAXONOMY_TYPE

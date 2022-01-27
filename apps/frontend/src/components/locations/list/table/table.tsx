@@ -11,14 +11,19 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, prepareLocationUpsertVariables, rows, Toolbar } from './helpers'
+
 // Hooks
 import { useLocations } from '../../hooks'
+
 // Types
-import { LocationFilter } from '../../types.d'
-import { LocationTableRowsType, LocationTableProps } from './types'
+import {
+  LocationFilter,
+  LocationTableRowsType,
+  LocationTableProps,
+  offCanvasType
+} from '@availabletowork/types'
 
 import { UpsertLocation, DeleteLocation } from '../../forms'
-import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 

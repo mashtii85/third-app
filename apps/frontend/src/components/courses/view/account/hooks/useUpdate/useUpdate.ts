@@ -9,10 +9,10 @@ import { useMutation } from '@apollo/client'
 import {
   LessonProgressUpdateData,
   LessonProgressUpdateVariables,
-  UseUpdateLessonProgressOutput
-} from './types.d'
+  UseUpdateLessonProgressOutput,
+  UseHookProps
+} from '@availabletowork/types'
 import { UPDATE_LESSON_PROGRESS_BY_PK } from '../../../../../lessons/queries/queries'
-import { UseHookProps } from '../../../../../../types/hook'
 
 export const useUpdateLessonProgress = (
   props: UseHookProps<LessonProgressUpdateData>

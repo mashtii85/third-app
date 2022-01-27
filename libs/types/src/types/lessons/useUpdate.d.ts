@@ -3,8 +3,8 @@
  */
 
 // Types.d
-import { Lesson, LESSON_STATUS } from '../../../../types/lesson.d'
-import { UseHookOutput } from '../../../../types/hook.d'
+import { Lesson, LESSON_STATUS } from '.'
+import { UseHookOutput } from '../general'
 
 export interface LessonUpdateVariables {
   id: number

@@ -2,7 +2,7 @@
  * Components - Lessons - List - Table - Types
  */
 
-import { LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson.d'
+import { LESSON_STATUS, LESSON_TYPE } from '.'
 
 export interface LessonTableRowsType {
   id?: number

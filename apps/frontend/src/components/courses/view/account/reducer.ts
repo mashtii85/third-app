@@ -3,7 +3,7 @@
  */
 
 // Types
-import { CourseState, CourseActionTypes } from './types.d'
+import { CourseState, CourseActionTypes } from '@availabletowork/types'
 
 export const reducer = (state: CourseState, action: CourseActionTypes): CourseState => {
   const newState = { ...state }

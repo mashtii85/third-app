@@ -7,10 +7,14 @@ import { useMutation } from '@apollo/client'
 import { CREATE_MEDIUM, GET_MEDIA } from '../../queries/queries'
 
 // Types
-import { MediaCreateData, MediaCreateType, UseCreateMediaOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Medium } from '../../../../types/medium.d'
-import { MediaFilter } from '../useMedia/types.d'
+import {
+  MediaCreateData,
+  MediaCreateType,
+  MediaFilter,
+  Medium,
+  UseCreateMediaOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareArguments } from '../useMedia/helpers'

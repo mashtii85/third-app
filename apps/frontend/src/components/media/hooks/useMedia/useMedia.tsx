@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client'
 import { GET_MEDIA } from '../../queries/queries'
 
 // Types
-import { MediaDataList, MediaSearchVariables, UseMediaProps } from './types'
+import { MediaDataList, MediaSearchVariables, UseMediaProps } from '@availabletowork/types'
 
 // Helpers
 import { prepareArguments } from './helpers'

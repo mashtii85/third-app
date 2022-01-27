@@ -2,18 +2,22 @@
  * Account - Sign In
  */
 
+// React
+import { useEffect } from 'react'
+
 // Next
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 // UI
 import { Column, Label, Login, Page, Row, Select } from '@drykiss/industry-ui'
 
 import { useForm } from 'react-hook-form'
-import { locales, LOCALE_NS } from '../../src/types/locales'
-import { useEffect } from 'react'
 
-// Next
-import { useRouter } from 'next/router'
+// Types
+import { localesOptions, LOCALE_NS } from '@availabletowork/types'
+
+// I18n
 import useTranslation from '../../src/translations/hooks/useTranslation'
 
 const PageSignIn: NextPage = () => {
@@ -46,7 +50,7 @@ const PageSignIn: NextPage = () => {
       <Row>
         <Column md={6} offset={{ md: 3 }}>
           <Label label={t('Language')}>
-            <Select {...defaultOptions} name={'locale'} options={locales} />
+            <Select {...defaultOptions} name={'locale'} options={localesOptions} />
           </Label>
 
           <Login blockSubmitButton forgotPassword={false} pathSignUp="" showPassword />

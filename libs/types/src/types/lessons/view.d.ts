@@ -3,8 +3,8 @@
  */
 
 // Types
-import { LESSON_TYPE, LESSON_STATUS } from '../../../types/lesson.d'
-import { Medium } from '../../../types/medium.d'
+import { LESSON_STATUS, LESSON_TYPE } from '.'
+import { Medium } from '../media'
 
 export interface LessonDetailsToolbarType {
   id: number

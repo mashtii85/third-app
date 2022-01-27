@@ -12,7 +12,7 @@ import { ResourceTable } from './resourceTable'
 import { usePost } from '../../../../posts/hooks/usePost/usePost'
 
 // Types
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
+import { PostFilter } from '@availabletowork/types'
 
 export const ResourcesTable = (filters: Partial<PostFilter>) => {
   const { posts } = usePost(filters)

@@ -5,9 +5,10 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_ACCOUNTS } from '../../queries/queries'
+
 // Types
-import { UseAccountsOutput, UseAccountsVariable } from '../types'
-import { AccountData } from '../useAccount/types'
+import { AccountData, UseAccountsOutput, UseAccountsVariable } from '@availabletowork/types'
+
 import { prepareUseAccounts } from '../helpers'
 
 export const useAccounts = ({ filters }: UseAccountsVariable): UseAccountsOutput => {

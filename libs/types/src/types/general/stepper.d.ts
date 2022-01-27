@@ -2,9 +2,9 @@
  * Types - Stepper
  */
 
-import { ThemeContext } from '../../constants'
-import { LESSON_TYPE } from './lesson'
-import { LESSON_PROGRESS_STATUS } from './lessonProgress'
+//Types
+import { LESSON_PROGRESS_STATUS, LESSON_TYPE } from '../lessons'
+import { ThemeContext } from '../theme/types'
 
 type StepperActionType = 'button'
 export interface StepperActionModel {

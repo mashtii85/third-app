@@ -7,11 +7,15 @@ import { useMutation } from '@apollo/client'
 import { DELETE_GROUP_BY_PK, GET_GROUPS } from '../../queries/queries'
 
 // Types
-import { GroupDeleteData, GroupDeleteVariables, UseDeleteGroupOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { GroupDeleteType } from '../useDelete/types.d'
-import { Group } from '../../../../types/group.d'
-import { GraphqlWhere } from '../../../../types/gql'
+import {
+  Group,
+  GroupDeleteData,
+  GroupDeleteVariables,
+  GraphqlWhere,
+  UseDeleteGroupOutput,
+  GroupDeleteType,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useDeleteGroup = (
   groupProps: GroupDeleteType,

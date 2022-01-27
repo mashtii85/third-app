@@ -10,7 +10,7 @@ import { useAccount } from '../hooks'
 import { useTaxonomies } from '../../taxonomies/hooks'
 
 // Types
-import { AccountDetailsProps } from './type.d'
+import { AccountDetailsProps } from '@availabletowork/types'
 
 const AccountDetails = ({ accountId, title = '' }: AccountDetailsProps) => {
   const { account } = useAccount({ accountId })

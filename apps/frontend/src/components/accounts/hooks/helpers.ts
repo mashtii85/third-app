@@ -3,10 +3,13 @@
  */
 
 // Types
-import { Account } from '../../../types/account.d'
-import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { AccountFilters } from '../types.d'
+import {
+  Account,
+  AccountFilters,
+  STATUS_ACTIVE,
+  GQLClause,
+  GraphqlWhere
+} from '@availabletowork/types'
 
 export const prepareUseAccounts = (filters?: Partial<AccountFilters>): GQLClause<Account> => {
   const variables: GQLClause<Account> = {}

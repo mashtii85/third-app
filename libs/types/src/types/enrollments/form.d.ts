@@ -2,7 +2,7 @@
  * Components - Courses - Form - types.d
  */
 
-import { STATUS_ACTIVE } from '../../../types/select'
+import { STATUS_ACTIVE } from '../general'
 
 export interface EnrollmentFormType {
   title: string

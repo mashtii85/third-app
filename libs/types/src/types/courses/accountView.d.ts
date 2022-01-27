@@ -3,14 +3,10 @@
  */
 
 // Types
-import { LessonCertificateType } from './components/certificate'
-import { COURSE_PAGE_MODE } from './view'
-import { Lesson } from '../../../../types/lesson.d'
-import {
-  LessonProgressUpdateModel,
-  LESSON_PROGRESS_STATUS
-} from '../../../../types/lessonProgress.d'
-import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
+import { COURSE_PAGE_MODE } from '.'
+import { COURSE_ENROLLMENT_STATUS } from '../enrollments'
+import { Lesson, LessonProgressUpdateModel, LESSON_PROGRESS_STATUS } from '../lessons'
+import { LessonCertificateType } from './certificate'
 
 export interface LessonPageStateType {
   pageMode: COURSE_PAGE_MODE
@@ -34,7 +30,7 @@ export interface CoursePageSetting {
   completedLessonId: number
 }
 
-export interface QuizState {
+export interface AccountQuizState {
   finalScore: number
   minimumScore: number
   passed: boolean
@@ -65,7 +61,7 @@ export interface CourseCertificate {
 
 export interface CourseState extends CoursePageSetting {
   currentLesson?: Lesson
-  quizState?: QuizState
+  quizState?: AccountQuizState
   certificateModel: Partial<CourseCertificate>
 }
 
@@ -82,7 +78,7 @@ type SetNextLessonPermission = { type: 'nextLesson'; payload: boolean }
 type SetCompletedLessonId = { type: 'completedId'; payload: number }
 type SetLesson = { type: 'setLesson'; payload?: Lesson }
 type PrepareLesson = { type: 'prepareLesson'; payload?: Lesson }
-type QuizFinished = { type: 'quizFinished'; payload: QuizState }
+type QuizFinished = { type: 'quizFinished'; payload: AccountQuizState }
 type UpdateLessonProgress = { type: 'updateProgress'; payload: UpdateLessonProgressAction }
 type CreateLessonProgress = { type: 'createProgress'; payload: CreateLessonProgressAction }
 type UpdateCourseEnrollment = { type: 'updateEnrollment'; payload: UpdateCourseEnrollmentAction }

@@ -11,14 +11,19 @@ import { useTable } from '../../../common/hooks/useTable'
 
 // Helpers
 import { columns, prepareEditCourseValues, rows, Toolbar } from './helpers'
+
 // Hooks
 import { useCourses } from '../../hooks'
+
 // Types
-import { CourseFilter } from '../../hooks/types'
-import { CourseTableProps, CourseTableRowsType } from './types'
+import {
+  CourseFilter,
+  CourseTableProps,
+  CourseTableRowsType,
+  offCanvasType
+} from '@availabletowork/types'
 
 import { DeleteCourseForm, UpsertCourseForm } from '../../forms'
-import { offCanvasType } from '../../../../types/offCanvas'
 
 const initialSort = {}
 

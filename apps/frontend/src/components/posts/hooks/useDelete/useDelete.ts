@@ -7,11 +7,15 @@ import { useMutation } from '@apollo/client'
 import { DELETE_POST_BY_PK, GET_POSTS } from '../../queries/queries'
 
 // Types
-import { PostDeleteData, PostDeleteVariables, UseDeletePostOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { PostDeleteType } from '../useDelete/types.d'
-import { Post } from '../../../../types/post.d'
-import { GraphqlWhere } from '../../../../types/gql'
+import {
+  GraphqlWhere,
+  Post,
+  PostDeleteData,
+  PostDeleteVariables,
+  UseDeletePostOutput,
+  PostDeleteType,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useDeletePost = (
   filters: PostDeleteType,

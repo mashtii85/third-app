@@ -1,4 +1,4 @@
-export * from './calendar'
+export * from './calendar.d'
 export * from './delete.d'
 export * from './events.d'
 export * from './hooks.d'

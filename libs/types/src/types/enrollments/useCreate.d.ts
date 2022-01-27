@@ -2,11 +2,9 @@
  * Components - Enrollments - Hooks - UseCreate- Types.d
  */
 
-// Apollo
-import { ApolloError } from '@apollo/client'
-
 // Types
-import { LooseObject } from '../../../../types/object.d'
+import { ApolloError } from '@apollo/client'
+import { LooseObject } from '../general'
 
 export interface UseCreateEnrollmentProps {
   userId: number

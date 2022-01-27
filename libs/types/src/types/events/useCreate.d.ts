@@ -2,8 +2,9 @@
  * Components - Events - Hooks - UseCreate - Types.d
  */
 
-import { UseHookOutput, UseHookProps } from '../../../../types/hook'
-import { Event, EventFilter } from './events'
+//Types
+import { Event } from '.'
+import { UseHookOutput, UseHookProps } from '../general'
 
 export interface CreateEventVariables {
   event: Event

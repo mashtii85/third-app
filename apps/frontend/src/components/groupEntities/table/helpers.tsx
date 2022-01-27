@@ -9,11 +9,7 @@ import { MouseEvent } from 'react'
 import { TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { GroupEntityRow } from './types'
-import { Column } from '../../../types/column'
-
-// Forms
-import { GroupEntity } from '../../../types/groupEntity'
+import { Column, GroupEntity, GroupEntityRow } from '@availabletowork/types'
 
 export const columns = ({
   handleDelete

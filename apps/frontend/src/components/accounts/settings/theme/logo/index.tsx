@@ -10,12 +10,16 @@ import { Button, Details, Image, Space, useConfig, useOffCanvas } from '@drykiss
 import { MediaForm } from '../../../../media/forms/create/form'
 
 // Types
-import { Account } from '../../../../../types/account'
-import { MEDIUM_CATEGORY, MEDIUM_TYPE, DropzoneProps } from '../../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { MediaFormType } from '../../../../media/forms/create/types.d'
-import { MediaFilter } from '../../../../media/hooks/useMedia/types.d'
-import { ENTITIES } from '../../../../../constants/entities'
+import {
+  Account,
+  ENTITIES,
+  MediaFilter,
+  MediaFormType,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  STATUS_ACTIVE,
+  DropzoneProps
+} from '@availabletowork/types'
 
 export const ThemeLogo = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()

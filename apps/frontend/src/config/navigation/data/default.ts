@@ -2,13 +2,11 @@
  * Navigation - Data - Default
  */
 
+// I18n
 import useTranslation from '../../../translations/hooks/useTranslation'
 
 // Types
-import { LOCALE_NS } from '../../../types/locales'
-import { Navigation } from '../../../types/navigation.d'
-
-import pages from '../../pages'
+import { LOCALE_NS, Navigation, pages } from '@availabletowork/types'
 
 export const Default = (): Partial<Navigation> => {
   const { t } = useTranslation(LOCALE_NS.Login)

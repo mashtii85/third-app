@@ -2,10 +2,9 @@
  * Components - Courses - List - Table - Hooks - useDeleteCourse - Types.d
  */
 
-// Types.d
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { Course } from '../../../../types/course.d'
-import { UseHookOutput } from '../../../../types/hook.d'
+// Types
+import { Course } from '.'
+import { STATUS_ACTIVE, UseHookOutput } from '../general'
 
 export interface CourseUpdateVariables {
   courseId: number

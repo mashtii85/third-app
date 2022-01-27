@@ -10,13 +10,12 @@ import { useRouter } from 'next/router'
 
 // UI
 import { Tabs, TabItem } from '@drykiss/industry-ui'
-
+import { AccountUsersList } from '../lists/accountUsers/list'
 import AccountDetails from './accountDetails'
 
 // Types
 import { ACCOUNT_TABS } from '../../../constants/tabs'
-import { AccountTabsProps } from './type.d'
-import { AccountUsersList } from '../lists/accountUsers/list'
+import { AccountTabsProps } from '@availabletowork/types'
 
 const AccountTabs = ({ accountId }: AccountTabsProps) => {
   const { query } = useRouter()

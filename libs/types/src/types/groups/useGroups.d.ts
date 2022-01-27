@@ -3,9 +3,9 @@
  */
 
 // Types
-import { ENTITIES } from '../../constants/entities'
-import { Group } from '../../../../types/group'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { ENTITIES } from '../../constants'
+import { STATUS_ACTIVE } from '../general'
+import { Group } from './group'
 
 export interface GroupFilter {
   accountId: number

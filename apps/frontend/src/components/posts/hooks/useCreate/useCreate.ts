@@ -7,11 +7,15 @@ import { useMutation } from '@apollo/client'
 import { CREATE_POSTS, GET_POSTS } from '../../queries/queries'
 
 // Types
-import { PostCreateType, PostCreateData, UseCreatePostOutput } from './types.d'
-import { PostFilter } from '../usePost/types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Post } from '../../../../types/post.d'
-import { GraphqlWhere } from '../../../../types/gql'
+import {
+  GraphqlWhere,
+  Post,
+  PostCreateType,
+  PostCreateData,
+  PostFilter,
+  UseCreatePostOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCreatePost = (
   filters: Partial<PostFilter>,

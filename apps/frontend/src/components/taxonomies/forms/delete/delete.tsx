@@ -8,7 +8,7 @@ import { useDeleteTaxonomy } from '../../hooks'
 import { Text } from '@drykiss/industry-ui'
 import { AddButton } from '../../../common/buttons/addButton'
 // types
-import { TaxonomyDeleteProps } from './types'
+import { TaxonomyDeleteProps } from '@availabletowork/types'
 
 export const TaxonomyDelete = ({
   taxonomyId,

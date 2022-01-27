@@ -6,9 +6,6 @@
 import Router from 'next/router'
 import type { NextPage } from 'next'
 
-// Config
-import pages from '../../../src/config/pages'
-
 // UI
 import { Dashboard } from '@drykiss/industry-ui'
 import { AccountCourseList, ClientCourseList } from '../../../src/components/courses/list'
@@ -17,7 +14,7 @@ import { AccountCourseList, ClientCourseList } from '../../../src/components/cou
 import { useCurrentUser } from '../../../src/utils/useCurrentUser'
 
 // GQL
-import { ACCOUNT_TYPE } from '../../../src/types/account.d'
+import { ACCOUNT_TYPE, pages } from '@availabletowork/types'
 
 const PageDashboard: NextPage = () => {
   const { user } = useCurrentUser()

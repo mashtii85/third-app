@@ -13,13 +13,16 @@ import { CustomSelect } from '../../../selects/select'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 
 // Constants
-import { statusActive } from '../../../../constants/status'
-import { ENTITIES } from '../../../../constants/entities'
+import { statusActive, ENTITIES } from '@availabletowork/types'
 
 // Types
-import { LocationFormType, LocationFormProps, LocationFormSubmission } from './types'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
-import { Options } from '../../../../types/options'
+import {
+  LocationFormType,
+  LocationFormProps,
+  LocationFormSubmission,
+  Options,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
 
 // Hooks
 import { useCreateLocation, useUpdateLocation } from '../../hooks'

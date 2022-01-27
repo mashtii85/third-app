@@ -1,6 +1,6 @@
 // Types
+import { CourseActionTypes } from '../courses'
 import { Taxonomy } from '../general'
-import { CourseActionTypes } from '../../courses/view/account/types.d'
 
 export interface QuizCompletedData {
   score: number

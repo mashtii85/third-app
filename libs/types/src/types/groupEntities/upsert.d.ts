@@ -3,7 +3,7 @@
  */
 
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { STATUS_ACTIVE } from '../general'
 
 interface GroupEntityFormType {
   group: { label: string; value: string }

@@ -6,8 +6,7 @@
 import { date, mixed, object, string, SchemaOf } from 'yup'
 
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { EventFormSubmission } from './types.d'
+import { EventFormSubmission, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const EventSchema: SchemaOf<EventFormSubmission> = object()
   .shape({

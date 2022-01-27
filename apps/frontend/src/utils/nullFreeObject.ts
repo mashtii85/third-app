@@ -2,7 +2,7 @@
  * Components - Utils - nullFreeObject
  */
 
-import { LooseObject } from '../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const nullFreeObject = (entries?: LooseObject): LooseObject => {
   if (!entries) return {}

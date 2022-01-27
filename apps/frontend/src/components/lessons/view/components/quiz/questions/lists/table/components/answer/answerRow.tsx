@@ -3,7 +3,6 @@
  */
 
 // UI
-// import { Text } from '@drykiss/industry-ui'
 import { Radio } from '../../../../../../../../../common/quiz/icons/radio'
 import {
   AnswerImage,
@@ -14,9 +13,7 @@ import {
 import { CheckBox } from '../../../../../../../../../common/quiz/icons/checkbox'
 
 // Types
-import { Taxonomy } from '../../../../../../../../../../types/taxonomy.d'
-import { MEDIUM_TYPE } from '../../../../../../../../../../types/medium.d'
-import { QUESTION_TYPE } from '../../../../form/upsert/type.d'
+import { QUESTION_TYPE, MEDIUM_TYPE, Taxonomy } from '@availabletowork/types'
 
 export const AnswerRow = ({ question, answer }: { question: Taxonomy; answer: Taxonomy }) => {
   // The medium category should be check too

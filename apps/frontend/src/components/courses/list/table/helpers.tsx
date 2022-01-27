@@ -8,24 +8,22 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
-// Forms
-import { UpsertCourseForm } from '../../forms'
-import pages from '../../../../config/pages'
-
 // Types
-import type { Course } from '../../../../types/course.d'
-import { CourseTableRowsType } from './types.d'
-import { CourseFilter } from '../../hooks/types.d'
-import { offCanvasType } from '../../../../types/offCanvas'
-import { Column } from '../../../../types/column'
-
-// Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { UpsertCourseForm } from '../../forms'
+import {
+  Column,
+  Course,
+  CourseFilter,
+  CourseFormType,
+  CourseTableRowsType,
+  offCanvasType,
+  pages,
+  Options,
+  THEME_CONTEXT
+} from '@availabletowork/types'
 
 // Utils
 import { formatToValidDate } from '../../../../utils/dateFormatter'
-import { CourseFormType } from '../../forms/upsert/types'
-import { Options } from '../../../../types/options.d'
 
 export const columns = ({
   handleDelete,

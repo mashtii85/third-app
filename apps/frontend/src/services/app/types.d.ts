@@ -2,10 +2,8 @@
  * Services - Types.d
  */
 
-import { Localization } from '../../translations/types'
-import { CurrentUser } from '../../types/user'
+import { CurrentUser, Localization, Taxonomy } from '@availabletowork/types'
 import { QueryLazyOptions } from '@apollo/client'
-import { Taxonomy } from '../../types/taxonomy'
 
 export interface AppProps {
   children: JSX.Element | JSX.Element[]

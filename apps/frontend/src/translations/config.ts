@@ -2,11 +2,7 @@
  * Translations - Config
  */
 
-import { Locale } from './types'
-
-export const defaultLocale = 'en' as const
-
-export const locales = ['ar', 'en', 'es'] as const
+import { Locale, locales } from '@availabletowork/types'
 
 export const languageNames = {
   ar: 'Arabic',

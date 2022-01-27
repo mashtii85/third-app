@@ -4,17 +4,16 @@
 
 // UI
 import { Details } from '@drykiss/industry-ui'
-import { ENTITIES } from '../../../../../constants/entities'
 import { LessonQuestionsTable } from './questions/lists/table/table'
 
-// Hooks
+// Constants
+import { ENTITIES } from '@availabletowork/types'
 
 // Helpers
 import { QuestionsListToolbar } from './helpers'
 
 // Types
-import { TAXONOMY_TYPE } from '../../../../../types/taxonomy.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
+import { STATUS_ACTIVE, TAXONOMY_TYPE } from '@availabletowork/types'
 
 export const LessonQuiz = ({ lessonId }: { lessonId: number }) => {
   return (

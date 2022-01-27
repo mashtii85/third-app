@@ -5,11 +5,12 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_USERS } from '../../queries'
-import { UsersFilter } from '../../../accounts/types'
+
+// Helpers
+import { prepareUsersArguments } from '../helpers'
 
 // Types
-import { prepareUsersArguments } from '../helpers'
-import { UserData, UseUsersOutput } from './types'
+import { UserData, UsersFilter, UseUsersOutput } from '@availabletowork/types'
 
 export const useUsers = ({ filters }: { filters: UsersFilter }): UseUsersOutput => {
   const variables = prepareUsersArguments(filters)

@@ -6,7 +6,7 @@
 import { object, string, SchemaOf } from 'yup'
 
 // Types
-import { NotesFormType } from './types.d'
+import { NotesFormType } from '@availabletowork/types'
 
 export const NotesSchema: SchemaOf<NotesFormType> = object()
   .shape({

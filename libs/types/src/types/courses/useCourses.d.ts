@@ -3,9 +3,8 @@
  */
 
 // Types
-import { Course } from '../../../../types/course.d'
-import { UseHookOutput } from '../../../../types/hook.d'
-import { CourseFilter } from './hooks'
+import { Course, CourseFilter } from '.'
+import { UseHookOutput } from '../general'
 
 export interface UseCourseOutput extends UseHookOutput {
   courseList: Course[]

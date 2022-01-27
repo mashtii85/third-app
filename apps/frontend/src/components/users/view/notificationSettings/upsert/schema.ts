@@ -4,7 +4,9 @@
 
 // Yup
 import { bool, object, SchemaOf } from 'yup'
-import { NotificationSettingsType } from '../../../../../types/user'
+
+// Types
+import { NotificationSettingsType } from '@availabletowork/types'
 
 export const NotificationSettingsSchema: SchemaOf<Partial<NotificationSettingsType>> =
   object().shape({

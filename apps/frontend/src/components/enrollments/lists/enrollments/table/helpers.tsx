@@ -9,18 +9,18 @@ import { MouseEvent, useContext } from 'react'
 import { Button, formatDateStandard, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
 
 // Types
-import { CourseTableRowsType } from './types'
 import { CourseForm } from '../../../form'
-import pages from '../../../../../config/pages'
-import { Column } from '../../../../../types/column'
-
-// Types
-import { LooseObject } from '../../../../../types/object'
-import { Enrollment } from '../../../hooks/useEnrollments/types'
-import { offCanvasType } from '../../../../../types/offCanvas'
+import {
+  Column,
+  CourseEnrollmentsTableRowsType,
+  Enrollment,
+  LooseObject,
+  offCanvasType,
+  pages
+} from '@availabletowork/types'
 
 export const columns = () => {
-  const columnsSchema: Column<CourseTableRowsType>[] = [
+  const columnsSchema: Column<CourseEnrollmentsTableRowsType>[] = [
     {
       text: 'id',
       hidden: true
@@ -37,14 +37,14 @@ export const columns = () => {
     },
     {
       text: 'Date',
-      formatter: ({ row }: { row: CourseTableRowsType }) => formatDateStandard(row.date)
+      formatter: ({ row }: { row: CourseEnrollmentsTableRowsType }) => formatDateStandard(row.date)
     }
   ]
   return columnsSchema
 }
 
-export const rows = (enrollments: Enrollment[]): CourseTableRowsType[] => {
-  const list: CourseTableRowsType[] = enrollments.map((item) => {
+export const rows = (enrollments: Enrollment[]): CourseEnrollmentsTableRowsType[] => {
+  const list: CourseEnrollmentsTableRowsType[] = enrollments.map((item) => {
     return {
       id: item.id,
       title: item.course.title,

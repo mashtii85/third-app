@@ -2,7 +2,7 @@
  * Components - GroupEntities - Types.d
  */
 
-import { GroupEntityFilter } from './hooks/useGroupEntities/useGroupEntities'
+import { GroupEntityFilter } from './useGroupEntities'
 
 export interface PrepareGroupEntitiesArgumentProps {
   filters: Partial<GroupEntityFilter>

@@ -1,9 +1,13 @@
 /**
  * Components - Selects - Helpers
  */
+
 // Types
-import { GetQueryTypeInput, GetQueryTypeOutput } from './types.d'
-import { ENTITIES } from '../../constants/entities'
+import { GetQueryTypeInput, GetQueryTypeOutput, LooseObject } from '@availabletowork/types'
+
+// Constants
+import { ENTITIES } from '@availabletowork/types'
+
 import {
   GET_COURSE_ITEMS,
   GET_EVENT_ITEMS,
@@ -11,8 +15,9 @@ import {
   GET_MEMBER_ITEMS,
   GET_TAXONOMIES_ITEMS
 } from './queries'
+
+// Helpers
 import { prepareTaxonomyArguments } from '../taxonomies/hooks/helpers'
-import { LooseObject } from '../../types/object'
 
 export const checkProps = (prevProps: LooseObject, nextProps: LooseObject): boolean => {
   const items = ['entity', 'entityId', 'locationId', 'type']

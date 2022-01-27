@@ -1,5 +1,7 @@
 export * from './forms.d'
+export * from './group.d'
 export * from './tables.d'
 export * from './useCreate.d'
+export * from './useDelete.d'
 export * from './useGroups.d'
 export * from './useUpdate.d'

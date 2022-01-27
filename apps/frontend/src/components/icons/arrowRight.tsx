@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ThemeContext } from '../../config/types'
+import { ThemeContext } from '@availabletowork/types'
 
 /* eslint-disable max-len */
 const ArrowRightIcon = ({

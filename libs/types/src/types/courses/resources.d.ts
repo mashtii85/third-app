@@ -2,13 +2,10 @@
  * Components - Courses - Resources - Forms - Upsert - Types
  */
 
-// Constants
-import { ENTITIES } from '@availabletowork/types'
-
 // Types
-import { PostCustomFields, POST_TYPE } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { DropzoneType, Medium } from '../../../../../types/medium.d'
+import { ENTITIES } from '../../constants'
+import { PostCustomFields, POST_TYPE, STATUS_ACTIVE } from '../general'
+import { DropzoneType, Medium } from '../media'
 
 export interface ResourcesFormType {
   id: number | undefined

@@ -9,9 +9,9 @@ import { gql, useMutation } from '@apollo/client'
 import {
   LessonUpdateData,
   LessonUpdateVariables,
+  UseHookProps,
   UseUpdateLessonOutput
-} from '../useUpdate/types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+} from '@availabletowork/types'
 
 export const useCustomUpdateLesson = (
   customQuery: string,

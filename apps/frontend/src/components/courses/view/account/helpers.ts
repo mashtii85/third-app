@@ -9,22 +9,25 @@ import { formatDateStandard, formatTime } from '@drykiss/industry-ui'
 import { startLesson } from './handler'
 
 // Types
-import { Course } from '../../../../types/course.d'
-import { Lesson, LESSON_TYPE } from '../../../../types/lesson.d'
 import {
+  Course,
+  CourseActionTypes,
+  COURSE_ENROLLMENT_STATUS,
+  COURSE_PAGE_MODE,
+  CourseState,
+  Lesson,
   LessonProgress,
   LessonProgressUpdateModel,
-  LESSON_PROGRESS_STATUS
-} from '../../../../types/lessonProgress.d'
-import { Module } from '../../../../types/module.d'
-import { COURSE_PAGE_MODE } from '../types.d'
-import { CourseActionTypes, CourseState } from './types.d'
+  LESSON_PROGRESS_STATUS,
+  LESSON_TYPE,
+  Module
+} from '@availabletowork/types'
+
 import {
   findNextLesson,
   getCurrentLesson,
   getCurrentLessonProgress
 } from '../../../lessons/helpers'
-import { COURSE_ENROLLMENT_STATUS } from '../../../../types/courseEnrollment.d'
 
 export const preparePageState: CourseState = {
   pageMode: COURSE_PAGE_MODE.Progress,

@@ -15,16 +15,18 @@ import { ModuleDeleteForm } from '../../../../../module/forms/delete/delete'
 import { LessonForm } from '../../../../../lessons/form'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../../constants/themeContext'
-import { SIZE } from '../../../../../../config/theme'
+import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
 
 // Types
-import { LESSON_STATUS, LESSON_TYPE } from '../../../../../../types/lesson.d'
-import { ModuleToolbarType } from './types.d'
-import { ModuleFormType } from '../../../../../module/forms/create/types.d'
-import { offCanvasType } from '../../../../../../types/offCanvas.d'
-import { SwapModulesProps } from '../../../../../module/hooks/useSwapModules/types.d'
-import { LessonUpsertFormFilterType } from '../../../../../lessons/form/create/types.d'
+import {
+  LESSON_STATUS,
+  LESSON_TYPE,
+  LessonUpsertFormFilterType,
+  ModuleFormType,
+  ModuleToolbarType,
+  offCanvasType,
+  SwapModulesProps
+} from '@availabletowork/types'
 
 export const Toolbar = ({
   id,

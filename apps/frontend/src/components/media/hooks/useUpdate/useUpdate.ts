@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_MEDIUM_BY_PK } from '../../queries/queries'
 
 // Types
-import { MediaUpdateData, MediaUpdateVariables, UseUpdateMediaOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  MediaUpdateData,
+  MediaUpdateVariables,
+  UseHookProps,
+  UseUpdateMediaOutput
+} from '@availabletowork/types'
 
 export const useUpdateMedia = (props: UseHookProps<MediaUpdateData>): UseUpdateMediaOutput => {
   const [updateMedia, { loading, error }] = useMutation<MediaUpdateData, MediaUpdateVariables>(

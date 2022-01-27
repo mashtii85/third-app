@@ -2,14 +2,14 @@
  * Components - Groups - Forms - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteGroup } from '../../hooks/useDelete/useDelete'
 
 // Types
-import { GroupDeleteType } from '../../hooks/useDelete/types.d'
+import { GroupDeleteType } from '@availabletowork/types'
 
 export const GroupDeleteForm = ({
   groupDeleteProps,

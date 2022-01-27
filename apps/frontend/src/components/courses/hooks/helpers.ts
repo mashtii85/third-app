@@ -3,9 +3,13 @@
  */
 
 // Types
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { CourseDB, PrepareCourseArgumentProps } from './types.d'
-import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
+import {
+  CourseDB,
+  GQLClause,
+  GraphqlWhere,
+  PrepareCourseArgumentProps,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 
 export const prepareCoursesArguments = ({
   filters

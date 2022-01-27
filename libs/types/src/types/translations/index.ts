@@ -1,2 +1,2 @@
-export * from './context'
-export * from './translations'
+export * from './context.d'
+export * from './translations.d'

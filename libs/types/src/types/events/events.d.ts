@@ -2,11 +2,9 @@
  * Components - Events - Types.d
  */
 
-import { Filter } from '../../types/filter'
-import { LooseObject } from '../../types/object'
-import { Options } from '../../types/options'
-import { STATUS_ACTIVE } from '../../types/select'
-import { Taxonomy } from '../../types/taxonomy'
+//Types
+import { Filter, LooseObject, STATUS_ACTIVE } from '../general'
+import { Taxonomy } from '../taxonomies'
 
 export interface EventFilter extends Filter {
   accountId: number

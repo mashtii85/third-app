@@ -3,13 +3,12 @@
  */
 
 // Constants
-import { ENTITIES } from '../../constants/entities'
+import { ENTITIES } from '../../constants'
 
 // Types.d
-import { POST_TYPE, PostCustomFields } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { UseHookOutput } from '../../../../../types/hook.d'
-import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../../types/medium.d'
+import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../media'
+import { PostCustomFields, POST_TYPE } from '../posts'
 
 export interface ResourceCreateType {
   caption: string

@@ -2,9 +2,9 @@
  * Components - Lesson - View - Components - Quiz - Questions - Hooks - useDelete
  */
 
-import { ENTITIES } from '../../constants/entities'
-import { UseHookOutput, UseHookProps } from '../../../../../../../../types/hook.d'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../../../../../../types/taxonomy.d'
+import { ENTITIES } from '../../constants'
+import { UseHookOutput, UseHookProps } from '../general'
+import { Taxonomy, TAXONOMY_TYPE } from '../taxonomies'
 
 export interface AnswersData {
   taxonomies: Taxonomy[]

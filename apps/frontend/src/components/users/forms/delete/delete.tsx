@@ -2,12 +2,14 @@
  * Components - Users - Forms - Delete - DeleteUser
  */
 
-import { SIZE } from '../../../../config/theme'
+// Constants
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteUser } from '../../../users/hooks'
-import { DeleteUserFormProps } from './types'
+
+import { DeleteUserFormProps } from '@availabletowork/types'
 
 export const DeleteUserForm = ({ id, userName, filters, onSuccess }: DeleteUserFormProps) => {
   const { deleteUser } = useDeleteUser({

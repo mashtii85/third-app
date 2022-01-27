@@ -2,9 +2,8 @@
  * Components - Events - Hooks - UseUpdateEvent - Types.d
  */
 
-// Types.d
-import { STATUS_ACTIVE } from '../../../../types/select'
-import { UseHookOutput } from '../../../../types/hook'
+// Types
+import { STATUS_ACTIVE, UseHookOutput } from '../general'
 import { Event } from './events'
 
 export interface EventUpdateVariables {

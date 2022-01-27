@@ -9,15 +9,10 @@ import { MouseEvent } from 'react'
 import { formatTime, formatDateStandard, TableLink, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { Lesson } from '../../../../types/lesson.d'
-import { LessonTableRowsType } from './types.d'
-import { Column } from '../../../../types/column.d'
+import { Column, Lesson, LessonTableRowsType, pages } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
-
-// Pages
-import pages from '../../../../config/pages'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 export const columns = ({
   lessons,

@@ -1,4 +1,4 @@
-import { QuizState } from './types'
+import { QuizState } from '@availabletowork/types'
 
 export const calculateScore = (state: QuizState): number => {
   let score = state.overAllScore

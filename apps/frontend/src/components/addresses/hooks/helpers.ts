@@ -3,9 +3,7 @@
  */
 
 // Types
-import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
-import { Address } from '../../../types/address.d'
-import { AddressFilter } from './types.d'
+import { Address, AddressFilter, GQLClause, GraphqlWhere } from '@availabletowork/types'
 
 export const prepareArguments = ({
   filters

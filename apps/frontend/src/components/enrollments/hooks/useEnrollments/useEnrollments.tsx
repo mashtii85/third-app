@@ -10,14 +10,14 @@ import { GET_ENROLLMENTS } from '../../queries'
 import { prepareVariables } from './helpers'
 
 // Types
-import { LooseObject } from '../../../../types/object'
 import {
   EnrollmentVariables,
   EnrollmentData,
   EnrollmentOutputData,
-  EnrollmentFilters
-} from './types'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+  EnrollmentFilters,
+  LooseObject,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 
 export const useEnrollments = ({
   filters = {

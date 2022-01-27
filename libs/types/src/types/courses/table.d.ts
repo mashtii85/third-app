@@ -2,9 +2,10 @@
  * Components - Courses - List - Table - Types
  */
 
-import { STATUS_ACTIVE } from '../../../../types/select'
-import { Taxonomy } from '../../../../types/taxonomy'
-import { CourseFilter } from './hooks'
+//Types
+import { CourseFilter } from '.'
+import { STATUS_ACTIVE } from '../general'
+import { Taxonomy } from '../taxonomies'
 
 export interface CourseTableRowsType {
   id: number | undefined

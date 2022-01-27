@@ -5,9 +5,11 @@
 // Yup
 import { mixed, number, object, string, SchemaOf } from 'yup'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { LocationFormType } from './types.d'
+import { LocationFormType } from '@availabletowork/types'
 
 export const LocationSchema: SchemaOf<LocationFormType> = object().shape({
   id: number(),

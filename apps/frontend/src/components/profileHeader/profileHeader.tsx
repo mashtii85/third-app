@@ -13,16 +13,20 @@ import { Avatar, Column, Container, Row, OffCanvasContext } from '@drykiss/indus
 import { MediaForm } from '../media/forms/create/form'
 
 // Types
-import { HeaderProps } from './types.d'
-import { offCanvasType } from '../../types/offCanvas'
-import { MEDIUM_CATEGORY, MEDIUM_TYPE, DropzoneProps, Medium } from '../../types/medium.d'
-import { STATUS_ACTIVE } from '../../types/select.d'
-import { MediaFormType } from '../media/forms/create/types.d'
-import { UseMediaProps, MediaFilter } from '../media/hooks/useMedia/types.d'
+import {
+  HeaderProps,
+  MediaFilter,
+  MediaFormType,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  DropzoneProps,
+  Medium,
+  offCanvasType,
+  UseMediaProps
+} from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../constants/themeContext'
-import { ENTITIES } from '../../constants/entities'
+import { ENTITIES, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/types'
 
 // Hooks
 import { useCurrentUser } from '../../utils/useCurrentUser'

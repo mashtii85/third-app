@@ -18,15 +18,19 @@ import {
 import { AddressForm } from '../../forms/create/form'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
-import { UseAddressProps } from '../../hooks/types'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 // Types
-import { Address, ADDRESS_TYPE } from '../../../../types/address.d'
-import { AddressTableRowsType, AddressToolbarType } from './types.d'
-import { Column } from '../../../../types/column.d'
-import { offCanvasType } from '../../../../types/offCanvas.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import {
+  Address,
+  AddressToolbarType,
+  AddressTableRowsType,
+  ADDRESS_TYPE,
+  Column,
+  offCanvasType,
+  STATUS_ACTIVE,
+  UseAddressProps
+} from '@availabletowork/types'
 
 export const columns = ({
   type,

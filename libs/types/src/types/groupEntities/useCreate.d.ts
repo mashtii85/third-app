@@ -3,11 +3,9 @@
  */
 
 // Types.d
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UseHookOutput, UseHookProps } from '../../../../types/hook'
-import { GroupEntity } from '../../../../types/groupEntity'
-import { ENTITIES } from '../../constants/entities'
-import { GroupEntityFilter } from './hooks/useGroupEntities/useGroupEntities'
+import { ENTITIES } from '../../constants'
+import { GroupEntity, STATUS_ACTIVE, UseHookOutput, UseHookProps } from '../general'
+import { GroupEntityFilter } from './useGroupEntities'
 
 export interface GroupEntityCreateData {
   groupEntities: { returning: GroupEntity[] }

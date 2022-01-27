@@ -11,13 +11,20 @@ import { EventSchema as schema } from './schema'
 import { DatePicker, Input, Form, Label, Select, Textarea } from '@drykiss/industry-ui'
 
 // Constants
-import { statusActive } from '../../../../constants/status'
+import { statusActive } from '@availabletowork/types'
 
 // Types
-import { EventFormType, EventFormProps, EventFormSubmission } from './types'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
-import { LooseObject } from '../../../../types/object'
-import { Options } from '../../../../types/options'
+import {
+  EventFormType,
+  EventFormProps,
+  EventFormSubmission,
+  LooseObject,
+  Options,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
+
+// Constants
+import { ENTITIES } from '@availabletowork/types'
 
 // Hooks
 import { useCreateEvent, useUpdateEvent } from '../../hooks'
@@ -27,9 +34,6 @@ import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import moment from 'moment'
 import { CustomSelect } from '../../../selects/select'
-
-// Constants
-import { ENTITIES } from '../../../../constants/entities'
 
 export const UpsertEvent = ({ onSuccess, defaultValues, filters }: EventFormProps) => {
   const { user } = useCurrentUser()

@@ -7,8 +7,11 @@ import { useMutation } from '@apollo/client'
 import { SET_DEFAULT_ADDRESS } from '../../queries/queries'
 
 // Types
-import { DefaultAddressHookProps, UseDefaultAddressOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  DefaultAddressHookProps,
+  UseDefaultAddressOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useDefaultAddress = (
   props: UseHookProps<DefaultAddressHookProps>

@@ -3,9 +3,10 @@
  */
 
 // Types
-import { Lesson, LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson.d'
+import { Lesson, LESSON_STATUS, LESSON_TYPE } from '.'
+import { LooseObject } from '../general'
+
 import { ApolloError } from '@apollo/client'
-import { LooseObject } from '../../../../types/object'
 
 export interface LessonFilter {
   id: number

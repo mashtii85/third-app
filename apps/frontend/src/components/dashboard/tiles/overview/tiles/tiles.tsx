@@ -5,8 +5,7 @@
 import { Row } from '@drykiss/industry-ui'
 
 // Types
-import { DashboardTile } from './types'
-import { ACCOUNT_TYPE } from '../../../../../types/account.d'
+import { ACCOUNT_TYPE, DashboardTile } from '@availabletowork/types'
 
 // Helpers
 import { TileItem } from './helpers'

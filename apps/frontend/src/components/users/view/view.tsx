@@ -6,13 +6,14 @@
 import { Column, Row, Space } from '@drykiss/industry-ui'
 import { ProfileHeader } from '../../profileHeader/profileHeader'
 import { UserAccountsTable } from '../accounts/table'
-
-// Types
-import { UserDetailsProps } from './types.d'
-import { useUser } from '../hooks'
-
 import { UserDetails } from './details'
 import { NotificationSettings } from './notificationSettings/notificationSettings'
+
+// Types
+import { UserDetailsProps } from '@availabletowork/types'
+
+// Hooks
+import { useUser } from '../hooks'
 
 const UserProfile = ({ userId }: UserDetailsProps) => {
   const { loading, user } = useUser(userId)

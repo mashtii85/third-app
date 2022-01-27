@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client'
 import { GET_LOCATIONS } from '../../queries'
 
 // Types
-import { LocationsData, UseLocationsOutput, UseLocationsProps } from './types.d'
+import { LocationsData, UseLocationsOutput, UseLocationsProps } from '@availabletowork/types'
 
 // Helpers
 import { prepareLocationsArguments } from './helpers'

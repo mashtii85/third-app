@@ -2,10 +2,10 @@
  * Components - Accounts - Lists - Accounts - Table - Types.d
  */
 
-import { Options } from 'graphql/utilities/extendSchema'
-import { STATUS_ACTIVE } from '../general/select.d'
+import { Options, STATUS_ACTIVE } from '../general'
+import { UsersFilter } from '../users'
 import { Account, CustomField } from './account'
-import { AccountFilters, UsersFilter } from './types.d'
+import { AccountFilters } from './types.d'
 
 export interface AccountTableProps {
   filters?: Partial<AccountFilters>

@@ -3,10 +3,8 @@
  */
 
 // Types
-import { ENTITIES } from '../../constants/entities'
-import { POST_TYPE } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-
+import { ENTITIES } from '../../constants'
+import { POST_TYPE, STATUS_ACTIVE } from '../general'
 export interface NotesFormType {
   id: number | undefined
   entity: ENTITIES

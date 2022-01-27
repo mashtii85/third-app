@@ -2,7 +2,8 @@
  * Components - Lessons - Form - types.d
  */
 
-import { LESSON_TYPE, LESSON_STATUS } from '../../../../types/lesson.d'
+//Types
+import { LESSON_STATUS, LESSON_TYPE } from '.'
 
 export interface LessonFormType {
   id: number

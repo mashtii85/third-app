@@ -8,7 +8,7 @@ import { CREATE_TAXONOMY, GET_TAXONOMIES } from '../../queries'
 import { prepareTaxonomyArguments } from '../helpers'
 
 // Types
-import { UseCreateTaxonomyOutput, UseCreateTaxonomyProps } from './types'
+import { UseCreateTaxonomyOutput, UseCreateTaxonomyProps } from '@availabletowork/types'
 
 export const useCreateTaxonomy = (props: UseCreateTaxonomyProps): UseCreateTaxonomyOutput => {
   const [createTaxonomy, { error, loading }] = useMutation(CREATE_TAXONOMY, {

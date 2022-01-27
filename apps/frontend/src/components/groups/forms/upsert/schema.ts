@@ -6,8 +6,10 @@
 import { mixed, object, string, SchemaOf } from 'yup'
 
 // Types
-import { GroupFormType } from './types.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { GroupFormType } from '@availabletowork/types'
+
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const GroupSchema: SchemaOf<GroupFormType> = object()
   .shape({

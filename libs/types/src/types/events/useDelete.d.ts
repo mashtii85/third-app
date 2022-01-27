@@ -3,7 +3,7 @@
  */
 
 // Types.d
-import { UseHookProps } from '../../../../types/hook'
+import { UseHookProps } from '../general'
 import { Event, EventFilter } from './events'
 
 export interface EventDeleteVariables {

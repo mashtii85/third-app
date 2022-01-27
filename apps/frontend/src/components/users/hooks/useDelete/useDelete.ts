@@ -8,18 +8,18 @@ import { DELETE_USER_ACCOUNT_BY_USERID, GET_USERS } from '../../queries'
 
 // Types
 import {
+  User,
   UserDeleteData,
   UserDeleteVariables,
   useDeleteUserProps,
   useDeleteUserOutput
-} from './types.d'
-import { User } from '../../../../types/user'
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareUsersArguments } from '../helpers'
 
 export const useDeleteUser = (props: useDeleteUserProps): useDeleteUserOutput => {
-  const [deleteUser, { loading }] = useMutation<UserDeleteData, UserDeleteVariables>(
+  const [deleteUser, { loading, error }] = useMutation<UserDeleteData, UserDeleteVariables>(
     DELETE_USER_ACCOUNT_BY_USERID,
     {
       onCompleted: props.onCompleted,
@@ -41,5 +41,5 @@ export const useDeleteUser = (props: useDeleteUserProps): useDeleteUserOutput =>
     }
   )
 
-  return { deleteUser, loading }
+  return { deleteUser, error, loading }
 }

@@ -5,9 +5,12 @@
 // Yup
 import { bool, mixed, object, SchemaOf, string } from 'yup'
 import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
-import { locales } from '../../../../translations/config'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { UserForm } from './types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Types
+import { localesOptions, UserForm } from '@availabletowork/types'
 
 export const usersSchema = (hasPassword: boolean): SchemaOf<UserForm> => {
   const password = hasPassword
@@ -27,7 +30,7 @@ export const usersSchema = (hasPassword: boolean): SchemaOf<UserForm> => {
     name_last: string().required(),
     email: string().required().email(),
     meta: object().shape({
-      locale: mixed().oneOf(Object.values(locales)),
+      locale: mixed().oneOf(Object.values(localesOptions)),
       notifications: object().shape({
         alert: bool(),
         email: bool(),

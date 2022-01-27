@@ -2,9 +2,6 @@
  * Components - Lessons - View - Components - Assignment - Forms - Upsert - Types
  */
 
-// Types
-import { Taxonomy } from '../../../../../../../types/taxonomy.d'
-
 export interface AssignmentAnswerMetaType {
   type: string
   answer_types: string[]

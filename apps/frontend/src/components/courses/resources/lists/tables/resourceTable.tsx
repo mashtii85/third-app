@@ -26,14 +26,16 @@ import { fileinfo } from '../../forms/attachment/helpers'
 import { getIconByFilename, Icon } from './helpers'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
-import { SIZE } from '../../../../../config/theme'
+import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
 
-// Types
-import { Post, RESOURCE_TYPE } from '../../../../../types/post.d'
-import { PostDeleteType } from '../../../../posts/hooks/useDelete/types.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
-import { ResourcesFormType } from '../../forms/upsert/types.d'
+// Types & Constants
+import {
+  offCanvasType,
+  Post,
+  PostDeleteType,
+  ResourcesFormType,
+  RESOURCE_TYPE
+} from '@availabletowork/types'
 
 export const ResourceTable = ({ posts }: { posts: Post[] }) => {
   return (

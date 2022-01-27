@@ -5,8 +5,10 @@
 import { timer } from '../../constants/misc'
 
 export const login = (email: string, password: string): void => {
-  const token = window.localStorage.getItem('bearerToken')
+  const tokenName = 'bearerToken'
+  const token = Cypress.env(tokenName)
   if (!token || token.length == 0) {
+    cy.log('get token from api')
     const url = Cypress.env('frontendUrl')
     cy.request({
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
@@ -18,50 +20,18 @@ export const login = (email: string, password: string): void => {
       }
     })
       .then((response) => {
-        if (response?.body?.token) {
-          window.localStorage.setItem('bearerToken', response.body.token)
-          return { bearerToken: response.body.token }
+        const tokenFromResponse = response?.body?.token
+        if (tokenFromResponse) {
+          Cypress.env(tokenName, tokenFromResponse)
+
+          window.localStorage.setItem(tokenName, tokenFromResponse)
+          return { bearerToken: tokenFromResponse }
         }
         return null
       })
       .wait(timer)
   } else {
+    window.localStorage.setItem(tokenName, token)
     cy.log('token exist')
   }
-  // window.localStorage.setItem('authToken', response.body.token)
-
-  // cy.dataSession({
-  //   name: 'login',
-  //   setup() {
-  //     cy.request({
-  //       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-  //       url: `${url}/api/auth/login`,
-  //       method: 'POST',
-  //       body: {
-  //         email,
-  //         password
-  //       }
-  //     })
-  //       .then((response) => {
-  //         if (response?.body?.token) {
-  //           window.localStorage.setItem('bearerToken', response.body.token)
-  //           return { bearerToken: response.body.token }
-  //         }
-  //         return null
-  //       })
-  //       .wait(timer)
-  //   },
-  //   validate(saved) {
-  //     if (saved.bearerToken != null) {
-  //       window.localStorage.setItem('bearerToken', saved.bearerToken)
-  //       return true
-  //     }
-  //     return false
-  //   },
-  //   recreate(saved) {
-  //     Cypress.env('bearerToken', saved.bearerToken)
-  //     cy.setCookie('bearerToken', saved.bearerToken)
-  //   },
-  //   shareAcrossSpecs: true
-  // })
 }

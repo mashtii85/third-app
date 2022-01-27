@@ -12,11 +12,13 @@ import { useTaxonomies } from '../hooks/useTaxonomies/useTaxonomies'
 import { OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 import { TaxonomyUpsert } from '../forms'
+
 // Types
-import { offCanvasType } from '../../../types/offCanvas'
-import { TaxonomyChildTableProps } from './type'
-import { Taxonomy } from '../../../types/taxonomy.d'
-import { STATUS_ACTIVE } from '../../../types/select.d'
+import { offCanvasType, Taxonomy, TaxonomyChildTableProps } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
 // Helpers
 import { columns, prepareTaxonomiesVariable, rows } from './helpers'
 

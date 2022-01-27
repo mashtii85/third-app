@@ -5,7 +5,7 @@
 import { nullFreeObject } from '../../../../utils/nullFreeObject'
 
 // Types
-import { LooseObject } from '../../../../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const prepareArguments = ({ filters }: { filters?: LooseObject }): LooseObject => {
   nullFreeObject(filters)

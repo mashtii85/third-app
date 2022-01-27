@@ -9,11 +9,13 @@ import { useContext } from 'react'
 import { AuthorizationContext, Details, Table } from '@drykiss/industry-ui'
 
 // Constants
+import { ACCOUNT_TYPE } from '@availabletowork/types'
+
+// Helpers
 import { columns, rows } from './helpers'
 
 // Types
-import { UserAccountTableProps } from './types'
-import { ACCOUNT_TYPE } from '../../../types/account.d'
+import { UserAccountTableProps } from '@availabletowork/types'
 
 export const UserAccountsTable = ({ user, loading }: UserAccountTableProps) => {
   const { hasRole } = useContext(AuthorizationContext)

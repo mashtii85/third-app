@@ -7,10 +7,13 @@ import { useMutation } from '@apollo/client'
 import { CREATE_GROUPS, GET_GROUPS } from '../../queries/queries'
 
 // Types
-import { GroupCreateData, UseCreateGroupOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { GroupFormType } from '../../forms/upsert/types.d'
-import { Group } from '../../../../types/group.d'
+import {
+  Group,
+  GroupCreateData,
+  GroupFormType,
+  UseCreateGroupOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCreateGroup = (
   accountId: number,
