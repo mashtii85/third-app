@@ -2,8 +2,8 @@
  * Services - Auth - Types
  */
 
-import { CurrentUser } from '../../types/user.d'
-import { ACCOUNT_TYPE } from '../../types/account.d'
+import { CurrentUser } from '@availabletowork/types'
+import { ACCOUNT_TYPE } from '@availabletowork/types'
 
 export interface LoginModel {
   token: string
