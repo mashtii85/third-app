@@ -2,20 +2,24 @@
  * Components - AccountUsers - Hooks - UseUserAccounts - UseUserAccounts
  */
 
+// React
+import { useContext, useEffect } from 'react'
+
 // Apollo
 import { useQuery } from '@apollo/client'
-import { useContext, useEffect } from 'react'
+import { GET_USER } from '../../queries'
+
+// Localization
 import { isLocale } from '../../../../translations/config'
 import { I18nContext } from '../../../../translations/context'
-import { User } from '../../../../types/user'
-import { GET_USER } from '../../queries'
+
 // Types
-import { UserData, UserVariables, UseUserOutput } from './types.d'
+import { User, UserDatum, UserVariables, UseUserOutput } from '@availabletowork/types'
 
 export const useUser = (userId: number): UseUserOutput => {
   const { setLocale } = useContext(I18nContext)
 
-  const { data, error, loading } = useQuery<UserData, UserVariables>(GET_USER, {
+  const { data, error, loading } = useQuery<UserDatum, UserVariables>(GET_USER, {
     variables: { userId }
   })
 

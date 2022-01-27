@@ -10,23 +10,25 @@ import { Details, Space, useOffCanvas, ButtonToolbar, Button } from '@drykiss/in
 import { MediaForm } from '../../../../../media/forms/create/form'
 
 // Constants
-import { ENTITIES } from '../../../../../../constants/entities'
-import { SIZE } from '../../../../../../config/theme'
-import { THEME_CONTEXT } from '../../../../../../constants/themeContext'
+import { ENTITIES, SIZE, THEME_CONTEXT } from '@availabletowork/types'
 
 // Types
 import {
+  AssignmentActionTypes,
+  AssignmentState,
+  GraphqlWhere,
   MEDIUM_CATEGORY,
   MEDIUM_TYPE,
   DropzoneProps,
-  Medium
-} from '../../../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../../../types/select.d'
-import { MediaFormType } from '../../../../../media/forms/create/types.d'
-import { MediaFilter } from '../../../../../media/hooks/useMedia/types.d'
-import { AssignmentActionTypes, AssignmentState } from './types.d'
-import { MediaDeleteProps } from '../../../../../media/hooks/useDelete/types.d'
-import { GraphqlWhere } from '../../../../../../types/gql.d'
+  Medium,
+  MediaDeleteProps,
+  MediaFilter,
+  MediaFormType,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
+
+// import { MediaFormType } from '../../../../../media/forms/create/types.d'
+// import { AssignmentActionTypes, AssignmentState } from './types.d'
 
 const translateMediumType = (mediumType: MEDIUM_TYPE): string => {
   switch (mediumType) {

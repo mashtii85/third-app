@@ -13,10 +13,14 @@ import { GET_USER_BY_EMAIL } from '../../components/users/queries'
 import { generateToken, prepareUserData, validatePassword } from './helpers'
 
 // Types
-import { LoginModel } from './types.d'
-import { STATUS_ACTIVE } from '../../types/select.d'
-import { LOG_LEVEL } from '../../utils/api/types.d'
-import { AccountUsers, CurrentUser, USER_STATUS } from '../../types/user.d'
+import {
+  AccountUsers,
+  CurrentUser,
+  LoginModel,
+  LOG_LEVEL,
+  USER_STATUS,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 
 export const login = async (email: string, password: string): Promise<LoginModel> => {
   if (!email || !password) {

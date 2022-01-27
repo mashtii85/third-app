@@ -5,14 +5,14 @@
 // UI
 
 import { Column, Label, Select } from '@drykiss/industry-ui'
-import { statusActive } from '../../../constants/status'
 import { Control, FieldErrors } from 'react-hook-form'
 import { CustomSelect } from '../../selects/select'
 
 // Types
-import { LooseObject } from '../../../types/object'
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
-import { ENTITIES } from '../../../constants/entities'
+import { LooseObject, TAXONOMY_TYPE } from '@availabletowork/types'
+
+//Constants
+import { ENTITIES, statusActive } from '@availabletowork/types'
 
 export const EventFilters = ({
   control,

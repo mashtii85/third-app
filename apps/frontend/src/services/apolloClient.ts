@@ -24,7 +24,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
 import fetch from 'node-fetch'
-import { LooseObject } from '../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 

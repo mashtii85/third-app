@@ -2,11 +2,16 @@
  * Components - GroupEntities - Hooks - Helpers
  */
 
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { STATUS_ACTIVE } from '../../../types/select.d'
-import { GQLClause, GraphqlWhere } from '../../../types/gql'
-import { GroupEntity } from '../../../types/groupEntity'
-import { PrepareGroupEntitiesArgumentProps } from '../types'
+import {
+  GQLClause,
+  GraphqlWhere,
+  GroupEntity,
+  PrepareGroupEntitiesArgumentProps
+} from '@availabletowork/types'
 
 export const prepareGroupEntitiesArguments = ({
   filters

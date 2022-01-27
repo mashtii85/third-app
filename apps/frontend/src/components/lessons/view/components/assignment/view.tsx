@@ -14,12 +14,10 @@ import { LessonContentEdit } from '../../../form/edit/contentForm'
 import { AssignmentFooter } from './assignmentFooter'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 // Types
-import { LessonFormType } from '../../../form/edit/types.d'
-import { Lesson } from '../../../../../types/lesson.d'
-import { CurrentUser } from '../../../../../types/user.d'
+import { CurrentUser, Lesson, UpdateLessonFormType } from '@availabletowork/types'
 
 export const LessonAssignment = ({
   user,
@@ -64,7 +62,7 @@ export const LessonAssignment = ({
     )
   }
 
-  const defaultValues: LessonFormType = {
+  const defaultValues: UpdateLessonFormType = {
     id: lesson?.id,
     type: lesson?.type,
     content: lesson?.content

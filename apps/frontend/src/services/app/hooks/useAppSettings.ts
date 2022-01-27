@@ -12,7 +12,7 @@ import { APP_SETTINGS } from '../queries'
 // Types
 import { UseAppSettingsOutput } from './types'
 import { AppSettings } from '../types'
-import { Locale, Localization } from '../../../translations/types'
+import { locales, Locale, Localization } from '@availabletowork/types'
 
 // Lodash
 import isEmpty from 'lodash/isEmpty'
@@ -22,7 +22,6 @@ import merge from 'lodash/merge'
 import { useAppTheme, useConfig } from '@drykiss/industry-ui'
 
 import localeTranslations from '../../../translations/locales'
-import { locales } from '../../../translations/config'
 // import { I18nContext } from '../../../translations/context'
 
 // this process should happen in BE, it's just a test

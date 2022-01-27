@@ -15,8 +15,7 @@ import { Input, Form, Label, Row, Column } from '@drykiss/industry-ui'
 import { addressSchema as schema } from './schema'
 
 // Types
-import { AddressFormType } from './types.d'
-import { UseAddressProps } from '../../hooks/types.d'
+import { AddressFormType, UseAddressProps } from '@availabletowork/types'
 
 export const AddressForm = ({
   filters,

@@ -10,19 +10,21 @@ import { Button, ButtonToolbar, OffCanvasContext, Path } from '@drykiss/industry
 
 // Forms
 import { ResourcesForm } from '../../forms/upsert/form'
-import { offCanvasType } from '../../../../../types/offCanvas'
 
 // Helpers
 import { CustomIcon } from '../../../../common/icons/icons'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
 import { ICONS_PATHS } from '../../../../../constants/iconPaths'
 
-// Types
-import { POST_TYPE } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
+// Types & Constants
+import {
+  offCanvasType,
+  PostFilter,
+  POST_TYPE,
+  STATUS_ACTIVE,
+  THEME_CONTEXT
+} from '@availabletowork/types'
 
 export const getIconByFilename = (filename: string): string => {
   const ext = Path.extname(filename)

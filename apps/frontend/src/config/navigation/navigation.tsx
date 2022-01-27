@@ -12,7 +12,9 @@ import { UserDropdown } from './data/userDropdown'
 import { useCurrentUser } from '../../utils/useCurrentUser'
 import { useCurrentAccount } from '../../utils/useCurrentAccount'
 import { useApp } from '../../utils/useApp'
-import { ACCOUNT_TYPE } from '../../types/account.d'
+
+// Types
+import { ACCOUNT_TYPE } from '@availabletowork/types'
 
 export const Navigation = () => {
   const { config } = useConfig()

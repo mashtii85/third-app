@@ -21,13 +21,15 @@ import { DeleteAddressForm } from '../../forms/delete/delete'
 import { useDefaultAddress } from '../../hooks/useDefaultAddress/useDefaultAddress'
 
 // Type
-import { UseAddressProps } from '../../hooks/types.d'
-import { AddressTableRowsType } from './types.d'
-import { AddressFormType } from '../../forms/create/types.d'
-import { ADDRESS_TYPE } from '../../../../types/address.d'
-import { offCanvasType } from '../../../../types/offCanvas.d'
-import { DefaultAddressHookProps } from '../../hooks/useDefaultAddress/types.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import {
+  AddressFormType,
+  AddressTableRowsType,
+  ADDRESS_TYPE,
+  DefaultAddressHookProps,
+  offCanvasType,
+  STATUS_ACTIVE,
+  UseAddressProps
+} from '@availabletowork/types'
 
 export const AddressListForm = ({
   addressType,

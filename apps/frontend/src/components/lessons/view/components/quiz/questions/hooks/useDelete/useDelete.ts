@@ -12,8 +12,7 @@ import { DELETE_TAXONOMIES, GET_TAXONOMIES } from '../../../../../../../taxonomi
 import { prepareTaxonomyArguments } from '../../../../../../../taxonomies/hooks/helpers'
 
 // Types
-import { UseDeleteAnswerOutput, UseDeleteAnswerProps } from './types.d'
-import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
+import { Taxonomy, UseDeleteAnswerOutput, UseDeleteAnswerProps } from '@availabletowork/types'
 
 export const useDeleteAnswers = (props: Partial<UseDeleteAnswerProps>): UseDeleteAnswerOutput => {
   const [deleteAnswer, { error, loading }] = useMutation(DELETE_TAXONOMIES, {

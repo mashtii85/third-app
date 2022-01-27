@@ -1,2 +1,4 @@
-// export * from './lib/types.module'
-export { pages } from './config'
+// export * from './config'
+export * from './types'
+
+export * from './constants'

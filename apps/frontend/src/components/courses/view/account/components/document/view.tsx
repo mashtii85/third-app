@@ -1,5 +1,5 @@
 /**
- * Components - Cources - View - Account - Components - Document
+ * Components - Courses - View - Account - Components - Document
  */
 
 // React

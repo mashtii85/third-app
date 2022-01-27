@@ -2,12 +2,15 @@
  * Components - Accounts - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+// Constants
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
-import { AccountFilters } from '../../types'
 import { useDeleteAccount } from '../../hooks/useDelete/useDelete'
+
+// Types
+import { AccountFilters } from '@availabletowork/types'
 
 export const DeleteAccountForm = ({
   id,

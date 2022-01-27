@@ -10,6 +10,7 @@ import { Table, OffCanvasContext } from '@drykiss/industry-ui'
 
 // Helpers
 import { columns, rows } from './helpers'
+import { LessonOrderingHelper } from '../orderingHelper'
 
 // Hooks
 import { useSwapLesson } from '../../hooks/useSwapLessons/useSwapLessons'
@@ -20,18 +21,20 @@ import { LessonForm } from '../../form/create/form'
 import { DeleteLessonForm } from '../../form/delete/delete'
 
 // Constants
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
 
 // Types
-import { LessonTableRowsType } from '../table/types.d'
-import { LessonFormType, LessonUpsertFormFilterType } from '../../form/create/types.d'
-import { MediaTableProps } from '../../../media/lists/table/types.d'
-import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { offCanvasType } from '../../../../types/offCanvas.d'
-import { UseLessonsProps } from '../../hooks/useLesson/types.d'
-import { SwapLessonsProps } from '../../hooks/useSwapLessons/types.d'
-import { LessonOrderingHelper } from '../orderingHelper'
+import {
+  LessonFormType,
+  LessonTableRowsType,
+  LessonUpsertFormFilterType,
+  MediaTableProps,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  offCanvasType,
+  SwapLessonsProps,
+  UseLessonsProps
+} from '@availabletowork/types'
 
 export const LessonTable = ({ courseId, moduleId, lessons, onChanged }: UseLessonsProps) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

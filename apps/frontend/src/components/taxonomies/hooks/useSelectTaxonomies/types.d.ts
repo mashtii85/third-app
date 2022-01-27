@@ -1,3 +1,0 @@
-/**
- * Components - Taxonomies - Hooks - helpers
- */

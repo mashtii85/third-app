@@ -2,7 +2,7 @@
  * Components - Courses - Form - Upsert - Schema
  */
 
-import { LooseObject } from '../../../../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const prepareFormParams = (formParams: LooseObject): LooseObject => {
   delete formParams.enrolled

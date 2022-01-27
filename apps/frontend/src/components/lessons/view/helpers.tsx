@@ -11,15 +11,19 @@ import { LessonForm } from '../form/create/form'
 import { MediaForm } from '../../media/forms/create/form'
 
 // Constants
-import { THEME_CONTEXT } from '../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 // types
-import { LessonDetailsToolbarType } from './types.d'
-import { offCanvasType } from '../../../types/offCanvas.d'
-import { LessonFormType, LessonUpsertFormFilterType } from '../form/create/types.d'
-import { MediaFilter } from '../../media/hooks/useMedia/types.d'
-import { DropzoneProps, Medium } from '../../../types/medium.d'
-import { MediaFormType } from '../../media/forms/create/types.d'
+import {
+  DropzoneProps,
+  LessonDetailsToolbarType,
+  LessonFormType,
+  LessonUpsertFormFilterType,
+  MediaFilter,
+  MediaFormType,
+  Medium,
+  offCanvasType
+} from '@availabletowork/types'
 
 export const getLatestMedium = (media: Medium[]): Medium | undefined => {
   if (media?.length > 0) {

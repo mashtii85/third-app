@@ -4,15 +4,19 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { LooseObject } from '../../../../types/object'
 import { CREATE_EVENT, GET_EVENTS } from '../../queries'
-import { Event } from '../../types'
-import { EventDeleteVariables } from '../useDelete/types'
+
+//Types
+import {
+  CreateEventVariables,
+  Event,
+  EventDeleteVariables,
+  LooseObject,
+  UseCreateEventProps,
+  UseCreateEventOutput
+} from '@availabletowork/types'
 
 import { prepareEventsArguments } from '../useEvents/helpers'
-
-// Types
-import { UseCreateEventProps, UseCreateEventOutput, CreateEventVariables } from './types'
 
 export const useCreateEvent = (props: UseCreateEventProps): UseCreateEventOutput => {
   const [createEvent, { error, loading }] = useMutation<CreateEventVariables, EventDeleteVariables>(
@@ -21,10 +25,11 @@ export const useCreateEvent = (props: UseCreateEventProps): UseCreateEventOutput
       onCompleted: props.onCompleted,
       onError: props.onError,
       update(cache, { data }) {
-        if (!data?.event) {
+        const eventFromResponse = data?.event
+        if (eventFromResponse) {
           return
         }
-        const eventFromResponse = data.event
+
         const variables: LooseObject = prepareEventsArguments({
           filters: props.filters
         })

@@ -2,10 +2,11 @@
  * Components - Lessons - Questions - Lists - Helpers
  */
 
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { STATUS_ACTIVE } from '../../../../../../../../types/select.d'
-import { CustomFields, Taxonomy } from '../../../../../../../../types/taxonomy'
-import { LessonQuestionTableProps } from './type.d'
+import { CustomFields, LessonQuestionTableProps, Taxonomy } from '@availabletowork/types'
 
 export const prepareTaxonomyDefaultValues = (
   row: Taxonomy,

@@ -2,12 +2,13 @@
  * Components - Lessons - Questions - Lists - Table
  */
 
-// Apollo
+// Hooks
 import { useTaxonomies } from '../../../../../../../taxonomies/hooks'
 
 // Types
-import { LessonQuestionTableProps } from './type.d'
-import { TaxonomyFilters } from '../../../../../../../taxonomies/hooks/useTaxonomies/types.d'
+import { LessonQuestionTableProps, TaxonomyFilters } from '@availabletowork/types'
+
+// UI
 import { QuestionRow } from './components/question/questionRow'
 
 export const LessonQuestionsTable = (tableProps: LessonQuestionTableProps) => {

@@ -3,8 +3,7 @@
  */
 
 // Types
-import { LooseObject } from '../../../../types/object'
-import { EnrollmentFilters } from './types'
+import { EnrollmentFilters, LooseObject } from '@availabletowork/types'
 
 export const prepareVariables = ({
   filters

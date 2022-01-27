@@ -9,7 +9,8 @@ import { AccountSchema as schema } from './schema'
 
 // UI
 import { Checkbox, Form, Input, Error, Label, Select } from '@drykiss/industry-ui'
-import { statusActive } from '../../../../constants/status'
+import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
+import { CustomSelect } from '../../../selects/select'
 
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../../hooks'
@@ -17,20 +18,20 @@ import { useCreateAccount, useUpdateAccount } from '../../hooks'
 // Types
 import {
   AccountFormProps,
+  ACCOUNT_TYPE,
+  CheckboxDataType,
   ClientModuleProps,
   CLIENT_MODULE_TYPE,
-  CreateAccountForm
-} from './types.d'
-import { TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+  CreateAccountForm,
+  statusActive,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
-import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
-import { ACCOUNT_TYPE } from '../../../../types/account.d'
-import { CheckboxDataType } from '../../../lessons/view/components/assignment/forms/upsert/types'
-import { CustomSelect } from '../../../selects/select'
-import { ENTITIES } from '../../../../constants/entities'
+// Constants
+import { ENTITIES } from '@availabletowork/types'
 
 export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const hasUser = !!defaultValues?.userId

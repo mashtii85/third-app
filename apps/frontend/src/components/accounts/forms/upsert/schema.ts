@@ -7,7 +7,7 @@ import { bool, object, string, SchemaOf } from 'yup'
 import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
 
 // Types
-import { CreateAccountForm } from './types.d'
+import { CreateAccountForm } from '@availabletowork/types'
 
 export const AccountSchema = (hasUser: boolean): SchemaOf<CreateAccountForm> => {
   const schema = object()

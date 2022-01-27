@@ -14,11 +14,14 @@ import {
   DetailsText,
   OffCanvasContext
 } from '@drykiss/industry-ui'
-import { offCanvasType } from '../../../../types/offCanvas'
 
 // Types
-import { UserMeta } from '../../../../types/user'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { offCanvasType, UserMeta } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Hooks
 import { UpsertNotificationSettingsForm } from './upsert/upsert'
 
 export const NotificationSettings = ({

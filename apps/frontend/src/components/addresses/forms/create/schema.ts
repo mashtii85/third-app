@@ -6,8 +6,7 @@
 import { object, string, number, mixed, SchemaOf } from 'yup'
 
 // Types
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { AddressFormType } from './types.d'
+import { AddressFormType, STATUS_ACTIVE } from '@availabletowork/types'
 
 const r1 = `^([Gg][Ii][Rr] 0[Aa]{2})`
 const r2 = '|((([A-Za-z][0-9]{1,2})'

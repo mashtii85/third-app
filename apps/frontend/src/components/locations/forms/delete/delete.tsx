@@ -2,11 +2,14 @@
  * Components - Locations - Forms - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+// Constants
+import { SIZE } from '@availabletowork/types'
+
+// Types
+import { DeleteLocationProps } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
-import { DeleteLocationProps } from './types'
 import { useDeleteLocation } from '../../hooks'
 
 export const DeleteLocation = ({ locationId, name, filters, onSuccess }: DeleteLocationProps) => {

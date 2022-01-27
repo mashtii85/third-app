@@ -6,7 +6,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 // Types
-import { LOG_LEVEL } from './types.d'
+import { LOG_LEVEL } from '@availabletowork/types'
 
 export class AppError extends Error {
   public status: number

@@ -3,10 +3,13 @@
  */
 
 // Types
-import { GQLClause, GraphqlWhere } from '../../../../types/gql'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { Event } from '../../types'
-import { PrepareEventArgumentProps } from './types'
+import {
+  Event,
+  GQLClause,
+  GraphqlWhere,
+  PrepareEventArgumentProps,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 
 export const prepareEventsArguments = ({
   filters

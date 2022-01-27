@@ -6,7 +6,7 @@
 import { TE } from '../../utils/api/errors'
 
 // Types
-import { LoginModel } from './types'
+import { LoginModel } from '@availabletowork/types'
 
 export const switchAccount = async (accountId: number, headers: any): Promise<LoginModel> => {
   if (!accountId || !headers) {

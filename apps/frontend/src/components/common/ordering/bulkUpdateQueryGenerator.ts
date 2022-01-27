@@ -3,11 +3,10 @@
  */
 
 // Constants
-import { ENTITIES } from '../../../constants/entities'
+import { ENTITIES } from '@availabletowork/types'
 
 // Types
-import { Sortable } from '../../../types/baseTypes.d'
-import { bulkUpdateQueryGeneratorType } from './types.d'
+import { bulkUpdateQueryGeneratorType, Sortable } from '@availabletowork/types'
 
 export const bulkUpdateQueryGenerator = <T extends Sortable>(
   entity: ENTITIES,

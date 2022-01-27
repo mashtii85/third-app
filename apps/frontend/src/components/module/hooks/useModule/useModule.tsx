@@ -5,7 +5,9 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_MODULES } from '../../queries/queries'
-import { ModuleDataList, ModuleFilter } from './types'
+
+// Types
+import { ModuleDataList, ModuleFilter } from '@availabletowork/types'
 
 // Utils
 import { generateWhereClause } from '../../../../utils/whereClause'

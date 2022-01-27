@@ -6,8 +6,10 @@
 import { mixed, object, string, SchemaOf } from 'yup'
 
 // Types
-import { ModuleFormType } from './types.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
+import { ModuleFormType } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const ModuleSchema: SchemaOf<ModuleFormType> = object()
   .shape({

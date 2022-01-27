@@ -6,7 +6,7 @@
 import { object, number, array, SchemaOf } from 'yup'
 
 // Types
-import { AssignmentAnswerSubmitType } from './types.d'
+import { AssignmentAnswerSubmitType } from '@availabletowork/types'
 
 export const AnswersSchema: SchemaOf<AssignmentAnswerSubmitType> = object()
   .shape({

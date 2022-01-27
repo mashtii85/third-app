@@ -7,10 +7,13 @@ import { useMutation } from '@apollo/client'
 import { CREATE_MODULE, GET_MODULES } from '../../queries/queries'
 
 // Types
-import { ModuleCreateData, UseCreateModuleOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { ModuleFormType } from '../../forms/create/types.d'
-import { Module } from '../../../../types/module.d'
+import {
+  Module,
+  ModuleCreateData,
+  ModuleFormType,
+  UseCreateModuleOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCreateModule = (
   courseId: number,

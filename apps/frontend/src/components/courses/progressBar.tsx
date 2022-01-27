@@ -12,8 +12,7 @@ import { Progress, ProgressBar } from '@drykiss/industry-ui'
 import { progressData } from './helpers'
 
 // Types
-import { LessonProgress } from '../../types/lessonProgress.d'
-import { THEME_CONTEXT } from '../../constants/themeContext'
+import { LessonProgress, THEME_CONTEXT } from '@availabletowork/types'
 
 interface CourseProgressBarProps {
   progressBarData: LessonProgress[]

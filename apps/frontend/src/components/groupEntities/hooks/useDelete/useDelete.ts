@@ -8,12 +8,13 @@ import { DELETE_GROUP_ENTITY_BY_PK, GET_GROUP_ENTITIES } from '../../queries/que
 
 // Types
 import {
+  GroupEntity,
   GroupEntityDeleteData,
   GroupDeleteVariables,
   UseDeleteGroupEntityOutput,
   useDeleteGroupEntityProps
-} from './types'
-import { GroupEntity } from '../../../../types/groupEntity'
+} from '@availabletowork/types'
+
 import { prepareGroupEntitiesArguments } from '../helpers'
 
 export const useDeleteGroupEntity = (

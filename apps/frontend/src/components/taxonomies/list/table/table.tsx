@@ -1,13 +1,14 @@
 /**
  * Components - Taxonomy - List - Table - Table
  */
+
 // React
 import { useContext, MouseEvent } from 'react'
 
 // Next
 import { useRouter } from 'next/router'
 
-// Apollo
+// Hooks
 import { useTaxonomies } from '../../hooks/useTaxonomies/useTaxonomies'
 
 // UI
@@ -18,9 +19,7 @@ import { TaxonomyChildTable } from '../../child/table'
 import { columns, rows, Toolbar } from './helpers'
 
 // Types
-import { TableProps } from '../types'
-import { offCanvasType } from '../../../../types/offCanvas'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../../types/taxonomy.d'
+import { offCanvasType, TableProps, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
 
 export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
   const { refetchSettings } = useApp()

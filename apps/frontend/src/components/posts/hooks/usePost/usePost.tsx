@@ -7,11 +7,7 @@ import { useQuery } from '@apollo/client'
 import { GET_POSTS } from '../../queries/queries'
 
 // Types
-import { PostDataList, PostFilter } from './types.d'
-
-// Utils
-import { GraphqlWhere } from '../../../../types/gql'
-import { Post } from '../../../../types/post'
+import { GraphqlWhere, Post, PostDataList, PostFilter } from '@availabletowork/types'
 
 export const usePost = (filters: Partial<PostFilter>) => {
   const where: GraphqlWhere<Post> = {}

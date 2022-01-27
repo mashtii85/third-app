@@ -3,10 +3,7 @@
  */
 
 // Types
-import { AdminTileData, ClientTileData } from '../hooks/types'
-import type { DashboardTile } from './tiles/types'
-
-import pages from '../../../../config/pages'
+import { AdminTileData, ClientTileData, DashboardTile, pages } from '@availabletowork/types'
 
 export const prepareClientTiles = (dashboardObjects?: ClientTileData): DashboardTile[] => {
   const GREEN = 'success'

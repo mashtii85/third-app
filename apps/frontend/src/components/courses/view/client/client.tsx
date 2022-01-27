@@ -14,7 +14,7 @@ import { ClientDetails, EnrolledCourses, ClientResources } from './tabs'
 import { ClientCourseModule } from './tabs/curriculum/courseModules'
 
 // Types
-import { CLIENT_TAB } from '../types.d'
+import { CLIENT_TAB } from '@availabletowork/types'
 
 export const ClientCourseView = () => {
   const { query } = useRouter()

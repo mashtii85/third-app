@@ -10,9 +10,13 @@ import { DELETE_MODULE_BY_PK } from '../../queries/queries'
 import { useModule } from '../useModule/useModule'
 
 // Types
-import { ModuleDeleteData, ModuleDeleteVariables, UseDeleteModuleOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { ModuleDeleteProps } from '../useDelete/types.d'
+import {
+  ModuleDeleteData,
+  ModuleDeleteProps,
+  ModuleDeleteVariables,
+  UseDeleteModuleOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useDeleteModule = (
   moduleProps: ModuleDeleteProps,

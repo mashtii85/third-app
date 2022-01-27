@@ -6,7 +6,7 @@
 import { object, string, SchemaOf } from 'yup'
 
 // Types
-import { Taxonomy } from '../../../../types/taxonomy.d'
+import { Taxonomy } from '@availabletowork/types'
 
 export const TaxonomySchema: SchemaOf<Taxonomy> = object()
   .shape({

@@ -1,6 +1,7 @@
 /**
  * Components - Taxonomy - Questions
  */
+
 // UI
 import {
   camelCase,
@@ -12,12 +13,12 @@ import {
   Select,
   Textarea
 } from '@drykiss/industry-ui'
-import { Options } from '../../../types/options'
+
 import { DatePicker } from '../../common/datePicker/datePicker'
 import { CustomSelect } from '../../selects/select'
 
 // Types
-import { CustomFieldRenderProps } from './types.d'
+import { CustomFieldRenderProps, Options } from '@availabletowork/types'
 
 const inputComponents: { [x: string]: (val: any) => JSX.Element } = {
   checkbox: Checkbox,

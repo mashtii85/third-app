@@ -9,19 +9,22 @@ import { MouseEvent, useContext } from 'react'
 import { Button, formatDateStandard, OffCanvasContext, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { LocationTableRowsType } from './types'
+import {
+  Column,
+  Location,
+  LocationFilter,
+  LocationFormType,
+  LocationTableRowsType,
+  offCanvasType
+} from '@availabletowork/types'
 
-// Types
-import { Location, LocationFilter } from '../../types'
-import { offCanvasType } from '../../../../types/offCanvas'
+// Hooks
 import { UpsertLocation } from '../../forms'
-import { Column } from '../../../../types/column'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 import { formatToValidDate } from '../../../../utils/dateFormatter'
-import { LocationFormType } from '../../forms/upsert/types'
 
 export interface LocationRows {
   id: number
@@ -43,7 +46,6 @@ export const columns = ({
       hidden: true
     },
     {
-      // formatter: TableLink(pages.dashboard.coursesClient.view_by_id, 'id', 'name'),
       text: 'Name'
     },
     { text: 'Type' },

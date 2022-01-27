@@ -15,10 +15,7 @@ import { Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { NotesSchema as schema } from './schema'
 
 // Types
-import { NotesFormType } from './types.d'
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
-import { Post } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
+import { NotesFormType, Post, PostFilter, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const NotesForm = ({
   defaultValues,

@@ -1,5 +1,5 @@
 /**
- * Components - Addresss - Hooks - useDelete - useDelete
+ * Components - Address - Hooks - useDelete - useDelete
  */
 
 // Apollo
@@ -7,10 +7,14 @@ import { useMutation } from '@apollo/client'
 import { DELETE_ADDRESS_BY_PK, GET_ADDRESSES } from '../../queries/queries'
 
 // Types
-import { AddressDeleteData, AddressDeleteVariables, UseDeleteAddressOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Address } from '../../../../types/address.d'
-import { UseAddressProps } from '../types.d'
+import {
+  Address,
+  AddressDeleteData,
+  AddressDeleteVariables,
+  UseAddressProps,
+  UseDeleteAddressOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareArguments } from '../helpers'

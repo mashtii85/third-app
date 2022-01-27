@@ -2,17 +2,21 @@
  * Components - Locations - List - Table - Hooks - UseLocationQuery
  */
 
+// Types
+import {
+  CreateLocationVariables,
+  Location,
+  LocationDeleteVariables,
+  LooseObject,
+  UseCreateLocationProps,
+  UseCreateLocationOutput
+} from '@availabletowork/types'
+
 // Apollo
 import { useMutation } from '@apollo/client'
-import { LooseObject } from '../../../../types/object'
 import { CREATE_LOCATION, GET_LOCATIONS } from '../../queries'
-import { Location } from '../../types'
-import { LocationDeleteVariables } from '../useDelete/types'
 
 import { prepareLocationsArguments } from '../useLocations/helpers'
-
-// Types
-import { UseCreateLocationProps, UseCreateLocationOutput, CreateLocationVariables } from './types.d'
 
 export const useCreateLocation = (props: UseCreateLocationProps): UseCreateLocationOutput => {
   const [createLocation, { error, loading, data }] = useMutation<

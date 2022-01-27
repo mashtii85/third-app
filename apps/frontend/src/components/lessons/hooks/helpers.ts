@@ -3,9 +3,7 @@
  */
 
 // Types
-import { GQLClause, GraphqlWhere } from '../../../types/gql.d'
-import { Lesson } from '../../../types/lesson.d'
-import { LessonFilter } from './useLesson/types.d'
+import { GQLClause, GraphqlWhere, Lesson, LessonFilter } from '@availabletowork/types'
 
 export const prepareArguments = ({
   filters

@@ -8,7 +8,7 @@ import { useTable } from '../../../common/hooks/useTable'
 import { useEnrollments } from '../../hooks'
 
 // Types
-import { EnrollmentFilters } from '../../hooks/useEnrollments/types'
+import { EnrollmentFilters } from '@availabletowork/types'
 
 // Helpers
 import { columns, rows } from './helpers'

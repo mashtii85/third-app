@@ -3,7 +3,7 @@
  */
 
 // Types
-import { Localization, Locale, Translations } from '../types'
+import { Localization, Locale, Translations } from '@availabletowork/types'
 
 export const getLocalizationProps = (
   language: Locale,

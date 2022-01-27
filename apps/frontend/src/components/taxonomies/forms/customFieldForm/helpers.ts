@@ -1,7 +1,7 @@
 /**
  * Components - Taxonomy - Forms - CustomFieldForm - Helpers
  */
-import { ENTITIES } from '../../../../constants/entities'
+import { ENTITIES } from '@availabletowork/types'
 
 export const customFieldEntityOptions = [
   {

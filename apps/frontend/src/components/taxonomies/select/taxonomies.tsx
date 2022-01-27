@@ -4,7 +4,9 @@
 // UI
 import { Label, ReactSelect } from '@drykiss/industry-ui'
 import { useSelectTaxonomies } from '../hooks/useSelectTaxonomies/useSelectTaxonomies'
-import { GroupSelectProps } from '../../selects/taxonomies/types'
+
+// Types
+import { GroupSelectProps } from '@availabletowork/types'
 
 export const TaxonomiesSelect = ({
   control,

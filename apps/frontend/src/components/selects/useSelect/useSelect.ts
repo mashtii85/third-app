@@ -6,7 +6,7 @@
 import { DocumentNode, useQuery } from '@apollo/client'
 
 // Types
-import { SelectData, UseSelectOutput } from './types'
+import { SelectData, UseSelectOutput } from '@availabletowork/types'
 
 export const useSelect = (variables: any = {}, query: DocumentNode): UseSelectOutput => {
   const { data, error, loading } = useQuery<SelectData>(query, {

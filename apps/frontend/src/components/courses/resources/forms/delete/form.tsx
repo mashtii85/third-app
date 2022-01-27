@@ -2,14 +2,12 @@
  * Components - Courses - Resources - Forms - Delete
  */
 
-import { SIZE } from '../../../../../config/theme'
-
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeletePost } from '../../../../posts/hooks/useDelete/useDelete'
 
 // Types
-import { PostDeleteType } from '../../../../posts/hooks/useDelete/types'
+import { PostDeleteType, SIZE } from '@availabletowork/types'
 
 export const ResourcesDeleteForm = ({
   resourcesDeleteProps,

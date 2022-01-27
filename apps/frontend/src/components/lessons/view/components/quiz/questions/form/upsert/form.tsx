@@ -9,6 +9,8 @@ import { UPDATE_TAXONOMY } from '../../../../../../../taxonomies/queries'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+
+// Hooks
 import { useCreateTaxonomy } from '../../../../../../../taxonomies/hooks'
 import { useCurrentUser } from '../../../../../../../../utils/useCurrentUser'
 
@@ -17,9 +19,13 @@ import { Form, Input, Label, Select } from '@drykiss/industry-ui'
 import { QuestionUpsertSchema as schema } from './schema'
 
 // Types
-import { QuestionUpsertFormType, QuestionUpsertType, QUESTION_TYPE } from './type.d'
-import { Taxonomy } from '../../../../../../../../types/taxonomy.d'
-import { UseCreateTaxonomyProps } from '../../../../../../../taxonomies/hooks/useCreate/types.d'
+import {
+  QUIZ_QUESTION_TYPE,
+  QuestionUpsertFormType,
+  QuestionUpsertType,
+  Taxonomy,
+  UseCreateTaxonomyProps
+} from '@availabletowork/types'
 
 export const LessonQuestionForm = ({
   filters,
@@ -79,8 +85,8 @@ export const LessonQuestionForm = ({
 
   const questionType = [
     { disabled: true, text: 'Please choose...', value: '' },
-    { text: 'Single Answer', value: QUESTION_TYPE.SingleAnswer },
-    { text: 'Multiple Answers', value: QUESTION_TYPE.MultipleAnswers }
+    { text: 'Single Answer', value: QUIZ_QUESTION_TYPE.SingleAnswer },
+    { text: 'Multiple Answers', value: QUIZ_QUESTION_TYPE.MultipleAnswers }
   ]
 
   return (

@@ -12,12 +12,17 @@ import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 // Helpers
 import { doesFileExist, LessonMediaContentToolbar } from '../../helpers'
 
+//Constants
+import { MediaFilter, STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { MediaFilter, UseMediaProps } from '../../../../media/hooks/useMedia/types.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { DropzoneProps, MEDIUM_TYPE } from '../../../../../types/medium.d'
-import { MediaFormType } from '../../../../media/forms/create/types.d'
-import { LESSON_TYPE } from '../../../../../types/lesson.d'
+import {
+  DropzoneProps,
+  LESSON_TYPE,
+  MediaFormType,
+  MEDIUM_TYPE,
+  UseMediaProps
+} from '@availabletowork/types'
 import { useEffect } from 'react'
 
 export const LessonDocument = ({

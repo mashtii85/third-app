@@ -3,9 +3,10 @@
  */
 import { CustomFieldRender } from './render'
 
-import { TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { Options, TAXONOMY_TYPE } from '@availabletowork/types'
+
+// Hooks
 import { useTaxonomies } from '../hooks'
-import { Options } from '../../../types/options'
 
 export const CustomFieldElement = ({
   taxonomyWatch,

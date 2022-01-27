@@ -6,13 +6,13 @@
 import { Space } from '@drykiss/industry-ui'
 
 // Types
-import type { ClientDashboardOverviewProps } from '../types.d'
-import { ACCOUNT_TYPE } from '../../../../types/account.d'
+import { ACCOUNT_TYPE, ClientDashboardOverviewProps } from '@availabletowork/types'
 
 // Hooks
 import { useAggregate } from '../hooks/useTileData'
 
 import { GET_CLIENT_TILES_DATA } from '../queries'
+
 // Helpers
 import { EventsCalendar } from '../../../events/calendar/calendar'
 import { Tiles } from './tiles/tiles'

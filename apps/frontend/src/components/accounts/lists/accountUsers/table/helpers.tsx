@@ -5,9 +5,9 @@
 import { MouseEvent, useContext } from 'react'
 
 // Types
-import { Column } from '../../../../../types/column'
-import { User } from '../../../../../types/user'
+import { Column, offCanvasType, UserFormProps, User, UserRow } from '@availabletowork/types'
 
+// UI
 import {
   Button,
   capitalize,
@@ -15,11 +15,12 @@ import {
   OffCanvasContext,
   TableActions
 } from '@drykiss/industry-ui'
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
-import { UserRow } from './types'
-import { offCanvasType } from '../../../../../types/offCanvas'
 import { UpsertUserForm } from '../../../../users/forms/upsert/upsert'
-import { UserFormProps } from '../../../../users/forms/upsert/types'
+
+// Constants
+import { THEME_CONTEXT } from '@availabletowork/types'
+
+// Utils
 import { generatePassword } from '../../../../../utils/passwordGenerator'
 
 export const columns = (

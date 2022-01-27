@@ -15,13 +15,16 @@ import { columns, rows, Toolbar } from './helpers'
 // Hooks
 import { useEvents } from '../../hooks'
 // Types
-import { EventFilter } from '../../types'
-import { EventTableRowsType, EventTableProps } from './types'
+import {
+  EventFilter,
+  EventFormSubmission,
+  EventTableRowsType,
+  EventTableProps,
+  offCanvasType,
+  Options
+} from '@availabletowork/types'
 
 import { UpsertEvent, DeleteEvent } from '../../forms'
-import { offCanvasType } from '../../../../types/offCanvas'
-import { EventFormSubmission } from '../../forms/upsert/types'
-import { Options } from '../../../../types/options'
 
 const initialSort = {}
 

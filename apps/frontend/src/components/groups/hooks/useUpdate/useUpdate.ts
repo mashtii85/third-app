@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_GROUP_BY_PK } from '../../queries/queries'
 
 // Types
-import { GroupUpdateData, GroupUpdateVariables, UseUpdateGroupOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  GroupUpdateData,
+  GroupUpdateVariables,
+  UseHookProps,
+  UseUpdateGroupOutput
+} from '@availabletowork/types'
 
 export const useUpdateGroup = (props: UseHookProps<GroupUpdateData>): UseUpdateGroupOutput => {
   const [updateGroup, { loading, error }] = useMutation<GroupUpdateData, GroupUpdateVariables>(

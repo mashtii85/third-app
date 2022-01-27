@@ -11,10 +11,10 @@ import {
   MediaDeleteProps,
   MediaDeleteData,
   MediaDeleteVariables,
-  UseDeleteMediaOutput
-} from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Medium } from '../../../../types/medium.d'
+  Medium,
+  UseDeleteMediaOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 // Helpers
 import { prepareArguments } from '../useMedia/helpers'

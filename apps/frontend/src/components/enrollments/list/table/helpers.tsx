@@ -6,14 +6,10 @@
 import { formatDateStandard, TableLink } from '@drykiss/industry-ui'
 
 // Types
-import { CourseTableRowsType } from './types'
-import { Enrollment } from '../../hooks/useEnrollments/types'
-import { Column } from '../../../../types/column'
-
-import pages from '../../../../config/pages'
+import { Column, CourseEnrollmentsTableRowsType, Enrollment, pages } from '@availabletowork/types'
 
 export const columns = () => {
-  const columnsSchema: Column<CourseTableRowsType>[] = [
+  const columnsSchema: Column<CourseEnrollmentsTableRowsType>[] = [
     {
       text: 'id',
       hidden: true
@@ -36,7 +32,7 @@ export const columns = () => {
     },
     {
       text: 'Date',
-      formatter: ({ row }: { row: CourseTableRowsType }) => {
+      formatter: ({ row }: { row: CourseEnrollmentsTableRowsType }) => {
         return formatDateStandard(row.date)
       }
     }
@@ -44,8 +40,8 @@ export const columns = () => {
   return columnsSchema
 }
 
-export const rows = (courses: Enrollment[]): CourseTableRowsType[] => {
-  const list: CourseTableRowsType[] = courses.map((item) => {
+export const rows = (courses: Enrollment[]): CourseEnrollmentsTableRowsType[] => {
+  const list: CourseEnrollmentsTableRowsType[] = courses.map((item) => {
     return {
       id: item.id,
       course: item.course.title,

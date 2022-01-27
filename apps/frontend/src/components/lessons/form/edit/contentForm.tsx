@@ -12,7 +12,9 @@ import { AddButton } from '../../../common/buttons/addButton'
 import { lessonSchema as schema } from './schema'
 
 // Types
-import { LessonFormType } from './types.d'
+import { UpdateLessonFormType } from '@availabletowork/types'
+
+//Hooks
 import { useUpdateLesson } from '../../hooks/useUpdate/useUpdate'
 
 export const LessonContentEdit = ({
@@ -20,14 +22,14 @@ export const LessonContentEdit = ({
   defaultValues
 }: {
   onSuccess: () => void
-  defaultValues: LessonFormType
+  defaultValues: UpdateLessonFormType
 }) => {
   const {
     control,
     formState: { errors = {} },
     handleSubmit,
     register
-  } = useForm<LessonFormType>({
+  } = useForm<UpdateLessonFormType>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   })
@@ -46,7 +48,7 @@ export const LessonContentEdit = ({
     showError: true
   }
 
-  const onSubmit = (form: LessonFormType) => {
+  const onSubmit = (form: UpdateLessonFormType) => {
     updateLesson({ variables: { id: defaultValues.id, changes: form } })
   }
 

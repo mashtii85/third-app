@@ -22,13 +22,16 @@ import { ResourceAttachmentForm } from '../attachment/form'
 import { prepareMediumCreateType, prepareResourceCreateType } from './helpers'
 
 // Types
-import { ResourcesFormType } from './types.d'
+import {
+  DropzoneProps,
+  MediaFilter,
+  Post,
+  PostFilter,
+  ResourcesFormType,
+  RESOURCE_TYPE,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 import { resourceType } from './constants'
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
-import { Post, RESOURCE_TYPE } from '../../../../../types/post.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { DropzoneProps } from '../../../../../types/medium.d'
-import { MediaFilter } from '../../../../media/hooks/useMedia/types.d'
 
 export const ResourcesForm = ({
   defaultValues,

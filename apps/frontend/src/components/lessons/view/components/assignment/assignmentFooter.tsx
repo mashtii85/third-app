@@ -11,15 +11,17 @@ import { SimulatedLink } from '../quiz/questions/lists/table/components/question
 import { AssignmentAnswerForm } from './forms/upsert/form'
 
 // Constants
-import { ENTITIES } from '../../../../../constants/entities'
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
 
 // Types
-import { Taxonomy, TAXONOMY_TYPE } from '../../../../../types/taxonomy.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
-import { Lesson } from '../../../../../types/lesson.d'
-import { CurrentUser } from '../../../../../types/user.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { ANSWER_TYPE } from './forms/upsert/types.d'
+import {
+  ANSWER_TYPE,
+  CurrentUser,
+  Lesson,
+  offCanvasType,
+  Taxonomy,
+  TAXONOMY_TYPE
+} from '@availabletowork/types'
 
 export const AssignmentFooter = ({
   user,
@@ -42,15 +44,17 @@ export const AssignmentFooter = ({
   }
 
   const handleManageAnswers = () => {
-    const defaultValues: Partial<Taxonomy> = answer ?? {
-      client_id: user.client_id,
-      entity_id: lesson.id,
-      entity: ENTITIES.Lesson,
-      name: 'Assignment answer',
-      status: STATUS_ACTIVE.Active,
-      type: TAXONOMY_TYPE.LessonAnswers,
-      meta: { type: ANSWER_TYPE.Assignment }
-    }
+    const defaultValues = answer
+      ? {}
+      : {
+          client_id: user.client_id,
+          entity_id: lesson.id,
+          entity: ENTITIES.Lesson,
+          name: 'Assignment answer',
+          status: STATUS_ACTIVE.Active,
+          type: TAXONOMY_TYPE.LessonAnswers,
+          meta: { type: ANSWER_TYPE.Assignment }
+        }
     offCanvas.show({
       title: 'Edit Properties',
       submit: true,

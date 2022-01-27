@@ -2,14 +2,14 @@
  * Components - Courses - Notes - Forms - Delete
  */
 
-import { SIZE } from '../../../../../config/theme'
+// Types
+import { PostDeleteType, SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
-import { useDeletePost } from '../../../../posts/hooks/useDelete/useDelete'
 
-// Types
-import { PostDeleteType } from '../../../../posts/hooks/useDelete/types.d'
+// Hooks
+import { useDeletePost } from '../../../../posts/hooks/useDelete/useDelete'
 
 export const NotesDeleteForm = ({
   notesDeleteProps,

@@ -2,14 +2,15 @@
  * Components - Media - Forms - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+// Constants
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteMediumById } from '../../hooks/useDelete/useDeleteById'
 
 // Types
-import { MediaDeleteProps } from '../../hooks/useDelete/types.d'
+import { MediaDeleteProps } from '@availabletowork/types'
 
 export const MediaDeleteForm = ({
   id,

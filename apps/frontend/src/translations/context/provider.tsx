@@ -9,7 +9,9 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // Types
-import { Locale, Localization } from '../types'
+import { Locale, Localization } from '@availabletowork/types'
+
+// Helpers
 import { getLocalizationProps } from './helpers'
 
 // UI

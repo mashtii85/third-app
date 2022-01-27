@@ -1,9 +1,9 @@
 /**
- * Components - Cources - View - Account - Components - Assignment - Reducer
+ * Components - Courses - View - Account - Components - Assignment - Reducer
  */
 
 // Types
-import { AssignmentState, AssignmentActionTypes } from './types.d'
+import { AssignmentState, AssignmentActionTypes } from '@availabletowork/types'
 
 export const reducer = (state: AssignmentState, action: AssignmentActionTypes): AssignmentState => {
   const newState = { ...state }

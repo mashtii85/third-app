@@ -18,8 +18,13 @@ import { uploadMediaToS3 } from './helpers'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 // Types
-import { MediaFormProps, MediaFormType, MediaSubmitFormType } from './types.d'
-import { Medium, DropzoneType } from '../../../../types/medium.d'
+import {
+  MediaFormProps,
+  MediaFormType,
+  MediaSubmitFormType,
+  Medium,
+  DropzoneType
+} from '@availabletowork/types'
 
 export const MediaForm = ({
   filters,

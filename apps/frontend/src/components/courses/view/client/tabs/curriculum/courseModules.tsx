@@ -18,11 +18,13 @@ import { Toolbar } from './helpers'
 import { CourseModuleOrderingHelper } from './orderingHelper'
 
 // Types
-import { offCanvasType } from '../../../../../../types/offCanvas.d'
-import { Module } from '../../../../../../types/module.d'
-import { STATUS_ACTIVE } from '../../../../../../types/select.d'
-import { ModuleFormType } from '../../../../../module/forms/create/types.d'
-import { ModuleFilter } from '../../../../../module/hooks/useModule/types.d'
+import {
+  Module,
+  ModuleFilter,
+  ModuleFormType,
+  offCanvasType,
+  STATUS_ACTIVE
+} from '@availabletowork/types'
 
 export const ClientCourseModule = ({ courseId }: { courseId: number }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

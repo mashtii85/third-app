@@ -3,13 +3,10 @@
  */
 
 // Types
-import type { Navigation } from '../../../types/navigation'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { Navigation, pages, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
 
 // Helpers
 import { prepareTaxonomyNavigation } from './helpers'
-
-import pages from '../../pages'
 
 export const Admin = (taxonomies?: Taxonomy[]): Navigation => {
   const clientTypes = prepareTaxonomyNavigation(taxonomies, TAXONOMY_TYPE.Client)

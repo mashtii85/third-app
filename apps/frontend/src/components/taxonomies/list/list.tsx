@@ -5,7 +5,8 @@
 // UI
 import { LayoutList } from '../../../layouts/list'
 import { TaxonomyTable as Table } from './table/table'
-import { TableProps } from './types'
+import { TableProps } from '@availabletowork/types'
+
 const TaxonomyList = (props: TableProps) => {
   const initialFilters = {
     q: null,

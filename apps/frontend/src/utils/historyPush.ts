@@ -3,7 +3,7 @@
  *
  */
 
-import { LooseObject } from '../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const historyPush = (params: LooseObject): void => {
   const url = new URL(window?.location as any)

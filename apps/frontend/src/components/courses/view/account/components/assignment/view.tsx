@@ -1,5 +1,5 @@
 /**
- * Components - Cources - View - Account - Components - Assignment
+ * Components - Courses - View - Account - Components - Assignment
  */
 
 // React
@@ -12,12 +12,17 @@ import { Space } from '@drykiss/industry-ui'
 import { Buttons } from './helpers'
 
 // Types
-import { Lesson } from '../../../../../../types/lesson.d'
-import { LessonProgress, LESSON_PROGRESS_STATUS } from '../../../../../../types/lessonProgress.d'
-import { AssignmentActionTypes, AssignmentState } from './types.d'
-import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../../../types/medium.d'
-import { Taxonomy } from '../../../../../../types/taxonomy.d'
-import { CurrentUser } from '../../../../../../types/user.d'
+import {
+  AssignmentActionTypes,
+  AssignmentState,
+  CurrentUser,
+  Lesson,
+  LessonProgress,
+  LESSON_PROGRESS_STATUS,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  Taxonomy
+} from '@availabletowork/types'
 import { reducer } from './reducer'
 
 export const CourseLessonAssignment = ({

@@ -11,7 +11,7 @@ import { GET_TAXONOMIES } from '../../queries'
 import { prepareTaxonomyArguments } from '../helpers'
 
 // Types
-import { TaxonomiesData, TaxonomyFilters, UseTaxonomiesOutput } from './types'
+import { TaxonomiesData, TaxonomyFilters, UseTaxonomiesOutput } from '@availabletowork/types'
 
 export const useTaxonomies = (filter: TaxonomyFilters): UseTaxonomiesOutput => {
   const variables = prepareTaxonomyArguments(filter)

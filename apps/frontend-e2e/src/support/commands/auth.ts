@@ -6,8 +6,7 @@ import { timer } from '../../constants/misc'
 
 export const login = (email: string, password: string): void => {
   const tokenName = 'bearerToken'
-  const token =
-    Cypress.env(tokenName)
+  const token = Cypress.env(tokenName)
   if (!token || token.length == 0) {
     cy.log('get token from api')
     const url = Cypress.env('frontendUrl')
@@ -35,5 +34,4 @@ export const login = (email: string, password: string): void => {
     window.localStorage.setItem(tokenName, token)
     cy.log('token exist')
   }
-
 }

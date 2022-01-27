@@ -8,12 +8,13 @@ import { CREATE_GROUP_ENTITY, GET_GROUP_ENTITIES } from '../../queries/queries'
 
 // Types
 import {
+  GroupEntity,
   GroupEntityCreateData,
   GroupEntityVariables,
   UseCreateGroupEntityOutput,
   UseCreateGroupEntityProps
-} from './types'
-import { GroupEntity } from '../../../../types/groupEntity'
+} from '@availabletowork/types'
+
 import { prepareGroupEntitiesArguments } from '../helpers'
 
 export const useCreateGroupEntity = (

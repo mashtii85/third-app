@@ -8,7 +8,11 @@ import { GET_GROUP_ENTITIES } from '../../queries/queries'
 import { prepareGroupEntitiesArguments } from '../helpers'
 
 // Types
-import { GroupEntityDataList, GroupEntityFilter, UseGroupEntityOutput } from './types'
+import {
+  GroupEntityDataList,
+  GroupEntityFilter,
+  UseGroupEntityOutput
+} from '@availabletowork/types'
 
 export const useGroupEntities = (filters: Partial<GroupEntityFilter>): UseGroupEntityOutput => {
   const variables = prepareGroupEntitiesArguments({ filters })

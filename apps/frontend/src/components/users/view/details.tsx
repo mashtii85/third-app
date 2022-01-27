@@ -15,14 +15,14 @@ import {
   OffCanvasContext
 } from '@drykiss/industry-ui'
 
-// Types
+// Hooks
 import { UpsertUserForm } from '../forms'
-import { offCanvasType } from '../../../types/offCanvas'
+
+// Types
+import { LOCALE_NS, offCanvasType, User } from '@availabletowork/types'
 
 // I18n
 import useTranslation from '../../../translations/hooks/useTranslation'
-import { LOCALE_NS } from '../../../types/locales'
-import { User } from '../../../types/user'
 
 export const UserDetails = ({ user }: { user: Partial<User> }) => {
   const offCanvas: offCanvasType = useContext(OffCanvasContext)

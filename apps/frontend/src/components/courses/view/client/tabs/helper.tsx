@@ -12,11 +12,10 @@ import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
 import { UpsertCourseForm } from '../../../forms'
 
 // types
-import { CourseToolbarType } from './types.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
+import { CourseToolbarType, offCanvasType } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 export const Toolbar = ({ courseToolbarProps }: { courseToolbarProps: CourseToolbarType }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

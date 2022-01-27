@@ -23,7 +23,7 @@ import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 import { useCurrentUser } from '../../../../../utils/useCurrentUser'
 
 // Constants
-import { ENTITIES } from '../../../../../constants/entities'
+import { ENTITIES } from '@availabletowork/types'
 
 // Forms
 import { MediaForm } from '../../../../media/forms/create/form'
@@ -32,15 +32,22 @@ import { MediaForm } from '../../../../media/forms/create/form'
 import { Toolbar } from './helper'
 
 // Types
-import { Course } from '../../../../../types/course.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
-import { MediaFilter, UseMediaProps } from '../../../../media/hooks/useMedia/types.d'
-import { DropzoneProps, Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../../types/medium.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { MediaFormType } from '../../../../media/forms/create/types.d'
+import {
+  Course,
+  CourseFilter,
+  CourseToolbarType,
+  DropzoneProps,
+  Medium,
+  MEDIUM_CATEGORY,
+  MediaFilter,
+  MediaFormType,
+  MEDIUM_TYPE,
+  offCanvasType,
+  STATUS_ACTIVE,
+  UseMediaProps
+} from '@availabletowork/types'
+
 import { CoverImage } from '../../../../common/coverImage/coverImage'
-import { CourseToolbarType } from './types.d'
-import { CourseFilter } from '../../../hooks/types.d'
 
 export const ClientDetails = ({ courseId }: { courseId: number }) => {
   const { course, loading, error } = useCourse(courseId)

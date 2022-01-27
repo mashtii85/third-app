@@ -4,8 +4,12 @@
 
 // UI
 import { Button, ButtonToolbar, Divider } from '@drykiss/industry-ui'
-import { SIZE } from '../../../config/theme'
-import { LooseObject } from '../../../types/object'
+
+// Constants
+import { SIZE } from '@availabletowork/types'
+
+// Types
+import { LooseObject } from '@availabletowork/types'
 
 export const AddButton = ({
   children,

@@ -3,7 +3,7 @@
  */
 
 // Types
-import { GraphQLWhereClause } from '../types/graphQL.d'
+import { GraphQLWhereClause } from '@availabletowork/types'
 
 const camelToSnakeCase = (str: string): string =>
   str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)

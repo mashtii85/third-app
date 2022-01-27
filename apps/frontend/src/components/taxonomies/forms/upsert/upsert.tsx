@@ -16,14 +16,14 @@ import { useCreateTaxonomy } from '../../hooks'
 
 // UI
 import { Form, Input, Label, Select } from '@drykiss/industry-ui'
-import { statusActive } from '../../../../constants/status'
 import { TaxonomySchema as schema } from './schema'
 import { CustomFieldForm } from '../customFieldForm/customFieldForm'
 
+// Constants
+import { statusActive } from '@availabletowork/types'
+
 // Types
-import { TaxonomyFormProps } from './type'
-import { Taxonomy } from '../../../../types/taxonomy'
-import { UseCreateTaxonomyProps } from '../../hooks/useCreate/types'
+import { Taxonomy, TaxonomyFormProps, UseCreateTaxonomyProps } from '@availabletowork/types'
 
 export const TaxonomyUpsert = ({
   defaultValues,

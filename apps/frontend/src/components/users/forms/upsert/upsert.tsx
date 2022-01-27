@@ -12,14 +12,26 @@ import { yupResolver } from '@hookform/resolvers/yup'
 // UI
 import { Column, Form, Error, Input, Label, Row, Select } from '@drykiss/industry-ui'
 import { usersSchema as schema } from './schema'
-import { statusActive } from '../../../../constants/status'
-import { UserForm, UserFormProps } from './types.d'
+
+//Constants
+import { statusActive } from '@availabletowork/types'
+
+// Types
+import {
+  CreateUserModel,
+  localesOptions,
+  User,
+  UserForm,
+  UserFormProps,
+  UserMeta,
+  UserRow
+} from '@availabletowork/types'
+
+// Hooks
 import { useCreateUser, useUpdateUser } from '../../hooks'
-import { UserRow } from '../../../accounts/lists/accountUsers/table/types'
-import { CreateUserModel } from '../../hooks/useCreate/types'
+
+// Helpers
 import { hashPassword } from '../../../../services/auth/helpers'
-import { User, UserMeta } from '../../../../types/user'
-import { locales } from '../../../../types/locales'
 
 export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserFormProps) => {
   const {
@@ -141,7 +153,7 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
         </Label>
 
         <Label label="Language">
-          <Select {...defaultOptions} name={'meta.locale'} options={locales} />
+          <Select {...defaultOptions} name={'meta.locale'} options={localesOptions} />
           <Error message={errors?.meta?.locale?.message ?? ''} />
         </Label>
 

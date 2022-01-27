@@ -10,7 +10,7 @@ import {
   CourseAggregateVariables,
   UseTileDataOutput,
   UseTileDataProps
-} from './types.d'
+} from '@availabletowork/types'
 
 import { prepareTileData } from './helpers'
 

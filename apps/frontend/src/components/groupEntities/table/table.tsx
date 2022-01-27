@@ -18,10 +18,13 @@ import { useGroupEntities } from '../hooks'
 import { GroupEntityDeleteForm, UpsertGroupEntity } from '../forms'
 
 // Types
-import { GroupEntityFilter } from '../hooks/useGroupEntities/types'
-import { GroupEntityRow } from './types'
-import { GroupEntityDeleteType } from '../hooks/useDelete/types'
-import { offCanvasType } from '../../../types/offCanvas'
+import {
+  GroupEntityDeleteType,
+  GroupEntityFilter,
+  GroupEntityRow,
+  offCanvasType
+} from '@availabletowork/types'
+
 import { useTable } from '../../common/hooks/useTable'
 
 const initialSort = {}

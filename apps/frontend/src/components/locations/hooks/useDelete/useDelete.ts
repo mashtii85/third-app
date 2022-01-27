@@ -11,14 +11,14 @@ import { prepareLocationsArguments } from '../useLocations/helpers'
 
 // Types
 import {
+  Location,
   LocationDeleteData,
   LocationDeleteVariables,
+  LocationQuery,
+  GQLClause,
   useDeleteLocationProps,
   useDeleteLocationOutput
-} from './types.d'
-import { LocationQuery } from '../types'
-import { GQLClause } from '../../../../types/gql'
-import { Location } from '../../types'
+} from '@availabletowork/types'
 
 export const useDeleteLocation = (props: useDeleteLocationProps): useDeleteLocationOutput => {
   const [deleteLocation, { loading, data }] = useMutation<

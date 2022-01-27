@@ -10,11 +10,12 @@ import styled from 'styled-components'
 // UI
 import { Button, Card, CardBody, Column, Row, Space } from '@drykiss/industry-ui'
 
-import pages from '../../../config/pages'
+//ُTypes
+import { Course, pages } from '@availabletowork/types'
+
 import { useCourseEnrollment } from '../../courses/hooks/useCourseEnrollment/useCourseEnrollment'
 import { useCreateEnrollment } from '../../enrollments/hooks/useCreate/useCreate'
 import { useCurrentUser } from '../../../utils/useCurrentUser'
-import { Course } from '../../../types/course'
 
 export const AccountCourseList = ({ show }: { show?: string }) => {
   const { user } = useCurrentUser()

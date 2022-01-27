@@ -9,8 +9,9 @@ import { useMutation } from '@apollo/client'
 import { DELETE_TAXONOMY, GET_TAXONOMIES } from '../../queries'
 
 // Types
-import { UseDeleteTaxonomyOutput, UseDeleteTaxonomyProps } from './types'
-import { Taxonomy } from '../../../../types/taxonomy'
+import { Taxonomy, UseDeleteTaxonomyOutput, UseDeleteTaxonomyProps } from '@availabletowork/types'
+
+// Helpers
 import { prepareTaxonomyArguments } from '../helpers'
 
 export const useDeleteTaxonomy = (props: UseDeleteTaxonomyProps): UseDeleteTaxonomyOutput => {

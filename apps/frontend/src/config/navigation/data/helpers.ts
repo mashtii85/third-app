@@ -3,8 +3,7 @@
  */
 
 // Types
-import type { NavLink } from '../../../types/navigation'
-import { Taxonomy, TAXONOMY_TYPE } from '../../../types/taxonomy.d'
+import { NavLink, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
 
 export const prepareTaxonomyNavigation = (
   taxonomies: Taxonomy[] = [],

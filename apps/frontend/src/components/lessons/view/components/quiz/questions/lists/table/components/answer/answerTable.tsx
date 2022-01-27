@@ -5,7 +5,7 @@
 // UI
 
 // Types
-import { Taxonomy } from '../../../../../../../../../../types/taxonomy.d'
+import { Taxonomy } from '@availabletowork/types'
 import { AnswerRow } from './answerRow'
 
 export const AnswerTable = ({

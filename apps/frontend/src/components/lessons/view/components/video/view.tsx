@@ -13,13 +13,20 @@ import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 import { LessonMediaContentToolbar } from '../../helpers'
 import { parseVideos } from '../../../../courses/helpers'
 
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
+
 // Types
-import { MediaFilter, UseMediaProps } from '../../../../media/hooks/useMedia/types.d'
-import { STATUS_ACTIVE } from '../../../../../types/select.d'
-import { DropzoneProps, Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../../../../../types/medium.d'
-import { MediaFormType } from '../../../../media/forms/create/types.d'
-import { ENTITIES } from '../../../../../constants/entities'
-import { Subtitle } from '../../../../common/videoPlayer/type'
+import {
+  DropzoneProps,
+  MediaFilter,
+  MediaFormType,
+  Medium,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  Subtitle,
+  UseMediaProps
+} from '@availabletowork/types'
 
 export const LessonVideo = ({
   medium,

@@ -12,8 +12,11 @@ import { Checkbox, Form } from '@drykiss/industry-ui'
 
 // Types
 import { ApolloError } from '@apollo/client'
-import { NotificationSettingsType, UserMeta } from '../../../../../types/user.d'
-import { NotificationSettingsProps } from './types'
+import {
+  NotificationSettingsProps,
+  NotificationSettingsType,
+  UserMeta
+} from '@availabletowork/types'
 
 // Hooks
 import { useUpdateUser } from '../../../hooks'

@@ -6,7 +6,7 @@
 import { createContext } from 'react'
 
 // Types
-import { ContextProps } from './types.d'
+import { ContextProps } from '@availabletowork/types'
 
 export const I18nContext = createContext<ContextProps>({
   localization: {

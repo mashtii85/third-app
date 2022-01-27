@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_LESSON_BY_PK } from '../../queries/queries'
 
 // Types
-import { LessonUpdateData, LessonUpdateVariables, UseUpdateLessonOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  LessonUpdateData,
+  LessonUpdateVariables,
+  UseHookProps,
+  UseUpdateLessonOutput
+} from '@availabletowork/types'
 
 export const useUpdateLesson = (props: UseHookProps<LessonUpdateData>): UseUpdateLessonOutput => {
   const [updateLesson, { loading, error }] = useMutation<LessonUpdateData, LessonUpdateVariables>(

@@ -7,10 +7,14 @@ import { useMutation } from '@apollo/client'
 import { DELETE_LESSON_BY_PK, GET_LESSONS } from '../../queries/queries'
 
 // Types
-import { LessonDeleteData, LessonDeleteVariables, UseDeleteLessonOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
-import { Lesson } from '../../../../types/lesson.d'
-import { GQLClause } from '../../../../types/gql.d'
+import {
+  GQLClause,
+  Lesson,
+  LessonDeleteData,
+  LessonDeleteVariables,
+  UseDeleteLessonOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useDeleteLesson = (
   moduleId: number,

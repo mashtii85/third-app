@@ -3,9 +3,12 @@
  */
 
 // Types
-import { GQLClause, GraphqlWhere } from '../../../../types/gql'
-import { Location } from '../../types'
-import { PrepareLocationArgumentProps } from './types.d'
+import {
+  GQLClause,
+  GraphqlWhere,
+  Location,
+  PrepareLocationArgumentProps
+} from '@availabletowork/types'
 
 export const prepareLocationsArguments = ({
   filters

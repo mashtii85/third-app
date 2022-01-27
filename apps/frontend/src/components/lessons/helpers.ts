@@ -2,10 +2,8 @@
  * Components - Lessons - Helpers
  */
 
-import { Course } from '../../types/course'
-import { Lesson } from '../../types/lesson'
-import { LessonProgress } from '../../types/lessonProgress'
-import { Module } from '../../types/module'
+//Types
+import { Course, Lesson, LessonProgress, Module } from '@availabletowork/types'
 
 const getCurrentLesson = (
   course: Course,

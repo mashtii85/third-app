@@ -8,11 +8,14 @@ import { CREATE_RESOURCES } from '../../queries/queries'
 import { GET_POSTS } from '../../../../posts/queries/queries'
 
 // Types
-import { ResourceCreateData, UseCreateResourceOutput } from './types.d'
-import { PostFilter } from '../../../../posts/hooks/usePost/types.d'
-import { UseHookProps } from '../../../../../types/hook.d'
-import { Post } from '../../../../../types/post.d'
-import { GraphqlWhere } from '../../../../../types/gql.d'
+import {
+  GraphqlWhere,
+  Post,
+  PostFilter,
+  ResourceCreateData,
+  UseCreateResourceOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useCreateResource = (
   filters: Partial<PostFilter>,

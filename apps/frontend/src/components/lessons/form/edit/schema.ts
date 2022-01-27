@@ -6,10 +6,9 @@
 import { number, object, string, mixed, SchemaOf } from 'yup'
 
 // Types
-import { LESSON_TYPE } from '../../../../types/lesson.d'
-import { LessonFormType } from './types.d'
+import { UpdateLessonFormType, LESSON_TYPE } from '@availabletowork/types'
 
-export const lessonSchema: SchemaOf<LessonFormType> = object().shape({
+export const lessonSchema: SchemaOf<UpdateLessonFormType> = object().shape({
   id: number().required(),
   type: mixed().oneOf(Object.values(LESSON_TYPE)),
   content: string().required()

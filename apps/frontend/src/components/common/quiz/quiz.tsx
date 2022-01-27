@@ -5,12 +5,12 @@ import { Button } from '@drykiss/industry-ui'
 import styled from 'styled-components'
 import { Center } from '../wrappers/horizontalCenter'
 
-import { QuizActionTypes, QuizProps, QuizState } from './types.d'
+//Types
+import { QUIZ_QUESTION_TYPE, QuizActionTypes, QuizProps, QuizState } from '@availabletowork/types'
+
 import { calculateScore } from './helpers'
-import { QUESTION_TYPE } from '../../lessons/view/components/quiz/questions/form/upsert/type.d'
 import { Radio } from './icons/radio'
 import { CheckBox } from './icons/checkbox'
-// import VideoPlayer from '../videoPlayer/videoPlayer'
 import { QuizResult } from './components/quizResults'
 
 const reducer = (state: QuizState, action: QuizActionTypes) => {
@@ -183,7 +183,7 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
           <>
             <MessageWrapper>
               please select
-              {activeQuestion.meta?.type === QUESTION_TYPE.SingleAnswer
+              {activeQuestion.meta?.type === QUIZ_QUESTION_TYPE.SingleAnswer
                 ? ' an answer'
                 : ' one or more answers'}
             </MessageWrapper>
@@ -192,10 +192,10 @@ export const Quiz = ({ minimumScoreToPass = 50, quizScoreInfo, ...props }: QuizP
               const isSelected = selectedAnswers.indexOf(item.id) !== -1
               return (
                 <StyledAnswer key={item.id} onClick={() => handleAnswerClick(item.id)}>
-                  {activeQuestion.meta?.type === QUESTION_TYPE.SingleAnswer && (
+                  {activeQuestion.meta?.type === QUIZ_QUESTION_TYPE.SingleAnswer && (
                     <Radio checked={isSelected} />
                   )}
-                  {activeQuestion.meta?.type === QUESTION_TYPE.MultipleAnswers && (
+                  {activeQuestion.meta?.type === QUIZ_QUESTION_TYPE.MultipleAnswers && (
                     <CheckBox checked={isSelected} />
                   )}
                   <AnswerWrapper>

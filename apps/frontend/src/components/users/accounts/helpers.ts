@@ -6,12 +6,10 @@
 import { capitalize, TableActions, TableLink } from '@drykiss/industry-ui'
 
 // Types
-import type { AccountUsers } from '../../../types/user'
+import { AccountProfileRows, AccountUsers, Column } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '../../../constants/themeContext'
-import { Column } from '../../../types/column'
-import { AccountProfileRows } from './types'
+import { THEME_CONTEXT } from '@availabletowork/types'
 
 export const columns = ({ isNotAdmin }: { isNotAdmin: boolean }): Column<AccountProfileRows>[] => {
   return [

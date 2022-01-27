@@ -9,8 +9,12 @@ import { memo } from 'react'
 import { Label, ReactSelect } from '@drykiss/industry-ui'
 
 // Types
-import { SelectProps } from './types.d'
+import { SelectProps } from '@availabletowork/types'
+
+// Helpers
 import { checkProps, getQuery } from './helpers'
+
+// Hooks
 import { useSelect } from './useSelect/useSelect'
 
 const Select = ({

@@ -17,23 +17,21 @@ import {
 // Utils
 import { formatToValidDate } from '../../../../../utils/dateFormatter'
 
-// Forms
-import { Account, ACCOUNT_TYPE } from '../../../../../types/account.d'
-import { Column } from '../../../../../types/column'
+// Types
+import {
+  Account,
+  AccountFilters,
+  AccountsRow,
+  ACCOUNT_TYPE,
+  Column,
+  offCanvasType,
+  pages,
+  THEME_CONTEXT,
+  User
+} from '@availabletowork/types'
 
 import { UpsertAccount } from '../../../forms'
-
-import pages from '../../../../../config/pages'
-
-// Types
-import { AccountFilters } from '../../../types.d'
-import { AccountsRow } from './types.d'
-import { offCanvasType } from '../../../../../types/offCanvas.d'
-// Constants
-
-import { THEME_CONTEXT } from '../../../../../constants/themeContext'
 import { generatePassword } from '../../../../../utils/passwordGenerator'
-import { User } from '../../../../../types/user'
 
 const actionsData = ({
   handleEdit,

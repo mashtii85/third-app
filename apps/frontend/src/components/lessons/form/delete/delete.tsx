@@ -2,7 +2,8 @@
  * Components - Lessons - Form - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+//Types
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'

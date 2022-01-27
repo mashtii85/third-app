@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import { UserContext } from '@drykiss/industry-ui'
 
 // Types
-import { CurrentUser } from '../types/user'
+import { CurrentUser } from '@availabletowork/types'
 
 interface CurrentUserData {
   signIn: () => void

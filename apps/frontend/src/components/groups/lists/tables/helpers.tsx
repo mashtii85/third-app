@@ -9,15 +9,19 @@ import { MouseEvent, useContext } from 'react'
 import { Button, ButtonToolbar, OffCanvasContext, TableActions } from '@drykiss/industry-ui'
 
 // Types
-import { Group } from '../../../../types/group.d'
-import { GroupTableRowsType } from './types.d'
-import { Column } from '../../../../types/column.d'
-import { STATUS_ACTIVE } from '../../../../types/select.d'
-import { GroupFilter } from '../../hooks/useGroups/types'
+import {
+  Column,
+  Group,
+  GroupFilter,
+  GroupTableRowsType,
+  offCanvasType
+} from '@availabletowork/types'
+
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
 
 // Forms
 import { GroupForm } from '../../forms/upsert/form'
-import { offCanvasType } from '../../../../types/offCanvas'
 
 export const columns = ({
   handleDelete,

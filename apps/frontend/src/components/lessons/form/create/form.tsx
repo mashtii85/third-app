@@ -21,7 +21,7 @@ import {
   LESSON_TYPE_DROPDOWN,
   LESSON_STATUS_DROPDOWN,
   LessonUpsertFormFilterType
-} from './types.d'
+} from '@availabletowork/types'
 
 export const LessonForm = ({
   filters,

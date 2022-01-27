@@ -6,8 +6,7 @@
 import { mixed, object, string } from 'yup'
 
 // Types
-import { POST_TYPE } from '../../../../../../src/types/post.d'
-import { STATUS_ACTIVE } from '../../../../../../src/types/select.d'
+import { POST_TYPE, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const ResourcesSchema = object()
   .shape({

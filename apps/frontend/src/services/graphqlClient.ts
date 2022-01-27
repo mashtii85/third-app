@@ -6,7 +6,7 @@
 import { GraphQLClient } from 'graphql-request'
 
 // Types
-import { LooseObject } from '../types/object'
+import { LooseObject } from '@availabletowork/types'
 
 export const gqlClient = async (): Promise<any> => {
   const endpoint: string = process.env.NEXT_PUBLIC_GRAPHQL_URL || ''

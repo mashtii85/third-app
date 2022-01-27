@@ -12,9 +12,14 @@ import { useEffect } from 'react'
 import { nullFreeObject } from '../utils/nullFreeObject'
 import { historyPush } from '../utils/historyPush'
 
+// Hooks
 import { useWatcher } from '../components/locations/list/useWatcher'
-import { STATUS_ACTIVE } from '../types/select.d'
-import { LooseObject } from '../types/object'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Types
+import { LooseObject } from '@availabletowork/types'
 
 export const Filters = ({
   initialValues = {},

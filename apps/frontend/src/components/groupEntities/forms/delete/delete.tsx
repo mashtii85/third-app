@@ -2,14 +2,15 @@
  * Components - GroupEntities - Forms - Delete - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+//Constants
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteGroupEntity } from '../../hooks'
 
 // Types
-import { GroupEntityDeleteType } from '../../hooks/useDelete/types'
+import { GroupEntityDeleteType } from '@availabletowork/types'
 
 export const GroupEntityDeleteForm = (props: GroupEntityDeleteType) => {
   const { deleteGroupEntity } = useDeleteGroupEntity({

@@ -15,7 +15,7 @@ import {
   UseCreateCourseOutput,
   CourseQueryData,
   CreateCourseVariables
-} from './types'
+} from '@availabletowork/types'
 
 export const useCreateCourse = (props: UseCreateCourseProps): UseCreateCourseOutput => {
   const [createCourse, { error, loading }] = useMutation<CreateCourseVariables>(CREATE_COURSE, {

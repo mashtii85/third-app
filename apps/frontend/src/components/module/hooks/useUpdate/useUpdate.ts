@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_MODULE_BY_PK } from '../../queries/queries'
 
 // Types
-import { ModuleUpdateData, ModuleUpdateVariables, UseUpdateModuleOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  ModuleUpdateData,
+  ModuleUpdateVariables,
+  UseUpdateModuleOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useUpdateModule = (props: UseHookProps<ModuleUpdateData>): UseUpdateModuleOutput => {
   const [updateModule, { loading, error }] = useMutation<ModuleUpdateData, ModuleUpdateVariables>(

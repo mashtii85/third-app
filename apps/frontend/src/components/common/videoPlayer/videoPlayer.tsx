@@ -13,13 +13,15 @@ import { Setting } from './components/setting/setting'
 import { Skip } from './components/skip'
 import { Volume } from './components/volume'
 import { numberOfSecondsToTime } from './helpers'
+
+//Types
 import {
   PlayerActionTypes,
   PlayerState,
   SpeedOption,
   VideoPlayerProps,
   VideoProgress
-} from './type.d'
+} from '@availabletowork/types'
 
 const reducer = (state: PlayerState, action: PlayerActionTypes) => {
   const newState = { ...state }

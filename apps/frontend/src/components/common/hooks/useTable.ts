@@ -8,8 +8,7 @@ import { useRef } from 'react'
 // Config
 import { generalConfig } from '../../../config/config'
 import { IsJsonString } from '../../../utils/isJson'
-import { OrderBy } from '../../../types/orderBy'
-import { UseTableProps, UseTableOutput } from './types.d'
+import { OrderBy, UseTableProps, UseTableOutput } from '@availabletowork/types'
 
 export const useTable = <T>({ filters, initialSort }: UseTableProps<T>): UseTableOutput<T> => {
   const ref = useRef<any>()

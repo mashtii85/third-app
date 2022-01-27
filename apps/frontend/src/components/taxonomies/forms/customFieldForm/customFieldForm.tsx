@@ -15,8 +15,11 @@ import { useFieldArray, useWatch } from 'react-hook-form'
 // UI
 import { Checkbox, Column, Input, Label, LazyIcon, Row, Select, Space } from '@drykiss/industry-ui'
 
-import { input, inputType } from '../../../../constants/inputTypes'
-import { CustomFieldFormProps } from './types.d'
+// Constants
+import { input, inputType } from '@availabletowork/types'
+
+// Types
+import { CustomFieldFormProps } from '@availabletowork/types'
 
 import { customFieldEntityOptions } from './helpers'
 

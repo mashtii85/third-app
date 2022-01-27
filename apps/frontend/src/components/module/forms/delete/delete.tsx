@@ -2,14 +2,15 @@
  * Components - Module - Forms - Delete
  */
 
-import { SIZE } from '../../../../config/theme'
+// Constants
+import { SIZE } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteModule } from '../../hooks/useDelete/useDelete'
 
 // Types
-import { ModuleDeleteProps } from '../../hooks/useDelete/types.d'
+import { ModuleDeleteProps } from '@availabletowork/types'
 
 export const ModuleDeleteForm = ({
   id,

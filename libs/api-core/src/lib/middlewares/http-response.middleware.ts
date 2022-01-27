@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable, NestMiddleware } from '@nestjs/common'
 import { NextFunction } from 'express'
-import { LOG, LOG_LEVEL } from '../utils/logger'
+import { LOG, LOG_LEVEL } from '@availabletowork/types'
 
 @Injectable()
 export class HttpResponseMiddleware implements NestMiddleware {
