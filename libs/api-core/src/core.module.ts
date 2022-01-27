@@ -32,6 +32,7 @@ import { StatusController } from './routes/status/status.controller'
 })
 export class CoreModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ApiKeyMiddleware).forRoutes('/*')
+    consumer.apply(ApiKeyMiddleware).forRoutes('/media*')
+    consumer.apply(ApiKeyMiddleware).forRoutes('/app*')
   }
 }
