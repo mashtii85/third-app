@@ -2,9 +2,10 @@
  * Services - App - Hooks - Types
  */
 
+// Types
 import { QueryLazyOptions } from '@apollo/client'
-import { UseHookOutput } from '../../../types/hook'
-import { AppSettings } from '../types'
+import { AppSettings } from '.'
+import { UseHookOutput } from '..'
 
 export interface UseAppSettingsOutput extends UseHookOutput {
   appSettings: AppSettings

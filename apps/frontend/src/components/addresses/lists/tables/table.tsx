@@ -11,8 +11,7 @@ import { Toolbar } from './helpers'
 // Hooks
 
 // Type
-import { UseAddressProps } from '../../hooks/types.d'
-import { Address, ADDRESS_TYPE } from '../../../../types/address.d'
+import { Address, ADDRESS_TYPE, UseAddressProps } from '@availabletowork/types'
 
 export const AddressTable = ({
   addressType,

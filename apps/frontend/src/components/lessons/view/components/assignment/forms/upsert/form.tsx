@@ -16,7 +16,7 @@ import { AnswersSchema as schema } from './schema'
 
 // Types
 import {
-  AnswerFormType,
+  AssignmentAnswerFormType,
   AssignmentAnswerSubmitType,
   CheckboxDataType,
   MEDIUM_TYPE,
@@ -25,7 +25,7 @@ import {
   UseUpdateTaxonomyProps
 } from '@availabletowork/types'
 
-export const AssignmentAnswerForm = ({ defaultValues, onSuccess }: AnswerFormType) => {
+export const AssignmentAnswerForm = ({ defaultValues, onSuccess }: AssignmentAnswerFormType) => {
   const {
     control,
     formState: { errors = {} },

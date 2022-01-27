@@ -44,17 +44,15 @@ export const AssignmentFooter = ({
   }
 
   const handleManageAnswers = () => {
-    const defaultValues = answer
-      ? {}
-      : {
-          client_id: user.client_id,
-          entity_id: lesson.id,
-          entity: ENTITIES.Lesson,
-          name: 'Assignment answer',
-          status: STATUS_ACTIVE.Active,
-          type: TAXONOMY_TYPE.LessonAnswers,
-          meta: { type: ANSWER_TYPE.Assignment }
-        }
+    const defaultValues: Partial<Taxonomy> = answer ?? {
+      client_id: user.client_id,
+      entity_id: lesson.id,
+      entity: ENTITIES.Lesson,
+      name: 'Assignment answer',
+      status: STATUS_ACTIVE.Active,
+      type: TAXONOMY_TYPE.LessonAnswers,
+      meta: { type: ANSWER_TYPE.Assignment }
+    }
     offCanvas.show({
       title: 'Edit Properties',
       submit: true,

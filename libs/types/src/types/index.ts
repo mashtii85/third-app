@@ -1,6 +1,7 @@
 export * from './accounts'
 export * from './addresses'
 export * from './api'
+export * from './app'
 export * from './auth'
 export * from './common'
 export * from './courses'

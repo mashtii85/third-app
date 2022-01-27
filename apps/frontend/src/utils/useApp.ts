@@ -7,7 +7,7 @@ import { useContext } from 'react'
 
 // UI
 import { AppContext } from '../services/app'
-import { AppContextType } from '../services/app/types'
+import { AppContextType } from '@availabletowork/types'
 
 export const useApp = (): Partial<AppContextType> => {
   const app = useContext(AppContext)

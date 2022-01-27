@@ -3,7 +3,6 @@
  */
 
 //Types
-import { Options } from 'graphql/utilities/extendSchema'
 import { Filter, LooseObject, STATUS_ACTIVE } from '../general'
 import { Taxonomy } from '../taxonomies'
 

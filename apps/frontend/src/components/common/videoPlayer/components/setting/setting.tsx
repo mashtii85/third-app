@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { SettingProps, SettingType, SpeedOption, SpeedSetting } from '../../type'
+import { SettingProps, SettingType, SpeedOption, SpeedSetting } from '@availabletowork/types'
 import { ArrowLeftIcon } from './arrowLeftIcon'
 import { ArrowRightIcon } from './arrowRightIcon'
 import { CheckedCircleIcon } from './checkedCircleIcon'

@@ -27,7 +27,7 @@ import { fields, StyledColour, StyledField } from './helpers'
 import { useUpdateAccount } from '../../../../accounts/hooks'
 
 // Types
-import { Account } from '../../../../../types/account'
+import { Account } from '@availabletowork/types'
 
 export const ColorSchemeForm = ({
   account,

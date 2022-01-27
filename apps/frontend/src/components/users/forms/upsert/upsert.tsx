@@ -113,7 +113,6 @@ export const UpsertUserForm = ({ defaultValues = {}, filters, onSuccess }: UserF
         password: hashPassword(password),
         email_verified: false
       }
-
       createUser({ variables: { object } })
     }
   }

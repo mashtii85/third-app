@@ -12,9 +12,7 @@ import { Button, OffCanvasContext } from '@drykiss/industry-ui'
 import { AddressListForm } from '../../forms/list/list'
 
 // Types
-import { UseAddressProps } from '../../hooks/types.d'
-import { offCanvasType } from '../../../../types/offCanvas.d'
-import { ADDRESS_TYPE } from '../../../../types/address.d'
+import { ADDRESS_TYPE, offCanvasType, UseAddressProps } from '@availabletowork/types'
 
 export const Toolbar = ({
   addressType,

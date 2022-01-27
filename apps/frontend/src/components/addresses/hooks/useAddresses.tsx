@@ -5,10 +5,12 @@
 // Apollo
 import { useQuery } from '@apollo/client'
 import { GET_ADDRESSES } from '../queries/queries'
-import { AddressesData, AddressFilter } from './types.d'
+
+// Types
+import { Address, AddressesData, AddressFilter, GQLClause } from '@availabletowork/types'
+
+// Helpers
 import { prepareArguments } from './helpers'
-import { Address } from '../../../types/address'
-import { GQLClause } from '../../../types/gql'
 
 export type AddressesVariables1 = {
   variables: GQLClause<Address>
