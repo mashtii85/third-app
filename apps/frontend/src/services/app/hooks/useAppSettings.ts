@@ -10,9 +10,13 @@ import { useLazyQuery } from '@apollo/client'
 import { APP_SETTINGS } from '../queries'
 
 // Types
-import { UseAppSettingsOutput } from './types'
-import { AppSettings } from '../types'
-import { locales, Locale, Localization } from '@availabletowork/types'
+import {
+  AppSettings,
+  locales,
+  Locale,
+  Localization,
+  UseAppSettingsOutput
+} from '@availabletowork/types'
 
 // Lodash
 import isEmpty from 'lodash/isEmpty'

@@ -1,8 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components'
 import DocumentViewer from '../../src/components/common/docViewer/docViewer'
-// import { Quiz } from '../../components/common/quiz/quiz'
-// import { QUESTION_TYPE } from '../../types/lesson.d'
 
 const PlaygroundPage = () => {
   return (

@@ -25,7 +25,7 @@ import { handlerOptions } from '../../../src/utils/api/handlers'
 import { TE } from '../../../src/utils/api/errors'
 
 // Types
-import { ApiUploadRequest } from '../../../src/utils/api/types'
+import { ApiUploadRequest } from '@availabletowork/types'
 import { UploadParams } from '../../../src/services/aws/s3/types'
 import { getMediumTypeByFileExtension } from '../../../src/components/courses/resources/forms/upsert/helpers'
 import { AWS } from '../../../src/config/aws'

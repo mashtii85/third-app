@@ -11,7 +11,7 @@ import { Button, Details, DetailsText, useConfig, useOffCanvas } from '@drykiss/
 import { BrandForm } from './form'
 
 // Types
-import { Account } from '../../../../../types/account'
+import { Account } from '@availabletowork/types'
 
 export const Brand = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()

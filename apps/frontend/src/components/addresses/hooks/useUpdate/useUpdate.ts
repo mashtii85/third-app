@@ -7,8 +7,12 @@ import { useMutation } from '@apollo/client'
 import { UPDATE_ADDRESS_BY_PK } from '../../queries/queries'
 
 // Types
-import { AddressUpdateData, AddressUpdateVariables, UseUpdateAddressOutput } from './types.d'
-import { UseHookProps } from '../../../../types/hook.d'
+import {
+  AddressUpdateData,
+  AddressUpdateVariables,
+  UseUpdateAddressOutput,
+  UseHookProps
+} from '@availabletowork/types'
 
 export const useUpdateAddress = (
   props: UseHookProps<AddressUpdateData>

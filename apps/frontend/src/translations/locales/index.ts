@@ -1,7 +1,5 @@
-import {
-  Locale,
-  Translations
-} from '../../../../../libs/shared/src/types/translations/translations'
+import { Locale, Translations } from '@availabletowork/types'
+
 import en from './en'
 import ar from './ar'
 import es from './es'

@@ -10,7 +10,7 @@ import { Brand } from './brand'
 import { ThemeLogo } from './logo'
 
 // Types
-import { Account } from '../../../../types/account'
+import { Account } from '@availabletowork/types'
 
 export const ThemeSettings = ({ account }: { account: Account | undefined }) => {
   return (

@@ -2,7 +2,7 @@
  * Components - Account - List - Table - Hooks - useUpdate
  */
 
-import { UseHookOutput } from '../../../../types/hook'
+import { UseHookOutput } from '..'
 
 export interface UseUpdateAccountOutput extends UseHookOutput {
   updateAccount: any

@@ -6,11 +6,15 @@
 import { Taxonomy } from '../taxonomies'
 
 interface AnswerFormType {
-  filters: Partial<Taxonomy>
-  defaultValues: Taxonomy[] | undefined
+  filters?: Partial<Taxonomy>
+  defaultValues: Taxonomy[]
   onSuccess: () => void
 }
-
+interface AssignmentAnswerFormType {
+  filters?: Partial<Taxonomy>
+  defaultValues: Partial<Taxonomy>
+  onSuccess: () => void
+}
 interface FieldType {
   name: string
   isCorrect: boolean

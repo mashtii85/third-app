@@ -11,8 +11,10 @@ import ErrorPage from '../../../pages/_error'
 import { isLocale } from '../../translations/config'
 
 // Types
+import { AppContextType, AppProps, SETTINGS_MODE } from '@availabletowork/types'
+
+// Hooks
 import { useAppSettings } from './hooks'
-import { AppContextType, AppProps, SETTINGS_MODE } from './types.d'
 
 export const AppContext = createContext<Partial<AppContextType>>({ taxonomies: [] })
 

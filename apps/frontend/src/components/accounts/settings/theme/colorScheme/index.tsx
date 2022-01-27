@@ -12,7 +12,7 @@ import { ColorSchemeForm } from './form'
 import { fields, StyledColour, StyledField } from './helpers'
 
 // Types
-import { Account } from '../../../../../types/account'
+import { Account } from '@availabletowork/types'
 
 export const ColorScheme = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()

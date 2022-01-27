@@ -13,7 +13,7 @@ import {
 import { CheckBox } from '../../../../../../../../../common/quiz/icons/checkbox'
 
 // Types
-import { QUESTION_TYPE, MEDIUM_TYPE, Taxonomy } from '@availabletowork/types'
+import { QUIZ_QUESTION_TYPE, MEDIUM_TYPE, Taxonomy } from '@availabletowork/types'
 
 export const AnswerRow = ({ question, answer }: { question: Taxonomy; answer: Taxonomy }) => {
   // The medium category should be check too
@@ -25,7 +25,7 @@ export const AnswerRow = ({ question, answer }: { question: Taxonomy; answer: Ta
   return (
     <>
       <StyledAnswer key={answer.id}>
-        {question?.meta?.type === QUESTION_TYPE.SingleAnswer ? (
+        {question?.meta?.type === QUIZ_QUESTION_TYPE.SingleAnswer ? (
           <Radio checked={false} />
         ) : (
           <CheckBox checked={false} />

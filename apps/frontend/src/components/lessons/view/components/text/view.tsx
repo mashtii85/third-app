@@ -13,7 +13,7 @@ import { Details, Button, ButtonToolbar } from '@drykiss/industry-ui'
 import { LessonContentEdit } from '../../../form/edit/contentForm'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT, UpdateLessonFormType } from '@availabletowork/types'
 
 // Types
 import { Lesson, LessonFormType } from '@availabletowork/types'
@@ -53,7 +53,7 @@ export const LessonContent = ({ lesson }: { lesson: Lesson }) => {
     )
   }
 
-  const defaultValues: LessonFormType = {
+  const defaultValues: UpdateLessonFormType = {
     id: lesson?.id,
     type: lesson?.type,
     content: lesson?.content

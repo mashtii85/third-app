@@ -9,7 +9,7 @@ import VideoPlayer from '../../../../../common/videoPlayer/videoPlayer'
 import { parseVideos } from '../../../../helpers'
 
 // Types
-import { Medium } from '../../../../../../types/medium.d'
+import { Medium } from '@availabletowork/types'
 
 export const CourseLessonVideo = ({ media }: { media: Medium[] }) => {
   return <>{media ? <VideoPlayer videos={parseVideos(media)} subtitles={[]} /> : 'No Video'}</>
