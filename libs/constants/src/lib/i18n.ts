@@ -1,4 +1,7 @@
-import { Options } from '@availabletowork/types'
+interface Options {
+  label: string
+  value: string | number
+}
 
 export enum LOCALE_NS {
   Home = 'home',
