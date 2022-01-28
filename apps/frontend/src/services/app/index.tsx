@@ -7,7 +7,7 @@ import { createContext } from 'react'
 
 // UI
 import { Loading } from '../../components/common/loading'
-import ErrorPage from '../../../pages/_error'
+import ErrorPage from '../../pages/_error'
 import { isLocale } from '../../translations/config'
 
 // Constants
