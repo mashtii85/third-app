@@ -1,5 +1,5 @@
 /**
- * Queries - Accounts - Queries
+ * Fragments - Accounts
  */
 
 // Apollo

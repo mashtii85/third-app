@@ -6,8 +6,7 @@
 import { gql } from '@apollo/client'
 
 // Fragments
-import { USER_FIELDS } from './fragments'
-import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS } from '../accounts'
+import { ACCOUNT_FIELDS, ACCOUNT_USER_FIELDS, USER_FIELDS } from '../fragments'
 
 export const GET_USER_BY_EMAIL = gql`
   query GetUserByEmail($email: String!) {
