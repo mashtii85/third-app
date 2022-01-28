@@ -2,10 +2,8 @@
  * Types - Course Enrollment
  */
 
-export enum COURSE_ENROLLMENT_STATUS {
-  Active = 'active',
-  Completed = 'completed'
-}
+// Constants
+import { COURSE_ENROLLMENT_STATUS } from '@availabletowork/constants'
 
 export interface CourseEnrollment {
   id?: number

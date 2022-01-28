@@ -2,10 +2,11 @@
  * Components - Lessons - Questions - Lists - Table - Types
  */
 
+// Constants
+import { ENTITIES, MEDIUM_CATEGORY, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Type
-import { MEDIUM_CATEGORY, MEDIUM_TYPE } from '.'
-import { ENTITIES } from '../../constants'
-import { STATUS_ACTIVE } from '../general'
+import { MEDIUM_TYPE } from '.'
 
 export interface MediaTableProps {
   entity: ENTITIES

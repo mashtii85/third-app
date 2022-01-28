@@ -2,9 +2,11 @@
  * Components - GroupEntity - Hooks - useGroupEntities - Types.d
  */
 
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES } from '../../constants'
-import { Filter, GroupEntity, STATUS_ACTIVE, UseHookOutput } from '../general'
+import { Filter, GroupEntity, UseHookOutput } from '../general'
 export interface GroupEntityFilter extends Filter {
   entityId: number
   entity: ENTITIES

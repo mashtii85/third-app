@@ -3,7 +3,7 @@
  */
 
 //Constants
-import { SIZE } from '@availabletowork/types'
+import { SIZE } from '@availabletowork/constants'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'

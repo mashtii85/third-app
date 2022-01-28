@@ -2,8 +2,11 @@
  * Components - Posts - Hooks - useDelete - Types
  */
 
+// Constants
+import { POST_TYPE } from '@availabletowork/constants'
+
 // Types
-import { Post, PostFilter, POST_TYPE } from '.'
+import { Post, PostFilter } from '.'
 import { UseHookOutput, UseHookProps } from '../general'
 
 export interface PostDeleteVariables {

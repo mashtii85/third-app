@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import { AuthorizationContext, Details, Table } from '@drykiss/industry-ui'
 
 // Constants
-import { ACCOUNT_TYPE } from '@availabletowork/types'
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 
 // Helpers
 import { columns, rows } from './helpers'

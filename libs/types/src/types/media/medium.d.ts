@@ -4,21 +4,9 @@
 
 // Types
 import { Post } from '../posts'
-import { STATUS_ACTIVE } from '../general'
 
-export enum MEDIUM_CATEGORY {
-  Avatar = 'avatar',
-  Cover = 'cover',
-  Logo = 'logo',
-  Lesson = 'lesson',
-  Resource = 'resource'
-}
-
-export enum MEDIUM_TYPE {
-  Document = 'document',
-  Image = 'image',
-  Video = 'video'
-}
+// Constants
+import { MEDIUM_CATEGORY, STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface DropzoneType extends Blob {
   lastModified: number

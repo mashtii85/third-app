@@ -14,11 +14,11 @@ import { useUpdateGroup } from '../../hooks/useUpdate/useUpdate'
 import { Select, Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { GroupSchema as schema } from './schema'
 
+//Constants
+import { statusActive } from '@availabletowork/constants'
+
 // Types
 import { GroupFormType } from '@availabletowork/types'
-
-//Constants
-import { statusActive } from '@availabletowork/types'
 
 export const GroupForm = ({
   defaultValues,

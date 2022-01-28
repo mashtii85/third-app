@@ -2,8 +2,10 @@
  * Components - Location - Forms - Upsert - types.d
  */
 
-//Types
-import { Options, STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+// Types
+import { Options } from '../general'
 import { LocationFilter } from './locations'
 
 export interface LocationFormType {

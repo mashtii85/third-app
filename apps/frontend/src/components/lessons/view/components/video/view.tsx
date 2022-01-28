@@ -14,7 +14,7 @@ import { LessonMediaContentToolbar } from '../../helpers'
 import { parseVideos } from '../../../../courses/helpers'
 
 // Constants
-import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
+import { ENTITIES, MEDIUM_CATEGORY, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import {
@@ -22,8 +22,6 @@ import {
   MediaFilter,
   MediaFormType,
   Medium,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
   Subtitle,
   UseMediaProps
 } from '@availabletowork/types'

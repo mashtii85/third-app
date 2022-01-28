@@ -13,10 +13,10 @@ import { LessonQuestionDeleteForm } from '../../../../form/delete/delete'
 import { AnswerForm } from '../../../../form/answers/form'
 
 // Constants
-import { SIZE, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/types'
+import { SIZE, STATUS_ACTIVE, TAXONOMY_TYPE, THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types
-import { offCanvasType, QuestionUpsertType, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
+import { offCanvasType, QuestionUpsertType, Taxonomy } from '@availabletowork/types'
 
 export const QuestionRowFooter = ({
   question,

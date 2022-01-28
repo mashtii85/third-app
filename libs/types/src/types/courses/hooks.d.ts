@@ -2,9 +2,12 @@
  * Components - Courses - Hooks - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Course } from '.'
-import { Filter, Options, STATUS_ACTIVE } from '../general'
+import { Filter, Options } from '../general'
 import { ApolloError } from '@apollo/client'
 import { Account } from '../accounts'
 
@@ -33,8 +36,6 @@ export interface EnrolmentOutputData {
 export interface EnrolledVariables {
   userId: number
 }
-
-// useCourse
 
 export type CourseDB = Course & Account
 export interface CourseData {

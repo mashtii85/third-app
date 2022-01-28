@@ -34,10 +34,8 @@ export type QuizActionTypes =
   | SetShortTextAnswerAction
 
 export interface QuizProps {
-  // taxonomies: Taxonomy[]
   questions: Taxonomy[]
   onQuizStateChanged: (action: CourseActionTypes) => void
-  /** default is 50 */
   minimumScoreToPass?: number
   quizScoreInfo?: QuizCompletedData
 }

@@ -2,7 +2,8 @@
  * Components - GroupEntities - Table - Types.d
  */
 
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface GroupEntityRow {
   id?: number

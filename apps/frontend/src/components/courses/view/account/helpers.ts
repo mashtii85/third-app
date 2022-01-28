@@ -8,18 +8,22 @@ import { formatDateStandard, formatTime } from '@drykiss/industry-ui'
 // Helpers
 import { startLesson } from './handler'
 
+// Constants
+import {
+  COURSE_ENROLLMENT_STATUS,
+  COURSE_PAGE_MODE,
+  LESSON_PROGRESS_STATUS,
+  LESSON_TYPE
+} from '@availabletowork/constants'
+
 // Types
 import {
   Course,
   CourseActionTypes,
-  COURSE_ENROLLMENT_STATUS,
-  COURSE_PAGE_MODE,
   CourseState,
   Lesson,
   LessonProgress,
   LessonProgressUpdateModel,
-  LESSON_PROGRESS_STATUS,
-  LESSON_TYPE,
   Module
 } from '@availabletowork/types'
 

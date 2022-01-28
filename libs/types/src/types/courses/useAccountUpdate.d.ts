@@ -2,9 +2,12 @@
  * Components - Courses - View - Account - Hooks - UseUpdate - Types.d
  */
 
-import { LessonProgress, LESSON_PROGRESS_STATUS, UseHookOutput } from '..'
+// Types
+import { LessonProgress, UseHookOutput } from '..'
 
-//
+// Constants
+import { LESSON_PROGRESS_STATUS } from '@availabletowork/constants'
+
 export interface LessonProgressUpdateVariables {
   id: number
   changes: { status: LESSON_PROGRESS_STATUS }

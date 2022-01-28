@@ -5,8 +5,11 @@
 // UI
 import { Space } from '@drykiss/industry-ui'
 
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
+
 // Types
-import { ACCOUNT_TYPE, ClientDashboardOverviewProps } from '@availabletowork/types'
+import { ClientDashboardOverviewProps } from '@availabletowork/types'
 
 // Hooks
 import { useAggregate } from '../hooks/useTileData'

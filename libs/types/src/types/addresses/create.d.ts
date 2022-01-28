@@ -2,7 +2,8 @@
  * Components - Addresses - Form - types.d
  */
 
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 interface ToolbarModel {
   entity: string

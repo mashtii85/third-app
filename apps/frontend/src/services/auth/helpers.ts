@@ -6,8 +6,11 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
+
 // Types
-import { ACCOUNT_TYPE, AccountUsers, CurrentUser, LoginDataModel } from '@availabletowork/types'
+import { AccountUsers, CurrentUser, LoginDataModel } from '@availabletowork/types'
 
 export const hashPassword = (password?: string): string | undefined => {
   if (password) {

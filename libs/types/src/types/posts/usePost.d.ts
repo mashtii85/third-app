@@ -3,10 +3,10 @@
  */
 
 // Types
-import { Post, POST_TYPE } from '.'
+import { Post } from '.'
 
 // Constants
-import { ENTITIES } from '../../constants'
+import { ENTITIES, POST_TYPE } from '@availabletowork/constants'
 
 export interface PostFilter {
   accountId: number

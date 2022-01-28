@@ -1,4 +1,7 @@
-import { Lesson, LESSON_STATUS, LESSON_TYPE, UseHookOutput } from '..'
+// Constants
+import { LESSON_STATUS, LESSON_TYPE } from '@availabletowork/constants'
+// Types
+import { Lesson, UseHookOutput } from '..'
 
 export interface LessonCreateVariables {
   courseId?: number

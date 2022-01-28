@@ -3,12 +3,12 @@
  */
 
 // Constants
-import { ENTITIES } from '../../constants'
+import { ENTITIES, MEDIUM_CATEGORY, POST_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
-// Types.d
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
-import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '../media'
-import { PostCustomFields, POST_TYPE } from '../posts'
+// Types
+import { UseHookOutput } from '../general'
+import { Medium, MEDIUM_TYPE } from '../media'
+import { PostCustomFields } from '../posts'
 
 export interface ResourceCreateType {
   caption: string

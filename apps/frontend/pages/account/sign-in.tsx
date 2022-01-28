@@ -14,8 +14,8 @@ import { Column, Label, Login, Page, Row, Select } from '@drykiss/industry-ui'
 
 import { useForm } from 'react-hook-form'
 
-// Types
-import { localesOptions, LOCALE_NS } from '@availabletowork/types'
+// Constants
+import { localesOptions, LOCALE_NS } from '@availabletowork/constants'
 
 // I18n
 import useTranslation from '../../src/translations/hooks/useTranslation'

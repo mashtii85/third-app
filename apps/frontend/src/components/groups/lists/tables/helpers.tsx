@@ -8,6 +8,9 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { Button, ButtonToolbar, OffCanvasContext, TableActions } from '@drykiss/industry-ui'
 
+//Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import {
   Column,
@@ -16,9 +19,6 @@ import {
   GroupTableRowsType,
   offCanvasType
 } from '@availabletowork/types'
-
-//Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 // Forms
 import { GroupForm } from '../../forms/upsert/form'

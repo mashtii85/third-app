@@ -10,8 +10,10 @@ import { Loading } from '../../components/common/loading'
 import ErrorPage from '../../../pages/_error'
 import { isLocale } from '../../translations/config'
 
+// Constants
+import { SETTINGS_MODE } from '@availabletowork/constants'
 // Types
-import { AppContextType, AppProps, SETTINGS_MODE } from '@availabletowork/types'
+import { AppContextType, AppProps } from '@availabletowork/types'
 
 // Hooks
 import { useAppSettings } from './hooks'

@@ -18,7 +18,7 @@ import {
 import { UpsertUserForm } from '../../../../users/forms/upsert/upsert'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 // Utils
 import { generatePassword } from '../../../../../utils/passwordGenerator'

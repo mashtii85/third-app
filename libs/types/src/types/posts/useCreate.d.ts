@@ -2,12 +2,15 @@
  * Components - Posts - Hooks - useCreate - Types
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Post, POST_TYPE } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 
 export interface PostCreateType {
-  accoutId: number
+  accountId: number
   entityId: number
   entity: string
   title: string

@@ -5,11 +5,6 @@
 // Types
 import { Taxonomy } from '../taxonomies'
 
-export enum ANSWER_TYPE1 {
-  SingleAnswer = 'singleAnswer',
-  MultipleAnswers = 'multipleAnswers'
-}
-
 export interface QUESTION_TYPE_DROPDOWN {
   text: 'Single Answer' | 'Multiple Answers'
   value: 'singleAnswer' | 'multipleAnswers'

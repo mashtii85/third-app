@@ -10,10 +10,10 @@ import { Divider } from '@drykiss/industry-ui'
 import { ResourceRow } from '../../../../resources/lists/tables/resourceTable'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES, POST_TYPE } from '@availabletowork/constants'
 
 // Types
-import { PostFilter, POST_TYPE } from '@availabletowork/types'
+import { PostFilter } from '@availabletowork/types'
 
 export const ResourcesTable = ({ courseId }: { courseId: number }) => {
   const filters: Partial<PostFilter> = {

@@ -8,10 +8,11 @@ import { capitalize, Details, DetailsText } from '@drykiss/industry-ui'
 // Helpers
 import { Toolbar } from './helpers'
 
-// Hooks
+// Constants
+import { ADDRESS_TYPE } from '@availabletowork/constants'
 
 // Type
-import { Address, ADDRESS_TYPE, UseAddressProps } from '@availabletowork/types'
+import { Address, UseAddressProps } from '@availabletowork/types'
 
 export const AddressTable = ({
   addressType,

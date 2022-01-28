@@ -1,6 +1,8 @@
+// Constants
+import { ENTITIES, TAXONOMY_TYPE } from '@availabletowork/constants'
+
 //Types
-import { Taxonomy, TAXONOMY_TYPE } from '.'
-import { ENTITIES } from '../../constants'
+import { Taxonomy } from '.'
 import { UseHookOutput, UseHookProps } from '../general'
 
 interface TaxonomyPropsData {

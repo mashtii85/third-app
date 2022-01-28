@@ -23,13 +23,16 @@ import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 import { useCurrentUser } from '../../../../../utils/useCurrentUser'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES } from '@availabletowork/constants'
 
 // Forms
 import { MediaForm } from '../../../../media/forms/create/form'
 
 // Helpers
 import { Toolbar } from './helper'
+
+// Constants
+import { MEDIUM_CATEGORY, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import {
@@ -38,12 +41,9 @@ import {
   CourseToolbarType,
   DropzoneProps,
   Medium,
-  MEDIUM_CATEGORY,
   MediaFilter,
   MediaFormType,
-  MEDIUM_TYPE,
   offCanvasType,
-  STATUS_ACTIVE,
   UseMediaProps
 } from '@availabletowork/types'
 

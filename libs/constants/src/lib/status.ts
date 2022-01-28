@@ -2,7 +2,7 @@
  * Constants - Status
  */
 
-import { SELECT_STATUS_ACTIVE } from '..'
+import { SELECT_STATUS_ACTIVE } from '@availabletowork/types'
 
 export const statusActive: SELECT_STATUS_ACTIVE[] = [
   {

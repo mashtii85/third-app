@@ -9,14 +9,16 @@ import { GET_ENROLLMENTS } from '../../queries'
 // Helpers
 import { prepareVariables } from './helpers'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import {
   EnrollmentVariables,
   EnrollmentData,
   EnrollmentOutputData,
   EnrollmentFilters,
-  LooseObject,
-  STATUS_ACTIVE
+  LooseObject
 } from '@availabletowork/types'
 
 export const useEnrollments = ({

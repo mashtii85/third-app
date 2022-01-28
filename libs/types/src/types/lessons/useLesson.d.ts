@@ -2,10 +2,12 @@
  * Components - Lessons - Hooks - types
  */
 
-// Types
-import { Lesson, LESSON_STATUS, LESSON_TYPE } from '.'
-import { LooseObject } from '../general'
+//Constants
 
+export { LESSON_STATUS, LESSON_TYPE } from '@availabletowork/constants'
+// Types
+import { Lesson } from '.'
+import { LooseObject } from '../general'
 import { ApolloError } from '@apollo/client'
 
 export interface LessonFilter {
@@ -46,7 +48,6 @@ export interface LessonVariables {
 
 export interface UseCreateLessonProps {
   lesson: Lesson
-  // filters: LooseObject
   onCompleted: (data: { lesson: Lesson }) => void
   onError: (data: ApolloError) => void
 }

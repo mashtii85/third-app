@@ -7,14 +7,14 @@ import { Column, Row, Space } from '@drykiss/industry-ui'
 import { AddressTable } from '../../../addresses/lists/tables/table'
 
 // Constants
-import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
+import { ADDRESS_TYPE, ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Hooks
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 import { useAddresses } from '../../../addresses/hooks/useAddresses'
 
 // Types
-import { AddressFilter, ADDRESS_TYPE, UseAddressProps } from '@availabletowork/types'
+import { AddressFilter, UseAddressProps } from '@availabletowork/types'
 
 // type values: invoice, registered
 export const ClientAddress = () => {

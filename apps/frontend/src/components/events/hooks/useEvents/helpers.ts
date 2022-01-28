@@ -2,14 +2,11 @@
  * Components - Events - List - Table - Hooks - helpers
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import {
-  Event,
-  GQLClause,
-  GraphqlWhere,
-  PrepareEventArgumentProps,
-  STATUS_ACTIVE
-} from '@availabletowork/types'
+import { Event, GQLClause, GraphqlWhere, PrepareEventArgumentProps } from '@availabletowork/types'
 
 export const prepareEventsArguments = ({
   filters

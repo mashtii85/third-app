@@ -17,16 +17,16 @@ import {
 // Utils
 import { formatToValidDate } from '../../../../../utils/dateFormatter'
 
+// Constants
+import { ACCOUNT_TYPE, pages, THEME_CONTEXT } from '@availabletowork/constants'
+
 // Types
 import {
   Account,
   AccountFilters,
   AccountsRow,
-  ACCOUNT_TYPE,
   Column,
   offCanvasType,
-  pages,
-  THEME_CONTEXT,
   User
 } from '@availabletowork/types'
 

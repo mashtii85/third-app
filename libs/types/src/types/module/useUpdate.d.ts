@@ -2,9 +2,12 @@
  * Components - Module - Hooks - useUpdate - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Module } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 
 export interface ModuleUpdateVariables {
   id: number

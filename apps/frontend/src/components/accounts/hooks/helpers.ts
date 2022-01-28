@@ -2,14 +2,11 @@
  * Components - Accounts- Hooks - UseAccounts -  Helpers
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import {
-  Account,
-  AccountFilters,
-  STATUS_ACTIVE,
-  GQLClause,
-  GraphqlWhere
-} from '@availabletowork/types'
+import { Account, AccountFilters, GQLClause, GraphqlWhere } from '@availabletowork/types'
 
 export const prepareUseAccounts = (filters?: Partial<AccountFilters>): GQLClause<Account> => {
   const variables: GQLClause<Account> = {}

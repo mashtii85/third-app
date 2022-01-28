@@ -3,10 +3,12 @@
  */
 
 // Constants
-import { ENTITIES } from '../../constants'
+import { ENTITIES } from '@availabletowork/constants'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
-import { STATUS_ACTIVE } from '../general'
 import { DropzoneProps, DropzoneType, MediaFilter, MEDIUM_CATEGORY, MEDIUM_TYPE } from '.'
 
 interface MediaFormType {

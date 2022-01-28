@@ -5,8 +5,11 @@ import { Button } from '@drykiss/industry-ui'
 import styled from 'styled-components'
 import { Center } from '../wrappers/horizontalCenter'
 
+// Constants
+import { QUIZ_QUESTION_TYPE } from '@availabletowork/constants'
+
 //Types
-import { QUIZ_QUESTION_TYPE, QuizActionTypes, QuizProps, QuizState } from '@availabletowork/types'
+import { QuizActionTypes, QuizProps, QuizState } from '@availabletowork/types'
 
 import { calculateScore } from './helpers'
 import { Radio } from './icons/radio'

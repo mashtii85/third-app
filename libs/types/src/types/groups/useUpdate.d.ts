@@ -2,8 +2,11 @@
  * Components - Groups - Hooks - useUpdate - Types
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 import { Group } from './group'
 
 export interface GroupUpdateVariables {

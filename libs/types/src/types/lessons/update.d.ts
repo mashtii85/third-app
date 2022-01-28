@@ -1,4 +1,5 @@
-import { LESSON_TYPE } from '..'
+// Constants
+import { LESSON_TYPE } from '@availabletowork/constants'
 
 export interface UpdateLessonFormType {
   id: number

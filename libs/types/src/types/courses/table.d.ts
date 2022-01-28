@@ -2,9 +2,11 @@
  * Components - Courses - List - Table - Types
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 //Types
 import { CourseFilter } from '.'
-import { STATUS_ACTIVE } from '../general'
 import { Taxonomy } from '../taxonomies'
 
 export interface CourseTableRowsType {

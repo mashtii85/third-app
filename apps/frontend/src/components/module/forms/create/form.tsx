@@ -14,11 +14,11 @@ import { useUpdateModule } from '../../hooks/useUpdate/useUpdate'
 import { Select, Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { ModuleSchema as schema } from './schema'
 
+// Constants
+import { statusActive } from '@availabletowork/constants'
+
 // Types
 import { ModuleFormType } from '@availabletowork/types'
-
-// Constants
-import { statusActive } from '@availabletowork/types'
 
 export const ModuleForm = ({
   defaultValues,

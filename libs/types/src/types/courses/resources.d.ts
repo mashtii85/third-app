@@ -2,9 +2,11 @@
  * Components - Courses - Resources - Forms - Upsert - Types
  */
 
+// Constants
+import { ENTITIES, POST_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES } from '../../constants'
-import { PostCustomFields, POST_TYPE, STATUS_ACTIVE } from '../general'
+import { PostCustomFields } from '../general'
 import { DropzoneType, Medium } from '../media'
 
 export interface ResourcesFormType {

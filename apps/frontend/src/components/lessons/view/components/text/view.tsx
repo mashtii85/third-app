@@ -13,10 +13,10 @@ import { Details, Button, ButtonToolbar } from '@drykiss/industry-ui'
 import { LessonContentEdit } from '../../../form/edit/contentForm'
 
 // Constants
-import { THEME_CONTEXT, UpdateLessonFormType } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types
-import { Lesson, LessonFormType } from '@availabletowork/types'
+import { Lesson, UpdateLessonFormType } from '@availabletowork/types'
 
 export const LessonContent = ({ lesson }: { lesson: Lesson }) => {
   const [editMode, setEditMode] = useState<boolean>(false)

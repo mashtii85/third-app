@@ -2,21 +2,17 @@
  * Components - Events - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 //Types
-import { Filter, LooseObject, STATUS_ACTIVE } from '../general'
+import { Filter, LooseObject } from '../general'
 import { Taxonomy } from '../taxonomies'
 
 export interface EventFilter extends Filter {
   accountId: number
   taxonomy: Options
   status: STATUS_ACTIVE
-}
-
-export enum CALENDAR_STATUS {
-  Cancelled = 'cancelled',
-  Completed = 'completed',
-  Pending = 'sending',
-  Started = 'started'
 }
 
 export interface Event {

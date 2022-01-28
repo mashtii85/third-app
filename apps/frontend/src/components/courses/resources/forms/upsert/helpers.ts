@@ -8,18 +8,22 @@ import { uploadMediaToS3 } from '../../../../media/forms/create/helpers'
 // UI
 import { Path } from '@drykiss/industry-ui'
 
-// Types & Constants
+// Constants
 import {
-  DropzoneType,
   ENTITIES,
-  Medium,
   MEDIUM_CATEGORY,
   MEDIUM_TYPE,
-  PostCustomFields,
-  ResourceCreateType,
-  ResourcesFormType,
   RESOURCE_TYPE,
   STATUS_ACTIVE
+} from '@availabletowork/constants'
+
+// Types
+import {
+  DropzoneType,
+  Medium,
+  PostCustomFields,
+  ResourceCreateType,
+  ResourcesFormType
 } from '@availabletowork/types'
 
 export const prepareMediumCreateType = async (

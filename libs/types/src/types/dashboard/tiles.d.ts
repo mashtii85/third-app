@@ -3,7 +3,7 @@
  */
 
 //Types
-import { ACCOUNT_TYPE } from '../accounts'
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 import { ColourConfig } from './overview'
 
 export interface TileItemProps {

@@ -15,11 +15,11 @@ import {
   OffCanvasContext
 } from '@drykiss/industry-ui'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { offCanvasType, UserMeta } from '@availabletowork/types'
-
-// Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 // Hooks
 import { UpsertNotificationSettingsForm } from './upsert/upsert'

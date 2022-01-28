@@ -13,8 +13,8 @@ import { useCurrentUser } from '../../utils/useCurrentUser'
 import { useCurrentAccount } from '../../utils/useCurrentAccount'
 import { useApp } from '../../utils/useApp'
 
-// Types
-import { ACCOUNT_TYPE } from '@availabletowork/types'
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 
 export const Navigation = () => {
   const { config } = useConfig()

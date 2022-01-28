@@ -11,7 +11,7 @@ import { LessonForm } from '../form/create/form'
 import { MediaForm } from '../../media/forms/create/form'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 // types
 import {

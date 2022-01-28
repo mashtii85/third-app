@@ -2,7 +2,11 @@
  * Components - Events - Calendar - Helpers
  */
 
-import { CALENDAR_STATUS, CalendarType, Event, THEME_CONTEXT } from '@availabletowork/types'
+// Constants
+import { CALENDAR_STATUS, THEME_CONTEXT } from '@availabletowork/constants'
+
+// Types
+import { CalendarType, Event } from '@availabletowork/types'
 
 export const prepareEventColor = (status: CALENDAR_STATUS): THEME_CONTEXT => {
   switch (status) {

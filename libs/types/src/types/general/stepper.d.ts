@@ -2,8 +2,10 @@
  * Types - Stepper
  */
 
+// Constants
+import { LESSON_PROGRESS_STATUS, LESSON_TYPE } from '@availabletowork/constants'
+
 //Types
-import { LESSON_PROGRESS_STATUS, LESSON_TYPE } from '../lessons'
 import { ThemeContext } from '../theme/types'
 
 type StepperActionType = 'button'

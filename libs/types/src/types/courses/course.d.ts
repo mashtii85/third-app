@@ -2,14 +2,15 @@
  * Types - Course
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
+// Types
 import { Module } from '../module'
 import { Medium } from '../media'
-import { STATUS_ACTIVE } from './select.d'
-// import { CourseEnrollment } from './courseEnrollment'
 import { Taxonomy } from '../taxonomies'
 import { Account } from '../accounts'
 import { AggregateData } from '../general'
-// import { CourseEnrollment } from '../general'
 
 export interface CourseCustomFields {
   author?: string

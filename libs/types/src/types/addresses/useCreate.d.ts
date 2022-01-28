@@ -2,9 +2,12 @@
  * Components - Addresses - Hooks - useCreate - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types.d
 import { Address } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '..'
+import { UseHookOutput } from '..'
 
 export interface AddressCreateVariables {
   entity?: number

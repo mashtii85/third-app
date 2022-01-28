@@ -2,8 +2,11 @@
  * Navigation - Data - Admin
  */
 
+// Constants
+import { pages, TAXONOMY_TYPE } from '@availabletowork/constants'
+
 // Types
-import { Navigation, pages, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
+import { Navigation, Taxonomy } from '@availabletowork/types'
 
 // Helpers
 import { prepareTaxonomyNavigation } from './helpers'

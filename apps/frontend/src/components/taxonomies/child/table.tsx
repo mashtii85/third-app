@@ -13,11 +13,11 @@ import { OffCanvasContext, Table } from '@drykiss/industry-ui'
 import { AddButton } from '../../common/buttons/addButton'
 import { TaxonomyUpsert } from '../forms'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { offCanvasType, Taxonomy, TaxonomyChildTableProps } from '@availabletowork/types'
-
-// Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 // Helpers
 import { columns, prepareTaxonomiesVariable, rows } from './helpers'

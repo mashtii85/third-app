@@ -9,7 +9,7 @@ import { ClientDashboardOverview } from './tiles/overview/client'
 import { AccountCourseList } from '../courses/list'
 
 //Types
-import { ACCOUNT_TYPE } from '@availabletowork/types'
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 
 // Hooks
 import { useCurrentUser } from '../../utils/useCurrentUser'

@@ -2,10 +2,11 @@
  * Components - Lessons - View - types.d
  */
 
-// Types
-import { LESSON_STATUS, LESSON_TYPE } from '.'
-import { Medium } from '../media'
+// Constants
+import { LESSON_STATUS, LESSON_TYPE } from '@availabletowork/constants'
 
+// Types
+import { Medium } from '../media'
 export interface LessonDetailsToolbarType {
   id: number
   title: string

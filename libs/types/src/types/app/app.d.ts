@@ -43,6 +43,3 @@ export interface AppSettings {
 export interface AppContextType extends AppSettings {
   refetchSettings: (options?: QueryLazyOptions<{ client_id: number }> | undefined) => void
 }
-export enum SETTINGS_MODE {
-  Maintenance = 'maintenanceMode'
-}

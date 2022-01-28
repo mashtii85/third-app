@@ -18,3 +18,10 @@ export enum THEME_CONTEXT {
   darkText = 'darkText',
   help = 'help'
 }
+
+export enum SIZE {
+  XS = 'xs',
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg'
+}

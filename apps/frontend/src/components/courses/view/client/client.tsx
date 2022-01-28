@@ -13,8 +13,8 @@ import { Tabs, TabItem } from '@drykiss/industry-ui'
 import { ClientDetails, EnrolledCourses, ClientResources } from './tabs'
 import { ClientCourseModule } from './tabs/curriculum/courseModules'
 
-// Types
-import { CLIENT_TAB } from '@availabletowork/types'
+// Constants
+import { CLIENT_TAB } from '@availabletowork/constants'
 
 export const ClientCourseView = () => {
   const { query } = useRouter()

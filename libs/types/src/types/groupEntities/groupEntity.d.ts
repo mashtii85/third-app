@@ -2,9 +2,10 @@
  * Types - EntityGroup
  */
 
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES } from '../../constants'
-import { STATUS_ACTIVE } from '../general'
 import { Group } from '../groups'
 
 export interface GroupEntity {

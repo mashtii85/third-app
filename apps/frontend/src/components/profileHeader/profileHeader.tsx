@@ -12,21 +12,25 @@ import { StyledHeader, StyledHeading, StyledIcon } from './styles'
 import { Avatar, Column, Container, Row, OffCanvasContext } from '@drykiss/industry-ui'
 import { MediaForm } from '../media/forms/create/form'
 
+// Constants
+import {
+  ENTITIES,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  STATUS_ACTIVE,
+  THEME_CONTEXT
+} from '@availabletowork/constants'
+
 // Types
 import {
   HeaderProps,
   MediaFilter,
   MediaFormType,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
   DropzoneProps,
   Medium,
   offCanvasType,
   UseMediaProps
 } from '@availabletowork/types'
-
-// Constants
-import { ENTITIES, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/types'
 
 // Hooks
 import { useCurrentUser } from '../../utils/useCurrentUser'

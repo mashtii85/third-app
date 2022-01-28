@@ -2,9 +2,12 @@
  * Components - Courses - List - Table - Hooks - useDeleteCourse - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Course } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 
 export interface CourseUpdateVariables {
   courseId: number

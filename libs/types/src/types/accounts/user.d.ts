@@ -1,6 +1,11 @@
 /**
  * Types - User
  */
+
+//Constants
+import { USER_STATUS } from '@availabletowork/constants'
+
+// Types
 import { Account } from './account'
 
 export interface AccountUsers {

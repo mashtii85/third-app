@@ -5,17 +5,11 @@
 // Helpers
 import { prepareTaxonomyNavigation } from './helpers'
 
-import { pages } from '@availabletowork/types'
+// Constants
+import { LOCALE_NS, pages, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 // Types
-import {
-  Account,
-  LOCALE_NS,
-  LooseObject,
-  Navigation,
-  Taxonomy,
-  TAXONOMY_TYPE
-} from '@availabletowork/types'
+import { Account, LooseObject, Navigation, Taxonomy } from '@availabletowork/types'
 
 // I18n
 import useTranslation from '../../../translations/hooks/useTranslation'

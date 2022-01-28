@@ -21,7 +21,7 @@ import { LessonForm } from '../../form/create/form'
 import { DeleteLessonForm } from '../../form/delete/delete'
 
 // Constants
-import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
+import { ENTITIES, MEDIUM_CATEGORY, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import {
@@ -29,8 +29,6 @@ import {
   LessonTableRowsType,
   LessonUpsertFormFilterType,
   MediaTableProps,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
   offCanvasType,
   SwapLessonsProps,
   UseLessonsProps

@@ -4,7 +4,12 @@
 
 import { useContext } from 'react'
 import { I18nContext } from '../context'
-import { LOCALE_NS, LooseObject, useTranslationOutput } from '@availabletowork/types'
+
+// Constants
+import { LOCALE_NS } from '@availabletowork/constants'
+
+// Types
+import { LooseObject, useTranslationOutput } from '@availabletowork/types'
 
 export default function useTranslation(namespace?: LOCALE_NS): useTranslationOutput {
   const { localization } = useContext(I18nContext)

@@ -2,8 +2,11 @@
  * Components - Courses - Delete - Delete
  */
 
+// Constants
+import { SIZE } from '@availabletowork/constants'
+
 //Types
-import { CourseFilter, SIZE } from '@availabletowork/types'
+import { CourseFilter } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'

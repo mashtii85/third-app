@@ -11,15 +11,15 @@ import { CustomSelect } from '../../../selects/select'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 import { CourseSchema as schema } from './schema'
 
+// Constants
+import { ENTITIES, statusActive, TAXONOMY_TYPE } from '@availabletowork/constants'
+
 // Types
 import {
   CourseFormType,
   CourseFormSubmission,
   CourseFormProps,
-  ENTITIES,
-  Options,
-  statusActive,
-  TAXONOMY_TYPE
+  Options
 } from '@availabletowork/types'
 
 // Hooks

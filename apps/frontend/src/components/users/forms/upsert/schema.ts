@@ -7,10 +7,10 @@ import { bool, mixed, object, SchemaOf, string } from 'yup'
 import { passwordRegex, phoneNumberRegex } from '../../../../constants/regex'
 
 // Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { localesOptions, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
-import { localesOptions, UserForm } from '@availabletowork/types'
+import { UserForm } from '@availabletowork/types'
 
 export const usersSchema = (hasPassword: boolean): SchemaOf<UserForm> => {
   const password = hasPassword

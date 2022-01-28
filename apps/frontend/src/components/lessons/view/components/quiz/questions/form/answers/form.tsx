@@ -18,19 +18,18 @@ import { useCurrentUser } from '../../../../../../../../utils/useCurrentUser'
 import { Checkbox, Form, Input, Column, Label, LazyIcon, Row } from '@drykiss/industry-ui'
 import { AnswersSchema as schema } from './schema'
 
+//Constants
+import { QUIZ_QUESTION_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import {
   AnswerFormType,
   AnswersSubmitType,
   FieldType,
-  QUIZ_QUESTION_TYPE,
   Taxonomy,
   UseCreateTaxonomyProps,
   UseDeleteAnswerProps
 } from '@availabletowork/types'
-
-//Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const AnswerForm = ({ filters, defaultValues, onSuccess }: AnswerFormType) => {
   const { user } = useCurrentUser()

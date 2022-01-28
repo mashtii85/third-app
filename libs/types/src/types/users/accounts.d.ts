@@ -3,7 +3,7 @@
  */
 
 // Types
-import { ACCOUNT_TYPE, USER_STATUS } from '../accounts'
+import { ACCOUNT_TYPE, USER_STATUS } from '@availabletowork/constants'
 import { User } from '../users'
 
 interface UserAccountTableProps {

@@ -20,7 +20,7 @@ import { TaxonomySchema as schema } from './schema'
 import { CustomFieldForm } from '../customFieldForm/customFieldForm'
 
 // Constants
-import { statusActive } from '@availabletowork/types'
+import { statusActive } from '@availabletowork/constants'
 
 // Types
 import { Taxonomy, TaxonomyFormProps, UseCreateTaxonomyProps } from '@availabletowork/types'

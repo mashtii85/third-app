@@ -2,10 +2,12 @@
  * Components - Media - Hooks - types
  */
 
+// Constants
+import { ENTITIES, MEDIUM_CATEGORY, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { Medium, MEDIUM_CATEGORY, MEDIUM_TYPE } from '.'
-import { ENTITIES } from '../../constants'
-import { LooseObject, STATUS_ACTIVE } from '../general'
+import { Medium, MEDIUM_TYPE } from '.'
+import { LooseObject } from '../general'
 
 export interface MediaFilter {
   clientId: number

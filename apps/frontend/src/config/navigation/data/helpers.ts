@@ -2,8 +2,11 @@
  * Navigation - Data - Helpers
  */
 
+// Constants
+import { TAXONOMY_TYPE } from '@availabletowork/constants'
+
 // Types
-import { NavLink, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
+import { NavLink, Taxonomy } from '@availabletowork/types'
 
 export const prepareTaxonomyNavigation = (
   taxonomies: Taxonomy[] = [],

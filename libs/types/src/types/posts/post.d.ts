@@ -2,19 +2,11 @@
  * Types - Post
  */
 
+// Constants
+import { POST_TYPE, RESOURCE_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { STATUS_ACTIVE } from '../general'
 import { Medium } from '../media'
-
-export enum RESOURCE_TYPE {
-  File = 'file',
-  Link = 'link'
-}
-
-export enum POST_TYPE {
-  Note = 'note',
-  Resource = 'resource'
-}
 
 export interface PostCustomFields {
   resource_type: RESOURCE_TYPE

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { LooseObject } from '@availabletowork/types'
-
-// Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 // Utils
 import { historyPush } from '../../../utils/historyPush'

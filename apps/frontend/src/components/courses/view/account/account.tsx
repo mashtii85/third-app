@@ -48,17 +48,20 @@ import { completeLesson, fillCertificateModel, lessonSummary, preparePageState }
 import { reducer } from './reducer'
 
 // Constants
-import { ENTITIES, LESSON_TYPE } from '@availabletowork/types'
+import {
+  COURSE_PAGE_MODE,
+  ENTITIES,
+  LESSON_TYPE,
+  POST_TYPE,
+  TAXONOMY_TYPE
+} from '@availabletowork/constants'
 
 // Types
 import {
   AssignmentActionTypes,
   CourseActionTypes,
   Module,
-  QuizCompletedData,
-  POST_TYPE,
-  COURSE_PAGE_MODE,
-  TAXONOMY_TYPE
+  QuizCompletedData
 } from '@availabletowork/types'
 
 export const AccountCourseView = () => {

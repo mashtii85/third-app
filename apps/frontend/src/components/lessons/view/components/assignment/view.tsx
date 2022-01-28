@@ -14,7 +14,7 @@ import { LessonContentEdit } from '../../../form/edit/contentForm'
 import { AssignmentFooter } from './assignmentFooter'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types
 import { CurrentUser, Lesson, UpdateLessonFormType } from '@availabletowork/types'

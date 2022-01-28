@@ -2,8 +2,8 @@
  * Components - Groups - Forms - Create - Types
  */
 
-// Types
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 interface GroupFormType {
   id: number | undefined

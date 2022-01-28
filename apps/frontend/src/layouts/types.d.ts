@@ -3,7 +3,7 @@
  */
 
 // Types
-import { LooseObject } from '../types/object.d'
+import { LooseObject } from '@availabletowork/types'
 
 export interface LayoutListProps {
   FiltersComp?: any

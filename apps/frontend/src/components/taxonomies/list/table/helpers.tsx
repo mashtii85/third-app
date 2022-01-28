@@ -12,7 +12,7 @@ import { Button, ButtonToolbar, capitalize, TableActions } from '@drykiss/indust
 import { Column, FormatterData, Taxonomy } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 export const formatterData = (
   handleDelete: (row: Taxonomy) => void,

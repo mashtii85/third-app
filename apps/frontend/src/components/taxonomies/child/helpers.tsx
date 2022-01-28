@@ -12,7 +12,7 @@ import { capitalize, TableActions } from '@drykiss/industry-ui'
 import { Taxonomy, TaxonomyChildTableProps, TaxonomyFilters } from '@availabletowork/types'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 const actionsData = (handleClick: (_: MouseEvent<HTMLElement>, row?: Taxonomy) => void) => {
   const buttons = [

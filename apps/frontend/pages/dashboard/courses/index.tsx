@@ -13,8 +13,8 @@ import { AccountCourseList, ClientCourseList } from '../../../src/components/cou
 // Hooks
 import { useCurrentUser } from '../../../src/utils/useCurrentUser'
 
-// GQL
-import { ACCOUNT_TYPE, pages } from '@availabletowork/types'
+// Constants
+import { ACCOUNT_TYPE, pages } from '@availabletowork/constants'
 
 const PageDashboard: NextPage = () => {
   const { user } = useCurrentUser()

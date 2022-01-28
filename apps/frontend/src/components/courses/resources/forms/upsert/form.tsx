@@ -21,15 +21,16 @@ import { ResourceAttachmentForm } from '../attachment/form'
 // Helpers
 import { prepareMediumCreateType, prepareResourceCreateType } from './helpers'
 
+// Constants
+import { RESOURCE_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import {
   DropzoneProps,
   MediaFilter,
   Post,
   PostFilter,
-  ResourcesFormType,
-  RESOURCE_TYPE,
-  STATUS_ACTIVE
+  ResourcesFormType
 } from '@availabletowork/types'
 import { resourceType } from './constants'
 

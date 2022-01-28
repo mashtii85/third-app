@@ -8,7 +8,7 @@ import { AuthController } from './auth/auth.controller'
 import { CommonController } from './common/common.controller'
 import { AuthService } from './auth/auth.service'
 import { HttpResponseMiddleware } from './middlewares'
-
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 @Module({
   imports: [
     ConfigModule.forRoot({

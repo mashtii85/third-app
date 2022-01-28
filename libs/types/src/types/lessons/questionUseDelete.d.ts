@@ -2,7 +2,7 @@
  * Components - Lesson - View - Components - Quiz - Questions - Hooks - useDelete
  */
 
-import { ENTITIES } from '../../constants'
+import { ENTITIES } from '@availabletowork/constants'
 import { UseHookOutput, UseHookProps } from '../general'
 import { Taxonomy, TAXONOMY_TYPE } from '../taxonomies'
 

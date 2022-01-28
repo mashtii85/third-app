@@ -2,9 +2,12 @@
  * Components - Users - Hooks - UseDelete - UseDeleteUser - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { User } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 
 export interface UserUpdateVariables {
   userId: number

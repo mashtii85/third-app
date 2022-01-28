@@ -18,8 +18,11 @@ import {
 // Hooks
 import { UpsertUserForm } from '../forms'
 
+// Constants
+import { LOCALE_NS } from '@availabletowork/constants'
+
 // Types
-import { LOCALE_NS, offCanvasType, User } from '@availabletowork/types'
+import { offCanvasType, User } from '@availabletowork/types'
 
 // I18n
 import useTranslation from '../../../translations/hooks/useTranslation'

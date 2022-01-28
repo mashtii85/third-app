@@ -16,8 +16,8 @@ import { Tabs, TabItem, Space } from '@drykiss/industry-ui'
 import TaxonomyList from './list'
 import { GroupTable } from '../../groups/lists/tables/table'
 
-// Types
-import { ACCOUNT_TYPE, TAXONOMY_TYPE } from '@availabletowork/types'
+// Constants
+import { ACCOUNT_TYPE, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 const TaxonomyTabs = () => {
   const { query } = useRouter()

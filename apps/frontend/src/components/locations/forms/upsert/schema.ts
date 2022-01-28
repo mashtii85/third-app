@@ -6,7 +6,7 @@
 import { mixed, number, object, string, SchemaOf } from 'yup'
 
 // Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { LocationFormType } from '@availabletowork/types'

@@ -14,12 +14,11 @@ import { Column, Form, Error, Input, Label, Row, Select } from '@drykiss/industr
 import { usersSchema as schema } from './schema'
 
 //Constants
-import { statusActive } from '@availabletowork/types'
+import { localesOptions, statusActive } from '@availabletowork/constants'
 
 // Types
 import {
   CreateUserModel,
-  localesOptions,
   User,
   UserForm,
   UserFormProps,

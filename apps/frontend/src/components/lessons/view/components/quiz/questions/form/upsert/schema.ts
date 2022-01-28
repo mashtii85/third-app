@@ -5,8 +5,11 @@
 // Yup
 import { mixed, object, string, number, SchemaOf } from 'yup'
 
+// Constants
+import { QUESTION_TYPE } from '@availabletowork/constants'
+
 // Types
-import { QuestionUpsertType, QUESTION_TYPE } from '@availabletowork/types'
+import { QuestionUpsertType } from '@availabletowork/types'
 
 export const QuestionUpsertSchema: SchemaOf<QuestionUpsertType> = object()
   .shape({

@@ -15,7 +15,7 @@ import { GroupSchema as schema } from './schema'
 import { GroupSelect } from '../../../selects/group/group'
 
 //Constants
-import { statusActive } from '@availabletowork/types'
+import { statusActive } from '@availabletowork/constants'
 
 // Types
 import { GroupEntityFilter, GroupEntityFormType } from '@availabletowork/types'

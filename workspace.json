@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-core": "libs/api-core",
+    "constants": "libs/constants",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "types": "libs/types"

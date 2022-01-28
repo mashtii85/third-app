@@ -4,7 +4,9 @@
 
 // Yup
 import { mixed, object, string } from 'yup'
-import { STATUS_ACTIVE } from '@availabletowork/types'
+
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 export const CourseSchema = object().shape({
   title: string().required(),

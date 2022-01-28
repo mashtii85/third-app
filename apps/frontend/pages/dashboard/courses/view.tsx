@@ -7,7 +7,7 @@ import Router from 'next/router'
 import type { NextPage } from 'next'
 
 // Types
-import { ACCOUNT_TYPE, pages } from '@availabletowork/types'
+import { ACCOUNT_TYPE, pages } from '@availabletowork/constants'
 
 // UI
 import { Dashboard } from '@drykiss/industry-ui'

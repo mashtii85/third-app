@@ -2,8 +2,11 @@
  * Components - Locations - Hooks - UseUpdateLocation - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 import { Location } from './locations'
 
 export interface LocationUpdateVariables {

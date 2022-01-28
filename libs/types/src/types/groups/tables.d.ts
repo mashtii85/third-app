@@ -2,7 +2,8 @@
  * Components - Groups - List - Table - Types
  */
 
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface GroupTableRowsType {
   id?: number

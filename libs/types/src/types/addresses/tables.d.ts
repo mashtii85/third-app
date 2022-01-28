@@ -1,7 +1,7 @@
 /**
  * Components - Address - List - Table - Types
  */
-import { STATUS_ACTIVE } from '../general'
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface AddressTableRowsType {
   id?: number | undefined

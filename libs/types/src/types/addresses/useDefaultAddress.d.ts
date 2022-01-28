@@ -3,7 +3,7 @@
  */
 
 // Types.d
-import { ENTITIES } from '../../constants'
+import { ENTITIES } from '@availabletowork/constants'
 import { UseHookOutput } from '../general'
 
 export interface DefaultAddressHookProps {

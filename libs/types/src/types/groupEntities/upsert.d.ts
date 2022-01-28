@@ -2,8 +2,8 @@
  * Components - GroupEntities - Forms - Upsert - Types.d
  */
 
-// Types
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 interface GroupEntityFormType {
   group: { label: string; value: string }

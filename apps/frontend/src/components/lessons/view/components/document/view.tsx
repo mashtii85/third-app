@@ -13,16 +13,10 @@ import { useMedia } from '../../../../media/hooks/useMedia/useMedia'
 import { doesFileExist, LessonMediaContentToolbar } from '../../helpers'
 
 //Constants
-import { MediaFilter, STATUS_ACTIVE } from '@availabletowork/types'
+import { LESSON_TYPE, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
-import {
-  DropzoneProps,
-  LESSON_TYPE,
-  MediaFormType,
-  MEDIUM_TYPE,
-  UseMediaProps
-} from '@availabletowork/types'
+import { DropzoneProps, MediaFilter, MediaFormType, UseMediaProps } from '@availabletowork/types'
 import { useEffect } from 'react'
 
 export const LessonDocument = ({
