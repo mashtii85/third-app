@@ -4,12 +4,13 @@ import { AppService } from './app.service'
 
 @Controller('/app')
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
   @Post('/settings')
   async getStatus(
     @Body('client_id') client_id: number,
-    @Res() response: Response): Promise<Response> {
+    @Res() response: Response
+  ): Promise<Response> {
     return await this.appService.getSettings(client_id, response)
   }
 }

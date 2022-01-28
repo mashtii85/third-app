@@ -22,10 +22,12 @@ export const TE = (message: string, status: HttpStatus = 400): void => {
       error = 'Internal Server Error'
   }
 
-  throw new HttpException({
-    error,
-    message,
-    statusCode: status
-  }, status);
-
+  throw new HttpException(
+    {
+      error,
+      message,
+      statusCode: status
+    },
+    status
+  )
 }
