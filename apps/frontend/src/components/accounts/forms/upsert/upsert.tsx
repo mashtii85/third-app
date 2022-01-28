@@ -15,23 +15,27 @@ import { CustomSelect } from '../../../selects/select'
 // Hooks
 import { useCreateAccount, useUpdateAccount } from '../../hooks'
 
+//Constants
+import {
+  ACCOUNT_TYPE,
+  CLIENT_MODULE_TYPE,
+  statusActive,
+  TAXONOMY_TYPE
+} from '@availabletowork/constants'
+
 // Types
 import {
   AccountFormProps,
-  ACCOUNT_TYPE,
   CheckboxDataType,
   ClientModuleProps,
-  CLIENT_MODULE_TYPE,
-  CreateAccountForm,
-  statusActive,
-  TAXONOMY_TYPE
+  CreateAccountForm
 } from '@availabletowork/types'
 
 // Helpers
 import { prepareCreateAccount, prepareUpdateAccount } from './helpers'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES } from '@availabletowork/constants'
 
 export const UpsertAccount = ({ defaultValues, filters, onSuccess }: AccountFormProps) => {
   const hasUser = !!defaultValues?.userId

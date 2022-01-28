@@ -22,7 +22,7 @@ import {
 import { UpsertLocation } from '../../forms'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 import { formatToValidDate } from '../../../../utils/dateFormatter'
 

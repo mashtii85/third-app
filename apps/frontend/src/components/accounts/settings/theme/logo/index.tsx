@@ -9,17 +9,11 @@ import { MouseEvent } from 'react'
 import { Button, Details, Image, Space, useConfig, useOffCanvas } from '@drykiss/industry-ui'
 import { MediaForm } from '../../../../media/forms/create/form'
 
+// Constants
+import { ENTITIES, MEDIUM_CATEGORY, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import {
-  Account,
-  ENTITIES,
-  MediaFilter,
-  MediaFormType,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
-  STATUS_ACTIVE,
-  DropzoneProps
-} from '@availabletowork/types'
+import { Account, MediaFilter, MediaFormType, DropzoneProps } from '@availabletowork/types'
 
 export const ThemeLogo = ({ account }: { account: Account | undefined }) => {
   const offCanvas = useOffCanvas()

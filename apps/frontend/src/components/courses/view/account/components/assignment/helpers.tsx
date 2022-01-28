@@ -10,21 +10,25 @@ import { Details, Space, useOffCanvas, ButtonToolbar, Button } from '@drykiss/in
 import { MediaForm } from '../../../../../media/forms/create/form'
 
 // Constants
-import { ENTITIES, SIZE, THEME_CONTEXT } from '@availabletowork/types'
+import {
+  ENTITIES,
+  SIZE,
+  STATUS_ACTIVE,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  THEME_CONTEXT
+} from '@availabletowork/constants'
 
 // Types
 import {
   AssignmentActionTypes,
   AssignmentState,
   GraphqlWhere,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
   DropzoneProps,
   Medium,
   MediaDeleteProps,
   MediaFilter,
-  MediaFormType,
-  STATUS_ACTIVE
+  MediaFormType
 } from '@availabletowork/types'
 
 // import { MediaFormType } from '../../../../../media/forms/create/types.d'

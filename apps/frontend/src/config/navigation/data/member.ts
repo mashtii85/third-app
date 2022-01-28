@@ -2,7 +2,8 @@
  * Navigation - Data - Member
  */
 
-import { pages } from '@availabletowork/types'
+// Constants
+import { pages } from '@availabletowork/constants'
 
 export const Member: any = {
   right: [

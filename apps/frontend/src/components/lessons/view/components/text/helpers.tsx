@@ -9,7 +9,7 @@ import { MouseEvent, useState } from 'react'
 import { Button, ButtonToolbar } from '@drykiss/industry-ui'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { THEME_CONTEXT } from '@availabletowork/constants'
 
 export const LessonTextualContentToolbar = ({
   isEditMode,

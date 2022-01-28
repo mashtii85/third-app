@@ -1,15 +1,14 @@
 /**
  * Types - User
  */
-import { ACCOUNT_TYPE, AccountUsers } from '../accounts'
-import { Filter, STATUS_ACTIVE } from '../general'
-import { Locale } from '../translations'
 
-export enum USER_STATUS {
-  Active = 'active',
-  Inactive = 'inactive',
-  Banned = 'banned'
-}
+// Constants
+import { ACCOUNT_TYPE, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/constants'
+
+// Types
+import { AccountUsers } from '../accounts'
+import { Filter } from '../general'
+import { Locale } from '../translations'
 
 export interface NotificationSettingsType {
   alert: boolean

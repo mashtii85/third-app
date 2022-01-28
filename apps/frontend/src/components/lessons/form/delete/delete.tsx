@@ -2,12 +2,12 @@
  * Components - Lessons - Form - Delete - Delete
  */
 
-//Types
-import { SIZE } from '@availabletowork/types'
-
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteLesson } from '../../hooks/useDelete/useDelete'
+
+// Constants
+import { SIZE } from '@availabletowork/constants'
 
 export const DeleteLessonForm = ({
   id,

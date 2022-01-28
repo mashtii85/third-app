@@ -2,9 +2,12 @@
  * Components - Media - Hooks - useUpdate - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Medium } from '.'
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '..'
 
 export interface MediaUpdateVariables {
   id: number

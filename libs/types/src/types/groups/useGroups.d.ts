@@ -2,9 +2,10 @@
  * Components - Groups - Hooks - types
  */
 
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES } from '../../constants'
-import { STATUS_ACTIVE } from '../general'
 import { Group } from './group'
 
 export interface GroupFilter {

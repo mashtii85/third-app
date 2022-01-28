@@ -6,7 +6,7 @@
 import { Button, ButtonToolbar, Divider } from '@drykiss/industry-ui'
 
 // Constants
-import { SIZE } from '@availabletowork/types'
+import { SIZE } from '@availabletowork/constants'
 
 // Types
 import { LooseObject } from '@availabletowork/types'

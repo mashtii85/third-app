@@ -2,9 +2,11 @@
  * Components - Addresses - Hooks - types
  */
 
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES } from '../../constants'
-import { Filter, STATUS_ACTIVE } from '../general'
+import { Filter } from '../general'
 import { Address } from './address'
 
 export interface AddressFilter extends Filter {

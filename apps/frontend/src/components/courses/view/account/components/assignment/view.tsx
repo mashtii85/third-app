@@ -11,6 +11,9 @@ import { Space } from '@drykiss/industry-ui'
 // Helpers
 import { Buttons } from './helpers'
 
+// Constants
+import { LESSON_PROGRESS_STATUS, MEDIUM_CATEGORY, MEDIUM_TYPE } from '@availabletowork/constants'
+
 // Types
 import {
   AssignmentActionTypes,
@@ -18,11 +21,9 @@ import {
   CurrentUser,
   Lesson,
   LessonProgress,
-  LESSON_PROGRESS_STATUS,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
   Taxonomy
 } from '@availabletowork/types'
+
 import { reducer } from './reducer'
 
 export const CourseLessonAssignment = ({

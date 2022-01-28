@@ -5,7 +5,10 @@
 import { hashPassword } from '../../../../services/auth/helpers'
 
 // Types
-import { ACCOUNT_TYPE, CreateAccountForm, LooseObject } from '@availabletowork/types'
+import { CreateAccountForm, LooseObject } from '@availabletowork/types'
+
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 
 export const prepareCreateAccount = (
   form: CreateAccountForm,

@@ -12,8 +12,11 @@ import {
 } from '../../../../../../../../../common/quiz/quiz'
 import { CheckBox } from '../../../../../../../../../common/quiz/icons/checkbox'
 
+// Constants
+import { MEDIUM_TYPE, QUIZ_QUESTION_TYPE } from '@availabletowork/constants'
+
 // Types
-import { QUIZ_QUESTION_TYPE, MEDIUM_TYPE, Taxonomy } from '@availabletowork/types'
+import { Taxonomy } from '@availabletowork/types'
 
 export const AnswerRow = ({ question, answer }: { question: Taxonomy; answer: Taxonomy }) => {
   // The medium category should be check too

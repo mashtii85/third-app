@@ -4,8 +4,11 @@
 // UI
 import { Row } from '@drykiss/industry-ui'
 
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
+
 // Types
-import { ACCOUNT_TYPE, DashboardTile } from '@availabletowork/types'
+import { DashboardTile } from '@availabletowork/types'
 
 // Helpers
 import { TileItem } from './helpers'

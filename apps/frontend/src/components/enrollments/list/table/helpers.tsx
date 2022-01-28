@@ -5,8 +5,11 @@
 // UI
 import { formatDateStandard, TableLink } from '@drykiss/industry-ui'
 
+// Constants
+import { pages } from '@availabletowork/constants'
+
 // Types
-import { Column, CourseEnrollmentsTableRowsType, Enrollment, pages } from '@availabletowork/types'
+import { Column, CourseEnrollmentsTableRowsType, Enrollment } from '@availabletowork/types'
 
 export const columns = () => {
   const columnsSchema: Column<CourseEnrollmentsTableRowsType>[] = [

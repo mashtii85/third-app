@@ -3,7 +3,7 @@
  */
 
 //Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { CustomFields, LessonQuestionTableProps, Taxonomy } from '@availabletowork/types'

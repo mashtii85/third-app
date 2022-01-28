@@ -18,8 +18,11 @@ import { useApp } from '../../../../utils/useApp'
 import { TaxonomyChildTable } from '../../child/table'
 import { columns, rows, Toolbar } from './helpers'
 
+// Constants
+import { TAXONOMY_TYPE } from '@availabletowork/constants'
+
 // Types
-import { offCanvasType, TableProps, Taxonomy, TAXONOMY_TYPE } from '@availabletowork/types'
+import { offCanvasType, TableProps, Taxonomy } from '@availabletowork/types'
 
 export const TaxonomyTable = ({ title, type, clientId }: TableProps) => {
   const { refetchSettings } = useApp()

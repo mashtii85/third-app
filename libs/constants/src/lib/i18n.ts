@@ -1,8 +1,4 @@
-/**
- * Types - Locales
- */
-
-import { Options } from './options'
+import { Options } from '@availabletowork/types'
 
 export enum LOCALE_NS {
   Home = 'home',

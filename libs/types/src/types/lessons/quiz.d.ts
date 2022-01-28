@@ -3,11 +3,10 @@
  */
 
 // Constants
-import { ENTITIES } from '../../constants'
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
-import { STATUS_ACTIVE } from '../general'
-import { TAXONOMY_TYPE } from '../taxonomies'
+import { TAXONOMY_TYPE } from '@availabletowork/constants'
 
 export interface QuestionsListToolbarType {
   entity: ENTITIES

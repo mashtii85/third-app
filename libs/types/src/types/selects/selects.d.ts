@@ -2,10 +2,12 @@
  * Components - Selects - types
  */
 
+// Constants
+import { ENTITIES, TAXONOMY_TYPE } from '@availabletowork/constants'
+
+// Types
 import { DocumentNode } from '@apollo/client'
-import { ENTITIES } from '../../constants/entities'
-import { LooseObject } from '../../types/object'
-import { TAXONOMY_TYPE } from '../../types/taxonomy'
+import { LooseObject } from '..'
 
 export interface SelectProps {
   control: any
@@ -30,11 +32,6 @@ export interface GetQueryTypeInput {
   entityId?: number
   type: ENTITIES | unknown
   filters: any
-}
-
-export enum STATUS_ACTIVE {
-  Active = 'active',
-  Inactive = 'inactive'
 }
 
 export interface SELECT_STATUS_ACTIVE {

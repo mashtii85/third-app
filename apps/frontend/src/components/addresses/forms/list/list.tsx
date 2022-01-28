@@ -20,14 +20,15 @@ import { AddressForm } from '../../forms/create/form'
 import { DeleteAddressForm } from '../../forms/delete/delete'
 import { useDefaultAddress } from '../../hooks/useDefaultAddress/useDefaultAddress'
 
+// Constants
+import { ADDRESS_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Type
 import {
   AddressFormType,
   AddressTableRowsType,
-  ADDRESS_TYPE,
   DefaultAddressHookProps,
   offCanvasType,
-  STATUS_ACTIVE,
   UseAddressProps
 } from '@availabletowork/types'
 

@@ -2,9 +2,8 @@
  * Types - Group
  */
 
-// Types
-import { ENTITIES } from '../../constants'
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface Group {
   id: number

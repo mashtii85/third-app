@@ -16,15 +16,10 @@ import { CustomIcon } from '../../../../common/icons/icons'
 
 // Constants
 import { ICONS_PATHS } from '../../../../../constants/iconPaths'
+import { POST_TYPE, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/constants'
 
-// Types & Constants
-import {
-  offCanvasType,
-  PostFilter,
-  POST_TYPE,
-  STATUS_ACTIVE,
-  THEME_CONTEXT
-} from '@availabletowork/types'
+// Types
+import { offCanvasType, PostFilter } from '@availabletowork/types'
 
 export const getIconByFilename = (filename: string): string => {
   const ext = Path.extname(filename)

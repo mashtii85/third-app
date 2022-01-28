@@ -2,26 +2,16 @@
  * Types - Lesson
  */
 
+// Constants
+import { LESSON_TYPE, LESSON_STATUS, QUESTION_TYPE } from '@availabletowork/constants'
+
+// Types
 import { Video } from '../common'
 import { Sortable } from '../general'
 import { Medium } from '../media'
 import { Module } from '../module'
 import { Taxonomy } from '../taxonomies'
 import { LessonProgress } from './lessonProgress'
-
-export enum LESSON_TYPE {
-  Text = 'text',
-  Video = 'video',
-  Quiz = 'quiz',
-  Assignment = 'assignment',
-  Pdf = 'pdf',
-  PowerPoint = 'powerpoint'
-}
-
-export enum LESSON_STATUS {
-  Active = 'active',
-  Inactive = 'inactive'
-}
 
 type BaseLesson = Sortable & {
   course_id: number
@@ -40,11 +30,6 @@ type VideoLesson = BaseLesson & {
   module: Module
   created_at: Date
   updated_at: Date
-}
-
-export enum QUESTION_TYPE {
-  SelectAnswer = 'selectAnswer',
-  ShortTextAnswer = 'shortTextAnswer'
 }
 
 type SelectAnswer = {

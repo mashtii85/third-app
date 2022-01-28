@@ -6,16 +6,19 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-// // Hooks
+// Hooks
 import { useCreatePost } from '../../../../posts/hooks/useCreate/useCreate'
 import { useUpdatePost } from '../../../../posts/hooks/useUpdate/useUpdate'
 
-// // UI
+// UI
 import { Form, Input, Label, Textarea } from '@drykiss/industry-ui'
 import { NotesSchema as schema } from './schema'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { NotesFormType, Post, PostFilter, STATUS_ACTIVE } from '@availabletowork/types'
+import { NotesFormType, Post, PostFilter } from '@availabletowork/types'
 
 export const NotesForm = ({
   defaultValues,

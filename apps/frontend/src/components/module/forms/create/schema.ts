@@ -5,11 +5,11 @@
 // Yup
 import { mixed, object, string, SchemaOf } from 'yup'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { ModuleFormType } from '@availabletowork/types'
-
-// Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
 
 export const ModuleSchema: SchemaOf<ModuleFormType> = object()
   .shape({

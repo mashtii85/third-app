@@ -16,7 +16,7 @@ import { historyPush } from '../utils/historyPush'
 import { useWatcher } from '../components/locations/list/useWatcher'
 
 // Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { LooseObject } from '@availabletowork/types'

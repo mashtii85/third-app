@@ -16,15 +16,10 @@ import { GroupEntitiesTable } from '../../../../groupEntities/table/table'
 import { useTable } from '../../../../common/hooks/useTable'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { CLIENT_MODULE_TYPE, ENTITIES } from '@availabletowork/constants'
 
 // Types
-import {
-  AccountsRow,
-  AccountTableProps,
-  CLIENT_MODULE_TYPE,
-  offCanvasType
-} from '@availabletowork/types'
+import { AccountsRow, AccountTableProps, offCanvasType } from '@availabletowork/types'
 
 const initialSort = {}
 

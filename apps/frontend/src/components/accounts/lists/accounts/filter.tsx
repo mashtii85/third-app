@@ -8,8 +8,11 @@ import { Column, Label, Select } from '@drykiss/industry-ui'
 import { Control, FieldErrors } from 'react-hook-form'
 import { CustomSelect } from '../../../selects/select'
 
+// Constants
+import { ENTITIES, TAXONOMY_TYPE, statusActive } from '@availabletowork/constants'
+
 // Types
-import { ENTITIES, TAXONOMY_TYPE, statusActive, UsersFilter } from '@availabletowork/types'
+import { UsersFilter } from '@availabletowork/types'
 
 export const AccountsFilters = ({
   control,

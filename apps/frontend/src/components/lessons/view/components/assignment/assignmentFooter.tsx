@@ -11,17 +11,10 @@ import { SimulatedLink } from '../quiz/questions/lists/table/components/question
 import { AssignmentAnswerForm } from './forms/upsert/form'
 
 // Constants
-import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
+import { ANSWER_TYPE, ENTITIES, TAXONOMY_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
-import {
-  ANSWER_TYPE,
-  CurrentUser,
-  Lesson,
-  offCanvasType,
-  Taxonomy,
-  TAXONOMY_TYPE
-} from '@availabletowork/types'
+import { CurrentUser, Lesson, offCanvasType, Taxonomy } from '@availabletowork/types'
 
 export const AssignmentFooter = ({
   user,

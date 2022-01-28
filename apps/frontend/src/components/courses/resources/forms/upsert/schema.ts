@@ -5,8 +5,8 @@
 // Yup
 import { mixed, object, string } from 'yup'
 
-// Types
-import { POST_TYPE, STATUS_ACTIVE } from '@availabletowork/types'
+// Constants
+import { POST_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 
 export const ResourcesSchema = object()
   .shape({

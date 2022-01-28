@@ -26,23 +26,26 @@ import { LessonAssignment } from './components/assignment/view'
 // Hooks
 import { useLessons } from '../hooks/useLesson/useLessons'
 
+// Constants
+import {
+  ENTITIES,
+  MEDIUM_CATEGORY,
+  LESSON_TYPE,
+  MEDIUM_TYPE,
+  pages,
+  STATUS_ACTIVE
+} from '@availabletowork/constants'
+
 // Types
 import {
   LessonDetailsToolbarType,
   LessonFilter,
-  LESSON_TYPE,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
-  pages,
   CurrentUser,
   UseMediaProps
 } from '@availabletowork/types'
 
 // Helpers
 import { LessonDetailsToolbar } from './helpers'
-
-// Constants
-import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/types'
 
 export const LessonView = ({ user }: { user: CurrentUser }) => {
   const { query } = useRouter()

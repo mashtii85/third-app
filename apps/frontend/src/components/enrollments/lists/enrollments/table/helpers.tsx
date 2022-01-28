@@ -7,16 +7,18 @@ import { MouseEvent, useContext } from 'react'
 
 // UI
 import { Button, formatDateStandard, OffCanvasContext, TableLink } from '@drykiss/industry-ui'
+import { CourseForm } from '../../../form'
+
+// Constants
+import { pages } from '@availabletowork/constants'
 
 // Types
-import { CourseForm } from '../../../form'
 import {
   Column,
   CourseEnrollmentsTableRowsType,
   Enrollment,
   LooseObject,
-  offCanvasType,
-  pages
+  offCanvasType
 } from '@availabletowork/types'
 
 export const columns = () => {

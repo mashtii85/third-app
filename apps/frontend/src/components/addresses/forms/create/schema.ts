@@ -5,8 +5,11 @@
 // Yup
 import { object, string, number, mixed, SchemaOf } from 'yup'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { AddressFormType, STATUS_ACTIVE } from '@availabletowork/types'
+import { AddressFormType } from '@availabletowork/types'
 
 const r1 = `^([Gg][Ii][Rr] 0[Aa]{2})`
 const r2 = '|((([A-Za-z][0-9]{1,2})'

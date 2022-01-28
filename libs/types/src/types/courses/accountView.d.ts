@@ -2,10 +2,15 @@
  * Components - Courses - View - Account - Table - Types
  */
 
+// Constants
+import {
+  COURSE_ENROLLMENT_STATUS,
+  COURSE_PAGE_MODE,
+  LESSON_PROGRESS_STATUS
+} from '@availabletowork/constants'
+
 // Types
-import { COURSE_PAGE_MODE } from '.'
-import { COURSE_ENROLLMENT_STATUS } from '../enrollments'
-import { Lesson, LessonProgressUpdateModel, LESSON_PROGRESS_STATUS } from '../lessons'
+import { Lesson, LessonProgressUpdateModel } from '../lessons'
 import { LessonCertificateType } from './certificate'
 
 export interface LessonPageStateType {

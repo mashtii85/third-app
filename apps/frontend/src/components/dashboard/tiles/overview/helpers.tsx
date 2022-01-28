@@ -2,8 +2,11 @@
  * Components - Dashboard - Tiles - Overview - Helpers
  */
 
+// Constants
+import { pages } from '@availabletowork/constants'
+
 // Types
-import { AdminTileData, ClientTileData, DashboardTile, pages } from '@availabletowork/types'
+import { AdminTileData, ClientTileData, DashboardTile } from '@availabletowork/types'
 
 export const prepareClientTiles = (dashboardObjects?: ClientTileData): DashboardTile[] => {
   const GREEN = 'success'

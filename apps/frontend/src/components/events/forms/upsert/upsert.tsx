@@ -11,7 +11,7 @@ import { EventSchema as schema } from './schema'
 import { DatePicker, Input, Form, Label, Select, Textarea } from '@drykiss/industry-ui'
 
 // Constants
-import { statusActive } from '@availabletowork/types'
+import { ENTITIES, statusActive, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 // Types
 import {
@@ -19,12 +19,8 @@ import {
   EventFormProps,
   EventFormSubmission,
   LooseObject,
-  Options,
-  TAXONOMY_TYPE
+  Options
 } from '@availabletowork/types'
-
-// Constants
-import { ENTITIES } from '@availabletowork/types'
 
 // Hooks
 import { useCreateEvent, useUpdateEvent } from '../../hooks'

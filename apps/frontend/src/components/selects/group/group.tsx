@@ -5,7 +5,7 @@
 import { Label, ReactSelect } from '@drykiss/industry-ui'
 
 // Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { GroupSelectProps } from '@availabletowork/types'

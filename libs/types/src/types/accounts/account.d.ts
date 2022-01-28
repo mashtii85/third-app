@@ -2,14 +2,9 @@
  * Types - Account
  */
 
-import { Filter, Options, STATUS_ACTIVE, Taxonomy } from '../general'
+import { ACCOUNT_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+import { Filter, Options, Taxonomy } from '../general'
 import { User } from './user'
-
-export enum ACCOUNT_TYPE {
-  Admin = 'admin',
-  Client = 'client',
-  Member = 'member'
-}
 
 export interface Account_CustomField {
   position: string

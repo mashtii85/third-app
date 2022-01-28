@@ -9,10 +9,10 @@ import { Control, FieldErrors } from 'react-hook-form'
 import { CustomSelect } from '../../selects/select'
 
 // Constants
-import { ENTITIES, statusActive } from '@availabletowork/types'
+import { ENTITIES, statusActive, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 // Types
-import { LooseObject, TAXONOMY_TYPE } from '@availabletowork/types'
+import { LooseObject } from '@availabletowork/types'
 
 export const LocationFilters = ({
   control,

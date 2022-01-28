@@ -6,7 +6,7 @@
 import { useCustomUpdateLesson } from '../hooks/useCustomUpdate/useCustomUpdate'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES } from '@availabletowork/constants'
 
 // Types
 import { Lesson } from '@availabletowork/types'

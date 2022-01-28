@@ -18,17 +18,15 @@ import {
 import { AddressForm } from '../../forms/create/form'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { ADDRESS_TYPE, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types
 import {
   Address,
   AddressToolbarType,
   AddressTableRowsType,
-  ADDRESS_TYPE,
   Column,
   offCanvasType,
-  STATUS_ACTIVE,
   UseAddressProps
 } from '@availabletowork/types'
 

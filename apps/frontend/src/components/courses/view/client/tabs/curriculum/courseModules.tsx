@@ -17,14 +17,11 @@ import { ModuleForm } from '../../../../../module/forms/create/form'
 import { Toolbar } from './helpers'
 import { CourseModuleOrderingHelper } from './orderingHelper'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import {
-  Module,
-  ModuleFilter,
-  ModuleFormType,
-  offCanvasType,
-  STATUS_ACTIVE
-} from '@availabletowork/types'
+import { Module, ModuleFilter, ModuleFormType, offCanvasType } from '@availabletowork/types'
 
 export const ClientCourseModule = ({ courseId }: { courseId: number }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

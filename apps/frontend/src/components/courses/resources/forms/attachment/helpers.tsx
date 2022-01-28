@@ -8,8 +8,11 @@ import { Control, Controller, useWatch } from 'react-hook-form'
 // UI
 import { Button, Dropzone, Label } from '@drykiss/industry-ui'
 
+// Constants
+import { SIZE, THEME_CONTEXT } from '@availabletowork/constants'
+
 // types
-import { DropzoneProps, DropzoneType, THEME_CONTEXT, SIZE } from '@availabletowork/types'
+import { DropzoneProps, DropzoneType } from '@availabletowork/types'
 import { useState } from 'react'
 
 const sizeCalculator = (size: number): string => {

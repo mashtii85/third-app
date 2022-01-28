@@ -6,7 +6,8 @@
 import { User } from '@availabletowork/types'
 import { NavItem, UserDropDownOutput } from '@availabletowork/types'
 
-import { pages } from '@availabletowork/types'
+// Constants
+import { pages } from '@availabletowork/constants'
 
 export const UserDropdown = (user: User): UserDropDownOutput => {
   const prepareNavItems = (): NavItem[] => [

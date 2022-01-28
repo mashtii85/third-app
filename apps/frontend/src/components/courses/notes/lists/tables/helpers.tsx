@@ -15,17 +15,11 @@ import {
   TableActions
 } from '@drykiss/industry-ui'
 
+// Constants
+import { POST_TYPE, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/constants'
+
 // Types
-import {
-  Column,
-  NotesTableRowsType,
-  offCanvasType,
-  Post,
-  PostFilter,
-  POST_TYPE,
-  STATUS_ACTIVE,
-  THEME_CONTEXT
-} from '@availabletowork/types'
+import { Column, NotesTableRowsType, offCanvasType, Post, PostFilter } from '@availabletowork/types'
 
 // Forms
 import { NotesForm } from '../../forms/upsert/form'

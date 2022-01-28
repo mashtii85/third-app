@@ -2,15 +2,11 @@
  * Components - ProgressBar - Course - Helper
  */
 
-import {
-  LessonProgress,
-  LESSON_PROGRESS_STATUS,
-  Medium,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE,
-  ProgressBarModel,
-  Video
-} from '@availabletowork/types'
+// Constants
+import { LESSON_PROGRESS_STATUS, MEDIUM_CATEGORY, MEDIUM_TYPE } from '@availabletowork/constants'
+
+// Types
+import { LessonProgress, Medium, ProgressBarModel, Video } from '@availabletowork/types'
 
 export const progressData = (data: LessonProgress[]): ProgressBarModel => {
   const result: ProgressBarModel = { data: [], status: {} }

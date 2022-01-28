@@ -1,10 +1,11 @@
 /**
  * Components - Courses - View - Client - Tabs - Types
  */
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { Course, CourseFilter } from '.'
-import { STATUS_ACTIVE } from '../general'
 import { Lesson } from '../lessons'
 import { Module } from '../module'
 

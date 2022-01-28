@@ -22,13 +22,17 @@ import {
   UseMediaProps,
   offCanvasType,
   Medium,
-  DropzoneProps,
-  MEDIUM_CATEGORY,
-  MEDIUM_TYPE
+  DropzoneProps
 } from '@availabletowork/types'
 
 // Constants
-import { ENTITIES, STATUS_ACTIVE, THEME_CONTEXT } from '@availabletowork/types'
+import {
+  ENTITIES,
+  MEDIUM_CATEGORY,
+  MEDIUM_TYPE,
+  STATUS_ACTIVE,
+  THEME_CONTEXT
+} from '@availabletowork/constants'
 
 export const MediaTable = ({ mediaTableProps }: { mediaTableProps: MediaTableProps }) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

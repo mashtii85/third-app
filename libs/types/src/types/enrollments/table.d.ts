@@ -2,7 +2,8 @@
  * Components - Enrollments - Lists - EnrolledUsers - Table - Types.d
  */
 
-import { STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface CourseEnrollmentsTableRowsType {
   id: number

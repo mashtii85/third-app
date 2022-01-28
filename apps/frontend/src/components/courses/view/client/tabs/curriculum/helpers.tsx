@@ -15,12 +15,10 @@ import { ModuleDeleteForm } from '../../../../../module/forms/delete/delete'
 import { LessonForm } from '../../../../../lessons/form'
 
 // Constants
-import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
+import { LESSON_STATUS, LESSON_TYPE, SIZE, THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types
 import {
-  LESSON_STATUS,
-  LESSON_TYPE,
   LessonUpsertFormFilterType,
   ModuleFormType,
   ModuleToolbarType,

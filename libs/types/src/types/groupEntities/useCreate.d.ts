@@ -2,9 +2,11 @@
  * Components - GroupEntities - Hooks - UseCreate - Types.d
  */
 
-// Types.d
-import { ENTITIES } from '../../constants'
-import { GroupEntity, STATUS_ACTIVE, UseHookOutput, UseHookProps } from '../general'
+// Constants
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
+
+// Types
+import { GroupEntity, UseHookOutput, UseHookProps } from '../general'
 import { GroupEntityFilter } from './useGroupEntities'
 
 export interface GroupEntityCreateData {

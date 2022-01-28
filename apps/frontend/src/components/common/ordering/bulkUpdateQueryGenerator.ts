@@ -3,7 +3,7 @@
  */
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES } from '@availabletowork/constants'
 
 // Types
 import { bulkUpdateQueryGeneratorType, Sortable } from '@availabletowork/types'

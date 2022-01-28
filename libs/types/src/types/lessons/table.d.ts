@@ -2,7 +2,8 @@
  * Components - Lessons - List - Table - Types
  */
 
-import { LESSON_STATUS, LESSON_TYPE } from '.'
+// Constants
+import { LESSON_STATUS, LESSON_TYPE } from '@availabletowork/constants'
 
 export interface LessonTableRowsType {
   id?: number

@@ -17,6 +17,9 @@
     "baseUrl": ".",
     "paths": {
       "@availabletowork/api-core": ["libs/api-core/src/index.ts"],
+      "@availabletowork/constants": [
+        "libs/constants/src/index.ts"
+      ],
       "@availabletowork/queries": ["libs/queries/src/index.ts"],
       "@availabletowork/types": ["libs/types/src/index.ts"],
       "@drykiss/auth": ["libs/auth/src/index.ts"],

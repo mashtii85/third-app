@@ -2,7 +2,11 @@
  * Components - Accounts - Lists - Accounts - Table - Types.d
  */
 
+// Constants
 import { Options, STATUS_ACTIVE } from '../general'
+
+// Types
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 import { UsersFilter } from '../users'
 import { Account, CustomField } from './account'
 import { AccountFilters } from './types.d'

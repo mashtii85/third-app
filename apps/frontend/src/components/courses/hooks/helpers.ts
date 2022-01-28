@@ -2,13 +2,15 @@
  * Components - Courses - List - Table - Hooks - helpers
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import {
   CourseDB,
   GQLClause,
   GraphqlWhere,
-  PrepareCourseArgumentProps,
-  STATUS_ACTIVE
+  PrepareCourseArgumentProps
 } from '@availabletowork/types'
 
 export const prepareCoursesArguments = ({

@@ -5,11 +5,11 @@
 // Yup
 import { mixed, object, string, SchemaOf, number } from 'yup'
 
-// Types
-import { MediaFormType, MEDIUM_CATEGORY, MEDIUM_TYPE } from '@availabletowork/types'
-
 // Constants
-import { STATUS_ACTIVE } from '@availabletowork/types'
+import { MEDIUM_CATEGORY, MEDIUM_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
+
+// Types
+import { MediaFormType } from '@availabletowork/types'
 
 export const MediaSchema: SchemaOf<MediaFormType> = object()
   .shape({

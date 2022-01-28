@@ -2,13 +2,11 @@
  * Types - Lesson Progress
  */
 
-import { Lesson } from './lesson'
+// Constants
+import { LESSON_PROGRESS_STATUS } from '@availabletowork/constants'
 
-export enum LESSON_PROGRESS_STATUS {
-  Pending = 'pending',
-  Started = 'started',
-  Completed = 'completed'
-}
+// Types
+import { Lesson } from './lesson'
 
 export interface LessonProgressMeta {
   quizScore: number

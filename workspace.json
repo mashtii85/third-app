@@ -5,6 +5,7 @@
     "api-core": "libs/api-core",
     "auth": "libs/auth",
     "aws": "libs/aws",
+    "constants": "libs/constants",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
     "images": "libs/images",

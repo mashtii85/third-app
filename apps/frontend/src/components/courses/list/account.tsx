@@ -10,9 +10,13 @@ import styled from 'styled-components'
 // UI
 import { Button, Card, CardBody, Column, Row, Space } from '@drykiss/industry-ui'
 
-//ُTypes
-import { Course, pages } from '@availabletowork/types'
+// Constants
+import { pages } from '@availabletowork/constants'
 
+//ُTypes
+import { Course } from '@availabletowork/types'
+
+// Hooks
 import { useCourseEnrollment } from '../../courses/hooks/useCourseEnrollment/useCourseEnrollment'
 import { useCreateEnrollment } from '../../enrollments/hooks/useCreate/useCreate'
 import { useCurrentUser } from '../../../utils/useCurrentUser'

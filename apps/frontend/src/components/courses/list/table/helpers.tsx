@@ -8,6 +8,9 @@ import { MouseEvent, useContext } from 'react'
 // UI
 import { Button, OffCanvasContext, TableActions, TableLink } from '@drykiss/industry-ui'
 
+// Constants
+import { pages, THEME_CONTEXT } from '@availabletowork/constants'
+
 // Types
 import { UpsertCourseForm } from '../../forms'
 import {
@@ -17,9 +20,7 @@ import {
   CourseFormType,
   CourseTableRowsType,
   offCanvasType,
-  pages,
-  Options,
-  THEME_CONTEXT
+  Options
 } from '@availabletowork/types'
 
 // Utils

@@ -2,9 +2,11 @@
  * Components - Module - Hooks - types
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { Module } from '.'
-import { STATUS_ACTIVE } from '../general'
 
 export interface ModuleFilter {
   courseId: number

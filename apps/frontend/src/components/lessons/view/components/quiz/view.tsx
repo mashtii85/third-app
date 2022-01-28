@@ -7,13 +7,10 @@ import { Details } from '@drykiss/industry-ui'
 import { LessonQuestionsTable } from './questions/lists/table/table'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES, STATUS_ACTIVE, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 // Helpers
 import { QuestionsListToolbar } from './helpers'
-
-// Types
-import { STATUS_ACTIVE, TAXONOMY_TYPE } from '@availabletowork/types'
 
 export const LessonQuiz = ({ lessonId }: { lessonId: number }) => {
   return (

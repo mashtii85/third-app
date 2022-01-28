@@ -2,9 +2,12 @@
  * Components - Courses - Forms - Upsert - types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 //Types
 import { CourseFilter } from '.'
-import { Options, STATUS_ACTIVE } from '../general'
+import { Options } from '../general'
 import { LooseObject } from '../general'
 
 export interface CourseFormType {

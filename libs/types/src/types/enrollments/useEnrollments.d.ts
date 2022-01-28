@@ -2,11 +2,14 @@
  * Components - Enrollments - Hooks - UseEnrollments - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { ApolloError } from '@apollo/client'
 import { User } from '../users'
 import { Course } from '../courses'
-import { AggregateData, LooseObject, OrderBy, STATUS_ACTIVE } from '../general'
+import { AggregateData, LooseObject, OrderBy } from '../general'
 
 export interface Enrollment {
   course: Course

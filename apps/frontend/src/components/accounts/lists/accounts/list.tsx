@@ -9,7 +9,7 @@ import { AccountTable as Table } from './table/table'
 import { useCurrentUser } from '../../../../utils/useCurrentUser'
 
 //Types
-import { ACCOUNT_TYPE } from '@availabletowork/types'
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
 
 export const AccountList = () => {
   const { user } = useCurrentUser()

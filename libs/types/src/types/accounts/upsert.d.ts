@@ -1,6 +1,9 @@
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
 import { AccountFilters } from '.'
-import { Options, STATUS_ACTIVE } from '..'
+import { Options } from '..'
 import { AccountsRow } from './table'
 
 export interface AccountFormProps {
@@ -30,10 +33,4 @@ export interface ClientModuleProps {
   locations: boolean
   events: boolean
   learning: boolean
-}
-
-export enum CLIENT_MODULE_TYPE {
-  Locations = 'locations',
-  Events = 'events',
-  Learning = 'learning'
 }

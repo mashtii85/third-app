@@ -5,8 +5,11 @@
 // Yup
 import { date, mixed, object, string, SchemaOf } from 'yup'
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
 // Types
-import { EventFormSubmission, STATUS_ACTIVE } from '@availabletowork/types'
+import { EventFormSubmission } from '@availabletowork/types'
 
 export const EventSchema: SchemaOf<EventFormSubmission> = object()
   .shape({

@@ -1,18 +1,9 @@
-// Types
-import { ENTITIES } from '../../constants'
-import { Medium } from '../media'
-import { Options, STATUS_ACTIVE } from '../general'
+// Constants
+import { ENTITIES, STATUS_ACTIVE, TAXONOMY_TYPE } from '@availabletowork/constants'
 
-export enum TAXONOMY_TYPE {
-  Client = 'clients',
-  Course = 'courses',
-  CustomFields = 'custom-fields',
-  Member = 'members',
-  Location = 'locations',
-  Event = 'events',
-  LessonQuestions = 'lesson-questions',
-  LessonAnswers = 'lesson-answers'
-}
+// Types
+import { Medium } from '../media'
+import { Options } from '../general'
 
 export interface CustomFields {
   input: string

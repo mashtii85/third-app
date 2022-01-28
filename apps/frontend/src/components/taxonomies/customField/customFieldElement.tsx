@@ -3,7 +3,11 @@
  */
 import { CustomFieldRender } from './render'
 
-import { Options, TAXONOMY_TYPE } from '@availabletowork/types'
+// Constants
+import { TAXONOMY_TYPE } from '@availabletowork/constants'
+
+// Types
+import { Options } from '@availabletowork/types'
 
 // Hooks
 import { useTaxonomies } from '../hooks'

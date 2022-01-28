@@ -3,7 +3,7 @@
  */
 
 //Types
-import { LESSON_STATUS, LESSON_TYPE } from '.'
+import { LESSON_STATUS, LESSON_TYPE } from '@availabletowork/constants'
 
 export interface LessonFormType {
   id: number

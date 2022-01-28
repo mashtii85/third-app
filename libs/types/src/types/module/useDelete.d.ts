@@ -14,7 +14,7 @@ export interface ModuleDeleteData {
   module: Module
 }
 
-export interface useDeletemoduleProps extends UseHookProps<ModuleDeleteData> {
+export interface useDeleteModuleProps extends UseHookProps<ModuleDeleteData> {
   filters: ModuleFilter
   id: number
 }

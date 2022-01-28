@@ -3,19 +3,7 @@
  */
 
 import { CourseData } from '.'
-
-export enum CLIENT_TAB {
-  Details = 'Details',
-  Curriculum = 'Curriculum',
-  Enrollments = 'Enrollments',
-  Resources = 'Resources'
-}
-
-export enum COURSE_PAGE_MODE {
-  View = 'View',
-  Progress = 'Progress',
-  Finished = 'Finished'
-}
+import { COURSE_PAGE_MODE } from '@availabletowork/constants'
 
 export interface CompletionCertificateStyledComponent {
   username: string
@@ -38,6 +26,7 @@ export interface CourseViewPageState {
     certificateId: string
   }
 }
+
 type StartLessonAction = {
   type: 'startLesson'
   data: CourseData

@@ -1,5 +1,8 @@
+// Constants
+import { USER_STATUS } from '@availabletowork/constants'
+
 // Types
-import { UserMeta, UsersFilter, USER_STATUS } from '.'
+import { UserMeta, UsersFilter } from '.'
 import { UserRow } from '..'
 
 export type UserForm = {

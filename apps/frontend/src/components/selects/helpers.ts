@@ -6,7 +6,7 @@
 import { GetQueryTypeInput, GetQueryTypeOutput, LooseObject } from '@availabletowork/types'
 
 // Constants
-import { ENTITIES } from '@availabletowork/types'
+import { ENTITIES } from '@availabletowork/constants'
 
 import {
   GET_COURSE_ITEMS,

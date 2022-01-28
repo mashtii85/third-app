@@ -3,7 +3,7 @@
  */
 
 // Types
-import { POST_TYPE } from '../posts'
+import { POST_TYPE } from '@availabletowork/constants'
 
 export interface ResourcesTableRowsType {
   id: number

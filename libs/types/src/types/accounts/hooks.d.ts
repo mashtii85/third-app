@@ -18,7 +18,3 @@ export interface AccountVariables {
   status: string
   where: LooseObject
 }
-
-// export interface UseCreateAccountProps extends UseHookProps<Account> {
-//   filters?: Partial<AccountFilters>
-// }

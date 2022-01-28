@@ -3,7 +3,7 @@
  */
 
 //Types
-import { ENTITIES } from '../../constants'
+import { ENTITIES } from '@availabletowork/constants'
 import { TAXONOMY_TYPE } from '../taxonomies'
 
 export interface LessonQuestionTableProps {

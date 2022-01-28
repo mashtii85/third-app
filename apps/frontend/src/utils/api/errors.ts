@@ -5,8 +5,8 @@
 // Next
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-// Types
-import { LOG_LEVEL } from '@availabletowork/types'
+// Constants
+import { LOG_LEVEL } from '@availabletowork/constants'
 
 export class AppError extends Error {
   public status: number

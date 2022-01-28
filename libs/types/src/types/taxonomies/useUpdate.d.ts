@@ -1,5 +1,8 @@
-import { TaxonomyPropsData, TAXONOMY_TYPE, UseHookProps } from '..'
-import { ENTITIES } from '../../constants'
+// Constants
+import { ENTITIES, TAXONOMY_TYPE } from '@availabletowork/constants'
+
+// Types
+import { TaxonomyPropsData, UseHookProps } from '..'
 import { UseHookOutput } from '../general'
 
 export interface UseUpdateTaxonomyOutput extends UseHookOutput {

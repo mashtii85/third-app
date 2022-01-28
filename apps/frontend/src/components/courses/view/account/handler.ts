@@ -9,16 +9,18 @@ import { formatDateStandard, formatTime } from '@drykiss/industry-ui'
 import { scrollTo } from '../../../../utils/scrollTo'
 
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import {
+  COURSE_PAGE_MODE,
+  LESSON_PROGRESS_STATUS,
+  LESSON_TYPE,
+  THEME_CONTEXT
+} from '@availabletowork/constants'
 
 //Types
 import {
   CourseActionTypes,
-  COURSE_PAGE_MODE,
   CourseState,
   Lesson,
-  LESSON_PROGRESS_STATUS,
-  LESSON_TYPE,
   Module,
   StepperActionModel,
   StepperModel

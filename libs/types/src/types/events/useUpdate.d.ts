@@ -2,8 +2,10 @@
  * Components - Events - Hooks - UseUpdateEvent - Types.d
  */
 
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
 // Types
-import { STATUS_ACTIVE, UseHookOutput } from '../general'
+import { UseHookOutput } from '../general'
 import { Event } from './events'
 
 export interface EventUpdateVariables {

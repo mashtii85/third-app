@@ -3,13 +3,7 @@
  */
 
 // Constants
-import { ENTITIES } from '../../constants'
-import { STATUS_ACTIVE } from '../general'
-
-export enum ADDRESS_TYPE {
-  Registered = 'registered',
-  Invoice = 'invoice'
-}
+import { ENTITIES, STATUS_ACTIVE } from '@availabletowork/constants'
 
 export interface Address {
   id: number

@@ -2,8 +2,11 @@
  * Components - Courses - Notes - Forms - Delete
  */
 
+// Constants
+import { SIZE } from '@availabletowork/constants'
+
 // Types
-import { PostDeleteType, SIZE } from '@availabletowork/types'
+import { PostDeleteType } from '@availabletowork/types'
 
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'

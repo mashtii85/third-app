@@ -26,16 +26,10 @@ import { fileinfo } from '../../forms/attachment/helpers'
 import { getIconByFilename, Icon } from './helpers'
 
 // Constants
-import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
+import { RESOURCE_TYPE, SIZE, THEME_CONTEXT } from '@availabletowork/constants'
 
 // Types & Constants
-import {
-  offCanvasType,
-  Post,
-  PostDeleteType,
-  ResourcesFormType,
-  RESOURCE_TYPE
-} from '@availabletowork/types'
+import { offCanvasType, Post, PostDeleteType, ResourcesFormType } from '@availabletowork/types'
 
 export const ResourceTable = ({ posts }: { posts: Post[] }) => {
   return (

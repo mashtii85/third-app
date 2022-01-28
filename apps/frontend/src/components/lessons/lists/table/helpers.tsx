@@ -8,11 +8,11 @@ import { MouseEvent } from 'react'
 // UI
 import { formatTime, formatDateStandard, TableLink, TableActions } from '@drykiss/industry-ui'
 
-// Types
-import { Column, Lesson, LessonTableRowsType, pages } from '@availabletowork/types'
-
 // Constants
-import { THEME_CONTEXT } from '@availabletowork/types'
+import { pages, THEME_CONTEXT } from '@availabletowork/constants'
+
+// Types
+import { Column, Lesson, LessonTableRowsType } from '@availabletowork/types'
 
 export const columns = ({
   lessons,

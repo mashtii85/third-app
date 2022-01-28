@@ -18,9 +18,11 @@ import { useCurrentUser } from '../../../../../../../../utils/useCurrentUser'
 import { Form, Input, Label, Select } from '@drykiss/industry-ui'
 import { QuestionUpsertSchema as schema } from './schema'
 
+// Constants
+import { QUIZ_QUESTION_TYPE } from '@availabletowork/constants'
+
 // Types
 import {
-  QUIZ_QUESTION_TYPE,
   QuestionUpsertFormType,
   QuestionUpsertType,
   Taxonomy,

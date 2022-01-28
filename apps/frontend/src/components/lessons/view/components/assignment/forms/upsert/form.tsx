@@ -14,12 +14,14 @@ import { useUpdateTaxonomy } from '../../../../../../taxonomies/hooks/useUpdate/
 import { Checkbox, Input, Form, Label } from '@drykiss/industry-ui'
 import { AnswersSchema as schema } from './schema'
 
+// Constants
+import { MEDIUM_TYPE } from '@availabletowork/constants'
+
 // Types
 import {
   AssignmentAnswerFormType,
   AssignmentAnswerSubmitType,
   CheckboxDataType,
-  MEDIUM_TYPE,
   Taxonomy,
   UseCreateTaxonomyProps,
   UseUpdateTaxonomyProps

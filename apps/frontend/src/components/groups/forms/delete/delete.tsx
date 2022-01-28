@@ -2,11 +2,12 @@
  * Components - Groups - Forms - Delete
  */
 
-import { SIZE } from '@availabletowork/types'
-
 // UI
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeleteGroup } from '../../hooks/useDelete/useDelete'
+
+// Constants
+import { SIZE } from '@availabletowork/constants'
 
 // Types
 import { GroupDeleteType } from '@availabletowork/types'

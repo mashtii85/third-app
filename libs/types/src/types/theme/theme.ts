@@ -84,10 +84,3 @@ export const Theme = {
   STEPPER,
   TYPOGRAPHY
 }
-
-export enum SIZE {
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg'
-}

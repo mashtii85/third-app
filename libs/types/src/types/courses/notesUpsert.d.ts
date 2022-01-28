@@ -2,9 +2,8 @@
  * Components - Courses - Notes - Forms - Upsert - Types
  */
 
-// Types
-import { ENTITIES } from '../../constants'
-import { POST_TYPE, STATUS_ACTIVE } from '../general'
+// Constants
+import { ENTITIES, POST_TYPE, STATUS_ACTIVE } from '@availabletowork/constants'
 export interface NotesFormType {
   id: number | undefined
   entity: ENTITIES

@@ -5,8 +5,11 @@
 // I18n
 import useTranslation from '../../../translations/hooks/useTranslation'
 
+// Constants
+import { LOCALE_NS, pages } from '@availabletowork/constants'
+
 // Types
-import { LOCALE_NS, Navigation, pages } from '@availabletowork/types'
+import { Navigation } from '@availabletowork/types'
 
 export const Default = (): Partial<Navigation> => {
   const { t } = useTranslation(LOCALE_NS.Login)

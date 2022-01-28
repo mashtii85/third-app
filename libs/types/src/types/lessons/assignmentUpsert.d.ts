@@ -15,7 +15,3 @@ export interface CheckboxDataType {
   label: string
   value: string
 }
-
-export enum ANSWER_TYPE {
-  Assignment = 'assignment'
-}

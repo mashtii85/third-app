@@ -9,7 +9,7 @@ import { DatePickerCalendar, Space } from '@drykiss/industry-ui'
 import enGB from 'date-fns/locale/en-GB'
 
 // Constants
-import { SIZE } from '@availabletowork/types'
+import { SIZE } from '@availabletowork/constants'
 
 // Types
 import { DatePickerProps } from '@availabletowork/types'

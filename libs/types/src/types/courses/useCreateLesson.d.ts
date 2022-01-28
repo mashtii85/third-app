@@ -2,9 +2,12 @@
  * Components - Courses - View - Account - Hooks - UseCreate - Types.d
  */
 
+// Constants
+import { LESSON_PROGRESS_STATUS } from '@availabletowork/constants'
+
 // Types
 import { Course } from '.'
-import { LESSON_PROGRESS_STATUS, UseHookOutput } from '..'
+import { UseHookOutput } from '..'
 
 export interface CreateLessonProgressVariables {
   enrollment_id: number

@@ -2,8 +2,11 @@
  * Components - Locations - Types.d
  */
 
-//Types
-import { Filter, LooseObject, STATUS_ACTIVE } from '../general'
+// Constants
+import { STATUS_ACTIVE } from '@availabletowork/constants'
+
+// Types
+import { Filter, LooseObject } from '../general'
 import { Taxonomy } from '../taxonomies'
 
 export interface LocationFilter extends Partial<Filter> {

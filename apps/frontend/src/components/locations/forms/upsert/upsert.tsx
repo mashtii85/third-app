@@ -13,15 +13,14 @@ import { CustomSelect } from '../../../selects/select'
 import { CustomFieldElement } from '../../../taxonomies/customField/customFieldElement'
 
 // Constants
-import { statusActive, ENTITIES } from '@availabletowork/types'
+import { ENTITIES, statusActive, TAXONOMY_TYPE } from '@availabletowork/constants'
 
 // Types
 import {
   LocationFormType,
   LocationFormProps,
   LocationFormSubmission,
-  Options,
-  TAXONOMY_TYPE
+  Options
 } from '@availabletowork/types'
 
 // Hooks

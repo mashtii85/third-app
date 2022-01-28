@@ -3,7 +3,7 @@
  */
 
 // Constants
-import { SIZE } from '@availabletowork/types'
+import { SIZE } from '@availabletowork/constants'
 
 // Types
 import { DeleteLocationProps } from '@availabletowork/types'

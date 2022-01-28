@@ -11,15 +11,15 @@ import { Button, ButtonToolbar, OffCanvasContext } from '@drykiss/industry-ui'
 import { LessonQuestionForm } from './questions/form/upsert/form'
 
 // Constants
+import { SIZE, THEME_CONTEXT } from '@availabletowork/constants'
+
+// Types
 import {
   offCanvasType,
   QuestionsListToolbarType,
   QuestionUpsertType,
   Taxonomy
 } from '@availabletowork/types'
-
-// Types
-import { SIZE, THEME_CONTEXT } from '@availabletowork/types'
 
 export const QuestionsListToolbar = (toolbarProps: QuestionsListToolbarType) => {
   const offCanvas = useContext<offCanvasType>(OffCanvasContext)

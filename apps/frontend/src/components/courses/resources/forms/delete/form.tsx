@@ -6,8 +6,11 @@
 import { Button, Space, Text } from '@drykiss/industry-ui'
 import { useDeletePost } from '../../../../posts/hooks/useDelete/useDelete'
 
+// Constants
+import { SIZE } from '@availabletowork/constants'
+
 // Types
-import { PostDeleteType, SIZE } from '@availabletowork/types'
+import { PostDeleteType } from '@availabletowork/types'
 
 export const ResourcesDeleteForm = ({
   resourcesDeleteProps,
