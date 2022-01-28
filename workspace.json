@@ -3,9 +3,14 @@
   "projects": {
     "api": "apps/api",
     "api-core": "libs/api-core",
+    "auth": "libs/auth",
+    "aws": "libs/aws",
     "constants": "libs/constants",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
+    "media": "libs/media",
+    "nest-utils": "libs/nest-utils",
+    "queries": "libs/queries",
     "types": "libs/types"
   }
 }

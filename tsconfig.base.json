@@ -6,6 +6,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
@@ -17,7 +18,12 @@
     "paths": {
       "@availabletowork/api-core": ["libs/api-core/src/index.ts"],
       "@availabletowork/constants": ["libs/constants/src/index.ts"],
-      "@availabletowork/types": ["libs/types/src/index.ts"]
+      "@availabletowork/queries": ["libs/queries/src/index.ts"],
+      "@availabletowork/types": ["libs/types/src/index.ts"],
+      "@drykiss/auth": ["libs/auth/src/index.ts"],
+      "@drykiss/aws": ["libs/aws/src/index.ts"],
+      "@drykiss/media": ["libs/media/src/index.ts"],
+      "@drykiss/nest-utils": ["libs/nest-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

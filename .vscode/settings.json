@@ -41,7 +41,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "prettier.semi": true,
   "cSpell.words": [
     "availabletowork",
     "camelize",
