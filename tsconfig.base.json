@@ -23,6 +23,7 @@
       "@drykiss/auth": ["libs/auth/src/index.ts"],
       "@drykiss/aws": ["libs/aws/src/index.ts"],
       "@drykiss/images": ["libs/images/src/index.ts"],
+      "@drykiss/media": ["libs/media/src/index.ts"],
       "@drykiss/nest-utils": ["libs/nest-utils/src/index.ts"]
     }
   },

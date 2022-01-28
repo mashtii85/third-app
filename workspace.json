@@ -8,7 +8,7 @@
     "constants": "libs/constants",
     "frontend": "apps/frontend",
     "frontend-e2e": "apps/frontend-e2e",
-    "images": "libs/images",
+    "media": "libs/media",
     "nest-utils": "libs/nest-utils",
     "queries": "libs/queries",
     "types": "libs/types"

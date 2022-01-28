@@ -1,20 +1,20 @@
 {
-  "root": "libs/images",
-  "sourceRoot": "libs/images/src",
+  "root": "libs/media",
+  "sourceRoot": "libs/media/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/images/**/*.ts"]
+        "lintFilePatterns": ["libs/media/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/images"],
+      "outputs": ["coverage/libs/media"],
       "options": {
-        "jestConfig": "libs/images/jest.config.js",
+        "jestConfig": "libs/media/jest.config.js",
         "passWithNoTests": true
       }
     }
