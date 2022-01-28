@@ -8,8 +8,11 @@ import { LOG, LOG_LEVEL, query, TE } from '@drykiss/nest-utils'
 // GQL
 import { GET_USER_BY_EMAIL } from '@availabletowork/queries'
 
+// Constants
+import { STATUS_ACTIVE, USER_STATUS } from '@availabletowork/constants'
+
 // Types
-import { AccountUsers, CurrentUser, STATUS_ACTIVE, USER_STATUS } from '@availabletowork/types'
+import { AccountUsers, CurrentUser } from '@availabletowork/types'
 import { LoginModel } from './types.d'
 
 // Helpers

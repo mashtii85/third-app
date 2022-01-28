@@ -2,8 +2,11 @@
  * Services - Auth - Types
  */
 
+// Constants
+import { ACCOUNT_TYPE } from '@availabletowork/constants'
+
+// Types
 import { CurrentUser } from '@availabletowork/types'
-import { ACCOUNT_TYPE } from '@availabletowork/types'
 
 export interface LoginModel {
   token: string
