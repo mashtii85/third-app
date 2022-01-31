@@ -1,3 +1,7 @@
+/**
+ * Constants - i18n
+ */
+
 export enum LOCALE_NS {
   Home = 'home',
   Common = 'common',

@@ -1,5 +1,5 @@
 /**
- * Constants - Status
+ * Constants - Statuses
  */
 
 export const statusActive = [

@@ -1,3 +1,7 @@
+/**
+ * Constants - Calendar
+ */
+
 export enum CALENDAR_STATUS {
   Cancelled = 'cancelled',
   Completed = 'completed',

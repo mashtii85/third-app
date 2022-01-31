@@ -1,3 +1,7 @@
+/**
+ * Constants - Lessons
+ */
+
 export enum ANSWER_TYPE {
   Assignment = 'assignment'
 }

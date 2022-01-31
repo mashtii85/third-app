@@ -1,3 +1,7 @@
+/**
+ * Constants - Pages
+ */
+
 export const pages = {
   home: '/',
   account: {

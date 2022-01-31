@@ -1,5 +1,5 @@
 /**
- * Constant - Input Type
+ * Constants - Input Types
  */
 
 export const input = [
