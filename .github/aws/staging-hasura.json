@@ -1,0 +1,98 @@
+{
+  "requiresCompatibilities": ["FARGATE"],
+  "executionRoleArn": "arn:aws:iam::090317467148:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::090317467148:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "lms-hasura-staging",
+      "image": "hasura/graphql-engine:v2.1.1",
+      "environment": [
+        {
+          "name": "ACTION_BASE_URL",
+          "value": "https://lms.cleverly.works/api"
+        },
+        {
+          "name": "EVENT_TRIGGERS_URL",
+          "value": "https://lms.cleverly.works/api/events"
+        },
+        {
+          "name": "CRON_TRIGGERS_URL",
+          "value": "https://lms.cleverly.works/api/events/cron"
+        },
+        {
+          "name": "HASURA_GRAPHQL_ENABLE_CONSOLE",
+          "value": "true"
+        },
+        {
+          "name": "HASURA_GRAPHQL_ENABLE_TELEMETRY",
+          "value": "false"
+        },
+        {
+          "name": "HASURA_GRAPHQL_V1_BOOLEAN_NULL_COLLAPSE",
+          "value": "true"
+        },
+        {
+          "name": "HASURA_GRAPHQL_ENABLED_LOG_TYPES",
+          "value": "startup, http-log, webhook-log, websocket-log, query-log"
+        },
+        {
+          "name": "HASURA_GRAPHQL_LIVE_QUERIES_MULTIPLEXED_REFETCH_INTERVAL",
+          "value": "5000"
+        },
+        {
+          "name": "HASURA_GRAPHQL_LOG_LEVEL",
+          "value": "warn"
+        },
+        {
+          "name": "HASURA_GRAPHQL_SERVER_PORT",
+          "value": "8085"
+        },
+        {
+          "name": "HASURA_GRAPHQL_UNAUTHORIZED_ROLE",
+          "value": "guest"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "lms-logs-hasura-staging",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "lms-logs-hasura-staging"
+        }
+      },
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-staging-aws-apikey-eBa7Ui",
+          "name": "API_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-staging-hasura-zAsqdE",
+          "name": "HASURA_GRAPHQL_ADMIN_SECRET"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:lms-hasuragql-dburl-staging-ZLnROM",
+          "name": "HASURA_GRAPHQL_DATABASE_URL"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:eu-west-2:090317467148:secret:cleverly-hasuragql-jwtsecret-staging-gqwSpo",
+          "name": "HASURA_GRAPHQL_JWT_SECRET"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 8085,
+          "protocol": "tcp",
+          "containerPort": 8085
+        }
+      ],
+      "essential": true,
+      "interactive": true,
+      "pseudoTerminal": true
+    }
+  ],
+  "family": "lms-hasura-staging",
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "volumes": []
+}
