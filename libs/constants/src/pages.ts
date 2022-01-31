@@ -1,4 +1,4 @@
-const path = {
+export const pages = {
   home: '/',
   account: {
     signIn: '/account/sign-in',
@@ -47,5 +47,3 @@ const path = {
     profile: '/dashboard/profile'
   }
 }
-
-export default path
