@@ -20,7 +20,7 @@
       "options": {
         "buildTarget": "frontend:build",
         "dev": true,
-        "proxyConfig": "apps/frontend/proxy.conf.json"
+        "port": 3100
       },
       "configurations": {
         "production": {
