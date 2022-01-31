@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_LESSON_BY_PK, GET_LESSONS } from '../../queries/queries'
+import { DELETE_LESSON_BY_PK, GET_LESSONS } from '@availabletowork/queries'
 
 // Types
 import {

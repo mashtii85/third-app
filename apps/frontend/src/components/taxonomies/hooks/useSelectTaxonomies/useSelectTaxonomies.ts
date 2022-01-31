@@ -4,10 +4,10 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
+import { GET_TAXONOMIES_ITEMS } from '@availabletowork/queries'
 
 // Types
 import { SelectDataList, TaxonomyFilters, UseSelectOutput } from '@availabletowork/types'
-import { GET_TAXONOMIES_ITEMS } from '../../../selects/queries'
 
 // Helpers
 import { prepareTaxonomyArguments } from '../helpers'

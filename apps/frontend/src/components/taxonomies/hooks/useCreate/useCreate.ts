@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_TAXONOMY, GET_TAXONOMIES } from '../../queries'
+import { CREATE_TAXONOMY, GET_TAXONOMIES } from '@availabletowork/queries'
 import { prepareTaxonomyArguments } from '../helpers'
 
 // Types

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_MODULE_BY_PK } from '../../queries/queries'
+import { DELETE_MODULE_BY_PK } from '@availabletowork/queries'
 
 // Hooks
 import { useModule } from '../useModule/useModule'

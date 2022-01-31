@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { ADD_LESSON_PROGRESS_ONE } from '../../../../../lessons/queries/queries'
+import { ADD_LESSON_PROGRESS_ONE } from '@availabletowork/queries'
 
 // Types
 import {

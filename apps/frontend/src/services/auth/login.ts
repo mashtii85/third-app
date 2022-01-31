@@ -7,7 +7,7 @@ import { LOG, TE } from '../../utils/api/errors'
 
 // GQL
 import { query } from '../graphqlClient'
-import { GET_USER_BY_EMAIL } from '../../components/users/queries'
+import { GET_USER_BY_EMAIL } from '@availabletowork/queries'
 
 // Helpers
 import { generateToken, prepareUserData, validatePassword } from './helpers'

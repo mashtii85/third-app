@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_ADDRESSES } from '../queries/queries'
+import { GET_ADDRESSES } from '@availabletowork/queries'
 
 // Types
 import { Address, AddressesData, AddressFilter, GQLClause } from '@availabletowork/types'

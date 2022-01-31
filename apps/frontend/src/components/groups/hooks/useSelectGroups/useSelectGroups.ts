@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_GROUPS_SELECT } from '../../queries'
+import { GET_GROUPS_SELECT } from '@availabletowork/queries'
 import { prepareGroupSelectArguments } from './helpers'
 
 // Types

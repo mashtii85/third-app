@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_ACCOUNTS } from '../../queries/queries'
+import { GET_ACCOUNTS } from '@availabletowork/queries'
 
 // Types
 import { AccountData, UseAccountsOutput, UseAccountsVariable } from '@availabletowork/types'

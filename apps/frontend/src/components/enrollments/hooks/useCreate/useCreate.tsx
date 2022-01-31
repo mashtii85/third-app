@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { GET_ENROLLMENTS, INSERT_ENROLLMENT } from '../../queries'
+import { GET_ENROLLMENTS, INSERT_ENROLLMENT } from '@availabletowork/queries'
 
 // Types
 import { CourseEnrolment, GraphqlWhere, UseCreateEnrollmentProps } from '@availabletowork/types'

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_GROUP_ENTITY_BY_PK, GET_GROUP_ENTITIES } from '../../queries/queries'
+import { DELETE_GROUP_ENTITY_BY_PK, GET_GROUP_ENTITIES } from '@availabletowork/queries'
 
 // Types
 import {

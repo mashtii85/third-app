@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_EVENT, GET_EVENTS } from '../../queries'
+import { DELETE_EVENT, GET_EVENTS } from '@availabletowork/queries'
 
 // Helpers
 import { prepareEventsArguments } from '../useEvents/helpers'

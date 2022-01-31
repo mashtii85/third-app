@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_COURSE, GET_COURSES } from '../../queries'
+import { DELETE_COURSE, GET_COURSES } from '@availabletowork/queries'
 
 // Helpers
 import { prepareCoursesArguments } from '../helpers'

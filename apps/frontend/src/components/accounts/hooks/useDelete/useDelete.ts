@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_ACCOUNT_BY_ID, GET_ACCOUNTS } from '../../queries'
+import { DELETE_ACCOUNT_BY_ID, GET_ACCOUNTS } from '@availabletowork/queries'
 
 // Helpers
 import { prepareUseAccounts } from '../helpers'

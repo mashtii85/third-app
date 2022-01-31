@@ -14,7 +14,7 @@ import {
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_LOCATION, GET_LOCATIONS } from '../../queries'
+import { CREATE_LOCATION, GET_LOCATIONS } from '@availabletowork/queries'
 
 import { prepareLocationsArguments } from '../useLocations/helpers'
 

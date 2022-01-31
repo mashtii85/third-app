@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_LOCATION } from '../../queries'
+import { UPDATE_LOCATION } from '@availabletowork/queries'
 
 // Types
 import {

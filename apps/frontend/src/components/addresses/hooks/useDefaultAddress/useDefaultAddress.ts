@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { SET_DEFAULT_ADDRESS } from '../../queries/queries'
+import { SET_DEFAULT_ADDRESS } from '@availabletowork/queries'
 
 // Types
 import {

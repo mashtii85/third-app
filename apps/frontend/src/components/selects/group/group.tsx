@@ -9,6 +9,7 @@ import { STATUS_ACTIVE } from '@availabletowork/constants'
 
 // Types
 import { GroupSelectProps } from '@availabletowork/types'
+
 // Hooks
 import { useSelectGroups } from '../../groups/hooks/useSelectGroups/useSelectGroups'
 

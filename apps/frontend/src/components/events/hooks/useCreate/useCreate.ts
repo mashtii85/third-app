@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_EVENT, GET_EVENTS } from '../../queries'
+import { CREATE_EVENT, GET_EVENTS } from '@availabletowork/queries'
 
 //Types
 import {

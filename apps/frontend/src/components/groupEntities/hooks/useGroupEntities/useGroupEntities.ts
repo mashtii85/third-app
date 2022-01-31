@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_GROUP_ENTITIES } from '../../queries/queries'
+import { GET_GROUP_ENTITIES } from '@availabletowork/queries'
 import { prepareGroupEntitiesArguments } from '../helpers'
 
 // Types

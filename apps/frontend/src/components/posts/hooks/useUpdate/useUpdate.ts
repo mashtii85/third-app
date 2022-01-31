@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_POST_BY_PK } from '../../queries/queries'
+import { UPDATE_POST_BY_PK } from '@availabletowork/queries'
 
 // Types
 import {

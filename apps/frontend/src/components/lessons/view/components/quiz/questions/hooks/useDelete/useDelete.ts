@@ -6,7 +6,7 @@
 import { useMutation } from '@apollo/client'
 
 // Queries
-import { DELETE_TAXONOMIES, GET_TAXONOMIES } from '../../../../../../../taxonomies/queries/queries'
+import { DELETE_TAXONOMIES, GET_TAXONOMIES } from '@availabletowork/queries'
 
 // Helpers
 import { prepareTaxonomyArguments } from '../../../../../../../taxonomies/hooks/helpers'

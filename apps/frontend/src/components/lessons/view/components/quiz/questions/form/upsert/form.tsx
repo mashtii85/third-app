@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_TAXONOMY } from '../../../../../../../taxonomies/queries'
+import { UPDATE_TAXONOMY } from '@availabletowork/queries'
 
 // React Hook Form
 import { useForm } from 'react-hook-form'

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_ENROLLMENTS } from '../../queries'
+import { GET_ENROLLMENTS } from '@availabletowork/queries'
 
 // Helpers
 import { prepareVariables } from './helpers'

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_MODULES } from '../../queries/queries'
+import { GET_MODULES } from '@availabletowork/queries'
 
 // Types
 import { ModuleDataList, ModuleFilter } from '@availabletowork/types'

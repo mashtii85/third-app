@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_USERS } from '../../queries'
+import { GET_USERS } from '@availabletowork/queries'
 
 // Helpers
 import { prepareUsersArguments } from '../helpers'

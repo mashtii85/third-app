@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_GROUPS } from '../../queries/queries'
+import { GET_GROUPS } from '@availabletowork/queries'
 
 // Types
 import { GroupDataList, GroupFilter } from '@availabletowork/types'

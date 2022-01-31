@@ -4,8 +4,8 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_RESOURCES } from '../../queries/queries'
-import { GET_POSTS } from '../../../../posts/queries/queries'
+import { CREATE_RESOURCES } from '@availabletowork/queries'
+import { GET_POSTS } from '@availabletowork/queries'
 
 // Types
 import {

@@ -2,10 +2,12 @@
  * Components - Taxonomies - Hooks - useTaxonomies
  */
 
+// React
+import { useEffect } from 'react'
+
 // Apollo
 import { useLazyQuery } from '@apollo/client'
-import { useEffect } from 'react'
-import { GET_TAXONOMIES } from '../../queries'
+import { GET_TAXONOMIES } from '@availabletowork/queries'
 
 // Helpers
 import { prepareTaxonomyArguments } from '../helpers'

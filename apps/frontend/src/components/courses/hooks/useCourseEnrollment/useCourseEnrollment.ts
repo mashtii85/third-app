@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { COURSE_ENROLLMENT } from '../../queries'
+import { COURSE_ENROLLMENT } from '@availabletowork/queries'
 import { CoursesData } from '@availabletowork/types'
 
 export const useCourseEnrollment = (accountId: number, userId: number): any => {

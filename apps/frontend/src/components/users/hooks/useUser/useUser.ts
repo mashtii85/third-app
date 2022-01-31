@@ -7,7 +7,7 @@ import { useContext, useEffect } from 'react'
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_USER } from '../../queries'
+import { GET_USER } from '@availabletowork/queries'
 
 // Localization
 import { isLocale } from '../../../../translations/config'

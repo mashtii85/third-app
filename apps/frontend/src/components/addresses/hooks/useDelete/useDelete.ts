@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_ADDRESS_BY_PK, GET_ADDRESSES } from '../../queries/queries'
+import { DELETE_ADDRESS_BY_PK, GET_ADDRESSES } from '@availabletowork/queries'
 
 // Types
 import {

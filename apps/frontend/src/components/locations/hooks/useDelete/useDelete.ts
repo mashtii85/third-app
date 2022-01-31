@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_LOCATION, GET_LOCATIONS } from '../../queries'
+import { DELETE_LOCATION, GET_LOCATIONS } from '@availabletowork/queries'
 
 // Helpers
 import { prepareLocationsArguments } from '../useLocations/helpers'

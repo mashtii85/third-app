@@ -14,7 +14,7 @@ import {
   GET_LOCATION_ITEMS,
   GET_MEMBER_ITEMS,
   GET_TAXONOMIES_ITEMS
-} from './queries'
+} from '@availabletowork/queries'
 
 // Helpers
 import { prepareTaxonomyArguments } from '../taxonomies/hooks/helpers'

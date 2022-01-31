@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { DELETE_MEDIA, GET_MEDIA } from '../../queries/queries'
+import { DELETE_MEDIA, GET_MEDIA } from '@availabletowork/queries'
 
 // Types
 import {

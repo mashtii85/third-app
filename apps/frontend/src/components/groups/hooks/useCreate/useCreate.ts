@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_GROUPS, GET_GROUPS } from '../../queries/queries'
+import { CREATE_GROUPS, GET_GROUPS } from '@availabletowork/queries'
 
 // Types
 import {

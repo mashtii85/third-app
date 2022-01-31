@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_COURSE } from '../../queries'
+import { UPDATE_COURSE } from '@availabletowork/queries'
 
 // Types
 import {

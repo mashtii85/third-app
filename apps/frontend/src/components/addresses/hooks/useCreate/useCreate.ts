@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_ADDRESS, GET_ADDRESSES } from '../../queries/queries'
+import { CREATE_ADDRESS, GET_ADDRESSES } from '@availabletowork/queries'
 
 // Types
 import {

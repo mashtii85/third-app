@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_COURSES } from '../../queries'
+import { GET_COURSES } from '@availabletowork/queries'
 
 // Types
 import { CoursesData, UseCourseOutput, UseCoursesProps } from '@availabletowork/types'

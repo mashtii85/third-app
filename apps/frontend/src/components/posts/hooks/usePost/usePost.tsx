@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_POSTS } from '../../queries/queries'
+import { GET_POSTS } from '@availabletowork/queries'
 
 // Types
 import { GraphqlWhere, Post, PostDataList, PostFilter } from '@availabletowork/types'

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_LESSON, GET_LESSONS } from '../../queries/queries'
+import { CREATE_LESSON, GET_LESSONS } from '@availabletowork/queries'
 
 // Types
 import {

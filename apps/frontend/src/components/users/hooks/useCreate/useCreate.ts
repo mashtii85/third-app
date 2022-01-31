@@ -4,10 +4,10 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_USER, GET_USERS } from '../../queries'
-import { prepareUsersArguments } from '../helpers'
+import { CREATE_USER, GET_USERS } from '@availabletowork/queries'
 
 // Helpers
+import { prepareUsersArguments } from '../helpers'
 
 // Types
 import {

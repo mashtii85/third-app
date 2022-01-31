@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_MEDIUM, GET_MEDIA } from '../../queries/queries'
+import { CREATE_MEDIUM, GET_MEDIA } from '@availabletowork/queries'
 
 // Types
 import {

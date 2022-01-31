@@ -12,7 +12,7 @@ import {
   UseUpdateLessonProgressOutput,
   UseHookProps
 } from '@availabletowork/types'
-import { UPDATE_LESSON_PROGRESS_BY_PK } from '../../../../../lessons/queries/queries'
+import { UPDATE_LESSON_PROGRESS_BY_PK } from '@availabletowork/queries'
 
 export const useUpdateLessonProgress = (
   props: UseHookProps<LessonProgressUpdateData>

@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { UPDATE_TAXONOMY } from '../../queries'
+import { UPDATE_TAXONOMY } from '@availabletowork/queries'
 
 // Types
 import { UseUpdateTaxonomyOutput, UseUpdateTaxonomyProps } from '@availabletowork/types'

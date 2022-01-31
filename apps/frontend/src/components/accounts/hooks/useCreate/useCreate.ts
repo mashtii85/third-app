@@ -4,7 +4,7 @@
 
 // Apollo
 import { useMutation } from '@apollo/client'
-import { CREATE_ACCOUNT, GET_ACCOUNTS } from '../../queries/queries'
+import { CREATE_ACCOUNT, GET_ACCOUNTS } from '@availabletowork/queries'
 
 // Types
 import { UseCreateAccountOutput, UseCreateAccountProps } from '@availabletowork/types'

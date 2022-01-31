@@ -4,7 +4,7 @@
 
 // Apollo
 import { useQuery } from '@apollo/client'
-import { GET_LOCATIONS } from '../../queries'
+import { GET_LOCATIONS } from '@availabletowork/queries'
 
 // Types
 import { LocationsData, UseLocationsOutput, UseLocationsProps } from '@availabletowork/types'
