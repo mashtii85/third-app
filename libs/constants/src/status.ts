@@ -2,12 +2,7 @@
  * Constants - Status
  */
 
-interface SELECT_STATUS_ACTIVE {
-  label: 'Active' | 'Inactive'
-  value: 'active' | 'inactive'
-}
-
-export const statusActive: SELECT_STATUS_ACTIVE[] = [
+export const statusActive = [
   {
     label: 'Active',
     value: 'active'

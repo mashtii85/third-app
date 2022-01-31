@@ -1,8 +1,3 @@
-interface Options {
-  label: string
-  value: string | number
-}
-
 export enum LOCALE_NS {
   Home = 'home',
   Common = 'common',
@@ -11,7 +6,7 @@ export enum LOCALE_NS {
   Profile = 'profile'
 }
 
-export const localesOptions: Options[] = [
+export const localesOptions = [
   {
     label: 'English',
     value: 'en'
