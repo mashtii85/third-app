@@ -1,6 +1,7 @@
 import { CATEGORIES_TABS } from '../../constants/categories'
 import { timer } from '../../constants/misc'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
+
 describe('/Categories', () => {
   before(() => {
     const { client } = Cypress.env('users')
@@ -16,7 +17,7 @@ describe('/Categories', () => {
     })
     describe('Member Types', () => {
       it('should open Create new member offCanvas', () => {
-        cy.getDetails2('Member Types').within(() => {
+        cy.getDetails('Member Types').within(() => {
           cy.contains('button', 'Add New').click()
         })
         cy.wait(timer)
@@ -28,7 +29,7 @@ describe('/Categories', () => {
     })
     describe('Groups', () => {
       it('should open Create group offCanvas', () => {
-        cy.getDetails2('Groups')
+        cy.getDetails('Groups')
           .within(() => {
             cy.contains('button', 'Create a group').click()
           })

@@ -17,6 +17,7 @@ import {
   InMemoryCache,
   split
 } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 
@@ -101,6 +102,15 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+    )
+
+  if (networkError) console.log(`[Network error]: ${networkError}`)
+})
+
 function createApolloClient(Config: any): ApolloClient<any> {
   return new ApolloClient({
     cache: new InMemoryCache(),
@@ -114,7 +124,7 @@ function createApolloClient(Config: any): ApolloClient<any> {
         errorPolicy: 'all'
       }
     },
-    link: from([authMiddleware, link]),
+    link: from([authMiddleware, errorLink, link]),
     name: `rwa-${Config?.generalConfig?.isMobile ? 'mobile' : 'web'}`,
     ssrMode: typeof window === 'undefined',
     version: Config?.version || 'unknown'

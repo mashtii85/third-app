@@ -11,14 +11,12 @@ const getNavItem = (name: string): any => cy.contains(`nav div ul li a span`, na
 const getDropdownNavItem = (item: string, itemList: string[] = [], timer = 1000): any => {
   cy.get('.dropdown--toggle')
     .within(() => {
-      cy.contains('span', item)
-        .click()
-        .get('.dropdown--menu')
-
-        .within(() => {
-          cy.get('.dropdown--link')
-          itemList.map((item) => cy.get(item))
-        })
+      cy.contains('span', item).click().get('.dropdown--menu')
+      // Todo :make it work
+      // .within(() => {
+      //   cy.get('.dropdown--link')
+      //   itemList.map((item) => cy.get(item))
+      // })
     })
     .wait(timer)
 }

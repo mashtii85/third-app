@@ -1,4 +1,4 @@
-import { pages } from '@availabletowork/types'
+import { pages } from '@availabletowork/constants'
 import { ENTITY_QUERY } from '../../../constants/queries'
 import { fetchQueryAPI } from '../../../utils/api'
 import { loginAsClient } from '../../../utils/login'

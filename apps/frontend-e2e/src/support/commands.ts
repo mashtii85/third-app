@@ -1,4 +1,4 @@
-import { getDetails2 } from './commands/details'
+import { getDetails } from './commands/details'
 import { getFilterComponent } from './commands/filter'
 import { offCanvasCheckHeader, offCanvasClose, offCanvasVisible } from './commands/offCanvas'
 import {
@@ -43,7 +43,7 @@ Cypress.Commands.add('id', id)
 
 Cypress.Commands.add('getFilterComponent', getFilterComponent)
 
-Cypress.Commands.add('getDetails2', getDetails2)
+Cypress.Commands.add('getDetails', getDetails)
 
 Cypress.Commands.add('offCanvasCheckHeader', offCanvasCheckHeader)
 

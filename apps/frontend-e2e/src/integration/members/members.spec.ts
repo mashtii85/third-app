@@ -1,5 +1,5 @@
 import { timer } from '../../constants/misc'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { loginAsClient } from '../../utils/login'
 import { openOffCanvas } from '../../utils/helpers'
 
@@ -28,8 +28,7 @@ describe('/Members', () => {
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
         // cy.dataCy('Locations').click()
-        cy.dataCy('create-member-button').click()
-        cy.getDetails2(accountsModule)
+        cy.getDetails(accountsModule)
           .within(() => {})
           .should('have.prop', 'title')
           .testListPage(accountsModule)
@@ -38,6 +37,8 @@ describe('/Members', () => {
     })
 
     it('should raise error, so offCanvas still visible', () => {
+      cy.dataCy('create-member-button').click().wait(timer)
+
       cy.dataCy('offCanvas').within(() => {
         cy.offCanvasCheckHeader('Add a Member')
         cy.get('form')
@@ -48,14 +49,16 @@ describe('/Members', () => {
           })
           .submit()
           .should('be.visible')
+          .offCanvasClose()
           .wait(timer)
       })
     })
 
     const member = 'new member'
-    it('should insert a member', () => {
+    it.only('should insert a member', () => {
+      cy.dataCy('create-member-button').click().wait(timer)
       cy.dataCy('offCanvas')
-        .should('be.visible')
+        // .should('be.visible')
         .within(() => {
           cy.offCanvasCheckHeader('Add a Member')
           cy.get('form')
@@ -79,7 +82,7 @@ describe('/Members', () => {
         openEditOffCanvas()
         it('should edit Account and add contact user', () => {
           cy.dataCy('offCanvas')
-            .should('be.visible')
+            // .should('be.visible')
             .within(() => {
               cy.offCanvasCheckHeader('Edit Member')
               cy.get('form')

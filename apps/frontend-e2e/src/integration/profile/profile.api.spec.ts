@@ -1,7 +1,7 @@
 import { ENTITY_QUERY } from '../../constants/queries'
 import { fetchQueryAPI } from '../../utils/api'
 import { loginAsClient } from '../../utils/login'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { timer } from '../../constants/misc'
 
 describe(`fetch queries`, () => {

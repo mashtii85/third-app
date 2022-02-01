@@ -32,10 +32,10 @@ declare namespace Cypress {
     hasFilter(): Chainable<Element>
 
     /**
-     * Custom command to get Details2 Component.
-     * @example cy.getDetails2('title')
+     * Custom command to get Details Component.
+     * @example cy.getDetails('title')
      */
-    getDetails2(title: string): Chainable<Element>
+    getDetails(title: string): Chainable<Element>
 
     /**
      * Custom command to get check offCanvas Visibility

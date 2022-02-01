@@ -1,6 +1,6 @@
 import { timer } from '../../../constants/misc'
 import { loginAsClient } from '../../../utils/login'
-import { pages } from '@availabletowork/types'
+import { pages } from '@availabletowork/constants'
 
 const enum TABS {
   Account = 'account0Tab',
@@ -15,7 +15,7 @@ describe('/Account', () => {
   describe(`${TABS.Account}`, () => {
     it(`should show The ${TABS.Account} by default`, () => {
       cy.dataCy(`${TABS.Account}`)
-      cy.getDetails2('Account Details').wait(timer)
+      cy.getDetails('Account Details').wait(timer)
     })
   })
 

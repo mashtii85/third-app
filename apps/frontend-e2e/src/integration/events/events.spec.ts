@@ -1,5 +1,5 @@
 import { BUTTONS } from '../../constants/buttons'
-import { pages } from '@availabletowork/types'
+import { pages } from '@availabletowork/constants'
 import { timer } from '../../constants/misc'
 import { loginAsClient } from '../../utils/login'
 
@@ -17,6 +17,7 @@ const openEditOffCanvas = (): any => {
       .eq(BUTTONS.Edit)
       .wait(timer)
       .click()
+      .wait(timer)
   })
 }
 
@@ -30,8 +31,7 @@ describe('/Events', () => {
       // assert that a matching request has been made
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
-        cy.dataCy('create-event-button').click()
-        cy.getDetails2(eventsModule)
+        cy.getDetails(eventsModule)
           .within(() => {})
           .should('have.prop', 'title')
           .testListPage(eventsModule)
@@ -39,7 +39,9 @@ describe('/Events', () => {
       })
     })
 
-    it('should raise error, so offCanvas still visible', () => {
+    it.only('should raise error, so offCanvas still visible', () => {
+      cy.dataCy('create-event-button').click().wait(timer)
+
       cy.dataCy('offCanvas').within(() => {
         cy.offCanvasCheckHeader('Add an Event')
         cy.get('form')
@@ -49,12 +51,17 @@ describe('/Events', () => {
             cy.formReactSelect('taxonomy', 0)
           })
           .submit()
-          .should('be.visible')
           .wait(timer)
+          .should('be.visible')
+        // cy.offCanvasClose()
       })
     })
+
     const event = 'new event'
-    it('should insert an event successfully', () => {
+
+    it.only('should insert an event successfully', () => {
+      // cy.dataCy('create-event-button').click().wait(timer)
+
       cy.dataCy('offCanvas')
         // .should('be.visible')
         .within(() => {
@@ -76,8 +83,9 @@ describe('/Events', () => {
         .wait(timer)
     })
 
-    openEditOffCanvas()
     it('should edit Account and add contact user', () => {
+      openEditOffCanvas()
+
       cy.dataCy('offCanvas')
         .should('be.visible')
         .within(() => {
@@ -113,7 +121,7 @@ describe('/Events', () => {
         .should('be.visible')
         .within(() => {
           cy.contains('p', "'new event1'")
-          cy.get('button').contains('Delete').click()
+          cy.get('button').contains('Delete').wait(timer).click()
         })
     })
   })

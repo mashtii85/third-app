@@ -16,7 +16,7 @@ describe('/Courses', () => {
       // assert that a matching request has been made
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
-        cy.getDetails2(coursesModule)
+        cy.getDetails(coursesModule)
           .within(() => {})
           .should('have.prop', 'title')
           .testListPage(coursesModule)
