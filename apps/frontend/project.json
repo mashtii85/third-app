@@ -15,16 +15,33 @@
         "production": {}
       }
     },
+    "serve-all": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "nx serve api"
+          },
+          {
+            "command": "nx serve"
+          }
+        ],
+        "parallel": true,
+        "readyWhen": "Angular Live Development Server is listening"
+      }
+    },
     "serve": {
       "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "frontend:build",
         "dev": true,
-        "proxyConfig": "apps/frontend/proxy.conf.json"
+        "proxyConfig": "apps/frontend/proxy.conf.json",
+        "port": 3100
       },
       "configurations": {
         "production": {
           "buildTarget": "frontend:build:production",
+          "port": 3100,
           "dev": false
         }
       }
@@ -33,6 +50,21 @@
       "executor": "@nrwl/next:export",
       "options": {
         "buildTarget": "frontend:build:production"
+      }
+    },
+
+    "build-cy": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "nx build --prod"
+          },
+          {
+            "command": "nx e2e frontend-e2e --prod"
+          }
+        ],
+        "parallel": false
       }
     },
     "test": {

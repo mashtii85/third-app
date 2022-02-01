@@ -1,7 +1,7 @@
 /**
  * Home - Home
  */
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { timer } from '../../constants/misc'
 import { loginAsClient } from '../../utils/login'
 
@@ -12,6 +12,7 @@ describe('/Home', () => {
 
   it('should test Nav Items correctly', () => {
     cy.get('#navHomeMenu')
+
     cy.getDropdownNavItem('Members', [
       '#navItemsStudents',
       '#navItemsTeachers',
@@ -19,17 +20,20 @@ describe('/Home', () => {
       '#navItemsOrganisations',
       '#navMembersList'
     ])
+
     cy.getDropdownNavItem('Locations', [
       '#navItemsBuildings',
       '#navItemsTraining\\ fields',
       '#navItemsStadiums',
       '#navLocationsList'
     ])
+
     cy.getDropdownNavItem('Events', [
       '#navItemsMatches',
       '#navItemsTraining\\ sessions',
       '#navEventsList'
     ])
+
     cy.getDropdownNavItem('Learning', [
       '#navItemsGeneral\\ Courses',
       '#navCourses',

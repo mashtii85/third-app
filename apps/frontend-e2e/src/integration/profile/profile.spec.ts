@@ -1,6 +1,6 @@
 import { timer } from '../../constants/misc'
 import { loginAsClient } from '../../utils/login'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 
 describe('/Account', () => {
   before(() => {
@@ -11,11 +11,11 @@ describe('/Account', () => {
     it(`should show the page successfully`, () => {
       cy.dataCy('profile-header').should('exist')
       // Details
-      cy.getDetails2('Details')
+      cy.getDetails('Details')
         .within(() => {})
         .wait(timer)
       // Accounts Table
-      cy.getDetails2('Account')
+      cy.getDetails('Account')
         // .within(() => { })
         .should('exist')
         .wait(timer)
@@ -24,7 +24,7 @@ describe('/Account', () => {
 
   describe('Edit Details', () => {
     it(`should edit Details successfully`, () => {
-      cy.getDetails2('Details').within(() => {
+      cy.getDetails('Details').within(() => {
         cy.get('button').click()
       })
     })

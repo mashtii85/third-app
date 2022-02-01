@@ -1,6 +1,6 @@
 import { CATEGORIES_TABS } from '../../constants/categories'
 import { timer } from '../../constants/misc'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { loginAsClient } from '../../utils/login'
 
 describe('/Categories', () => {

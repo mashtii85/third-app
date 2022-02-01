@@ -1,12 +1,12 @@
 import { ENTITY_QUERY } from '../../constants/queries'
 import { loginAsClient } from '../../utils/login'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { prepareQueryName } from '../../utils/query'
 import { aliasQuery } from '../../utils/gql'
 
 describe(`fetch queries`, () => {
   const url = Cypress.env('backendUrl')
-  const accountsModule = 'Accounts'
+  const accountsModule = 'accounts'
 
   beforeEach(() => {
     loginAsClient(pages.dashboard.accounts.list)
@@ -23,6 +23,7 @@ describe(`fetch queries`, () => {
         expect(xhr.response.statusCode).equal(200)
       })
     })
+
     it('should fetch data from Mock successfully', () => {
       cy.fixture(accountsModule).then((accountsData) => {
         cy.log(accountsData)

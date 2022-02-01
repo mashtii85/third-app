@@ -2,7 +2,7 @@
  * Accounts - Sign In
  */
 
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { timer } from '../../constants/misc'
 describe('Accounts/Signin', () => {
   before(() => cy.visit(pages.account.signIn))

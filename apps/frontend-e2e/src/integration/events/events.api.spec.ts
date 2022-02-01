@@ -1,10 +1,10 @@
 import { ENTITY_QUERY } from '../../constants/queries'
 import { aliasQuery } from '../../utils/gql'
 import { prepareQueryName } from '../../utils/query'
-import { pages } from '@availabletowork/types'
+import { pages } from '@availabletowork/constants'
 import { loginAsClient } from '../../utils/login'
-
-const eventsModule = 'Events'
+// nx e2e frontend-e2e --prod
+const eventsModule = 'events'
 const url = Cypress.env('backendUrl')
 
 const eventQuery = prepareQueryName(ENTITY_QUERY.GetEvents)

@@ -11,6 +11,7 @@ const openOffCanvas = (moduleName: string, button: number): any => {
     .eq(button)
     .wait(timer)
     .click()
+    .wait(timer)
 }
 
 export { openOffCanvas }

@@ -10,16 +10,16 @@ describe("/Account's settings", () => {
   describe(`${SETTINGS_TABS.Theme}`, () => {
     it(`should show The ${SETTINGS_TABS.Theme} by default`, () => {
       cy.dataCy(`${SETTINGS_TABS.Theme}`)
-      cy.getDetails2('Color Scheme').within(() => {})
+      cy.getDetails('Color Scheme').within(() => {})
 
-      cy.getDetails2('Brand')
-      cy.getDetails2('Theme Logo').wait(timer)
+      cy.getDetails('Brand')
+      cy.getDetails('Theme Logo').wait(timer)
     })
   })
   describe(`${SETTINGS_TABS.Address}`, () => {
     it(`should show The ${SETTINGS_TABS.Address}`, () => {
       cy.dataCy(`${SETTINGS_TABS.Address}`).click()
-      cy.getDetails2('Registered address').wait(timer)
+      cy.getDetails('Registered address').wait(timer)
     })
   })
 })

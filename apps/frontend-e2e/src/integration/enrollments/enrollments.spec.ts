@@ -1,5 +1,5 @@
 import { timer } from '../../constants/misc'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { loginAsClient } from '../../utils/login'
 
 const enrollmentsModule = 'Enrollments'
@@ -14,7 +14,7 @@ describe('/Enrollments', () => {
       // assert that a matching request has been made
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
-        cy.getDetails2(enrollmentsModule)
+        cy.getDetails(enrollmentsModule)
           .within(() => {})
           .should('have.prop', 'title')
           .testListPage(enrollmentsModule)
