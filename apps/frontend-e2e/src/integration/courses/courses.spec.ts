@@ -1,4 +1,4 @@
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { BUTTONS } from '../../constants/buttons'
 import { timer } from '../../constants/misc'
 import { loginAsClient } from '../../utils/login'
@@ -17,7 +17,7 @@ describe('/Courses', () => {
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
         cy.getDetails(coursesModule)
-          .within(() => {})
+          .within(() => { })
           .should('have.prop', 'title')
           .testListPage(coursesModule)
           .wait(timer)

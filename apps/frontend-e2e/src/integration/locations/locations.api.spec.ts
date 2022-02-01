@@ -1,5 +1,5 @@
 import { loginAsClient } from '../../utils/login'
-import pages from '../../../../frontend/src/config/pages'
+import { pages } from '@availabletowork/constants'
 import { aliasQuery } from '../../utils/gql'
 
 describe(`fetch queries`, () => {
