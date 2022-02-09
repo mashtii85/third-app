@@ -1,6 +1,9 @@
 {
   "name": "@drykiss/nest-utils",
   "version": "0.0.1",
+  "repository": {
+    "url": "git@github.com:DryKISS/availabletowork.git"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
