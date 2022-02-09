@@ -1,0 +1,8 @@
+{
+  "name": "@drykiss/nest-utils",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "license": "MIT"
+}
