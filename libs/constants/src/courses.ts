@@ -1,3 +1,7 @@
+/**
+ * Constants - Courses
+ */
+
 export enum CLIENT_TAB {
   Details = 'Details',
   Curriculum = 'Curriculum',

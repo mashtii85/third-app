@@ -1,3 +1,7 @@
+/**
+ * Constants - Taxonomies
+ */
+
 export enum TAXONOMY_TYPE {
   Client = 'clients',
   Course = 'courses',

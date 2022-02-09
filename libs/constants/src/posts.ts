@@ -1,3 +1,7 @@
+/**
+ * Constants - Posts
+ */
+
 export enum RESOURCE_TYPE {
   File = 'file',
   Link = 'link'

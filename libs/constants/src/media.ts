@@ -1,3 +1,7 @@
+/**
+ * Constants - Media
+ */
+
 export enum MEDIUM_CATEGORY {
   Avatar = 'avatar',
   Cover = 'cover',

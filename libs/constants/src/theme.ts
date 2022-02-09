@@ -1,5 +1,5 @@
 /**
- * Constants - ThemeContext
+ * Constants - Theme
  */
 
 export enum THEME_CONTEXT {
