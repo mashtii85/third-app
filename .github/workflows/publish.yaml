@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   publish:
-    needs: [build]
+    needs: [Build]
     runs-on: ubuntu-18.04
     if: github.repository_owner == 'DryKISS'
     steps:
