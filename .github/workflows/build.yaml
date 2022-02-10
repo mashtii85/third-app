@@ -78,3 +78,22 @@ jobs:
 
         # env:
         #   GITHUB_TOKEN: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
+      name: publish:
+      needs: [package]
+      runs-on: ubuntu-18.04
+      if: github.repository_owner == 'DryKISS'
+      steps:
+        - name: Upload
+          uses: actions/download-artifact@v2
+          with:
+            name: package
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 14.x
+            registry-url: https://npm.pkg.github.com/
+            scope: '@DryKISS'
+        - run: echo "registry=https://npm.pkg.github.com/@DryKISS" >> .npmrc
+        # - run: npm publish $(ls *.tgz)
+        #   env:
+        #     NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
