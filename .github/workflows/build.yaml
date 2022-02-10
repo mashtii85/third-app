@@ -93,7 +93,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@DryKISS'
       - run: echo "registry=https://npm.pkg.github.com/@DryKISS" >> .npmrc
-      # - run: npm publish $(ls *.tgz)
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - run: npm publish $(ls *.tgz)
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.CI_REPOSITORY_ACCESS_TOKEN}}
 
