@@ -11,7 +11,7 @@ describe("/Account's settings", () => {
   describe(`${SETTINGS_TABS.Theme}`, () => {
     it(`should show The ${SETTINGS_TABS.Theme} by default`, () => {
       cy.dataCy(`${SETTINGS_TABS.Theme}`)
-      cy.getDetails('Color Scheme').within(() => { })
+      cy.getDetails('Color Scheme').within(() => {})
 
       cy.getDetails('Brand')
       cy.getDetails('Theme Logo').wait(timer)

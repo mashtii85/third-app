@@ -17,7 +17,7 @@ describe('/Courses', () => {
       cy.dataCy('layout-list').within(() => {
         cy.getFilterComponent()
         cy.getDetails(coursesModule)
-          .within(() => { })
+          .within(() => {})
           .should('have.prop', 'title')
           .testListPage(coursesModule)
           .wait(timer)

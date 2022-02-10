@@ -13,10 +13,9 @@ const fetchQueryAPI = (queryName: ENTITY_QUERY): any => {
   cy.intercept('POST', url, (req) => {
     aliasQuery(req, queryName)
   })
-
+  cy.log('url===>', query)
   cy.wait(query)
     .then((xhr) => {
-      // expect(xhr.response.body.data.account).have.length.gte(0)
       expect(xhr.response.statusCode).equal(200)
       return cy.wrap(xhr?.response?.body?.data)
     })

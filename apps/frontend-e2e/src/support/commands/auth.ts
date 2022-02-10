@@ -9,10 +9,10 @@ export const login = (email: string, password: string): void => {
   const token = Cypress.env(tokenName)
   if (!token || token.length == 0) {
     cy.log('get token from api')
-    const url = Cypress.env('frontendUrl')
+    const url = Cypress.env('url')
     cy.request({
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      url: `${url}/api/auth/login`,
+      url: `${url}/auth/login`,
       method: 'POST',
       body: {
         email,

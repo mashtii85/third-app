@@ -15,7 +15,7 @@
         "production": {}
       }
     },
-    "serve-all": {
+    "serve:all": {
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
@@ -27,7 +27,7 @@
           }
         ],
         "parallel": true,
-        "readyWhen": "Angular Live Development Server is listening"
+        "readyWhen": "App Live Development Server is listening"
       }
     },
     "serve": {
