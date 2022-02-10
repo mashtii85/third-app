@@ -4,7 +4,7 @@ on: [push]
 jobs:
   publish:
 
-  # needs: [package]
+  needs: [package]
     runs-on: ubuntu-18.04
     if: github.repository_owner == 'DryKISS'
     steps:
