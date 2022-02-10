@@ -67,7 +67,6 @@ jobs:
           #   cd ..
           # done
           cd ./dist/libs/nest-utils
-          npm ci
           npm pack
       - name: Upload
         uses: actions/upload-artifact@v2
