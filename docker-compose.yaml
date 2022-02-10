@@ -12,7 +12,7 @@ services:
     env_file:
       - ./backend/.env
   hasura:
-    image: hasura/graphql-engine:v2.1.1
+    image: hasura/graphql-engine:v2.2.0
     networks:
       - atw_network
     ports:
