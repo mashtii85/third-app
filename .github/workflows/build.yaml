@@ -73,7 +73,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: package
-            path: "*.tgz"
+            path: "./dist/libs/*.tgz"
           # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
 
         # env:
