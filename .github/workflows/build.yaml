@@ -61,7 +61,7 @@ jobs:
     #       echo github.repository_owner
       - name: Build Library
         run: |
-          yarn nx affected --target=build-lib --head=HEAD --base=origin/develop
+          yarn nx affected --target=build --head=HEAD --base=origin/develop
 
       - name: Affected Builds
         env:
