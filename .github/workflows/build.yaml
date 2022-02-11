@@ -61,14 +61,13 @@ jobs:
     #       echo github.repository_owner
       - name: Build Library
         run: |
-          yarn nx affected:libs  --target=build-lib --base=develop --head=HEAD --base=origin/develop~1
+          yarn nx affected  --target=build-lib --base=develop --head=HEAD --base=origin/develop~1
 
       - name: Affected Builds
         env:
           command: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --plain
 
         run: |
-
           echo '::set-output name=AFFECTED_LIBS::${{ env.command }}'
 
         id: affected-builds
