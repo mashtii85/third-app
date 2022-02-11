@@ -62,9 +62,12 @@ jobs:
     #       npm pack
     #       echo github.repository_owner
       - name: Affected Builds
+        env:
+          command: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
+
         run: |
-          yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
-          echo '::set-output name=AFFECTED_LIBS::green'
+
+          echo '::set-output name=AFFECTED_LIBS::$ {{ env.command }}'
 
         id: affected-builds
       - name: Build components (Github packages)
