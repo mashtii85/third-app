@@ -78,8 +78,8 @@ jobs:
           do
             cd ./dist/libs/$LIBRARY
             # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
-            echo "lib name:"
-            echo $LIBRARY
+            echo "lib name:${{ LIBRARY }}"
+            echo pwd
             cd ..
             cd ..
           done
