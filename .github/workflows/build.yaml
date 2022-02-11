@@ -5,9 +5,9 @@ on:
   # push:
     # tags:
     #   - v*
-
 jobs:
   build:
+    name: 'hi'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
