@@ -66,13 +66,12 @@ jobs:
       - name: Affected Builds
         env:
           command: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --plain
-
         run: |
           ${{ env.command }}
           echo '::set-output name=AFFECTED_LIBS::${{ env.command }}'
-
         id: affected-builds
-      - name: Build components (Github packages)
+
+      - name: Build package (Github packages)
 
         run: |
           echo 'libs=> ${{ steps.affected-builds.outputs.AFFECTED_LIBS }}'
@@ -90,11 +89,12 @@ jobs:
             fi
           done
 
-      - name: Upload
+      - name: Create Artifacts
         uses: actions/upload-artifact@v2
         with:
             name: package
-            path: "./dist/libs/nest-utils/*.tgz"
+            path: dist
+            # path: "./dist/libs/nest-utils/*.tgz"
           # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
 
         # env:
