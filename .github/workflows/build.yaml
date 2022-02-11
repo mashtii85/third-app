@@ -64,11 +64,11 @@ jobs:
 
       - name: Build components (Github packages)
         env:
-          pluginId: yarn nx affected --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
+          affectedBuild: yarn nx affected --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
 
 
         run: |
-          for LIBRARY in $(yarn nx affected --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
+          for LIBRARY in $(env.affectedBuild | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
             cd ./dist/libs/$LIBRARY
             # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
