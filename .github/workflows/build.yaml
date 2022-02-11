@@ -67,7 +67,7 @@ jobs:
       - name: Build components (Github packages)
 
         run: |
-          for LIBRARY in $(steps.affected-builds | awk 'NR > 2 && $1 != "Done" { print $1 }')
+          for LIBRARY in $(steps.affected-builds.outputs | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
             cd ./dist/libs/$LIBRARY
             # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
