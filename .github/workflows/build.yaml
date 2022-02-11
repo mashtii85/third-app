@@ -62,7 +62,7 @@ jobs:
     #       npm pack
     #       echo github.repository_owner
       - name: Affected Builds
-        run: yarn nx affected --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
+        run: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
         id: affected-builds
       - name: Build components (Github packages)
 
