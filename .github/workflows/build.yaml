@@ -84,6 +84,7 @@ jobs:
               echo "lib name:$LIBRARY"
               echo pwd
               echo 'from loop $LIBRARY'
+              npm pack
               cd ..
               cd ..
             fi
