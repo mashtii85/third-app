@@ -67,7 +67,7 @@ jobs:
 
         run: |
 
-          echo '::set-output name=AFFECTED_LIBS::$ {{ env.command }}'
+          echo '::set-output name=AFFECTED_LIBS::${{ env.command }}'
 
         id: affected-builds
       - name: Build components (Github packages)
