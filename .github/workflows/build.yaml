@@ -6,7 +6,7 @@ on: [push]
     #   - v*
 jobs:
   build:
-    name: hi
+    name: Build Libraries
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -78,7 +78,7 @@ jobs:
           echo 'libs=> ${{ steps.affected-builds.outputs.AFFECTED_LIBS }}'
           for LIBRARY in $(${{ steps.affected-builds.outputs.AFFECTED_LIBS }} | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
-            if [[ ./dist/libs/$LIBRARY ]]; then
+            if [[ -d ./dist/libs/$LIBRARY ]]; then
               cd ./dist/libs/$LIBRARY
               # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
               echo "lib name:$LIBRARY"
