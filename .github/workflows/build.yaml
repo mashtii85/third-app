@@ -83,6 +83,7 @@ jobs:
               # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
               echo "lib name:$LIBRARY"
               echo pwd
+              echo 'from loop $LIBRARY'
               cd ..
               cd ..
             fi
