@@ -7,7 +7,7 @@ on:
     #   - v*
 jobs:
   build:
-    name: 'hi'
+    name: hi
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
