@@ -1,7 +1,6 @@
 name: Build
 
-on:
-  [push]
+on: [push]
   # push:
     # tags:
     #   - v*
@@ -60,9 +59,9 @@ jobs:
     #       cd ./dist/libs/nest-utils
     #       npm pack
     #       echo github.repository_owner
-    - name: Build Library
-      run: |
-        yarn nx affected:libs  --target=build-lib --base=develop --head=HEAD --base=origin/develop~1
+      - name: Build Library
+        run: |
+          yarn nx affected:libs  --target=build-lib --base=develop --head=HEAD --base=origin/develop~1
 
       - name: Affected Builds
         env:
