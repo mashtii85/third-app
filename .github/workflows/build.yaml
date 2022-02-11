@@ -62,11 +62,15 @@ jobs:
     #       npm pack
     #       echo github.repository_owner
       - name: Affected Builds
-        run: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
+        run: |
+          yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --projects=nest-utils --plain
+          echo '::set-output name=AFFECTED_LIBS::green'
+
         id: affected-builds
       - name: Build components (Github packages)
 
         run: |
+          echo 'libs=> ${{ steps.affected-builds.AFFECTED_LIBS }}'
           for LIBRARY in $(${{steps.affected-builds.outputs}} | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
             cd ./dist/libs/$LIBRARY
