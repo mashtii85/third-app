@@ -68,6 +68,7 @@ jobs:
           command: yarn nx affected:libs --target=build --base=origin/develop~1 --head=HEAD --plain
 
         run: |
+          ${{ env.command }}
           echo '::set-output name=AFFECTED_LIBS::${{ env.command }}'
 
         id: affected-builds
