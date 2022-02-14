@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - SS-Publish
+    tags:
+      - !*
   # push:
     # tags:
     #   - v*
@@ -107,7 +109,7 @@ jobs:
 
             fi
           done
-          # npm version minor --no-git-tag-version --no-push --yes
+          npm version minor --no-git-tag-version --no-push --yes
 
       # - name: Create Artifacts
       #   uses: actions/upload-artifact@v2
