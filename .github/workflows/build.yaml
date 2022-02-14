@@ -134,7 +134,7 @@ jobs:
           echo ${{ steps.package-version.outputs.current-version }}
 
           git fetch
-          git pull
+          git checkout -b temp
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
           git add --all
