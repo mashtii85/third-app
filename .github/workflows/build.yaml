@@ -5,7 +5,7 @@ on:
     branches:
       - SS-Publish
     tags:
-      - !*
+      - '!*'
   # push:
     # tags:
     #   - v*
