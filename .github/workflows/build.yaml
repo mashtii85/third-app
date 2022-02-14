@@ -135,10 +135,10 @@ jobs:
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
           git add --all
-          # git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
-          git commit -am "update versions to"
+          git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
+          # git commit -am "update versions to"
 
-          # git push
+          git push
   # publish:
   #   needs: [build]
   #   runs-on: ubuntu-18.04
