@@ -109,7 +109,7 @@ jobs:
           git config user.name "DryKiss"
           git add --all
           # git commit -m "update versions to ${{ steps.package-version.outputs.current-version }}"
-          git commit -m "update versions to "
+          git commit -m "update versions to"
 
           # git push
   # publish:
