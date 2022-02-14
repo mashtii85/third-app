@@ -5,7 +5,7 @@ on:
     branches:
       - SS-Publish
     tags:
-      - !*
+      - release*
   # push:
     # tags:
     #   - v*
@@ -153,7 +153,7 @@ jobs:
           git config --global user.name "DryKiss"
           # git checkout -b kh-publish
           git add --all
-          git commit -am "update versions to ${{ steps.package-version.outputs.current-version }} tag release v${{ steps.package-version.outputs.current-version }}"
+          git commit -am "update versions to ${{ steps.package-version.outputs.current-version }} tag publish v${{ steps.package-version.outputs.current-version }}"
           git push --follow-tags
 
   # publish:
