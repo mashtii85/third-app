@@ -5,6 +5,6 @@ import { Module } from '@nestjs/common'
   providers: [],
   exports: []
 })
-export class NestUtilsModule {}
+export class NestUtilsModule { }
 
-console.log('hi2')
+console.log('hi2333333')
