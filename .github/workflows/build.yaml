@@ -90,12 +90,17 @@ jobs:
           for LIBRARY in $LIBS
           do
             if [[ -d ./dist/libs/$LIBRARY ]]; then
+              cd ./libs/$LIBRARY
+              npm version minor --no-git-tag-version --no-push --yes
+
+
+              cd ..
+              cd ..
               cd ./dist/libs/$LIBRARY
               # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
               echo "lib name:$LIBRARY"
               echo 'from loop {{ $LIBRARY }}'
               # npm pack
-              npm version minor --no-git-tag-version --no-push --yes
 
               cd ..
               cd ..
