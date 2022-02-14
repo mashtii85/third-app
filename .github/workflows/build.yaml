@@ -147,7 +147,8 @@ jobs:
           git checkout -b kh-publish
           git add --all
           git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
-          git push
+          git push --set-upstream origin kh-publish
+
 
   # publish:
   #   needs: [build]
