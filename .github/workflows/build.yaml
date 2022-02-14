@@ -106,14 +106,21 @@ jobs:
       #   id: package-version
       #   uses: martinbeentjes/npm-get-version-action@master
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v14.6
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+      # - name: Get changed files
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v14.6
+      #   with:
+      #     files: |
+      #       **/*.ts
+      #       **/*.tsx
+      #       **/*.js
+      #       **/*.jsx
+
+      # - name: List all changed files
+      #   run: |
+      #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+      #       echo "$file was changed"
+      #     done
 
 
       - name: get-npm-version
@@ -132,7 +139,7 @@ jobs:
           git config --global user.name "DryKiss"
           git add --all
           git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
-
+          git push
 
   # publish:
   #   needs: [build]
