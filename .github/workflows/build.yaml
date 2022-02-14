@@ -1,11 +1,14 @@
 name: Build
 
 on:
+  create:
+    tags:
+      - '!*'
   push:
     branches:
       - SS-Publish
-    tags:
-      - '!*'
+    # tags:
+    #   - '!*'
     # tags-ignore:
     #   - '*'
 
