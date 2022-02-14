@@ -159,8 +159,8 @@ jobs:
           # git checkout -b kh-publish
           git add --all
           git commit -m "update versions to ${{ steps.package-version.outputs.current-version }}
-          git tag -a v${{ steps.package-version.outputs.current-version }} -m "tag release v${{ steps.package-version.outputs.current-version }}"
-          # git tag v.${{ steps.package-version.outputs.current-version }} "
+          # git tag -a v${{ steps.package-version.outputs.current-version }} -m "tag release v${{ steps.package-version.outputs.current-version }}"
+          git tag v.${{ steps.package-version.outputs.current-version }} "
 
           git push --follow-tags
       # - name: Tag release
