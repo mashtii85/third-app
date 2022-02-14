@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - SS-Publish
+    tags:
+      - '!*'
     tags-ignore:
-      - '*v.*'
+      - '*'
 
   # push:
     # tags:
