@@ -91,17 +91,20 @@ jobs:
             fi
           done
 
-      - name: Create Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-            name: package
-            path: dist
+      # - name: Create Artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #       name: package
+      #       path: dist
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
 
       - name: Push changes
         run: |
           git fetch
-          git config user.email "vivid.ci@vonage.com"
-          git config user.name "Vivid CI"
+          git config user.email "forlorn_1985@rocketmail.com"
+          git config user.name "DryKiss"
           git add --all
           git commit -m "update versions to ${{ steps.package-version.outputs.current-version }}"
           git push
