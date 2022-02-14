@@ -16,9 +16,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
 
-      # - name: get-npm-version
-      #   id: package-version
-      #   uses: martinbeentjes/npm-get-version-action@master
 
       # - name: Push changes
       #   run: |
@@ -125,10 +122,15 @@ jobs:
       #   id: package-version
       #   uses: martinbeentjes/npm-get-version-action@master
 
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
       - name: Push changes
         run: |
           echo ${{ steps.package-version.outputs.current-version }}
 
+          git push
           git fetch
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
