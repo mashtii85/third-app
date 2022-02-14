@@ -141,6 +141,7 @@ jobs:
           # git checkout -b temp
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
+          git checkout -b kh-publish
           git add --all
           git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
           git push
