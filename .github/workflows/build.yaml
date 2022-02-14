@@ -90,7 +90,7 @@ jobs:
               echo "lib name:$LIBRARY"
               echo 'from loop {{ $LIBRARY }}'
               # npm pack
-              npm version minor --no-git-tag-version --no-push
+              npm version minor
               cd ..
               cd ..
             fi
