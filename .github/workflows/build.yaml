@@ -16,25 +16,28 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
+      # - name: get-npm-version
+      #   id: package-version
+      #   uses: martinbeentjes/npm-get-version-action@master
 
-      - name: Push changes
-        run: |
-          date +%s > report.txt
+      # - name: Push changes
+      #   run: |
+      #     date +%s > report.txt
 
-          echo ${{ steps.package-version.outputs.current-version }}
+      #     echo ${{ steps.package-version.outputs.current-version }}
 
-          git fetch
-          git pull
-          git config --global user.email "forlorn_1985@rocketmail.com"
-          git config --global user.name "DryKiss"
-          git add --all
-          # git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
-          git commit -am "update versions to"
+      #     git fetch
+      #     git pull
+      #     git config --global user.email "forlorn_1985@rocketmail.com"
+      #     git config --global user.name "DryKiss"
+      #     git add --all
+      #     # git commit -am "update versions to ${{ steps.package-version.outputs.current-version }}"
+      #     git commit -am "update versions to"
 
-          # git push
+
+
+
+      #     # git push
 
       # - name: Get the two latest versions
       #   run: |
@@ -68,19 +71,20 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
-      # - name: Build libraries
-      #   run: |
-      #     # yarn nx affected:libs --target=build --prod --skip-nx-cache #--base=origin/develop --head=HEAD
-      #     yarn nx affected:build --prod --base=origin/develop~1 --head=origin/develop
+      - name: Build libraries
+        run: |
+          # yarn nx affected:libs --target=build --prod --skip-nx-cache #--base=origin/develop --head=HEAD
+          yarn nx affected:build --prod --base=origin/develop~1 --head=origin/develop
 
-      # - name: Build
-      #   run: |
-      #       yarn nx build nest-utils
-    #  - name: Build Artifacts
-    #    run: |
-    #       cd ./dist/libs/nest-utils
-    #       npm pack
-    #       echo github.repository_owner
+      - name: Build
+        run: |
+            yarn nx build nest-utils
+     - name: Build Artifacts
+       run: |
+          cd ./dist/libs/nest-utils
+          npm pack
+          echo github.repository_owner
+
       - name: Build Library
         run: |
           yarn nx affected --target=build --head=HEAD --base=origin/develop
