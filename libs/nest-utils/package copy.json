@@ -1,8 +1,8 @@
 {
-  "name": "@masthii85/nest-utils",
+  "name": "@drykiss/nest-utils",
   "version": "0.60.0",
   "repository": {
-    "url": "git@github.com:mashtii85/third-app  ¡.git"
+    "url": "git@github.com:DryKISS/availabletowork.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
