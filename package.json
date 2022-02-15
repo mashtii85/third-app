@@ -1,6 +1,6 @@
 {
   "name": "availabletowork",
-  "version": "0.1.0",
+  "version": "0.601.0",
   "license": "ISC",
   "private": true,
   "scripts": {
@@ -19,7 +19,8 @@
     "test": "nx test",
     "affected:test": "nx affected --target=test --head=HEAD --base=remotes/origin/develop",
     "affected:test:all": "nx affected:e2e --base=develop --head=HEAD",
-    "affected:build": "nx affected --target=build --head=HEAD --base=remotes/origin/develop",
+    "affected:build": "nx affected  --target=build --base=develop --head=HEAD --base=remotes/origin/develop",
+    "affected:build:libs": "nx affected:libs  --target=build --base=develop --head=HEAD --base=remotes/origin/develop",
     "affected:lint": "nx affected --target=lint --head=HEAD --base=remotes/origin/develop",
     "affected:e2e": "nx affected --target=e2e --head=HEAD --base=remotes/origin/develop",
     "affected:export": "nx affected --target=export --head=HEAD --base=remotes/origin/develop",
