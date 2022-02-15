@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - *
+      - SS-Publish
     tags:
       - '!v*'
     # tags-ignore:
