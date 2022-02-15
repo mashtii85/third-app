@@ -78,7 +78,7 @@ jobs:
     #       echo github.repository_owner
       - name: Build Library
         run: |
-          echo "tag===> ${ GITHUB_REF#refs/*/ }""
+          echo "tag===> ${ GITHUB_REF#refs/*/ }"
 
           yarn nx affected --target=build --prod --skip-nx-cache --head=HEAD --base=origin/develop
 
