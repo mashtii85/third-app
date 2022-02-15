@@ -54,7 +54,7 @@ jobs:
         id: yarn-cache
         with:
           path: |
-            echo "tag===> ${GITHUB_REF#refs/*/}""
+            echo "tag===> ${{ GITHUB_REF#refs/*/ }}""
 
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             **\node_modules
