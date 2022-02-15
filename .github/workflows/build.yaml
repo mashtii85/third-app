@@ -2,10 +2,10 @@ name: Build
 
 on:
   push:
+    tags:
+    - '!v*.*.*'
     # branches:
     #   - SS-Publish
-    tags:
-      - '!*'
     # tags-ignore:
     #   - '*'
 
