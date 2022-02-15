@@ -6,8 +6,8 @@ on:
       - SS-Publish
     # tags:
     #   - '*'
-    tags-ignore:
-      - '*'
+    # tags-ignore:
+    #   - '*'
 
   # push:
     # tags:
