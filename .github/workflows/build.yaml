@@ -16,7 +16,7 @@ jobs:
   build:
     name: Build Libraries
     # if: github.event.action == 'closed' && github.event.pull_request.merged == true
-    if: "contains(github.ref, 'refs/tags/v')"
+    if: "!contains(github.ref, 'refs/tags/v*')"
     runs-on: ubuntu-latest
     steps:
 
@@ -165,7 +165,7 @@ jobs:
           git tag -a vvv${{ steps.package-version.outputs.current-version }} -m "tag release vvvv${{ steps.package-version.outputs.current-version }}"
           # git tag v.${{ steps.package-version.outputs.current-version }} "
 
-          # git push --tags
+          git push --tags
       # - name: Tag release
       #   run: |
       #     git tag -a v${{ steps.package-version.outputs.current-version }} -m "tag release v${{ steps.package-version.outputs.current-version }}"
