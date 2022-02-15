@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - SS-Publish
-    tags:
-      - '!*'
     # tags-ignore:
     #   - '*'
-
   # push:
   #   tags:
   #     - v*
@@ -16,27 +13,23 @@ jobs:
   build:
     name: Build Libraries
     # if: github.event.action == 'closed' && github.event.pull_request.merged == true
-    if: "!contains(github.ref, 'refs/tags/v*')"
+    if: "contains(github.ref, 'refs/tags/v*')"
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           token: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
 
-
-
-
       #     # git push
 
       # - name: Get the two latest versions
       #   run: |
-          # CURRENT_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 1)
-          # LAST_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 2 | awk 'NR == 2 { print $1 }')
-          # echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
-          # echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
+      # CURRENT_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 1)
+      # LAST_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 2 | awk 'NR == 2 { print $1 }')
+      # echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
+      # echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
       - name: Setup NodeJS 14
         uses: actions/setup-node@v1
         with:
@@ -71,11 +64,11 @@ jobs:
       # - name: Build
       #   run: |
       #       yarn nx build nest-utils
-    #  - name: Build Artifacts
-    #    run: |
-    #       cd ./dist/libs/nest-utils
-    #       npm pack
-    #       echo github.repository_owner
+      #  - name: Build Artifacts
+      #    run: |
+      #       cd ./dist/libs/nest-utils
+      #       npm pack
+      #       echo github.repository_owner
       - name: Build Library
         run: |
           yarn nx affected --target=build --prod --skip-nx-cache --head=HEAD --base=origin/develop
@@ -143,7 +136,6 @@ jobs:
       #       echo "$file was changed"
       #     done
 
-
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
@@ -154,15 +146,17 @@ jobs:
           echo ${{ steps.package-version.outputs.current-version }}
           git pull
           git fetch
+          # git checkout -b temp
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
+          # git checkout -b kh-publish
           git add --all
 
           git commit -m "update versions to ${{ steps.package-version.outputs.current-version }}"
 
           git tag -a vvv${{ steps.package-version.outputs.current-version }} -m "tag release vvvv${{ steps.package-version.outputs.current-version }}"
 
-          git push --tags
+          # git push --tags
       # - name: Tag release
       #   run: |
       #     git tag -a v${{ steps.package-version.outputs.current-version }} -m "tag release v${{ steps.package-version.outputs.current-version }}"
@@ -185,4 +179,3 @@ jobs:
   #     - run: npm publish $(ls *.tgz)
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.CI_REPOSITORY_ACCESS_TOKEN}}
-
