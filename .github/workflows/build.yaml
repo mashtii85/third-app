@@ -1,9 +1,9 @@
 name: Build
 
 on:
-  push:
+  pull_request:
     branches:
-      - SS-Publish
+      - develop
     tags:
       - '!*'
     # tags-ignore:
@@ -163,25 +163,22 @@ jobs:
           git tag -a vvv${{ steps.package-version.outputs.current-version }} -m "tag release vvvv${{ steps.package-version.outputs.current-version }}"
 
           git push --tags
-      # - name: Tag release
-      #   run: |
-      #     git tag -a v${{ steps.package-version.outputs.current-version }} -m "tag release v${{ steps.package-version.outputs.current-version }}"
-      #     git push --follow-tags
-  # publish:
-  #   needs: [build]
-  #   runs-on: ubuntu-18.04
-  #   if: github.repository_owner == 'DryKISS'
-  #   steps:
-  #     - name: Upload
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: package
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 14.x
-  #         registry-url: https://npm.pkg.github.com/
-  #         scope: '@DryKISS'
-  #     - run: echo "registry=https://npm.pkg.github.com/@DryKISS" >> .npmrc
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-18.04
+    if: github.repository_owner == 'DryKISS'
+    steps:
+      - name: Upload
+        uses: actions/download-artifact@v2
+        with:
+          name: package
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@DryKISS'
+      - run: echo "registry=https://npm.pkg.github.com/@DryKISS" >> .npmrc
   #     - run: npm publish $(ls *.tgz)
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.CI_REPOSITORY_ACCESS_TOKEN}}
