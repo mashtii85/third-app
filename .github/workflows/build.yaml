@@ -1,17 +1,17 @@
 name: Build
 
 on:
-  push:
-    tags:
-      - !v*.*.*
+  # push:
+  #   tags:
+  #     - !v*.*.*
     # branches:
     #   - SS-Publish
     # tags-ignore:
     #   - '*'
 
-  # push:
-    # tags:
-    #   - v*
+  push:
+    tags:
+      - v*
 jobs:
   build:
     name: Build Libraries
