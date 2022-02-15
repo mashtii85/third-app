@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: Build Libraries
-    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    # if: github.event.action == 'closed' && github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
     steps:
@@ -54,6 +54,8 @@ jobs:
         id: yarn-cache
         with:
           path: |
+            echo "tag===> ${GITHUB_REF#refs/*/}""
+
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             **\node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
