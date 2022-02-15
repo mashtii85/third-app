@@ -106,7 +106,7 @@ jobs:
               cd ..
               cd ..
               cd ./dist/libs/$LIBRARY
-              npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
+              # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
               echo "lib name:$LIBRARY"
               echo 'from loop {{ $LIBRARY }}'
               # npm pack
