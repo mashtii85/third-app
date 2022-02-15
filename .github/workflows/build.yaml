@@ -16,7 +16,7 @@ jobs:
   build:
     name: Build Libraries
     # if: github.event.action == 'closed' && github.event.pull_request.merged == true
-    if: "!contains(github.ref, 'refs/tags/v')"
+    if: "contains(github.ref, 'refs/tags/v')"
     runs-on: ubuntu-latest
     steps:
 
