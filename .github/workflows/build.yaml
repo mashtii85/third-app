@@ -160,10 +160,10 @@ jobs:
 
           git commit -m "update versions to ${{ steps.package-version.outputs.current-version }}"
 
-          git tag -a vvv${{ steps.package-version.outputs.current-version }} -m "tag release vvvv${{ steps.package-version.outputs.current-version }}"
+          # git tag -a vv${{ steps.package-version.outputs.current-version }} -m "tag release vvvv${{ steps.package-version.outputs.current-version }}"
 
-          git push --tags
-
+          # git push --tags
+          git push
   publish:
     needs: [build]
     runs-on: ubuntu-18.04
