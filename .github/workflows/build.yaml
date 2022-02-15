@@ -54,8 +54,6 @@ jobs:
         id: yarn-cache
         with:
           path: |
-            echo "tag===> ${ GITHUB_REF#refs/*/ }""
-
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             **\node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -80,6 +78,8 @@ jobs:
     #       echo github.repository_owner
       - name: Build Library
         run: |
+          echo "tag===> ${ GITHUB_REF#refs/*/ }""
+
           yarn nx affected --target=build --prod --skip-nx-cache --head=HEAD --base=origin/develop
 
       - name: Affected Builds
