@@ -16,7 +16,7 @@ jobs:
   build:
     name: Build Libraries
     # if: github.event.action == 'closed' && github.event.pull_request.merged == true
-    if: ! contains(github.ref, 'refs/tags/*')
+    if: "!contains(github.ref, 'refs/tags/*')"
     runs-on: ubuntu-latest
     steps:
 
@@ -84,6 +84,8 @@ jobs:
         env:
           command: yarn nx affected:libs --target=build --base=origin/develop --head=HEAD --plain
         run: |
+          !contains(github.ref , 'refs/tags/*')
+
           ${{ env.command }}
           echo '::set-output name=AFFECTED_LIBS::${{ env.command }}'
         id: affected-builds
