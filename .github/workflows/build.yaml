@@ -84,7 +84,6 @@ jobs:
         env:
           command: yarn nx affected:libs --target=build --base=origin/develop --head=HEAD --plain
         run: |
-          echo !contains(github.ref , 'refs/tags/*')
           echo "!contains(github.ref , 'refs/tags/*')"
 
           ${{ env.command }}
