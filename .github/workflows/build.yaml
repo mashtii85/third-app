@@ -2,16 +2,16 @@ name: Build
 
 on:
   push:
-    branches:
-      - SS-Publish
-    # tags:
-    #   - '*'
+    # branches:
+    #   - SS-Publish
+    tags:
+      - '*'
     # tags-ignore:
     #   - '*'
 
   # push:
-    # tags:
-    #   - v*
+  #   tags:
+  #     - v*
 jobs:
   build:
     name: Build Libraries
@@ -78,8 +78,6 @@ jobs:
     #       echo github.repository_owner
       - name: Build Library
         run: |
-          echo "tag===> ${ GITHUB_REF#refs/*/ }"
-
           yarn nx affected --target=build --prod --skip-nx-cache --head=HEAD --base=origin/develop
 
       - name: Affected Builds
