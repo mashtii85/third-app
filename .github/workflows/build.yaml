@@ -106,7 +106,7 @@ jobs:
               cd ..
               cd ..
               cd ./dist/libs/$LIBRARY
-              # npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
+              npm publish --registry https://npm.pkg.github.com --no-git-tag-version --no-push --yes
               echo "lib name:$LIBRARY"
               echo 'from loop {{ $LIBRARY }}'
               # npm pack
@@ -152,8 +152,9 @@ jobs:
         run: |
 
           echo ${{ steps.package-version.outputs.current-version }}
-          git pull
           git fetch
+          git pull
+
           git config --global user.email "forlorn_1985@rocketmail.com"
           git config --global user.name "DryKiss"
           git add --all
